@@ -46,16 +46,31 @@ Each property entry has exactly these fields, in this order:
 - Reserved kinds: dimensionless (ratios, counts), inapplicable (non-quantities), any (generic params).
   Angles and moles are NOT dimensionless.
 - Conventions a unit cannot express (2π in reciprocal lengths, lattice vs Cartesian basis) are separate
-  required enumerated subproperties (`convention`, `basis`), never encoded in the unit string.
+  required enumerated subproperties (`convention`, `basis`, `scaling`), never encoded in the unit string.
 - Energy and MolarEnergy are distinct kinds (Annex U Rule 8). kJ/mol, kcal/mol → MolarEnergy.
 - CODATA 2022 factors are normative; QUDT (CODATA 2006) and GNU Units 2.23 (CODATA 2018) are stale.
 - GNU Units pinned to 2.23 / definitions.units 3.19 for `x-gnu:` escape expressions.
 - "Annex" (ISO usage), normative; use "Kind" (not "Quantity kind") in all text.
 
-## Generic (name/value/unit/description) parameters
-Entries: xc-parameter, computation-parameter (md), td-parameter, model-parameter, field-variable,
-calculation-parameter, free-energy.unit. Their `value` has type any, extent any, kind any; the
-instance supplies type (float|int|string|bool), shape and unit. `unit` subproperty has kind inapplicable.
+## Generic parameters and free-form units (decided; see docs/decisions/0001 and 0003)
+Three groups, not to be merged:
+1. Generic parameters: xc-parameter (dft), computation-parameter and td-parameter (md),
+   model-parameter (pf), calculation-parameter (derived). Their `value` has type any, extent any,
+   kind any; the instance supplies type, shape and unit. The generic-parameter rule applies to
+   these only. (Restricting the instance type to float|int|string|bool: PROPOSED, NOT DECIDED.)
+2. Free-form units: field-variable, free-energy (pf). No `value`; a free-form `unit` whose kind
+   the schema does not fix.
+3. Typed properties with a required unit: grid-spacing (Length, recommended m) and time-step-size
+   (Time, recommended s) (pf). Handled like temperature, not as generic parameters. With
+   domain-size they carry a required `scaling` subproperty [physical, nondimensional]; when
+   nondimensional, `unit` SHALL be `dimensionless` (0003).
+Every `unit` subproperty has kind inapplicable and holds an Annex U symbol or `dimensionless`. The
+`x-gnu:` escape (Annex U Rule 4) is permitted only in groups 1 and 2, where the schema does not fix
+the kind; group 3 and all other typed properties use Annex U symbols only (0001 A1.1).
+PROPOSED, NOT DECIDED: state conditional validation rules (the allowed unit or values of one
+subproperty depend on another's value: `convention` for k-point-spacing, `basis` for
+exciton-momentum, `scaling` for PF lengths and times) once in §1.3, so each property refers to the
+rule rather than restating it. Needs a decision before implementation.
 PROPOSED, NOT DECIDED: define this pattern once in §1.3 under a name such as "generic parameter", with
 each such entry tagged `pattern: generic-parameter` and checked by validate_schema.py against one
 canonical definition. Needs a decision before implementation.

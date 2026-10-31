@@ -2,6 +2,8 @@
 
 A3.3 removed 2026-10-31: referred to a DFT `computation-parameter` that does not exist; the MD entry is covered by A4.1.
 
+A7.4 amended 2026-10-31: `grid-spacing` and `time-step-size` are typed properties (Length, Time; Annex U symbols only, recommended units m and s), not generic parameters; the `field-variable` value line is removed because `field-variable` has no `value`. Annex U Rule 4 amended 2026-10-31: the `x-gnu:` escape applies to the `unit` of a generic parameter or of any other subproperty whose Kind the schema declares as any. Nondimensional `domain-size`, `grid-spacing` and `time-step-size` are covered by 0003.
+
 **Part A** implements the units design (explicit `unit` on every dimensioned property; schema declares Quantity kind + Recommended unit; no default unit is ever implied).
 **Part B** contains independent fixes to existing content. Apply Part B even if Part A is deferred.
 
@@ -116,7 +118,7 @@ with:
 
 **A7.3** `free-energy > unit` (line ~666): replace the GNU-units sentence with the A3.2 wording. Change the Definition to "The physical unit of the free energy density (or of the free energy, if `expression` is not a density)".
 
-**A7.4** Apply A3.2 to the `unit*` rows of `grid-spacing`, `time-step-size`, `model-parameter`, `field-variable`. In the `value*` rows add: `grid-spacing` → **Quantity kind:** Length; `time-step-size` → **Quantity kind:** Time; `model-parameter` and `field-variable` → **Quantity kind:** any.
+**A7.4** Apply A3.2 to the `unit*` rows of `model-parameter` and `field-variable`. In the `value*` row of `model-parameter` add **Quantity kind:** any. `grid-spacing` and `time-step-size` are typed properties, not generic parameters: in their `value*` rows add `grid-spacing` → **Quantity kind:** Length, **Recommended unit:** m; `time-step-size` → **Quantity kind:** Time, **Recommended unit:** s. Their `unit*` rows read: "A symbol from the MatCore Unit Table (Annex U) of the property's Quantity kind, or `dimensionless` when `scaling` is `nondimensional` (see 0003)."
 
 ### A8. Derived property section (§2.7)
 

@@ -2,6 +2,8 @@
 
 *(Normative)*
 
+*Amended 2026-10-31: Rule 4 extended from generic parameters to any subproperty whose Kind the schema declares as `any` (see [decision 0001](../decisions/0001-units-change-list.md)).*
+
 ## U.1 Purpose
 
 This annex defines the closed set of unit symbols that MAY appear as the value of a `unit` subproperty in a MatCore metadata instance, the quantity kind of each symbol, and its conversion to coherent SI. It also defines the quantity-kind names used in the **Quantity kind** field of the schema and their mapping to the QUDT ontology.
@@ -13,7 +15,7 @@ A validator checks that (a) the symbol is in Table U.4 and (b) its quantity kind
 1. Symbols are case-sensitive ASCII strings. `eV` and `ev` are not the same symbol.
 2. Compound symbols use `/` for division and `^` for integer exponents, exactly as written in Table U.4. Symbols not listed (e.g. `eV/A`, `Å`, `angstrom**3`) are non-conformant.
 3. The reserved symbol `dimensionless` is used for quantities of dimension one (ratios, counts, fractional coordinates). It SHALL NOT be used for plane angles (use `rad` or `degree`) or for amount of substance (use `mol`).
-4. A `unit` subproperty of a generic name/value/unit parameter (Quantity kind `any`) MAY, if and only if no symbol in Table U.4 applies, contain a string of the form `x-gnu:<expression>`, where `<expression>` is a unit expression valid in GNU Units 2.23 with `definitions.units` version 3.19 (February 2024). Such values are accepted with a validation warning and are not guaranteed to be machine-convertible. Later versions of `definitions.units` are not implied; a change of the pinned version is a revision of this annex.
+4. A `unit` subproperty of a generic parameter or of any other subproperty whose Kind the schema declares as `any` MAY, if and only if no symbol in Table U.4 applies, contain a string of the form `x-gnu:<expression>`, where `<expression>` is a unit expression valid in GNU Units 2.23 with `definitions.units` version 3.19 (February 2024). Such values are accepted with a validation warning and are not guaranteed to be machine-convertible. Later versions of `definitions.units` are not implied; a change of the pinned version is a revision of this annex.
 5. Conversion factors marked *exact* follow from the SI definitions. Factors marked *CODATA 2022* are the 2022 CODATA recommended values published by NIST. The factors in Table U.4 are normative for MatCore and take precedence over the values embedded in any external vocabulary (see Note 5). A revision to a later CODATA release is a revision of this annex.
 6. This annex is versioned with the standard. Instance files SHALL use symbols from the annex version matching their declared MatCore version. Symbols are only ever added; a symbol, once published, is never removed or redefined.
 7. Compatibility between a unit and a quantity kind is decided by the SI dimension vector in Table U.3, not by QUDT's own `hasQuantityKind` links (see Note 4).

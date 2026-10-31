@@ -24,6 +24,7 @@ nav:
       - Repository and workflow: decisions/0000-repository-and-workflow.md
       - Units change list: decisions/0001-units-change-list.md
       - Typed property fields: decisions/0002-typed-property-fields.md
+      - Phase-field scaling: decisions/0003-phase-field-scaling.md
   - Feedback: feedback.md
   - Revision history: revision-history.md
 markdown_extensions: [tables, admonition, toc]
