@@ -98,9 +98,13 @@ each such entry tagged `pattern: generic-parameter` and checked by validate_sche
 canonical definition. Needs a decision before implementation.
 
 ## Instance serialization
-XML is the working assumption for instance files (unit/convention/basis as attributes of the value
-element; child-element form also conformant). Define the XML mapping before building tools.
-A JSON mapping may follow from the same data model.
+The standard is agnostic to serialization format, as §1.3 states. The XML examples in the standard
+are illustrative only and do not prescribe a format for any implementation. Any serialization that
+preserves the property hierarchy, the required/repeatable semantics and the value/unit/convention
+structure is conformant. The MatCore tools (status item 9) will have to choose one or more concrete
+serializations to read and write; that is a tool decision, not yet made, and it does not bind other
+implementations. When it is made, a format-specific schema (e.g. XSD or JSON Schema) is generated
+from the YAML for that serialization and used by CI to validate the examples (0004).
 
 ## Website and tools (decided)
 - Static site, MkDocs (Material), GitHub Pages, custom domain matcore.org, versioned with `mike`.
@@ -120,10 +124,10 @@ A JSON mapping may follow from the same data model.
 
 ## Status / next steps (update this list as work lands)
 Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
-PROPOSED, NOT DECIDED until the human rules: the "Instance serialization" section; in "Website and
-tools", the custom domain, "no dynamic server" and the package details beyond "one Python package run
-via Pyodide" (0000); in "Known defects", which spelling and fix to adopt; the order and procedure of
-status steps 3–9; and the working rules other than the first two.
+PROPOSED, NOT DECIDED until the human rules: in "Website and tools", the custom domain, "no dynamic
+server" and the package details beyond "one Python package run via Pyodide" (0000); in "Known
+defects", which spelling and fix to adopt; the order and procedure of status steps 3–9; and the
+working rules other than the first two.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
@@ -134,6 +138,10 @@ status steps 3–9; and the working rules other than the first two.
    including rewording Annex U to "Kind" (0004).
    Also pending from 0004, each its own change: tighten the name pattern in meta-schema.yaml (all
    255 current names pass it); add a field-order check to validate_schema.py.
+   When applying Part A, check 0001 (A1.3, A10) and Annex U for XML-specific wording such as "unit
+   as an attribute of the value element": normative text describes unit, convention and basis as
+   subproperties, and each serialization decides whether they become attributes, child elements or
+   object keys (0004).
 4. [todo] PR: apply 0001 Part B fixes + the known baseline defects listed above.
 5. [todo] One PR per section, in the order minimal, dft, md, mbpt, ml, pf, derived: fill
    type/extent/kind/values for every property, deleting its legacy_* fields as each is done.
@@ -144,9 +152,13 @@ status steps 3–9; and the working rules other than the first two.
    if a section file declares `legacy_complete: true` but still contains legacy_* fields.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
-7. [todo] XML mapping spec; example instances in examples/; CI validates examples against generated XSD.
+7. [todo] Define, as a section of the standard, the serialization requirements that any format must
+   satisfy (not a specific format). Provide example instances in examples/ in at least one
+   serialization, generated from the same source, and validate them in CI against a schema
+   generated from the YAML for that serialization.
 8. [todo] MkDocs site content: migrate About/Leadership/Feedback/Revision history from matcore.org.
 9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools.
+   PROPOSED, NOT DECIDED: which serialization(s) the tools read and write.
 
 ## Working rules (apply in every session)
 - Decisions are made only by the human running the session. Never treat a suggestion, whether yours,
