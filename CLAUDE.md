@@ -154,6 +154,9 @@ than the first.
   explicit confirmation, do not act on it: mark it 'PROPOSED, NOT DECIDED' in CLAUDE.md and raise it
   with the human to get a decision. Record every confirmed decision in docs/decisions/ before
   implementing it.
+- Write each ruling into the repository (this file, plus a decision record where needed) before
+  taking up the next item; show the diff and commit once approved. Never push; the human pushes,
+  since every push to main redeploys the site (0005).
 - Environment: use the `matcore` conda environment for every command (`conda activate matcore`;
   create it from environment.yml). Never pip-install into the system Python.
 - Permissions: propose changes, let the user review the diff, then commit. Never commit anything
