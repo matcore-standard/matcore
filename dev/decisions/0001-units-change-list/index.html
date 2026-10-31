@@ -747,6 +747,8 @@
       
         
       
+        
+      
     
     
     
@@ -1072,6 +1074,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0003-phase-field-scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase-field scaling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1329,6 +1359,8 @@
 
 
 <h1 id="matcore-metadata-schema-change-list-for-units-handling">MatCore Metadata Schema — Change List for Units Handling</h1>
+<p>A3.3 removed 2026-10-31: referred to a DFT <code>computation-parameter</code> that does not exist; the MD entry is covered by A4.1.</p>
+<p>A7.4 amended 2026-10-31: <code>grid-spacing</code> and <code>time-step-size</code> are typed properties (Length, Time; Annex U symbols only, recommended units m and s), not generic parameters; the <code>field-variable</code> value line is removed because <code>field-variable</code> has no <code>value</code>. Annex U Rule 4 amended 2026-10-31: the <code>x-gnu:</code> escape applies to the <code>unit</code> of a generic parameter or of any other subproperty whose Kind the schema declares as any. Nondimensional <code>domain-size</code>, <code>grid-spacing</code> and <code>time-step-size</code> are covered by 0003.</p>
 <p><strong>Part A</strong> implements the units design (explicit <code>unit</code> on every dimensioned property; schema declares Quantity kind + Recommended unit; no default unit is ever implied).
 <strong>Part B</strong> contains independent fixes to existing content. Apply Part B even if Part A is deferred.</p>
 <p>Line references are to the draft <code>MatCore_Dev.docx</code>; "old" text is quoted so each spot can be found with Find.</p>
@@ -1505,7 +1537,6 @@
 <blockquote>
 <p>A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning). <strong>Quantity kind:</strong> inapplicable.</p>
 </blockquote>
-<p><strong>A3.3</strong> Apply A3.2 identically to <code>computation-parameter</code> in the DFT section.</p>
 <h3 id="a4-md-section-23">A4. MD section (§2.3)</h3>
 <p><strong>A4.1</strong> Apply A3.2 to <code>computation-parameter</code> (line ~422) and <code>td-parameter</code> (line ~439).</p>
 <h3 id="a5-mbpt-section-24">A5. MBPT section (§2.4)</h3>
@@ -1544,7 +1575,7 @@
 </blockquote>
 <p><strong>A7.2</strong> <code>spatial-accuracy-order</code>, <code>temporal-accuracy-order</code>: replace <em>Standard units: dimensionless</em> with <strong>Quantity kind:</strong> dimensionless.</p>
 <p><strong>A7.3</strong> <code>free-energy &gt; unit</code> (line ~666): replace the GNU-units sentence with the A3.2 wording. Change the Definition to "The physical unit of the free energy density (or of the free energy, if <code>expression</code> is not a density)".</p>
-<p><strong>A7.4</strong> Apply A3.2 to the <code>unit*</code> rows of <code>grid-spacing</code>, <code>time-step-size</code>, <code>model-parameter</code>, <code>field-variable</code>. In the <code>value*</code> rows add: <code>grid-spacing</code> → <strong>Quantity kind:</strong> Length; <code>time-step-size</code> → <strong>Quantity kind:</strong> Time; <code>model-parameter</code> and <code>field-variable</code> → <strong>Quantity kind:</strong> any.</p>
+<p><strong>A7.4</strong> Apply A3.2 to the <code>unit*</code> rows of <code>model-parameter</code> and <code>field-variable</code>. In the <code>value*</code> row of <code>model-parameter</code> add <strong>Quantity kind:</strong> any. <code>grid-spacing</code> and <code>time-step-size</code> are typed properties, not generic parameters: in their <code>value*</code> rows add <code>grid-spacing</code> → <strong>Quantity kind:</strong> Length, <strong>Recommended unit:</strong> m; <code>time-step-size</code> → <strong>Quantity kind:</strong> Time, <strong>Recommended unit:</strong> s. Their <code>unit*</code> rows read: "A symbol from the MatCore Unit Table (Annex U) of the property's Quantity kind, or <code>dimensionless</code> when <code>scaling</code> is <code>nondimensional</code> (see 0003)."</p>
 <h3 id="a8-derived-property-section-27">A8. Derived property section (§2.7)</h3>
 <p><strong>A8.1</strong> Apply A3.2 to <code>calculation-parameter &gt; unit*</code> (line ~844); add <strong>Quantity kind:</strong> any to its <code>value*</code> row.</p>
 <h3 id="a9-new-annex-u-matcore-unit-table">A9. New Annex U — MatCore Unit Table</h3>

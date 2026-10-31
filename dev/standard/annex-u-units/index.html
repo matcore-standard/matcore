@@ -849,6 +849,8 @@
       
         
       
+        
+      
     
     
     
@@ -965,6 +967,34 @@
     
   
     Typed property fields
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0003-phase-field-scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase-field scaling
   
 
     
@@ -1142,6 +1172,7 @@
 
 <h1 id="annex-u-matcore-unit-table">Annex U — MatCore Unit Table</h1>
 <p><em>(Normative)</em></p>
+<p><em>Amended 2026-10-31: Rule 4 extended from generic parameters to any subproperty whose Kind the schema declares as <code>any</code> (see <a href="../../decisions/0001-units-change-list/">decision 0001</a>).</em></p>
 <h2 id="u1-purpose">U.1 Purpose</h2>
 <p>This annex defines the closed set of unit symbols that MAY appear as the value of a <code>unit</code> subproperty in a MatCore metadata instance, the quantity kind of each symbol, and its conversion to coherent SI. It also defines the quantity-kind names used in the <strong>Quantity kind</strong> field of the schema and their mapping to the QUDT ontology.</p>
 <p>A validator checks that (a) the symbol is in Table U.4 and (b) its quantity kind matches the quantity kind declared for the property in the schema. No unit parsing is required.</p>
@@ -1150,7 +1181,7 @@
 <li>Symbols are case-sensitive ASCII strings. <code>eV</code> and <code>ev</code> are not the same symbol.</li>
 <li>Compound symbols use <code>/</code> for division and <code>^</code> for integer exponents, exactly as written in Table U.4. Symbols not listed (e.g. <code>eV/A</code>, <code>Å</code>, <code>angstrom**3</code>) are non-conformant.</li>
 <li>The reserved symbol <code>dimensionless</code> is used for quantities of dimension one (ratios, counts, fractional coordinates). It SHALL NOT be used for plane angles (use <code>rad</code> or <code>degree</code>) or for amount of substance (use <code>mol</code>).</li>
-<li>A <code>unit</code> subproperty of a generic name/value/unit parameter (Quantity kind <code>any</code>) MAY, if and only if no symbol in Table U.4 applies, contain a string of the form <code>x-gnu:&lt;expression&gt;</code>, where <code>&lt;expression&gt;</code> is a unit expression valid in GNU Units 2.23 with <code>definitions.units</code> version 3.19 (February 2024). Such values are accepted with a validation warning and are not guaranteed to be machine-convertible. Later versions of <code>definitions.units</code> are not implied; a change of the pinned version is a revision of this annex.</li>
+<li>A <code>unit</code> subproperty of a generic parameter or of any other subproperty whose Kind the schema declares as <code>any</code> MAY, if and only if no symbol in Table U.4 applies, contain a string of the form <code>x-gnu:&lt;expression&gt;</code>, where <code>&lt;expression&gt;</code> is a unit expression valid in GNU Units 2.23 with <code>definitions.units</code> version 3.19 (February 2024). Such values are accepted with a validation warning and are not guaranteed to be machine-convertible. Later versions of <code>definitions.units</code> are not implied; a change of the pinned version is a revision of this annex.</li>
 <li>Conversion factors marked <em>exact</em> follow from the SI definitions. Factors marked <em>CODATA 2022</em> are the 2022 CODATA recommended values published by NIST. The factors in Table U.4 are normative for MatCore and take precedence over the values embedded in any external vocabulary (see Note 5). A revision to a later CODATA release is a revision of this annex.</li>
 <li>This annex is versioned with the standard. Instance files SHALL use symbols from the annex version matching their declared MatCore version. Symbols are only ever added; a symbol, once published, is never removed or redefined.</li>
 <li>Compatibility between a unit and a quantity kind is decided by the SI dimension vector in Table U.3, not by QUDT's own <code>hasQuantityKind</code> links (see Note 4).</li>
