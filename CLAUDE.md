@@ -79,14 +79,24 @@ A JSON mapping may follow from the same data model.
 - All items in docs/decisions/0001-units-change-list.md Part B.
 
 ## Status / next steps (update this list as work lands)
-1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; legacy_* preserved).
-2. [todo] PR: apply docs/decisions/0001-units-change-list.md Part A (kind/recommended-unit/convention).
-3. [todo] PR: apply 0001 Part B fixes + the known defects above.
-4. [todo] PR per section: fill type/extent/values for all properties; delete legacy_* as you go.
-5. [todo] Community feedback and committee decisions (user will supply) → one decision record + PR each.
-6. [todo] XML mapping spec; example instances in examples/; CI validates examples against generated XSD.
-7. [todo] MkDocs site content: migrate About/Leadership/Feedback/Revision history from matcore.org.
-8. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools.
+1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
+   as null stubs; legacy_* preserved).
+2. [todo] Website cleanup so changes can be reviewed on the rendered site (tabs, toc_depth,
+   remove placeholder pages, table rendering in build_docs.py, --show-legacy flag).
+3. [todo] PR: apply docs/decisions/0001-units-change-list.md Part A (kind/recommended-unit/convention).
+4. [todo] PR: apply 0001 Part B fixes + the known baseline defects listed above.
+5. [todo] One PR per section, in the order minimal, dft, md, mbpt, ml, pf, derived: fill
+   type/extent/kind/values for every property, deleting its legacy_* fields as each is done.
+   For each PR: (a) cross-check every property against the baseline .docx so no definition or
+   value was lost or altered in migration; (b) list in the PR description any property where
+   the typed fields required a judgment call, so the user can decide; (c) a section is complete
+   only when no legacy_* fields remain in its file. Add a check to validate_schema.py that fails
+   if a section file declares `legacy_complete: true` but still contains legacy_* fields.
+6. [todo] Committee decisions and community feedback (user will supply, after step 5):
+   one decision record + one PR each.
+7. [todo] XML mapping spec; example instances in examples/; CI validates examples against generated XSD.
+8. [todo] MkDocs site content: migrate About/Leadership/Feedback/Revision history from matcore.org.
+9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools.
 
 ## Working rules (apply in every session)
 - Environment: use the `matcore` conda environment for every command (`conda activate matcore`;
