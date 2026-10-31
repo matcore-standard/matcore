@@ -1,0 +1,2218 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://matcore.org/dev/standard/03-dft/">
+      
+      
+        <link rel="prev" href="../02-minimal/">
+      
+      
+        <link rel="next" href="../04-md/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>DFT - MatCore</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#22-dft" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MatCore" class="md-header__button md-logo" aria-label="MatCore" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MatCore
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DFT
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/matcore-standard/matcore" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MatCore" class="md-nav__button md-logo" aria-label="MatCore" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MatCore
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/matcore-standard/matcore" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About MatCore
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../leadership/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Leadership
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-minimal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFT
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#xc-functional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        xc-functional*
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="xc-functional*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xc-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        xc-parameter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="xc-parameter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        name*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        value*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unit*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-electron-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        core-electron-model*
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="core-electron-model*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pseudopotential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pseudopotential
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pseudopotential">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#name_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        name*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#number-of-valence-electrons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        number-of-valence-electrons*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        doi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique-identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unique-identifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valence-electron-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        valence-electron-model*
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="valence-electron-model*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localized-orbital-basis-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        localized-orbital-basis-set
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="localized-orbital-basis-set">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        doi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique-identifier_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unique-identifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kinetic-energy-cutoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kinetic-energy-cutoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#charge-density-cutoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        charge-density-cutoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculation-physics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calculation-physics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k-point-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        k-point-mesh
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="k-point-mesh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#number-of-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        number-of-points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k-point-spacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        k-point-spacing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smearing-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        smearing-type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smearing-width" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        smearing-width
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methfessel-paxton-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        methfessel-paxton-order
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-consistent-field-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        self-consistent-field-convergence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="self-consistent-field-convergence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        method
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tolerance*
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relaxation-tolerance-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        relaxation-tolerance-energy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relaxation-tolerance-forces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        relaxation-tolerance-forces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        comment
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-md/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-mbpt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MBPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-pf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase field
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-derived/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Derived properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annex-u-units/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annex U (units)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annex-u-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annex U table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revision history
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#xc-functional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        xc-functional*
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="xc-functional*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xc-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        xc-parameter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="xc-parameter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        name*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        value*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unit*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-electron-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        core-electron-model*
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="core-electron-model*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pseudopotential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pseudopotential
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pseudopotential">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#name_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        name*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#number-of-valence-electrons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        number-of-valence-electrons*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        doi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique-identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unique-identifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valence-electron-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        valence-electron-model*
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="valence-electron-model*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localized-orbital-basis-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        localized-orbital-basis-set
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="localized-orbital-basis-set">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        doi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unique-identifier_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unique-identifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kinetic-energy-cutoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kinetic-energy-cutoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#charge-density-cutoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        charge-density-cutoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculation-physics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calculation-physics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k-point-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        k-point-mesh
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="k-point-mesh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type*
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#number-of-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        number-of-points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k-point-spacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        k-point-spacing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smearing-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        smearing-type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smearing-width" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        smearing-width
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methfessel-paxton-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        methfessel-paxton-order
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-consistent-field-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        self-consistent-field-convergence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="self-consistent-field-convergence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        method
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tolerance*
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relaxation-tolerance-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        relaxation-tolerance-energy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relaxation-tolerance-forces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        relaxation-tolerance-forces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        comment
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="22-dft">2.2 DFT</h1>
+<p>* = required property</p>
+<h3 id="xc-functional"><code>xc-functional*</code></h3>
+<p>Approximation used to describe the electron exchange and electron correlation energies</p>
+<p><strong>Repeatable:</strong> True</p>
+<p><em>Values (legacy text):</em> Contains SubProperties as listed below.</p>
+<h4 id="type"><code>type*</code></h4>
+<p>The mathematical form of the exchange-correlation functional.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> String containing one of the following values: "LDA" – Local Density Approximation "GGA" – Generalized Gradient Approximation "Meta GGA" – Extension to GGA including dependence on Laplacian of electron density "Hybrid" – An approximation for the exchange-correlation (XC) functional that includes a portion of the exact XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio or empirical). "ML" – Machine learning based functional Other user-specified value if none of the above apply.</p>
+<h4 id="description"><code>description</code></h4>
+<p>Explanatory text providing more information about the type of the exchange-correlation method used including any relevant identifying information.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string containing more information about the exchange-correlation type. Examples of possible content by type: LDA: Common parameterizations: VMN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. LibXC designation: LibXC:LDA_C_GK72 (include source as prefix)</p>
+<h4 id="xc-parameter"><code>xc-parameter</code></h4>
+<p>A fixed variable associated with the specified exchange-correlation functional method.</p>
+<p><strong>Repeatable:</strong> True</p>
+<p><em>Values (legacy text):</em> Contains SubSubProperties as defined in the table below.</p>
+<h5 id="name"><code>name*</code></h5>
+<p>The designation of the exchange-correlation parameter.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string containing the name of an exchange-correlation parameter.</p>
+<h5 id="value"><code>value*</code></h5>
+<p>The data associated with the exchange-correlation parameter.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> An integer, real, boolean, or string containing the parameter value.</p>
+<h5 id="unit"><code>unit*</code></h5>
+<p>A standardized string or identifier that defines the dimension or measurement system of the associated value.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string containing the units of the value in the <a href="https://www.gnu.org/software/units/">GNU unit convention</a> (or the text "dimensionless").</p>
+<h5 id="description_1"><code>description</code></h5>
+<p>An explanation of the meaning, source, or purpose of the parameter.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string explaining the exchange-correlation parameter. This can be the mixing parameter for a hybrid exchange-correlation, or other method-specific parameters.</p>
+<h3 id="core-electron-model"><code>core-electron-model*</code></h3>
+<p>Model of the electrons used in the calculation.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Contains SubProperties as listed below.</p>
+<h4 id="type_1"><code>type*</code></h4>
+<p>The method used to model the electrons.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> String containing one of the following values: "All Electron" – All of the electrons in an atom are modeled explicitly. "LAPW" – "Linearized Augmented Plane Wave" "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential. "PAW" – Projector Augmented Wave Other user-specified value if none of the above apply.</p>
+<h4 id="pseudopotential"><code>pseudopotential</code></h4>
+<p>For type "Pseudopotential", or type "PAW", additional information about the pseudopotentials.</p>
+<p><strong>Repeatable:</strong> True</p>
+<p><em>Values (legacy text):</em> Contains SubSubProperties as defined in the table below.</p>
+<h5 id="name_1"><code>name*</code></h5>
+<p>The name of the pseudopotential.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string containing the pseudopotential name.</p>
+<h5 id="type_2"><code>type*</code></h5>
+<p>The physical form of the pseudopotential.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> String containing one of the following values: "Norm conserving" "Ultrasoft" Other user-specified value if none of the above apply.</p>
+<h5 id="description_2"><code>description</code></h5>
+<p>Explanatory text about the pseudopotential including any relevant identifying information.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string containing the pseudopotential description.</p>
+<h5 id="number-of-valence-electrons"><code>number-of-valence-electrons*</code></h5>
+<p>The number of electrons treated explicitly.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> An integer containing the number of valence electrons.</p>
+<p><em>Standard units (legacy text):</em> dimensionless</p>
+<h5 id="repository"><code>repository</code></h5>
+<p>The database from which the pseudopotential was obtained.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> String containing the name of the repository.</p>
+<h5 id="version"><code>version</code></h5>
+<p>The version of the pseudopotential.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string containing the pseudopotential version (e.g. "6.3.1")</p>
+<h5 id="doi"><code>doi</code></h5>
+<p>The digital object identifier (DOI) for the pseudopotential.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string containing the pseudopotential DOI.</p>
+<h5 id="unique-identifier"><code>unique-identifier</code></h5>
+<p>A hash or other token providing a digital signature for the pseudopotential.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string containing the pseudopotential identifier (e.g. a SHA256 hash for a VASP pseudopotential).</p>
+<h3 id="valence-electron-model"><code>valence-electron-model*</code></h3>
+<p>The elementary functions used for expanding electronic wave functions.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Contains SubProperties as listed below.</p>
+<h4 id="type_3"><code>type*</code></h4>
+<p>The choice of a basis set to expand electronic wave functions.</p>
+<p><strong>Repeatable:</strong> True</p>
+<p><em>Values (legacy text):</em> String containing one of the following values: "Plane waves" "LAPW" – "Linearized Augmented Plane Wave" "Localized orbitals" "PAW" Other user-specified value if none of the above apply.</p>
+<h4 id="localized-orbital-basis-set"><code>localized-orbital-basis-set</code></h4>
+<p>For type "Localized orbitals", additional information about the localized orbital basis set.</p>
+<p><strong>Repeatable:</strong> True</p>
+<p><em>Values (legacy text):</em> Contains SubSubProperties as defined in the table below.</p>
+<h5 id="type_4"><code>type*</code></h5>
+<p>The designation of the set of orbital functions used for expanding electronic wave functions.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> String containing the basis set name (e.g. "6-31G", "DZP", etc.).</p>
+<h5 id="repository_1"><code>repository</code></h5>
+<p>The database from which the localized-orbital basis set was obtained.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> String containing the name of the repository.</p>
+<h5 id="version_1"><code>version</code></h5>
+<p>The version of the localized-orbital basis set.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string containing the localized-orbital basis set version.</p>
+<h5 id="doi_1"><code>doi</code></h5>
+<p>The digital object identifier (DOI) for the localized-orbital basis set.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string containing the pseudopotential DOI.</p>
+<h5 id="unique-identifier_1"><code>unique-identifier</code></h5>
+<p>A hash or other token providing a digital signature for the localized-orbital basis set .</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> A string containing the localized-orbital basis set identifier.</p>
+<h4 id="kinetic-energy-cutoff"><code>kinetic-energy-cutoff</code></h4>
+<p>For type not "Localized orbitals", the maximum kinetic energy of the plane waves included in the calculation of wave functions.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Real number containing the kinetic energy cutoff.</p>
+<p><em>Standard units (legacy text):</em> electron Volt (eV)</p>
+<h4 id="charge-density-cutoff"><code>charge-density-cutoff</code></h4>
+<p>For type not "Localized orbitals", the energy value used to truncate the plane wave expansion of the electron charge density,</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Real number containing the charge density cutoff.</p>
+<p><em>Standard units (legacy text):</em> electron Volt (eV)</p>
+<h3 id="calculation-physics"><code>calculation-physics</code></h3>
+<p>Additional phenomena included beyond the standard DFT calculation.</p>
+<p><strong>Repeatable:</strong> True</p>
+<p><em>Values (legacy text):</em> String containing one of the following values: "Relativistic effects" "Spin polarization" "Noncollinear spin polarization" "On-site correlation" (e.g. DFT+U) "Van der Waals" Other user-specified value if none of the above apply.</p>
+<h3 id="k-point-mesh"><code>k-point-mesh</code></h3>
+<p>For periodic systems, a grid of points sampled within the Brillouin zone, used to approximate integrals and calculate electronic properties by discretizing the wavefunction across reciprocal space.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Contains SubProperties as listed below.</p>
+<h4 id="type_5"><code>type*</code></h4>
+<p>The choice of how k-points are distributed on the mesh.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> String containing one of the following values: "Monkhorst-Pack" "Gamma centered" "Irregular" Other user-specified value if none of the above apply.</p>
+<h4 id="number-of-points"><code>number-of-points</code></h4>
+<p>How many k-points are included along each reciprocal lattice vector.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Ordered list of three integer numbers containing the number k-points along the three reciprocal lattice vector directions.</p>
+<p><em>Standard units (legacy text):</em> dimensionless</p>
+<h4 id="k-point-spacing"><code>k-point-spacing</code></h4>
+<p>Separation between k-points along each reciprocal lattice vector direction.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Real number containing the k-point spacing.</p>
+<p><em>Standard units (legacy text):</em> 1/angstrom (1/Å)</p>
+<h4 id="shift"><code>shift</code></h4>
+<p>Translation of the k-point mesh along the reciprocal lattice vector directions.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Ordered list of three real numbers containing the shifts along the three reciprocal lattice vector directions.</p>
+<p><em>Standard units (legacy text):</em> 1/angstrom (1/Å)</p>
+<h4 id="smearing-type"><code>smearing-type</code></h4>
+<p>The choice of method for assigning fractional occupancies of electronic states and/or facilitating reciprocal space integrations.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> String containing one of the following values: "None" "None - tetrahedron" "None - Blöchl-corrected tetrahedron" "Gaussian" "Fermi" "Methfessel-Paxton" Other user-specified value if none of the above apply.</p>
+<h4 id="smearing-width"><code>smearing-width</code></h4>
+<p>A parameter that controls the broadening of the electron energy levels near the Fermi level.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Real number containing the smearing width.</p>
+<p><em>Standard units (legacy text):</em> electron Volt (eV)</p>
+<h4 id="methfessel-paxton-order"><code>methfessel-paxton-order</code></h4>
+<p>For smearing-type "Methfessel-Paxton", level of polynomial approximation used in the Methfessel-Paxton smearing method</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Integer containing the Methfessel-Paxton order.</p>
+<p><em>Standard units (legacy text):</em> Dimensionless</p>
+<h3 id="self-consistent-field-convergence"><code>self-consistent-field-convergence</code></h3>
+<p>Method and termination criteria defining the precision of self-consistent solution of the Kohn-Sham equations.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Contains SubProperties as listed below.</p>
+<h4 id="method"><code>method</code></h4>
+<p>The self-consistent field mixing and/or extrapolation scheme for the iterative solution of the Kohn-Sham equations.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> String containing one of the following values: "Simple mixing" "Pulay mixing" "Blocked Davidson" "DIIS" – Direct Inversion in the Iterative Subspace "BFGS" – Broyden–Fletcher–Goldfarb–Shanno algorithm Other user-specified value if none of the above apply.</p>
+<h4 id="tolerance"><code>tolerance*</code></h4>
+<p>Convergence criterion for the self-consistent loop.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Real number containing the convergence tolerance</p>
+<p><em>Standard units (legacy text):</em> electron Volt (eV)</p>
+<h3 id="relaxation-tolerance-energy"><code>relaxation-tolerance-energy</code></h3>
+<p>Total energy convergence criterion for atomic relaxation.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Real number containing the convergence tolerance</p>
+<p><em>Standard units (legacy text):</em> electron Volt (eV)</p>
+<h3 id="relaxation-tolerance-forces"><code>relaxation-tolerance-forces</code></h3>
+<p>Maximum force convergence criterion for atomic relaxation.</p>
+<p><strong>Repeatable:</strong> False</p>
+<p><em>Values (legacy text):</em> Real number containing the convergence tolerance</p>
+<p><em>Standard units (legacy text):</em> electron Volt (eV/Å)</p>
+<h3 id="comment"><code>comment</code></h3>
+<p>Additional information on the DFT calculation. For example, non-self-consistent constraints, such as details about imposed state occupation or moment freezing.</p>
+<p><strong>Repeatable:</strong> True</p>
+<p><em>Values (legacy text):</em> String containing the calculation comments.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy", "search.suggest"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

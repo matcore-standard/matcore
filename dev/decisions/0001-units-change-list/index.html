@@ -1,0 +1,1315 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://matcore.org/dev/decisions/0001-units-change-list/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>MatCore Metadata Schema — Change List for Units Handling - MatCore</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#matcore-metadata-schema-change-list-for-units-handling" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MatCore" class="md-header__button md-logo" aria-label="MatCore" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MatCore
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MatCore Metadata Schema — Change List for Units Handling
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/matcore-standard/matcore" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MatCore" class="md-nav__button md-logo" aria-label="MatCore" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MatCore
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/matcore-standard/matcore" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About MatCore
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../leadership/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Leadership
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standard/01-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standard/02-minimal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standard/03-dft/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standard/04-md/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standard/05-mbpt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MBPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standard/06-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standard/07-pf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase field
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standard/08-derived/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Derived properties
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standard/annex-u-units/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annex U (units)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standard/annex-u-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annex U table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../revision-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revision history
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#part-a-units-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PART A — Units implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PART A — Units implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a1-general-rule-13-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A1. General rule (§1.3 Format)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a2-minimal-section-21-simulation-conditions-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A2. Minimal section (§2.1), simulation-conditions table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a3-dft-section-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A3. DFT section (§2.2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a4-md-section-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A4. MD section (§2.3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a5-mbpt-section-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A5. MBPT section (§2.4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a6-ml-section-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A6. ML section (§2.5)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a7-pf-section-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A7. PF section (§2.6)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a8-derived-property-section-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A8. Derived property section (§2.7)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a9-new-annex-u-matcore-unit-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A9. New Annex U — MatCore Unit Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a10-update-the-xml-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A10. Update the XML examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a11-version-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A11. Version note
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-b-fixes-to-existing-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PART B — Fixes to existing content
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="matcore-metadata-schema-change-list-for-units-handling">MatCore Metadata Schema — Change List for Units Handling</h1>
+<p><strong>Part A</strong> implements the units design (explicit <code>unit</code> on every dimensioned property; schema declares Quantity kind + Recommended unit; no default unit is ever implied).
+<strong>Part B</strong> contains independent fixes to existing content. Apply Part B even if Part A is deferred.</p>
+<p>Line references are to the draft <code>MatCore_Dev.docx</code>; "old" text is quoted so each spot can be found with Find.</p>
+<p>Notation: <strong>Quantity kind</strong> and <strong>Recommended unit</strong> replace the current <em>Standard units</em> phrase everywhere. Recommended unit is informative only.</p>
+<hr />
+<h2 id="part-a-units-implementation">PART A — Units implementation</h2>
+<h3 id="a1-general-rule-13-format">A1. General rule (§1.3 Format)</h3>
+<p><strong>A1.1</strong> Find the bullet:</p>
+<blockquote>
+<p>When a value has physical units, either the required unit must be specified, or a field provided to define the value units.</p>
+</blockquote>
+<p>Replace with:</p>
+<blockquote>
+<p><strong>Units of physical quantities.</strong> Every property whose value is a physical quantity (i.e. whose Quantity kind is neither "dimensionless" nor "inapplicable") SHALL carry a <code>unit</code> subproperty in the metadata instance. The value of <code>unit</code> SHALL be a symbol from the MatCore Unit Table (Annex U) whose quantity kind is compatible with the property's declared Quantity kind. A property value without a <code>unit</code>, or with a unit incompatible with its Quantity kind, is non-conformant; no default unit is ever implied. The Recommended unit listed for each property is informative and does not affect how values are interpreted. Quantities of dimension one use the reserved symbol <code>dimensionless</code>; plane angles use an angle unit (<code>rad</code> or <code>degree</code>). Where the meaning of a value depends on a convention that a unit cannot express (e.g. inclusion of a factor 2π in reciprocal lengths, or components given in a lattice basis), the property has a <code>convention</code> or <code>basis</code> subproperty, required as stated in its description. Conversion factors to SI for units not exactly defined in SI terms (<code>bohr</code>, <code>hartree</code>, <code>Ry</code>) are those of CODATA 2022, as listed in Annex U.</p>
+</blockquote>
+<p><strong>A1.2</strong> In the same bullet list, after the "Values:" bullet, add two new bullets:</p>
+<blockquote>
+<ul>
+<li><strong>Quantity kind:</strong> The physical dimension of the Property's value, given as a MatCore quantity-kind name mapped to a QUDT QuantityKind IRI in Annex U (e.g. Energy, Length, InverseLength, Temperature, Pressure). Reserved values: <code>dimensionless</code> (ratios, counts), <code>inapplicable</code> (strings, identifiers, and the <code>unit</code> subproperty itself), <code>any</code> (the <code>value</code> of a generic name/value/unit parameter, whose quantity kind is then given by the instance <code>unit</code>).</li>
+<li><strong>Recommended unit:</strong> The unit customarily used for this Property in the community. Informative only; used by templates and tools.</li>
+</ul>
+</blockquote>
+<p><strong>A1.3</strong> Add to the paragraph beginning "Examples are provided after each Standard specification in XML format":</p>
+<blockquote>
+<p>In the XML examples, <code>unit</code>, <code>convention</code> and <code>basis</code> are written as attributes of the value element for brevity; an equivalent child-element serialization is also conformant.</p>
+</blockquote>
+<h3 id="a2-minimal-section-21-simulation-conditions-table">A2. Minimal section (§2.1), simulation-conditions table</h3>
+<p><strong>A2.1</strong> Line 129, <code>simulation-conditions &gt; type</code>: delete</p>
+<blockquote>
+<p><strong>Note 2:</strong> Units for dimensioned variables are to be given in the SI unit system.</p>
+</blockquote>
+<p>and renumber the remaining "Note 1" to "Note".</p>
+<p><strong>A2.2</strong> For each SubSubProperty below, replace the italic <em>Standard units: …</em> phrase with the new text.</p>
+<table>
+<thead>
+<tr>
+<th>Entry</th>
+<th>Old phrase</th>
+<th>New text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>number-of-particles</td>
+<td><em>Standard units: dimensionless</em></td>
+<td><strong>Quantity kind:</strong> dimensionless</td>
+</tr>
+<tr>
+<td>volume</td>
+<td><em>Standard units: cubic meters (m³)</em></td>
+<td><strong>Quantity kind:</strong> Volume. <strong>Recommended unit:</strong> angstrom^3. <strong>Subproperties:</strong> <code>unit</code> (required)</td>
+</tr>
+<tr>
+<td>mass-density</td>
+<td><em>Standard units: kilograms per cubic meter (kg/m³)</em></td>
+<td><strong>Quantity kind:</strong> MassDensity. <strong>Recommended unit:</strong> kg/m^3. <strong>Subproperties:</strong> <code>unit</code> (required)</td>
+</tr>
+<tr>
+<td>number-density</td>
+<td><em>Standard units: inverse cubic meter (1/m³)</em></td>
+<td><strong>Quantity kind:</strong> NumberDensity. <strong>Recommended unit:</strong> 1/angstrom^3. <strong>Subproperties:</strong> <code>unit</code> (required)</td>
+</tr>
+<tr>
+<td>cell</td>
+<td><em>Standard units: meter (m)</em></td>
+<td><strong>Quantity kind:</strong> Length. <strong>Recommended unit:</strong> angstrom. <strong>Subproperties:</strong> <code>unit</code> (required; applies to all nine components)</td>
+</tr>
+<tr>
+<td>cell-reference</td>
+<td><em>Standard units: meter (m)</em></td>
+<td>Same as cell</td>
+</tr>
+<tr>
+<td>cell-periodicity</td>
+<td><em>Standard units: dimensionless</em></td>
+<td><strong>Quantity kind:</strong> inapplicable (booleans)</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td><em>Standard units: kelvin (K)</em></td>
+<td><strong>Quantity kind:</strong> Temperature. <strong>Recommended unit:</strong> K. <strong>Subproperties:</strong> <code>unit</code> (required)</td>
+</tr>
+<tr>
+<td>stress</td>
+<td><em>Standard units: pascal (Pa)</em></td>
+<td><strong>Quantity kind:</strong> Pressure. <strong>Recommended unit:</strong> GPa. <strong>Subproperties:</strong> <code>unit</code> (required; applies to all six components)</td>
+</tr>
+<tr>
+<td>strain</td>
+<td><em>Standard units: dimensionless</em></td>
+<td><strong>Quantity kind:</strong> dimensionless</td>
+</tr>
+<tr>
+<td>strain-rate</td>
+<td><em>Standard units: dimensionless</em></td>
+<td><strong>Quantity kind:</strong> InverseTime. <strong>Recommended unit:</strong> 1/s. <strong>Subproperties:</strong> <code>unit</code> (required). <em>(See fix B4.)</em></td>
+</tr>
+<tr>
+<td>heat-flux</td>
+<td><em>Standard units: watts per square meter (W/m²)</em></td>
+<td><strong>Quantity kind:</strong> HeatFluxDensity. <strong>Recommended unit:</strong> W/m^2. <strong>Subproperties:</strong> <code>unit</code> (required)</td>
+</tr>
+<tr>
+<td>temperature-gradient</td>
+<td><em>(see fix B1 first)</em></td>
+<td><strong>Quantity kind:</strong> TemperatureGradient. <strong>Recommended unit:</strong> K/m. <strong>Subproperties:</strong> <code>unit</code> (required)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Team decision:</strong> the recommended units above for volume, number-density and cell use Å, matching OPTIMADE/ASE practice. Keeping the draft's SI recommendations (m, m³, 1/m³) is a one-word change per row and does not affect conformance.</p>
+</blockquote>
+<h3 id="a3-dft-section-22">A3. DFT section (§2.2)</h3>
+<p><strong>A3.1</strong> Replace <em>Standard units</em> phrases:</p>
+<table>
+<thead>
+<tr>
+<th>Entry</th>
+<th>New text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kinetic-energy-cutoff</td>
+<td><strong>Quantity kind:</strong> Energy. <strong>Recommended unit:</strong> eV. <strong>Subproperties:</strong> <code>unit</code> (required)</td>
+</tr>
+<tr>
+<td>charge-density-cutoff</td>
+<td>Same as kinetic-energy-cutoff</td>
+</tr>
+<tr>
+<td>number-of-points</td>
+<td><strong>Quantity kind:</strong> dimensionless</td>
+</tr>
+<tr>
+<td>k-point-spacing</td>
+<td><strong>Quantity kind:</strong> InverseLength. <strong>Recommended unit:</strong> 1/angstrom. <strong>Subproperties:</strong> <code>unit</code> (required); <code>convention</code> (required; one of "2pi-included", "2pi-excluded"). <strong>Note:</strong> Codes differ on whether the factor 2π is included in the reciprocal length; the convention must be stated.</td>
+</tr>
+<tr>
+<td>shift</td>
+<td><em>(see fix B5 first)</em> <strong>Quantity kind:</strong> dimensionless. <strong>Note:</strong> Shifts are given as fractions of the mesh spacing along each reciprocal lattice vector.</td>
+</tr>
+<tr>
+<td>smearing-width</td>
+<td><strong>Quantity kind:</strong> Energy. <strong>Recommended unit:</strong> eV. <strong>Subproperties:</strong> <code>unit</code> (required)</td>
+</tr>
+<tr>
+<td>methfessel-paxton-order</td>
+<td><strong>Quantity kind:</strong> dimensionless</td>
+</tr>
+<tr>
+<td>tolerance (SCF)</td>
+<td><em>(see fix B6 first)</em> <strong>Quantity kind:</strong> any. <strong>Subproperties:</strong> <code>unit</code> (required); <code>criterion</code> (required; one of "energy", "charge-density", "potential", "other")</td>
+</tr>
+<tr>
+<td>relaxation-tolerance-energy</td>
+<td><strong>Quantity kind:</strong> Energy. <strong>Recommended unit:</strong> eV. <strong>Subproperties:</strong> <code>unit</code> (required)</td>
+</tr>
+<tr>
+<td>relaxation-tolerance-forces</td>
+<td><strong>Quantity kind:</strong> Force. <strong>Recommended unit:</strong> eV/angstrom. <strong>Subproperties:</strong> <code>unit</code> (required)</td>
+</tr>
+<tr>
+<td>number-of-valence-electrons</td>
+<td><strong>Quantity kind:</strong> dimensionless</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A3.2</strong> Generic quadruple <code>xc-parameter</code> (line ~300). In the <code>value*</code> row append: <strong>Quantity kind:</strong> any. In the <code>unit*</code> row replace:</p>
+<blockquote>
+<p>A string containing the units of the value in the GNU unit convention (or the text "dimensionless").</p>
+</blockquote>
+<p>with:</p>
+<blockquote>
+<p>A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning). <strong>Quantity kind:</strong> inapplicable.</p>
+</blockquote>
+<p><strong>A3.3</strong> Apply A3.2 identically to <code>computation-parameter</code> in the DFT section.</p>
+<h3 id="a4-md-section-23">A4. MD section (§2.3)</h3>
+<p><strong>A4.1</strong> Apply A3.2 to <code>computation-parameter</code> (line ~422) and <code>td-parameter</code> (line ~439).</p>
+<h3 id="a5-mbpt-section-24">A5. MBPT section (§2.4)</h3>
+<table>
+<thead>
+<tr>
+<th>Entry</th>
+<th>New text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>planewave-basis-cutoff</td>
+<td><strong>Quantity kind:</strong> Energy. <strong>Recommended unit:</strong> eV. <strong>Subproperties:</strong> <code>unit</code> (required). <em>(See fix B2.)</em></td>
+</tr>
+<tr>
+<td>response-basis-size, q-points, gw-bands, number-valence-bands, number-conduction-bands, k-point-mesh, number-lowest-eigenvalues</td>
+<td><strong>Quantity kind:</strong> dimensionless</td>
+</tr>
+<tr>
+<td>exciton-momentum</td>
+<td><em>(see fix B3 first)</em> <strong>Quantity kind:</strong> InverseLength or dimensionless, depending on basis. <strong>Subproperties:</strong> <code>basis</code> (required; one of "cartesian", "reciprocal-lattice-fractional"); <code>unit</code> (required; when basis = "reciprocal-lattice-fractional" the unit SHALL be <code>dimensionless</code>; when "cartesian", an InverseLength unit, recommended 1/angstrom, plus <code>convention</code> as for k-point-spacing)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a6-ml-section-25">A6. ML section (§2.5)</h3>
+<p><strong>A6.1</strong> No unit changes are required. The ML section contains no properties with physical dimensions and no <code>unit</code> rows; <code>training-hyperparameters</code> (line ~569) is a single free-text string. Optionally, for consistency with the other sections, consider converting <code>training-hyperparameters</code> to the name/value/unit/description form used elsewhere (with <code>value</code> of Quantity kind <code>any</code> and <code>unit</code> per A3.2); this is a separate design decision, not part of the units change.</p>
+<h3 id="a7-pf-section-26">A7. PF section (§2.6)</h3>
+<p><strong>A7.1</strong> <code>domain-size</code> (line ~636): replace</p>
+<blockquote>
+<p>An ordered list of real numbers containing the domain dimensions in meters (m).</p>
+</blockquote>
+<p>with:</p>
+<blockquote>
+<p>An ordered list of real numbers containing the domain extents along each coordinate direction. <strong>Quantity kind:</strong> Length. <strong>Recommended unit:</strong> m. <strong>Subproperties:</strong> <code>unit</code> (required).</p>
+</blockquote>
+<p><strong>A7.2</strong> <code>spatial-accuracy-order</code>, <code>temporal-accuracy-order</code>: replace <em>Standard units: dimensionless</em> with <strong>Quantity kind:</strong> dimensionless.</p>
+<p><strong>A7.3</strong> <code>free-energy &gt; unit</code> (line ~666): replace the GNU-units sentence with the A3.2 wording. Change the Definition to "The physical unit of the free energy density (or of the free energy, if <code>expression</code> is not a density)".</p>
+<p><strong>A7.4</strong> Apply A3.2 to the <code>unit*</code> rows of <code>grid-spacing</code>, <code>time-step-size</code>, <code>model-parameter</code>, <code>field-variable</code>. In the <code>value*</code> rows add: <code>grid-spacing</code> → <strong>Quantity kind:</strong> Length; <code>time-step-size</code> → <strong>Quantity kind:</strong> Time; <code>model-parameter</code> and <code>field-variable</code> → <strong>Quantity kind:</strong> any.</p>
+<h3 id="a8-derived-property-section-27">A8. Derived property section (§2.7)</h3>
+<p><strong>A8.1</strong> Apply A3.2 to <code>calculation-parameter &gt; unit*</code> (line ~844); add <strong>Quantity kind:</strong> any to its <code>value*</code> row.</p>
+<h3 id="a9-new-annex-u-matcore-unit-table">A9. New Annex U — MatCore Unit Table</h3>
+<p>Insert the contents of the separate file <code>MatCore_Annex_U_Unit_Table.md</code> as a new section after §2.7 (or as an appendix), keeping its heading "Annex U — MatCore Unit Table (Normative)". It contains the rules, the quantity-kind table, the unit-symbol table, seven explanatory notes and a references list, and all identifiers and factors in it have been verified against the QUDT v3.3.0 source, GNU Units 2.23 (<code>definitions.units</code> v3.19) and NIST CODATA 2022.</p>
+<p>Two consequences for other entries in this list:</p>
+<ul>
+<li>Annex U defines <code>MolarEnergy</code> as a quantity kind distinct from <code>Energy</code> (Rule 8). Any typed MD property that is conventionally reported per mole should be declared with Quantity kind MolarEnergy and recommended unit kJ/mol or kcal/mol, not Energy.</li>
+<li>Annex U Rule 4 pins <code>x-gnu:</code> expressions to GNU Units 2.23 / <code>definitions.units</code> v3.19; the wording in A3.2 needs no change since it refers to Annex U.</li>
+</ul>
+<h3 id="a10-update-the-xml-examples">A10. Update the XML examples</h3>
+<p><strong>A10.1</strong> In every example, add <code>unit="…"</code> to each dimensioned value, e.g.</p>
+<pre><code class="language-xml">&lt;temperature unit=&quot;K&quot;&gt;300&lt;/temperature&gt;
+&lt;kinetic-energy-cutoff unit=&quot;eV&quot;&gt;520&lt;/kinetic-energy-cutoff&gt;
+&lt;k-point-spacing unit=&quot;1/angstrom&quot; convention=&quot;2pi-included&quot;&gt;0.25&lt;/k-point-spacing&gt;
+</code></pre>
+<p><strong>A10.2</strong> In the existing generic-parameter examples (lines ~720–780), <code>&lt;unit&gt;dimensionless&lt;/unit&gt;</code> is already conformant; leave as is. Check that any non-dimensionless examples use an Annex U symbol.</p>
+<h3 id="a11-version-note">A11. Version note</h3>
+<p>Add to the preamble or a changelog:</p>
+<blockquote>
+<p>From version X, <code>unit</code> is required on all dimensioned properties. Files declaring an earlier MatCore version are interpreted using the fixed units of that version (Annex U, legacy table).</p>
+</blockquote>
+<p>If a legacy table is kept, populate it from the <em>Standard units</em> values removed in A2–A8.</p>
+<hr />
+<h2 id="part-b-fixes-to-existing-content">PART B — Fixes to existing content</h2>
+<p>These are corrections independent of the units design.</p>
+<p><strong>B1. temperature-gradient (line 143).</strong> Old: <em>Standard units: watts per square meter (K/m)</em>. The name is wrong; the symbol is right. Under Part A this row is replaced by A2.2; if applying B1 alone, change to <em>kelvin per meter (K/m)</em>.</p>
+<p><strong>B2. planewave-basis-cutoff vs kinetic-energy-cutoff (line 495 vs 276).</strong> The MBPT entry says the quantity "is the same as the kinetic energy cutoff" but gives Ry while the DFT entry gives eV. Under Part A both become explicit-unit Energy properties (A3.1, A5); if applying B2 alone, align on one unit. Consider adding: "Note: If the DFT <code>kinetic-energy-cutoff</code> is given, this value should agree with it."</p>
+<p><strong>B3. exciton-momentum (line 506).</strong> Old: <em>Standard units: Reciprocal lattice units (2π/a)</em>. This is a convention, not a unit, and "2π/a" presumes a cubic cell. Replace with the <code>basis</code> subproperty wording in A5. If applying B3 alone, at minimum change to "Values: components in fractions of the reciprocal lattice vectors (dimensionless)".</p>
+<p><strong>B4. strain-rate (line 141).</strong> Old: <em>Standard units: dimensionless</em>. A rate has dimension 1/time. Replace per A2.2; if applying alone, change to <em>inverse seconds (1/s)</em>. Also, the Values sentence uses the symbol E for the strain-rate tensor, the same symbol the strain entry (line 140) uses for the strain tensor; suggest Ė (or dE/dt) for the strain rate.</p>
+<p><strong>B5. shift (line 283).</strong> Old: <em>Standard units: 1/angstrom (1/Å)</em>. A mesh shift is customarily a fraction of the mesh spacing (e.g. 0.5 for a half-shift), which is dimensionless. Confirm with the entry's author; if fractional, apply A3.1; if it is an absolute offset in reciprocal length, keep InverseLength and add the same <code>convention</code> subproperty as k-point-spacing.</p>
+<p><strong>B6. SCF tolerance (line 289).</strong> Old: "Convergence criterion for the self-consistent loop … <em>Standard units: electron Volt (eV)</em>". Codes converge on energy, charge density, or potential, and the unit depends on which. Add the <code>criterion</code> subproperty per A3.1; if applying alone, at least say "Convergence criterion (on total energy) for the self-consistent loop".</p>
+<p><strong>B7. k-point-spacing (line 282).</strong> The entry states <em>1/angstrom (1/Å)</em> but does not say whether the factor 2π is included, and codes differ. Under Part A this is handled by the required <code>convention</code> subproperty in A3.1; if applying alone, add a note: "State whether the factor 2π is included in the reciprocal length."</p>
+<p><strong>B8. Naming consistency.</strong> The draft uses <code>unit</code> (singular) throughout; keep it that way in all new text and avoid "units" as a field name. Normalize "Dimensionless." (capital D, line 286) to "dimensionless" wherever it remains.</p>
+<p><strong>B9. Generic quadruple definitions.</strong> All <code>unit*</code> rows share the definition "A standardized string or identifier that defines the dimension or measurement system of the associated value." Suggest: "The unit in which the associated value is expressed."</p>
+<p><strong>B10. cell-periodicity (line 137).</strong> Marked <em>Standard units: dimensionless</em> but the values are booleans; under Part A becomes <code>inapplicable</code> (A2.2). If applying alone, delete the units phrase.</p>
+<p><strong>B11. free-energy &gt; unit (line 666).</strong> Definition says "free energy density" but <code>expression</code> may be a total free energy; reworded in A7.3.</p>
+<p><strong>B12. Annex U CODATA version.</strong> Superseded: the published Annex U states CODATA 2022 explicitly and its factors have been verified; no action needed.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy", "search.suggest"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>
