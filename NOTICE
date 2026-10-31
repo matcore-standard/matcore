@@ -1,0 +1,16 @@
+MatCore — Material Core Metadata Standard
+Copyright 2026 The MatCore Committee
+
+This repository contains two kinds of material under two licenses:
+
+1. The MatCore standard itself — the schema files under schema/, the prose of
+   the standard under docs/standard/, the decision records under docs/decisions/,
+   and the generated documentation — is licensed under the Creative Commons
+   Attribution 4.0 International License (CC BY 4.0). See LICENSE-CC-BY-4.0.
+
+2. All software — scripts/, tests/, the site configuration, CI workflows, and
+   any Python package in this repository — is licensed under the Apache License,
+   Version 2.0. See LICENSE.
+
+MatCore is funded by the US National Science Foundation, Division of Materials
+Research, through Award #2404283.
