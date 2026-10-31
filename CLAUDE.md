@@ -106,14 +106,15 @@ serializations to read and write; that is a tool decision, not yet made, and it 
 implementations. When it is made, a format-specific schema (e.g. XSD or JSON Schema) is generated
 from the YAML for that serialization and used by CI to validate the examples (0004).
 
-## Website and tools (decided)
+## Website and tools (see docs/decisions/0000 and 0004)
 - Static site, MkDocs (Material), GitHub Pages, versioned with `mike`; built on every push to main
   by .github/workflows/ci.yml; no dynamic server (0000). The site is served at
   matcore-standard.github.io/matcore for now. matcore.org will point to it as soon as the site is
   clean and operational, replacing the current site there (0004).
-- Tools: one Python package `matcore` (validator CLI + parsers for VASP/QE/LAMMPS output → MatCore XML),
-  run in-browser via Pyodide for the website validator/visualizer/forms. Web forms are the fallback;
-  parsers are the primary generator.
+- Tools: one Python package, run in-browser via Pyodide (0000). PROPOSED, NOT DECIDED: the name
+  `matcore`; its contents (a command-line validator; parsers for VASP, QE and LAMMPS output; web
+  validator, visualizer and forms); parsers as the primary generator of instances, web forms as the
+  fallback. The serialization(s) it reads and writes: see status step 9.
 - Licenses: CC BY 4.0 (standard text/schema), Apache-2.0 (code). Tagged releases get a Zenodo DOI.
 
 ## Known defects in the baseline (fix in the Part B PR)
@@ -126,8 +127,7 @@ from the YAML for that serialization and used by CI to validate the examples (00
 
 ## Status / next steps (update this list as work lands)
 Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
-PROPOSED, NOT DECIDED until the human rules: in "Website and tools", the package details beyond
-"one Python package run via Pyodide" (0000); in "Known defects", which spelling and fix to adopt;
+PROPOSED, NOT DECIDED until the human rules: in "Known defects", which spelling and fix to adopt;
 the order and procedure of status steps 3–9; and the working rules other than the first two.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
