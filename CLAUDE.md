@@ -20,9 +20,9 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
 - `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
 - `docs/standard/*.md` — prose chapters (01-introduction, annex-u-units) plus GENERATED chapters
   (02–08, annex-u-table). Never hand-edit generated files; edit the YAML and run `scripts/build_docs.py`.
-- `docs/decisions/` — decision records. 0001 is the units change list (not yet applied; see Status).
-  The frozen Google Doc export is stored there as the baseline artifact; it stays in the repository
-  but is excluded from the published site (0004).
+- `docs/decisions/` — decision records: internal committee information, not published on the site
+  (0004). 0001 is the units change list (not yet applied; see Status). The frozen Google Doc export
+  is stored there as the baseline artifact.
 - `scripts/validate_schema.py` — checks section files against the meta-schema and units.yaml. It
   validates the standard itself, not instance files (the instance validator is status step 9).
 - `scripts/build_docs.py` — regenerates docs from YAML. CI runs both.
@@ -132,9 +132,23 @@ the order and procedure of status steps 3–9; and the working rules other than 
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
-2. [todo] Website cleanup so changes can be reviewed on the rendered site (tabs, toc_depth,
-   remove placeholder pages, table rendering in build_docs.py, --show-legacy flag), and exclude
-   the baseline .docx from the site build (0004).
+2. [todo] Website cleanup: the GitHub Pages site offers the user the same options as matcore.org,
+   so it can replace it (0004). Presentation may differ and should use the semantic structure of
+   the YAML to improve on the live site.
+   - Menu, with navigation tabs: Home · About (About MatCore, Leadership) · Standard (the standard,
+     Revision History) · Contact. toc_depth 2.
+   - Migrate the content of About MatCore, Leadership, Revision History and Contact from
+     matcore.org (this was step 8). Contact replaces the Feedback placeholder.
+   - Under Standard, each section shows its introduction and its example, as on matcore.org.
+   - build_docs.py renders the standard from the YAML; legacy_* fields hidden unless --show-legacy
+     is passed, and CI builds with --show-legacy until step 5 is complete.
+   - Decision records are internal committee information: exclude docs/decisions/ from the site
+     build (an unlinked page would still appear in sitemap.xml and the site search). Also exclude
+     the baseline .docx.
+   PROPOSED, NOT DECIDED: the property layout (render options in the preview for the human to
+   choose); where section introductions and examples are stored (they are in the baseline .docx
+   and on matcore.org but not in the YAML); whether the decision records must also leave the
+   public GitHub repository; a Revision History entry for the baseline draft.
 3. [todo] PR: apply docs/decisions/0001-units-change-list.md Part A (kind/recommended-unit/convention),
    including rewording Annex U to "Kind" (0004).
    Also pending from 0004, each its own change: tighten the name pattern in meta-schema.yaml (all
@@ -157,7 +171,7 @@ the order and procedure of status steps 3–9; and the working rules other than 
    satisfy (not a specific format). Provide example instances in examples/ in at least one
    serialization, generated from the same source, and validate them in CI against a schema
    generated from the YAML for that serialization.
-8. [todo] MkDocs site content: migrate About/Leadership/Feedback/Revision history from matcore.org.
+8. [merged into step 2] Site content migration from matcore.org.
 9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools.
    PROPOSED, NOT DECIDED: which serialization(s) the tools read and write.
 
