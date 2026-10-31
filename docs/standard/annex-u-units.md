@@ -2,7 +2,7 @@
 
 *(Normative)*
 
-*Amended 2026-10-31: Rule 4 extended from generic parameters to any subproperty whose Kind the schema declares as `any` (see [decision 0001](../decisions/0001-units-change-list.md)).*
+*Amended 2026-10-31: Rule 4 extended from generic parameters to any subproperty whose Kind the schema declares as `any` (decision record 0001).*
 
 ## U.1 Purpose
 

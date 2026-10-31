@@ -142,13 +142,13 @@ the order and procedure of status steps 3–9; and the working rules other than 
    - Under Standard, each section shows its introduction and its example, as on matcore.org.
    - build_docs.py renders the standard from the YAML; legacy_* fields hidden unless --show-legacy
      is passed, and CI builds with --show-legacy until step 5 is complete.
-   - Decision records are internal committee information: exclude docs/decisions/ from the site
-     build (an unlinked page would still appear in sitemap.xml and the site search). Also exclude
-     the baseline .docx.
+   - [done] Decision records are internal committee information: docs/decisions/, including the
+     baseline .docx, is excluded from the site build (`exclude_docs` in mkdocs.yml; an unlinked page
+     would still appear in sitemap.xml and the site search). They stay in the public GitHub
+     repository. Site pages do not link to them.
    PROPOSED, NOT DECIDED: the property layout (render options in the preview for the human to
    choose); where section introductions and examples are stored (they are in the baseline .docx
-   and on matcore.org but not in the YAML); whether the decision records must also leave the
-   public GitHub repository; a Revision History entry for the baseline draft.
+   and on matcore.org but not in the YAML); a Revision History entry for the baseline draft.
 3. [todo] PR: apply docs/decisions/0001-units-change-list.md Part A (kind/recommended-unit/convention),
    including rewording Annex U to "Kind" (0004).
    Also pending from 0004, each its own change: tighten the name pattern in meta-schema.yaml (all

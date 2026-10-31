@@ -20,15 +20,11 @@ nav:
       - Derived properties: standard/08-derived.md
       - Annex U (units): standard/annex-u-units.md
       - Annex U table: standard/annex-u-table.md
-  - Decisions:
-      - Repository and workflow: decisions/0000-repository-and-workflow.md
-      - Units change list: decisions/0001-units-change-list.md
-      - Typed property fields: decisions/0002-typed-property-fields.md
-      - Phase-field scaling: decisions/0003-phase-field-scaling.md
-      - CLAUDE.md audit rulings: decisions/0004-claude-md-audit-rulings.md
-      - Commit each ruling: decisions/0005-commit-each-ruling.md
   - Feedback: feedback.md
   - Revision history: revision-history.md
+# Decision records (and the baseline .docx stored with them) are internal; see docs/decisions/0004.
+exclude_docs: |
+  decisions/
 markdown_extensions: [tables, admonition, toc]
 extra:
   version:
