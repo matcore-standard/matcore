@@ -1,5 +1,7 @@
 # MatCore Metadata Schema — Change List for Units Handling
 
+Status (2026-10-31, see 0004): Part A accepted. Part B: B1, B3, B4 (unit), B6, B7, B8, B10, B11 accepted; B2 (added note), B4 (Ė symbol), B5, B9 proposed, not decided; B12 no action. A6 proposed, not decided.
+
 A3.3 removed 2026-10-31: referred to a DFT `computation-parameter` that does not exist; the MD entry is covered by A4.1.
 
 A7.4 amended 2026-10-31: `grid-spacing` and `time-step-size` are typed properties (Length, Time; Annex U symbols only, recommended units m and s), not generic parameters; the `field-variable` value line is removed because `field-variable` has no `value`. Annex U Rule 4 amended 2026-10-31: the `x-gnu:` escape applies to the `unit` of a generic parameter or of any other subproperty whose Kind the schema declares as any. Nondimensional `domain-size`, `grid-spacing` and `time-step-size` are covered by 0003.

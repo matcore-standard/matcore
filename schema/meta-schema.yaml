@@ -27,7 +27,7 @@ $defs:
       type:
         enum: [string, float, int, bool, file, any, null]
       extent:
-        # KIM-style: [] scalar, [3,3] fixed, [":"] open length ("any" = rank unknown, generic parameters only)
+        # KIM-style: [] scalar, [3,3] fixed, [":"] open length ("any" = shape fixed by the instance or by a required enumerated subproperty)
         oneOf:
           - type: "null"
           - const: any

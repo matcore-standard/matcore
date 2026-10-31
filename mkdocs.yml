@@ -25,6 +25,7 @@ nav:
       - Units change list: decisions/0001-units-change-list.md
       - Typed property fields: decisions/0002-typed-property-fields.md
       - Phase-field scaling: decisions/0003-phase-field-scaling.md
+      - CLAUDE.md audit rulings: decisions/0004-claude-md-audit-rulings.md
   - Feedback: feedback.md
   - Revision history: revision-history.md
 markdown_extensions: [tables, admonition, toc]
