@@ -749,6 +749,8 @@
       
         
       
+        
+      
     
     
     
@@ -1102,6 +1104,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0004-claude-md-audit-rulings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLAUDE.md audit rulings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1359,6 +1389,7 @@
 
 
 <h1 id="matcore-metadata-schema-change-list-for-units-handling">MatCore Metadata Schema — Change List for Units Handling</h1>
+<p>Status (2026-10-31, see 0004): Part A accepted. Part B: B1, B3, B4 (unit), B6, B7, B8, B10, B11 accepted; B2 (added note), B4 (Ė symbol), B5, B9 proposed, not decided; B12 no action. A6 proposed, not decided.</p>
 <p>A3.3 removed 2026-10-31: referred to a DFT <code>computation-parameter</code> that does not exist; the MD entry is covered by A4.1.</p>
 <p>A7.4 amended 2026-10-31: <code>grid-spacing</code> and <code>time-step-size</code> are typed properties (Length, Time; Annex U symbols only, recommended units m and s), not generic parameters; the <code>field-variable</code> value line is removed because <code>field-variable</code> has no <code>value</code>. Annex U Rule 4 amended 2026-10-31: the <code>x-gnu:</code> escape applies to the <code>unit</code> of a generic parameter or of any other subproperty whose Kind the schema declares as any. Nondimensional <code>domain-size</code>, <code>grid-spacing</code> and <code>time-step-size</code> are covered by 0003.</p>
 <p><strong>Part A</strong> implements the units design (explicit <code>unit</code> on every dimensioned property; schema declares Quantity kind + Recommended unit; no default unit is ever implied).
