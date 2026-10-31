@@ -14,7 +14,7 @@
         <link rel="prev" href="../0003-phase-field-scaling/">
       
       
-        <link rel="next" href="../../feedback/">
+        <link rel="next" href="../0005-commit-each-ruling/">
       
       
         
@@ -751,6 +751,8 @@
       
         
       
+        
+      
     
     
     
@@ -1016,6 +1018,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0005-commit-each-ruling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commit each ruling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1177,6 +1207,8 @@
 <li><strong>Names.</strong> Names match <code>^[a-z][a-z0-9]*(-[a-z0-9]+)*$</code>. A name is plural only when its value is a list (open extent); a repeatable property with a single value per occurrence stays singular. <code>unit</code> is singular.</li>
 <li><strong>Terminology.</strong> "Annex" for Annex U, which is normative. "Kind", not "Quantity kind", in the schema, the standard's prose and new text. Decision records are not rewritten. "Quantity kind" remains where it refers to QUDT's concept.</li>
 <li><strong>Funding.</strong> The MatCore effort is funded by NSF DMR Award #2404283 and supported through the KIM Initiative.</li>
+<li><strong>Generic-parameter values</strong> (added 2026-10-31). The instance type of a generic parameter's <code>value</code> is one of float, int, string, bool, matching the baseline wording of all five generic parameters. The type is stated in the instance, not inferred from how the value is written; each serialization defines how it is written. The value need not be a scalar: its extent remains <code>any</code> (0002).</li>
+<li><strong>Serialization</strong> (added 2026-10-31). §1.3 defines the term: "A <em>serialization</em> is a file format (for example XML or JSON) together with the rules that map the MatCore data model onto it." Elsewhere the term is used without naming formats.</li>
 </ol>
 <h2 id="consequences">Consequences</h2>
 <p>CLAUDE.md is updated to match, and every unbacked statement in it is marked PROPOSED, NOT DECIDED. Follow-up changes: exclude the .docx from the site build (4); tighten the name pattern in the meta-schema (13); add a field-order check to validate_schema.py (6); reword Annex U to "Kind" when 0001 Part A is applied (14).</p>
