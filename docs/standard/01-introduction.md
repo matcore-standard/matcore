@@ -58,5 +58,7 @@ In addition to the required and optional Properties, other arbitrary Properties 
 
 Examples are provided after each Standard specification in XML format. However, this is for clarification purposes only. The MatCore Standard serves as a conceptual and logical framework. It defines the schema for Properties required to ensure data consistency and interoperability. Critically, the MatCore Standard is implementation-agnostic. It dictates what information must be captured and how it should be structured logically, but it does not mandate a specific substrate, file format, or programming language.
 
+A *serialization* is a file format (for example XML or JSON) together with the rules that map the MatCore data model onto it.
+
 MatCore adopts [Semantic Versioning](https://semver.org/) (SemVer) three-part versioning system (major, minor, patch) to indicate Standard changes.
 

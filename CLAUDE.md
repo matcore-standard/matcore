@@ -78,8 +78,8 @@ Three groups, not to be merged:
    model-parameter (pf), calculation-parameter (derived). Their `value` has type any, extent any,
    kind any; the instance supplies type, shape and unit. The generic-parameter rule applies to
    these only. The instance type is one of float, int, string, bool, and is stated in the instance,
-   not inferred from how the value is written; each serialization (instance file format, e.g. XML
-   or JSON) defines how. The value need not be a scalar (0004).
+   not inferred from how the value is written; each serialization (defined in §1.3) defines how.
+   The value need not be a scalar (0004).
 2. Free-form units: field-variable, free-energy (pf). No `value`; a free-form `unit` whose kind
    the schema does not fix.
 3. Typed properties with a required unit: grid-spacing (Length, recommended m) and time-step-size
