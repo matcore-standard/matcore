@@ -120,15 +120,18 @@ from the YAML for that serialization and used by CI to validate the examples (00
 ## Known defects in the baseline (fix in the Part B PR)
 - `localized-orbital-basis-set` (DFT-1) vs `localized-orbitals-basis-set` (DFT-4) vs
   `local-orbital-basis-set` (MBPT-1): three spellings. Migration aliased DFT-4 to the DFT-1 form.
+  Use `localized-orbital-basis-set` in all three places, including references in notes (0004).
+- An mbpt.yaml note refers to `basis-cutoff-planewave`; the property is `planewave-basis-cutoff`.
+  Correct the reference (0004).
 - Table MD-3 was malformed in the Google Doc: its header row was actually the `source` parent row.
-  Migration handled it; check md.yaml › computation-parameter / source for correctness.
+  Migration handled it; check md.yaml › particle-interactions / source against the docx (0004).
 - The accepted items of docs/decisions/0001-units-change-list.md Part B (see its Status line).
   B2 (added note), B4 (Ė symbol), B5 and B9 are PROPOSED, NOT DECIDED.
 
 ## Status / next steps (update this list as work lands)
 Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
-PROPOSED, NOT DECIDED until the human rules: in "Known defects", which spelling and fix to adopt;
-the order of status steps 7 and 9; and the working rules other than the first two.
+PROPOSED, NOT DECIDED until the human rules: the order of status steps 7 and 9; and the working
+rules other than the first two.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
