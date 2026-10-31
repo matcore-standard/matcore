@@ -1,5 +1,5 @@
 site_name: MatCore
-site_url: https://matcore.org
+site_url: https://matcore-standard.github.io/matcore/
 repo_url: https://github.com/matcore-standard/matcore
 theme:
   name: material
@@ -20,7 +20,10 @@ nav:
       - Derived properties: standard/08-derived.md
       - Annex U (units): standard/annex-u-units.md
       - Annex U table: standard/annex-u-table.md
-  - Decisions: decisions/
+  - Decisions:
+      - Repository and workflow: decisions/0000-repository-and-workflow.md
+      - Units change list: decisions/0001-units-change-list.md
+      - Typed property fields: decisions/0002-typed-property-fields.md
   - Feedback: feedback.md
   - Revision history: revision-history.md
 markdown_extensions: [tables, admonition, toc]
