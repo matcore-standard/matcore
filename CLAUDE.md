@@ -56,7 +56,9 @@ Each property entry has exactly these fields, in this order:
 Entries: xc-parameter, computation-parameter (dft, md), td-parameter, model-parameter, field-variable,
 calculation-parameter, free-energy.unit. Their `value` has type any, extent any, kind any; the
 instance supplies type (float|int|string|bool), shape and unit. `unit` subproperty has kind inapplicable.
-The standard should define this pattern once in §1.3 under a proper name ("generic parameter").
+PROPOSED, NOT DECIDED: define this pattern once in §1.3 under a name such as "generic parameter", with
+each such entry tagged `pattern: generic-parameter` and checked by validate_schema.py against one
+canonical definition. Needs a decision before implementation.
 
 ## Instance serialization
 XML is the working assumption for instance files (unit/convention/basis as attributes of the value
@@ -99,6 +101,12 @@ A JSON mapping may follow from the same data model.
 9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools.
 
 ## Working rules (apply in every session)
+- Decisions are made only by the human running the session. Never treat a suggestion, whether yours,
+  from CLAUDE.md, or from an earlier conversation, as decided unless the human has explicitly confirmed
+  it. If you find something in CLAUDE.md or in your task that is not backed by a decision record or an
+  explicit confirmation, do not act on it: mark it 'PROPOSED, NOT DECIDED' in CLAUDE.md and raise it
+  with the human to get a decision. Record every confirmed decision in docs/decisions/ before
+  implementing it.
 - Environment: use the `matcore` conda environment for every command (`conda activate matcore`;
   create it from environment.yml). Never pip-install into the system Python.
 - Permissions: propose changes, let the user review the diff, then commit. Never commit anything
