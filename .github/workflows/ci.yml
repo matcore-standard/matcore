@@ -14,6 +14,7 @@ jobs:
       - run: python scripts/build_docs.py
       - name: fail if generated docs are stale
         run: git diff --exit-code -- docs/standard
+      - run: mkdocs build --strict
       - name: deploy site (main only)
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
