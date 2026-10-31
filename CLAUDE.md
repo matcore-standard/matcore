@@ -128,7 +128,7 @@ from the YAML for that serialization and used by CI to validate the examples (00
 ## Status / next steps (update this list as work lands)
 Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
 PROPOSED, NOT DECIDED until the human rules: in "Known defects", which spelling and fix to adopt;
-the order and procedure of status steps 3–9; and the working rules other than the first two.
+the order of status steps 7 and 9; and the working rules other than the first two.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
@@ -152,22 +152,26 @@ the order and procedure of status steps 3–9; and the working rules other than 
      repository. Site pages do not link to them.
    PROPOSED, NOT DECIDED: the property layout (render options in the preview for the human to
    choose); a Revision History entry for the baseline draft.
-3. [todo] PR: apply docs/decisions/0001-units-change-list.md Part A (kind/recommended-unit/convention),
-   including rewording Annex U to "Kind" (0004).
-   Also pending from 0004, each its own change: tighten the name pattern in meta-schema.yaml (all
-   255 current names pass it); add a field-order check to validate_schema.py.
-   When applying Part A, check 0001 (A1.3, A10) and Annex U for XML-specific wording such as "unit
-   as an attribute of the value element": normative text describes unit, convention and basis as
-   subproperties, and each serialization decides whether they become attributes, child elements or
-   object keys (0004).
-4. [todo] PR: apply 0001 Part B fixes + the known baseline defects listed above.
-5. [todo] One PR per section, in the order minimal, dft, md, mbpt, ml, pf, derived: fill
-   type/extent/kind/values for every property, deleting its legacy_* fields as each is done.
-   For each PR: (a) cross-check every property against the baseline .docx so no definition or
-   value was lost or altered in migration; (b) list in the PR description any property where
-   the typed fields required a judgment call, so the user can decide; (c) a section is complete
-   only when no legacy_* fields remain in its file. Add a check to validate_schema.py that fails
-   if a section file declares `legacy_complete: true` but still contains legacy_* fields.
+3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
+   (0004). What remains of this step does not belong to any one property, each its own change:
+   reword Annex U to "Kind" (0004); check 0001 (A1.3, A10) and Annex U for XML-specific wording such
+   as "unit as an attribute of the value element", since normative text describes unit, convention
+   and basis as subproperties and each serialization decides whether they become attributes, child
+   elements or object keys (0004); tighten the name pattern in meta-schema.yaml (all 255 current
+   names pass it); add a field-order check to validate_schema.py.
+   PROPOSED, NOT DECIDED: do these before step 5.
+4. [todo] PR: apply 0001 Part B fixes + the known baseline defects listed above. Done before step 5
+   (0004).
+5. [todo] One PR per top-level property, covering all of its subproperties: 48 PRs (0004). Each PR,
+   in this order: (a) cross-check the property against the baseline .docx (name, definition,
+   values, required, repeatable, subproperty tree) so no definition or value was lost or altered
+   in migration, and correct any migration error before filling anything; (b) fill
+   type/extent/kind/recommended-unit/values, applying 0001 Part A to the property, and delete its
+   legacy_* fields; (c) list in the PR description every judgment call in the mapping, so the
+   human can decide. A section is complete when no legacy_* fields remain in its file.
+   PROPOSED, NOT DECIDED: sections in the order minimal, dft, md, mbpt, ml, pf, derived, and
+   properties in file order within a section; a check in validate_schema.py that fails if a
+   section file declares `legacy_complete: true` but still contains legacy_* fields.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
