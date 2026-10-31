@@ -107,8 +107,10 @@ implementations. When it is made, a format-specific schema (e.g. XSD or JSON Sch
 from the YAML for that serialization and used by CI to validate the examples (0004).
 
 ## Website and tools (decided)
-- Static site, MkDocs (Material), GitHub Pages, custom domain matcore.org, versioned with `mike`.
-  Generated on every push to main by .github/workflows/ci.yml. No dynamic server.
+- Static site, MkDocs (Material), GitHub Pages, versioned with `mike`; built on every push to main
+  by .github/workflows/ci.yml; no dynamic server (0000). The site is served at
+  matcore-standard.github.io/matcore for now. matcore.org will point to it as soon as the site is
+  clean and operational, replacing the current site there (0004).
 - Tools: one Python package `matcore` (validator CLI + parsers for VASP/QE/LAMMPS output → MatCore XML),
   run in-browser via Pyodide for the website validator/visualizer/forms. Web forms are the fallback;
   parsers are the primary generator.
@@ -124,10 +126,9 @@ from the YAML for that serialization and used by CI to validate the examples (00
 
 ## Status / next steps (update this list as work lands)
 Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
-PROPOSED, NOT DECIDED until the human rules: in "Website and tools", the custom domain, "no dynamic
-server" and the package details beyond "one Python package run via Pyodide" (0000); in "Known
-defects", which spelling and fix to adopt; the order and procedure of status steps 3–9; and the
-working rules other than the first two.
+PROPOSED, NOT DECIDED until the human rules: in "Website and tools", the package details beyond
+"one Python package run via Pyodide" (0000); in "Known defects", which spelling and fix to adopt;
+the order and procedure of status steps 3–9; and the working rules other than the first two.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
