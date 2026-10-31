@@ -42,8 +42,8 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   validator can check that the subproperty exists and is required.
 - `kind`: a key of units.yaml#kinds, or reserved `dimensionless` | `inapplicable` | `any`.
   string/bool/file properties are always `inapplicable`; a physical quantity is never typed as a
-  string. (The meaning of `file` in an instance is PROPOSED, NOT DECIDED; define it with the XML
-  mapping.)
+  string. (The meaning of `file` in an instance is PROPOSED, NOT DECIDED; define it in the data
+  model, independent of any serialization.)
 - `recommended-unit`: informative only; must be a symbol in units.yaml with matching kind.
   PROPOSED, NOT DECIDED: no recommended unit when kind is `any`; null when kind is `dimensionless`.
 - `values`: structured; replaces the old prose "Values" (0002). The key set (enum / minimum / maximum /
@@ -77,7 +77,9 @@ Three groups, not to be merged:
 1. Generic parameters: xc-parameter (dft), computation-parameter and td-parameter (md),
    model-parameter (pf), calculation-parameter (derived). Their `value` has type any, extent any,
    kind any; the instance supplies type, shape and unit. The generic-parameter rule applies to
-   these only. (Restricting the instance type to float|int|string|bool: PROPOSED, NOT DECIDED.)
+   these only. The instance type is one of float, int, string, bool, and is stated in the instance,
+   not inferred from how the value is written; each serialization (instance file format, e.g. XML
+   or JSON) defines how. The value need not be a scalar (0004).
 2. Free-form units: field-variable, free-energy (pf). No `value`; a free-form `unit` whose kind
    the schema does not fix.
 3. Typed properties with a required unit: grid-spacing (Length, recommended m) and time-step-size
@@ -118,11 +120,10 @@ A JSON mapping may follow from the same data model.
 
 ## Status / next steps (update this list as work lands)
 Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
-PROPOSED, NOT DECIDED until the human rules: the instance-type restriction for generic parameters;
-the "Instance serialization" section; in "Website and tools", the custom domain, "no dynamic server"
-and the package details beyond "one Python package run via Pyodide" (0000); in "Known defects", which
-spelling and fix to adopt; the order and procedure of status steps 3–9; and the working rules other
-than the first.
+PROPOSED, NOT DECIDED until the human rules: the "Instance serialization" section; in "Website and
+tools", the custom domain, "no dynamic server" and the package details beyond "one Python package run
+via Pyodide" (0000); in "Known defects", which spelling and fix to adopt; the order and procedure of
+status steps 3–9; and the working rules other than the first two.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
