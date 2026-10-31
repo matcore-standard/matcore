@@ -139,7 +139,11 @@ the order and procedure of status steps 3–9; and the working rules other than 
      Revision History) · Contact. toc_depth 2.
    - Migrate the content of About MatCore, Leadership, Revision History and Contact from
      matcore.org (this was step 8). Contact replaces the Feedback placeholder.
-   - Under Standard, each section shows its introduction and its example, as on matcore.org.
+   - Under Standard, each section shows its introduction and its examples, as on matcore.org.
+     Storage (0004): each schema/<section>.yaml gets a top-level `introduction` (Markdown in a
+     literal block, one per section) and `examples` (a list; each entry has `caption`, `file` in
+     examples/, `source`, optional `notes`). Text comes from the baseline .docx as it is. Needs
+     the two fields added to meta-schema.yaml, and pymdownx.highlight + superfences for code.
    - build_docs.py renders the standard from the YAML; legacy_* fields hidden unless --show-legacy
      is passed, and CI builds with --show-legacy until step 5 is complete.
    - [done] Decision records are internal committee information: docs/decisions/, including the
@@ -147,8 +151,7 @@ the order and procedure of status steps 3–9; and the working rules other than 
      would still appear in sitemap.xml and the site search). They stay in the public GitHub
      repository. Site pages do not link to them.
    PROPOSED, NOT DECIDED: the property layout (render options in the preview for the human to
-   choose); where section introductions and examples are stored (they are in the baseline .docx
-   and on matcore.org but not in the YAML); a Revision History entry for the baseline draft.
+   choose); a Revision History entry for the baseline draft.
 3. [todo] PR: apply docs/decisions/0001-units-change-list.md Part A (kind/recommended-unit/convention),
    including rewording Annex U to "Kind" (0004).
    Also pending from 0004, each its own change: tighten the name pattern in meta-schema.yaml (all
