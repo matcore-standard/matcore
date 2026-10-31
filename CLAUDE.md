@@ -88,7 +88,20 @@ A JSON mapping may follow from the same data model.
 7. [todo] MkDocs site content: migrate About/Leadership/Feedback/Revision history from matcore.org.
 8. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools.
 
-## Working rules
-- One decision per PR; reference the decision record in the PR description.
-- Run `python scripts/validate_schema.py && python scripts/build_docs.py` before committing.
-- Don't invent QUDT IRIs or physical constants; units.yaml values were verified against primary sources.
+## Working rules (apply in every session)
+- Environment: use the `matcore` conda environment for every command (`conda activate matcore`;
+  create it from environment.yml). Never pip-install into the system Python.
+- Permissions: propose changes, let the user review the diff, then commit. Never commit anything
+  the user has not approved. A commit contains only what its message describes; if a change outside
+  the current task seems necessary, say so and get agreement first.
+- One decision per pull request. Write or update a record in docs/decisions/ before making the
+  change, and reference it in the commit message.
+- Memory lives in the repository, not in chat. Whenever a decision is made or changed in
+  conversation, update the relevant section of this file and the status list in the same commit as
+  the work. At the end of every session, update the status list to say exactly what was done and
+  what remains, and commit it. Assume the conversation will not be available next time.
+- Before every commit run: `python scripts/validate_schema.py`, `python scripts/build_docs.py`,
+  `mkdocs build --strict`. Never hand-edit generated files under docs/standard/ (02-*.md … 08-*.md,
+  annex-u-table.md).
+- Never invent QUDT IRIs, physical constants or unit symbols; units.yaml was verified against
+  primary sources. New units need a verified source stated in the PR.
