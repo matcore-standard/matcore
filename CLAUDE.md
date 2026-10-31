@@ -1,0 +1,94 @@
+# CLAUDE.md — standing context for Claude Code sessions in the MatCore repository
+
+Read this before any change. It records design decisions made by the MatCore committee (via the
+lead editor) in September–October 2026. Do not reopen settled decisions unless the user asks; add new
+decisions to docs/decisions/ as short numbered files.
+
+## What this repository is
+The source of truth for the MatCore metadata standard for computational materials science
+(https://matcore.org). The former Google Doc is retired; this repo replaces it.
+GitHub organization: `matcore-standard`, repository `matcore-standard/matcore`. (The name `matcore` is held
+by a dormant personal account; if it is ever released, rename the org and immediately re-create an empty
+`matcore-standard` organization so the old URLs keep redirecting.) Only mkdocs.yml and README.md contain the
+repository URL; keep it that way.
+MatCore is an independent effort funded by NSF DMR Award #2404283. It is NOT a KIM Initiative project.
+
+- `schema/<section>.yaml` — the standard's property hierarchy, one file per section
+  (minimal, dft, md, mbpt, ml, pf, derived). THIS IS THE STANDARD.
+- `schema/units.yaml` — Annex U, the normative unit table (kinds, symbols, QUDT/GNU mapping, SI factors).
+- `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
+- `docs/standard/*.md` — prose chapters (01-introduction, annex-u-units) plus GENERATED chapters
+  (02–08, annex-u-table). Never hand-edit generated files; edit the YAML and run `scripts/build_docs.py`.
+- `docs/decisions/` — decision records. 0001 is the units change list (not yet applied; see Status).
+  The frozen Google Doc export is stored there as the baseline artifact.
+- `scripts/validate_schema.py` — must pass before any commit touching schema/.
+- `scripts/build_docs.py` — regenerates docs from YAML. CI runs both.
+
+## Conventions for schema YAML (keep it regular; no includes, no macros)
+Each property entry has exactly these fields, in this order:
+`name, required, description, type, extent, kind, recommended-unit, values, repeatable,
+[convention], [notes], [legacy_values], [legacy_unit], [subproperties]`.
+- `type` ∈ string | float | int | bool | file | any. `any` only for the `value` of generic parameters.
+- `extent`: KIM notation. `[]` scalar, `[3,3]` fixed, `[":"]` open length (quote the colon in YAML);
+  `any` (rank unknown) only for generic parameters. In prose write `[:]` without quotes.
+- `kind`: a key of units.yaml#kinds, or reserved `dimensionless` | `inapplicable` | `any`.
+  string/bool/file properties are always `inapplicable`.
+- `recommended-unit`: informative only; must be a symbol in units.yaml with matching kind.
+- `values`: structured (enum / minimum / maximum / format / pattern / examples / note). Replaces the old prose "Values".
+- `legacy_*` fields hold the Google Doc prose from the baseline migration. Delete each one as the
+  typed fields for that property are filled in. The baseline is complete when no legacy_* remain.
+- Names are lowercase-hyphenated. `unit` is singular everywhere.
+
+## Units model (decided; see docs/decisions/0001 and docs/standard/annex-u-units.md)
+- Every dimensioned value in an instance file carries a `unit`; no default unit is ever implied.
+- The schema declares `kind` + `recommended-unit`, not a fixed unit. Validation = kind compatibility
+  via the dimension vector in units.yaml, using the closed symbol set. No unit parsing.
+- Reserved kinds: dimensionless (ratios, counts), inapplicable (non-quantities), any (generic params).
+  Angles and moles are NOT dimensionless.
+- Conventions a unit cannot express (2π in reciprocal lengths, lattice vs Cartesian basis) are separate
+  required enumerated subproperties (`convention`, `basis`), never encoded in the unit string.
+- Energy and MolarEnergy are distinct kinds (Annex U Rule 8). kJ/mol, kcal/mol → MolarEnergy.
+- CODATA 2022 factors are normative; QUDT (CODATA 2006) and GNU Units 2.23 (CODATA 2018) are stale.
+- GNU Units pinned to 2.23 / definitions.units 3.19 for `x-gnu:` escape expressions.
+- "Annex" (ISO usage), normative; use "Kind" (not "Quantity kind") in all text.
+
+## Generic (name/value/unit/description) parameters
+Entries: xc-parameter, computation-parameter (dft, md), td-parameter, model-parameter, field-variable,
+calculation-parameter, free-energy.unit. Their `value` has type any, extent any, kind any; the
+instance supplies type (float|int|string|bool), shape and unit. `unit` subproperty has kind inapplicable.
+The standard should define this pattern once in §1.3 under a proper name ("generic parameter").
+
+## Instance serialization
+XML is the working assumption for instance files (unit/convention/basis as attributes of the value
+element; child-element form also conformant). Define the XML mapping before building tools.
+A JSON mapping may follow from the same data model.
+
+## Website and tools (decided)
+- Static site, MkDocs (Material), GitHub Pages, custom domain matcore.org, versioned with `mike`.
+  Generated on every push to main by .github/workflows/ci.yml. No dynamic server.
+- Tools: one Python package `matcore` (validator CLI + parsers for VASP/QE/LAMMPS output → MatCore XML),
+  run in-browser via Pyodide for the website validator/visualizer/forms. Web forms are the fallback;
+  parsers are the primary generator.
+- Licenses: CC BY 4.0 (standard text/schema), Apache-2.0 (code). Tagged releases get a Zenodo DOI.
+
+## Known defects in the baseline (fix in the Part B PR)
+- `localized-orbital-basis-set` (DFT-1) vs `localized-orbitals-basis-set` (DFT-4) vs
+  `local-orbital-basis-set` (MBPT-1): three spellings. Migration aliased DFT-4 to the DFT-1 form.
+- Table MD-3 was malformed in the Google Doc: its header row was actually the `source` parent row.
+  Migration handled it; check md.yaml › computation-parameter / source for correctness.
+- All items in docs/decisions/0001-units-change-list.md Part B.
+
+## Status / next steps (update this list as work lands)
+1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; legacy_* preserved).
+2. [todo] PR: apply docs/decisions/0001-units-change-list.md Part A (kind/recommended-unit/convention).
+3. [todo] PR: apply 0001 Part B fixes + the known defects above.
+4. [todo] PR per section: fill type/extent/values for all properties; delete legacy_* as you go.
+5. [todo] Community feedback and committee decisions (user will supply) → one decision record + PR each.
+6. [todo] XML mapping spec; example instances in examples/; CI validates examples against generated XSD.
+7. [todo] MkDocs site content: migrate About/Leadership/Feedback/Revision history from matcore.org.
+8. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools.
+
+## Working rules
+- One decision per PR; reference the decision record in the PR description.
+- Run `python scripts/validate_schema.py && python scripts/build_docs.py` before committing.
+- Don't invent QUDT IRIs or physical constants; units.yaml values were verified against primary sources.

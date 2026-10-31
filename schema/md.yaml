@@ -1,0 +1,506 @@
+section: md
+title: 2.3 MD
+matcore_version: 0.9-draft-baseline
+source: >-
+  Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
+  and are to be replaced by typed fields in subsequent PRs.
+properties:
+- name: computation
+  required: true
+  description: The form of molecular dynamics performed.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: mode
+    required: true
+    description: The type of the molecular dynamics simulation performed.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Static" – Snapshot(s) of arbitrary particle configuration
+      "Minimization" – Energy minimization "Equilibrium dynamics" – Equilibrium molecular dynamics "Nonequilibrium
+      dynamics" – Nonequilibrium molecular dynamics. "Free energy" – Free energy calculations Other user-specified
+      value if none of the above apply.
+  - name: algorithm
+    required: false
+    description: The computational method used to perform the computation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values based on the specified calculation type:: For "Minimization":
+      "Simplex" "Damped dynamics" "FIRE" "Steepest descent" "Conjugate gradients" "BFGS" "Simulated annealing"
+      "SGLD" – Stochastic Gradient Langevin Dynamics Other user-specified value if none of the above apply.
+      For "Equilibrium dynamics" or "nonequilibrium-dynamics": "Leap frog" "Runge-Kutta" "Velocity Verlet"
+      "Verlet" Other user-specified value if none of the above apply. For "Free energy": "Harmonic" "Metadynamics"
+      "PMF" – Potential of Mean Force "Thermodynamic integration" "Umbrella sampling" Other user-specified
+      value if none of the above apply.
+  - name: computation-parameter
+    required: false
+    description: A fixed variable associated with the specified computation algorithm.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: name
+      required: true
+      description: >-
+        The designation of the parameter associated with the specified computation algorithm.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the name of the computation parameter.
+    - name: value
+      required: true
+      description: The data associated with the computation parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: An integer, real, boolean, or string containing the computation parameter value.
+    - name: unit
+      required: true
+      description: >-
+        A standardized string or identifier that defines the dimension or measurement system of the associated
+        value.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
+        (or the text "dimensionless").
+    - name: description
+      required: false
+      description: An explanation of the meaning, source, or purpose of the computation parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string explaining the computation parameter (e.g. "The convergence tolerance for energy minimization",
+        "The simulation time for the dynamical simulation").
+  - name: initialization
+    required: false
+    description: Information on the conditions set at the start of the simulation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing a description of the simulation initial conditions (such as the nature and source
+      of an initial structure, initialization of velocities or spins, etc.).
+- name: particle-style
+  required: true
+  description: The nature of the discrete entities used in the molecular dynamics simulation.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: >-
+    String containing one of the following values: "Atom" – Each particle represents an individual atom
+    "Radical" – Each particle represents a free radical "United atom" – Each particle represents a fixed
+    grouping of atoms "Bead" – Each particle represents a user-tuneable group of atoms "Coarse grained"
+    – Each particle represents a higher scale particle obtained by scaling up the atomic representation
+    "Mesoscale" – Granular particles used to simulate microstructure at the mesoscopic scale "Classical
+    electron" – Antisymmetrized wave packet representation of valence electrons Other user-specified value
+    if none of the above apply.
+- name: particle-interactions
+  required: true
+  description: The model used to describe the potential energy surface of the system.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  notes:
+  - >-
+    Note:This field can be repeated in cases where there are multiple interaction models used in the same
+    simulation (e.g. hybrid calculations combining multiple models or QM/MM style computations).
+  subproperties:
+  - name: model-type
+    required: true
+    description: The kind of potential used to compute the particle interactions.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing the model type (e.g. Lennard-Jones, EAM, MACE, etc.).
+  - name: bonding-type
+    required: true
+    description: Specifies whether the bonds between particles are immutable or can be broken.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Reactive" – Bonds formed or broken on-the-fly based
+      on the particle environment "Bonded fixed" – Bonds defined *a priori *and cannot be broken during
+      the simulation. "Bonded mutable" – Bonds defined *a priori *but can be broken and/or formed during
+      the simulation. Other user-specified value if none of the above apply.
+  - name: theory-level
+    required: true
+    description: The rigor with which the atomic interactions are modeled.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Classical physics-based" – Electronic degrees of
+      freedom subsumed into a model of atomic bonding "Classical machine-learning" – Machine learning
+      model trained to take particle positions as input "Tight-binding" – Classical model of nuclear interactions
+      with approximate treatment of the electrons "Ab initio" – Some level of electronic structure determines
+      the particle interactions "Ab initio machine learning" – Machine learning model employing some level
+      of electronic structure in determining the particle interactions Other user-specified value if none
+      of the above apply.
+  - name: source
+    required: false
+    description: >-
+      Information that uniquely identifies the origin of the particle interaction model (e.g. a journal
+      article, or a repository containing an implementation or parameter set).
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: reference
+      required: true
+      description: >-
+        The origin of the particle interaction model implementation used, such as an interatomic potential
+        repository (e.g. OpenKIM or the NIST IPR), a code (like LAMMPS), or a publication.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing the name of the source and other identifying information (e.g. journal citation,
+        repository and unique identifier in the repository)
+    - name: doi
+      required: false
+      description: The digital object identifier (DOI) for the source.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the source DOI.
+    - name: link
+      required: false
+      description: A URI pointing to a permanent location of the source.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the file URI.
+- name: charge-interactions
+  required: false
+  description: The model used to describe the interactions between charged particles.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: charge-origin
+    required: true
+    description: Nature of the particle charges.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Semi empirical" – Charges obtained from semi-empirical
+      quantum calculations "Quantum" – Charges obtained from quantum calculations "Electronic population"
+      – Charges obtained from electronic population analysis, e.g. Mulliken "Electronegativity" – Charges
+      obtained from electronegativity differences between atoms "Tabulated" – Charges obtained from an
+      external source Other user-specified value if none of the above apply.
+  - name: charge-style
+    required: true
+    description: >-
+      The nature of the charges associated with the particles, such as total or effective charges.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Coulomb full" – The particle charge accounting for
+      all electrons "Coulomb screened" – Effective charge due to screening or shielding by other electrons
+      (e.g. Slater) Other user-specified value if none of the above apply.
+  - name: charge-variability
+    required: true
+    description: >-
+      Attribute specifying the method for dynamically varying the local electric charge associated with
+      discrete entities.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Fixed" – Charges cannot change during the simulation
+      "QEq" – Charge equilibration method "EEM" – Electronegativity Equalization Method "iEL/SCF" – Extended
+      Lagrangian/self-consistent field scheme "FlucQ" – Fluctuating charge potential "Drude" – Drude method
+      Other user-specified value if none of the above apply.
+  - name: long-range-electrostatics
+    required: false
+    description: Method used to compute long-range electrostatic interactions.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "None" – No electrostatic calculation performed "Direct"
+      – All Coulomb interactions computed directly "Ewald" – Ewald summation "PME" – Particle mesh Ewald
+      "PPPM" – Particle particle particle mesh "Reaction" – Reaction field Other user-specified value
+      if none of the above apply.
+  - name: electric-dipole
+    required: false
+    description: >-
+      Attribute specifying the type of interaction associated with the local electric dipoles associated
+      with particles.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Stockmayer" – Stockmayer potential "Screened" –
+      Screened dipoles "Long range" – Long-range dipoles Other user-specified value if none of the above
+      apply.
+  - name: electric-dipole-variability
+    required: false
+    description: >-
+      Attribute specifying the method for dynamically varying the local electric charge associated with
+      discrete entities.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Induced" – Induced point dipoles "Isotropic" – Isotropic
+      polarizability "Anisotropic" – Anisotropic polarizability Other user-specified value if none of
+      the above apply.
+- name: magnetic-interactions
+  required: false
+  description: The model used to describe the interactions between magnetic spins.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: spin-style
+    required: true
+    description: The nature of the magnetic spins associated with the particles.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Classical spin dynamics" – Spins modeled as classical
+      vectors evolved via Landau–Lifshitz–Gilbert (LLG) equation defined by a spin Hamiltonian. "Coupled
+      spin lattice dynamics" – Combines classical spin-dynamics with classical molecular dynamics"Ab initio
+      spin dynamics" – Magnetism treated via spin-polarized density functional theory (DFT) "Tight binding
+      spin dynamics" – Magnetism emerges from itinerant electrons rather than fixed local moments "Quantum
+      spin dynamics" – Magnetic moments treated as fully quantum mechanical operators evolving under the
+      time-dependent Schrödinger equation
+  - name: magnetic-dipole
+    required: false
+    description: >-
+      Attribute specifying the type of interaction (spin Hamiltonian) between the magnetic dipoles associated
+      with particles.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing a description of the approach used to model the magnetic dipoles (e.g. "Heisenberg",
+      "multi-spin", "Zeeman", or some other formulation for the spin Hamiltonian).
+- name: thermodynamic-constraint
+  required: false
+  description: >-
+    Macroscopic physical restriction imposed on the simulation, such as a statistical mechanics ensemble.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: system
+    required: true
+    description: The collection of particles to which the constraint is applied.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String describing the constrained system (e.g. entire system, or a subset of atoms that are constrained.)
+  - name: type
+    required: true
+    description: The nature of the imposed thermodynamic constraint.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "NVE" – Microcanonical "NVT" – Canonical "μVT" –
+      Grand canonical "NPT" – Isothermal-isobaric "NσT" – Isothermal-isostress "μPT" – Grand isothermal-isobaric
+      "μσT" – Grand isothermal-isostress "NPH" – Isoenthalpic-isobaric "NσH" – Isoenthalpic-isostress
+      Other user-specified value if none of the above apply.
+  - name: method
+    required: false
+    description: The name of the approach used to impose the constraint.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values based on the specified constraint:: For "NVT": "Andersen"
+      "Berendsen" "CSVR" Langevin "Nosé-Hoover" "Nosé-Hoover chain" "Velocity rescaling" Other user-specified
+      value if none of the above apply. For "μVT": "GCMC" – Grand Canonical Monte Carlo Other user-specified
+      value if none of the above apply. For "NPT": "Andersen" "Berendsen" "CauchyStat" "Nosé-Hoover style"
+      "Parrinello-Rahman" Other user-specified value if none of the above apply. For "NσT": "CauchyStat"
+      "Parrinello-Rahman" Other user-specified value if none of the above apply. For "μPT": User-specified
+      value. For "μσT": User-specified value. For "NPH": "Nosé-Hoover style" Other user-specified value
+      if none of the above apply. For "NσH": User-specified value. Otherwise: User-specified value.
+  - name: description
+    required: false
+    description: Explanatory text about the constraint and method used to impose it.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing the constraint description.
+  - name: td-parameter
+    required: false
+    description: A fixed variable associated with the specified thermodynamic constraint.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: name
+      required: true
+      description: >-
+        The designation of the parameter associated with the specified thermodynamic constraint.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the name of the thermodynamic constraint parameter.
+    - name: value
+      required: true
+      description: The data associated with the thermodynamic constraint parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        An integer, real, boolean, or string containing the thermodynamic constraint parameter value.
+    - name: unit
+      required: true
+      description: >-
+        A standardized string or identifier that defines the dimension or measurement system of the associated
+        value.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
+        (or the text "dimensionless").
+    - name: description
+      required: false
+      description: >-
+        An explanation of the meaning, source, or purpose of the thermodynamic constraint parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string explaining the thermodynamic constraint parameter (e.g. "The damping parameter for the
+        Langevin thermostat").

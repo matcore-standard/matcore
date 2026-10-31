@@ -1,0 +1,129 @@
+section: derived
+title: 2.7 Derived Property
+matcore_version: 0.9-draft-baseline
+source: >-
+  Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
+  and are to be replaced by typed fields in subsequent PRs.
+properties:
+- name: derived-property
+  required: true
+  description: >-
+    Details of a quantity related to material behavior computed based on a computational materials science
+    (CMS) calculation covered by the MatCore standard.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: type
+    required: true
+    description: Kind of physical quantity being computed.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String one of the following values that defines the type of the computed derived property: "Electronic"
+      "Electron-phonon interactions" "Linear-response" "Magnetic" "Microscopy, electron" "Microscopy,
+      scanning probe" "NMR" "Optical" "Spectroscopy, core-level" "Spectroscopy, vibrational" "Transport"
+      "X-ray scattering" Other user-specified value if none of the above apply.
+  - name: description
+    required: true
+    description: Explanation of the derived property.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing an explanation of the specific derived property that was computed.
+  - name: calculation-method
+    required: true
+    description: >-
+      Details regarding an approach used to obtain the derived property. Multiple approaches may be involved
+      in the computation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: description
+      required: true
+      description: Description of the method used to obtain the derived property.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing a human-readable description of the approach and/or algorithm used to compute
+        the derived property.
+    - name: calculation-parameter
+      required: false
+      description: A parameter associated with the specified calculation method.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      legacy_values: Contains SubSubSubProperties as defined in the table below.
+      subproperties:
+      - name: name
+        required: true
+        description: >-
+          The designation of the parameter associated with the specified derived property calculation
+          method.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        legacy_values: A string containing the name of the calculation parameter.
+      - name: value
+        required: true
+        description: The data associated with the calculation parameter.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        legacy_values: An integer, real, boolean, or string containing the calculation parameter value.
+      - name: unit
+        required: true
+        description: >-
+          A standardized string or identifier that defines the dimension or measurement system of the
+          associated value.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        legacy_values: >-
+          A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
+          (or the text "dimensionless").
+      - name: description
+        required: false
+        description: An explanation of the meaning, source, or purpose of the calculation parameter.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        legacy_values: >-
+          A string explaining the computation parameter (e.g. "The spin-spin coupling constant for an
+          NMR spectroscopy calculation").

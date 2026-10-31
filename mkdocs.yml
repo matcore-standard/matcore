@@ -1,0 +1,29 @@
+site_name: MatCore
+site_url: https://matcore.org
+repo_url: https://github.com/matcore-standard/matcore
+theme:
+  name: material
+  features: [navigation.sections, navigation.indexes, content.code.copy, search.suggest]
+nav:
+  - Home: index.md
+  - About:
+      - About MatCore: about.md
+      - Leadership: leadership.md
+  - Standard:
+      - Introduction: standard/01-introduction.md
+      - Minimal: standard/02-minimal.md
+      - DFT: standard/03-dft.md
+      - MD: standard/04-md.md
+      - MBPT: standard/05-mbpt.md
+      - ML: standard/06-ml.md
+      - Phase field: standard/07-pf.md
+      - Derived properties: standard/08-derived.md
+      - Annex U (units): standard/annex-u-units.md
+      - Annex U table: standard/annex-u-table.md
+  - Decisions: decisions/
+  - Feedback: feedback.md
+  - Revision history: revision-history.md
+markdown_extensions: [tables, admonition, toc]
+extra:
+  version:
+    provider: mike

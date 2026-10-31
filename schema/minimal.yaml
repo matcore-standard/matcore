@@ -1,0 +1,857 @@
+section: minimal
+title: 2.1 Minimal MatCore Metadata
+matcore_version: 0.9-draft-baseline
+source: >-
+  Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
+  and are to be replaced by typed fields in subsequent PRs.
+properties:
+- name: creator
+  required: true
+  description: >-
+    An entity (e.g. person, organization, software agent) responsible for generated the dataset and their
+    institutional affiliation if relevant.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: name
+    required: true
+    description: The name of the entity that generated the dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing the entity name. Examples: "Albert Einstein", "Lawrence Livermore National Laboratory",
+      "Claude Opus 5.5".
+  - name: affiliation
+    required: false
+    description: The affiliation of the entity that generated the dataset if they have one.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: A string containing the entity affiliation.
+  - name: creator-identifier
+    required: false
+    description: >-
+      A unique, persistent URI that globally and unambiguously identifies the entity that created the
+      dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: >-
+      For individuals, this includes an ORCID ID ([https://orcid.org](https://orcid.org)), for organizations,
+      an ROR ID ([https://ror.org](https://ror.org)), for software or AI agents, a Digital Object Identifier
+      (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a
+      Software Heritage ID (SWHID) pointing to the exact software release or state (e.g., swh:1:rel:a0b1c2d3e4f5...).
+  - name: affiliation-identifier
+    required: false
+    description: >-
+      A unique, persistent URI that globally and unambiguously identifies the entity's affiliation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: An ROR ID ([https://ror.org](https://ror.org)) or other suitable identifier.
+- name: contributor
+  required: true
+  description: >-
+    An entity (e.g. person, organization, software agent) responsible for making contributions to the
+    dataset and their institutional affiliation if relevant.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: name
+    required: true
+    description: The name of the entity that contributed to the dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing the entity name. Examples: "Albert Einstein", "Lawrence Livermore National Laboratory",
+      "Claude Opus 5.5".
+  - name: affiliation
+    required: true
+    description: The affiliation of the entity that contributed to the dataset if they have one.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: A string containing the entity affiliation.
+  - name: contributor-identifier
+    required: false
+    description: >-
+      A unique, persistent URI that globally and unambiguously identifies the entity that contributed
+      to the dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: >-
+      For individuals, this includes an ORCID ID ([https://orcid.org](https://orcid.org)), for organizations,
+      an ROR ID ([https://ror.org](https://ror.org)), for software or AI agents, a Digital Object Identifier
+      (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a
+      Software Heritage ID (SWHID) pointing to the exact software release or state (e.g., swh:1:rel:a0b1c2d3e4f5...).
+  - name: affiliation-identifier
+    required: false
+    description: >-
+      A unique, persistent URI that globally and unambiguously identifies the entity's affiliation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: An ROR ID ([https://ror.org](https://ror.org)) or other suitable identifier.
+- name: title
+  required: true
+  description: A single sentence description of the dataset.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: A string containing the dataset title.
+- name: creation-date
+  required: true
+  description: The calendar date and time when the dataset was created.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: >-
+    A string containing the creation date in either format YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssz (where "z"
+    indicates UTC time zone) format (following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html)).
+- name: description
+  required: true
+  description: A synopsis of the dataset, its contents, and purpose.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: >-
+    A string containing a description of the dataset contents. This can optionally include information
+    on the format in which the dataset is stored (e.g. pointer to a relevant schema).
+- name: disclaimer
+  required: false
+  description: >-
+    A statement of applicability provided by the creator(s) informing users of the intended use and/or
+    limitations of this dataset.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: A string containing the dataset disclaimer.
+- name: material-component
+  required: true
+  description: >-
+    A description of the chemical composition and structure of a substance in this dataset.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: constituent
+    required: true
+    description: A chemical element included in the material component and its concentration.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: species
+      required: true
+      description: A chemical element included in the material.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the chemical designation of the element (e.g. "C").
+    - name: concentration
+      required: true
+      description: The fraction of the material composed of this element.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the concentration in percent.
+  - name: phase
+    required: true
+    description: The phase of the material included in the dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A list of strings containing one or more of the following values: "Amorphous" – A solid material
+      without crystalline order "Crystal" – A solid material characterized by a repeating pattern of atoms.
+      "Quasicrystal" – A crystal-like material with short-range order, but without long-range order. "Molecule"
+      – A finite group of atoms bonded together forming an independent unit. "Liquid" – A fluid structure
+      (e.g. the molten state of a material) "Gas" – A structure where atoms are far apart and only interact
+      during collisions. "Plasma" – A gas comprised of ions and electrons. Other user-specified value
+      if none of the above apply.
+  - name: description
+    required: false
+    description: >-
+      An explanation of the nature of the material, e.g. a crystal structure designation, a chemical formula
+      for a molecule, etc.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing the material description.
+  - name: microstructure
+    required: false
+    description: The arrangement of phases, grains and defects in a material.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing a description of the microstructure of the material.
+- name: computation
+  required: true
+  description: A description of a computer simulation used to generate data in the dataset.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: method-class
+    required: true
+    description: The general category to which the computational technique belongs.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing one of the following values: "Electronic" "Atomistic" "Mesoscopic" "Continuum"
+      "Data-driven" Other user-specified value if none of the above apply.
+    notes:
+    - >-
+      Note:The categories listed above are based on the [MODA standard](https://data.europa.eu/doi/10.2777/404734).
+  - name: method
+    required: true
+    description: The computational materials science (CMS) approach used in the computation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing one of the following values: For method-class "Electronic": "CC" – Coupled Cluster
+      "QMC" – Quantum Monte Carlo "DFT" – Density Functional Theory "MBPT" – Many-Body Perturbation Theory
+      methods (such as GW and BSE) For method-class "Atomistic": "MC" – Monte Carlo "MD" – Molecular Dynamics
+      For method-class "Mesoscopic": "DDD" – Discrete Dislocation Dynamics "KMC" – Kinetic Monte Carlo
+      "CGMD" – Coarse-grained MD For method-class "Continuum": "PF" – Phase Field For method-class "Data-driven":
+      "ML" – Machine Learning Other user-specified value if none of the above apply.
+  - name: simulation-conditions
+    required: true
+    description: >-
+      The interactions between the system being modeled and the rest of the world maintained during the
+      computation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: type
+      required: true
+      description: >-
+        The nature of the simulation being performed, whether equilibrium, nonequilibrium, or nonstandard.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing one of the following values defining the simulation conditions: "Equilibrium"
+        – Thermodynamic equilibrium "Nonequilibrium" – Conforming to some definition of nonequilibrium
+        thermodynamics "Other" – A simulation not fitting into the equilibrium and nonequilibrium categories.
+        Note 1: The SubSubProperties listed below (aside from description) are provided as appropriate
+        given the nature of the simulation. Providing a SubSubProperty means that its value is imposed
+        on the simulation as an external constraint. Note 2:Units for dimensioned variables are to be
+        given in the SI unit system.
+    - name: description
+      required: false
+      description: Explanatory text clarifying the simulation type selection.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the simulation type explanation.
+    - name: number-of-particles
+      required: false
+      description: A count of atoms or other discrete entities comprising the material.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: dimensionless
+      legacy_values: An integer containing the number of particles *N*.
+    - name: volume
+      required: false
+      description: The amount of space occupied by the material.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: cubic meters (m^3)
+      legacy_values: A real number containing the volume *V*.
+    - name: mass-density
+      required: false
+      description: The total mass of the material divided by the volume it occupies.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: kilograms per cubic meter (kg/m^3)
+      legacy_values: A real number containing the mass density *𝜌*.
+    - name: number-density
+      required: false
+      description: >-
+        The total number of particles comprising the material divided by the volume it occupies.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: inverse cubic meter (1/m^3)
+      legacy_values: A real number containing the number density *n*.
+    - name: cell
+      required: false
+      description: The domain occupied by the material in the simulation (if fixed).
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: meter (m)
+      legacy_values: >-
+        Ordered list of three vectors (a, b, c), each with three components, that define the simulation
+        cell. The vectors (a, b, c) need not be orthogonal, and the magnitudes (│a│, │b│, │c│) are the
+        supercell vector lengths.
+    - name: cell-reference
+      required: false
+      description: >-
+        The domain occupied by the material in the simulation in configuration relative to which strains
+        are defined.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: meter (m)
+      legacy_values: >-
+        Ordered list of three vectors (a0, b0, c0), each with three components, that define the cell used
+        in the simulation in its reference configuration. The vectors (a0, b0, c0) need not be orthogonal,
+        and the magnitudes (│a0│, │b0│, │c0│) are the reference cell vector lengths.
+    - name: cell-periodicity
+      required: false
+      description: >-
+        Specification of whether periodic boundary conditions are applied along the cell vector directions.
+        This applies to both cell and cell-reference.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: dimensionless
+      legacy_values: >-
+        Ordered list of three booleans (*pa*,, *pb*,, *pc*,), which are set to true if periodic boundary
+        conditions are applied along the corresponding cell vectors (a, b, c).
+    - name: temperature
+      required: false
+      description: >-
+        A measure of the hotness or coldness of an external heat bath in thermal contact with the material.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: kelvin (K)
+      legacy_values: A real number containing the temperature *T*.
+    - name: stress
+      required: false
+      description: >-
+        A uniform force per unit current area, including both normal and shear components, applied to
+        the material during the simulation through contact with an external loading device.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: pascal (Pa)
+      legacy_values: >-
+        An array of six real numbers containing the components of the (symmetric) Cauchy stress tensor
+        σ in the following order: [*σ*11, *σ*22, *σ*33, *σ*23, *σ*13, *σ*12]. The stress component are
+        expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a, e2
+        is in the direction of c╳a, and e3= e1╳e2, where (a, b, c) are the vectors defining the cell,
+        which may not be orthogonal. Note 1: Requires the definition of the cell subproperty in order
+        for a basis to be defined relative to which the tensor components are given. Note 2:The adopted
+        sign convention is for tensile normal stresses to be positive, and compressive normal stresses
+        to be negative. This implies that for a material subjected to a positive pressure *p*, the stress
+        tensor components are [-*p*, -*p*, -*p*, 0, 0, 0].
+    - name: strain
+      required: false
+      description: >-
+        A deformation relative to a reference configuration imposed on the simulation cell expressed in
+        the referential frame (Lagrangian strain tensor).
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: dimensionless
+      legacy_values: >-
+        An array of six real numbers containing the components of the (symmetric) Lagrangian strain tensor
+        Ein the following order: [*E*11, *E*22, *E*33, *E*23, *E*13, *E*12]. The strain component are
+        expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a0, e2
+        is in the direction of c0╳a0, and e3= e1╳e2, where (a0, b0, c0) are the vectors defining the cell
+        in the reference configuration, which may not be orthogonal. Note: Requires the definition of
+        cell-reference in order for the basis to be defined relative to which the tensor components are
+        given.
+    - name: strain-rate
+      required: false
+      description: >-
+        The derivative with respect to time of a deformation relative to a reference configuration imposed
+        on the simulation cell expressed in the referential frame (Lagrangian strain rate tensor), which
+        is constant throughout the simulation.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: dimensionless
+      legacy_values: >-
+        An array of six real numbers containing the components of the (symmetric) Lagrangian strain rate
+        tensor E in the following order: [*E11, E22, E33, E23, E13, E12,*]. The strain component are expressed
+        relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a0, e2 is in the
+        direction of c0╳a0, and e3= e1╳e2, where (a0, b0, c0) are the vectors defining the cell in the
+        reference configuration, which may not be orthogonal.
+      notes:
+      - >-
+        Requires the definition of cell-reference in order for the basis to be defined relative to which
+        the tensor components are given
+    - name: heat-flux
+      required: false
+      description: >-
+        The amount of thermal energy transferred to the material per unit area per unit time along a given
+        direction.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: watts per square meter (W/m^2)
+      legacy_values: >-
+        An array of three real numbers containing the components of the heat flux vector q. The heat flux
+        component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction
+        of a, e2 is in the direction of c╳a, and e3= e1╳e2, where (a, b, c) are the vectors defining the
+        cell, which may not be orthogonal.
+    - name: temperature-gradient
+      required: false
+      description: >-
+        A physical quantity that describes the rate and direction of maximum temperature change per unit
+        distance.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: watts per square meter (K/m)
+      legacy_values: >-
+        An array of three real numbers containing the components of the temperature gradient vector ∇*T*.
+        The temperature gradient component are expressed relative to an orthonormal basis (e1, e2, e3),
+        where e1 is in the direction of a, e2 is in the direction of c╳a, and e3= e1╳e2, where (a, b,
+        c) are the vectors defining cell, which may not be orthogonal.
+  - name: software
+    required: true
+    description: Identification of a computer package used to perform the calculations.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: name
+      required: true
+      description: The name of the software package.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the name of the software package (e.g. "VASP").
+    - name: version
+      required: false
+      description: The version of the software package.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the software version (e.g. "6.3.1")
+    - name: file
+      required: false
+      description: >-
+        Input or output file for the software package associated with the computation. This includes the
+        input file used to perform the computation, associated data files, and output generated by the
+        software package. Most important are input files to enable reproduction of the dataset.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      legacy_values: Contains SubSubSubProperties as defined in the table below.
+      subproperties:
+      - name: name
+        required: true
+        description: The file name.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        legacy_values: A string containing the name of the included file.
+      - name: description
+        required: true
+        description: A brief description of the file and its contents.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        legacy_values: A string containing the file description.
+      - name: contents
+        required: false
+        description: >-
+          The text and/or data contained in the file. Not required in case a link to the file is provided
+          instead.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        legacy_values: A string containing the file contents.
+      - name: link
+        required: false
+        description: A URI pointing to a permanent location of the file online.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        legacy_values: A string containing the file URI.
+- name: citation
+  required: false
+  description: Information that uniquely identifies a source being acknowledged.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: reference
+    required: true
+    description: Text that uniquely identifies the source of information being cited.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing the reference to the source.
+  - name: doi
+    required: false
+    description: The digital object identifier (DOI) for the source.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing the source DOI.
+  - name: link
+    required: false
+    description: A URI pointing to a permanent location of the source.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing the file URI.
+- name: funding
+  required: false
+  description: >-
+    Information about received monetary support or other resources to generate the dataset.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: award-title
+    required: true
+    description: Name of the grant that provided funding to generate the dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing the award title.
+  - name: funder
+    required: true
+    description: >-
+      The name of the funding agency that provided money and/or resources to generate the dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing the funding agency using [Crossref Open Funder Registry](https://www.crossref.org/services/funder-registry/)
+      designation.
+  - name: award-number
+    required: false
+    description: A funder identifier for the grant.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing the award number.
+- name: related-content
+  required: false
+  description: Other datasets that are connected to the current one in some manner.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: links
+    required: true
+    description: Pointer to one or more related datasets.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A list of permanent pointers to related datasets (such as MatCore IDs, DOIs, URIs, etc.)
+  - name: description
+    required: false
+    description: >-
+      Explanation of the relationship between the related content and the current dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing a description of the related content.
+- name: provenance
+  required: false
+  description: History of the dataset, detailing its origins and transformations.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: event-type
+    required: true
+    description: Description of change made to the dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing one of the following values: "Initial creation" – Initial creation of the dataset
+      "Admin update" – Editorial update to the dataset not requiring a version update (e.g. spelling correction).
+      "Version update" – Change to the dataset or associated files requiring a new version "Metadata update"
+      – Change to the metadata, but not the dataset itself. Other user-specified value if none of the
+      above apply.
+  - name: date
+    required: true
+    description: The date and time when the change was made.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing the creation date in either format YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssz (where
+      "z" indicates UTC time zone) format (following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html)).
+  - name: agent
+    required: true
+    description: Identity of the entity responsible for the change.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing the name or other designation identifying who or what is responsible for the
+      change.
+  - name: comments
+    required: false
+    description: Explanation for the change in provenance.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing an explanation for the nature of the changes leading to the revised provenance.
+  - name: checksum
+    required: false
+    description: A digital fingerprint for the dataset of associated files.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A list containing two strings: The name of a file, and the checksum for the file (e.g. the SHA-256
+      encoding for file).
+- name: matcore-id
+  required: true
+  description: An identifier for the dataset.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: A string containing the MatCore identifier.
+- name: matcore-date
+  required: true
+  description: The calendar date and time when this MatCore document was created.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: >-
+    A string containing the creation date in either format YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssz (where "z"
+    indicates UTC time zone) format (following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html)).
+- name: license
+  required: true
+  description: >-
+    A contract defining the terms and conditions under which the dataset can be used.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: >-
+    A string containing the dataset license in a format conforming to the [SPDX](https://spdx.org/licenses/)[
+    Standard](https://spdx.org/licenses/).

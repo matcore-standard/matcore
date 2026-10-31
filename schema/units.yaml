@@ -1,0 +1,80 @@
+# Annex U — MatCore Unit Table (machine-readable form). Normative. See docs/standard/annex-u-units.md for prose.
+# Verified 2026-09-27 against QUDT Units v3.3.0, GNU Units 2.23 (definitions.units v3.19), NIST CODATA 2022.
+annex_version: "1.0"
+codata_release: 2022
+gnu_units_version: "2.23"
+gnu_units_definitions_version: "3.19"
+qudt_units_version: "3.3.0"
+qudt_quantitykind_namespace: "http://qudt.org/vocab/quantitykind/"
+qudt_unit_namespace: "http://qudt.org/vocab/unit/"
+reserved_kinds: [dimensionless, inapplicable, any]
+kinds:
+  Energy:              {qudt: Energy,                   dimension: A0E0L2I0M1H0T-2D0}
+  MolarEnergy:         {qudt: MolarEnergy,              dimension: A-1E0L2I0M1H0T-2D0}
+  Length:              {qudt: Length,                   dimension: A0E0L1I0M0H0T0D0}
+  InverseLength:       {qudt: InverseLength,            dimension: A0E0L-1I0M0H0T0D0}
+  Volume:              {qudt: Volume,                   dimension: A0E0L3I0M0H0T0D0}
+  Time:                {qudt: Time,                     dimension: A0E0L0I0M0H0T1D0}
+  InverseTime:         {qudt: InverseTime,              dimension: A0E0L0I0M0H0T-1D0}
+  Temperature:         {qudt: ThermodynamicTemperature, dimension: A0E0L0I0M0H1T0D0}
+  TemperatureGradient: {qudt: TemperatureGradient,      dimension: A0E0L-1I0M0H1T0D0}
+  Pressure:            {qudt: Pressure,                 dimension: A0E0L-1I0M1H0T-2D0}
+  Force:               {qudt: Force,                    dimension: A0E0L1I0M1H0T-2D0}
+  Mass:                {qudt: Mass,                     dimension: A0E0L0I0M1H0T0D0}
+  MassDensity:         {qudt: MassDensity,              dimension: A0E0L-3I0M1H0T0D0}
+  NumberDensity:       {qudt: NumberDensity,            dimension: A0E0L-3I0M0H0T0D0}
+  HeatFluxDensity:     {qudt: HeatFluxDensity,          dimension: A0E0L0I0M1H0T-3D0}
+  Angle:               {qudt: PlaneAngle,               dimension: A0E0L0I0M0H0T0D1}
+  AmountOfSubstance:   {qudt: AmountOfSubstance,        dimension: A1E0L0I0M0H0T0D0}
+  dimensionless:       {qudt: Dimensionless,            dimension: A0E0L0I0M0H0T0D1}
+units:
+  # symbol: {kind, qudt (null if absent from QUDT), gnu, si_factor, source}
+  eV:            {kind: Energy, qudt: EV, gnu: eV, si_factor: 1.602176634e-19, source: exact}
+  meV:           {kind: Energy, qudt: null, gnu: meV, si_factor: 1.602176634e-22, source: exact}
+  Ry:            {kind: Energy, qudt: null, gnu: rydberg, si_factor: 2.1798723611030e-18, source: CODATA 2022}
+  hartree:       {kind: Energy, qudt: E_h, gnu: hartree, si_factor: 4.3597447222060e-18, source: CODATA 2022}
+  J:             {kind: Energy, qudt: J, gnu: J, si_factor: 1.0, source: exact}
+  kJ/mol:        {kind: MolarEnergy, qudt: KiloJ-PER-MOL, gnu: kJ/mol, si_factor: 1000.0, source: exact}
+  kcal/mol:      {kind: MolarEnergy, qudt: KiloCAL-PER-MOL, gnu: kcal/mol, si_factor: 4184.0, source: exact (thermochemical calorie)}
+  J/mol:         {kind: MolarEnergy, qudt: J-PER-MOL, gnu: J/mol, si_factor: 1.0, source: exact}
+  angstrom:      {kind: Length, qudt: ANGSTROM, gnu: angstrom, si_factor: 1.0e-10, source: exact}
+  bohr:          {kind: Length, qudt: null, gnu: bohrradius, si_factor: 5.29177210544e-11, source: CODATA 2022}
+  nm:            {kind: Length, qudt: NanoM, gnu: nm, si_factor: 1.0e-9, source: exact}
+  um:            {kind: Length, qudt: MicroM, gnu: um, si_factor: 1.0e-6, source: exact}
+  m:             {kind: Length, qudt: M, gnu: m, si_factor: 1.0, source: exact}
+  1/angstrom:    {kind: InverseLength, qudt: PER-ANGSTROM, gnu: 1/angstrom, si_factor: 1.0e10, source: exact}
+  1/bohr:        {kind: InverseLength, qudt: null, gnu: 1/bohrradius, si_factor: 1.88972612591e10, source: CODATA 2022}
+  1/nm:          {kind: InverseLength, qudt: PER-NanoM, gnu: 1/nm, si_factor: 1.0e9, source: exact}
+  1/m:           {kind: InverseLength, qudt: PER-M, gnu: 1/m, si_factor: 1.0, source: exact}
+  angstrom^3:    {kind: Volume, qudt: ANGSTROM3, gnu: angstrom^3, si_factor: 1.0e-30, source: exact}
+  bohr^3:        {kind: Volume, qudt: null, gnu: bohrradius^3, si_factor: 1.4818471117e-31, source: CODATA 2022}
+  nm^3:          {kind: Volume, qudt: null, gnu: nm^3, si_factor: 1.0e-27, source: exact}
+  m^3:           {kind: Volume, qudt: M3, gnu: m^3, si_factor: 1.0, source: exact}
+  fs:            {kind: Time, qudt: FemtoSEC, gnu: fs, si_factor: 1.0e-15, source: exact}
+  ps:            {kind: Time, qudt: PicoSEC, gnu: ps, si_factor: 1.0e-12, source: exact}
+  ns:            {kind: Time, qudt: NanoSEC, gnu: ns, si_factor: 1.0e-9, source: exact}
+  s:             {kind: Time, qudt: SEC, gnu: s, si_factor: 1.0, source: exact}
+  1/s:           {kind: InverseTime, qudt: PER-SEC, gnu: 1/s, si_factor: 1.0, source: exact}
+  1/ps:          {kind: InverseTime, qudt: null, gnu: 1/ps, si_factor: 1.0e12, source: exact}
+  K:             {kind: Temperature, qudt: K, gnu: K, si_factor: 1.0, source: exact}
+  K/m:           {kind: TemperatureGradient, qudt: K-PER-M, gnu: K/m, si_factor: 1.0, source: exact}
+  K/angstrom:    {kind: TemperatureGradient, qudt: null, gnu: K/angstrom, si_factor: 1.0e10, source: exact}
+  Pa:            {kind: Pressure, qudt: PA, gnu: Pa, si_factor: 1.0, source: exact}
+  GPa:           {kind: Pressure, qudt: GigaPA, gnu: GPa, si_factor: 1.0e9, source: exact}
+  kbar:          {kind: Pressure, qudt: KiloBAR, gnu: kbar, si_factor: 1.0e8, source: exact}
+  bar:           {kind: Pressure, qudt: BAR, gnu: bar, si_factor: 1.0e5, source: exact}
+  eV/angstrom^3: {kind: Pressure, qudt: null, gnu: eV/angstrom^3, si_factor: 1.602176634e11, source: exact}
+  eV/angstrom:   {kind: Force, qudt: EV-PER-ANGSTROM, gnu: eV/angstrom, si_factor: 1.602176634e-9, source: exact}
+  hartree/bohr:  {kind: Force, qudt: null, gnu: hartree/bohrradius, si_factor: 8.2387235038e-8, source: CODATA 2022}
+  N:             {kind: Force, qudt: N, gnu: N, si_factor: 1.0, source: exact}
+  amu:           {kind: Mass, qudt: AMU, gnu: amu, si_factor: 1.66053906892e-27, source: CODATA 2022}
+  kg:            {kind: Mass, qudt: KiloGM, gnu: kg, si_factor: 1.0, source: exact}
+  kg/m^3:        {kind: MassDensity, qudt: KiloGM-PER-M3, gnu: kg/m^3, si_factor: 1.0, source: exact}
+  g/cm^3:        {kind: MassDensity, qudt: GM-PER-CentiM3, gnu: g/cm^3, si_factor: 1000.0, source: exact}
+  1/angstrom^3:  {kind: NumberDensity, qudt: null, gnu: 1/angstrom^3, si_factor: 1.0e30, source: exact}
+  1/m^3:         {kind: NumberDensity, qudt: PER-M3, gnu: 1/m^3, si_factor: 1.0, source: exact}
+  W/m^2:         {kind: HeatFluxDensity, qudt: W-PER-M2, gnu: W/m^2, si_factor: 1.0, source: exact}
+  rad:           {kind: Angle, qudt: RAD, gnu: radian, si_factor: 1.0, source: exact}
+  degree:        {kind: Angle, qudt: DEG, gnu: degree, si_factor: 0.017453292519943295, source: exact}
+  mol:           {kind: AmountOfSubstance, qudt: MOL, gnu: mol, si_factor: 1.0, source: exact}
+  dimensionless: {kind: dimensionless, qudt: UNITLESS, gnu: null, si_factor: null, source: reserved}

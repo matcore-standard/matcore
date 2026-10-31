@@ -1,0 +1,566 @@
+section: pf
+title: 2.6 PF
+matcore_version: 0.9-draft-baseline
+source: >-
+  Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
+  and are to be replaced by typed fields in subsequent PRs.
+properties:
+- name: physical-phenomena
+  required: true
+  description: >-
+    Material process being modeled; description of the overarching processes and mechanisms being modeled/simulated.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: >-
+    String containing one of the following values: "Isothermal solidification" "Directional solidification"
+    "Isothermal annealing" "Sintering" "Twinning" "Grain growth" "Spinodal decomposition" Other user-specified
+    value if none of the above apply.
+- name: problem-specification
+  required: true
+  description: >-
+    The fundamental mathematical and physical framework governing the phase field simulation, including
+    the governing equations, thermodynamic free energy models, and time-evolution state
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: time-dependence
+    required: true
+    description: Description of the time-evolution state targeted by the simulation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Property prediction" "Transient evolution" "Steady
+      state" "Stationary" "Thermodynamic equilibrium" Other user-specified value if none of the above
+      apply.
+  - name: governing-equation
+    required: true
+    description: The specific phase field equation used to evolve a field variable.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: type
+      required: true
+      description: The mathematical classification of the phase field equation.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing one of the following values: "CH" – Cahn-Hilliard "AC" – Allen-Cahn "GP" – Grand
+        Potential "FID" – Finite Interface Dissipation "PFC" – Phase Field Crystal "Fluid" "Multi" "Coupled"
+        "Diffuse" Other user-specified value if none of the above apply.
+    - name: evolved-variable
+      required: true
+      description: The name of the field-variable that this equation solves for.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string matching a defined field-variable name (e.g., "phi", "c").
+    - name: driving-energy
+      required: false
+      description: A free energy component that acts as a forcing term in this equation.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      legacy_values: >-
+        A string matching one of the defined free-energy names (e.g. "f_chem", "f_elastic").
+  - name: free-energy
+    required: true
+    description: The thermodynamic free energy function used in the system
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: name
+      required: true
+      description: The identifier or symbol used for this specific energy functional.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string (e.g., "f_chem", "Chemical Free Energy").
+    - name: description
+      required: true
+      description: The type/derivation of the thermodynamic bulk free energy function.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing one of the following values: "Ideal" "Regular" "Flory" "Calphad" "Poly" "Non-polynomial"
+        Other user-specified value if none of the above apply.
+    - name: expression
+      required: false
+      description: The exact mathematical formulation of the phase field functional.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing a code snippet, LaTeX formula, or SymPy expression.
+    - name: unit
+      required: false
+      description: The physical unit of the free energy density.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string in the [GNU unit convention](https://www.gnu.org/software/units/) (or the text "dimensionless").
+  - name: additional-energy-contribution
+    required: false
+    description: Physical contributions to the free energy function.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: >-
+      String containing one of the following values: "Elasticity" "Plasticity" "Electrical" "Magnetic"
+      "Fluid-Solid-Interaction" "Solid-Solid-Interaction" Other user-specified value if none of the above
+      apply.
+- name: domain-and-mesh
+  required: false
+  description: >-
+    The spatial configuration, computational region, and topological discretization details.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: dimensionality
+    required: true
+    description: The spatial dimensions of the computational domain.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "1D" "2D" "3D" Other user-specified value if none
+      of the above apply.
+  - name: coordinate-system
+    required: false
+    description: >-
+      The structured framework used to uniquely determine and standardize the position of the points in
+      space and the symmetry assumed.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Cartesian" "Cylindrical" "Spherical" Other user-specified
+      value if none of the above apply.
+  - name: mesh-type
+    required: false
+    description: The topology or distribution of the discrete grid points.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Regular" "Cartesian" "Rectilinear" "Skewed" "Curvilinear"
+      "Unstructured" "Adaptive Mesh Refinement" "Meshless" Other user-specified value if none of the above
+      apply.
+  - name: domain-size
+    required: false
+    description: Specification of the computational region extents.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: An ordered list of real numbers containing the domain dimensions in meters (m).
+  - name: boundary-conditions
+    required: false
+    description: Constraints applied to the computational domain perimeter.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: >-
+      String containing one of the following values: "NoFlux" "Periodic" "Fixed" "Free" "Dirichlet" "Neumann"
+      Other user-specified value if none of the above apply.
+  - name: initial-conditions
+    required: false
+    description: The spatial distribution of the field variables at the start of the simulation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: >-
+      A string describing the initialization method (e.g., "Uniform constant", "Random noise", "Geometric
+      seed", "Imported array", a specific mathematical function, or other user-specified method)
+- name: numerical-method
+  required: true
+  description: >-
+    A description of the computational framework used to solve the phase field equations.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: spatial-discretization
+    required: true
+    description: >-
+      The numerical approach used to convert continuous governing equations into a system of algebraic
+      equations defined over a discrete mesh or set of points within the computational domain.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "FDM" – Finite Difference Method "FEM" – Finite Element
+      Method "FVM" – Finite Volume Method "LBM" – Lattice Boltzmann Method "Particle" "Spectral" Other
+      user-specified value if none of the above apply.
+  - name: spatial-accuracy-order
+    required: false
+    description: >-
+      The exponent of the grid spacing parameter (Δx) determining the rate at which the discretization
+      error approaches zero as the mesh is refined.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: dimensionless
+    legacy_values: An integer containing the order of accuracy.
+  - name: temporal-discretization
+    required: false
+    description: >-
+      The algorithm, step-size approach, and integration order used to advance a simulation, governing
+      equation in time.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Forward Euler" "Backward Euler" "Adams Bashforth"
+      "Implicit" "Explicit" "Crank-Nicholson" "Runge-Kutta" "Mixed" Other user-specified value if none
+      of the above apply.
+  - name: temporal-accuracy-order
+    required: false
+    description: >-
+      The exponent of the time step parameter (Δt) determining the rate at which the discretization error
+      approaches zero as the time step tends to zero.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: dimensionless
+    legacy_values: An integer containing the order of accuracy.
+  - name: grid-spacing
+    required: false
+    description: >-
+      Defines the physical distance between adjacent discretization points in a numerical domain.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: name
+      required: true
+      description: The designation of the grid spacing parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing the name of the spacing metric, (e.g., "dx", "dy", "dz", "min", "max", "average").
+    - name: value
+      required: true
+      description: The data associated with the grid spacing parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A real number containing the grid spacing value.
+    - name: unit
+      required: true
+      description: >-
+        A standardized string or identifier that defines the dimension or measurement system of the associated
+        value.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
+        (or the text "dimensionless").
+    - name: description
+      required: false
+      description: An explanation providing further clarification on the grid spacing parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string explaining the grid spacing parameter.
+  - name: time-step-size
+    required: false
+    description: >-
+      The discrete duration of progression between consecutive stages of a simulation, determining the
+      interval for numerical integration, resolution of transient phenomena, and stability of the governing
+      equations.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: name
+      required: true
+      description: The designation of the time step size parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing the name of the time step metric, (e.g., "dt", "initial", "min", "max").
+    - name: value
+      required: true
+      description: The data associated with the time step size parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A real number containing the magnitude of the time step.
+    - name: unit
+      required: true
+      description: >-
+        A standardized string or identifier that defines the dimension or measurement system of the associated
+        value.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
+        (or the text "dimensionless").
+    - name: description
+      required: false
+      description: An explanation providing further clarification on the time step size parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string explaining the time step size parameter.
+  - name: solver
+    required: false
+    description: Specific numerical algorithm or backend used for solving the equations.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: A string containing the solver name (e.g., "Newton-Krylov", "GMRES").
+- name: variables
+  required: false
+  description: >-
+    Explicit data structure capturing changing and unchanging elements of the physics model.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: model-parameter
+    required: false
+    description: >-
+      A specific, adjustable, or calibrated numeric value that controls certain aspects of the simulation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: name
+      required: true
+      description: The designation of the model parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing the name of the model parameter (e.g. "kappa", "W", "mobility").
+    - name: value
+      required: true
+      description: The data associated with the model parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: An integer, real, boolean, or string containing the parameter value.
+    - name: unit
+      required: true
+      description: >-
+        A standardized string or identifier that defines the dimension or measurement system of the associated
+        value.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
+        (or the text "dimensionless").
+    - name: description
+      required: false
+      description: An explanation providing further clarification on the model parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string explaining the model parameter (e.g. "Gradient energy coefficient").
+  - name: field-variable
+    required: false
+    description: A physical quantity that can evolve during the simulation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: name
+      required: true
+      description: The designation of the field variable.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the name of the field variable (e.g. "phi", "c", "T").
+    - name: type
+      required: true
+      description: The kind of data associated with the field variable.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing: "Scalar" "Vector" "Tensor" Other user-specified value if none of the above
+        apply.
+    - name: unit
+      required: true
+      description: >-
+        A standardized string or identifier that defines the dimension or measurement system of the associated
+        value.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
+        (or the text "dimensionless").
+    - name: description
+      required: false
+      description: An explanation providing further clarification on the field variable.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string explaining what the field variable represents (e.g. "phase field order parameter", "solute
+        concentration").

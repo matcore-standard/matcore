@@ -1,0 +1,342 @@
+section: ml
+title: 2.5 ML
+matcore_version: 0.9-draft-baseline
+source: >-
+  Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
+  and are to be replaced by typed fields in subsequent PRs.
+properties:
+- name: ml-task
+  required: true
+  description: Characterization of the machine learning process performed.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: type
+    required: true
+    description: The nature of the machine learning task.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: >-
+      String containing one of the following values: "Property prediction" "Structure prediction" (e.g.
+      crystal structure prediction) "Structure generation" (e.g. de novo crystal generation) "Synthesis
+      prediction" "Material ranking" "Clustering" "Embedding" Other user-specified value if none of the
+      above apply.
+    notes:
+    - >-
+      Note:This Property can be repeated if the machine learning task involves multiple types of calculations.
+  - name: description
+    required: false
+    description: Explanation of the machine learning task performed.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing a more detailed explanation of the machine learning task and its objectives.
+- name: ml-model
+  required: true
+  description: >-
+    A comprehensive description of the machine learning approach and architecture used.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: algorithm
+    required: true
+    description: The machine learning method used.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing a description of the machine learning algorithm used (e.g. neural network, random
+      forest, Gaussian process, etc.)
+  - name: target-variable
+    required: true
+    description: The desired output or answer the machine learning model aims to predict.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: >-
+      A string containing a description of a target variable the machine learning model aims to predict.
+  - name: input-feature
+    required: false
+    description: Information provided to the machine learning method.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: >-
+      A string containing a description of the form and meaning of an input variable/feature provided
+      to the machine learning model (e.g. a graph representation of a crystal structure). This can include
+      information on feature engineering performed to define the input (e.g. dimensionality reduction,
+      clustering, etc.).
+  - name: model-architecture
+    required: false
+    description: A description of the network topology used by the specified algorithm.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing a description of the model architecture used by the specified algorithm (e.g.
+      for a neural network: the number of layers, nodes per layer, etc.).
+  - name: model-size
+    required: false
+    description: A measure of the magnitude of the machine learning architecture.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing a description of the size of the trained model (e.g. number of parameters, storage
+      space, memory requirements, etc.)
+- name: training-data
+  required: false
+  description: The information used for parameterizing the machine learning model.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: name
+    required: true
+    description: Name of the training dataset used to train in the machine learning model.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: String containing the dataset name.
+  - name: contents
+    required: true
+    description: Description of the information included in the training dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing a description of the training data (e.g. DFT calculations, experiments, etc.)
+  - name: source
+    required: false
+    description: Location from which the training data was obtained.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing a MatCore ID, web address, DOI, citation, or other description of the source
+      of the training data.
+  - name: size
+    required: false
+    description: Number of items in the training dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing information on the number of data points, configurations, etc., in the training
+      set.
+  - name: data-preprocessing
+    required: false
+    description: >-
+      Approach used for preliminary refining of raw, unformatted, or incomplete information into a structured
+      and clean state suitable for modeling or analysis.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing a description of any preprocessing applied to the dataset to prepare it for
+      training the machine learning model.
+  - name: missing-data
+    required: false
+    description: >-
+      Documentation of incomplete, null, or unrecorded entries within a feature set that hinder algorithm
+      training.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A description of missing entries in the raw dataset (e.g. percentage of missing data and explanation
+      of which fields are missing and why).
+  - name: missing-data-strategy
+    required: false
+    description: >-
+      Approach used for filling in or removing blank, null, or unknown entries in a dataset.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string describing the approach used for handling missing data.
+  - name: outlier-handling
+    required: false
+    description: >-
+      Approach to identifying and addressing extreme observations that deviate significantly from the
+      general distribution to ensure they do not disproportionately skew model training.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing the method used to detect and handle outliers.
+  - name: dataset-split
+    required: false
+    description: >-
+      A description of how information used to train the machine learning model was divided into subsets
+      as part of the training process.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing information about how the dataset was split into train/validation/test ratios,
+      and any other relevant information related to how the dataset was distributed in the training process.
+- name: training-method
+  required: false
+  description: The approach used to determine the machine learning model's free parameters.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: training-procedure
+    required: true
+    description: The methodology used to determine the machine learning model's free parameters.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing a description of the procedure used to train the machine learning model.
+  - name: training-hyperparameters
+    required: false
+    description: Documentation of the settings used in fitting the model.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string describing the hyperparameters used in the training of the model (e.g. learning rate, early-stopping,
+      etc.)
+  - name: transfer-learning
+    required: false
+    description: >-
+      Method used to migrate knowledge from previously mastered objectives to accelerate proficiency for
+      the current machine learning task.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing details of the transfer learning methods used (such as fine-tuning, domain adaptation,
+      multi-task learning, delta learning, etc.).
+- name: model-performance
+  required: false
+  description: An assessment of the reliability of the machine learning results.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: validation
+    required: true
+    description: >-
+      A description of the approach used to determine the reliability of the obtained machine learning
+      results.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: >-
+      A string containing a description of the validation method used (e.g. k-fold cross-validation, hold-out
+      set, etc.) and associated validation measure (e.g. MAE, RMSE, R^2, etc.).
+  - name: uncertainty-quantification
+    required: false
+    description: >-
+      The method or process used to identify and measure the range of possible outcomes to assess the
+      reliability of machine learning model predictions.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing a description of the method used to assess uncertainty of the machine learning
+      method outputs (e.g. Bayesian methods, dropout, ensemble methods, Gaussian process, etc.)
+- name: interpretability-method
+  required: false
+  description: >-
+    A technique used to understand the cause-and-effect relationships within the machine learning model's
+    inputs and outputs.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: >-
+    A string containing details of the approach and results of the interpretability analysis (e.g. feature
+    importance, global surrogate models, LIME (Local Interpretable Model-agnostic Explanations), SHAP
+    (SHapley Additive exPlanations), Saliency Maps, etc.)

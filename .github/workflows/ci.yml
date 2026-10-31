@@ -1,0 +1,21 @@
+name: ci
+on: {push: {branches: [main]}, pull_request: {}}
+permissions: {contents: write}
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -r requirements.txt
+      - run: python scripts/validate_schema.py
+      - run: python scripts/build_docs.py
+      - name: fail if generated docs are stale
+        run: git diff --exit-code -- docs/standard
+      - name: deploy site (main only)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          git config user.name github-actions && git config user.email github-actions@github.com
+          mike deploy --push --update-aliases dev latest

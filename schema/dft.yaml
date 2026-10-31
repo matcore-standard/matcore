@@ -1,0 +1,534 @@
+section: dft
+title: 2.2 DFT
+matcore_version: 0.9-draft-baseline
+source: >-
+  Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
+  and are to be replaced by typed fields in subsequent PRs.
+properties:
+- name: xc-functional
+  required: true
+  description: >-
+    Approximation used to describe the electron exchange and electron correlation energies
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: type
+    required: true
+    description: The mathematical form of the exchange-correlation functional.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "LDA" – Local Density Approximation "GGA" – Generalized
+      Gradient Approximation "Meta GGA" – Extension to GGA including dependence on Laplacian of electron
+      density "Hybrid" – An approximation for the exchange-correlation (XC) functional that includes a
+      portion of the exact XC from Hartree–Fock theory or machine learning with the rest coming from other
+      sources (ab initio or empirical). "ML" – Machine learning based functional Other user-specified
+      value if none of the above apply.
+  - name: description
+    required: false
+    description: >-
+      Explanatory text providing more information about the type of the exchange-correlation method used
+      including any relevant identifying information.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      A string containing more information about the exchange-correlation type. Examples of possible content
+      by type: LDA: Common parameterizations: VMN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE,
+      revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP,
+      PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. others: BEEF, VdW-corrections
+      (added on top of XC, e.g., D2, D3, D4), etc. LibXC designation: LibXC:LDA_C_GK72 (include source
+      as prefix)
+  - name: xc-parameter
+    required: false
+    description: >-
+      A fixed variable associated with the specified exchange-correlation functional method.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: name
+      required: true
+      description: The designation of the exchange-correlation parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the name of an exchange-correlation parameter.
+    - name: value
+      required: true
+      description: The data associated with the exchange-correlation parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: An integer, real, boolean, or string containing the parameter value.
+    - name: unit
+      required: true
+      description: >-
+        A standardized string or identifier that defines the dimension or measurement system of the associated
+        value.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
+        (or the text "dimensionless").
+    - name: description
+      required: false
+      description: An explanation of the meaning, source, or purpose of the parameter.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string explaining the exchange-correlation parameter. This can be the mixing parameter for a
+        hybrid exchange-correlation, or other method-specific parameters.
+- name: core-electron-model
+  required: true
+  description: Model of the electrons used in the calculation.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: type
+    required: true
+    description: The method used to model the electrons.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "All Electron" – All of the electrons in an atom
+      are modeled explicitly. "LAPW" – "Linearized Augmented Plane Wave" "Pseudopotential" – Valence electrons
+      are treated explicitly, and core electrons are modeled by a simplified potential. "PAW" – Projector
+      Augmented Wave Other user-specified value if none of the above apply.
+  - name: pseudopotential
+    required: false
+    description: >-
+      For type "Pseudopotential", or type "PAW", additional information about the pseudopotentials.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: name
+      required: true
+      description: The name of the pseudopotential.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the pseudopotential name.
+    - name: type
+      required: true
+      description: The physical form of the pseudopotential.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing one of the following values: "Norm conserving" "Ultrasoft" Other user-specified
+        value if none of the above apply.
+    - name: description
+      required: false
+      description: >-
+        Explanatory text about the pseudopotential including any relevant identifying information.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the pseudopotential description.
+    - name: number-of-valence-electrons
+      required: true
+      description: The number of electrons treated explicitly.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_unit: dimensionless
+      legacy_values: An integer containing the number of valence electrons.
+    - name: repository
+      required: false
+      description: The database from which the pseudopotential was obtained.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: String containing the name of the repository.
+    - name: version
+      required: false
+      description: The version of the pseudopotential.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the pseudopotential version (e.g. "6.3.1")
+    - name: doi
+      required: false
+      description: The digital object identifier (DOI) for the pseudopotential.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the pseudopotential DOI.
+    - name: unique-identifier
+      required: false
+      description: A hash or other token providing a digital signature for the pseudopotential.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing the pseudopotential identifier (e.g. a SHA256 hash for a VASP pseudopotential).
+- name: valence-electron-model
+  required: true
+  description: The elementary functions used for expanding electronic wave functions.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: type
+    required: true
+    description: The choice of a basis set to expand electronic wave functions.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: >-
+      String containing one of the following values: "Plane waves" "LAPW" – "Linearized Augmented Plane
+      Wave" "Localized orbitals" "PAW" Other user-specified value if none of the above apply.
+  - name: localized-orbital-basis-set
+    required: false
+    description: >-
+      For type "Localized orbitals", additional information about the localized orbital basis set.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubSubProperties as defined in the table below.
+    subproperties:
+    - name: type
+      required: true
+      description: >-
+        The designation of the set of orbital functions used for expanding electronic wave functions.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: String containing the basis set name (e.g. "6-31G", "DZP", etc.).
+    - name: repository
+      required: false
+      description: The database from which the localized-orbital basis set was obtained.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: String containing the name of the repository.
+    - name: version
+      required: false
+      description: The version of the localized-orbital basis set.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the localized-orbital basis set version.
+    - name: doi
+      required: false
+      description: The digital object identifier (DOI) for the localized-orbital basis set.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the pseudopotential DOI.
+    - name: unique-identifier
+      required: false
+      description: >-
+        A hash or other token providing a digital signature for the localized-orbital basis set .
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: A string containing the localized-orbital basis set identifier.
+  - name: kinetic-energy-cutoff
+    required: false
+    description: >-
+      For type not "Localized orbitals", the maximum kinetic energy of the plane waves included in the
+      calculation of wave functions.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: electron Volt (eV)
+    legacy_values: Real number containing the kinetic energy cutoff.
+  - name: charge-density-cutoff
+    required: false
+    description: >-
+      For type not "Localized orbitals", the energy value used to truncate the plane wave expansion of
+      the electron charge density,
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: electron Volt (eV)
+    legacy_values: Real number containing the charge density cutoff.
+- name: calculation-physics
+  required: false
+  description: Additional phenomena included beyond the standard DFT calculation.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: >-
+    String containing one of the following values: "Relativistic effects" "Spin polarization" "Noncollinear
+    spin polarization" "On-site correlation" (e.g. DFT+U) "Van der Waals" Other user-specified value if
+    none of the above apply.
+- name: k-point-mesh
+  required: false
+  description: >-
+    For periodic systems, a grid of points sampled within the Brillouin zone, used to approximate integrals
+    and calculate electronic properties by discretizing the wavefunction across reciprocal space.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: type
+    required: true
+    description: The choice of how k-points are distributed on the mesh.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Monkhorst-Pack" "Gamma centered" "Irregular" Other
+      user-specified value if none of the above apply.
+  - name: number-of-points
+    required: false
+    description: How many k-points are included along each reciprocal lattice vector.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: dimensionless
+    legacy_values: >-
+      Ordered list of three integer numbers containing the number k-points along the three reciprocal
+      lattice vector directions.
+  - name: k-point-spacing
+    required: false
+    description: Separation between k-points along each reciprocal lattice vector direction.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: 1/angstrom (1/Å)
+    legacy_values: Real number containing the k-point spacing.
+  - name: shift
+    required: false
+    description: Translation of the k-point mesh along the reciprocal lattice vector directions.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: 1/angstrom (1/Å)
+    legacy_values: >-
+      Ordered list of three real numbers containing the shifts along the three reciprocal lattice vector
+      directions.
+  - name: smearing-type
+    required: false
+    description: >-
+      The choice of method for assigning fractional occupancies of electronic states and/or facilitating
+      reciprocal space integrations.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "None" "None - tetrahedron" "None - Blöchl-corrected
+      tetrahedron" "Gaussian" "Fermi" "Methfessel-Paxton" Other user-specified value if none of the above
+      apply.
+  - name: smearing-width
+    required: false
+    description: >-
+      A parameter that controls the broadening of the electron energy levels near the Fermi level.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: electron Volt (eV)
+    legacy_values: Real number containing the smearing width.
+  - name: methfessel-paxton-order
+    required: false
+    description: >-
+      For smearing-type "Methfessel-Paxton", level of polynomial approximation used in the Methfessel-Paxton
+      smearing method
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: Dimensionless
+    legacy_values: Integer containing the Methfessel-Paxton order.
+- name: self-consistent-field-convergence
+  required: false
+  description: >-
+    Method and termination criteria defining the precision of self-consistent solution of the Kohn-Sham
+    equations.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: method
+    required: false
+    description: >-
+      The self-consistent field mixing and/or extrapolation scheme for the iterative solution of the Kohn-Sham
+      equations.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Simple mixing" "Pulay mixing" "Blocked Davidson"
+      "DIIS" – Direct Inversion in the Iterative Subspace "BFGS" – Broyden–Fletcher–Goldfarb–Shanno algorithm
+      Other user-specified value if none of the above apply.
+  - name: tolerance
+    required: true
+    description: Convergence criterion for the self-consistent loop.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: electron Volt (eV)
+    legacy_values: Real number containing the convergence tolerance
+- name: relaxation-tolerance-energy
+  required: false
+  description: Total energy convergence criterion for atomic relaxation.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_unit: electron Volt (eV)
+  legacy_values: Real number containing the convergence tolerance
+- name: relaxation-tolerance-forces
+  required: false
+  description: Maximum force convergence criterion for atomic relaxation.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_unit: electron Volt (eV/Å)
+  legacy_values: Real number containing the convergence tolerance
+- name: comment
+  required: false
+  description: >-
+    Additional information on the DFT calculation. For example, non-self-consistent constraints, such
+    as details about imposed state occupation or moment freezing.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  legacy_values: String containing the calculation comments.

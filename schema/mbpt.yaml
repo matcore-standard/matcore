@@ -1,0 +1,293 @@
+section: mbpt
+title: 2.4 MBPT
+matcore_version: 0.9-draft-baseline
+source: >-
+  Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
+  and are to be replaced by typed fields in subsequent PRs.
+properties:
+- name: mbpt-method
+  required: true
+  description: The many-body perturbation theory (MBPT) approach used and associated settings.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: type
+    required: true
+    description: The nature of the MBPT calculation performed.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "GW" "BSE" "GW/BSE" Other user-specified value if
+      none of the above apply.
+  - name: self-consistency
+    required: true
+    description: >-
+      Specifies the level of iterative updating applied to the Green's function (*G*), the screened Coulomb
+      interaction (*W*), or the excitonic Hamiltonian during the calculation. This property identifies
+      whether the MBPT equations are solved in a 'one-shot' perturbative manner or through an iterative
+      cycle where the electronic or excitonic quasiparticle states are updated to reach a self-consistent
+      solution.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values depending on the variant of the GW, BSE, or GW/BSE
+      approach used: "G0W0" – One-shot calculation; the *G* and *W *are constructed using the starting
+      eigenvalues and wavefunctions. "GW0" – Only the Green's function *G* is updated iteratively, while
+      *W *remains fixed at the *W0 *level "G0W" – Only the screened interaction *W *is updated iteratively,
+      while *G *remains fixed at *G0* "scGW" – Fully self-consistent GW; both*G* and *W* are updated iteratively
+      until the quasiparticle energies and/or wavefunctions converge "QSGW" – Quasiparticle self-consistent
+      GW; the starting potential is updated to provide the optimal independent particle basis for the
+      GW expansion "BSE0" – One-shot BSE; the excitonic Hamiltonian is built once using fixed GW quasiparticle
+      energies and screening (*W*) "scBSE" – Self-consistent BSE; internal refinement of the kernel or
+      energies within the BSE process "evGW+BSE" – Eigenvalue-only self-consistent GW (evGW) used as the
+      starting point for a subsequent BSE calculation "scGW+BSE" – The BSE is solved using the results
+      of a fully self-consistent GW calculation Other user-specified value if none of the above apply.
+- name: starting-point
+  required: true
+  description: >-
+    The density functional theory (DFT) exchange-correlation functional used to generate Kohn-Sham wavefunctions
+    and eigenvalues for the Green's function and the screened Coulomb interaction.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: >-
+    String containing one of the following values: "LDA" "GGA" "Meta GGA" "Hybrid GGA" "DFT+U" Other user-specified
+    value if none of the above apply.
+- name: dielectric-matrix
+  required: true
+  description: >-
+    Information on the dielectric matrix used to compute the screened Coulomb interaction *W*.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: planewave-basis-cutoff
+    required: true
+    description: >-
+      For a planewave code, the basis set cutoff employed for the dielectric matrix. This is the same
+      as the kinetic energy cutoff.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: Rydberg (Ry)
+    legacy_values: A real number containing the cutoff.
+    notes:
+    - >-
+      Note:Specify either "planewave-basis-cutoff" or "local-orbital-basis-set", but not both.
+  - name: local-orbital-basis-set
+    required: true
+    description: For local orbital codes, the name of the basis set .
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing the name of the atomic orbital basis. (e.g. "cc-pV6Z").
+    notes:
+    - >-
+      Note:Specify either "basis-cutoff-planewave" or "local-orbital-basis-set", but not both.
+  - name: frequency
+    required: false
+    description: >-
+      The method used to handle the frequency dependence of the Green's function, the screened Coulomb
+      interaction, and their product.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Hybertsen-Louie" "Godby-Needs" "Full frequency real
+      axis" "Full frequency imaginary axis" "Contour deformation" "Spacetime" Other user-specified value
+      if none of the above apply.
+  - name: response-basis-size
+    required: false
+    description: >-
+      For sum-over-states methods, the number of bands used in the sum. For linear-response methods, the
+      number of dielectric eigenvalues.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: dimensionless
+    legacy_values: One integer containing the number of bands or eigenvalues.
+  - name: q-points
+    required: true
+    description: Brillouin zone grid used for sampling the dielectric matrix.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: dimensionless
+    legacy_values: >-
+      Ordered list of 3 integer numbers containing the number points along the three reciprocal lattice
+      vector directions.
+  - name: coulomb-truncation
+    required: false
+    description: >-
+      Method used to eliminate long-range Coulomb interactions between periodic replicas in supercell
+      calculations.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Ismail-Beigi" "Rozzi" "Spencer-Alavi" Other user-specified
+      value if none of the above apply.
+- name: gw-bands
+  required: false
+  description: Number of bands for which the GW correction is evaluated.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_unit: dimensionless
+  legacy_values: >-
+    One integer specifying how many bands are corrected, counting from the bottom of the valence bands.
+- name: bse-hamiltonian
+  required: false
+  description: >-
+    A collective descriptor for the parameters defining the construction, dimensionality, and solution
+    method of the effective excitonic Bethe-Salpeter Hamiltonian that is being solved in a BSE calculation.
+    It characterizes the Hilbert space size and the physical constraints (momentum and spin) applied during
+    the diagonalization
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: Contains SubProperties as listed below.
+  subproperties:
+  - name: number-valence-bands
+    required: false
+    description: Number of valence bands included in the BSE Hamiltonian.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: dimensionless
+    legacy_values: >-
+      One integer specifying how many valence bands are corrected, counting from the valence band top.
+  - name: number-conduction-bands
+    required: false
+    description: Number of conduction bands included in the BSE Hamiltonian.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: dimensionless
+    legacy_values: >-
+      One integer specifying how many bands are corrected, counting from the conduction band bottom.
+  - name: k-point-mesh
+    required: false
+    description: Brillouin zone grid used for building the BSE Hamiltonian.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: dimensionless
+    legacy_values: >-
+      Ordered list of 3 integer numbers containing the number points along the reciprocal lattice vector
+      directions.
+  - name: exciton-momentum
+    required: false
+    description: Crystal momentum of the exciton in the BSE calculation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: Reciprocal lattice units (2π/a)
+    legacy_values: >-
+      Ordered list of 3 real values containing the crystal momentum, e.g. [0.5,0.5,1.0].
+  - name: exciton-multiplicity
+    required: false
+    description: >-
+      Specification whether the BSE calculation is performed for singlet or triplet excitons.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      string containing one of the values: "Singlet" "Triplet" Other user-specified value if none of the
+      above apply.
+  - name: diagonalization
+    required: false
+    description: Approximation method used to diagonalize the BSE Hamiltonian.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Tamm-Dancoff" "Full diagonalization" Other user-specified
+      value if none of the above apply.
+  - name: number-lowest-eigenvalues
+    required: false
+    description: Number of lowest eigenvalues computed by solving the BSE Hamiltonian.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_unit: dimensionless
+    legacy_values: One integer containing the number of BSE eigenvalues.
+- name: bse-kernel-truncation
+  required: false
+  description: >-
+    Method used to eliminate long-range Coulomb interactions between periodic replicas in the BSE Coulomb
+    kernel.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  legacy_values: >-
+    String containing one of the following values: "Ismail-Beigi" "Rozzi" "Spencer-Alavi" Other user-specified
+    value if none of the above apply.
