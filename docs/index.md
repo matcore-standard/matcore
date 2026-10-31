@@ -6,4 +6,4 @@ MatCore is developed as a grassroots effort by experts in first principles calcu
 
 [Browse the standard](standard/01-introduction.md) · [Submit feedback](feedback.md)
 
-MatCore is funded by the National Science Foundation, Division of Materials Research (DMR) through [Award #2404283](https://www.nsf.gov/awardsearch/show-award?AWD_ID=2404283).
+The MatCore effort is funded by the National Science Foundation, Division of Materials Research (DMR) through [Award #2404283](https://www.nsf.gov/awardsearch/show-award?AWD_ID=2404283) and supported through the KIM Initiative.

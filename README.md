@@ -27,4 +27,4 @@ mkdocs serve
 ## License
 Standard text and schema: CC BY 4.0. Code: Apache-2.0.
 
-MatCore is an independent effort funded by the NSF Division of Materials Research through Award #2404283.
+The MatCore effort is funded by the NSF Division of Materials Research through Award #2404283 and supported through the KIM Initiative.

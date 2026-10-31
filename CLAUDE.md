@@ -11,7 +11,7 @@ GitHub organization: `matcore-standard`, repository `matcore-standard/matcore`. 
 by a dormant personal account; if it is ever released, rename the org and immediately re-create an empty
 `matcore-standard` organization so the old URLs keep redirecting.) Only mkdocs.yml and README.md contain the
 repository URL; keep it that way.
-MatCore is an independent effort funded by NSF DMR Award #2404283. It is NOT a KIM Initiative project.
+The MatCore effort is funded by NSF DMR Award #2404283 and supported through the KIM Initiative.
 
 - `schema/<section>.yaml` — the standard's property hierarchy, one file per section
   (minimal, dft, md, mbpt, ml, pf, derived). THIS IS THE STANDARD.
