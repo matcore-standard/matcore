@@ -1,5 +1,7 @@
 # MatCore Metadata Schema — Change List for Units Handling
 
+A3.3 removed 2026-10-31: referred to a DFT `computation-parameter` that does not exist; the MD entry is covered by A4.1.
+
 **Part A** implements the units design (explicit `unit` on every dimensioned property; schema declares Quantity kind + Recommended unit; no default unit is ever implied).
 **Part B** contains independent fixes to existing content. Apply Part B even if Part A is deferred.
 
@@ -83,8 +85,6 @@ and renumber the remaining "Note 1" to "Note".
 with:
 
 > A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted with a validation warning). **Quantity kind:** inapplicable.
-
-**A3.3** Apply A3.2 identically to `computation-parameter` in the DFT section.
 
 ### A4. MD section (§2.3)
 

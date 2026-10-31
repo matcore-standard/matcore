@@ -53,7 +53,7 @@ Each property entry has exactly these fields, in this order:
 - "Annex" (ISO usage), normative; use "Kind" (not "Quantity kind") in all text.
 
 ## Generic (name/value/unit/description) parameters
-Entries: xc-parameter, computation-parameter (dft, md), td-parameter, model-parameter, field-variable,
+Entries: xc-parameter, computation-parameter (md), td-parameter, model-parameter, field-variable,
 calculation-parameter, free-energy.unit. Their `value` has type any, extent any, kind any; the
 instance supplies type (float|int|string|bool), shape and unit. `unit` subproperty has kind inapplicable.
 PROPOSED, NOT DECIDED: define this pattern once in §1.3 under a name such as "generic parameter", with
