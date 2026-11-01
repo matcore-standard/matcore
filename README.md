@@ -32,7 +32,7 @@ uv run mkdocs serve
 - `--show-legacy` adds the `legacy_*` text from the baseline migration to the pages. CI builds
   with it until every section's typed fields are filled, so use it locally too; without it the
   regenerated pages differ from the committed ones and CI fails.
-- `mkdocs serve` serves the site at http://127.0.0.1:8000 until stopped with Ctrl-C.
+- `mkdocs serve` serves the site at http://127.0.0.1:8000/matcore/ until stopped with Ctrl-C.
 - Edits to prose pages (`docs/index.md`, `docs/standard/index.md`,
   `docs/standard/annex-u-units.md`, …) reload in the browser on save.
 - Edits to `schema/*.yaml` do not. The chapters `docs/standard/02-*.md` … `08-*.md`, and Tables
@@ -53,6 +53,50 @@ uv run python scripts/validate_schema.py
 uv run python scripts/build_docs.py --show-legacy
 uv run mkdocs build --strict
 ```
+
+## Changing the standard
+The standard lives in `schema/*.yaml`; the pages under `docs/standard/` are generated from it. A
+change reaches the website only when the YAML and the regenerated pages are committed together and
+merged into `main` through a pull request, where CI checks them first (decision record 0004).
+
+1. **Start a branch from an up-to-date `main`:**
+   ```
+   git switch main && git pull --ff-only
+   git switch -c short-description-of-change
+   ```
+2. **Edit the YAML.** Wording lives in a property's `description` (and, until a section's typed
+   fields are filled, in `legacy_values`). Keep the indentation. Changing a property's `name`,
+   `required`, `repeatable` or subproperties changes the standard itself: record the decision in
+   `docs/decisions/` and review every example in `examples/`, updating any that no longer conform
+   (decision record 0012).
+3. **Regenerate the pages and run the checks:**
+   ```
+   uv run python scripts/validate_schema.py
+   uv run python scripts/build_docs.py --show-legacy
+   uv run mkdocs build --strict
+   ```
+   To look at the result, run `uv run mkdocs serve` and open http://127.0.0.1:8000/matcore/.
+4. **Commit the YAML together with every file the generator changed,** then check that nothing is
+   left over:
+   ```
+   git add schema docs/standard examples
+   git commit -m "Reword the creator description"
+   git status
+   ```
+5. **Push the branch and open a pull request** (on GitHub, or with `gh pr create --fill`):
+   ```
+   git push -u origin short-description-of-change
+   ```
+   CI runs the checks on the pull request. If it fails at "fail if generated docs are stale", the
+   regenerated pages were not committed: repeat steps 3–4 and push again.
+6. **Merge the pull request** once CI passes. The site's `dev` version shows the change within a few
+   minutes (a browser may keep the old page for up to 10 minutes; reload or use a private window).
+   The released version (`latest`) shows it after the next release (below).
+7. **Clean up:**
+   ```
+   git switch main && git pull --ff-only
+   git branch -d short-description-of-change
+   ```
 
 ## Releasing a version
 Versions follow semantic versioning and are cut per milestone (decision record 0010).
