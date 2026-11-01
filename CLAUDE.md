@@ -206,6 +206,9 @@ record or marked PROPOSED, NOT DECIDED.
    - [done, PR #3] Versioning (0010): releases.yaml, generated Revision History, version line on
      standard pages, versioned permalinks, CI deploys per version. 0.4.0 released 2026-11-01
      (tag v0.4.0); the site's `latest` is 0.4.0 and `dev` is main.
+   - Changes to the standard since 0.4.0, for the next release's entry in releases.yaml: the
+     Preamble's italics fixed (PR #4); contributor and its affiliation optional, and exactly one
+     basis entry for the MBPT dielectric matrix (0011).
    PROPOSED, NOT DECIDED: the open points of 0007
    (items 12–16).
 3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
