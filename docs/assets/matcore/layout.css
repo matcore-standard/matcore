@@ -37,7 +37,9 @@
 summary > .mc-icon { margin-left: auto; }
 .mc-i-once { color: var(--mc-slate); }
 .mc-i-rep { color: var(--mc-charcoal); }
-.mc-legend { display: inline-flex; align-items: center; gap: .35em; font-size: .7rem; color: var(--mc-charcoal); }
+/* Symbol key: symbol-label pairs that never split; on a narrow screen the pairs wrap onto a new line. */
+.mc-legend { display: flex; flex-wrap: wrap; align-items: center; gap: .3em 1.2em; font-size: .7rem; color: var(--mc-charcoal); }
+.mc-key { display: inline-flex; align-items: center; gap: .3em; white-space: nowrap; }
 .mc-legend .mc-icon svg { width: 1rem; height: 1rem; }
 
 /* Permalink button, added by layout.js after the name: shown on hover, always on touch screens. */

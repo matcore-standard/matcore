@@ -162,6 +162,16 @@ def test_introduction_sits_between_title_and_symbol_key(page):
     assert head.index(data['introduction'].split()[0]) < head.index('mc-legend')
 
 
+def test_symbol_key_keeps_each_symbol_with_its_label():
+    """On a narrow phone the key wraps between symbol-label pairs, never between a symbol and its label."""
+    import re as _re
+    groups = _re.findall(r'<span class="mc-key">(.*?)</span>(?=<span class="mc-key">|</span>$)', build_docs.KEY)
+    assert len(groups) == 3, build_docs.KEY
+    for group, (symbol, label) in zip(groups, [('mc-star', 'required'), ('mc-i-once', 'appears at most once'),
+                                               ('mc-i-rep', 'repeatable')]):
+        assert symbol in group and group.rstrip().endswith(label), group
+
+
 def test_main_writes_every_page_and_honours_the_flag(tmp_path):
     """The command writes one page per section plus Annex U with its tables; --show-legacy controls legacy text."""
     build_docs.main(['--out', str(tmp_path)])
