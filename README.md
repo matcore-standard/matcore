@@ -17,11 +17,37 @@ tests/             CI tests
 ```
 
 ## Build locally
+The environment is managed by [uv](https://docs.astral.sh/uv/). Run every command from the
+repository root; there is no environment to activate.
+
 ```
 uv sync
 uv run python scripts/validate_schema.py
 uv run python scripts/build_docs.py
 uv run mkdocs serve
+```
+
+- `uv sync` installs the dependencies pinned in `uv.lock`. It is needed once, and again after
+  `pyproject.toml` or `uv.lock` changes. `uv run` also syncs before each command.
+- `mkdocs serve` serves the site at http://127.0.0.1:8000 until stopped with Ctrl-C.
+- Edits to prose pages (`docs/index.md`, `docs/standard/01-introduction.md`,
+  `docs/standard/annex-u-units.md`, …) reload in the browser on save.
+- Edits to `schema/*.yaml` do not. The chapters `docs/standard/02-*.md` … `08-*.md` and
+  `annex-u-table.md` are generated from the YAML; never edit them by hand. After a YAML edit,
+  regenerate them in a second terminal while `mkdocs serve` keeps running:
+  ```
+  uv run python scripts/validate_schema.py && uv run python scripts/build_docs.py
+  ```
+- Commit the regenerated files with the YAML. CI regenerates them and fails if they differ from
+  the committed copies.
+- The local site is a single unversioned copy, so it has no version selector. The `latest` and
+  `dev` versions exist only on the published site, where `mike` deploys them.
+
+Before committing, run the checks CI runs:
+```
+uv run python scripts/validate_schema.py
+uv run python scripts/build_docs.py
+uv run mkdocs build --strict
 ```
 
 ## License
