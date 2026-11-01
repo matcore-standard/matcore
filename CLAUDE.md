@@ -160,26 +160,28 @@ record or marked PROPOSED, NOT DECIDED.
 2. [todo] Website cleanup: the GitHub Pages site offers the user the same options as matcore.org,
    so it can replace it (0004). Presentation may differ and should use the semantic structure of
    the YAML to improve on the live site.
-   - [done, branch site-layout-0007, PR pending] Menu as in 0008 (replaces the navigation tabs of
+   - [done, PR #1 merged 2026-11-01] Menu as in 0008 (replaces the navigation tabs of
      0004 item 21). Contact page migrated; the Feedback placeholder is removed.
-   - Migrate the content of About MatCore, Leadership and Revision History from matcore.org (this
-     was step 8).
-   [done, branch site-layout-0007] Section titles (schema/*.yaml `title`, used for page headings and
+   - [todo] Migrate the content of About MatCore, Leadership and Revision History from matcore.org
+     (this was step 8).
+   - [done, PR #1] Section titles (schema/*.yaml `title`, used for page headings and
    menu labels): 2.1 Minimal MatCore Metadata, 2.2 Density Functional Theory (DFT) Metadata, …,
    2.7 Derived Property Metadata (0008).
    - Under Standard, each section shows its introduction and its examples, as on matcore.org.
      Storage (0004): each schema/<section>.yaml has a top-level `introduction` (Markdown in a
      literal block, one per section) and gets `examples` (a list; each entry has `caption`, `file`
      in examples/, `source`, optional `notes`). Text comes from the baseline .docx as it is.
-     [done, branch site-layout-0007] `introduction`: in meta-schema.yaml, filled from the .docx for
+     [done, PR #1] `introduction`: in meta-schema.yaml, filled from the .docx for
      all seven sections, rendered under the section title (0008 item 6).
      [todo] `examples`: the meta-schema field, the example files, and pymdownx.highlight +
      superfences for code.
    - [done] Property layout chosen after rendered options were compared (0007).
-   - [done, branch site-layout-0007, PR pending] build_docs.py renders the standard from the YAML
+   - [done, PR #1] build_docs.py renders the standard from the YAML
      in the layout of 0007 (tests in tests/test_build_docs.py); layout.css and layout.js in
      docs/assets/matcore/; mkdocs.yml has the settings 0007 lists. legacy_* fields hidden unless
      --show-legacy is passed, and CI builds with --show-legacy until step 5 is complete.
+   - [done, PR #1] Annex U's Tables U.3 and U.4 generated from schema/units.yaml; the separate
+     generated page removed (0009).
    - [done] Decision records are internal committee information: docs/decisions/, including the
      baseline .docx, is excluded from the site build (`exclude_docs` in mkdocs.yml; an unlinked page
      would still appear in sitemap.xml and the site search). They stay in the public GitHub
