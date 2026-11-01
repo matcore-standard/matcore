@@ -238,9 +238,10 @@ record or marked PROPOSED, NOT DECIDED.
    type/extent/kind/recommended-unit/values, applying 0001 Part A to the property, and delete its
    legacy_* fields; (c) list in the PR description every judgment call in the mapping, so the
    human can decide. A section is complete when no legacy_* fields remain in its file.
-   PROPOSED, NOT DECIDED: sections in the order minimal, dft, md, mbpt, ml, pf, derived, and
-   properties in file order within a section; a check in validate_schema.py that fails if a
-   section file declares `legacy_complete: true` but still contains legacy_* fields.
+   Sections go in the order minimal, dft, md, mbpt, ml, pf, derived, and properties in file order
+   within a section (0004 item 35).
+   PROPOSED, NOT DECIDED: a check in validate_schema.py that fails if a section file declares
+   `legacy_complete: true` but still contains legacy_* fields.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
