@@ -21,6 +21,7 @@ properties:
         file: {type: string, pattern: "^[a-z0-9-]+\\.xml$"}  # a file in examples/
         source: {type: string}                             # the dataset the example documents
         notes: {type: string}
+  legacy_complete: {type: boolean}  # true once no legacy_* field remains in the section (0004 item 36)
   properties:
     type: array
     items: {$ref: "#/$defs/property"}

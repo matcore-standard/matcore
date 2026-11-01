@@ -242,8 +242,8 @@ record or marked PROPOSED, NOT DECIDED.
    within a section (0004 item 35).
    A complete section file declares `legacy_complete: true` at its top level; validate_schema.py
    fails if it does while legacy_* fields remain (0004 item 36).
-   [todo] Add `legacy_complete` to meta-schema.yaml and the check to validate_schema.py, as its
-   own PR.
+   [done, branch legacy-complete] `legacy_complete` added to meta-schema.yaml and the check to
+   validate_schema.py.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must

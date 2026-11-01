@@ -82,6 +82,36 @@ def test_validate_rejects_fields_out_of_order(tmp_path):
     assert 'fields out of order' in run.stdout
 
 
+def test_legacy_complete_requires_no_legacy_fields(tmp_path):
+    """A section marked complete has had all its baseline prose moved to typed fields (0004 item 36)."""
+    import shutil
+    for d in ('schema', 'scripts', 'examples'):
+        shutil.copytree(ROOT / d, tmp_path / d)
+    f = tmp_path / 'schema/ml.yaml'
+    doc = yaml.safe_load(f.read_text())
+
+    def run():
+        """Run the validator on the copy and return the completed process."""
+        return subprocess.run([sys.executable, tmp_path / 'scripts/validate_schema.py'], capture_output=True, text=True)
+
+    def strip(props):
+        """Delete the legacy_* fields of every property in place.
+
+        props (list[dict]): properties, with nested subproperties.
+        """
+        for p in props:
+            for k in [k for k in p if k.startswith('legacy_')]:
+                del p[k]
+            strip(p.get('subproperties') or [])
+    f.write_text(yaml.safe_dump(doc | {'legacy_complete': True}, sort_keys=False, allow_unicode=True))
+    r = run()
+    assert r.returncode == 1 and 'legacy_complete is true but' in r.stdout
+    strip(doc['properties'])
+    f.write_text(yaml.safe_dump(doc | {'legacy_complete': True}, sort_keys=False, allow_unicode=True))
+    r = run()
+    assert r.returncode == 0, r.stdout
+
+
 def test_notes_name_only_properties_that_exist():
     """A note that cites a property by its quoted name must use a name the standard defines, so a rename
     cannot leave a note pointing at nothing (e.g. "basis-cutoff-planewave" for planewave-basis-cutoff)."""

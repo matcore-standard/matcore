@@ -36,6 +36,10 @@ def walk(props, path):
             print(f"WARN  {here}: numeric type with no kind")
         walk(p.get('subproperties', []), here)
 
+def legacy_count(props):
+    """Return the number of legacy_* fields in props (list[dict]), subproperties included."""
+    return sum(sum(k.startswith('legacy_') for k in p) + legacy_count(p.get('subproperties') or []) for p in props)
+
 for sym, u in units['units'].items():
     if u['kind'] not in kinds: print(f"ERROR units.yaml {sym}: kind {u['kind']} undefined"); errors += 1
     # si_factor is exact decimal text (decision 0009); null only for the reserved `dimensionless`.
@@ -73,6 +77,9 @@ for f in sorted(glob.glob(str(ROOT/'schema/[a-z]*.yaml'))):
     for e in errs:
         print(f"ERROR {Path(f).name}: {'/'.join(map(str,e.path))}: {e.message}"); errors += 1
     walk(doc['properties'], Path(f).stem)
+    # A section marked complete keeps no baseline prose (decision 0004 item 36).
+    if doc.get('legacy_complete') and (n := legacy_count(doc['properties'])):
+        print(f"ERROR {Path(f).name}: legacy_complete is true but {n} legacy_* fields remain"); errors += 1
     print(f"ok    {Path(f).name}: {len(errs)} schema errors")
 # Examples follow the structure of the current standard (decision 0012).
 sys.path.insert(0, str(ROOT/'scripts'))
