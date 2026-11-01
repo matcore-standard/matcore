@@ -19,13 +19,17 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
 - `schema/units.yaml` — Annex U, the normative unit table (kinds, symbols, QUDT/GNU mapping, SI factors).
 - `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
 - `docs/standard/*.md` — prose chapters (01-introduction, annex-u-units) plus GENERATED chapters
-  (02–08, annex-u-table). Never hand-edit generated files; edit the YAML and run `scripts/build_docs.py`.
+  (02–08, annex-u-table). Never hand-edit generated files; edit the YAML and run
+  `scripts/build_docs.py --show-legacy`.
 - `docs/decisions/` — decision records: internal committee information, not published on the site
   (0004). 0001 is the units change list (not yet applied; see Status). The frozen Google Doc export
   is stored there as the baseline artifact.
 - `scripts/validate_schema.py` — checks section files against the meta-schema and units.yaml. It
   validates the standard itself, not instance files (the instance validator is status step 9).
-- `scripts/build_docs.py` — regenerates docs from YAML. CI runs both.
+- `scripts/build_docs.py` — regenerates docs from YAML in the layout of 0007; tested by
+  tests/test_build_docs.py. Run it with `--show-legacy` until status step 5 is complete (CI does).
+  CI runs both scripts.
+- `docs/assets/matcore/` — layout.css and layout.js for the standard pages (0007).
 
 ## Conventions for schema YAML (decided; see docs/decisions/0002 and 0004)
 Keep it regular: no YAML anchors or aliases, custom tags, includes or templating.
@@ -117,9 +121,10 @@ from the YAML for that serialization and used by CI to validate the examples (00
   (Required, Repeatable, Type, Extent, Kind, Rec. unit), values, nested subproperties. Citable
   address per property (`#section.path.to.property`, static id) with a permalink button; property
   tree in the left sidebar on wide screens, breadcrumb bar on narrow ones; stacked table on phones;
-  site-wide palette sampled from the logo. Reference implementation: docs/decisions/0007-reference/
-  (render.py, layout.css, layout.js). Read 0007, including its implementation constraints, before
-  changing how the pages look or behave; its open points are PROPOSED, NOT DECIDED.
+  site-wide palette sampled from the logo. Implementation: scripts/build_docs.py (markup) and
+  docs/assets/matcore/layout.css and layout.js. Read 0007, including its implementation
+  constraints, before changing how the pages look or behave; its open points are PROPOSED, NOT
+  DECIDED.
 - Tools: one Python package named `matcore`, run in-browser via Pyodide (0000, 0006).
   PROPOSED, NOT DECIDED: its contents (a command-line validator; parsers for VASP, QE and LAMMPS
   output; web validator, visualizer and forms); parsers as the primary generator of instances, web forms as the
@@ -155,11 +160,11 @@ record or marked PROPOSED, NOT DECIDED.
      literal block, one per section) and `examples` (a list; each entry has `caption`, `file` in
      examples/, `source`, optional `notes`). Text comes from the baseline .docx as it is. Needs
      the two fields added to meta-schema.yaml, and pymdownx.highlight + superfences for code.
-   - build_docs.py renders the standard from the YAML in the layout of 0007, adopting the markup of
-     docs/decisions/0007-reference/render.py (test first); layout.css and layout.js move into the
-     site's assets and mkdocs.yml gets the settings 0007 lists. legacy_* fields hidden unless
-     --show-legacy is passed, and CI builds with --show-legacy until step 5 is complete.
    - [done] Property layout chosen after rendered options were compared (0007).
+   - [done, branch site-layout-0007, PR pending] build_docs.py renders the standard from the YAML
+     in the layout of 0007 (tests in tests/test_build_docs.py); layout.css and layout.js in
+     docs/assets/matcore/; mkdocs.yml has the settings 0007 lists. legacy_* fields hidden unless
+     --show-legacy is passed, and CI builds with --show-legacy until step 5 is complete.
    - [done] Decision records are internal committee information: docs/decisions/, including the
      baseline .docx, is excluded from the site build (`exclude_docs` in mkdocs.yml; an unlinked page
      would still appear in sitemap.xml and the site search). They stay in the public GitHub
@@ -229,7 +234,8 @@ record or marked PROPOSED, NOT DECIDED.
   was done and what remains, and commit any correction. Assume the conversation will not be
   available next time (0004).
 - Before every commit run the checks CI runs: `uv run python scripts/validate_schema.py`,
-  `uv run python scripts/build_docs.py`, `uv run mkdocs build --strict`. Commit any files
+  `uv run python scripts/build_docs.py --show-legacy` (the flag until status step 5 is complete),
+  `uv run mkdocs build --strict`. Commit any files
   build_docs.py regenerates with the change; CI fails if the committed copies are stale. Never
   hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, annex-u-table.md) (0004).
 - Never invent QUDT identifiers, physical constants or unit symbols. units.yaml was verified against

@@ -1,5 +1,5 @@
-// Standard-page behaviour of decision record 0007, for pages whose property blocks render.py
-// writes (details.mc-property, id = citable address). Adds: a permalink button on each block,
+// Standard-page behaviour of decision record 0007, for pages whose property blocks
+// scripts/build_docs.py writes (details.mc-property, id = citable address). Adds: a permalink button on each block,
 // a property tree in the left sidebar, a breadcrumb bar for narrow screens, opening the block
 // named by the address (on load and on change), and column labels for the phone table layout.
 document.addEventListener('DOMContentLoaded', () => {

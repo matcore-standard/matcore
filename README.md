@@ -23,12 +23,15 @@ repository root; there is no environment to activate.
 ```
 uv sync
 uv run python scripts/validate_schema.py
-uv run python scripts/build_docs.py
+uv run python scripts/build_docs.py --show-legacy
 uv run mkdocs serve
 ```
 
 - `uv sync` installs the dependencies pinned in `uv.lock`. It is needed once, and again after
   `pyproject.toml` or `uv.lock` changes. `uv run` also syncs before each command.
+- `--show-legacy` adds the `legacy_*` text from the baseline migration to the pages. CI builds
+  with it until every section's typed fields are filled, so use it locally too; without it the
+  regenerated pages differ from the committed ones and CI fails.
 - `mkdocs serve` serves the site at http://127.0.0.1:8000 until stopped with Ctrl-C.
 - Edits to prose pages (`docs/index.md`, `docs/standard/01-introduction.md`,
   `docs/standard/annex-u-units.md`, …) reload in the browser on save.
@@ -36,7 +39,7 @@ uv run mkdocs serve
   `annex-u-table.md` are generated from the YAML; never edit them by hand. After a YAML edit,
   regenerate them in a second terminal while `mkdocs serve` keeps running:
   ```
-  uv run python scripts/validate_schema.py && uv run python scripts/build_docs.py
+  uv run python scripts/validate_schema.py && uv run python scripts/build_docs.py --show-legacy
   ```
 - Commit the regenerated files with the YAML. CI regenerates them and fails if they differ from
   the committed copies.
@@ -46,7 +49,7 @@ uv run mkdocs serve
 Before committing, run the checks CI runs:
 ```
 uv run python scripts/validate_schema.py
-uv run python scripts/build_docs.py
+uv run python scripts/build_docs.py --show-legacy
 uv run mkdocs build --strict
 ```
 

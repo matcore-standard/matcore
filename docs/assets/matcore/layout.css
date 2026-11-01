@@ -1,5 +1,5 @@
 /* Standard-page layout of decision record 0007: logo palette, property blocks, property tree,
-   breadcrumb bar, permalink button, phone table. Pairs with layout.js and render.py. */
+   breadcrumb bar, permalink button, phone table. Pairs with layout.js and scripts/build_docs.py. */
 
 /* Palette sampled from the MatCore logo. mkdocs.yml sets palette primary/accent to "custom". */
 :root > * {
@@ -87,3 +87,4 @@ summary:hover > .mc-permalink, .mc-permalink:focus-visible { opacity: 1; }
   .md-typeset details.mc-property .md-typeset__table { display: block; }
   .md-typeset details.mc-property .md-typeset__scrollwrap { overflow: visible; margin: 1em 0; }
 }
+

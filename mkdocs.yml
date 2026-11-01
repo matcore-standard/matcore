@@ -4,6 +4,7 @@ repo_url: https://github.com/matcore-standard/matcore
 theme:
   name: material
   features: [navigation.sections, navigation.indexes, content.code.copy, search.suggest]
+  palette: {primary: custom, accent: custom}  # colours in docs/assets/matcore/layout.css (decision 0007)
 nav:
   - Home: index.md
   - About:
@@ -25,7 +26,9 @@ nav:
 # Decision records (and the baseline .docx stored with them) are internal; see docs/decisions/0004.
 exclude_docs: |
   decisions/
-markdown_extensions: [tables, admonition, toc]
+markdown_extensions: [tables, admonition, toc, pymdownx.details, attr_list, md_in_html]
+extra_css: [assets/matcore/layout.css]
+extra_javascript: [assets/matcore/layout.js]
 extra:
   version:
     provider: mike

@@ -2,6 +2,8 @@
 
 Date: 2026-11-01. Status: accepted. Decided by: Ellad Tadmor.
 
+*Implemented 2026-11-01: the markup of `render.py` is now produced by `scripts/build_docs.py` (tests in `tests/test_build_docs.py`), and `layout.css` and `layout.js` are in `docs/assets/matcore/`; `render.py` was removed and `0007-reference/` keeps `logo.png`. Property `notes` (part of the standard, not migration text) are shown in every block after the values text, with or without `--show-legacy`.*
+
 ## Context
 Status step 2 (website cleanup) left the presentation of properties open, to be chosen after options were seen rendered (0004 items 21 and 22). Candidate layouts were rendered in a preview from schema/minimal.yaml, plus one entry (dft `k-point-mesh`) with illustrative typed fields, and compared in the browser at desktop, tablet and phone widths.
 
