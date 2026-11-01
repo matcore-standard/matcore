@@ -131,7 +131,7 @@ from the YAML for that serialization and used by CI to validate the examples (00
 ## Status / next steps (update this list as work lands)
 Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
 PROPOSED, NOT DECIDED until the human rules: the order of status steps 7 and 9; and the working
-rules from "Memory lives in the repository" on.
+rules from "Before every commit run" on.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
@@ -206,10 +206,12 @@ rules from "Memory lives in the repository" on.
   step 5 carry their judgment-call list in the description. Rulings and repository housekeeping may
   be committed directly to main once the human approves. Reference the decision record in the
   commit message (0004).
-- Memory lives in the repository, not in chat. Whenever a decision is made or changed in
-  conversation, update the relevant section of this file and the status list in the same commit as
-  the work. At the end of every session, update the status list to say exactly what was done and
-  what remains, and commit it. Assume the conversation will not be available next time.
+- Memory lives in the repository, not in chat or in Claude Code's private memory. Whenever a
+  decision is made or changed, update the relevant section of this file and the status list in the
+  same commit as the work. Update the status list whenever a step's state changes, so it is current
+  even if a session ends without warning; at the end of a session, check that it says exactly what
+  was done and what remains, and commit any correction. Assume the conversation will not be
+  available next time (0004).
 - Before every commit run: `uv run python scripts/validate_schema.py`,
   `uv run python scripts/build_docs.py`, `uv run mkdocs build --strict`. Never hand-edit generated
   files under docs/standard/ (02-*.md … 08-*.md, annex-u-table.md).
