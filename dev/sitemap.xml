@@ -17,10 +17,6 @@
          <lastmod>2026-11-01</lastmod>
     </url>
     <url>
-         <loc>https://matcore-standard.github.io/matcore/dev/revision-history/</loc>
-         <lastmod>2026-11-01</lastmod>
-    </url>
-    <url>
          <loc>https://matcore-standard.github.io/matcore/dev/standard/</loc>
          <lastmod>2026-11-01</lastmod>
     </url>
@@ -54,6 +50,10 @@
     </url>
     <url>
          <loc>https://matcore-standard.github.io/matcore/dev/standard/annex-u-units/</loc>
+         <lastmod>2026-11-01</lastmod>
+    </url>
+    <url>
+         <loc>https://matcore-standard.github.io/matcore/dev/standard/revision-history/</loc>
          <lastmod>2026-11-01</lastmod>
     </url>
 </urlset>
