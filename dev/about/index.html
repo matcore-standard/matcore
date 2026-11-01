@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#about" class="md-skip">
+        <a href="#about-matcore" class="md-skip">
           Skip to content
         </a>
       
@@ -328,6 +328,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About MatCore
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -344,6 +362,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-information-and-citing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        More Information and Citing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funding
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -902,8 +994,32 @@
   
 
 
-<h1 id="about">About</h1>
-<p>TODO: migrate content from https://matcore.org/about</p>
+<h1 id="about-matcore">About MatCore</h1>
+<p>The <em>Material Core Metadata (MatCore)</em> standard for computational materials science (CMS) represents key aspects of a material-focused computation to make it understandable to the broad materials research community. It provides pragmatic and workable guidelines for documentation of materials data.</p>
+<h2 id="goals">Goals</h2>
+<p>The primary goals of the MatCore standard are, by outlining expectations for metadata accompanying a computational dataset, to facilitate:</p>
+<ul>
+<li>Dataset transparency, discoverability, sharing and reuse in theoretical and computational modeling.</li>
+<li>Verification and validation of materials modeling and simulation software.</li>
+<li>Training physics-based and machine learning models for material behavior.</li>
+<li>Promote reproducibility in CMS by providing the information necessary for researchers to regenerate a published dataset.</li>
+</ul>
+<h2 id="scope">Scope</h2>
+<p>The MatCore standard is focused on CMS methods aimed at computing material properties from a microscopic perspective, as opposed to computational methods in which the material is a component (such as engineering finite element analysis). The MatCore standard is designed to be flexible so that it can be extended to any area of CMS and can accommodate future changes in the field. An initial focus is placed on major CMS methods most widely used at the time of the creation of the standard with the aim of adding other methods in the future. The initial methods to be supported are:</p>
+<ul>
+<li>Density functional theory</li>
+<li>Many-body perturbation theory (GW, BSE)</li>
+<li>Machine learning for materials</li>
+<li>Molecular dynamics</li>
+<li>Phase field</li>
+<li>Derived approaches involving a combination of other methods</li>
+</ul>
+<h2 id="standard">Standard</h2>
+<p>All methods share a common minimal set of metadata defined by the MatCore standard. The minimal MatCore metadata includes aspects of a dataset deemed important to report for data findability and reuse and are <em>universal</em> across all computational methods. In addition, each method has its own MatCore extension, e.g. MatCore-MD, MatCore-DFT, etc., that inherits from the minimal MatCore metadata and adds additional method-specific metadata.</p>
+<h2 id="more-information-and-citing">More Information and Citing</h2>
+<p>For more information, and to cite, see <a href="https://doi.org/10.48550/arXiv.2502.07106">Greenberg et al., "Towards MatCore: A Unified Metadata Standard for Materials Science", arXiv:2502.07106, 2025</a>.</p>
+<h2 id="funding">Funding</h2>
+<p>The MatCore effort is funded by the National Science Foundation, Division of Materials Research (DMR) through <a href="https://www.nsf.gov/awardsearch/show-award?AWD_ID=2404283">Award #2404283</a> and supported through the <a href="https://openkim.org">KIM Initiative</a>.</p>
 
 
 

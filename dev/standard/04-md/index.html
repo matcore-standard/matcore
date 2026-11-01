@@ -652,6 +652,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Molecular Dynamics (MD) Metadata
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -668,6 +686,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-md-method-specific-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: MD Method-Specific Metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1928,6 +1976,26 @@
 </details>
 </details>
 </details>
+<h2 id="example-md-method-specific-metadata">Example: MD Method-Specific Metadata</h2>
+<p>Dataset source: <a href="https://doi.org/10.6084/m9.figshare.6273170">https://doi.org/10.6084/m9.figshare.6273170</a></p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;root&gt;</span>
+<span class="w">  </span><span class="nt">&lt;computation&gt;</span>
+<span class="w">    </span><span class="nt">&lt;mode&gt;</span>equilibrium-dynamics<span class="nt">&lt;/mode&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/computation&gt;</span>
+<span class="w">  </span><span class="nt">&lt;particle-style&gt;</span>atom<span class="nt">&lt;/particle-style&gt;</span>
+<span class="w">  </span><span class="nt">&lt;particle-interactions&gt;</span>
+<span class="w">    </span><span class="nt">&lt;model-type&gt;</span>Finnis-Sinclair<span class="w"> </span>potential<span class="nt">&lt;/model-type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;bonding-type&gt;</span>Reactive<span class="nt">&lt;/bonding-type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;theory-level&gt;</span>Classical<span class="w"> </span>physics-based<span class="nt">&lt;/theory-level&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/particle-interactions&gt;</span>
+<span class="w">  </span><span class="nt">&lt;thermodynamic-constraint&gt;</span>
+<span class="w">    </span><span class="nt">&lt;system&gt;</span>Entire<span class="w"> </span>system<span class="nt">&lt;/system&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type&gt;</span>NPT<span class="nt">&lt;/type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Amorphous<span class="w"> </span>samples<span class="w"> </span>were<span class="w"> </span>produced<span class="w"> </span>by<span class="w"> </span>quenching<span class="w"> </span>the<span class="w"> </span>molten<span class="w"> </span>metal<span class="w"> </span>from<span class="w"> </span>2300<span class="w"> </span>to<span class="w"> </span>300<span class="w"> </span>K.<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/thermodynamic-constraint&gt;</span>
+<span class="nt">&lt;/root&gt;</span>
+</code></pre></div>
 
 
 

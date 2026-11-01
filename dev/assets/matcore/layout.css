@@ -100,7 +100,15 @@ summary:hover > .mc-permalink, .mc-permalink:focus-visible { opacity: 1; }
 
 /* Document title above "1. Preamble" on the Browse Standard page: styled like a page title but not a
    heading, so the menu does not list it (decision 0008). */
-.md-typeset .mc-doc-title { margin: 0 0 1.2em; font-size: 2em; font-weight: 300; line-height: 1.3; color: var(--mc-charcoal); }
+.md-typeset .mc-doc-title { margin: 0 0 .8em; font-size: 1.6em; font-weight: 700; line-height: 1.3; color: var(--mc-charcoal); }
 
 /* Present for screen readers and search engines, not shown (Home page title, decision 0008). */
 .mc-visually-hidden { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Headings site-wide: bold charcoal and compact, in step with the property titles, instead of the
+   theme's large light headings with wide spacing. Page title 1.6em, h2 1.25em, h3 1.05em. */
+.md-typeset h1 { margin: 0 0 .8em; font-size: 1.6em; font-weight: 700; line-height: 1.3; color: var(--mc-charcoal); }
+.md-typeset h2 { margin: 1.6em 0 .6em; font-size: 1.25em; font-weight: 700; line-height: 1.4; color: var(--mc-charcoal); }
+.md-typeset h3 { margin: 1.3em 0 .4em; font-size: 1.05em; font-weight: 700; line-height: 1.4; color: var(--mc-charcoal); }
+.md-typeset h2 + h3 { margin-top: .8em; }
+.md-typeset h3 + ul { margin-top: .4em; }

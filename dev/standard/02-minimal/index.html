@@ -598,6 +598,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Minimal MatCore Metadata
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -614,6 +632,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-minimal-matcore-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Minimal MatCore Metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2735,6 +2783,53 @@
 </table>
 <p><span class='legacy'>Legacy: A string containing the dataset license in a format conforming to the <a href="https://spdx.org/licenses/">SPDX</a><a href="https://spdx.org/licenses/"> Standard</a>.</span></p>
 </details>
+<h2 id="example-minimal-matcore-metadata">Example: Minimal MatCore Metadata</h2>
+<p>Dataset source: <a href="https://doi.org/10.60732/8e9bc5b0">https://doi.org/10.60732/8e9bc5b0</a></p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;root&gt;</span>
+<span class="w">  </span><span class="nt">&lt;creator&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Albert<span class="w"> </span>P.<span class="w"> </span>Bartók<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;affiliation&gt;</span>Rutherford<span class="w"> </span>Appleton<span class="w"> </span>Laboratory<span class="nt">&lt;/affiliation&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/creator&gt;</span>
+<span class="w">  </span><span class="nt">&lt;creator&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>James<span class="w"> </span>Kermode<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;affiliation&gt;</span>University<span class="w"> </span>of<span class="w"> </span>Warwick<span class="nt">&lt;/affiliation&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/creator&gt;</span>
+<span class="w">  </span><span class="nt">&lt;creator&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Noam<span class="w"> </span>Bernstein<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;affiliation&gt;</span>Naval<span class="w"> </span>Research<span class="w"> </span>Laboratory<span class="nt">&lt;/affiliation&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/creator&gt;</span>
+<span class="w">  </span><span class="nt">&lt;creator&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>Gábor<span class="w"> </span>Csányi<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;affiliation&gt;</span>University<span class="w"> </span>of<span class="w"> </span>Cambridge<span class="nt">&lt;/affiliation&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/creator&gt;</span>
+<span class="w">  </span><span class="nt">&lt;title&gt;</span>Si_PRX_GAP<span class="nt">&lt;/title&gt;</span>
+<span class="w">  </span><span class="nt">&lt;creation-date&gt;</span>2021-02-22<span class="nt">&lt;/creation-date&gt;</span>
+<span class="w">  </span><span class="nt">&lt;description&gt;</span>The<span class="w"> </span>original<span class="w"> </span>DFT<span class="w"> </span>training<span class="w"> </span>data<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>general-purpose<span class="w"> </span>silicon<span class="w"> </span>interatomic<span class="w"> </span>potential<span class="w"> </span>described<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>associated<span class="w"> </span>publication.<span class="w"> </span>The<span class="w"> </span>kinds<span class="w"> </span>of<span class="w"> </span>configuration<span class="w"> </span>that<span class="w"> </span>were<span class="w"> </span>included<span class="w"> </span>were<span class="w"> </span>selected<span class="w"> </span>based<span class="w"> </span>on<span class="w"> </span>intuition<span class="w"> </span>and<span class="w"> </span>past<span class="w"> </span>experience<span class="w"> </span>to<span class="w"> </span>obtain<span class="w"> </span>good<span class="w"> </span>coverage<span class="w"> </span>pertaining<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>range<span class="w"> </span>of<span class="w"> </span>properties.<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;material-component&gt;</span>
+<span class="w">    </span><span class="nt">&lt;phase&gt;</span>crystal<span class="nt">&lt;/phase&gt;</span>
+<span class="w">    </span><span class="nt">&lt;constituent&gt;</span>
+<span class="w">      </span><span class="nt">&lt;species&gt;</span>Si<span class="nt">&lt;/species&gt;</span>
+<span class="w">      </span><span class="nt">&lt;concentration&gt;</span>100<span class="nt">&lt;/concentration&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/constituent&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>A<span class="w"> </span>variety<span class="w"> </span>of<span class="w"> </span>Si<span class="w"> </span>configurations<span class="w"> </span>including<span class="w"> </span>different<span class="w"> </span>phases,<span class="w"> </span>surfaces,<span class="w"> </span>vacancies,<span class="w"> </span>interstitials,<span class="w"> </span>dislocations<span class="w"> </span>and<span class="w"> </span>crack<span class="w"> </span>tips.<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/material-component&gt;</span>
+<span class="w">  </span><span class="nt">&lt;computation&gt;</span>
+<span class="w">    </span><span class="nt">&lt;method-class&gt;</span>Electronic<span class="nt">&lt;/method-class&gt;</span>
+<span class="w">    </span><span class="nt">&lt;method&gt;</span>DFT<span class="nt">&lt;/method&gt;</span>
+<span class="w">    </span><span class="nt">&lt;simulation-conditions&gt;</span>
+<span class="w">      </span><span class="nt">&lt;type&gt;</span>Equilibrium<span class="nt">&lt;/type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/simulation-conditions&gt;</span>
+<span class="w">    </span><span class="nt">&lt;software&gt;</span>
+<span class="w">      </span><span class="nt">&lt;name&gt;</span>CASTEP<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/software&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/computation&gt;</span>
+<span class="w">  </span><span class="nt">&lt;matcore-id&gt;</span>mc-ad83jsd3-1<span class="nt">&lt;/matcore-id&gt;</span>
+<span class="w">  </span><span class="nt">&lt;matcore-date&gt;</span>2026-02-14<span class="nt">&lt;/matcore-date&gt;</span>
+<span class="w">  </span><span class="nt">&lt;license&gt;</span>GPL-3.0-only<span class="nt">&lt;/license&gt;</span>
+<span class="nt">&lt;/root&gt;</span>
+</code></pre></div>
+<p>Note: The matcore-id format in the example is tentative and subject to change.</p>
 
 
 

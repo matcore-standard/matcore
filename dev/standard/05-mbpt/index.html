@@ -679,6 +679,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Many-Body Perturbation Theory (MBPT) Metadata
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -695,6 +713,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-mbpt-method-specific-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: MBPT Method-Specific Metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1475,6 +1523,21 @@
 </table>
 <p><span class='legacy'>Legacy: String containing one of the following values: "Ismail-Beigi" "Rozzi" "Spencer-Alavi" Other user-specified value if none of the above apply.</span></p>
 </details>
+<h2 id="example-mbpt-method-specific-metadata">Example: MBPT Method-Specific Metadata</h2>
+<p>Dataset source: <a href="https://archive.materialscloud.org/record/2023.92">https://archive.materialscloud.org/record/2023.92</a></p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;root&gt;</span>
+<span class="w">  </span><span class="nt">&lt;mbpt-method&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type&gt;</span>GW<span class="nt">&lt;/type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;self-consistency&gt;</span>G0W0<span class="nt">&lt;/self-consistency&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/mbpt-method&gt;</span>
+<span class="w">  </span><span class="nt">&lt;starting-point&gt;</span>GGA<span class="nt">&lt;/starting-point&gt;</span>
+<span class="w">  </span><span class="nt">&lt;dielectric-matrix&gt;</span>
+<span class="w">    </span><span class="nt">&lt;planewave-basis-cutoff&gt;</span>60.0<span class="nt">&lt;/planewave-basis-cutoff&gt;</span>
+<span class="w">    </span><span class="nt">&lt;q-points&gt;</span>48<span class="nt">&lt;/q-points&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/dielectric-matrix&gt;</span>
+<span class="nt">&lt;/root&gt;</span>
+</code></pre></div>
 
 
 
