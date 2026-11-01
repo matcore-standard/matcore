@@ -153,7 +153,7 @@ from the YAML for that serialization and used by CI to validate the examples (00
   fallback. The serialization(s) it reads and writes: see status step 9.
 - Licenses: CC BY 4.0 (standard text/schema), Apache-2.0 (code). Tagged releases get a Zenodo DOI.
 
-## Known defects in the baseline (fixed in status step 4, branch step4-part-b)
+## Known defects in the baseline (fixed in status step 4, PR #8)
 All items below are fixed: the MBPT entry is renamed `localized-orbital-basis-set` and both MBPT notes
 name the properties correctly; MD-3 was checked against the docx and matches; the accepted Part B
 items are applied in their "alone" form (see 0001's note). Kept for reference.
@@ -226,7 +226,7 @@ record or marked PROPOSED, NOT DECIDED.
    elements or object keys (0004); tighten the name pattern in meta-schema.yaml (all 255 current
    names pass it); add a field-order check to validate_schema.py.
    PROPOSED, NOT DECIDED: do these before step 5.
-4. [done, branch step4-part-b, PR pending] 0001 Part B fixes ("alone" forms) and the known
+4. [done, PR #8 merged 2026-11-01] 0001 Part B fixes ("alone" forms) and the known
    baseline defects (0004 item 25; see 0001's note). Done before step 5 (0004).
 5. [todo] One PR per top-level property, covering all of its subproperties: 48 PRs (0004). Each PR,
    in this order: (a) cross-check the property against the baseline .docx (name, definition,
