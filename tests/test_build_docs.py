@@ -90,12 +90,18 @@ def test_title_marks_required_and_repeatable(page):
 
 
 def test_attribute_table_states_required_and_repeatable_in_words(page):
-    """The table repeats the title symbols in words, for readers who do not know the symbols."""
+    """The table repeats the title symbols in words, for readers who do not know the symbols. A container
+    (a property with subproperties) has no value of its own, so its table shows only those two columns
+    (0007 item 12); a property with a value shows all six."""
     data, md = page
     parsed = blocks(md)
     for addr, p in walk(data['properties'], [data['section']]):
         text = parsed[addr][1]
-        assert '| Required | Repeatable | Type | Extent | Kind | Rec. unit |' in text, addr
+        if p.get('subproperties'):
+            assert '| Required | Repeatable |\n|---|---|' in text, addr
+            assert '| Type |' not in text, addr
+        else:
+            assert '| Required | Repeatable | Type | Extent | Kind | Rec. unit |' in text, addr
         row = f"| {'yes' if p['required'] else 'no'} | {'yes' if p['repeatable'] else 'no'} |"
         assert row in text, addr
 

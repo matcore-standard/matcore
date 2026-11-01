@@ -116,3 +116,12 @@ summary:hover > .mc-permalink, .mc-permalink:focus-visible { opacity: 1; }
 /* Version line under each standard page's title (decision 0010); on the dev site it is a warning. */
 .md-typeset .mc-version { margin: -.4em 0 1.4em; font-size: .8em; color: var(--mc-slate); }
 .md-typeset .mc-version--dev { color: var(--mc-bronze-text); font-weight: 700; }
+
+/* Logo on dark backgrounds (decision 0007 item 16): the header bar, and the menu's title bar on narrow
+   screens, show logo-light.svg; the img keeps its size and stays in the page for screen readers. */
+.md-header__button.md-logo { background: url(logo-light.svg) center / contain no-repeat content-box; }
+.md-header__button.md-logo img { opacity: 0; }
+@media screen and (max-width: 76.234375em) {
+  .md-nav--primary > .md-nav__title .md-logo { background: url(logo-light.svg) left center / contain no-repeat content-box; }
+  .md-nav--primary > .md-nav__title .md-logo img { opacity: 0; }
+}

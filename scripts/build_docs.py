@@ -86,12 +86,14 @@ def render_property(p, path, out, show_legacy):
     out (list[str]): output lines; show_legacy (bool): whether to include legacy_* text.
     """
     out += [f'<details class="note mc-property" id="{".".join(path)}" markdown="1">', title_bar(p), '',
-            ' '.join(p['description'].split()), '',
-            '| Required | Repeatable | Type | Extent | Kind | Rec. unit |',
-            '|---|---|---|---|---|---|',
-            f"| {'yes' if p['required'] else 'no'} | {'yes' if p['repeatable'] else 'no'} "
-            f"| {p.get('type') or '—'} | {extent(p.get('extent'))} | {p.get('kind') or '—'} "
-            f"| {p.get('recommended-unit') or '—'} |", '']
+            ' '.join(p['description'].split()), '']
+    flags = f"| {'yes' if p['required'] else 'no'} | {'yes' if p['repeatable'] else 'no'} |"
+    if p.get('subproperties'):  # a container has no value of its own: no type, extent, kind or unit (0007 item 12)
+        out += ['| Required | Repeatable |', '|---|---|', flags, '']
+    else:
+        out += ['| Required | Repeatable | Type | Extent | Kind | Rec. unit |', '|---|---|---|---|---|---|',
+                f"{flags} {p.get('type') or '—'} | {extent(p.get('extent'))} | {p.get('kind') or '—'} "
+                f"| {p.get('recommended-unit') or '—'} |", '']
     text = values_text(p, show_legacy)
     if text:
         out += [text, '']
