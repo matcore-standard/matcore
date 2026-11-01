@@ -240,8 +240,10 @@ record or marked PROPOSED, NOT DECIDED.
    human can decide. A section is complete when no legacy_* fields remain in its file.
    Sections go in the order minimal, dft, md, mbpt, ml, pf, derived, and properties in file order
    within a section (0004 item 35).
-   PROPOSED, NOT DECIDED: a check in validate_schema.py that fails if a section file declares
-   `legacy_complete: true` but still contains legacy_* fields.
+   A complete section file declares `legacy_complete: true` at its top level; validate_schema.py
+   fails if it does while legacy_* fields remain (0004 item 36).
+   [todo] Add `legacy_complete` to meta-schema.yaml and the check to validate_schema.py, as its
+   own PR.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
