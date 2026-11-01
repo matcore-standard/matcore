@@ -4,6 +4,8 @@ matcore_version: 0.9-draft-baseline
 source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.
+introduction: |
+  The minimal MatCore metadata includes aspects of a dataset deemed important to report for data findability and reuse and are universal across all computational methods. The list of minimal metadata is tabulated below.
 properties:
 - name: creator
   required: true

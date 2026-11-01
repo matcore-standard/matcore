@@ -140,6 +140,22 @@ def test_page_starts_with_title_and_symbol_key():
     assert 'mc-legend' in head and 'required' in head and 'repeatable' in head and 'at most once' in head
 
 
+def test_every_section_has_its_introduction():
+    """Each section opens with introductory text from the baseline .docx (0004 item 23)."""
+    for key in SECTIONS:
+        intro = load(key).get('introduction')
+        assert isinstance(intro, str) and len(intro.split()) >= 10, key
+
+
+def test_introduction_sits_between_title_and_symbol_key(page):
+    """Readers meet the section's introduction right under its title, before the key and the properties."""
+    data, md = page
+    head = md.split('<details', 1)[0]
+    first_words = ' '.join(data['introduction'].split()[:8])
+    assert first_words in ' '.join(head.split())
+    assert head.index(data['introduction'].split()[0]) < head.index('mc-legend')
+
+
 def test_main_writes_every_page_and_honours_the_flag(tmp_path):
     """The command writes one page per section plus the unit table; --show-legacy controls legacy text."""
     build_docs.main(['--out', str(tmp_path)])

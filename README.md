@@ -33,7 +33,7 @@ uv run mkdocs serve
   with it until every section's typed fields are filled, so use it locally too; without it the
   regenerated pages differ from the committed ones and CI fails.
 - `mkdocs serve` serves the site at http://127.0.0.1:8000 until stopped with Ctrl-C.
-- Edits to prose pages (`docs/index.md`, `docs/standard/01-introduction.md`,
+- Edits to prose pages (`docs/index.md`, `docs/standard/index.md`,
   `docs/standard/annex-u-units.md`, …) reload in the browser on save.
 - Edits to `schema/*.yaml` do not. The chapters `docs/standard/02-*.md` … `08-*.md` and
   `annex-u-table.md` are generated from the YAML; never edit them by hand. After a YAML edit,

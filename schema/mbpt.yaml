@@ -1,9 +1,11 @@
 section: mbpt
-title: 2.4 MBPT
+title: 2.4 Many-Body Perturbation Theory (MBPT) Metadata
 matcore_version: 0.9-draft-baseline
 source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.
+introduction: |
+  The metadata for Many-Body Perturbation Theory (MBPT) data (MatCore-MBPT) is tabulated below. This includes the MBPT method, starting point, dielectric treatment, and associated parameters. (Note: This standard inherits the metadata in the minimal MatCore standard and MatCore-DFT standard, adding the properties below.)
 properties:
 - name: mbpt-method
   required: true

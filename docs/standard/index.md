@@ -1,6 +1,6 @@
-# Material Core Metadata (MatCore) Standard
+<p class="mc-doc-title">Material Core Metadata (MatCore) Standard</p>
 
-## 1. Preamble
+# 1. Preamble
 
 ## 1.1 Objectives
 

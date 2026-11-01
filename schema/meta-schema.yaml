@@ -10,6 +10,7 @@ properties:
   title: {type: string}
   matcore_version: {type: string}
   source: {type: string}
+  introduction: {type: string}  # Markdown shown under the section title (0004 item 23)
   properties:
     type: array
     items: {$ref: "#/$defs/property"}

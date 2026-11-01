@@ -1,9 +1,11 @@
 section: md
-title: 2.3 MD
+title: 2.3 Molecular Dynamics (MD) Metadata
 matcore_version: 0.9-draft-baseline
 source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.
+introduction: |
+  The metadata for classical molecular dynamics (MD) data (MatCore-MD) is tabulated below. This category includes energy and free energy minimization, equilibrium and nonequilibrium MD, and related approaches.  (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 properties:
 - name: computation
   required: true

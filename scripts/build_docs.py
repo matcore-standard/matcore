@@ -103,11 +103,14 @@ def render_property(p, path, out, show_legacy):
 
 
 def render_section(section, show_legacy):
-    """Return the Markdown of a section page: title, symbol key, then every property block.
+    """Return the Markdown of a section page: title, introduction, symbol key, then every property block.
 
     section (dict): a parsed schema/<section>.yaml; show_legacy (bool): whether to include legacy_* text.
     """
-    out = [f"# {section['title']}", '', KEY, '']
+    out = [f"# {section['title']}", '']
+    if section.get('introduction'):
+        out += [section['introduction'].strip(), '']
+    out += [KEY, '']
     for p in section['properties']:
         render_property(p, [section['section'], p['name']], out, show_legacy)
     return '\n'.join(out)

@@ -71,7 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
       list.appendChild(build(el));
     }
   }
-  if (sidebar) sidebar.appendChild(tree);
+  // The tree goes under the current page's entry in the left menu, where the page's headings
+  // would be (decision 0008); the menu entry already names the section, so its title is dropped.
+  const pageLink = document.querySelector('.md-nav--primary .md-nav__link--active');
+  const host = pageLink && pageLink.closest('li');
+  if (host) {
+    tree.querySelectorAll('.mc-tree-section').forEach(h => h.remove());
+    tree.classList.add('mc-tree--in-menu');
+    host.appendChild(tree);
+  } else if (sidebar) {
+    sidebar.appendChild(tree);
+  }
 
   function ancestors(d) {
     const out = [];

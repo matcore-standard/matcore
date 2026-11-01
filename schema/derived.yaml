@@ -1,9 +1,26 @@
 section: derived
-title: 2.7 Derived Property
+title: 2.7 Derived Property Metadata
 matcore_version: 0.9-draft-baseline
 source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.
+introduction: |
+  The metadata for derived properties (MatCore-Der) is tabulated below. This refers to properties computed from data generated using a CMS method documented elsewhere in this section (e.g. spectroscopy computations based on DFT data). (Notes: (1) This standard inherits the metadata in the minimal MatCore standard and one of the associated methods metadata, adding the properties below. (2) Derived properties in this category are limited to properties based on a single method. Derived properties involving a combination of multiple methods (e.g. MD and ML) are not supported. An exception is MBPT, which itself is based on DFT.)
+
+  Examples of derived properties include:
+
+  - Electronic (band structure, density of states (DOS), projected DOS, dielectric function, charge and bonding analysis, etc.)
+  - Electron-phonon interactions (superconducting properties, line widths, etc.)
+  - Linear-response (phonon modes, dispersion, interatomic force constants, vibrational DOS, etc.)
+  - Magnetic (magnetics, magnetization, magnons, etc.)
+  - Microscopy, electron (S/TEM, 4D-STEM, SAED, etc.)
+  - Microscopy, scanning probe (STM, AFM, etc.)
+  - NMR (chemical shifts)
+  - Optical (electronic excitation spectra, low-loss EELS, etc.)
+  - Spectroscopy, core-level (XAS, XES, core-loss EELS, XPS, etc.)
+  - Spectroscopy, vibrational (Raman, Infrared spectroscopy, etc.)
+  - Transport (electronic conductivity, thermal conductivity, etc.)
+  - X-ray scattering (diffraction, reflectivity, pair-distribution function, etc.)
 properties:
 - name: derived-property
   required: true

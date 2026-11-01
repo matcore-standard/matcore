@@ -3,30 +3,36 @@ site_url: https://matcore-standard.github.io/matcore/
 repo_url: https://github.com/matcore-standard/matcore
 theme:
   name: material
-  features: [navigation.sections, navigation.indexes, content.code.copy, search.suggest]
+  custom_dir: overrides  # one-line change to the menu template (decision 0008)
+  # Collapsible left menu with page headings merged in, no right-hand TOC (decision 0008).
+  features: [navigation.indexes, toc.integrate, content.code.copy, search.suggest]
   palette: {primary: custom, accent: custom}  # colours in docs/assets/matcore/layout.css (decision 0007)
+  logo: assets/matcore/logo.png
 nav:
   - Home: index.md
   - About:
       - About MatCore: about.md
       - Leadership: leadership.md
   - Standard:
-      - Introduction: standard/01-introduction.md
-      - Minimal: standard/02-minimal.md
-      - DFT: standard/03-dft.md
-      - MD: standard/04-md.md
-      - MBPT: standard/05-mbpt.md
-      - ML: standard/06-ml.md
-      - Phase field: standard/07-pf.md
-      - Derived properties: standard/08-derived.md
-      - Annex U (units): standard/annex-u-units.md
-      - Annex U table: standard/annex-u-table.md
-  - Feedback: feedback.md
-  - Revision history: revision-history.md
+      - Browse Standard:
+          # index.md: Browse Standard opens on it; overrides/partials/nav-item.html also lists it
+          - 1. Preamble: standard/index.md
+          - 2. Schema for the MatCore Standard:  # entries take their labels from the section titles in schema/*.yaml
+              - standard/02-minimal.md
+              - standard/03-dft.md
+              - standard/04-md.md
+              - standard/05-mbpt.md
+              - standard/06-ml.md
+              - standard/07-pf.md
+              - standard/08-derived.md
+          - Annex U. MatCore Unit Table: standard/annex-u-units.md
+          - Annex U. Unit Table (generated): standard/annex-u-table.md
+      - Revision History: revision-history.md
+  - Contact: contact.md
 # Decision records (and the baseline .docx stored with them) are internal; see docs/decisions/0004.
 exclude_docs: |
   decisions/
-markdown_extensions: [tables, admonition, toc, pymdownx.details, attr_list, md_in_html]
+markdown_extensions: [tables, admonition, {toc: {toc_depth: 2}}, pymdownx.details, attr_list, md_in_html]
 extra_css: [assets/matcore/layout.css]
 extra_javascript: [assets/matcore/layout.js]
 extra:
