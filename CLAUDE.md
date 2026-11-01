@@ -111,9 +111,9 @@ from the YAML for that serialization and used by CI to validate the examples (00
   by .github/workflows/ci.yml; no dynamic server (0000). The site is served at
   matcore-standard.github.io/matcore for now. matcore.org will point to it as soon as the site is
   clean and operational, replacing the current site there (0004).
-- Tools: one Python package, run in-browser via Pyodide (0000). PROPOSED, NOT DECIDED: the name
-  `matcore`; its contents (a command-line validator; parsers for VASP, QE and LAMMPS output; web
-  validator, visualizer and forms); parsers as the primary generator of instances, web forms as the
+- Tools: one Python package named `matcore`, run in-browser via Pyodide (0000, 0006).
+  PROPOSED, NOT DECIDED: its contents (a command-line validator; parsers for VASP, QE and LAMMPS
+  output; web validator, visualizer and forms); parsers as the primary generator of instances, web forms as the
   fallback. The serialization(s) it reads and writes: see status step 9.
 - Licenses: CC BY 4.0 (standard text/schema), Apache-2.0 (code). Tagged releases get a Zenodo DOI.
 
@@ -131,7 +131,7 @@ from the YAML for that serialization and used by CI to validate the examples (00
 ## Status / next steps (update this list as work lands)
 Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
 PROPOSED, NOT DECIDED until the human rules: the order of status steps 7 and 9; and the working
-rules other than the first two.
+rules other than the first two and the environment rule.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
@@ -195,8 +195,9 @@ rules other than the first two.
 - Write each ruling into the repository (this file, plus a decision record where needed) before
   taking up the next item; show the diff and commit once approved. Never push; the human pushes,
   since every push to main redeploys the site (0005).
-- Environment: use the `matcore` conda environment for every command (`conda activate matcore`;
-  create it from environment.yml). Never pip-install into the system Python.
+- Environment: uv owns it (0006). Dependencies live in pyproject.toml (a `dev` group for site and
+  test tools) and are pinned in uv.lock; run `uv sync`, then every command through `uv run`.
+  Never pip-install into the system Python.
 - Permissions: propose changes, let the user review the diff, then commit. Never commit anything
   the user has not approved. A commit contains only what its message describes; if a change outside
   the current task seems necessary, say so and get agreement first.
@@ -206,8 +207,8 @@ rules other than the first two.
   conversation, update the relevant section of this file and the status list in the same commit as
   the work. At the end of every session, update the status list to say exactly what was done and
   what remains, and commit it. Assume the conversation will not be available next time.
-- Before every commit run: `python scripts/validate_schema.py`, `python scripts/build_docs.py`,
-  `mkdocs build --strict`. Never hand-edit generated files under docs/standard/ (02-*.md … 08-*.md,
-  annex-u-table.md).
+- Before every commit run: `uv run python scripts/validate_schema.py`,
+  `uv run python scripts/build_docs.py`, `uv run mkdocs build --strict`. Never hand-edit generated
+  files under docs/standard/ (02-*.md … 08-*.md, annex-u-table.md).
 - Never invent QUDT IRIs, physical constants or unit symbols; units.yaml was verified against
   primary sources. New units need a verified source stated in the PR.

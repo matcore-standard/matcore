@@ -18,10 +18,10 @@ tests/             CI tests
 
 ## Build locally
 ```
-pip install -r requirements.txt
-python scripts/validate_schema.py
-python scripts/build_docs.py
-mkdocs serve
+uv sync
+uv run python scripts/validate_schema.py
+uv run python scripts/build_docs.py
+uv run mkdocs serve
 ```
 
 ## License
