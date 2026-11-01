@@ -206,6 +206,9 @@ record or marked PROPOSED, NOT DECIDED.
    - [done, PR #3] Versioning (0010): releases.yaml, generated Revision History, version line on
      standard pages, versioned permalinks, CI deploys per version. 0.4.0 released 2026-11-01
      (tag v0.4.0); the site's `latest` is 0.4.0 and `dev` is main.
+   - Changes to the standard since 0.4.0, for the next release's entry in releases.yaml: the
+     Preamble's italics fixed (PR #4); contributor and its affiliation optional, and exactly one
+     basis entry for the MBPT dielectric matrix (0011).
    PROPOSED, NOT DECIDED: the open points of 0007
    (items 12–16).
 3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
@@ -276,6 +279,10 @@ record or marked PROPOSED, NOT DECIDED.
   build_docs.py regenerates with the change; CI fails if the committed copies are stale. Never
   hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, revision-history.md, the
   marked regions in index.md and annex-u-units.md) (0004, 0009, 0010).
+- Examples follow the standard (0012): every change to schema/*.yaml includes reviewing every
+  example in examples/ and updating any that no longer conform, in the same change.
+  validate_schema.py (via scripts/check_examples.py) fails on structural mismatches; rules the
+  schema cannot express yet (e.g. "exactly one of") are reviewed by hand.
 - Never invent QUDT identifiers, physical constants or unit symbols. units.yaml was verified against
   QUDT Units 3.3.0, GNU Units 2.23 (definitions.units 3.19) and NIST CODATA 2022. A new unit is
   added by pull request, with each of its fields (kind, QUDT identifier or null, GNU Units name,

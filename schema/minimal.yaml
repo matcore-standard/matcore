@@ -75,7 +75,7 @@ properties:
     repeatable: true
     legacy_values: An ROR ID ([https://ror.org](https://ror.org)) or other suitable identifier.
 - name: contributor
-  required: true
+  required: false
   description: >-
     An entity (e.g. person, organization, software agent) responsible for making contributions to the
     dataset and their institutional affiliation if relevant.
@@ -100,7 +100,7 @@ properties:
       A string containing the entity name. Examples: "Albert Einstein", "Lawrence Livermore National Laboratory",
       "Claude Opus 5.5".
   - name: affiliation
-    required: true
+    required: false
     description: The affiliation of the entity that contributed to the dataset if they have one.
     type: null
     extent: null

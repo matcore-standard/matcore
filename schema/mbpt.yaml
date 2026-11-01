@@ -87,7 +87,7 @@ properties:
   legacy_values: Contains SubProperties as listed below.
   subproperties:
   - name: planewave-basis-cutoff
-    required: true
+    required: false
     description: >-
       For a planewave code, the basis set cutoff employed for the dielectric matrix. This is the same
       as the kinetic energy cutoff.
@@ -103,7 +103,7 @@ properties:
     - >-
       Note:Specify either "planewave-basis-cutoff" or "local-orbital-basis-set", but not both.
   - name: local-orbital-basis-set
-    required: true
+    required: false
     description: For local orbital codes, the name of the basis set .
     type: null
     extent: null
