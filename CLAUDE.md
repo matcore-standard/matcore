@@ -213,15 +213,16 @@ record or marked PROPOSED, NOT DECIDED.
      Preamble's italics fixed (PR #4); contributor and its affiliation optional, and exactly one
      basis entry for the MBPT dielectric matrix (0011); creator and contributor descriptions
      reworded (primary creator vs secondary contributor); step 4: 0001 Part B fixes (B1, B3, B4,
-     B6, B7, B8, B10, B11) and the MBPT `local-orbital-basis-set` renamed `localized-orbital-basis-set`.
+     B6, B7, B8, B10, B11) and the MBPT `local-orbital-basis-set` renamed `localized-orbital-basis-set`;
+     Annex U says "Kind" for MatCore's kinds (0004 item 14).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
 3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
-   (0004). What remains of this step does not belong to any one property, each its own change:
-   reword Annex U to "Kind" (0004).
-   PROPOSED, NOT DECIDED: do this before step 5.
+   (0004). What remained of this step did not belong to any one property; each was its own change.
+   [done, branch step3-checks] Annex U reworded to "Kind", keeping "quantity kind" where it means
+   QUDT's concept; the Table U.3 and U.4 headers say "Kind" (0004 item 14).
    [done] The check for XML-specific wording is closed: Annex U has none, and 0001 A1.3 is not
    applied, since §1.3 already makes the XML examples illustrative (0004 item 34).
    [done, branch step3-checks] The name pattern in meta-schema.yaml is tightened (0004 item 13).

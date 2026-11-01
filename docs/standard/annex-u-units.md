@@ -10,9 +10,9 @@
 
 ## U.1 Purpose
 
-This annex defines the closed set of unit symbols that MAY appear as the value of a `unit` subproperty in a MatCore metadata instance, the quantity kind of each symbol, and its conversion to coherent SI. It also defines the quantity-kind names used in the **Quantity kind** field of the schema and their mapping to the QUDT ontology.
+This annex defines the closed set of unit symbols that MAY appear as the value of a `unit` subproperty in a MatCore metadata instance, the kind of each symbol, and its conversion to coherent SI. It also defines the kind names used in the **Kind** field of the schema and their mapping to the QUDT ontology.
 
-A validator checks that (a) the symbol is in Table U.4 and (b) its quantity kind matches the quantity kind declared for the property in the schema. No unit parsing is required.
+A validator checks that (a) the symbol is in Table U.4 and (b) its kind matches the kind declared for the property in the schema. No unit parsing is required.
 
 ## U.2 Rules
 
@@ -22,15 +22,15 @@ A validator checks that (a) the symbol is in Table U.4 and (b) its quantity kind
 4. A `unit` subproperty of a generic parameter or of any other subproperty whose Kind the schema declares as `any` MAY, if and only if no symbol in Table U.4 applies, contain a string of the form `x-gnu:<expression>`, where `<expression>` is a unit expression valid in GNU Units 2.23 with `definitions.units` version 3.19 (February 2024). Such values are accepted with a validation warning and are not guaranteed to be machine-convertible. Later versions of `definitions.units` are not implied; a change of the pinned version is a revision of this annex.
 5. Conversion factors marked *exact* follow from the SI definitions. Factors marked *CODATA 2022* are the 2022 CODATA recommended values published by NIST. The factors in Table U.4 are normative for MatCore and take precedence over the values embedded in any external vocabulary (see Note 5). A revision to a later CODATA release is a revision of this annex.
 6. This annex is versioned with the standard. Instance files SHALL use symbols from the annex version matching their declared MatCore version. Symbols are only ever added; a symbol, once published, is never removed or redefined.
-7. Compatibility between a unit and a quantity kind is decided by the SI dimension vector in Table U.3, not by QUDT's own `hasQuantityKind` links (see Note 4).
-8. `Energy` and `MolarEnergy` are distinct quantity kinds and are not interchangeable. A property declared with Quantity kind Energy SHALL NOT carry a MolarEnergy unit, and vice versa (see Note 1).
+7. Compatibility between a unit and a kind is decided by the SI dimension vector in Table U.3, not by QUDT's own `hasQuantityKind` links (see Note 4).
+8. `Energy` and `MolarEnergy` are distinct kinds and are not interchangeable. A property declared with Kind Energy SHALL NOT carry a MolarEnergy unit, and vice versa (see Note 1).
 
-## U.3 Quantity kinds
+## U.3 Kinds
 
 QUDT namespace: `http://qudt.org/vocab/quantitykind/`. The dimension vector is QUDT's, in the order A (amount of substance), E (electric current), L (length), I (luminous intensity), M (mass), H (thermodynamic temperature), T (time), D (dimensionless).
 
 <!-- BEGIN generated: Table U.3 from schema/units.yaml by scripts/build_docs.py; do not edit -->
-| MatCore quantity kind | QUDT QuantityKind | QUDT dimension vector | SI dimension |
+| Kind | QUDT QuantityKind | QUDT dimension vector | SI dimension |
 |---|---|---|---|
 | Energy | Energy | A0E0L2I0M1H0T-2D0 | kg·m²·s⁻² |
 | MolarEnergy | MolarEnergy | A-1E0L2I0M1H0T-2D0 | kg·m²·s⁻²·mol⁻¹ |
@@ -54,14 +54,14 @@ QUDT namespace: `http://qudt.org/vocab/quantitykind/`. The dimension vector is Q
 | any | — | — | — |
 <!-- END generated -->
 
-Reserved kinds: `dimensionless`; `inapplicable` (the value is not a physical quantity: strings, booleans, identifiers, and the `unit` subproperty itself); `any` (the quantity kind is determined by the instance `unit`; used only for the `value` of generic name/value/unit parameters).
+Reserved kinds: `dimensionless`; `inapplicable` (the value is not a physical quantity: strings, booleans, identifiers, and the `unit` subproperty itself); `any` (the kind is determined by the instance `unit`; used only for the `value` of generic name/value/unit parameters).
 
 ## U.4 Unit symbols
 
 QUDT namespace: `http://qudt.org/vocab/unit/`. "—" in the QUDT column means the unit has no IRI in QUDT (see Note 7).
 
 <!-- BEGIN generated: Table U.4 from schema/units.yaml by scripts/build_docs.py; do not edit -->
-| Symbol | Quantity kind | QUDT Unit | GNU Units expression | Factor to coherent SI | Source |
+| Symbol | Kind | QUDT Unit | GNU Units expression | Factor to coherent SI | Source |
 |---|---|---|---|---|---|
 | `eV` | Energy | EV | eV | 1.602 176 634 × 10⁻¹⁹ J | exact |
 | `meV` | Energy | — | meV | 1.602 176 634 × 10⁻²² J | exact |
@@ -114,13 +114,13 @@ QUDT namespace: `http://qudt.org/vocab/unit/`. "—" in the QUDT column means th
 | `dimensionless` | dimensionless | UNITLESS | — | — | reserved |
 <!-- END generated -->
 
-**Note 1 (molar energies).** `kJ/mol`, `kcal/mol` and `J/mol` are units of energy per amount of substance and belong to the quantity kind MolarEnergy, consistent with QUDT, which links these units to `quantitykind:MolarEnergy`. They are the customary energy units of classical force fields, and properties in the MD section that are conventionally reported per mole are declared with Quantity kind MolarEnergy. Conversion between Energy and MolarEnergy is a division or multiplication by the Avogadro constant (6.022 140 76 × 10²³ mol⁻¹, exact) and is a task for tooling, not for a `unit` value.
+**Note 1 (molar energies).** `kJ/mol`, `kcal/mol` and `J/mol` are units of energy per amount of substance and belong to the kind MolarEnergy, consistent with QUDT, which links these units to `quantitykind:MolarEnergy`. They are the customary energy units of classical force fields, and properties in the MD section that are conventionally reported per mole are declared with Kind MolarEnergy. Conversion between Energy and MolarEnergy is a division or multiplication by the Avogadro constant (6.022 140 76 × 10²³ mol⁻¹, exact) and is a task for tooling, not for a `unit` value.
 
 **Note 2 (2π convention).** InverseLength symbols do not encode whether a factor 2π is included. Properties for which this matters (e.g. `k-point-spacing`) carry a separate required `convention` subproperty.
 
 **Note 3 (mole vs. dimensionless).** Following OPTIMADE, `dimensionless` SHALL NOT be used for amounts of substance or plane angles.
 
-**Note 4 (QUDT quantity-kind links are not a validation basis).** QUDT attaches its own quantity kinds to units, and these are often narrower or differently named than MatCore's: `PER-SEC` is linked to Frequency and DecayConstant (not InverseTime); `PER-M3` to InverseVolume (not NumberDensity); `W-PER-M2` to PowerPerArea (not HeatFluxDensity); `GigaPA`, `KiloBAR` and `BAR` to ForcePerArea (not Pressure); `EV-PER-ANGSTROM` to TotalLinearStoppingPower (not Force). In every case the dimension vector agrees with the MatCore quantity kind, so compatibility is validated by dimension vector (Rule 7), and the QUDT unit IRI serves only as a stable identifier.
+**Note 4 (QUDT quantity-kind links are not a validation basis).** QUDT attaches its own quantity kinds to units, and these are often narrower or differently named than MatCore's: `PER-SEC` is linked to Frequency and DecayConstant (not InverseTime); `PER-M3` to InverseVolume (not NumberDensity); `W-PER-M2` to PowerPerArea (not HeatFluxDensity); `GigaPA`, `KiloBAR` and `BAR` to ForcePerArea (not Pressure); `EV-PER-ANGSTROM` to TotalLinearStoppingPower (not Force). In every case the dimension vector agrees with the MatCore kind, so compatibility is validated by dimension vector (Rule 7), and the QUDT unit IRI serves only as a stable identifier.
 
 **Note 5 (stale constants in reference vocabularies).** QUDT's own conversion multipliers for `E_h` (4.359 743 94 × 10⁻¹⁸ J) and `AMU` (1.660 538 782 83 × 10⁻²⁷ kg) are CODATA 2006 values, and GNU Units 2.23 uses CODATA 2018 values (hartree 4.359 744 722 2071 × 10⁻¹⁸ J, bohrradius 5.291 772 109 02 × 10⁻¹¹ m, amu 1.660 539 066 6 × 10⁻²⁷ kg). The factors in Table U.4 are therefore normative in MatCore (Rule 5) and take precedence over the values embedded in either reference vocabulary.
 
