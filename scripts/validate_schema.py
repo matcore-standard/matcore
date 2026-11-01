@@ -11,6 +11,7 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'scripts'))
 from check_values import values_errors
+from check_identifiers import SCHEMES, scheme_terms_errors, table_errors
 meta = yaml.safe_load((ROOT/'schema/meta-schema.yaml').read_text())
 units = yaml.safe_load((ROOT/'schema/units.yaml').read_text())
 kinds = set(units['kinds']) | set(units['reserved_kinds'])
@@ -59,6 +60,9 @@ for name, k in units['kinds'].items():
     for field in ('si_unit', 'si_dimension'):
         if not k.get(field): print(f"ERROR units.yaml kind {name}: {field} missing"); errors += 1
 
+# identifier-schemes.yaml (decision 0014): complete entries whose examples pass their own rules.
+for e in table_errors(SCHEMES): print(f"ERROR identifier-schemes.yaml {e}"); errors += 1
+
 # releases.yaml (decision 0010): full semantic versions, newest first, dates not decreasing.
 import datetime, re
 releases = yaml.safe_load((ROOT/'schema/releases.yaml').read_text())['releases']
@@ -75,12 +79,14 @@ for newer, older in zip(releases, releases[1:]):
 
 v = Draft202012Validator(meta)
 for f in sorted(glob.glob(str(ROOT/'schema/[a-z]*.yaml'))):
-    if f.endswith(('meta-schema.yaml','units.yaml','releases.yaml')): continue
+    if f.endswith(('meta-schema.yaml','units.yaml','releases.yaml','identifier-schemes.yaml')): continue
     doc = yaml.safe_load(open(f))
     errs = sorted(v.iter_errors(doc), key=lambda e: e.path)
     for e in errs:
         print(f"ERROR {Path(f).name}: {'/'.join(map(str,e.path))}: {e.message}"); errors += 1
     walk(doc['properties'], Path(f).stem)
+    for e in scheme_terms_errors(doc['properties'], Path(f).stem):  # decision 0014
+        print(f"ERROR {e}"); errors += 1
     # A section marked complete keeps no baseline prose (decision 0004 item 36).
     if doc.get('legacy_complete') and (n := legacy_count(doc['properties'])):
         print(f"ERROR {Path(f).name}: legacy_complete is true but {n} legacy_* fields remain"); errors += 1

@@ -19,12 +19,14 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
 - `schema/units.yaml` — Annex U, the normative unit table (kinds, symbols, QUDT/GNU mapping, SI factors).
   The single source of Annex U's Tables U.3 and U.4, which build_docs.py generates into
   annex-u-units.md; it prevails over the annex. Factors are exact decimal text, e.g. "1e3" (0009).
-- `schema/identifier-schemes.yaml` (to be built; 0014) — the identifier schemes (ORCID, ROR, DOI,
-  SWHID, ISNI): for each, entities identified, canonical form, pattern, check digit, example, source.
-  Single source for checking identifier values, as units.yaml is for units.
+- `schema/identifier-schemes.yaml` — Annex I, the identifier schemes (ORCID, ROR, DOI, SWHID, ISNI):
+  for each, entities identified, canonical form, pattern, check digit, example, source. Single source
+  of Annex I's Table I.1 and of identifier checks (scripts/check_identifiers.py), as units.yaml is
+  for units; it prevails over the annex (0014).
 - `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
-- `docs/standard/*.md` — prose chapters (index = title and 1. Preamble, annex-u-units) plus GENERATED chapters
-  (02–08, revision-history, and the marked regions in index and annex-u-units: version line, Tables U.3/U.4).
+- `docs/standard/*.md` — prose chapters (index = title and 1. Preamble, annex-u-units,
+  annex-i-identifiers) plus GENERATED chapters (02–08, revision-history, and the marked regions in
+  index and the annexes: version line, Tables U.3/U.4, Table I.1).
   Never hand-edit generated parts; edit the YAML and run
   `scripts/build_docs.py --show-legacy`.
 - `docs/decisions/` — decision records: internal committee information, not published on the site
@@ -152,8 +154,8 @@ from the YAML for that serialization and used by CI to validate the examples (00
   DECIDED.
 - Navigation follows docs/decisions/0008 (decided): left menu, collapsed to Home · About · Standard ·
   Contact; Standard ▸ Browse Standard (numbered as on matcore.org: 1. Preamble, 1.1–1.3; 2. Schema,
-  2.1–2.7; Annex U) and Revision History; no tabs; no right-hand TOC (page headings in the left menu,
-  toc_depth 2); logo before "MatCore" in the menu title. Menu labels are set in mkdocs.yml `nav`.
+  2.1–2.7; Annex U; Annex I (0014)) and Revision History; no tabs; no right-hand TOC (page
+  headings in the left menu, toc_depth 2); logo before "MatCore" in the menu title. Menu labels are set in mkdocs.yml `nav`.
   Browse Standard opens the Preamble (docs/standard/index.md), which overrides/partials/nav-item.html
   (a one-line change to the theme's template; re-apply on theme upgrades) also lists as "1. Preamble".
   Home page: no visible title, no links line.
@@ -224,7 +226,7 @@ record or marked PROPOSED, NOT DECIDED.
      basis entry for the MBPT dielectric matrix (0011); creator and contributor descriptions
      reworded (primary creator vs secondary contributor); step 4: 0001 Part B fixes (B1, B3, B4,
      B6, B7, B8, B10, B11) and the MBPT `local-orbital-basis-set` renamed `localized-orbital-basis-set`;
-     Annex U says "Kind" for MatCore's kinds (0004 item 14).
+     Annex U says "Kind" for MatCore's kinds (0004 item 14); Annex I, Identifier Schemes, added (0014).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -260,9 +262,10 @@ record or marked PROPOSED, NOT DECIDED.
    every values key.
    creator and contributor are restructured by 0014: `identifier` containers (value + scheme,
    open terms) and `affiliation` as a container (name + at most one identifier).
-   [todo] PR: build schema/identifier-schemes.yaml (ORCID, ROR, DOI, SWHID, ISNI, each traced to
-   its documentation) with its checks in validate_schema.py; settle there whether it is published
-   as an annex and whether dft `unique-identifier` uses it (0014).
+   [done, branch identifier-schemes] schema/identifier-schemes.yaml built (ORCID, ROR, DOI, SWHID,
+   ISNI, each traced to its documentation), checked by validate_schema.py, published as Annex I.
+   dft `unique-identifier` is a hash and does not use it; the dft `doi` properties are decided in
+   their PR (0014, settled 2026-11-01).
    [todo] Then the creator PR, then the contributor PR, applying 0014; the creator PR updates
    examples/minimal.xml (each affiliation gets a `name`).
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
@@ -312,7 +315,7 @@ record or marked PROPOSED, NOT DECIDED.
   `uv run mkdocs build --strict`. Commit any files
   build_docs.py regenerates with the change; CI fails if the committed copies are stale. Never
   hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, revision-history.md, the
-  marked regions in index.md and annex-u-units.md) (0004, 0009, 0010).
+  marked regions in index.md, annex-u-units.md and annex-i-identifiers.md) (0004, 0009, 0010, 0014).
 - Examples follow the standard (0012): every change to schema/*.yaml includes reviewing every
   example in examples/ and updating any that no longer conform, in the same change.
   validate_schema.py (via scripts/check_examples.py) fails on structural mismatches; rules the
