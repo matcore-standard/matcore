@@ -6,6 +6,8 @@ A3.3 removed 2026-10-31: referred to a DFT `computation-parameter` that does not
 
 A7.4 amended 2026-10-31: `grid-spacing` and `time-step-size` are typed properties (Length, Time; Annex U symbols only, recommended units m and s), not generic parameters; the `field-variable` value line is removed because `field-variable` has no `value`. Annex U Rule 4 amended 2026-10-31: the `x-gnu:` escape applies to the `unit` of a generic parameter or of any other subproperty whose Kind the schema declares as any. Nondimensional `domain-size`, `grid-spacing` and `time-step-size` are covered by 0003.
 
+Part B applied 2026-11-01 (status step 4), in the "if applying alone" form of each accepted item: B1 temperature-gradient unit named kelvin per meter; B3 exciton-momentum given as fractions of the reciprocal lattice vectors (dimensionless); B4 strain-rate unit inverse seconds (1/s); B6 SCF tolerance "(on total energy)"; B7 k-point-spacing note on the 2π factor; B8 "dimensionless" lower-cased; B10 cell-periodicity unit removed; B11 free-energy > unit definition per A7.3. Their Part A forms (kinds, `basis`, `criterion`, `convention`) follow in step 5. B2, B4's Ė symbol, B5 and B9 remain undecided.
+
 **Part A** implements the units design (explicit `unit` on every dimensioned property; schema declares Quantity kind + Recommended unit; no default unit is ever implied).
 **Part B** contains independent fixes to existing content. Apply Part B even if Part A is deferred.
 

@@ -101,8 +101,8 @@ properties:
     legacy_values: A real number containing the cutoff.
     notes:
     - >-
-      Note:Specify either "planewave-basis-cutoff" or "local-orbital-basis-set", but not both.
-  - name: local-orbital-basis-set
+      Note:Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
+  - name: localized-orbital-basis-set
     required: false
     description: For local orbital codes, the name of the basis set .
     type: null
@@ -114,7 +114,7 @@ properties:
     legacy_values: A string containing the name of the atomic orbital basis. (e.g. "cc-pV6Z").
     notes:
     - >-
-      Note:Specify either "basis-cutoff-planewave" or "local-orbital-basis-set", but not both.
+      Note:Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
   - name: frequency
     required: false
     description: >-
@@ -243,9 +243,10 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: Reciprocal lattice units (2π/a)
+    legacy_unit: dimensionless
     legacy_values: >-
-      Ordered list of 3 real values containing the crystal momentum, e.g. [0.5,0.5,1.0].
+      Ordered list of 3 real values containing the crystal momentum in fractions of the reciprocal
+      lattice vectors (dimensionless), e.g. [0.5,0.5,1.0].
   - name: exciton-multiplicity
     required: false
     description: >-

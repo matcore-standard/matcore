@@ -140,7 +140,9 @@ properties:
       legacy_values: A string containing a code snippet, LaTeX formula, or SymPy expression.
     - name: unit
       required: false
-      description: The physical unit of the free energy density.
+      description: >-
+        The physical unit of the free energy density (or of the free energy, if `expression` is not a
+        density).
       type: null
       extent: null
       kind: null

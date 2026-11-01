@@ -430,7 +430,7 @@ Specification of whether periodic boundary conditions are applied along the cell
 |---|---|---|---|---|---|
 | no | no | — | — | — | — |
 
-<span class='legacy'>Legacy: Ordered list of three booleans (*pa*,, *pb*,, *pc*,), which are set to true if periodic boundary conditions are applied along the corresponding cell vectors (a, b, c).</span> <span class='legacy'>Legacy unit: dimensionless</span>
+<span class='legacy'>Legacy: Ordered list of three booleans (*pa*,, *pb*,, *pc*,), which are set to true if periodic boundary conditions are applied along the corresponding cell vectors (a, b, c).</span>
 
 </details>
 
@@ -482,7 +482,7 @@ The derivative with respect to time of a deformation relative to a reference con
 |---|---|---|---|---|---|
 | no | no | — | — | — | — |
 
-<span class='legacy'>Legacy: An array of six real numbers containing the components of the (symmetric) Lagrangian strain rate tensor E in the following order: [*E11, E22, E33, E23, E13, E12,*]. The strain component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a0, e2 is in the direction of c0╳a0, and e3= e1╳e2, where (a0, b0, c0) are the vectors defining the cell in the reference configuration, which may not be orthogonal.</span> <span class='legacy'>Legacy unit: dimensionless</span>
+<span class='legacy'>Legacy: An array of six real numbers containing the components of the (symmetric) Lagrangian strain rate tensor E in the following order: [*E11, E22, E33, E23, E13, E12,*]. The strain component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a0, e2 is in the direction of c0╳a0, and e3= e1╳e2, where (a0, b0, c0) are the vectors defining the cell in the reference configuration, which may not be orthogonal.</span> <span class='legacy'>Legacy unit: inverse seconds (1/s)</span>
 
 Requires the definition of cell-reference in order for the basis to be defined relative to which the tensor components are given
 
@@ -510,7 +510,7 @@ A physical quantity that describes the rate and direction of maximum temperature
 |---|---|---|---|---|---|
 | no | no | — | — | — | — |
 
-<span class='legacy'>Legacy: An array of three real numbers containing the components of the temperature gradient vector ∇*T*. The temperature gradient component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a, e2 is in the direction of c╳a, and e3= e1╳e2, where (a, b, c) are the vectors defining cell, which may not be orthogonal.</span> <span class='legacy'>Legacy unit: watts per square meter (K/m)</span>
+<span class='legacy'>Legacy: An array of three real numbers containing the components of the temperature gradient vector ∇*T*. The temperature gradient component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a, e2 is in the direction of c╳a, and e3= e1╳e2, where (a, b, c) are the vectors defining cell, which may not be orthogonal.</span> <span class='legacy'>Legacy unit: kelvin per meter (K/m)</span>
 
 </details>
 

@@ -153,7 +153,10 @@ from the YAML for that serialization and used by CI to validate the examples (00
   fallback. The serialization(s) it reads and writes: see status step 9.
 - Licenses: CC BY 4.0 (standard text/schema), Apache-2.0 (code). Tagged releases get a Zenodo DOI.
 
-## Known defects in the baseline (fix in the Part B PR)
+## Known defects in the baseline (fixed in status step 4, branch step4-part-b)
+All items below are fixed: the MBPT entry is renamed `localized-orbital-basis-set` and both MBPT notes
+name the properties correctly; MD-3 was checked against the docx and matches; the accepted Part B
+items are applied in their "alone" form (see 0001's note). Kept for reference.
 - `localized-orbital-basis-set` (DFT-1) vs `localized-orbitals-basis-set` (DFT-4) vs
   `local-orbital-basis-set` (MBPT-1): three spellings. Migration aliased DFT-4 to the DFT-1 form.
   Use `localized-orbital-basis-set` in all three places, including references in notes (0004).
@@ -209,7 +212,8 @@ record or marked PROPOSED, NOT DECIDED.
    - Changes to the standard since 0.4.0, for the next release's entry in releases.yaml: the
      Preamble's italics fixed (PR #4); contributor and its affiliation optional, and exactly one
      basis entry for the MBPT dielectric matrix (0011); creator and contributor descriptions
-     reworded (primary creator vs secondary contributor).
+     reworded (primary creator vs secondary contributor); step 4: 0001 Part B fixes (B1, B3, B4,
+     B6, B7, B8, B10, B11) and the MBPT `local-orbital-basis-set` renamed `localized-orbital-basis-set`.
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -222,8 +226,8 @@ record or marked PROPOSED, NOT DECIDED.
    elements or object keys (0004); tighten the name pattern in meta-schema.yaml (all 255 current
    names pass it); add a field-order check to validate_schema.py.
    PROPOSED, NOT DECIDED: do these before step 5.
-4. [todo] PR: apply 0001 Part B fixes + the known baseline defects listed above. Done before step 5
-   (0004).
+4. [done, branch step4-part-b, PR pending] 0001 Part B fixes ("alone" forms) and the known
+   baseline defects (0004 item 25; see 0001's note). Done before step 5 (0004).
 5. [todo] One PR per top-level property, covering all of its subproperties: 48 PRs (0004). Each PR,
    in this order: (a) cross-check the property against the baseline .docx (name, definition,
    values, required, repeatable, subproperty tree) so no definition or value was lost or altered

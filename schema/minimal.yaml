@@ -431,7 +431,6 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: dimensionless
       legacy_values: >-
         Ordered list of three booleans (*pa*,, *pb*,, *pc*,), which are set to true if periodic boundary
         conditions are applied along the corresponding cell vectors (a, b, c).
@@ -501,7 +500,7 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: dimensionless
+      legacy_unit: inverse seconds (1/s)
       legacy_values: >-
         An array of six real numbers containing the components of the (symmetric) Lagrangian strain rate
         tensor E in the following order: [*E11, E22, E33, E23, E13, E12,*]. The strain component are expressed
@@ -540,7 +539,7 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: watts per square meter (K/m)
+      legacy_unit: kelvin per meter (K/m)
       legacy_values: >-
         An array of three real numbers containing the components of the temperature gradient vector ∇*T*.
         The temperature gradient component are expressed relative to an orthonormal basis (e1, e2, e3),

@@ -46,3 +46,20 @@ def test_meta_schema_types_the_examples():
     for bad in ({'caption': 'C', 'file': 'minimal.xml'}, good | {'file': 'sub/dir.xml'}, good | {'extra': 1}):
         with pytest.raises(jsonschema.ValidationError):
             jsonschema.validate(section | {'examples': [bad]}, meta)
+
+
+def test_notes_name_only_properties_that_exist():
+    """A note that cites a property by its quoted name must use a name the standard defines, so a rename
+    cannot leave a note pointing at nothing (e.g. "basis-cutoff-planewave" for planewave-basis-cutoff)."""
+    import re
+    names, cited = set(), []
+
+    def walk(props, path):
+        for p in props:
+            names.add(p['name'])
+            for note in p.get('notes') or []:
+                cited.extend((f'{path}/{p["name"]}', n) for n in re.findall(r'"([a-z][a-z0-9]*(?:-[a-z0-9]+)+)"', note))
+            walk(p.get('subproperties') or [], f'{path}/{p["name"]}')
+    for key in ['minimal', 'dft', 'md', 'mbpt', 'ml', 'pf', 'derived']:
+        walk(yaml.safe_load(open(ROOT / f'schema/{key}.yaml'))['properties'], key)
+    assert [c for c in cited if c[1] not in names] == []
