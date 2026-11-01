@@ -411,6 +411,8 @@ properties:
     repeatable: false
     legacy_unit: 1/angstrom (1/Å)
     legacy_values: Real number containing the k-point spacing.
+    notes:
+    - State whether the factor 2π is included in the reciprocal length.
   - name: shift
     required: false
     description: Translation of the k-point mesh along the reciprocal lattice vector directions.
@@ -462,7 +464,7 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: Dimensionless
+    legacy_unit: dimensionless
     legacy_values: Integer containing the Methfessel-Paxton order.
 - name: self-consistent-field-convergence
   required: false
@@ -494,7 +496,7 @@ properties:
       Other user-specified value if none of the above apply.
   - name: tolerance
     required: true
-    description: Convergence criterion for the self-consistent loop.
+    description: Convergence criterion (on total energy) for the self-consistent loop.
     type: null
     extent: null
     kind: null
