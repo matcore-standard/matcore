@@ -26,7 +26,7 @@ nav:
               - standard/07-pf.md
               - standard/08-derived.md
           - Annex U. MatCore Unit Table: standard/annex-u-units.md
-      - Revision History: revision-history.md
+      - Revision History: standard/revision-history.md
   - Contact: contact.md
 # Decision records (and the baseline .docx stored with them) are internal; see docs/decisions/0004.
 exclude_docs: |

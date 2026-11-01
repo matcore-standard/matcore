@@ -1,5 +1,7 @@
 # 2.7 Derived Property Metadata
 
+<p class="mc-version" data-version="0.4.0">Version 0.4.0</p>
+
 The metadata for derived properties (MatCore-Der) is tabulated below. This refers to properties computed from data generated using a CMS method documented elsewhere in this section (e.g. spectroscopy computations based on DFT data). (Notes: (1) This standard inherits the metadata in the minimal MatCore standard and one of the associated methods metadata, adding the properties below. (2) Derived properties in this category are limited to properties based on a single method. Derived properties involving a combination of multiple methods (e.g. MD and ML) are not supported. An exception is MBPT, which itself is based on DFT.)
 
 Examples of derived properties include:

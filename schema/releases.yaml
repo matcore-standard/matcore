@@ -1,0 +1,41 @@
+# Releases of the MatCore standard, newest first (decision record 0010). The newest entry is the current
+# version. scripts/build_docs.py generates the Revision History page and the version line on every standard
+# page from this file. A release adds an entry here in one commit on main, then tags that commit vX.Y.Z.
+# description: one item per line of the history table's cell.
+releases:
+  - version: 0.4.0
+    date: 2026-11-01
+    change_type: Minor (Breaking)
+    sections: Across document
+    description:
+      - "- Standard moved from the Google Doc to the GitHub repository and website; the YAML schema is the source of truth"
+      - "- Renaming of some properties (e.g. material to material-component)"
+      - "- Added Annex U, the MatCore Unit Table"
+      - "- Section introductions and examples shown with each section"
+    approved_by: E. B. Tadmor
+  - version: 0.3.0
+    date: 2026-04-06
+    change_type: Minor (Breaking)
+    sections: Across document
+    description:
+      - "- Added phase field method standard"
+      - "- Changed from JSON to XML for examples"
+      - "- Replaced key-value-unit lists with nested sub-properties"
+    approved_by: E. B. Tadmor
+  - version: 0.2.0
+    date: 2026-03-19
+    change_type: Minor (Breaking)
+    sections: Across document
+    description:
+      - "Changes based on MatCore Standard Committee review:"
+      - "- Renaming of some properties"
+      - "- Addition of properties"
+      - "- Changes to property definitions and controlled vocabulary"
+    approved_by: E. B. Tadmor
+  - version: 0.1.0
+    date: 2026-02-23
+    change_type: Minor (Breaking)
+    sections: Entire document
+    description:
+      - "Initial release of draft proposal"
+    approved_by: E. B. Tadmor

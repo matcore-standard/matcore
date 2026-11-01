@@ -1,6 +1,5 @@
 section: minimal
 title: 2.1 Minimal MatCore Metadata
-matcore_version: 0.9-draft-baseline
 source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.

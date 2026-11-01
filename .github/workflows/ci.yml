@@ -1,5 +1,5 @@
 name: ci
-on: {push: {branches: [main]}, pull_request: {}}
+on: {push: {branches: [main], tags: ['v*']}, pull_request: {}}
 permissions: {contents: write}
 jobs:
   validate-and-build:
@@ -17,8 +17,16 @@ jobs:
       - name: fail if generated docs are stale
         run: git diff --exit-code -- docs/standard
       - run: uv run mkdocs build --strict
-      - name: deploy site (main only)
+      # Versions (decision 0010): main deploys the unreleased `dev`; a tag vX.Y.Z deploys X.Y.Z and moves `latest`.
+      - name: deploy dev (push to main)
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
           git config user.name github-actions && git config user.email github-actions@github.com
-          uv run mike deploy --push --update-aliases dev latest
+          uv run mike deploy --push dev
+      - name: deploy release (tag vX.Y.Z matching the newest entry of schema/releases.yaml)
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          current=$(uv run python -c 'import yaml; print(yaml.safe_load(open("schema/releases.yaml"))["releases"][0]["version"])')
+          test "$GITHUB_REF_NAME" = "v$current" || { echo "tag $GITHUB_REF_NAME does not match releases.yaml ($current)"; exit 1; }
+          git config user.name github-actions && git config user.email github-actions@github.com
+          uv run mike deploy --push --update-aliases "$current" latest
