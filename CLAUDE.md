@@ -53,10 +53,15 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   model, independent of any serialization.)
 - `recommended-unit`: informative only; must be a symbol in units.yaml with matching kind.
   PROPOSED, NOT DECIDED: no recommended unit when kind is `any`; null when kind is `dimensionless`.
-- `values`: structured; replaces the old prose "Values" (0002). The key set (enum / minimum / maximum /
-  format / pattern / examples / note) is PROPOSED, NOT DECIDED; settle it when step 5 opens
-  minimal.yaml. Open questions: open-ended enums ("Other user-specified value"), enum values that
-  carry definitions, enums that depend on another property, a closed vocabulary for `format`.
+- `values`: structured; replaces the old prose "Values" (0002). Null or a mapping of `terms` (open
+  vocabulary: unlisted strings conform, reported as user-specified, near-misses as possible typos),
+  `enum` (closed list), `minimum`/`maximum` (inclusive), `format` (a JSON Schema 2020-12 format
+  name, always checked), `pattern`, `examples` (data; must satisfy the property), `note` (0013).
+  Most vocabularies are open: use `terms` for "Other user-specified value", `enum` only where an
+  unlisted value would make the data meaningless. Keys apply together and are tied to `type`
+  (terms/enum/format/pattern: string; minimum/maximum: int, float); at most one of terms/enum and
+  of format/pattern (0013). Deferred to the first property that needs them: terms with
+  definitions; values that depend on another property (0013 item 4 holds the proposal).
 - `legacy_*` fields hold the Google Doc prose from the baseline migration. Delete each one once its
   content is transferred to the typed fields; the original wording remains in the baseline .docx and
   in git history (tag v0.9-baseline). A section is complete when no legacy_* remain.
@@ -99,7 +104,8 @@ the kind; group 3 and all other typed properties use Annex U symbols only (0001 
 PROPOSED, NOT DECIDED: state conditional validation rules (the allowed unit or values of one
 subproperty depend on another's value: `convention` for k-point-spacing, `basis` for
 exciton-momentum, `scaling` for PF lengths and times) once in §1.3, so each property refers to the
-rule rather than restating it. Needs a decision before implementation.
+rule rather than restating it. Needs a decision before implementation. Decide it together with the
+`depends-on`/`cases` proposal of 0013 item 4, when md opens.
 PROPOSED, NOT DECIDED: define this pattern once in §1.3 under a name such as "generic parameter", with
 each such entry tagged `pattern: generic-parameter` and checked by validate_schema.py against one
 canonical definition. Needs a decision before implementation.
@@ -244,6 +250,9 @@ record or marked PROPOSED, NOT DECIDED.
    fails if it does while legacy_* fields remain (0004 item 36).
    [done, PR #10 merged 2026-11-01] `legacy_complete` added to meta-schema.yaml and the check to
    validate_schema.py.
+   [todo] Implement 0013 in one PR before the first property PR: `terms` in meta-schema.yaml; the
+   values checks in validate_schema.py, with format checking on and its dependencies installed;
+   build_docs.py renders every values key.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
