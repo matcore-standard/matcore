@@ -287,8 +287,8 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: dimensionless
     legacy_values: An integer containing the order of accuracy.
+    legacy_unit: dimensionless
   - name: temporal-discretization
     required: false
     description: >-
@@ -315,8 +315,8 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: dimensionless
     legacy_values: An integer containing the order of accuracy.
+    legacy_unit: dimensionless
   - name: grid-spacing
     required: false
     description: >-

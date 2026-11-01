@@ -48,6 +48,40 @@ def test_meta_schema_types_the_examples():
             jsonschema.validate(section | {'examples': [bad]}, meta)
 
 
+def test_meta_schema_rejects_malformed_names():
+    """Names are lowercase words joined by single hyphens: no leading, trailing or doubled hyphen (0004 item 13)."""
+    meta = yaml.safe_load(open(ROOT / 'schema/meta-schema.yaml'))
+
+    def section(name):
+        """Return a one-property section document.
+
+        name (str): the property name to test.
+        """
+        return {'section': 'x', 'title': 'X', 'properties': [
+            {'name': name, 'required': True, 'description': 'D', 'repeatable': False}]}
+    for good in ('unit', 'k-point-spacing', 'b3lyp', 'x2-y'):
+        jsonschema.validate(section(good), meta)
+    for bad in ('k--point', 'cutoff-', 'Cutoff', '2d-grid', 'a_b'):
+        with pytest.raises(jsonschema.ValidationError):
+            jsonschema.validate(section(bad), meta)
+
+
+def test_validate_rejects_fields_out_of_order(tmp_path):
+    """Property fields follow one fixed order, so every entry reads the same way (0004 item 6)."""
+    import shutil
+    for d in ('schema', 'scripts', 'examples'):
+        shutil.copytree(ROOT / d, tmp_path / d)
+    f = tmp_path / 'schema/ml.yaml'
+    # move a one-line `description` above `required` in the first top-level property
+    lines = f.read_text().split('\n')
+    i = next(n for n, l in enumerate(lines) if l.startswith('  required:'))
+    lines[i], lines[i + 1] = lines[i + 1], lines[i]
+    f.write_text('\n'.join(lines))
+    run = subprocess.run([sys.executable, tmp_path / 'scripts/validate_schema.py'], capture_output=True, text=True)
+    assert run.returncode == 1
+    assert 'fields out of order' in run.stdout
+
+
 def test_notes_name_only_properties_that_exist():
     """A note that cites a property by its quoted name must use a name the standard defines, so a rename
     cannot leave a note pointing at nothing (e.g. "basis-cutoff-planewave" for planewave-basis-cutoff)."""

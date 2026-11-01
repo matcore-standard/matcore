@@ -193,8 +193,8 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: dimensionless
       legacy_values: An integer containing the number of valence electrons.
+      legacy_unit: dimensionless
     - name: repository
       required: false
       description: The database from which the pseudopotential was obtained.
@@ -334,8 +334,8 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: electron Volt (eV)
     legacy_values: Real number containing the kinetic energy cutoff.
+    legacy_unit: electron Volt (eV)
   - name: charge-density-cutoff
     required: false
     description: >-
@@ -347,8 +347,8 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: electron Volt (eV)
     legacy_values: Real number containing the charge density cutoff.
+    legacy_unit: electron Volt (eV)
 - name: calculation-physics
   required: false
   description: Additional phenomena included beyond the standard DFT calculation.
@@ -396,10 +396,10 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: dimensionless
     legacy_values: >-
       Ordered list of three integer numbers containing the number k-points along the three reciprocal
       lattice vector directions.
+    legacy_unit: dimensionless
   - name: k-point-spacing
     required: false
     description: Separation between k-points along each reciprocal lattice vector direction.
@@ -409,10 +409,10 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: 1/angstrom (1/Å)
-    legacy_values: Real number containing the k-point spacing.
     notes:
     - State whether the factor 2π is included in the reciprocal length.
+    legacy_values: Real number containing the k-point spacing.
+    legacy_unit: 1/angstrom (1/Å)
   - name: shift
     required: false
     description: Translation of the k-point mesh along the reciprocal lattice vector directions.
@@ -422,10 +422,10 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: 1/angstrom (1/Å)
     legacy_values: >-
       Ordered list of three real numbers containing the shifts along the three reciprocal lattice vector
       directions.
+    legacy_unit: 1/angstrom (1/Å)
   - name: smearing-type
     required: false
     description: >-
@@ -451,8 +451,8 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: electron Volt (eV)
     legacy_values: Real number containing the smearing width.
+    legacy_unit: electron Volt (eV)
   - name: methfessel-paxton-order
     required: false
     description: >-
@@ -464,8 +464,8 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: dimensionless
     legacy_values: Integer containing the Methfessel-Paxton order.
+    legacy_unit: dimensionless
 - name: self-consistent-field-convergence
   required: false
   description: >-
@@ -503,8 +503,8 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: electron Volt (eV)
     legacy_values: Real number containing the convergence tolerance
+    legacy_unit: electron Volt (eV)
 - name: relaxation-tolerance-energy
   required: false
   description: Total energy convergence criterion for atomic relaxation.
@@ -514,8 +514,8 @@ properties:
   recommended-unit: null
   values: null
   repeatable: false
-  legacy_unit: electron Volt (eV)
   legacy_values: Real number containing the convergence tolerance
+  legacy_unit: electron Volt (eV)
 - name: relaxation-tolerance-forces
   required: false
   description: Maximum force convergence criterion for atomic relaxation.
@@ -525,8 +525,8 @@ properties:
   recommended-unit: null
   values: null
   repeatable: false
-  legacy_unit: electron Volt (eV/Å)
   legacy_values: Real number containing the convergence tolerance
+  legacy_unit: electron Volt (eV/Å)
 - name: comment
   required: false
   description: >-

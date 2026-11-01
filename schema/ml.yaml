@@ -30,14 +30,14 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
+    notes:
+    - >-
+      Note:This Property can be repeated if the machine learning task involves multiple types of calculations.
     legacy_values: >-
       String containing one of the following values: "Property prediction" "Structure prediction" (e.g.
       crystal structure prediction) "Structure generation" (e.g. de novo crystal generation) "Synthesis
       prediction" "Material ranking" "Clustering" "Embedding" Other user-specified value if none of the
       above apply.
-    notes:
-    - >-
-      Note:This Property can be repeated if the machine learning task involves multiple types of calculations.
   - name: description
     required: false
     description: Explanation of the machine learning task performed.

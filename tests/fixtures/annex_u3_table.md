@@ -1,4 +1,4 @@
-| MatCore quantity kind | QUDT QuantityKind | QUDT dimension vector | SI dimension |
+| Kind | QUDT QuantityKind | QUDT dimension vector | SI dimension |
 |---|---|---|---|
 | Energy | Energy | A0E0L2I0M1H0T-2D0 | kg·m²·s⁻² |
 | MolarEnergy | MolarEnergy | A-1E0L2I0M1H0T-2D0 | kg·m²·s⁻²·mol⁻¹ |

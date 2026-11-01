@@ -36,7 +36,7 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
 
 ## Conventions for schema YAML (decided; see docs/decisions/0002 and 0004)
 Keep it regular: no YAML anchors or aliases, custom tags, includes or templating.
-Each property entry has exactly these fields, in this order (validate_schema.py will enforce the order):
+Each property entry has exactly these fields, in this order (validate_schema.py enforces the order):
 `name, required, description, type, extent, kind, recommended-unit, values, repeatable,
 [convention], [notes], [legacy_values], [legacy_unit], [subproperties]`.
 - `type` ∈ string | float | int | bool | file | any.
@@ -60,7 +60,7 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
 - `legacy_*` fields hold the Google Doc prose from the baseline migration. Delete each one once its
   content is transferred to the typed fields; the original wording remains in the baseline .docx and
   in git history (tag v0.9-baseline). A section is complete when no legacy_* remain.
-- Names match `^[a-z][a-z0-9]*(-[a-z0-9]+)*$` (meta-schema not yet updated). A name is plural only when
+- Names match `^[a-z][a-z0-9]*(-[a-z0-9]+)*$` (enforced by meta-schema.yaml). A name is plural only when
   its value is a list (open extent); a repeatable property stays singular. `unit` is singular.
 
 ## Units model (decided; see docs/decisions/0001 Part A and docs/standard/annex-u-units.md)
@@ -213,19 +213,21 @@ record or marked PROPOSED, NOT DECIDED.
      Preamble's italics fixed (PR #4); contributor and its affiliation optional, and exactly one
      basis entry for the MBPT dielectric matrix (0011); creator and contributor descriptions
      reworded (primary creator vs secondary contributor); step 4: 0001 Part B fixes (B1, B3, B4,
-     B6, B7, B8, B10, B11) and the MBPT `local-orbital-basis-set` renamed `localized-orbital-basis-set`.
+     B6, B7, B8, B10, B11) and the MBPT `local-orbital-basis-set` renamed `localized-orbital-basis-set`;
+     Annex U says "Kind" for MatCore's kinds (0004 item 14).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
 3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
-   (0004). What remains of this step does not belong to any one property, each its own change:
-   reword Annex U to "Kind" (0004); check 0001 (A1.3, A10) and Annex U for XML-specific wording such
-   as "unit as an attribute of the value element", since normative text describes unit, convention
-   and basis as subproperties and each serialization decides whether they become attributes, child
-   elements or object keys (0004); tighten the name pattern in meta-schema.yaml (all 255 current
-   names pass it); add a field-order check to validate_schema.py.
-   PROPOSED, NOT DECIDED: do these before step 5.
+   (0004). What remained of this step did not belong to any one property; each was its own change.
+   [done, branch step3-checks] Annex U reworded to "Kind", keeping "quantity kind" where it means
+   QUDT's concept; the Table U.3 and U.4 headers say "Kind" (0004 item 14).
+   [done] The check for XML-specific wording is closed: Annex U has none, and 0001 A1.3 is not
+   applied, since §1.3 already makes the XML examples illustrative (0004 item 34).
+   [done, branch step3-checks] The name pattern in meta-schema.yaml is tightened (0004 item 13).
+   [done, branch step3-checks] validate_schema.py checks the field order of every property; 38
+   entries were reordered to match, with no change to their content (0004 item 6).
 4. [done, PR #8 merged 2026-11-01] 0001 Part B fixes ("alone" forms) and the known
    baseline defects (0004 item 25; see 0001's note). Done before step 5 (0004).
 5. [todo] One PR per top-level property, covering all of its subproperties: 48 PRs (0004). Each PR,

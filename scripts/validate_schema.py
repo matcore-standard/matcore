@@ -14,11 +14,17 @@ units = yaml.safe_load((ROOT/'schema/units.yaml').read_text())
 kinds = set(units['kinds']) | set(units['reserved_kinds'])
 symbols = set(units['units'])
 errors = 0
+# Field order of every property entry (decision 0004 item 6); the meta-schema rejects unknown fields.
+ORDER = ['name', 'required', 'description', 'type', 'extent', 'kind', 'recommended-unit', 'values', 'repeatable',
+         'convention', 'notes', 'legacy_values', 'legacy_unit', 'subproperties']
 
 def walk(props, path):
     global errors
     for p in props:
         here = f"{path}/{p['name']}"
+        expected = sorted(p, key=lambda k: ORDER.index(k) if k in ORDER else len(ORDER))
+        if list(p) != expected:
+            print(f"ERROR {here}: fields out of order; expected {', '.join(expected)}"); errors += 1
         k, u = p.get('kind'), p.get('recommended-unit')
         if k is not None and k not in kinds:
             print(f"ERROR {here}: unknown kind {k!r}"); errors += 1

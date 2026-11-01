@@ -1,4 +1,4 @@
-| Symbol | Quantity kind | QUDT Unit | GNU Units expression | Factor to coherent SI | Source |
+| Symbol | Kind | QUDT Unit | GNU Units expression | Factor to coherent SI | Source |
 |---|---|---|---|---|---|
 | `eV` | Energy | EV | eV | 1.602 176 634 × 10⁻¹⁹ J | exact |
 | `meV` | Energy | — | meV | 1.602 176 634 × 10⁻²² J | exact |

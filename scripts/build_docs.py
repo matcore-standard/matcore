@@ -178,11 +178,11 @@ def format_factor(unit, kinds):
 
 
 def render_kind_table(units):
-    """Return Table U.3 (quantity kinds) of Annex U, generated from units.yaml.
+    """Return Table U.3 (kinds) of Annex U, generated from units.yaml.
 
     units (dict): parsed schema/units.yaml.
     """
-    rows = ['| MatCore quantity kind | QUDT QuantityKind | QUDT dimension vector | SI dimension |', '|---|---|---|---|']
+    rows = ['| Kind | QUDT QuantityKind | QUDT dimension vector | SI dimension |', '|---|---|---|---|']
     for name, k in units['kinds'].items():
         rows.append(f"| {name} | {k['qudt']} | {k['dimension']} | {k['si_dimension']} |")
     for name in units['reserved_kinds']:
@@ -196,7 +196,7 @@ def render_unit_table(units):
 
     units (dict): parsed schema/units.yaml.
     """
-    rows = ['| Symbol | Quantity kind | QUDT Unit | GNU Units expression | Factor to coherent SI | Source |',
+    rows = ['| Symbol | Kind | QUDT Unit | GNU Units expression | Factor to coherent SI | Source |',
             '|---|---|---|---|---|---|']
     for sym, u in units['units'].items():
         rows.append(f"| `{sym}` | {u['kind']} | {u['qudt'] or '—'} | {u['gnu'] or '—'} | "
