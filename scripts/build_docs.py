@@ -24,9 +24,12 @@ ICONS = {n: (ICON_DIR / f'{n}.svg').read_text().strip().replace('<svg ', '<svg w
          for n in ('autorenew', 'autorenew-off')}
 REPEATABLE = ('autorenew', 'mc-i-rep', 'repeatable: may appear more than once')
 ONCE = ('autorenew-off', 'mc-i-once', 'appears at most once')
-KEY = ('<span class="mc-legend"><span class="mc-star">*</span> required &emsp; '
-       f'<span class="mc-icon mc-i-once">{ICONS[ONCE[0]]}</span> appears at most once &emsp; '
-       f'<span class="mc-icon mc-i-rep">{ICONS[REPEATABLE[0]]}</span> repeatable</span>')
+# Each symbol and its label form one unbreakable group, so a narrow screen wraps between groups.
+KEY = ('<span class="mc-legend">'
+       '<span class="mc-key"><span class="mc-star">*</span> required</span>'
+       f'<span class="mc-key"><span class="mc-icon mc-i-once">{ICONS[ONCE[0]]}</span> appears at most once</span>'
+       f'<span class="mc-key"><span class="mc-icon mc-i-rep">{ICONS[REPEATABLE[0]]}</span> repeatable</span>'
+       '</span>')
 
 
 def extent(e):
