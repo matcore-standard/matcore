@@ -51,8 +51,18 @@ def values_text(p, show_legacy):
     """
     out = []
     v = p.get('values') or {}
+    if 'terms' in v:  # open vocabulary (0013)
+        out.append('Recommended: ' + ', '.join(f'`{x}`' for x in v['terms']) + '. Other values are allowed.')
     if 'enum' in v:
         out.append('One of ' + ', '.join(f'`{x}`' for x in v['enum']) + '.')
+    if 'minimum' in v and 'maximum' in v:
+        out.append(f"From {v['minimum']} to {v['maximum']}.")
+    elif 'minimum' in v or 'maximum' in v:
+        out.append(f"Minimum: {v['minimum']}." if 'minimum' in v else f"Maximum: {v['maximum']}.")
+    if 'format' in v:
+        out.append(f"Format: `{v['format']}` (JSON Schema 2020-12).")
+    if 'pattern' in v:
+        out.append(f"Pattern: `{v['pattern']}`.")
     if 'examples' in v:
         out.append('Examples: ' + ', '.join(f'`{x}`' for x in v['examples']) + '.')
     if 'note' in v:

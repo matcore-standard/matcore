@@ -130,6 +130,25 @@ def test_subproperty_boilerplate_is_never_shown():
         assert 'Contains Sub' not in build_docs.render_section(load(key), show_legacy=True), key
 
 
+def test_values_text_states_every_values_key():
+    """Each key of decision 0013 reaches the reader; an open vocabulary says that other values are allowed."""
+    def text(values):
+        """Return the values text of a string property with these values.
+
+        values (dict): the property's values.
+        """
+        return build_docs.values_text({'type': 'string', 'values': values}, show_legacy=False)
+    assert text({'terms': ['Electronic', 'Atomistic']}) == 'Recommended: `Electronic`, `Atomistic`. Other values are allowed.'
+    assert text({'enum': ['a', 'b']}) == 'One of `a`, `b`.'
+    assert text({'minimum': 0, 'maximum': 1}) == 'From 0 to 1.'
+    assert text({'minimum': 0}) == 'Minimum: 0.'
+    assert text({'maximum': 1}) == 'Maximum: 1.'
+    assert text({'format': 'date'}) == 'Format: `date` (JSON Schema 2020-12).'
+    assert text({'pattern': 'MC-[0-9]{4}'}) == 'Pattern: `MC-[0-9]{4}`.'
+    assert text({'format': 'uri', 'examples': ['https://ror.org/x'], 'note': 'An ROR ID.'}) == \
+        'Format: `uri` (JSON Schema 2020-12). Examples: `https://ror.org/x`. An ROR ID.'
+
+
 def test_inline_svgs_have_an_intrinsic_size():
     """An SVG without width/height renders page-wide until the stylesheet loads (0007 constraint)."""
     md = build_docs.render_section(load('minimal'), show_legacy=False)
