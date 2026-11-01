@@ -7,7 +7,8 @@ theme:
   # Collapsible left menu with page headings merged in, no right-hand TOC (decision 0008).
   features: [navigation.indexes, toc.integrate, content.code.copy, search.suggest]
   palette: {primary: custom, accent: custom}  # colours in docs/assets/matcore/layout.css (decision 0007)
-  logo: assets/matcore/logo.png
+  logo: assets/matcore/logo.svg
+  favicon: assets/matcore/logo.svg
 nav:
   - Home: index.md
   - About:

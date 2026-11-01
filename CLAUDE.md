@@ -209,8 +209,10 @@ record or marked PROPOSED, NOT DECIDED.
    - Changes to the standard since 0.4.0, for the next release's entry in releases.yaml: the
      Preamble's italics fixed (PR #4); contributor and its affiliation optional, and exactly one
      basis entry for the MBPT dielectric matrix (0011).
-   PROPOSED, NOT DECIDED: the open points of 0007
-   (items 12–16).
+   - [done, branch site-polish] 0007's open points resolved except three optional additions:
+     container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
+     as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
+   PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
 3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
    (0004). What remains of this step does not belong to any one property, each its own change:
    reword Annex U to "Kind" (0004); check 0001 (A1.3, A10) and Annex U for XML-specific wording such
