@@ -219,14 +219,15 @@ record or marked PROPOSED, NOT DECIDED.
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
-3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
-   (0004). What remained of this step did not belong to any one property; each was its own change.
-   [done, branch step3-checks] Annex U reworded to "Kind", keeping "quantity kind" where it means
+3. [done, PR #9 merged 2026-11-01] Apply 0001 Part A (kind/recommended-unit/convention): merged
+   into step 5, property by property (0004). What remained of this step did not belong to any one
+   property; each was its own change.
+   [done, PR #9] Annex U reworded to "Kind", keeping "quantity kind" where it means
    QUDT's concept; the Table U.3 and U.4 headers say "Kind" (0004 item 14).
    [done] The check for XML-specific wording is closed: Annex U has none, and 0001 A1.3 is not
    applied, since §1.3 already makes the XML examples illustrative (0004 item 34).
-   [done, branch step3-checks] The name pattern in meta-schema.yaml is tightened (0004 item 13).
-   [done, branch step3-checks] validate_schema.py checks the field order of every property; 38
+   [done, PR #9] The name pattern in meta-schema.yaml is tightened (0004 item 13).
+   [done, PR #9] validate_schema.py checks the field order of every property; 38
    entries were reordered to match, with no change to their content (0004 item 6).
 4. [done, PR #8 merged 2026-11-01] 0001 Part B fixes ("alone" forms) and the known
    baseline defects (0004 item 25; see 0001's note). Done before step 5 (0004).
