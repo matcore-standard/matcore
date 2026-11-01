@@ -203,9 +203,9 @@ record or marked PROPOSED, NOT DECIDED.
      baseline .docx, is excluded from the site build (`exclude_docs` in mkdocs.yml; an unlinked page
      would still appear in sitemap.xml and the site search). They stay in the public GitHub
      repository. Site pages do not link to them.
-   - [done, branch versioning, PR pending] Versioning (0010): releases.yaml, generated Revision History
-     with the 0.4.0 entry, version line on standard pages, versioned permalinks, CI deploys per
-     version. 0.4.0 is tagged by the human after the merge.
+   - [done, PR #3] Versioning (0010): releases.yaml, generated Revision History, version line on
+     standard pages, versioned permalinks, CI deploys per version. 0.4.0 released 2026-11-01
+     (tag v0.4.0); the site's `latest` is 0.4.0 and `dev` is main.
    PROPOSED, NOT DECIDED: the open points of 0007
    (items 12–16).
 3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
