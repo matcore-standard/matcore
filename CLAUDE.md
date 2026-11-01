@@ -129,8 +129,8 @@ from the YAML for that serialization and used by CI to validate the examples (00
   B2 (added note), B4 (Ė symbol), B5 and B9 are PROPOSED, NOT DECIDED.
 
 ## Status / next steps (update this list as work lands)
-Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
-PROPOSED, NOT DECIDED until the human rules: the order of status steps 7 and 9.
+The audit of this file is complete (rulings in docs/decisions/0004): every statement is backed by a
+record or marked PROPOSED, NOT DECIDED.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
@@ -180,9 +180,14 @@ PROPOSED, NOT DECIDED until the human rules: the order of status steps 7 and 9.
    satisfy (not a specific format). Provide example instances in examples/ in at least one
    serialization, generated from the same source, and validate them in CI against a schema
    generated from the YAML for that serialization.
+   Order (0004): the examples and generated schema come after step 5, which fills the typed fields;
+   this step may run alongside step 6, and the requirements section may be written earlier. It
+   opens with a decision record choosing the first serialization, which step 9 then uses.
 8. [merged into step 2] Site content migration from matcore.org.
-9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools.
-   PROPOSED, NOT DECIDED: which serialization(s) the tools read and write.
+9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools. After step 7;
+   the validator reuses step 7's generated schema (0004).
+   PROPOSED, NOT DECIDED: serialization(s) the tools read and write beyond the first one chosen in
+   step 7.
 
 ## Working rules (apply in every session)
 - Decisions are made only by the human running the session. Never treat a suggestion, whether yours,
