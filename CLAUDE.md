@@ -220,12 +220,11 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
 3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
    (0004). What remains of this step does not belong to any one property, each its own change:
-   reword Annex U to "Kind" (0004); check 0001 (A1.3, A10) and Annex U for XML-specific wording such
-   as "unit as an attribute of the value element", since normative text describes unit, convention
-   and basis as subproperties and each serialization decides whether they become attributes, child
-   elements or object keys (0004); tighten the name pattern in meta-schema.yaml (all 255 current
+   reword Annex U to "Kind" (0004); tighten the name pattern in meta-schema.yaml (all 255 current
    names pass it); add a field-order check to validate_schema.py.
    PROPOSED, NOT DECIDED: do these before step 5.
+   [done] The check for XML-specific wording is closed: Annex U has none, and 0001 A1.3 is not
+   applied, since §1.3 already makes the XML examples illustrative (0004 item 34).
 4. [done, PR #8 merged 2026-11-01] 0001 Part B fixes ("alone" forms) and the known
    baseline defects (0004 item 25; see 0001's note). Done before step 5 (0004).
 5. [todo] One PR per top-level property, covering all of its subproperties: 48 PRs (0004). Each PR,
