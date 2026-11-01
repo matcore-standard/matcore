@@ -97,11 +97,11 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: Rydberg (Ry)
-    legacy_values: A real number containing the cutoff.
     notes:
     - >-
       Note:Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
+    legacy_values: A real number containing the cutoff.
+    legacy_unit: Rydberg (Ry)
   - name: localized-orbital-basis-set
     required: false
     description: For local orbital codes, the name of the basis set .
@@ -111,10 +111,10 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: A string containing the name of the atomic orbital basis. (e.g. "cc-pV6Z").
     notes:
     - >-
       Note:Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
+    legacy_values: A string containing the name of the atomic orbital basis. (e.g. "cc-pV6Z").
   - name: frequency
     required: false
     description: >-
@@ -141,8 +141,8 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: dimensionless
     legacy_values: One integer containing the number of bands or eigenvalues.
+    legacy_unit: dimensionless
   - name: q-points
     required: true
     description: Brillouin zone grid used for sampling the dielectric matrix.
@@ -152,10 +152,10 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: dimensionless
     legacy_values: >-
       Ordered list of 3 integer numbers containing the number points along the three reciprocal lattice
       vector directions.
+    legacy_unit: dimensionless
   - name: coulomb-truncation
     required: false
     description: >-
@@ -179,9 +179,9 @@ properties:
   recommended-unit: null
   values: null
   repeatable: false
-  legacy_unit: dimensionless
   legacy_values: >-
     One integer specifying how many bands are corrected, counting from the bottom of the valence bands.
+  legacy_unit: dimensionless
 - name: bse-hamiltonian
   required: false
   description: >-
@@ -206,9 +206,9 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: dimensionless
     legacy_values: >-
       One integer specifying how many valence bands are corrected, counting from the valence band top.
+    legacy_unit: dimensionless
   - name: number-conduction-bands
     required: false
     description: Number of conduction bands included in the BSE Hamiltonian.
@@ -218,9 +218,9 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: dimensionless
     legacy_values: >-
       One integer specifying how many bands are corrected, counting from the conduction band bottom.
+    legacy_unit: dimensionless
   - name: k-point-mesh
     required: false
     description: Brillouin zone grid used for building the BSE Hamiltonian.
@@ -230,10 +230,10 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: dimensionless
     legacy_values: >-
       Ordered list of 3 integer numbers containing the number points along the reciprocal lattice vector
       directions.
+    legacy_unit: dimensionless
   - name: exciton-momentum
     required: false
     description: Crystal momentum of the exciton in the BSE calculation.
@@ -243,10 +243,10 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: dimensionless
     legacy_values: >-
       Ordered list of 3 real values containing the crystal momentum in fractions of the reciprocal
       lattice vectors (dimensionless), e.g. [0.5,0.5,1.0].
+    legacy_unit: dimensionless
   - name: exciton-multiplicity
     required: false
     description: >-
@@ -281,8 +281,8 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_unit: dimensionless
     legacy_values: One integer containing the number of BSE eigenvalues.
+    legacy_unit: dimensionless
 - name: bse-kernel-truncation
   required: false
   description: >-

@@ -282,12 +282,12 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: >-
-      A string containing one of the following values: "Electronic" "Atomistic" "Mesoscopic" "Continuum"
-      "Data-driven" Other user-specified value if none of the above apply.
     notes:
     - >-
       Note:The categories listed above are based on the [MODA standard](https://data.europa.eu/doi/10.2777/404734).
+    legacy_values: >-
+      A string containing one of the following values: "Electronic" "Atomistic" "Mesoscopic" "Continuum"
+      "Data-driven" Other user-specified value if none of the above apply.
   - name: method
     required: true
     description: The computational materials science (CMS) approach used in the computation.
@@ -354,8 +354,8 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: dimensionless
       legacy_values: An integer containing the number of particles *N*.
+      legacy_unit: dimensionless
     - name: volume
       required: false
       description: The amount of space occupied by the material.
@@ -365,8 +365,8 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: cubic meters (m^3)
       legacy_values: A real number containing the volume *V*.
+      legacy_unit: cubic meters (m^3)
     - name: mass-density
       required: false
       description: The total mass of the material divided by the volume it occupies.
@@ -376,8 +376,8 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: kilograms per cubic meter (kg/m^3)
       legacy_values: A real number containing the mass density *𝜌*.
+      legacy_unit: kilograms per cubic meter (kg/m^3)
     - name: number-density
       required: false
       description: >-
@@ -388,8 +388,8 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: inverse cubic meter (1/m^3)
       legacy_values: A real number containing the number density *n*.
+      legacy_unit: inverse cubic meter (1/m^3)
     - name: cell
       required: false
       description: The domain occupied by the material in the simulation (if fixed).
@@ -399,11 +399,11 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: meter (m)
       legacy_values: >-
         Ordered list of three vectors (a, b, c), each with three components, that define the simulation
         cell. The vectors (a, b, c) need not be orthogonal, and the magnitudes (│a│, │b│, │c│) are the
         supercell vector lengths.
+      legacy_unit: meter (m)
     - name: cell-reference
       required: false
       description: >-
@@ -415,11 +415,11 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: meter (m)
       legacy_values: >-
         Ordered list of three vectors (a0, b0, c0), each with three components, that define the cell used
         in the simulation in its reference configuration. The vectors (a0, b0, c0) need not be orthogonal,
         and the magnitudes (│a0│, │b0│, │c0│) are the reference cell vector lengths.
+      legacy_unit: meter (m)
     - name: cell-periodicity
       required: false
       description: >-
@@ -444,8 +444,8 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: kelvin (K)
       legacy_values: A real number containing the temperature *T*.
+      legacy_unit: kelvin (K)
     - name: stress
       required: false
       description: >-
@@ -457,7 +457,6 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: pascal (Pa)
       legacy_values: >-
         An array of six real numbers containing the components of the (symmetric) Cauchy stress tensor
         σ in the following order: [*σ*11, *σ*22, *σ*33, *σ*23, *σ*13, *σ*12]. The stress component are
@@ -468,6 +467,7 @@ properties:
         sign convention is for tensile normal stresses to be positive, and compressive normal stresses
         to be negative. This implies that for a material subjected to a positive pressure *p*, the stress
         tensor components are [-*p*, -*p*, -*p*, 0, 0, 0].
+      legacy_unit: pascal (Pa)
     - name: strain
       required: false
       description: >-
@@ -479,7 +479,6 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: dimensionless
       legacy_values: >-
         An array of six real numbers containing the components of the (symmetric) Lagrangian strain tensor
         Ein the following order: [*E*11, *E*22, *E*33, *E*23, *E*13, *E*12]. The strain component are
@@ -488,6 +487,7 @@ properties:
         in the reference configuration, which may not be orthogonal. Note: Requires the definition of
         cell-reference in order for the basis to be defined relative to which the tensor components are
         given.
+      legacy_unit: dimensionless
     - name: strain-rate
       required: false
       description: >-
@@ -500,17 +500,17 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: inverse seconds (1/s)
+      notes:
+      - >-
+        Requires the definition of cell-reference in order for the basis to be defined relative to which
+        the tensor components are given
       legacy_values: >-
         An array of six real numbers containing the components of the (symmetric) Lagrangian strain rate
         tensor E in the following order: [*E11, E22, E33, E23, E13, E12,*]. The strain component are expressed
         relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a0, e2 is in the
         direction of c0╳a0, and e3= e1╳e2, where (a0, b0, c0) are the vectors defining the cell in the
         reference configuration, which may not be orthogonal.
-      notes:
-      - >-
-        Requires the definition of cell-reference in order for the basis to be defined relative to which
-        the tensor components are given
+      legacy_unit: inverse seconds (1/s)
     - name: heat-flux
       required: false
       description: >-
@@ -522,12 +522,12 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: watts per square meter (W/m^2)
       legacy_values: >-
         An array of three real numbers containing the components of the heat flux vector q. The heat flux
         component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction
         of a, e2 is in the direction of c╳a, and e3= e1╳e2, where (a, b, c) are the vectors defining the
         cell, which may not be orthogonal.
+      legacy_unit: watts per square meter (W/m^2)
     - name: temperature-gradient
       required: false
       description: >-
@@ -539,12 +539,12 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_unit: kelvin per meter (K/m)
       legacy_values: >-
         An array of three real numbers containing the components of the temperature gradient vector ∇*T*.
         The temperature gradient component are expressed relative to an orthonormal basis (e1, e2, e3),
         where e1 is in the direction of a, e2 is in the direction of c╳a, and e3= e1╳e2, where (a, b,
         c) are the vectors defining cell, which may not be orthogonal.
+      legacy_unit: kelvin per meter (K/m)
   - name: software
     required: true
     description: Identification of a computer package used to perform the calculations.

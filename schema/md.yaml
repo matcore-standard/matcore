@@ -148,11 +148,11 @@ properties:
   recommended-unit: null
   values: null
   repeatable: true
-  legacy_values: Contains SubProperties as listed below.
   notes:
   - >-
     Note:This field can be repeated in cases where there are multiple interaction models used in the same
     simulation (e.g. hybrid calculations combining multiple models or QM/MM style computations).
+  legacy_values: Contains SubProperties as listed below.
   subproperties:
   - name: model-type
     required: true

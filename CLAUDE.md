@@ -36,7 +36,7 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
 
 ## Conventions for schema YAML (decided; see docs/decisions/0002 and 0004)
 Keep it regular: no YAML anchors or aliases, custom tags, includes or templating.
-Each property entry has exactly these fields, in this order (validate_schema.py will enforce the order):
+Each property entry has exactly these fields, in this order (validate_schema.py enforces the order):
 `name, required, description, type, extent, kind, recommended-unit, values, repeatable,
 [convention], [notes], [legacy_values], [legacy_unit], [subproperties]`.
 - `type` ∈ string | float | int | bool | file | any.
@@ -220,11 +220,13 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
 3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
    (0004). What remains of this step does not belong to any one property, each its own change:
-   reword Annex U to "Kind" (0004); add a field-order check to validate_schema.py.
-   PROPOSED, NOT DECIDED: do these before step 5.
+   reword Annex U to "Kind" (0004).
+   PROPOSED, NOT DECIDED: do this before step 5.
    [done] The check for XML-specific wording is closed: Annex U has none, and 0001 A1.3 is not
    applied, since §1.3 already makes the XML examples illustrative (0004 item 34).
    [done, branch step3-checks] The name pattern in meta-schema.yaml is tightened (0004 item 13).
+   [done, branch step3-checks] validate_schema.py checks the field order of every property; 38
+   entries were reordered to match, with no change to their content (0004 item 6).
 4. [done, PR #8 merged 2026-11-01] 0001 Part B fixes ("alone" forms) and the known
    baseline defects (0004 item 25; see 0001's note). Done before step 5 (0004).
 5. [todo] One PR per top-level property, covering all of its subproperties: 48 PRs (0004). Each PR,
