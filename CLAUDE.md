@@ -19,6 +19,9 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
 - `schema/units.yaml` — Annex U, the normative unit table (kinds, symbols, QUDT/GNU mapping, SI factors).
   The single source of Annex U's Tables U.3 and U.4, which build_docs.py generates into
   annex-u-units.md; it prevails over the annex. Factors are exact decimal text, e.g. "1e3" (0009).
+- `schema/identifier-schemes.yaml` (to be built; 0014) — the identifier schemes (ORCID, ROR, DOI,
+  SWHID, ISNI): for each, entities identified, canonical form, pattern, check digit, example, source.
+  Single source for checking identifier values, as units.yaml is for units.
 - `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
 - `docs/standard/*.md` — prose chapters (index = title and 1. Preamble, annex-u-units) plus GENERATED chapters
   (02–08, revision-history, and the marked regions in index and annex-u-units: version line, Tables U.3/U.4).
@@ -255,6 +258,13 @@ record or marked PROPOSED, NOT DECIDED.
    scripts/check_values.py checks every property's values (called by validate_schema.py), with all
    JSON Schema formats checked through jsonschema's `format-nongpl` extra; build_docs.py renders
    every values key.
+   creator and contributor are restructured by 0014: `identifier` containers (value + scheme,
+   open terms) and `affiliation` as a container (name + at most one identifier).
+   [todo] PR: build schema/identifier-schemes.yaml (ORCID, ROR, DOI, SWHID, ISNI, each traced to
+   its documentation) with its checks in validate_schema.py; settle there whether it is published
+   as an annex and whether dft `unique-identifier` uses it (0014).
+   [todo] Then the creator PR, then the contributor PR, applying 0014; the creator PR updates
+   examples/minimal.xml (each affiliation gets a `name`).
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
@@ -311,4 +321,5 @@ record or marked PROPOSED, NOT DECIDED.
   QUDT Units 3.3.0, GNU Units 2.23 (definitions.units 3.19) and NIST CODATA 2022. A new unit is
   added by pull request, with each of its fields (kind, QUDT identifier or null, GNU Units name,
   SI factor, source) traced to a primary source named in the PR. A new kind needs a decision
-  record (0004).
+  record (0004). Likewise, every field of an identifier scheme (form, pattern, check digit,
+  example) is traced to the scheme's own documentation, and a new scheme is added by PR (0014).
