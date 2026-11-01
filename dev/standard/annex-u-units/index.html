@@ -866,10 +866,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#u3-quantity-kinds" class="md-nav__link">
+  <a href="#u3-kinds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        U.3 Quantity kinds
+        U.3 Kinds
       
     </span>
   </a>
@@ -1004,8 +1004,8 @@
 <p><em>(Normative)</em></p>
 <p><em>Amended 2026-10-31: Rule 4 extended from generic parameters to any subproperty whose Kind the schema declares as <code>any</code> (decision record 0001).</em></p>
 <h2 id="u1-purpose">U.1 Purpose</h2>
-<p>This annex defines the closed set of unit symbols that MAY appear as the value of a <code>unit</code> subproperty in a MatCore metadata instance, the quantity kind of each symbol, and its conversion to coherent SI. It also defines the quantity-kind names used in the <strong>Quantity kind</strong> field of the schema and their mapping to the QUDT ontology.</p>
-<p>A validator checks that (a) the symbol is in Table U.4 and (b) its quantity kind matches the quantity kind declared for the property in the schema. No unit parsing is required.</p>
+<p>This annex defines the closed set of unit symbols that MAY appear as the value of a <code>unit</code> subproperty in a MatCore metadata instance, the kind of each symbol, and its conversion to coherent SI. It also defines the kind names used in the <strong>Kind</strong> field of the schema and their mapping to the QUDT ontology.</p>
+<p>A validator checks that (a) the symbol is in Table U.4 and (b) its kind matches the kind declared for the property in the schema. No unit parsing is required.</p>
 <h2 id="u2-rules">U.2 Rules</h2>
 <ol>
 <li>Symbols are case-sensitive ASCII strings. <code>eV</code> and <code>ev</code> are not the same symbol.</li>
@@ -1014,16 +1014,16 @@
 <li>A <code>unit</code> subproperty of a generic parameter or of any other subproperty whose Kind the schema declares as <code>any</code> MAY, if and only if no symbol in Table U.4 applies, contain a string of the form <code>x-gnu:&lt;expression&gt;</code>, where <code>&lt;expression&gt;</code> is a unit expression valid in GNU Units 2.23 with <code>definitions.units</code> version 3.19 (February 2024). Such values are accepted with a validation warning and are not guaranteed to be machine-convertible. Later versions of <code>definitions.units</code> are not implied; a change of the pinned version is a revision of this annex.</li>
 <li>Conversion factors marked <em>exact</em> follow from the SI definitions. Factors marked <em>CODATA 2022</em> are the 2022 CODATA recommended values published by NIST. The factors in Table U.4 are normative for MatCore and take precedence over the values embedded in any external vocabulary (see Note 5). A revision to a later CODATA release is a revision of this annex.</li>
 <li>This annex is versioned with the standard. Instance files SHALL use symbols from the annex version matching their declared MatCore version. Symbols are only ever added; a symbol, once published, is never removed or redefined.</li>
-<li>Compatibility between a unit and a quantity kind is decided by the SI dimension vector in Table U.3, not by QUDT's own <code>hasQuantityKind</code> links (see Note 4).</li>
-<li><code>Energy</code> and <code>MolarEnergy</code> are distinct quantity kinds and are not interchangeable. A property declared with Quantity kind Energy SHALL NOT carry a MolarEnergy unit, and vice versa (see Note 1).</li>
+<li>Compatibility between a unit and a kind is decided by the SI dimension vector in Table U.3, not by QUDT's own <code>hasQuantityKind</code> links (see Note 4).</li>
+<li><code>Energy</code> and <code>MolarEnergy</code> are distinct kinds and are not interchangeable. A property declared with Kind Energy SHALL NOT carry a MolarEnergy unit, and vice versa (see Note 1).</li>
 </ol>
-<h2 id="u3-quantity-kinds">U.3 Quantity kinds</h2>
+<h2 id="u3-kinds">U.3 Kinds</h2>
 <p>QUDT namespace: <code>http://qudt.org/vocab/quantitykind/</code>. The dimension vector is QUDT's, in the order A (amount of substance), E (electric current), L (length), I (luminous intensity), M (mass), H (thermodynamic temperature), T (time), D (dimensionless).</p>
 <!-- BEGIN generated: Table U.3 from schema/units.yaml by scripts/build_docs.py; do not edit -->
 <table>
 <thead>
 <tr>
-<th>MatCore quantity kind</th>
+<th>Kind</th>
 <th>QUDT QuantityKind</th>
 <th>QUDT dimension vector</th>
 <th>SI dimension</th>
@@ -1154,7 +1154,7 @@
 </table>
 <!-- END generated -->
 
-<p>Reserved kinds: <code>dimensionless</code>; <code>inapplicable</code> (the value is not a physical quantity: strings, booleans, identifiers, and the <code>unit</code> subproperty itself); <code>any</code> (the quantity kind is determined by the instance <code>unit</code>; used only for the <code>value</code> of generic name/value/unit parameters).</p>
+<p>Reserved kinds: <code>dimensionless</code>; <code>inapplicable</code> (the value is not a physical quantity: strings, booleans, identifiers, and the <code>unit</code> subproperty itself); <code>any</code> (the kind is determined by the instance <code>unit</code>; used only for the <code>value</code> of generic name/value/unit parameters).</p>
 <h2 id="u4-unit-symbols">U.4 Unit symbols</h2>
 <p>QUDT namespace: <code>http://qudt.org/vocab/unit/</code>. "—" in the QUDT column means the unit has no IRI in QUDT (see Note 7).</p>
 <!-- BEGIN generated: Table U.4 from schema/units.yaml by scripts/build_docs.py; do not edit -->
@@ -1162,7 +1162,7 @@
 <thead>
 <tr>
 <th>Symbol</th>
-<th>Quantity kind</th>
+<th>Kind</th>
 <th>QUDT Unit</th>
 <th>GNU Units expression</th>
 <th>Factor to coherent SI</th>
@@ -1566,10 +1566,10 @@
 </table>
 <!-- END generated -->
 
-<p><strong>Note 1 (molar energies).</strong> <code>kJ/mol</code>, <code>kcal/mol</code> and <code>J/mol</code> are units of energy per amount of substance and belong to the quantity kind MolarEnergy, consistent with QUDT, which links these units to <code>quantitykind:MolarEnergy</code>. They are the customary energy units of classical force fields, and properties in the MD section that are conventionally reported per mole are declared with Quantity kind MolarEnergy. Conversion between Energy and MolarEnergy is a division or multiplication by the Avogadro constant (6.022 140 76 × 10²³ mol⁻¹, exact) and is a task for tooling, not for a <code>unit</code> value.</p>
+<p><strong>Note 1 (molar energies).</strong> <code>kJ/mol</code>, <code>kcal/mol</code> and <code>J/mol</code> are units of energy per amount of substance and belong to the kind MolarEnergy, consistent with QUDT, which links these units to <code>quantitykind:MolarEnergy</code>. They are the customary energy units of classical force fields, and properties in the MD section that are conventionally reported per mole are declared with Kind MolarEnergy. Conversion between Energy and MolarEnergy is a division or multiplication by the Avogadro constant (6.022 140 76 × 10²³ mol⁻¹, exact) and is a task for tooling, not for a <code>unit</code> value.</p>
 <p><strong>Note 2 (2π convention).</strong> InverseLength symbols do not encode whether a factor 2π is included. Properties for which this matters (e.g. <code>k-point-spacing</code>) carry a separate required <code>convention</code> subproperty.</p>
 <p><strong>Note 3 (mole vs. dimensionless).</strong> Following OPTIMADE, <code>dimensionless</code> SHALL NOT be used for amounts of substance or plane angles.</p>
-<p><strong>Note 4 (QUDT quantity-kind links are not a validation basis).</strong> QUDT attaches its own quantity kinds to units, and these are often narrower or differently named than MatCore's: <code>PER-SEC</code> is linked to Frequency and DecayConstant (not InverseTime); <code>PER-M3</code> to InverseVolume (not NumberDensity); <code>W-PER-M2</code> to PowerPerArea (not HeatFluxDensity); <code>GigaPA</code>, <code>KiloBAR</code> and <code>BAR</code> to ForcePerArea (not Pressure); <code>EV-PER-ANGSTROM</code> to TotalLinearStoppingPower (not Force). In every case the dimension vector agrees with the MatCore quantity kind, so compatibility is validated by dimension vector (Rule 7), and the QUDT unit IRI serves only as a stable identifier.</p>
+<p><strong>Note 4 (QUDT quantity-kind links are not a validation basis).</strong> QUDT attaches its own quantity kinds to units, and these are often narrower or differently named than MatCore's: <code>PER-SEC</code> is linked to Frequency and DecayConstant (not InverseTime); <code>PER-M3</code> to InverseVolume (not NumberDensity); <code>W-PER-M2</code> to PowerPerArea (not HeatFluxDensity); <code>GigaPA</code>, <code>KiloBAR</code> and <code>BAR</code> to ForcePerArea (not Pressure); <code>EV-PER-ANGSTROM</code> to TotalLinearStoppingPower (not Force). In every case the dimension vector agrees with the MatCore kind, so compatibility is validated by dimension vector (Rule 7), and the QUDT unit IRI serves only as a stable identifier.</p>
 <p><strong>Note 5 (stale constants in reference vocabularies).</strong> QUDT's own conversion multipliers for <code>E_h</code> (4.359 743 94 × 10⁻¹⁸ J) and <code>AMU</code> (1.660 538 782 83 × 10⁻²⁷ kg) are CODATA 2006 values, and GNU Units 2.23 uses CODATA 2018 values (hartree 4.359 744 722 2071 × 10⁻¹⁸ J, bohrradius 5.291 772 109 02 × 10⁻¹¹ m, amu 1.660 539 066 6 × 10⁻²⁷ kg). The factors in Table U.4 are therefore normative in MatCore (Rule 5) and take precedence over the values embedded in either reference vocabulary.</p>
 <p><strong>Note 6 (GNU spelling of bohr).</strong> GNU Units does not define <code>bohr</code>; the GNU name is <code>bohrradius</code>. The MatCore symbol remains <code>bohr</code>; the mapping is given in the GNU column.</p>
 <p><strong>Note 7 (units absent from QUDT).</strong> <code>Ry</code>, <code>bohr</code>, <code>meV</code>, <code>nm^3</code>, <code>1/ps</code>, <code>1/bohr</code>, <code>bohr^3</code>, <code>K/angstrom</code>, <code>eV/angstrom^3</code>, <code>hartree/bohr</code> and <code>1/angstrom^3</code> have no unit IRI in QUDT Units v3.3.0. For these, the MatCore symbol is the identifier and the quantity-kind IRI in Table U.3 supplies the semantic anchor. QUDT accepts contributions through its public repository, and IRIs will be added to this table if and when they are published.</p>
