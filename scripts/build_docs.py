@@ -10,6 +10,7 @@ Usage: build_docs.py [--show-legacy] [--out DIR]. Idempotent. legacy_* text is l
 """
 import argparse
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import material
 import yaml
@@ -214,6 +215,21 @@ def render_unit_table(units):
     return '\n'.join(rows) + '\n'
 
 
+CHECK_DIGIT = {'iso7064-mod11-2': 'ISO/IEC 7064 MOD 11-2', 'iso7064-mod97-10-ror': 'ISO/IEC 7064 MOD 97-10 (ROR)', None: '—'}
+
+
+def render_scheme_table(schemes):
+    """Return Table I.1 (identifier schemes) of Annex I, generated from identifier-schemes.yaml.
+
+    schemes (dict): scheme name -> entry, as in schema/identifier-schemes.yaml.
+    """
+    rows = ['| Scheme | Identifies | Form | Pattern | Check digit | Example | Source |', '|---|---|---|---|---|---|---|']
+    for name, s in schemes.items():
+        rows.append(f"| {name} | {', '.join(s['identifies'])} | {s['form']} | `{s['pattern']}` | "
+                    f"{CHECK_DIGIT[s['checksum']]} | `{s['example']}` | [{urlsplit(s['source']).netloc}]({s['source']}) |")
+    return '\n'.join(rows) + '\n'
+
+
 def splice(text, name, table, source='schema/units.yaml'):
     """Replace the generated region `name` of a hand-written page with `table`.
 
@@ -232,7 +248,7 @@ def splice(text, name, table, source='schema/units.yaml'):
 
 
 def main(argv=None):
-    """Write every section page, the Revision History, and the generated parts of the Preamble and Annex U.
+    """Write every section page, the Revision History, and the generated parts of the Preamble and Annexes U and I.
 
     argv (list[str] | None): command-line arguments; None reads sys.argv.
     """
@@ -260,6 +276,13 @@ def main(argv=None):
     annex = splice(annex, 'Table U.3', render_kind_table(units))
     annex = splice(annex, 'Table U.4', render_unit_table(units))
     path = args.out / 'annex-u-units.md'
+    path.write_text(annex)
+    print('wrote', path)
+    schemes = yaml.safe_load(open(ROOT / 'schema/identifier-schemes.yaml'))['schemes']
+    annex = (ROOT / 'docs/standard/annex-i-identifiers.md').read_text()
+    annex = splice(annex, 'version', version, 'schema/releases.yaml')
+    annex = splice(annex, 'Table I.1', render_scheme_table(schemes), 'schema/identifier-schemes.yaml')
+    path = args.out / 'annex-i-identifiers.md'
     path.write_text(annex)
     print('wrote', path)
 

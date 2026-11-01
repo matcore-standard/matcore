@@ -195,7 +195,7 @@ def test_main_writes_every_page_and_honours_the_flag(tmp_path):
     """The command writes one page per section plus Annex U with its tables; --show-legacy controls legacy text."""
     build_docs.main(['--out', str(tmp_path)])
     names = sorted(p.name for p in tmp_path.iterdir())
-    assert names == sorted([f'{i:02d}-{k}.md' for i, k in enumerate(SECTIONS, start=2)] + ['annex-u-units.md', 'index.md', 'revision-history.md'])
+    assert names == sorted([f'{i:02d}-{k}.md' for i, k in enumerate(SECTIONS, start=2)] + ['annex-i-identifiers.md', 'annex-u-units.md', 'index.md', 'revision-history.md'])
     assert 'Legacy:' not in (tmp_path / '02-minimal.md').read_text()
     build_docs.main(['--out', str(tmp_path), '--show-legacy'])
     assert 'Legacy:' in (tmp_path / '02-minimal.md').read_text()
@@ -247,3 +247,33 @@ def test_annex_keeps_its_prose_and_gets_generated_tables(tmp_path):
     strip = lambda s: re.sub(r'<!-- BEGIN generated:.*?<!-- END generated -->', '', s, flags=re.S)
     assert strip(out) == strip(src)
     assert '## U.2 Rules' in out and '## U.5 References' in out
+
+
+def test_scheme_table_states_every_scheme_rule():
+    """Table I.1 gives, for every scheme, what it identifies, its form, its pattern, its check digit, a valid
+    example and its source, so readers see the exact rule a validator applies (0014)."""
+    schemes = yaml.safe_load(open(ROOT / 'schema/identifier-schemes.yaml'))['schemes']
+    table = build_docs.render_scheme_table(schemes)
+    rows = table.strip().split('\n')
+    assert rows[0] == '| Scheme | Identifies | Form | Pattern | Check digit | Example | Source |'
+    assert len(rows) == 2 + len(schemes)
+    import html
+    import markdown
+    rendered = markdown.markdown(table, extensions=['tables'])
+    for name, s in schemes.items():
+        row = next(r for r in rendered.split('<tr>') if f'<td>{name}</td>' in r)
+        assert row.count('<td>') == 7, name  # a pipe in a pattern must not split its cell
+        assert f'<code>{html.escape(s["pattern"], quote=False)}</code>' in row, name  # shown exactly
+        assert s['example'] in row and s['source'] in row
+
+
+def test_annex_i_keeps_its_prose_and_gets_its_table(tmp_path):
+    """Annex I is built like Annex U: hand-written prose, a version line and Table I.1 generated (0014)."""
+    build_docs.main(['--out', str(tmp_path)])
+    out = (tmp_path / 'annex-i-identifiers.md').read_text()
+    src = (ROOT / 'docs/standard/annex-i-identifiers.md').read_text()
+    schemes = yaml.safe_load(open(ROOT / 'schema/identifier-schemes.yaml'))['schemes']
+    assert build_docs.render_scheme_table(schemes) in out
+    strip = lambda s: re.sub(r'<!-- BEGIN generated:.*?<!-- END generated -->', '', s, flags=re.S)
+    assert strip(out) == strip(src)
+    assert out.startswith('# Annex I — Identifier Schemes')

@@ -1,0 +1,42 @@
+# Identifier schemes (decision 0014): the single source of how a value in each scheme is written and checked.
+# An `identifier` property's `value` in a listed scheme SHALL match `pattern` and pass `checksum`; a value in an
+# unlisted scheme is accepted with a notice. Every field is traced to the scheme's own documentation in `source`.
+# checksum: iso7064-mod11-2 (ISO/IEC 7064:2003 MOD 11-2 over the 16 characters of the last path segment, hyphens
+# removed; "X" is 10) | iso7064-mod97-10-ror (the 2-digit MOD 97-10 check of the 6 Crockford base-32 characters,
+# as ROR computes it) | null.
+schemes:
+  ORCID:
+    identifies: [person]
+    form: The full https URI.
+    pattern: "https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]"
+    checksum: iso7064-mod11-2
+    example: "https://orcid.org/0000-0001-5727-2427"
+    source: https://support.orcid.org/hc/en-us/articles/360006897674-Structure-of-the-ORCID-Identifier
+  ROR:
+    identifies: [organization]
+    form: The full URL, the form ROR prefers.
+    pattern: "https://ror\\.org/0[a-hj-km-np-tv-z0-9]{6}[0-9]{2}"
+    checksum: iso7064-mod97-10-ror
+    example: "https://ror.org/02mhbdp94"
+    source: https://ror.readme.io/docs/identifier
+  DOI:
+    identifies: [software, dataset, publication]
+    form: The https URI at doi.org.
+    pattern: "https://doi\\.org/10\\.[^/]+/.+"
+    checksum: null
+    example: "https://doi.org/10.1000/182"
+    source: https://www.doi.org/doi_handbook/2_Numbering.html
+  SWHID:
+    identifies: [software]
+    form: The core identifier, optionally followed by qualifiers.
+    pattern: "swh:1:(snp|rel|rev|dir|cnt):[0-9a-f]{40}(;.+)?"
+    checksum: null
+    example: "swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f"
+    source: https://www.swhid.org/specification/v1.2/
+  ISNI:
+    identifies: [person, organization]
+    form: The https URI at isni.org.
+    pattern: "https://isni\\.org/isni/[0-9]{15}[0-9X]"
+    checksum: iso7064-mod11-2
+    example: "https://isni.org/isni/0000000121491740"
+    source: https://isni.org/page/linked-data/
