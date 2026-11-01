@@ -39,7 +39,8 @@ Keep it regular: no YAML anchors or aliases, custom tags, includes or templating
 Each property entry has exactly these fields, in this order (validate_schema.py enforces the order):
 `name, required, description, type, extent, kind, recommended-unit, values, repeatable,
 [convention], [notes], [legacy_values], [legacy_unit], [subproperties]`.
-- `type` ∈ string | float | int | bool | file | any.
+- `type` ∈ string | float | int | bool | file | any. A container (subproperties, no value of its
+  own) has type, extent, kind, recommended-unit and values all null (0004 item 37).
 - `extent`: KIM notation. `[]` scalar, `[3,3]` fixed, `[":"]` open length (quote the colon in YAML);
   `any` when the shape is not fixed by the schema. In prose write `[:]` without quotes.
 - `any` (for type, extent or kind) means the schema leaves the field open and something else fixes it:
