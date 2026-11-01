@@ -8,7 +8,7 @@
 
 ## 1.1 Objectives
 
-The *Material Core Metadata (MatCore)** *standard for computational materials science (CMS) represents key aspects of a material-focused computation to make it understandable to the broad materials research community. It provides pragmatic and workable guidelines for  documentation of materials data. 
+The *Material Core Metadata (MatCore)* standard for computational materials science (CMS) represents key aspects of a material-focused computation to make it understandable to the broad materials research community. It provides pragmatic and workable guidelines for  documentation of materials data. 
 
 The primary goals of the MatCore standard are, by outlining expectations for metadata accompanying a computational dataset, to facilitate: (1) dataset transparency, discoverability, sharing and reuse in theoretical and computational modeling, (2) verification and validation of materials modeling and simulation software, and (3) training physics-based and machine learning (ML) models for material behavior. An additional, more challenging, objective is to promote reproducibility in CMS by providing the information necessary for researchers to regenerate a published dataset.
 
