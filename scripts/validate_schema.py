@@ -32,6 +32,18 @@ def walk(props, path):
 
 for sym, u in units['units'].items():
     if u['kind'] not in kinds: print(f"ERROR units.yaml {sym}: kind {u['kind']} undefined"); errors += 1
+    # si_factor is exact decimal text (decision 0009); null only for the reserved `dimensionless`.
+    f = u.get('si_factor')
+    if f is None:
+        if sym != 'dimensionless': print(f"ERROR units.yaml {sym}: si_factor missing"); errors += 1
+    elif not isinstance(f, str):
+        print(f"ERROR units.yaml {sym}: si_factor {f!r} must be quoted decimal text"); errors += 1
+    else:
+        try: float(f)
+        except ValueError: print(f"ERROR units.yaml {sym}: si_factor {f!r} is not a number"); errors += 1
+for name, k in units['kinds'].items():
+    for field in ('si_unit', 'si_dimension'):
+        if not k.get(field): print(f"ERROR units.yaml kind {name}: {field} missing"); errors += 1
 
 v = Draft202012Validator(meta)
 for f in sorted(glob.glob(str(ROOT/'schema/[a-z]*.yaml'))):

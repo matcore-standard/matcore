@@ -35,8 +35,9 @@ uv run mkdocs serve
 - `mkdocs serve` serves the site at http://127.0.0.1:8000 until stopped with Ctrl-C.
 - Edits to prose pages (`docs/index.md`, `docs/standard/index.md`,
   `docs/standard/annex-u-units.md`, …) reload in the browser on save.
-- Edits to `schema/*.yaml` do not. The chapters `docs/standard/02-*.md` … `08-*.md` and
-  `annex-u-table.md` are generated from the YAML; never edit them by hand. After a YAML edit,
+- Edits to `schema/*.yaml` do not. The chapters `docs/standard/02-*.md` … `08-*.md`, and Tables
+  U.3 and U.4 in `annex-u-units.md` (between `generated` markers), are generated from the YAML;
+  never edit them by hand. After a YAML edit,
   regenerate them in a second terminal while `mkdocs serve` keeps running:
   ```
   uv run python scripts/validate_schema.py && uv run python scripts/build_docs.py --show-legacy

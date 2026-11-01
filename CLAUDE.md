@@ -17,9 +17,11 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
 - `schema/<section>.yaml` — the standard's property hierarchy, one file per section
   (minimal, dft, md, mbpt, ml, pf, derived). THIS IS THE STANDARD.
 - `schema/units.yaml` — Annex U, the normative unit table (kinds, symbols, QUDT/GNU mapping, SI factors).
+  The single source of Annex U's Tables U.3 and U.4, which build_docs.py generates into
+  annex-u-units.md; it prevails over the annex. Factors are exact decimal text, e.g. "1e3" (0009).
 - `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
 - `docs/standard/*.md` — prose chapters (index = title and 1. Preamble, annex-u-units) plus GENERATED chapters
-  (02–08, annex-u-table). Never hand-edit generated files; edit the YAML and run
+  (02–08, and the marked Tables U.3/U.4 in annex-u-units.md). Never hand-edit generated parts; edit the YAML and run
   `scripts/build_docs.py --show-legacy`.
 - `docs/decisions/` — decision records: internal committee information, not published on the site
   (0004). 0001 is the units change list (not yet applied; see Status). The frozen Google Doc export
@@ -250,7 +252,8 @@ record or marked PROPOSED, NOT DECIDED.
   `uv run python scripts/build_docs.py --show-legacy` (the flag until status step 5 is complete),
   `uv run mkdocs build --strict`. Commit any files
   build_docs.py regenerates with the change; CI fails if the committed copies are stale. Never
-  hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, annex-u-table.md) (0004).
+  hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, the marked tables in
+  annex-u-units.md) (0004, 0009).
 - Never invent QUDT identifiers, physical constants or unit symbols. units.yaml was verified against
   QUDT Units 3.3.0, GNU Units 2.23 (definitions.units 3.19) and NIST CODATA 2022. A new unit is
   added by pull request, with each of its fields (kind, QUDT identifier or null, GNU Units name,

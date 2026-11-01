@@ -16,3 +16,22 @@ def test_meta_schema_types_the_introduction():
     with pytest.raises(jsonschema.ValidationError):
         jsonschema.validate(section | {'introduction': ['not', 'text']}, meta)
 
+
+def test_unit_factors_are_exact_decimal_text():
+    """Factors keep their published digits (e.g. CODATA's trailing zeros) as text that parses as a number (0009)."""
+    units = yaml.safe_load(open(ROOT / 'schema/units.yaml'))
+    for sym, u in units['units'].items():
+        f = u['si_factor']
+        if sym == 'dimensionless':
+            assert f is None
+            continue
+        assert isinstance(f, str), sym
+        float(f)
+    assert units['units']['Ry']['si_factor'] == '2.1798723611030e-18'
+
+
+def test_every_kind_states_its_si_unit_and_dimension():
+    """Table U.3 and the factors in Table U.4 need each kind's SI dimension and coherent SI unit (0009)."""
+    units = yaml.safe_load(open(ROOT / 'schema/units.yaml'))
+    for name, k in units['kinds'].items():
+        assert k.get('si_unit') and k.get('si_dimension'), name

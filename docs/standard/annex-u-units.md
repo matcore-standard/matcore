@@ -25,6 +25,7 @@ A validator checks that (a) the symbol is in Table U.4 and (b) its quantity kind
 
 QUDT namespace: `http://qudt.org/vocab/quantitykind/`. The dimension vector is QUDT's, in the order A (amount of substance), E (electric current), L (length), I (luminous intensity), M (mass), H (thermodynamic temperature), T (time), D (dimensionless).
 
+<!-- BEGIN generated: Table U.3 from schema/units.yaml by scripts/build_docs.py; do not edit -->
 | MatCore quantity kind | QUDT QuantityKind | QUDT dimension vector | SI dimension |
 |---|---|---|---|
 | Energy | Energy | A0E0L2I0M1H0T-2D0 | kg·m²·s⁻² |
@@ -47,6 +48,7 @@ QUDT namespace: `http://qudt.org/vocab/quantitykind/`. The dimension vector is Q
 | dimensionless | Dimensionless | A0E0L0I0M0H0T0D1 | 1 |
 | inapplicable | — | — | — |
 | any | — | — | — |
+<!-- END generated -->
 
 Reserved kinds: `dimensionless`; `inapplicable` (the value is not a physical quantity: strings, booleans, identifiers, and the `unit` subproperty itself); `any` (the quantity kind is determined by the instance `unit`; used only for the `value` of generic name/value/unit parameters).
 
@@ -54,6 +56,7 @@ Reserved kinds: `dimensionless`; `inapplicable` (the value is not a physical qua
 
 QUDT namespace: `http://qudt.org/vocab/unit/`. "—" in the QUDT column means the unit has no IRI in QUDT (see Note 7).
 
+<!-- BEGIN generated: Table U.4 from schema/units.yaml by scripts/build_docs.py; do not edit -->
 | Symbol | Quantity kind | QUDT Unit | GNU Units expression | Factor to coherent SI | Source |
 |---|---|---|---|---|---|
 | `eV` | Energy | EV | eV | 1.602 176 634 × 10⁻¹⁹ J | exact |
@@ -105,6 +108,7 @@ QUDT namespace: `http://qudt.org/vocab/unit/`. "—" in the QUDT column means th
 | `degree` | Angle | DEG | degree | π/180 rad | exact |
 | `mol` | AmountOfSubstance | MOL | mol | 1 | exact |
 | `dimensionless` | dimensionless | UNITLESS | — | — | reserved |
+<!-- END generated -->
 
 **Note 1 (molar energies).** `kJ/mol`, `kcal/mol` and `J/mol` are units of energy per amount of substance and belong to the quantity kind MolarEnergy, consistent with QUDT, which links these units to `quantitykind:MolarEnergy`. They are the customary energy units of classical force fields, and properties in the MD section that are conventionally reported per mole are declared with Quantity kind MolarEnergy. Conversion between Energy and MolarEnergy is a division or multiplication by the Avogadro constant (6.022 140 76 × 10²³ mol⁻¹, exact) and is a task for tooling, not for a `unit` value.
 

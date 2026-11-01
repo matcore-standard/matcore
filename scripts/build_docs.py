@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render schema/*.yaml into Markdown pages under docs/standard/ for MkDocs.
+"""Render schema/*.yaml into Markdown pages under docs/standard/ for MkDocs, and Annex U's tables from schema/units.yaml.
 
 Section pages follow the layout of decision record 0007: every property is a collapsible block
 whose id is its citable address, nested as in the schema. Styles and behaviour are in
@@ -116,21 +116,77 @@ def render_section(section, show_legacy):
     return '\n'.join(out)
 
 
-def render_unit_table(units):
-    """Return the Markdown of Annex U's unit table.
+SUPERSCRIPT = str.maketrans('-0123456789', '⁻⁰¹²³⁴⁵⁶⁷⁸⁹')
+
+
+def format_factor(unit, kinds):
+    """Format a unit's factor to coherent SI as Table U.4 prints it, e.g. '2.179 872 361 103 0 × 10⁻¹⁸ J'.
+
+    The factor is exact decimal text (decision 0009), so its significant digits are printed as written.
+
+    unit (dict): one entry of units.yaml `units`; kinds (dict): units.yaml `kinds`.
+    """
+    si_unit = kinds[unit['kind']]['si_unit']
+    if unit.get('exact'):
+        return f"{unit['exact']} {si_unit}"
+    if unit['si_factor'] is None:
+        return '—'
+    if unit['si_factor'] == '1':
+        return '1'
+    mantissa, _, exponent = unit['si_factor'].partition('e')
+    whole, _, frac = mantissa.partition('.')
+    text = whole + ('.' + ' '.join(frac[i:i + 3] for i in range(0, len(frac), 3)) if frac else '')
+    if exponent:
+        text += ' × 10' + exponent.translate(SUPERSCRIPT)
+    return f'{text} {si_unit}'
+
+
+def render_kind_table(units):
+    """Return Table U.3 (quantity kinds) of Annex U, generated from units.yaml.
 
     units (dict): parsed schema/units.yaml.
     """
-    rows = ["# Annex U — Unit Table (generated from schema/units.yaml)\n",
-            "| Symbol | Kind | QUDT | GNU Units | Factor to SI | Source |", "|---|---|---|---|---|---|"]
-    for sym, r in units['units'].items():
-        rows.append(f"| `{sym}` | {r['kind']} | {r['qudt'] or '—'} | {r['gnu'] or '—'} | "
-                    f"{r['si_factor'] if r['si_factor'] is not None else '—'} | {r['source']} |")
-    return '\n'.join(rows)
+    rows = ['| MatCore quantity kind | QUDT QuantityKind | QUDT dimension vector | SI dimension |', '|---|---|---|---|']
+    for name, k in units['kinds'].items():
+        rows.append(f"| {name} | {k['qudt']} | {k['dimension']} | {k['si_dimension']} |")
+    for name in units['reserved_kinds']:
+        if name not in units['kinds']:
+            rows.append(f'| {name} | — | — | — |')
+    return '\n'.join(rows) + '\n'
+
+
+def render_unit_table(units):
+    """Return Table U.4 (unit symbols) of Annex U, generated from units.yaml.
+
+    units (dict): parsed schema/units.yaml.
+    """
+    rows = ['| Symbol | Quantity kind | QUDT Unit | GNU Units expression | Factor to coherent SI | Source |',
+            '|---|---|---|---|---|---|']
+    for sym, u in units['units'].items():
+        rows.append(f"| `{sym}` | {u['kind']} | {u['qudt'] or '—'} | {u['gnu'] or '—'} | "
+                    f"{format_factor(u, units['kinds'])} | {u['source']} |")
+    return '\n'.join(rows) + '\n'
+
+
+def splice(text, name, table):
+    """Replace the generated region `name` of a hand-written page with `table`.
+
+    text (str): page with '<!-- BEGIN generated: name ... -->' and '<!-- END generated -->' markers;
+    name (str): region name; table (str): generated Markdown.
+    """
+    begin = f'<!-- BEGIN generated: {name} from schema/units.yaml by scripts/build_docs.py; do not edit -->'
+    end = '<!-- END generated -->'
+    head, found, rest = text.partition(begin)
+    if not found:
+        raise SystemExit(f'annex-u-units.md: marker for {name!r} missing')
+    _, found, tail = rest.partition(end)
+    if not found:
+        raise SystemExit(f'annex-u-units.md: end marker for {name!r} missing')
+    return f'{head}{begin}\n{table}{end}{tail}'
 
 
 def main(argv=None):
-    """Write every section page and the unit table.
+    """Write every section page, and Annex U with its tables generated from units.yaml.
 
     argv (list[str] | None): command-line arguments; None reads sys.argv.
     """
@@ -144,8 +200,12 @@ def main(argv=None):
         path = args.out / f'{i:02d}-{key}.md'
         path.write_text(render_section(section, args.show_legacy) + '\n')
         print('wrote', path)
-    path = args.out / 'annex-u-table.md'
-    path.write_text(render_unit_table(yaml.safe_load(open(ROOT / 'schema/units.yaml'))))
+    units = yaml.safe_load(open(ROOT / 'schema/units.yaml'))
+    annex = (ROOT / 'docs/standard/annex-u-units.md').read_text()
+    annex = splice(annex, 'Table U.3', render_kind_table(units))
+    annex = splice(annex, 'Table U.4', render_unit_table(units))
+    path = args.out / 'annex-u-units.md'
+    path.write_text(annex)
     print('wrote', path)
 
 

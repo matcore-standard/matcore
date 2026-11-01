@@ -157,11 +157,35 @@ def test_introduction_sits_between_title_and_symbol_key(page):
 
 
 def test_main_writes_every_page_and_honours_the_flag(tmp_path):
-    """The command writes one page per section plus the unit table; --show-legacy controls legacy text."""
+    """The command writes one page per section plus Annex U with its tables; --show-legacy controls legacy text."""
     build_docs.main(['--out', str(tmp_path)])
     names = sorted(p.name for p in tmp_path.iterdir())
-    assert names == sorted([f'{i:02d}-{k}.md' for i, k in enumerate(SECTIONS, start=2)] + ['annex-u-table.md'])
+    assert names == sorted([f'{i:02d}-{k}.md' for i, k in enumerate(SECTIONS, start=2)] + ['annex-u-units.md'])
     assert 'Legacy:' not in (tmp_path / '02-minimal.md').read_text()
     build_docs.main(['--out', str(tmp_path), '--show-legacy'])
     assert 'Legacy:' in (tmp_path / '02-minimal.md').read_text()
 
+
+UNITS = yaml.safe_load(open(ROOT / 'schema/units.yaml'))
+FIXTURES = ROOT / 'tests/fixtures'
+
+
+def test_kind_table_reproduces_the_annex():
+    """Table U.3 generated from units.yaml equals the verified hand-typed table, character for character (0009)."""
+    assert build_docs.render_kind_table(UNITS) == (FIXTURES / 'annex_u3_table.md').read_text()
+
+
+def test_unit_table_reproduces_the_annex():
+    """Table U.4 generated from units.yaml equals the verified hand-typed table, character for character (0009)."""
+    assert build_docs.render_unit_table(UNITS) == (FIXTURES / 'annex_u4_table.md').read_text()
+
+
+def test_annex_keeps_its_prose_and_gets_generated_tables(tmp_path):
+    """Only the text between the markers is generated; the hand-written annex prose passes through unchanged."""
+    build_docs.main(['--out', str(tmp_path)])
+    out = (tmp_path / 'annex-u-units.md').read_text()
+    src = (ROOT / 'docs/standard/annex-u-units.md').read_text()
+    assert build_docs.render_kind_table(UNITS) in out and build_docs.render_unit_table(UNITS) in out
+    strip = lambda s: re.sub(r'<!-- BEGIN generated:.*?<!-- END generated -->', '', s, flags=re.S)
+    assert strip(out) == strip(src)
+    assert '## U.2 Rules' in out and '## U.5 References' in out

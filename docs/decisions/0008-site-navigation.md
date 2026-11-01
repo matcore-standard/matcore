@@ -14,7 +14,7 @@ Date: 2026-11-01. Status: accepted. Decided by: Ellad Tadmor.
      - Browse Standard (opens the Preamble page, `docs/standard/index.md`) ▸
        - 1. Preamble (the same page; 1.1 Objectives, 1.2 Scope, 1.3 Format, from its headings)
        - 2. Schema for the MatCore Standard ▸ 2.1 Minimal MatCore Metadata, 2.2 Density Functional Theory (DFT) Metadata, 2.3 Molecular Dynamics (MD) Metadata, 2.4 Many-Body Perturbation Theory (MBPT) Metadata, 2.5 Machine Learning (ML) Metadata, 2.6 Phase Field (PF) Metadata, 2.7 Derived Property Metadata
-       - Annex U. MatCore Unit Table; Annex U. Unit Table (generated)
+       - Annex U. MatCore Unit Table (its separate generated page was removed by 0009)
      - Revision History
    - Contact (replaces the Feedback placeholder, which is removed; text from matcore.org/contact)
    Menu labels carry the section numbers. The 2.x entries take their labels from the section titles (`title` in schema/<section>.yaml, also the page headings), so menu and page cannot differ; the other labels are set in mkdocs.yml `nav`.
