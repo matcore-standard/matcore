@@ -251,9 +251,10 @@ record or marked PROPOSED, NOT DECIDED.
    fails if it does while legacy_* fields remain (0004 item 36).
    [done, PR #10 merged 2026-11-01] `legacy_complete` added to meta-schema.yaml and the check to
    validate_schema.py.
-   [done, branch values-0013] 0013 implemented: `terms` in meta-schema.yaml; scripts/check_values.py
-   checks every property's values (called by validate_schema.py), with all JSON Schema formats
-   checked through jsonschema's `format-nongpl` extra; build_docs.py renders every values key.
+   [done, PR #11 merged 2026-11-01] 0013 implemented: `terms` in meta-schema.yaml;
+   scripts/check_values.py checks every property's values (called by validate_schema.py), with all
+   JSON Schema formats checked through jsonschema's `format-nongpl` extra; build_docs.py renders
+   every values key.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
