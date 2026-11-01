@@ -208,7 +208,8 @@ record or marked PROPOSED, NOT DECIDED.
      (tag v0.4.0); the site's `latest` is 0.4.0 and `dev` is main.
    - Changes to the standard since 0.4.0, for the next release's entry in releases.yaml: the
      Preamble's italics fixed (PR #4); contributor and its affiliation optional, and exactly one
-     basis entry for the MBPT dielectric matrix (0011).
+     basis entry for the MBPT dielectric matrix (0011); creator and contributor descriptions
+     reworded (primary creator vs secondary contributor).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
