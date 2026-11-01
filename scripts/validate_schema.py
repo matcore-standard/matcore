@@ -9,6 +9,8 @@ except ImportError:
     sys.exit("pip install jsonschema pyyaml")
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT/'scripts'))
+from check_values import values_errors
 meta = yaml.safe_load((ROOT/'schema/meta-schema.yaml').read_text())
 units = yaml.safe_load((ROOT/'schema/units.yaml').read_text())
 kinds = set(units['kinds']) | set(units['reserved_kinds'])
@@ -32,6 +34,8 @@ def walk(props, path):
             if u not in symbols: print(f"ERROR {here}: recommended-unit {u!r} not in units.yaml"); errors += 1
             elif k not in (None,'any') and units['units'][u]['kind'] != k:
                 print(f"ERROR {here}: unit {u} has kind {units['units'][u]['kind']}, property kind is {k}"); errors += 1
+        for e in values_errors(p):  # decision 0013
+            print(f"ERROR {here}: {e}"); errors += 1
         if p.get('type') in ('float','int') and k is None and p.get('legacy_values') is None:
             print(f"WARN  {here}: numeric type with no kind")
         walk(p.get('subproperties', []), here)
@@ -82,7 +86,6 @@ for f in sorted(glob.glob(str(ROOT/'schema/[a-z]*.yaml'))):
         print(f"ERROR {Path(f).name}: legacy_complete is true but {n} legacy_* fields remain"); errors += 1
     print(f"ok    {Path(f).name}: {len(errs)} schema errors")
 # Examples follow the structure of the current standard (decision 0012).
-sys.path.insert(0, str(ROOT/'scripts'))
 from check_examples import all_errors
 example_errors = all_errors()
 for e in example_errors: print(f"ERROR {e}")

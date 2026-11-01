@@ -51,13 +51,14 @@ $defs:
       recommended-unit:
         oneOf: [{type: "null"}, {type: string}]
       values:
-        # allowed values / constraints / examples (structured); null if none
+        # allowed values / constraints / examples (structured); null if none (decision 0013)
         oneOf:
           - type: "null"
           - type: object
             additionalProperties: false
             properties:
-              enum: {type: array, items: {type: [string, number, boolean]}}
+              terms: {type: array, items: {type: string}}  # open vocabulary
+              enum: {type: array, items: {type: string}}   # closed list
               minimum: {type: number}
               maximum: {type: number}
               format: {type: string}

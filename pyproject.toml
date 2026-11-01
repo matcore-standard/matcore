@@ -2,7 +2,7 @@
 name = "matcore"
 version = "0.0.0"
 requires-python = ">=3.12"
-dependencies = ["pyyaml>=6", "jsonschema>=4.20"]
+dependencies = ["pyyaml>=6", "jsonschema[format-nongpl]>=4.20"]
 
 [dependency-groups]
 dev = ["mkdocs>=1.6", "mkdocs-material>=9.5", "mike>=2", "pytest"]
