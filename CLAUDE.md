@@ -17,15 +17,21 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
 - `schema/<section>.yaml` — the standard's property hierarchy, one file per section
   (minimal, dft, md, mbpt, ml, pf, derived). THIS IS THE STANDARD.
 - `schema/units.yaml` — Annex U, the normative unit table (kinds, symbols, QUDT/GNU mapping, SI factors).
+  The single source of Annex U's Tables U.3 and U.4, which build_docs.py generates into
+  annex-u-units.md; it prevails over the annex. Factors are exact decimal text, e.g. "1e3" (0009).
 - `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
-- `docs/standard/*.md` — prose chapters (01-introduction, annex-u-units) plus GENERATED chapters
-  (02–08, annex-u-table). Never hand-edit generated files; edit the YAML and run `scripts/build_docs.py`.
+- `docs/standard/*.md` — prose chapters (index = title and 1. Preamble, annex-u-units) plus GENERATED chapters
+  (02–08, and the marked Tables U.3/U.4 in annex-u-units.md). Never hand-edit generated parts; edit the YAML and run
+  `scripts/build_docs.py --show-legacy`.
 - `docs/decisions/` — decision records: internal committee information, not published on the site
   (0004). 0001 is the units change list (not yet applied; see Status). The frozen Google Doc export
   is stored there as the baseline artifact.
 - `scripts/validate_schema.py` — checks section files against the meta-schema and units.yaml. It
   validates the standard itself, not instance files (the instance validator is status step 9).
-- `scripts/build_docs.py` — regenerates docs from YAML. CI runs both.
+- `scripts/build_docs.py` — regenerates docs from YAML in the layout of 0007; tested by
+  tests/test_build_docs.py. Run it with `--show-legacy` until status step 5 is complete (CI does).
+  CI runs both scripts.
+- `docs/assets/matcore/` — layout.css and layout.js for the standard pages (0007).
 
 ## Conventions for schema YAML (decided; see docs/decisions/0002 and 0004)
 Keep it regular: no YAML anchors or aliases, custom tags, includes or templating.
@@ -106,7 +112,7 @@ serializations to read and write; that is a tool decision, not yet made, and it 
 implementations. When it is made, a format-specific schema (e.g. XSD or JSON Schema) is generated
 from the YAML for that serialization and used by CI to validate the examples (0004).
 
-## Website and tools (see docs/decisions/0000, 0004 and 0007)
+## Website and tools (see docs/decisions/0000, 0004, 0007 and 0008)
 - Static site, MkDocs (Material), GitHub Pages, versioned with `mike`; built on every push to main
   by .github/workflows/ci.yml; no dynamic server (0000). The site is served at
   matcore-standard.github.io/matcore for now. matcore.org will point to it as soon as the site is
@@ -116,10 +122,18 @@ from the YAML for that serialization and used by CI to validate the examples (00
   `autorenew-off` icon for repeatable / at most once; body = description, six-column attribute table
   (Required, Repeatable, Type, Extent, Kind, Rec. unit), values, nested subproperties. Citable
   address per property (`#section.path.to.property`, static id) with a permalink button; property
-  tree in the left sidebar on wide screens, breadcrumb bar on narrow ones; stacked table on phones;
-  site-wide palette sampled from the logo. Reference implementation: docs/decisions/0007-reference/
-  (render.py, layout.css, layout.js). Read 0007, including its implementation constraints, before
-  changing how the pages look or behave; its open points are PROPOSED, NOT DECIDED.
+  tree under the page's entry in the left menu (0008), breadcrumb bar on narrow screens; stacked
+  table on phones; site-wide palette sampled from the logo. Implementation: scripts/build_docs.py (markup) and
+  docs/assets/matcore/layout.css and layout.js. Read 0007, including its implementation
+  constraints, before changing how the pages look or behave; its open points are PROPOSED, NOT
+  DECIDED.
+- Navigation follows docs/decisions/0008 (decided): left menu, collapsed to Home · About · Standard ·
+  Contact; Standard ▸ Browse Standard (numbered as on matcore.org: 1. Preamble, 1.1–1.3; 2. Schema,
+  2.1–2.7; Annex U) and Revision History; no tabs; no right-hand TOC (page headings in the left menu,
+  toc_depth 2); logo before "MatCore" in the menu title. Menu labels are set in mkdocs.yml `nav`.
+  Browse Standard opens the Preamble (docs/standard/index.md), which overrides/partials/nav-item.html
+  (a one-line change to the theme's template; re-apply on theme upgrades) also lists as "1. Preamble".
+  Home page: no visible title, no links line.
 - Tools: one Python package named `matcore`, run in-browser via Pyodide (0000, 0006).
   PROPOSED, NOT DECIDED: its contents (a command-line validator; parsers for VASP, QE and LAMMPS
   output; web validator, visualizer and forms); parsers as the primary generator of instances, web forms as the
@@ -146,20 +160,26 @@ record or marked PROPOSED, NOT DECIDED.
 2. [todo] Website cleanup: the GitHub Pages site offers the user the same options as matcore.org,
    so it can replace it (0004). Presentation may differ and should use the semantic structure of
    the YAML to improve on the live site.
-   - Menu, with navigation tabs: Home · About (About MatCore, Leadership) · Standard (the standard,
-     Revision History) · Contact. toc_depth 2.
-   - Migrate the content of About MatCore, Leadership, Revision History and Contact from
-     matcore.org (this was step 8). Contact replaces the Feedback placeholder.
+   - [done, branch site-layout-0007, PR pending] Menu as in 0008 (replaces the navigation tabs of
+     0004 item 21). Contact page migrated; the Feedback placeholder is removed.
+   - Migrate the content of About MatCore, Leadership and Revision History from matcore.org (this
+     was step 8).
+   [done, branch site-layout-0007] Section titles (schema/*.yaml `title`, used for page headings and
+   menu labels): 2.1 Minimal MatCore Metadata, 2.2 Density Functional Theory (DFT) Metadata, …,
+   2.7 Derived Property Metadata (0008).
    - Under Standard, each section shows its introduction and its examples, as on matcore.org.
-     Storage (0004): each schema/<section>.yaml gets a top-level `introduction` (Markdown in a
-     literal block, one per section) and `examples` (a list; each entry has `caption`, `file` in
-     examples/, `source`, optional `notes`). Text comes from the baseline .docx as it is. Needs
-     the two fields added to meta-schema.yaml, and pymdownx.highlight + superfences for code.
-   - build_docs.py renders the standard from the YAML in the layout of 0007, adopting the markup of
-     docs/decisions/0007-reference/render.py (test first); layout.css and layout.js move into the
-     site's assets and mkdocs.yml gets the settings 0007 lists. legacy_* fields hidden unless
-     --show-legacy is passed, and CI builds with --show-legacy until step 5 is complete.
+     Storage (0004): each schema/<section>.yaml has a top-level `introduction` (Markdown in a
+     literal block, one per section) and gets `examples` (a list; each entry has `caption`, `file`
+     in examples/, `source`, optional `notes`). Text comes from the baseline .docx as it is.
+     [done, branch site-layout-0007] `introduction`: in meta-schema.yaml, filled from the .docx for
+     all seven sections, rendered under the section title (0008 item 6).
+     [todo] `examples`: the meta-schema field, the example files, and pymdownx.highlight +
+     superfences for code.
    - [done] Property layout chosen after rendered options were compared (0007).
+   - [done, branch site-layout-0007, PR pending] build_docs.py renders the standard from the YAML
+     in the layout of 0007 (tests in tests/test_build_docs.py); layout.css and layout.js in
+     docs/assets/matcore/; mkdocs.yml has the settings 0007 lists. legacy_* fields hidden unless
+     --show-legacy is passed, and CI builds with --show-legacy until step 5 is complete.
    - [done] Decision records are internal committee information: docs/decisions/, including the
      baseline .docx, is excluded from the site build (`exclude_docs` in mkdocs.yml; an unlinked page
      would still appear in sitemap.xml and the site search). They stay in the public GitHub
@@ -229,9 +249,11 @@ record or marked PROPOSED, NOT DECIDED.
   was done and what remains, and commit any correction. Assume the conversation will not be
   available next time (0004).
 - Before every commit run the checks CI runs: `uv run python scripts/validate_schema.py`,
-  `uv run python scripts/build_docs.py`, `uv run mkdocs build --strict`. Commit any files
+  `uv run python scripts/build_docs.py --show-legacy` (the flag until status step 5 is complete),
+  `uv run mkdocs build --strict`. Commit any files
   build_docs.py regenerates with the change; CI fails if the committed copies are stale. Never
-  hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, annex-u-table.md) (0004).
+  hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, the marked tables in
+  annex-u-units.md) (0004, 0009).
 - Never invent QUDT identifiers, physical constants or unit symbols. units.yaml was verified against
   QUDT Units 3.3.0, GNU Units 2.23 (definitions.units 3.19) and NIST CODATA 2022. A new unit is
   added by pull request, with each of its fields (kind, QUDT identifier or null, GNU Units name,

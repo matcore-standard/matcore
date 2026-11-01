@@ -1,5 +1,5 @@
-// Standard-page behaviour of decision record 0007, for pages whose property blocks render.py
-// writes (details.mc-property, id = citable address). Adds: a permalink button on each block,
+// Standard-page behaviour of decision record 0007, for pages whose property blocks
+// scripts/build_docs.py writes (details.mc-property, id = citable address). Adds: a permalink button on each block,
 // a property tree in the left sidebar, a breadcrumb bar for narrow screens, opening the block
 // named by the address (on load and on change), and column labels for the phone table layout.
 document.addEventListener('DOMContentLoaded', () => {
@@ -71,7 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
       list.appendChild(build(el));
     }
   }
-  if (sidebar) sidebar.appendChild(tree);
+  // The tree goes under the current page's entry in the left menu, where the page's headings
+  // would be (decision 0008); the menu entry already names the section, so its title is dropped.
+  const pageLink = document.querySelector('.md-nav--primary .md-nav__link--active');
+  const host = pageLink && pageLink.closest('li');
+  if (host) {
+    tree.querySelectorAll('.mc-tree-section').forEach(h => h.remove());
+    tree.classList.add('mc-tree--in-menu');
+    host.appendChild(tree);
+  } else if (sidebar) {
+    sidebar.appendChild(tree);
+  }
 
   function ancestors(d) {
     const out = [];

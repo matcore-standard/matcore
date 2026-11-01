@@ -1,5 +1,5 @@
 /* Standard-page layout of decision record 0007: logo palette, property blocks, property tree,
-   breadcrumb bar, permalink button, phone table. Pairs with layout.js and render.py. */
+   breadcrumb bar, permalink button, phone table. Pairs with layout.js and scripts/build_docs.py. */
 
 /* Palette sampled from the MatCore logo. mkdocs.yml sets palette primary/accent to "custom". */
 :root > * {
@@ -87,3 +87,20 @@ summary:hover > .mc-permalink, .mc-permalink:focus-visible { opacity: 1; }
   .md-typeset details.mc-property .md-typeset__table { display: block; }
   .md-typeset details.mc-property .md-typeset__scrollwrap { overflow: visible; margin: 1em 0; }
 }
+
+/* Left menu title on wide screens: logo before "MatCore", larger bold text (decision 0008). The theme
+   hides the logo button there; on narrow screens the title belongs to the drawer, which shows it. */
+@media screen and (min-width: 76.25em) {
+  .md-nav--primary > .md-nav__title { display: flex; align-items: center; gap: .5rem; height: auto; padding: .4rem .6rem .6rem; font-size: 1.1rem; font-weight: 700; color: var(--mc-charcoal); }
+  .md-nav--primary > .md-nav__title .md-nav__button.md-logo { display: inline-flex; margin: 0; padding: 0; }
+  .md-nav--primary > .md-nav__title .md-nav__button.md-logo img { height: 1.8rem; width: auto; }
+}
+/* Property tree placed under the current page's menu entry: indented like the menu's own levels. */
+.mc-tree--in-menu { padding: .1rem 0 .4rem .6rem; }
+
+/* Document title above "1. Preamble" on the Browse Standard page: styled like a page title but not a
+   heading, so the menu does not list it (decision 0008). */
+.md-typeset .mc-doc-title { margin: 0 0 1.2em; font-size: 2em; font-weight: 300; line-height: 1.3; color: var(--mc-charcoal); }
+
+/* Present for screen readers and search engines, not shown (Home page title, decision 0008). */
+.mc-visually-hidden { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
