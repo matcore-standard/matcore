@@ -131,7 +131,7 @@ from the YAML for that serialization and used by CI to validate the examples (00
 ## Status / next steps (update this list as work lands)
 Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
 PROPOSED, NOT DECIDED until the human rules: the order of status steps 7 and 9; and the working
-rules from "One decision per pull request" on.
+rules from "Memory lives in the repository" on.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
@@ -201,8 +201,11 @@ rules from "One decision per pull request" on.
 - Environment: uv owns it (0006). Dependencies live in pyproject.toml (a `dev` group for site and
   test tools) and are pinned in uv.lock; run `uv sync`, then every command through `uv run`.
   Never pip-install into the system Python.
-- One decision per pull request. Write or update a record in docs/decisions/ before making the
-  change, and reference it in the commit message.
+- One decision per change. Changes to schema/, the generated docs or the site's build and content go
+  through a pull request, so CI checks them before they reach main; the property PRs of status
+  step 5 carry their judgment-call list in the description. Rulings and repository housekeeping may
+  be committed directly to main once the human approves. Reference the decision record in the
+  commit message (0004).
 - Memory lives in the repository, not in chat. Whenever a decision is made or changed in
   conversation, update the relevant section of this file and the status list in the same commit as
   the work. At the end of every session, update the status list to say exactly what was done and
