@@ -162,8 +162,9 @@ record or marked PROPOSED, NOT DECIDED.
    the YAML to improve on the live site.
    - [done, PR #1 merged 2026-11-01] Menu as in 0008 (replaces the navigation tabs of
      0004 item 21). Contact page migrated; the Feedback placeholder is removed.
-   - [todo] Migrate the content of About MatCore, Leadership and Revision History from matcore.org
-     (this was step 8).
+   - [done, branch site-content, PR pending] Content of About MatCore, Leadership and Revision
+     History migrated from matcore.org (this was step 8), with the edits of 0004 item 32. Page
+     titles and section headings site-wide made compact (0008 item 8).
    - [done, PR #1] Section titles (schema/*.yaml `title`, used for page headings and
    menu labels): 2.1 Minimal MatCore Metadata, 2.2 Density Functional Theory (DFT) Metadata, …,
    2.7 Derived Property Metadata (0008).
