@@ -9,6 +9,9 @@
   record (NNNN-short-title.md: context, decision, consequences) when the committee decides something.
 - Versions: the standard's version and history live in `schema/releases.yaml`; releases are cut per
   milestone, not per change (see the README, "Releasing a version").
+- Examples: a change to `schema/*.yaml` must keep every example in `examples/` conformant; review
+  them and update any that no longer fit, in the same pull request. `scripts/validate_schema.py`
+  checks their structure (decision record 0012).
 - Units: symbols must come from `schema/units.yaml`. To add a unit, add a row with a verified QUDT IRI
   (or null) and a CODATA-2022-based SI factor, and say in the PR how it was verified. Write the factor
   as quoted decimal text with its published digits (e.g. `si_factor: "5.29177210544e-11"`); Annex U's

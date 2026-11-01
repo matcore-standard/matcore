@@ -68,4 +68,11 @@ for f in sorted(glob.glob(str(ROOT/'schema/[a-z]*.yaml'))):
         print(f"ERROR {Path(f).name}: {'/'.join(map(str,e.path))}: {e.message}"); errors += 1
     walk(doc['properties'], Path(f).stem)
     print(f"ok    {Path(f).name}: {len(errs)} schema errors")
+# Examples follow the structure of the current standard (decision 0012).
+sys.path.insert(0, str(ROOT/'scripts'))
+from check_examples import all_errors
+example_errors = all_errors()
+for e in example_errors: print(f"ERROR {e}")
+errors += len(example_errors)
+print(f"ok    examples: {len(example_errors)} structural errors" if not example_errors else f"FAIL  examples: {len(example_errors)} structural errors")
 sys.exit(1 if errors else 0)

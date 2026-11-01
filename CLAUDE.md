@@ -279,6 +279,10 @@ record or marked PROPOSED, NOT DECIDED.
   build_docs.py regenerates with the change; CI fails if the committed copies are stale. Never
   hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, revision-history.md, the
   marked regions in index.md and annex-u-units.md) (0004, 0009, 0010).
+- Examples follow the standard (0012): every change to schema/*.yaml includes reviewing every
+  example in examples/ and updating any that no longer conform, in the same change.
+  validate_schema.py (via scripts/check_examples.py) fails on structural mismatches; rules the
+  schema cannot express yet (e.g. "exactly one of") are reviewed by hand.
 - Never invent QUDT identifiers, physical constants or unit symbols. units.yaml was verified against
   QUDT Units 3.3.0, GNU Units 2.23 (definitions.units 3.19) and NIST CODATA 2022. A new unit is
   added by pull request, with each of its fields (kind, QUDT identifier or null, GNU Units name,
