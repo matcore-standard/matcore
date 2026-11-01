@@ -1,5 +1,9 @@
 # Annex U — MatCore Unit Table
 
+<!-- BEGIN generated: version from schema/releases.yaml by scripts/build_docs.py; do not edit -->
+<p class="mc-version" data-version="0.4.0">Version 0.4.0</p>
+<!-- END generated -->
+
 *(Normative)*
 
 *Amended 2026-10-31: Rule 4 extended from generic parameters to any subproperty whose Kind the schema declares as `any` (decision record 0001).*

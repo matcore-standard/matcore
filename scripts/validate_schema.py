@@ -45,9 +45,23 @@ for name, k in units['kinds'].items():
     for field in ('si_unit', 'si_dimension'):
         if not k.get(field): print(f"ERROR units.yaml kind {name}: {field} missing"); errors += 1
 
+# releases.yaml (decision 0010): full semantic versions, newest first, dates not decreasing.
+import datetime, re
+releases = yaml.safe_load((ROOT/'schema/releases.yaml').read_text())['releases']
+FIELDS = {'version', 'date', 'change_type', 'sections', 'description', 'approved_by'}
+SEMVER = re.compile(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)')
+for r in releases:
+    if set(r) != FIELDS: print(f"ERROR releases.yaml {r.get('version')}: fields must be {sorted(FIELDS)}"); errors += 1
+    if not SEMVER.fullmatch(str(r.get('version'))): print(f"ERROR releases.yaml {r.get('version')!r}: not MAJOR.MINOR.PATCH"); errors += 1
+    if not isinstance(r.get('date'), datetime.date): print(f"ERROR releases.yaml {r.get('version')}: date must be YYYY-MM-DD"); errors += 1
+for newer, older in zip(releases, releases[1:]):
+    key = lambda r: tuple(int(x) for x in str(r['version']).split('.')) if SEMVER.fullmatch(str(r['version'])) else ()
+    if not key(newer) > key(older) or not newer['date'] >= older['date']:
+        print(f"ERROR releases.yaml: {newer['version']} must be newer than {older['version']}, listed first"); errors += 1
+
 v = Draft202012Validator(meta)
 for f in sorted(glob.glob(str(ROOT/'schema/[a-z]*.yaml'))):
-    if f.endswith(('meta-schema.yaml','units.yaml')): continue
+    if f.endswith(('meta-schema.yaml','units.yaml','releases.yaml')): continue
     doc = yaml.safe_load(open(f))
     errs = sorted(v.iter_errors(doc), key=lambda e: e.path)
     for e in errs:

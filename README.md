@@ -54,6 +54,16 @@ uv run python scripts/build_docs.py --show-legacy
 uv run mkdocs build --strict
 ```
 
+## Releasing a version
+Versions follow semantic versioning and are cut per milestone (decision record 0010).
+
+1. Add the new release at the top of `schema/releases.yaml` (version, date, change type, sections,
+   description, approved by), run the checks above, and commit it to `main`.
+2. Tag that commit and push the tag, e.g. `git tag v0.5.0 && git push origin v0.5.0`.
+
+CI checks that the tag matches `releases.yaml`, then publishes the version at `…/matcore/0.5.0/` and
+points `latest` to it. Pushes to `main` update only the unreleased `dev` version.
+
 ## License
 Standard text and schema: CC BY 4.0. Code: Apache-2.0.
 

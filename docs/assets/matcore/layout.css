@@ -112,3 +112,7 @@ summary:hover > .mc-permalink, .mc-permalink:focus-visible { opacity: 1; }
 .md-typeset h3 { margin: 1.3em 0 .4em; font-size: 1.05em; font-weight: 700; line-height: 1.4; color: var(--mc-charcoal); }
 .md-typeset h2 + h3 { margin-top: .8em; }
 .md-typeset h3 + ul { margin-top: .4em; }
+
+/* Version line under each standard page's title (decision 0010); on the dev site it is a warning. */
+.md-typeset .mc-version { margin: -.4em 0 1.4em; font-size: .8em; color: var(--mc-slate); }
+.md-typeset .mc-version--dev { color: var(--mc-bronze-text); font-weight: 700; }

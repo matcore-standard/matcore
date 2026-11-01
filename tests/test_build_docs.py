@@ -160,7 +160,7 @@ def test_main_writes_every_page_and_honours_the_flag(tmp_path):
     """The command writes one page per section plus Annex U with its tables; --show-legacy controls legacy text."""
     build_docs.main(['--out', str(tmp_path)])
     names = sorted(p.name for p in tmp_path.iterdir())
-    assert names == sorted([f'{i:02d}-{k}.md' for i, k in enumerate(SECTIONS, start=2)] + ['annex-u-units.md'])
+    assert names == sorted([f'{i:02d}-{k}.md' for i, k in enumerate(SECTIONS, start=2)] + ['annex-u-units.md', 'index.md', 'revision-history.md'])
     assert 'Legacy:' not in (tmp_path / '02-minimal.md').read_text()
     build_docs.main(['--out', str(tmp_path), '--show-legacy'])
     assert 'Legacy:' in (tmp_path / '02-minimal.md').read_text()

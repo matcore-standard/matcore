@@ -3,12 +3,11 @@ $schema: "https://json-schema.org/draft/2020-12/schema"
 $id: "https://matcore.org/schema/meta-schema"
 title: MatCore section schema
 type: object
-required: [section, title, matcore_version, properties]
+required: [section, title, properties]
 additionalProperties: false
 properties:
   section: {type: string, pattern: "^[a-z][a-z0-9-]*$"}
   title: {type: string}
-  matcore_version: {type: string}
   source: {type: string}
   introduction: {type: string}  # Markdown shown under the section title (0004 item 23)
   examples:                     # example instances shown at the end of the section page (0004 item 23)

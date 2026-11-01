@@ -102,12 +102,37 @@ def render_property(p, path, out, show_legacy):
     out += ['</details>', '']
 
 
+def current_version():
+    """Return the current version of the standard: the newest entry of schema/releases.yaml (decision 0010)."""
+    return yaml.safe_load(open(ROOT / 'schema/releases.yaml'))['releases'][0]['version']
+
+
+def version_line():
+    """HTML line stating the page's version; layout.js relabels it on the unreleased `dev` site (decision 0010)."""
+    v = current_version()
+    return f'<p class="mc-version" data-version="{v}">Version {v}</p>'
+
+
+def render_revision_history(releases):
+    """Return the Revision History page, generated from schema/releases.yaml (decision 0010).
+
+    releases (list[dict]): the `releases` list, newest first.
+    """
+    rows = ['# MatCore Standard Revisions', '', version_line(), '',
+            '| Version | Date | Change Type | Section(s) | Description of Change | Approved By |',
+            '|---|---|---|---|---|---|']
+    for r in releases:
+        rows.append(f"| {r['version']} | {r['date'].strftime('%d-%b-%Y')} | {r['change_type']} | {r['sections']} | "
+                    f"{'<br> '.join(r['description'])} | {r['approved_by']} |")
+    return '\n'.join(rows) + '\n'
+
+
 def render_section(section, show_legacy):
     """Return the Markdown of a section page: title, introduction, symbol key, property blocks, examples.
 
     section (dict): a parsed schema/<section>.yaml; show_legacy (bool): whether to include legacy_* text.
     """
-    out = [f"# {section['title']}", '']
+    out = [f"# {section['title']}", '', version_line(), '']
     if section.get('introduction'):
         out += [section['introduction'].strip(), '']
     out += [KEY, '']
@@ -174,25 +199,25 @@ def render_unit_table(units):
     return '\n'.join(rows) + '\n'
 
 
-def splice(text, name, table):
+def splice(text, name, table, source='schema/units.yaml'):
     """Replace the generated region `name` of a hand-written page with `table`.
 
     text (str): page with '<!-- BEGIN generated: name ... -->' and '<!-- END generated -->' markers;
-    name (str): region name; table (str): generated Markdown.
+    name (str): region name; table (str): generated Markdown; source (str): file the region comes from.
     """
-    begin = f'<!-- BEGIN generated: {name} from schema/units.yaml by scripts/build_docs.py; do not edit -->'
+    begin = f'<!-- BEGIN generated: {name} from {source} by scripts/build_docs.py; do not edit -->'
     end = '<!-- END generated -->'
     head, found, rest = text.partition(begin)
     if not found:
-        raise SystemExit(f'annex-u-units.md: marker for {name!r} missing')
+        raise SystemExit(f'marker for {name!r} missing')
     _, found, tail = rest.partition(end)
     if not found:
-        raise SystemExit(f'annex-u-units.md: end marker for {name!r} missing')
+        raise SystemExit(f'end marker for {name!r} missing')
     return f'{head}{begin}\n{table}{end}{tail}'
 
 
 def main(argv=None):
-    """Write every section page, and Annex U with its tables generated from units.yaml.
+    """Write every section page, the Revision History, and the generated parts of the Preamble and Annex U.
 
     argv (list[str] | None): command-line arguments; None reads sys.argv.
     """
@@ -206,8 +231,17 @@ def main(argv=None):
         path = args.out / f'{i:02d}-{key}.md'
         path.write_text(render_section(section, args.show_legacy) + '\n')
         print('wrote', path)
+    version = version_line() + '\n'
+    preamble = splice((ROOT / 'docs/standard/index.md').read_text(), 'version', version, 'schema/releases.yaml')
+    path = args.out / 'index.md'
+    path.write_text(preamble)
+    print('wrote', path)
+    path = args.out / 'revision-history.md'
+    path.write_text(render_revision_history(yaml.safe_load(open(ROOT / 'schema/releases.yaml'))['releases']))
+    print('wrote', path)
     units = yaml.safe_load(open(ROOT / 'schema/units.yaml'))
     annex = (ROOT / 'docs/standard/annex-u-units.md').read_text()
+    annex = splice(annex, 'version', version, 'schema/releases.yaml')
     annex = splice(annex, 'Table U.3', render_kind_table(units))
     annex = splice(annex, 'Table U.4', render_unit_table(units))
     path = args.out / 'annex-u-units.md'

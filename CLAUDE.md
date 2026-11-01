@@ -21,7 +21,8 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
   annex-u-units.md; it prevails over the annex. Factors are exact decimal text, e.g. "1e3" (0009).
 - `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
 - `docs/standard/*.md` — prose chapters (index = title and 1. Preamble, annex-u-units) plus GENERATED chapters
-  (02–08, and the marked Tables U.3/U.4 in annex-u-units.md). Never hand-edit generated parts; edit the YAML and run
+  (02–08, revision-history, and the marked regions in index and annex-u-units: version line, Tables U.3/U.4).
+  Never hand-edit generated parts; edit the YAML and run
   `scripts/build_docs.py --show-legacy`.
 - `docs/decisions/` — decision records: internal committee information, not published on the site
   (0004). 0001 is the units change list (not yet applied; see Status). The frozen Google Doc export
@@ -112,6 +113,18 @@ serializations to read and write; that is a tool decision, not yet made, and it 
 implementations. When it is made, a format-specific schema (e.g. XSD or JSON Schema) is generated
 from the YAML for that serialization and used by CI to validate the examples (0004).
 
+## Versions and releases (decided; see docs/decisions/0010)
+- Semantic versioning MAJOR.MINOR.PATCH; below 1.0, breaking changes or new property sets raise MINOR,
+  editorial or non-breaking fixes raise PATCH. A release is cut per milestone (a status step or a batch
+  of committee decisions), never per change.
+- schema/releases.yaml is the single source: the release history, newest first; the newest entry is the
+  current version. build_docs.py generates the Revision History page and the version line on every
+  standard page from it. Section files carry no version.
+- A release: one commit on main adding the new entry, then the human tags it vX.Y.Z and pushes the tag;
+  CI checks the tag against releases.yaml and deploys X.Y.Z with alias `latest`. Pushes to main deploy
+  only `dev`, labelled as unreleased. Permalinks copy the concrete version's address (`latest` resolved;
+  `dev` with a warning). The tag v0.9-baseline marks the baseline commit and is not a release.
+
 ## Website and tools (see docs/decisions/0000, 0004, 0007 and 0008)
 - Static site, MkDocs (Material), GitHub Pages, versioned with `mike`; built on every push to main
   by .github/workflows/ci.yml; no dynamic server (0000). The site is served at
@@ -190,7 +203,10 @@ record or marked PROPOSED, NOT DECIDED.
      baseline .docx, is excluded from the site build (`exclude_docs` in mkdocs.yml; an unlinked page
      would still appear in sitemap.xml and the site search). They stay in the public GitHub
      repository. Site pages do not link to them.
-   PROPOSED, NOT DECIDED: a Revision History entry for the baseline draft; the open points of 0007
+   - [done, branch versioning, PR pending] Versioning (0010): releases.yaml, generated Revision History
+     with the 0.4.0 entry, version line on standard pages, versioned permalinks, CI deploys per
+     version. 0.4.0 is tagged by the human after the merge.
+   PROPOSED, NOT DECIDED: the open points of 0007
    (items 12–16).
 3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
    (0004). What remains of this step does not belong to any one property, each its own change:
@@ -258,8 +274,8 @@ record or marked PROPOSED, NOT DECIDED.
   `uv run python scripts/build_docs.py --show-legacy` (the flag until status step 5 is complete),
   `uv run mkdocs build --strict`. Commit any files
   build_docs.py regenerates with the change; CI fails if the committed copies are stale. Never
-  hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, the marked tables in
-  annex-u-units.md) (0004, 0009).
+  hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, revision-history.md, the
+  marked regions in index.md and annex-u-units.md) (0004, 0009, 0010).
 - Never invent QUDT identifiers, physical constants or unit symbols. units.yaml was verified against
   QUDT Units 3.3.0, GNU Units 2.23 (definitions.units 3.19) and NIST CODATA 2022. A new unit is
   added by pull request, with each of its fields (kind, QUDT identifier or null, GNU Units name,

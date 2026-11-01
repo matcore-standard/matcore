@@ -1,3 +1,23 @@
+// Version of the page (decision 0010). build_docs.py writes <p class="mc-version" data-version="X.Y.Z">
+// under each standard page's title. mike serves each version under its own path segment of the site:
+// 'dev' (unreleased main), 'latest' (alias of the newest release), or 'X.Y.Z'; a local preview has none.
+function mcVersion() {
+  const line = document.querySelector('.mc-version[data-version]');
+  const config = JSON.parse(document.getElementById('__config')?.textContent || '{}');
+  const base = new URL((config.base || '.') + '/', location.href).pathname.replace(/\/+$/, '/');
+  const segment = base.split('/').filter(Boolean).pop() || '';
+  return {line, version: line?.dataset.version, base, segment, isDev: segment === 'dev'};
+}
+
+// On the dev site, the version line says the page is unreleased.
+document.addEventListener('DOMContentLoaded', () => {
+  const v = mcVersion();
+  if (v.line && v.isDev) {
+    v.line.textContent = `Development version: unreleased changes after ${v.version}`;
+    v.line.classList.add('mc-version--dev');
+  }
+});
+
 // Standard-page behaviour of decision record 0007, for pages whose property blocks
 // scripts/build_docs.py writes (details.mc-property, id = citable address). Adds: a permalink button on each block,
 // a property tree in the left sidebar, a breadcrumb bar for narrow screens, opening the block
@@ -10,14 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const name = d => d.querySelector(':scope > summary').firstChild.textContent.replace('*', '').trim();
   const children = d => [...d.querySelectorAll(':scope > details.mc-property')];
   const entries = new Map();  // details element -> tree <li>
-  const uri = d => location.origin + location.pathname + '#' + d.id;
+  // The copied address names the concrete version: 'latest' is replaced by the page's version (0010 item 6).
+  const ver = mcVersion();
+  const uri = d => {
+    const base = ver.segment === 'latest' && ver.version ? ver.base.replace(/latest\/$/, `${ver.version}/`) : ver.base;
+    return location.origin + base + location.pathname.slice(ver.base.length) + '#' + d.id;
+  };
 
   // Link button in each block title: copies the URI without toggling the block.
   article.querySelectorAll('details.mc-property').forEach(d => {
     const a = document.createElement('a');
     a.className = 'mc-permalink';
     a.href = '#' + d.id;
-    a.title = 'Copy link to this property';
+    a.title = ver.isDev ? 'Copy link (development version: not a stable, citable address)' : 'Copy link to this property';
     // Icon: Material Design Icons "link-variant", as bundled with mkdocs-material; intrinsic size set.
     a.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0 5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.98 2.98 0 0 0 0-4.24 2.98 2.98 0 0 0-4.24 0l-3.53 3.53a2.98 2.98 0 0 0 0 4.24m2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0 5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.98 2.98 0 0 0 0 4.24 2.98 2.98 0 0 0 4.24 0l3.53-3.53a2.98 2.98 0 0 0 0-4.24.973.973 0 0 1 0-1.42"/></svg>';
     a.setAttribute('aria-label', 'Copy link to this property');
