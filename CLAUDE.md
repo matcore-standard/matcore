@@ -106,11 +106,20 @@ serializations to read and write; that is a tool decision, not yet made, and it 
 implementations. When it is made, a format-specific schema (e.g. XSD or JSON Schema) is generated
 from the YAML for that serialization and used by CI to validate the examples (0004).
 
-## Website and tools (see docs/decisions/0000 and 0004)
+## Website and tools (see docs/decisions/0000, 0004 and 0007)
 - Static site, MkDocs (Material), GitHub Pages, versioned with `mike`; built on every push to main
   by .github/workflows/ci.yml; no dynamic server (0000). The site is served at
   matcore-standard.github.io/matcore for now. matcore.org will point to it as soon as the site is
   clean and operational, replacing the current site there (0004).
+- Standard section pages follow docs/decisions/0007 (decided): every property, at every depth, is
+  the same collapsible block; title bar = bold name, red asterisk if required, `autorenew` /
+  `autorenew-off` icon for repeatable / at most once; body = description, six-column attribute table
+  (Required, Repeatable, Type, Extent, Kind, Rec. unit), values, nested subproperties. Citable
+  address per property (`#section.path.to.property`, static id) with a permalink button; property
+  tree in the left sidebar on wide screens, breadcrumb bar on narrow ones; stacked table on phones;
+  site-wide palette sampled from the logo. Reference implementation: docs/decisions/0007-reference/
+  (render.py, layout.css, layout.js). Read 0007, including its implementation constraints, before
+  changing how the pages look or behave; its open points are PROPOSED, NOT DECIDED.
 - Tools: one Python package named `matcore`, run in-browser via Pyodide (0000, 0006).
   PROPOSED, NOT DECIDED: its contents (a command-line validator; parsers for VASP, QE and LAMMPS
   output; web validator, visualizer and forms); parsers as the primary generator of instances, web forms as the
@@ -146,14 +155,17 @@ record or marked PROPOSED, NOT DECIDED.
      literal block, one per section) and `examples` (a list; each entry has `caption`, `file` in
      examples/, `source`, optional `notes`). Text comes from the baseline .docx as it is. Needs
      the two fields added to meta-schema.yaml, and pymdownx.highlight + superfences for code.
-   - build_docs.py renders the standard from the YAML; legacy_* fields hidden unless --show-legacy
-     is passed, and CI builds with --show-legacy until step 5 is complete.
+   - build_docs.py renders the standard from the YAML in the layout of 0007, adopting the markup of
+     docs/decisions/0007-reference/render.py (test first); layout.css and layout.js move into the
+     site's assets and mkdocs.yml gets the settings 0007 lists. legacy_* fields hidden unless
+     --show-legacy is passed, and CI builds with --show-legacy until step 5 is complete.
+   - [done] Property layout chosen after rendered options were compared (0007).
    - [done] Decision records are internal committee information: docs/decisions/, including the
      baseline .docx, is excluded from the site build (`exclude_docs` in mkdocs.yml; an unlinked page
      would still appear in sitemap.xml and the site search). They stay in the public GitHub
      repository. Site pages do not link to them.
-   PROPOSED, NOT DECIDED: the property layout (render options in the preview for the human to
-   choose); a Revision History entry for the baseline draft.
+   PROPOSED, NOT DECIDED: a Revision History entry for the baseline draft; the open points of 0007
+   (items 12–16).
 3. [merged into step 5] Apply 0001 Part A (kind/recommended-unit/convention) property by property
    (0004). What remains of this step does not belong to any one property, each its own change:
    reword Annex U to "Kind" (0004); check 0001 (A1.3, A10) and Annex U for XML-specific wording such

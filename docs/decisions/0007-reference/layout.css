@@ -1,0 +1,89 @@
+/* Standard-page layout of decision record 0007: logo palette, property blocks, property tree,
+   breadcrumb bar, permalink button, phone table. Pairs with layout.js and render.py. */
+
+/* Palette sampled from the MatCore logo. mkdocs.yml sets palette primary/accent to "custom". */
+:root > * {
+  --mc-charcoal: #404040;    /* logo, left shape */
+  --mc-gold: #D9B266;        /* logo, middle shape: lines and tints only, too light for text */
+  --mc-blue: #A4BCE7;        /* logo, right shape */
+  --mc-bronze: #AA8237;      /* logo, charcoal over gold */
+  --mc-bronze-text: #7F5F22; /* bronze darkened for readable text on white */
+  --mc-slate: #91969C;       /* logo, gold over blue */
+  --mc-required: #C62828;    /* required asterisk; the one colour not from the logo */
+  --md-primary-fg-color: var(--mc-charcoal);
+  --md-primary-fg-color--light: #5a5a5a;
+  --md-primary-fg-color--dark: #2b2b2b;
+  --md-accent-fg-color: var(--mc-bronze-text);
+  --md-typeset-a-color: var(--mc-bronze-text);
+}
+.md-header { border-bottom: 3px solid var(--mc-gold); }
+.md-typeset h1 { color: var(--mc-charcoal); }
+.legacy { color: var(--mc-slate); font-style: italic; }
+
+/* Property block: a details element, the same at every nesting level. */
+.md-typeset details.mc-property { border-color: var(--mc-blue); }
+.md-typeset details.mc-property[open] { border-left: 4px solid var(--mc-gold); }
+.md-typeset details.mc-property > summary { display: flex; align-items: center; gap: .5em; padding-left: .8rem; background-color: rgba(164, 188, 231, .22); }
+.md-typeset details.mc-property > summary::before { display: none; }  /* no admonition icon */
+.md-typeset details.mc-property > summary::after { background-color: var(--mc-charcoal); }  /* expand arrow */
+.md-typeset details.mc-property table:not([class]) { border-color: var(--mc-blue); }
+.md-typeset details.mc-property table:not([class]) th { background-color: rgba(217, 178, 102, .22); }
+
+/* Title bar: bold name, red asterisk if required, repeat icon right-aligned. */
+.mc-name { font-weight: 700; font-size: .8rem; }
+.mc-star { color: var(--mc-required); font-weight: 700; margin-left: .15em; }
+.mc-icon { display: inline-flex; vertical-align: middle; }
+.mc-icon svg { width: 1.15rem; height: 1.15rem; fill: currentColor; }
+summary > .mc-icon { margin-left: auto; }
+.mc-i-once { color: var(--mc-slate); }
+.mc-i-rep { color: var(--mc-charcoal); }
+.mc-legend { display: inline-flex; align-items: center; gap: .35em; font-size: .7rem; color: var(--mc-charcoal); }
+.mc-legend .mc-icon svg { width: 1rem; height: 1rem; }
+
+/* Permalink button, added by layout.js after the name: shown on hover, always on touch screens. */
+.mc-permalink { display: inline-flex; vertical-align: middle; margin-left: .45em; padding: .1em; border-radius: .2em; opacity: 0; color: var(--md-default-fg-color--light); transition: opacity .15s, color .15s; }
+.mc-permalink svg { width: 1.25em; height: 1.25em; fill: currentColor; }
+summary:hover > .mc-permalink, .mc-permalink:focus-visible { opacity: 1; }
+.mc-permalink:hover { color: var(--md-accent-fg-color); background-color: rgba(217, 178, 102, .25); }
+.mc-permalink.copied { opacity: 1; color: var(--md-accent-fg-color); }
+.mc-permalink.copied::after { content: "copied"; margin-left: .3em; font-size: .75em; font-weight: 400; align-self: center; }
+@media (hover: none) { .mc-permalink { opacity: .6; } }
+
+/* Property tree in the left sidebar (shown by the theme from 76.25em up). */
+.mc-tree { font-size: .68rem; padding: .4rem .6rem 1rem; }
+.mc-tree ul { list-style: none; margin: 0; padding-left: .9em; }
+.mc-tree > ul { padding-left: 0; }
+.mc-tree li > ul { display: none; }
+.mc-tree li.open-branch > ul { display: block; }
+.mc-tree a { display: block; padding: .1em 0; color: var(--mc-slate); }
+.mc-tree li.open-branch > a { color: var(--mc-charcoal); }
+.mc-tree li.current > a { color: var(--mc-bronze-text); font-weight: 700; }
+.mc-tree li.has-kids > a::after { content: "▸"; color: var(--mc-bronze); font-size: 1.4em; line-height: 0; vertical-align: -0.08em; margin-left: .2em; }
+.mc-tree li.has-kids.open-branch > a::after { content: "▾"; }
+.mc-tree-section { font-weight: 700; margin: .8em 0 .3em; padding-bottom: .15em; color: var(--mc-charcoal); border-bottom: 2px solid var(--mc-gold); }
+
+/* Breadcrumb bar below 76.25em, where the sidebar tree is hidden. */
+.mc-crumbs { position: sticky; top: 2.4rem; z-index: 3; margin: 0 -.8rem 1rem; padding: .45rem .8rem; font-size: .68rem; line-height: 1.5; background: var(--md-default-bg-color); border-bottom: 2px solid var(--mc-gold); box-shadow: 0 2px 4px rgba(0, 0, 0, .06); }
+.mc-crumbs.empty { display: none; }
+.mc-crumbs a { color: var(--mc-charcoal); }
+.mc-crumbs a.here { color: var(--md-accent-fg-color); font-weight: 700; }
+.mc-crumb-section { color: var(--mc-slate); text-transform: uppercase; letter-spacing: .04em; font-size: .9em; }
+@media screen and (min-width: 76.25em) { .mc-crumbs { display: none; } }
+
+/* Scrolling to a block stops below the header and, below 76.25em, the breadcrumb bar. The selector
+   must outrank the theme's ".md-typeset [id]" rule; pixels, since rem differs across screen sizes. */
+.md-typeset details.mc-property[id] { scroll-margin-top: 64px; }
+@media screen and (max-width: 76.234375em) { .md-typeset details.mc-property[id] { scroll-margin-top: 100px; } }
+
+/* Phones (below 45em): each attribute table becomes "label  value" lines. */
+@media screen and (max-width: 44.984375em) {
+  .md-typeset details.mc-property table:not([class]) { display: block; border: 1px solid var(--mc-blue); }
+  .md-typeset details.mc-property table:not([class]) thead { display: none; }
+  .md-typeset details.mc-property table:not([class]) tbody,
+  .md-typeset details.mc-property table:not([class]) tr { display: block; }
+  .md-typeset details.mc-property table:not([class]) td { display: flex; gap: 1em; padding: .35em .8em; border-top: 1px solid rgba(164, 188, 231, .5); }
+  .md-typeset details.mc-property table:not([class]) tr td:first-child { border-top: 0; }
+  .md-typeset details.mc-property table:not([class]) td::before { content: attr(data-label); flex: 0 0 7.5em; font-weight: 700; color: var(--mc-charcoal); }
+  .md-typeset details.mc-property .md-typeset__table { display: block; }
+  .md-typeset details.mc-property .md-typeset__scrollwrap { overflow: visible; margin: 1em 0; }
+}
