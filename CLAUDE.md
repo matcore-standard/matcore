@@ -262,7 +262,7 @@ record or marked PROPOSED, NOT DECIDED.
    every values key.
    creator and contributor are restructured by 0014: `identifier` containers (value + scheme,
    open terms) and `affiliation` as a container (name + at most one identifier).
-   [done, branch identifier-schemes] schema/identifier-schemes.yaml built (ORCID, ROR, DOI, SWHID,
+   [done, PR #12 merged 2026-11-01] schema/identifier-schemes.yaml built (ORCID, ROR, DOI, SWHID,
    ISNI, each traced to its documentation), checked by validate_schema.py, published as Annex I.
    dft `unique-identifier` is a hash and does not use it; the dft `doi` properties are decided in
    their PR (0014, settled 2026-11-01).
