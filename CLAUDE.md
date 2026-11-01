@@ -130,8 +130,7 @@ from the YAML for that serialization and used by CI to validate the examples (00
 
 ## Status / next steps (update this list as work lands)
 Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
-PROPOSED, NOT DECIDED until the human rules: the order of status steps 7 and 9; and the working
-rule on QUDT IRIs, constants and unit symbols.
+PROPOSED, NOT DECIDED until the human rules: the order of status steps 7 and 9.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
@@ -216,5 +215,8 @@ rule on QUDT IRIs, constants and unit symbols.
   `uv run python scripts/build_docs.py`, `uv run mkdocs build --strict`. Commit any files
   build_docs.py regenerates with the change; CI fails if the committed copies are stale. Never
   hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, annex-u-table.md) (0004).
-- Never invent QUDT IRIs, physical constants or unit symbols; units.yaml was verified against
-  primary sources. New units need a verified source stated in the PR.
+- Never invent QUDT identifiers, physical constants or unit symbols. units.yaml was verified against
+  QUDT Units 3.3.0, GNU Units 2.23 (definitions.units 3.19) and NIST CODATA 2022. A new unit is
+  added by pull request, with each of its fields (kind, QUDT identifier or null, GNU Units name,
+  SI factor, source) traced to a primary source named in the PR. A new kind needs a decision
+  record (0004).
