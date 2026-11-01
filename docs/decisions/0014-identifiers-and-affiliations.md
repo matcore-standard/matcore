@@ -40,3 +40,7 @@ DataCite Metadata Schema 4.6 solves both. A `nameIdentifier` (0–n) carries a r
   - Is the table published on the site, as an annex of the standard?
   - Should other identifier properties (e.g. dft `unique-identifier`) use it?
 - This changes the standard beyond the baseline and goes into the next release.
+
+## Settled 2026-11-01 (Ellad Tadmor)
+1. The table is published as **Annex I — Identifier Schemes**, normative, beside Annex U. Its table is generated from `schema/identifier-schemes.yaml` by build_docs.py, as Tables U.3 and U.4 are from units.yaml; the YAML prevails.
+2. dft `unique-identifier` holds a hash (e.g. SHA256), not an identifier in a scheme, and does not use the table. Whether and how the dft `doi` properties check against the table's DOI entry is decided in their property pull request.
