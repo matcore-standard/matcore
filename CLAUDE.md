@@ -131,7 +131,7 @@ from the YAML for that serialization and used by CI to validate the examples (00
 ## Status / next steps (update this list as work lands)
 Audit of this file in progress (rulings so far in docs/decisions/0004). Not yet ruled, so treat as
 PROPOSED, NOT DECIDED until the human rules: the order of status steps 7 and 9; and the working
-rules other than the first two and the environment rule.
+rules from "One decision per pull request" on.
 
 1. [done] Baseline migration of Google Doc → schema/*.yaml (255 properties; typed fields present
    as null stubs; legacy_* preserved).
@@ -193,14 +193,14 @@ rules other than the first two and the environment rule.
   with the human to get a decision. Record every confirmed decision in docs/decisions/ before
   implementing it.
 - Write each ruling into the repository (this file, plus a decision record where needed) before
-  taking up the next item; show the diff and commit once approved. Never push; the human pushes,
-  since every push to main redeploys the site (0005).
+  taking up the next item; show the diff and commit once the human approves. Never commit anything
+  the human has not approved. Never push; the human pushes, since every push to main redeploys the
+  site (0005). A commit contains only what its message describes. An edit that the change itself
+  makes necessary (a cross-reference it invalidates) belongs in the same commit and is named in the
+  message; any other change outside the task is raised with the human first (0004).
 - Environment: uv owns it (0006). Dependencies live in pyproject.toml (a `dev` group for site and
   test tools) and are pinned in uv.lock; run `uv sync`, then every command through `uv run`.
   Never pip-install into the system Python.
-- Permissions: propose changes, let the user review the diff, then commit. Never commit anything
-  the user has not approved. A commit contains only what its message describes; if a change outside
-  the current task seems necessary, say so and get agreement first.
 - One decision per pull request. Write or update a record in docs/decisions/ before making the
   change, and reference it in the commit message.
 - Memory lives in the repository, not in chat. Whenever a decision is made or changed in
