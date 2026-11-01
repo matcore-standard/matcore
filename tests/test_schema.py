@@ -35,3 +35,14 @@ def test_every_kind_states_its_si_unit_and_dimension():
     units = yaml.safe_load(open(ROOT / 'schema/units.yaml'))
     for name, k in units['kinds'].items():
         assert k.get('si_unit') and k.get('si_dimension'), name
+
+
+def test_meta_schema_types_the_examples():
+    """An example has a caption, an XML file in examples/, a dataset source, and optional notes; nothing else (0004 item 23)."""
+    meta = yaml.safe_load(open(ROOT / 'schema/meta-schema.yaml'))
+    section = {'section': 'x', 'title': 'X', 'matcore_version': '0', 'properties': []}
+    good = {'caption': 'C', 'file': 'minimal.xml', 'source': 'https://doi.org/x'}
+    jsonschema.validate(section | {'examples': [good, good | {'notes': 'N'}]}, meta)
+    for bad in ({'caption': 'C', 'file': 'minimal.xml'}, good | {'file': 'sub/dir.xml'}, good | {'extra': 1}):
+        with pytest.raises(jsonschema.ValidationError):
+            jsonschema.validate(section | {'examples': [bad]}, meta)

@@ -21,6 +21,10 @@ introduction: |
   - Spectroscopy, vibrational (Raman, Infrared spectroscopy, etc.)
   - Transport (electronic conductivity, thermal conductivity, etc.)
   - X-ray scattering (diffraction, reflectivity, pair-distribution function, etc.)
+examples:
+  - caption: Derived Property Metadata
+    file: derived.xml
+    source: https://archive.materialscloud.org/record/2024.116
 properties:
 - name: derived-property
   required: true

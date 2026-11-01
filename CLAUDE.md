@@ -174,8 +174,11 @@ record or marked PROPOSED, NOT DECIDED.
      in examples/, `source`, optional `notes`). Text comes from the baseline .docx as it is.
      [done, PR #1] `introduction`: in meta-schema.yaml, filled from the .docx for
      all seven sections, rendered under the section title (0008 item 6).
-     [todo] `examples`: the meta-schema field, the example files, and pymdownx.highlight +
-     superfences for code.
+     [done, branch site-content, PR pending] `examples`: in meta-schema.yaml; one XML example per
+     section in examples/, taken from the .docx; PF's missing first 26 lines restored from
+     matcore.org and Minimal's method-class closing tag corrected (0004 item 33; not noted on
+     the site); rendered at the end of each section page with highlighting. Validating
+     examples against a generated schema is status step 7.
    - [done] Property layout chosen after rendered options were compared (0007).
    - [done, PR #1] build_docs.py renders the standard from the YAML
      in the layout of 0007 (tests in tests/test_build_docs.py); layout.css and layout.js in
