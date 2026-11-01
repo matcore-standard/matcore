@@ -11,6 +11,17 @@ properties:
   matcore_version: {type: string}
   source: {type: string}
   introduction: {type: string}  # Markdown shown under the section title (0004 item 23)
+  examples:                     # example instances shown at the end of the section page (0004 item 23)
+    type: array
+    items:
+      type: object
+      required: [caption, file, source]
+      additionalProperties: false
+      properties:
+        caption: {type: string}
+        file: {type: string, pattern: "^[a-z0-9-]+\\.xml$"}  # a file in examples/
+        source: {type: string}                             # the dataset the example documents
+        notes: {type: string}
   properties:
     type: array
     items: {$ref: "#/$defs/property"}

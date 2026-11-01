@@ -166,6 +166,29 @@ def test_main_writes_every_page_and_honours_the_flag(tmp_path):
     assert 'Legacy:' in (tmp_path / '02-minimal.md').read_text()
 
 
+def test_every_section_has_a_well_formed_example():
+    """Each section documents one real dataset with an XML example from the baseline (0004 items 23, 33)."""
+    from xml.etree import ElementTree as ET
+    for key in SECTIONS:
+        examples = load(key).get('examples')
+        assert examples and len(examples) == 1, key
+        ex = examples[0]
+        assert ex['caption'] and ex['source'].startswith('https://'), key
+        ET.parse(ROOT / 'examples' / ex['file'])  # raises if not well-formed
+
+
+def test_examples_appear_verbatim_after_the_properties(page):
+    """The example closes the section page, its XML shown exactly as in examples/, with its dataset source linked."""
+    data, md = page
+    tail = md[md.rindex('</details>'):]
+    for ex in data['examples']:
+        xml = (ROOT / 'examples' / ex['file']).read_text()
+        assert f"```xml\n{xml}```" in tail, ex['file']
+        assert f"({ex['source']})" in tail and ex['caption'] in tail
+        if ex.get('notes'):
+            assert ' '.join(ex['notes'].split()) in ' '.join(tail.split())
+
+
 UNITS = yaml.safe_load(open(ROOT / 'schema/units.yaml'))
 FIXTURES = ROOT / 'tests/fixtures'
 

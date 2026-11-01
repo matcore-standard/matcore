@@ -868,3 +868,55 @@ A contract defining the terms and conditions under which the dataset can be used
 
 </details>
 
+## Example: Minimal MatCore Metadata
+
+Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9bc5b0)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <creator>
+    <name>Albert P. Bartók</name>
+    <affiliation>Rutherford Appleton Laboratory</affiliation>
+  </creator>
+  <creator>
+    <name>James Kermode</name>
+    <affiliation>University of Warwick</affiliation>
+  </creator>
+  <creator>
+    <name>Noam Bernstein</name>
+    <affiliation>Naval Research Laboratory</affiliation>
+  </creator>
+  <creator>
+    <name>Gábor Csányi</name>
+    <affiliation>University of Cambridge</affiliation>
+  </creator>
+  <title>Si_PRX_GAP</title>
+  <creation-date>2021-02-22</creation-date>
+  <description>The original DFT training data for the general-purpose silicon interatomic potential described in the associated publication. The kinds of configuration that were included were selected based on intuition and past experience to obtain good coverage pertaining to a range of properties.</description>
+  <material-component>
+    <phase>crystal</phase>
+    <constituent>
+      <species>Si</species>
+      <concentration>100</concentration>
+    </constituent>
+    <description>A variety of Si configurations including different phases, surfaces, vacancies, interstitials, dislocations and crack tips.</description>
+  </material-component>
+  <computation>
+    <method-class>Electronic</method-class>
+    <method>DFT</method>
+    <simulation-conditions>
+      <type>Equilibrium</type>
+    </simulation-conditions>
+    <software>
+      <name>CASTEP</name>
+    </software>
+  </computation>
+  <matcore-id>mc-ad83jsd3-1</matcore-id>
+  <matcore-date>2026-02-14</matcore-date>
+  <license>GPL-3.0-only</license>
+</root>
+```
+
+Note: The matcore-id format in the example is tentative and subject to change.
+

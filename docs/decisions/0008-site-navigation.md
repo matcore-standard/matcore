@@ -24,6 +24,8 @@ Date: 2026-11-01. Status: accepted. Decided by: Ellad Tadmor.
 6. **Section introductions.** Each section page opens with its introduction from the baseline .docx (the text between the section heading and its table), under the title and before the symbol key; stored as `introduction` in `schema/<section>.yaml` (0004 item 23) and rendered by build_docs.py. The docx table captions ("Table Min-1: …") are not carried over: the property blocks replace the tables.
 7. **Home page.** No visible title and no links line: the page starts with the description of MatCore. It keeps a visually hidden "MatCore" heading (class `mc-visually-hidden`), because the theme otherwise adds a visible title taken from the menu label ("Home").
 
+8. **Headings** (added 2026-11-01). Page titles and second- and third-level headings on every page are bold, charcoal and compact (1.6em, 1.25em and 1.05em, reduced spacing), in step with the property titles; the Preamble's document title line matches the page titles. Set in `docs/assets/matcore/layout.css`.
+
 ### Implementation constraint
 A section's index page (the page that opens when the section is selected, here Browse Standard) is not listed among the section's entries by mkdocs-material, so neither the page nor its headings would appear in the menu. `overrides/partials/nav-item.html` is a copy of the theme's template (mkdocs-material 9.8.0) with one condition changed, so the index page is also listed under its nav label ("1. Preamble"); mkdocs.yml sets `custom_dir: overrides`. When mkdocs-material is upgraded, re-copy the template and re-apply the change marked "MatCore:".
 

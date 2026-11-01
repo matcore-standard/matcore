@@ -6,6 +6,10 @@ source: >-
   and are to be replaced by typed fields in subsequent PRs.
 introduction: |
   The metadata for classical molecular dynamics (MD) data (MatCore-MD) is tabulated below. This category includes energy and free energy minimization, equilibrium and nonequilibrium MD, and related approaches.  (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
+examples:
+  - caption: MD Method-Specific Metadata
+    file: md.xml
+    source: https://doi.org/10.6084/m9.figshare.6273170
 properties:
 - name: computation
   required: true

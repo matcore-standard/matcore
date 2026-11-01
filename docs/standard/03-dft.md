@@ -560,3 +560,34 @@ Additional information on the DFT calculation. For example, non-self-consistent 
 
 </details>
 
+## Example: DFT Method-Specific Metadata
+
+Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9bc5b0)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <xc-functional>
+    <type>GGA</type>
+    <description>PW91 functional (the choice is motivated by the existence of a large-scale simulation of the melting point with this functional)</description>
+  </xc-functional>
+  <core-electron-model>
+    <type>Pseudopotential</type>
+    <pseudopotential>
+      <name>Ultrasoft Pseudopotentials (USP)</name>
+      <type>Ultrasoft</type>
+      <number-of-valence-electrons>4</number-of-valence-electrons>
+    </pseudopotential>
+  </core-electron-model>
+  <valence-electron-model>
+    <type>Plane waves</type>
+    <kinetic-energy-cutoff>250.0</kinetic-energy-cutoff>
+  </valence-electron-model>
+  <k-point-mesh>
+    <type>Monkhorst-Pack</type>
+    <k-point-spacing>0.03</k-point-spacing>
+    <smearing-width>0.05</smearing-width>
+  </k-point-mesh>
+</root>
+```
+

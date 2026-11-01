@@ -78,7 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (host) {
     tree.querySelectorAll('.mc-tree-section').forEach(h => h.remove());
     tree.classList.add('mc-tree--in-menu');
-    host.appendChild(tree);
+    // Before the page's own heading entries (its example), matching the page's order.
+    host.insertBefore(tree, host.querySelector(':scope > nav'));
   } else if (sidebar) {
     sidebar.appendChild(tree);
   }

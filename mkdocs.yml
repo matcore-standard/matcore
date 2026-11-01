@@ -31,7 +31,7 @@ nav:
 # Decision records (and the baseline .docx stored with them) are internal; see docs/decisions/0004.
 exclude_docs: |
   decisions/
-markdown_extensions: [tables, admonition, {toc: {toc_depth: 2}}, pymdownx.details, attr_list, md_in_html]
+markdown_extensions: [tables, admonition, {toc: {toc_depth: 2}}, pymdownx.details, attr_list, md_in_html, pymdownx.highlight, pymdownx.superfences]
 extra_css: [assets/matcore/layout.css]
 extra_javascript: [assets/matcore/layout.js]
 extra:

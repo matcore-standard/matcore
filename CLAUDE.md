@@ -162,8 +162,9 @@ record or marked PROPOSED, NOT DECIDED.
    the YAML to improve on the live site.
    - [done, PR #1 merged 2026-11-01] Menu as in 0008 (replaces the navigation tabs of
      0004 item 21). Contact page migrated; the Feedback placeholder is removed.
-   - [todo] Migrate the content of About MatCore, Leadership and Revision History from matcore.org
-     (this was step 8).
+   - [done, branch site-content, PR pending] Content of About MatCore, Leadership and Revision
+     History migrated from matcore.org (this was step 8), with the edits of 0004 item 32. Page
+     titles and section headings site-wide made compact (0008 item 8).
    - [done, PR #1] Section titles (schema/*.yaml `title`, used for page headings and
    menu labels): 2.1 Minimal MatCore Metadata, 2.2 Density Functional Theory (DFT) Metadata, …,
    2.7 Derived Property Metadata (0008).
@@ -173,8 +174,11 @@ record or marked PROPOSED, NOT DECIDED.
      in examples/, `source`, optional `notes`). Text comes from the baseline .docx as it is.
      [done, PR #1] `introduction`: in meta-schema.yaml, filled from the .docx for
      all seven sections, rendered under the section title (0008 item 6).
-     [todo] `examples`: the meta-schema field, the example files, and pymdownx.highlight +
-     superfences for code.
+     [done, branch site-content, PR pending] `examples`: in meta-schema.yaml; one XML example per
+     section in examples/, taken from the .docx; PF's missing first 26 lines restored from
+     matcore.org and Minimal's method-class closing tag corrected (0004 item 33; not noted on
+     the site); rendered at the end of each section page with highlighting. Validating
+     examples against a generated schema is status step 7.
    - [done] Property layout chosen after rendered options were compared (0007).
    - [done, PR #1] build_docs.py renders the standard from the YAML
      in the layout of 0007 (tests in tests/test_build_docs.py); layout.css and layout.js in
