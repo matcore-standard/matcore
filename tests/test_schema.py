@@ -48,6 +48,24 @@ def test_meta_schema_types_the_examples():
             jsonschema.validate(section | {'examples': [bad]}, meta)
 
 
+def test_meta_schema_rejects_malformed_names():
+    """Names are lowercase words joined by single hyphens: no leading, trailing or doubled hyphen (0004 item 13)."""
+    meta = yaml.safe_load(open(ROOT / 'schema/meta-schema.yaml'))
+
+    def section(name):
+        """Return a one-property section document.
+
+        name (str): the property name to test.
+        """
+        return {'section': 'x', 'title': 'X', 'properties': [
+            {'name': name, 'required': True, 'description': 'D', 'repeatable': False}]}
+    for good in ('unit', 'k-point-spacing', 'b3lyp', 'x2-y'):
+        jsonschema.validate(section(good), meta)
+    for bad in ('k--point', 'cutoff-', 'Cutoff', '2d-grid', 'a_b'):
+        with pytest.raises(jsonschema.ValidationError):
+            jsonschema.validate(section(bad), meta)
+
+
 def test_notes_name_only_properties_that_exist():
     """A note that cites a property by its quoted name must use a name the standard defines, so a rename
     cannot leave a note pointing at nothing (e.g. "basis-cutoff-planewave" for planewave-basis-cutoff)."""
