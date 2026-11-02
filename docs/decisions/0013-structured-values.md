@@ -32,3 +32,6 @@ Decision 0002 replaced the prose "Values" of each property with a structured `va
 - meta-schema.yaml gains `terms`. validate_schema.py gains the checks of item 2, with format checking on. build_docs.py renders every key. These come in one pull request before the first property pull request of status step 5.
 - With the Python `jsonschema` package, only some formats are checked unless its optional format dependencies are installed; without them, `uri` accepts any string. The pull request above installs them and tests that a malformed value of each format used is rejected.
 - Found while counting: md `spin-style` has a controlled list with no "Other" option, and pf `driving-energy` must match a name defined elsewhere in the same instance. Their property pull requests ask how to treat them.
+
+## Settled 2026-11-02 (Ellad Tadmor)
+1. **Terms that carry a definition** (item 4, first needed by minimal `material-component` › `phase`). The definitions are written as prose in `note`, one per term, in the baseline's wording. `terms` and `enum` stay plain lists of strings, and no key is added for definitions.

@@ -66,8 +66,9 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   Most vocabularies are open: use `terms` for "Other user-specified value", `enum` only where an
   unlisted value would make the data meaningless. Keys apply together and are tied to `type`
   (terms/enum/format/pattern: string; minimum/maximum: int, float); at most one of terms/enum and
-  of format/pattern (0013). Deferred to the first property that needs them: terms with
-  definitions; values that depend on another property (0013 item 4 holds the proposal).
+  of format/pattern (0013). A term's definition is prose in `note`, in the baseline's wording;
+  terms and enum stay plain lists (0013, settled 2026-11-02). Deferred to the first property that
+  needs them: values that depend on another property (0013 item 4 holds the proposal).
 - `legacy_*` fields hold the Google Doc prose from the baseline migration. Delete each one once its
   content is transferred to the typed fields; the original wording remains in the baseline .docx and
   in git history (tag v0.9-baseline). A section is complete when no legacy_* remain.
