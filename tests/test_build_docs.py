@@ -118,10 +118,13 @@ def test_notes_are_always_shown(page):
 def test_legacy_text_only_with_show_legacy():
     """Legacy prose is hidden by default and shown, labelled, with --show-legacy."""
     data = load('minimal')
+    data['properties'] = [{'name': 'thing', 'required': False, 'description': 'A thing.', 'type': None,
+                           'extent': None, 'kind': None, 'recommended-unit': None, 'values': None,
+                           'repeatable': False, 'legacy_values': 'A string naming the thing.'}]
     hidden = build_docs.render_section(data, show_legacy=False)
     shown = build_docs.render_section(data, show_legacy=True)
     assert 'Legacy:' not in hidden and "class='legacy'" not in hidden
-    assert 'Legacy: A string containing the entity affiliation.' in shown
+    assert 'Legacy: A string naming the thing.' in shown
 
 
 def test_subproperty_boilerplate_is_never_shown():
