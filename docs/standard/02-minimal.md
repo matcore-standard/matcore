@@ -1005,7 +1005,7 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
       <name>University of Cambridge</name>
     </affiliation>
   </creator>
-  <title>Si_PRX_GAP</title>
+  <title>Si_PRX_GAP: A foundational Density Functional Theory dataset with silicon configurations for training machine learning interatomic potentials</title>
   <creation-date>2021-02-22</creation-date>
   <description>The original DFT training data for the general-purpose silicon interatomic potential described in the associated publication. The kinds of configuration that were included were selected based on intuition and past experience to obtain good coverage pertaining to a range of properties.</description>
   <material-component>
