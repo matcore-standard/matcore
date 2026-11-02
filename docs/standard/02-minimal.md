@@ -282,9 +282,7 @@ A statement of applicability provided by the creator(s) informing users of the i
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the dataset disclaimer.</span>
+| no | no | string | [] | inapplicable | — |
 
 </details>
 

@@ -264,13 +264,12 @@ properties:
   description: >-
     A statement of applicability provided by the creator(s) informing users of the intended use and/or
     limitations of this dataset.
-  type: null
-  extent: null
-  kind: null
+  type: string
+  extent: []
+  kind: inapplicable
   recommended-unit: null
   values: null
   repeatable: false
-  legacy_values: A string containing the dataset disclaimer.
 - name: material-component
   required: true
   description: >-

@@ -231,7 +231,7 @@ record or marked PROPOSED, NOT DECIDED.
      container with name + at most one identifier) and their typed fields filled (step 5); title's
      typed fields filled (step 5); the Minimal example's title made descriptive (0004 item 38);
      creation-date's typed fields filled, its two date forms as a pattern (step 5); description's
-     typed fields filled (step 5).
+     and disclaimer's typed fields filled (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -281,7 +281,8 @@ record or marked PROPOSED, NOT DECIDED.
    admits YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ, legacy_* deleted.
    [done, PR #18 merged 2026-11-02] description: a required scalar string; the baseline's
    storage-format guidance kept as values.note; legacy_* deleted.
-   [todo] The rest of minimal in file order, starting with disclaimer.
+   [done, branch disclaimer, PR pending] disclaimer: an optional scalar string, legacy_* deleted.
+   [todo] The rest of minimal in file order, starting with material-component.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
