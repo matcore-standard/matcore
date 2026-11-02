@@ -227,8 +227,8 @@ record or marked PROPOSED, NOT DECIDED.
      reworded (primary creator vs secondary contributor); step 4: 0001 Part B fixes (B1, B3, B4,
      B6, B7, B8, B10, B11) and the MBPT `local-orbital-basis-set` renamed `localized-orbital-basis-set`;
      Annex U says "Kind" for MatCore's kinds (0004 item 14); Annex I, Identifier Schemes, added (0014);
-     creator restructured by 0014 (`identifier` with value + scheme; `affiliation` a container with
-     name + at most one identifier) and its typed fields filled (step 5).
+     creator and contributor restructured by 0014 (`identifier` with value + scheme; `affiliation` a
+     container with name + at most one identifier) and their typed fields filled (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -271,7 +271,9 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #13 merged 2026-11-02] creator: restructured by 0014, typed fields filled,
    legacy_* deleted; examples/minimal.xml affiliations get a `name`; tests/test_properties.py
    locks the 0014 tree.
-   [todo] Then the contributor PR, applying 0014, then the rest of minimal in file order.
+   [done, branch contributor-0014, PR pending] contributor: restructured by 0014 as creator,
+   keeping its own required flag (optional, 0011); tests/test_properties.py covers both.
+   [todo] The rest of minimal in file order, starting with title.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
