@@ -268,7 +268,7 @@ record or marked PROPOSED, NOT DECIDED.
    ISNI, each traced to its documentation), checked by validate_schema.py, published as Annex I.
    dft `unique-identifier` is a hash and does not use it; the dft `doi` properties are decided in
    their PR (0014, settled 2026-11-01).
-   [done, branch creator-0014, PR pending] creator: restructured by 0014, typed fields filled,
+   [done, PR #13 merged 2026-11-02] creator: restructured by 0014, typed fields filled,
    legacy_* deleted; examples/minimal.xml affiliations get a `name`; tests/test_properties.py
    locks the 0014 tree.
    [todo] Then the contributor PR, applying 0014, then the rest of minimal in file order.
