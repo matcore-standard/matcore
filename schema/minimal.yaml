@@ -227,13 +227,12 @@ properties:
 - name: title
   required: true
   description: A single sentence description of the dataset.
-  type: null
-  extent: null
-  kind: null
+  type: string
+  extent: []
+  kind: inapplicable
   recommended-unit: null
   values: null
   repeatable: false
-  legacy_values: A string containing the dataset title.
 - name: creation-date
   required: true
   description: The calendar date and time when the dataset was created.
