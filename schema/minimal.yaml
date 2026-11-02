@@ -22,20 +22,53 @@ properties:
   recommended-unit: null
   values: null
   repeatable: true
-  legacy_values: Contains SubProperties as listed below.
   subproperties:
   - name: name
     required: true
     description: The name of the entity that generated the dataset.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      examples: [Albert Einstein, Lawrence Livermore National Laboratory, Claude Opus 5.5]
+    repeatable: false
+  - name: identifier
+    required: false
+    description: >-
+      A unique, persistent identifier that globally and unambiguously identifies the entity that created
+      the dataset.
     type: null
     extent: null
     kind: null
     recommended-unit: null
     values: null
-    repeatable: false
-    legacy_values: >-
-      A string containing the entity name. Examples: "Albert Einstein", "Lawrence Livermore National Laboratory",
-      "Claude Opus 5.5".
+    repeatable: true
+    subproperties:
+    - name: value
+      required: true
+      description: The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+    - name: scheme
+      required: true
+      description: The identifier scheme that the value belongs to.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [ORCID, ROR, DOI, SWHID, ISNI]
+        note: >-
+          For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital
+          Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo
+          software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state.
+          An ISNI may identify either individuals or organizations.
+      repeatable: false
   - name: affiliation
     required: false
     description: The affiliation of the entity that generated the dataset if they have one.
@@ -45,34 +78,46 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
-    legacy_values: A string containing the entity affiliation.
-  - name: creator-identifier
-    required: false
-    description: >-
-      A unique, persistent URI that globally and unambiguously identifies the entity that created the
-      dataset.
-    type: null
-    extent: null
-    kind: null
-    recommended-unit: null
-    values: null
-    repeatable: true
-    legacy_values: >-
-      For individuals, this includes an ORCID ID ([https://orcid.org](https://orcid.org)), for organizations,
-      an ROR ID ([https://ror.org](https://ror.org)), for software or AI agents, a Digital Object Identifier
-      (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a
-      Software Heritage ID (SWHID) pointing to the exact software release or state (e.g., swh:1:rel:a0b1c2d3e4f5...).
-  - name: affiliation-identifier
-    required: false
-    description: >-
-      A unique, persistent URI that globally and unambiguously identifies the entity's affiliation.
-    type: null
-    extent: null
-    kind: null
-    recommended-unit: null
-    values: null
-    repeatable: true
-    legacy_values: An ROR ID ([https://ror.org](https://ror.org)) or other suitable identifier.
+    subproperties:
+    - name: name
+      required: true
+      description: The name of the affiliation.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+    - name: identifier
+      required: false
+      description: >-
+        A unique, persistent identifier that globally and unambiguously identifies the affiliation.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      subproperties:
+      - name: value
+        required: true
+        description: The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: scheme
+        required: true
+        description: The identifier scheme that the value belongs to.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [ROR, ISNI]
+        repeatable: false
 - name: contributor
   required: false
   description: >-

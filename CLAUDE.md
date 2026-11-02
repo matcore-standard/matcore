@@ -226,7 +226,9 @@ record or marked PROPOSED, NOT DECIDED.
      basis entry for the MBPT dielectric matrix (0011); creator and contributor descriptions
      reworded (primary creator vs secondary contributor); step 4: 0001 Part B fixes (B1, B3, B4,
      B6, B7, B8, B10, B11) and the MBPT `local-orbital-basis-set` renamed `localized-orbital-basis-set`;
-     Annex U says "Kind" for MatCore's kinds (0004 item 14); Annex I, Identifier Schemes, added (0014).
+     Annex U says "Kind" for MatCore's kinds (0004 item 14); Annex I, Identifier Schemes, added (0014);
+     creator restructured by 0014 (`identifier` with value + scheme; `affiliation` a container with
+     name + at most one identifier) and its typed fields filled (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -266,8 +268,10 @@ record or marked PROPOSED, NOT DECIDED.
    ISNI, each traced to its documentation), checked by validate_schema.py, published as Annex I.
    dft `unique-identifier` is a hash and does not use it; the dft `doi` properties are decided in
    their PR (0014, settled 2026-11-01).
-   [todo] Then the creator PR, then the contributor PR, applying 0014; the creator PR updates
-   examples/minimal.xml (each affiliation gets a `name`).
+   [done, branch creator-0014, PR pending] creator: restructured by 0014, typed fields filled,
+   legacy_* deleted; examples/minimal.xml affiliations get a `name`; tests/test_properties.py
+   locks the 0014 tree.
+   [todo] Then the contributor PR, applying 0014, then the rest of minimal in file order.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
