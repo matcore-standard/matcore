@@ -37,15 +37,16 @@ def minimal(name):
     return next(p for p in yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))['properties'] if p['name'] == name)
 
 
-@pytest.mark.parametrize('name', ['title', 'description'])
-def test_one_required_string(name):
-    """A dataset has exactly one title and one description, each a plain string, not a physical quantity.
+@pytest.mark.parametrize('name, required', [('title', True), ('description', True), ('disclaimer', False)])
+def test_at_most_one_string(name, required):
+    """A dataset has at most one of each of these, a plain string, not a physical quantity; title and
+    description are required, while a disclaimer is given only when the creators have one.
 
-    name (str): the property's name.
+    name (str): the property's name; required (bool): whether a dataset must have it.
     """
     p = minimal(name)
     assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind'], p['recommended-unit']) == (
-        True, False, 'string', [], 'inapplicable', None)
+        required, False, 'string', [], 'inapplicable', None)
     assert legacy_fields(p) == []
 
 
