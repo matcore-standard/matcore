@@ -229,7 +229,7 @@ record or marked PROPOSED, NOT DECIDED.
      Annex U says "Kind" for MatCore's kinds (0004 item 14); Annex I, Identifier Schemes, added (0014);
      creator and contributor restructured by 0014 (`identifier` with value + scheme; `affiliation` a
      container with name + at most one identifier) and their typed fields filled (step 5); title's
-     typed fields filled (step 5).
+     typed fields filled (step 5); the Minimal example's title made descriptive (0004 item 38).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
