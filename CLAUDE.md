@@ -274,7 +274,7 @@ record or marked PROPOSED, NOT DECIDED.
    locks the 0014 tree.
    [done, PR #14 merged 2026-11-02] contributor: restructured by 0014 as creator,
    keeping its own required flag (optional, 0011); tests/test_properties.py covers both.
-   [done, branch title, PR pending] title: a required scalar string, legacy_* deleted.
+   [done, PR #15 merged 2026-11-02] title: a required scalar string, legacy_* deleted.
    [todo] The rest of minimal in file order, starting with creation-date.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
