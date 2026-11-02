@@ -25,6 +25,22 @@ def legacy_fields(p):
     return [k for k in p if k.startswith('legacy_')] + [k for s in p.get('subproperties') or [] for k in legacy_fields(s)]
 
 
+def minimal(name):
+    """Return a top-level property of schema/minimal.yaml.
+
+    name (str): the property's name.
+    """
+    return next(p for p in yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))['properties'] if p['name'] == name)
+
+
+def test_title_is_one_required_string():
+    """A dataset has exactly one title, a plain string that is not a physical quantity."""
+    p = minimal('title')
+    assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind'], p['recommended-unit']) == (
+        True, False, 'string', [], 'inapplicable', None)
+    assert legacy_fields(p) == []
+
+
 @pytest.mark.parametrize('entity, required', [('creator', True), ('contributor', False)])
 def test_creator_and_contributor_follow_0014(entity, required):
     """creator and contributor carry scheme-tagged identifiers and affiliations that hold their own
@@ -35,7 +51,7 @@ def test_creator_and_contributor_follow_0014(entity, required):
 
     entity (str): the property's name; required (bool): whether a dataset must have one.
     """
-    prop = next(p for p in yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))['properties'] if p['name'] == entity)
+    prop = minimal(entity)
     name = ('name', True, False, 'string', (), ())
     value = ('value', True, False, 'string', (), ())
     entity_scheme = ('scheme', True, False, 'string', ('ORCID', 'ROR', 'DOI', 'SWHID', 'ISNI'), ())

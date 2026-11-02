@@ -228,7 +228,8 @@ record or marked PROPOSED, NOT DECIDED.
      B6, B7, B8, B10, B11) and the MBPT `local-orbital-basis-set` renamed `localized-orbital-basis-set`;
      Annex U says "Kind" for MatCore's kinds (0004 item 14); Annex I, Identifier Schemes, added (0014);
      creator and contributor restructured by 0014 (`identifier` with value + scheme; `affiliation` a
-     container with name + at most one identifier) and their typed fields filled (step 5).
+     container with name + at most one identifier) and their typed fields filled (step 5); title's
+     typed fields filled (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -273,7 +274,8 @@ record or marked PROPOSED, NOT DECIDED.
    locks the 0014 tree.
    [done, PR #14 merged 2026-11-02] contributor: restructured by 0014 as creator,
    keeping its own required flag (optional, 0011); tests/test_properties.py covers both.
-   [todo] The rest of minimal in file order, starting with title.
+   [done, branch title, PR pending] title: a required scalar string, legacy_* deleted.
+   [todo] The rest of minimal in file order, starting with creation-date.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
