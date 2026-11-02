@@ -271,7 +271,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #13 merged 2026-11-02] creator: restructured by 0014, typed fields filled,
    legacy_* deleted; examples/minimal.xml affiliations get a `name`; tests/test_properties.py
    locks the 0014 tree.
-   [done, branch contributor-0014, PR pending] contributor: restructured by 0014 as creator,
+   [done, PR #14 merged 2026-11-02] contributor: restructured by 0014 as creator,
    keeping its own required flag (optional, 0011); tests/test_properties.py covers both.
    [todo] The rest of minimal in file order, starting with title.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
