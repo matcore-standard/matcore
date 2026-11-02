@@ -281,7 +281,7 @@ record or marked PROPOSED, NOT DECIDED.
    admits YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ, legacy_* deleted.
    [done, PR #18 merged 2026-11-02] description: a required scalar string; the baseline's
    storage-format guidance kept as values.note; legacy_* deleted.
-   [done, branch disclaimer, PR pending] disclaimer: an optional scalar string, legacy_* deleted.
+   [done, PR #19 merged 2026-11-02] disclaimer: an optional scalar string, legacy_* deleted.
    [todo] The rest of minimal in file order, starting with material-component.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
