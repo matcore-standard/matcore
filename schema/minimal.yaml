@@ -250,15 +250,15 @@ properties:
 - name: description
   required: true
   description: A synopsis of the dataset, its contents, and purpose.
-  type: null
-  extent: null
-  kind: null
+  type: string
+  extent: []
+  kind: inapplicable
   recommended-unit: null
-  values: null
+  values:
+    note: >-
+      This can optionally include information on the format in which the dataset is stored (e.g. pointer
+      to a relevant schema).
   repeatable: false
-  legacy_values: >-
-    A string containing a description of the dataset contents. This can optionally include information
-    on the format in which the dataset is stored (e.g. pointer to a relevant schema).
 - name: disclaimer
   required: false
   description: >-

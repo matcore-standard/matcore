@@ -269,9 +269,9 @@ A synopsis of the dataset, its contents, and purpose.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing a description of the dataset contents. This can optionally include information on the format in which the dataset is stored (e.g. pointer to a relevant schema).</span>
+This can optionally include information on the format in which the dataset is stored (e.g. pointer to a relevant schema).
 
 </details>
 
