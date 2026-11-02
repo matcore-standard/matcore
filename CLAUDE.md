@@ -276,7 +276,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #14 merged 2026-11-02] contributor: restructured by 0014 as creator,
    keeping its own required flag (optional, 0011); tests/test_properties.py covers both.
    [done, PR #15 merged 2026-11-02] title: a required scalar string, legacy_* deleted.
-   [done, branch creation-date, PR pending] creation-date: a required scalar string whose pattern
+   [done, PR #17 merged 2026-11-02] creation-date: a required scalar string whose pattern
    admits YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ, legacy_* deleted.
    [todo] The rest of minimal in file order, starting with description.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
