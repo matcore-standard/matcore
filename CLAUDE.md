@@ -279,7 +279,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #15 merged 2026-11-02] title: a required scalar string, legacy_* deleted.
    [done, PR #17 merged 2026-11-02] creation-date: a required scalar string whose pattern
    admits YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ, legacy_* deleted.
-   [done, branch description, PR pending] description: a required scalar string; the baseline's
+   [done, PR #18 merged 2026-11-02] description: a required scalar string; the baseline's
    storage-format guidance kept as values.note; legacy_* deleted.
    [todo] The rest of minimal in file order, starting with disclaimer.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
