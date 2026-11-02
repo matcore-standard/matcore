@@ -1,10 +1,14 @@
 """Properties whose structure a decision record fixes keep that structure."""
+import sys
 from pathlib import Path
 
 import pytest
 import yaml
+from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'scripts'))
+from check_values import value_schema  # noqa: E402
 
 
 def tree(p):
@@ -39,6 +43,23 @@ def test_title_is_one_required_string():
     assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind'], p['recommended-unit']) == (
         True, False, 'string', [], 'inapplicable', None)
     assert legacy_fields(p) == []
+
+
+@pytest.mark.parametrize('value, ok', [
+    ('2021-02-22', True), ('2021-02-22T14:30:00Z', True),
+    ('2021-13-01', False), ('2021-02-32', False), ('2021-02-22T24:00:00Z', False),
+    ('2021-02-22T14:30:00+01:00', False), ('2021-02-22T14:30:00', False), ('22/02/2021', False)])
+def test_creation_date_takes_a_date_or_a_utc_date_time(value, ok):
+    """creation-date accepts the baseline's two ISO 8601 forms, a date or a date and time in UTC, and
+    nothing else, so dates from different sources compare without time-zone conversion.
+
+    value (str): a candidate creation date; ok (bool): whether it conforms.
+    """
+    p = minimal('creation-date')
+    assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind']) == (
+        True, False, 'string', [], 'inapplicable')
+    assert legacy_fields(p) == []
+    assert Draft202012Validator(value_schema(p)).is_valid(value) == ok
 
 
 @pytest.mark.parametrize('entity, required', [('creator', True), ('contributor', False)])
