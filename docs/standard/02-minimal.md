@@ -22,9 +22,44 @@ The name of the entity that generated the dataset.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the entity name. Examples: "Albert Einstein", "Lawrence Livermore National Laboratory", "Claude Opus 5.5".</span>
+Examples: `Albert Einstein`, `Lawrence Livermore National Laboratory`, `Claude Opus 5.5`.
+
+</details>
+
+<details class="note mc-property" id="minimal.creator.identifier" markdown="1">
+<summary><span class="mc-name">identifier</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+A unique, persistent identifier that globally and unambiguously identifies the entity that created the dataset.
+
+| Required | Repeatable |
+|---|---|
+| no | yes |
+
+<details class="note mc-property" id="minimal.creator.identifier.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
+
+<details class="note mc-property" id="minimal.creator.identifier.scheme" markdown="1">
+<summary><span class="mc-name">scheme<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The identifier scheme that the value belongs to.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+Recommended: `ORCID`, `ROR`, `DOI`, `SWHID`, `ISNI`. Other values are allowed. For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state. An ISNI may identify either individuals or organizations.
+
+</details>
 
 </details>
 
@@ -33,37 +68,55 @@ The name of the entity that generated the dataset.
 
 The affiliation of the entity that generated the dataset if they have one.
 
+| Required | Repeatable |
+|---|---|
+| no | yes |
+
+<details class="note mc-property" id="minimal.creator.affiliation.name" markdown="1">
+<summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The name of the affiliation.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | yes | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the entity affiliation.</span>
+| yes | no | string | [] | inapplicable | — |
 
 </details>
 
-<details class="note mc-property" id="minimal.creator.creator-identifier" markdown="1">
-<summary><span class="mc-name">creator-identifier</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<details class="note mc-property" id="minimal.creator.affiliation.identifier" markdown="1">
+<summary><span class="mc-name">identifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-A unique, persistent URI that globally and unambiguously identifies the entity that created the dataset.
+A unique, persistent identifier that globally and unambiguously identifies the affiliation.
+
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+<details class="note mc-property" id="minimal.creator.affiliation.identifier.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | yes | — | — | — | — |
-
-<span class='legacy'>Legacy: For individuals, this includes an ORCID ID ([https://orcid.org](https://orcid.org)), for organizations, an ROR ID ([https://ror.org](https://ror.org)), for software or AI agents, a Digital Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state (e.g., swh:1:rel:a0b1c2d3e4f5...).</span>
+| yes | no | string | [] | inapplicable | — |
 
 </details>
 
-<details class="note mc-property" id="minimal.creator.affiliation-identifier" markdown="1">
-<summary><span class="mc-name">affiliation-identifier</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<details class="note mc-property" id="minimal.creator.affiliation.identifier.scheme" markdown="1">
+<summary><span class="mc-name">scheme<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-A unique, persistent URI that globally and unambiguously identifies the entity's affiliation.
+The identifier scheme that the value belongs to.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | yes | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: An ROR ID ([https://ror.org](https://ror.org)) or other suitable identifier.</span>
+Recommended: `ROR`, `ISNI`. Other values are allowed.
+
+</details>
+
+</details>
 
 </details>
 
@@ -879,19 +932,27 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
 <root>
   <creator>
     <name>Albert P. Bartók</name>
-    <affiliation>Rutherford Appleton Laboratory</affiliation>
+    <affiliation>
+      <name>Rutherford Appleton Laboratory</name>
+    </affiliation>
   </creator>
   <creator>
     <name>James Kermode</name>
-    <affiliation>University of Warwick</affiliation>
+    <affiliation>
+      <name>University of Warwick</name>
+    </affiliation>
   </creator>
   <creator>
     <name>Noam Bernstein</name>
-    <affiliation>Naval Research Laboratory</affiliation>
+    <affiliation>
+      <name>Naval Research Laboratory</name>
+    </affiliation>
   </creator>
   <creator>
     <name>Gábor Csányi</name>
-    <affiliation>University of Cambridge</affiliation>
+    <affiliation>
+      <name>University of Cambridge</name>
+    </affiliation>
   </creator>
   <title>Si_PRX_GAP</title>
   <creation-date>2021-02-22</creation-date>

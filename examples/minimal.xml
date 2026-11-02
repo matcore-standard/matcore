@@ -2,19 +2,27 @@
 <root>
   <creator>
     <name>Albert P. Bartók</name>
-    <affiliation>Rutherford Appleton Laboratory</affiliation>
+    <affiliation>
+      <name>Rutherford Appleton Laboratory</name>
+    </affiliation>
   </creator>
   <creator>
     <name>James Kermode</name>
-    <affiliation>University of Warwick</affiliation>
+    <affiliation>
+      <name>University of Warwick</name>
+    </affiliation>
   </creator>
   <creator>
     <name>Noam Bernstein</name>
-    <affiliation>Naval Research Laboratory</affiliation>
+    <affiliation>
+      <name>Naval Research Laboratory</name>
+    </affiliation>
   </creator>
   <creator>
     <name>Gábor Csányi</name>
-    <affiliation>University of Cambridge</affiliation>
+    <affiliation>
+      <name>University of Cambridge</name>
+    </affiliation>
   </creator>
   <title>Si_PRX_GAP</title>
   <creation-date>2021-02-22</creation-date>
