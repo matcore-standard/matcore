@@ -46,11 +46,15 @@ Each standard consists of a set of Properties with possible SubProperties, SubSu
 
 - Values: A description of the type of variable (string, integer, real), form (scalar, list, array), and possible values that the Property can take on. 
 
+- Kind: The physical dimension of the Property's value, given as a MatCore Kind name mapped to a QUDT QuantityKind IRI in Annex U (e.g. Energy, Length, InverseLength, Temperature, Pressure). Reserved values: `dimensionless` (ratios, counts), `inapplicable` (strings, identifiers, and the `unit` subproperty itself), `any` (the `value` of a generic name/value/unit parameter, whose Kind is then given by the instance `unit`).
+
+- Recommended unit: The unit customarily used for this Property in the community. Informative only; used by templates and tools.
+
 - When appropriate a controlled vocabulary can be defined. In this case sentence case format is adopted (i.e. for a phrase containing several words, the first letter of the first word is capitalized and all others are lower case except for proper names or acronyms). An option should always be added for users to add terms not included in the controlled vocabulary to allow the standard to support future developments. New terms may eventually be standardized and added to the controlled vocabulary.
 
 - When a controlled vocabulary is used, adoption of existing standards is recommended whenever possible. 
 
-- When a value has physical units, either the required unit must be specified, or a field provided to define the value units.
+- **Units of physical quantities.** Every property whose value is a physical quantity (i.e. whose Kind is neither "dimensionless" nor "inapplicable") SHALL carry a `unit` subproperty in the metadata instance. The value of `unit` SHALL be a symbol from the MatCore Unit Table (Annex U) whose Kind is compatible with the property's declared Kind. A property value without a `unit`, or with a unit incompatible with its Kind, is non-conformant; no default unit is ever implied. The Recommended unit listed for each property is informative and does not affect how values are interpreted. Quantities of dimension one use the reserved symbol `dimensionless`; plane angles use an angle unit (`rad` or `degree`). Where the meaning of a value depends on a convention that a unit cannot express (e.g. inclusion of a factor 2π in reciprocal lengths, or components given in a lattice basis), the property has a `convention` or `basis` subproperty, required as stated in its description. Conversion factors to SI for units not exactly defined in SI terms (`bohr`, `hartree`, `Ry`) are those of CODATA 2022, as listed in Annex U.
 
 - For Properties that contain SubProperties, this is indicated with the phrase “Contains SubProperties as defined in the table below” (where “table below” points to the specification for the SubProperty standard).
 
