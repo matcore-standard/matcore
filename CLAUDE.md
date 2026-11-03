@@ -285,7 +285,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #18 merged 2026-11-02] description: a required scalar string; the baseline's
    storage-format guidance kept as values.note; legacy_* deleted.
    [done, PR #19 merged 2026-11-02] disclaimer: an optional scalar string, legacy_* deleted.
-   [done, branch material-component, PR pending] material-component: `phases` (renamed from
+   [done, PR #20 merged 2026-11-03] material-component: `phases` (renamed from
    `phase`; open terms, definitions in the note per 0013's settlement), concentration in atomic
    percent, species an enum of the IUPAC symbols (from CIAAW's Standard Atomic Weights table);
    examples/minimal.xml writes <phases>Crystal</phases>; legacy_* deleted.
