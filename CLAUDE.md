@@ -294,6 +294,7 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] Concentrations of a material component sum to 100 (0004 item 40): add the sentence
    to concentration's note (one PR).
    [done] species stays elements only: no isotopes or pseudo-species (0004 item 41).
+   [done] Long value lists render inline (0004 item 42).
    [todo] The rest of minimal in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
