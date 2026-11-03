@@ -280,7 +280,6 @@ properties:
   recommended-unit: null
   values: null
   repeatable: true
-  legacy_values: Contains SubProperties as listed below.
   subproperties:
   - name: constituent
     required: true
@@ -291,67 +290,76 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
-    legacy_values: Contains SubSubProperties as defined in the table below.
     subproperties:
     - name: species
       required: true
       description: A chemical element included in the material.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        enum: [H, He, Li, Be, B, C, N, O, F, Ne, Na, Mg, Al, Si, P, S, Cl, Ar, K, Ca, Sc, Ti, V, Cr, Mn, Fe,
+          Co, Ni, Cu, Zn, Ga, Ge, As, Se, Br, Kr, Rb, Sr, Y, Zr, Nb, Mo, Tc, Ru, Rh, Pd, Ag, Cd, In, Sn, Sb,
+          Te, I, Xe, Cs, Ba, La, Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu, Hf, Ta, W, Re, Os,
+          Ir, Pt, Au, Hg, Tl, Pb, Bi, Po, At, Rn, Fr, Ra, Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm, Md,
+          'No', Lr, Rf, Db, Sg, Bh, Hs, Mt, Ds, Rg, Cn, Nh, Fl, Mc, Lv, Ts, Og]
+        examples: [C]
+        note: >-
+          The symbol of the element, as in the IUPAC Periodic Table of the Elements (listed with atomic
+          numbers 1 to 118 in the [Standard Atomic Weights](https://www.ciaaw.org/atomic-weights.htm) table
+          of the IUPAC Commission on Isotopic Abundances and Atomic Weights).
       repeatable: false
-      legacy_values: A string containing the chemical designation of the element (e.g. "C").
     - name: concentration
       required: true
-      description: The fraction of the material composed of this element.
-      type: null
-      extent: null
-      kind: null
+      description: The atomic fraction of the material composed of this element, in percent.
+      type: float
+      extent: []
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        minimum: 0
+        maximum: 100
       repeatable: false
-      legacy_values: A string containing the concentration in percent.
-  - name: phase
+  - name: phases
     required: true
-    description: The phase of the material included in the dataset.
-    type: null
-    extent: null
-    kind: null
+    description: The phase(s) of the material included in the dataset.
+    type: string
+    extent: [':']
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      terms: [Amorphous, Crystal, Quasicrystal, Molecule, Liquid, Gas, Plasma]
+      note: >-
+        One or more of: "Amorphous" – A solid material without crystalline order. "Crystal" – A solid
+        material characterized by a repeating pattern of atoms. "Quasicrystal" – A crystal-like material
+        with short-range order, but without long-range order. "Molecule" – A finite group of atoms bonded
+        together forming an independent unit. "Liquid" – A fluid structure (e.g. the molten state of a
+        material). "Gas" – A structure where atoms are far apart and only interact during collisions.
+        "Plasma" – A gas comprised of ions and electrons.
     repeatable: false
-    legacy_values: >-
-      A list of strings containing one or more of the following values: "Amorphous" – A solid material
-      without crystalline order "Crystal" – A solid material characterized by a repeating pattern of atoms.
-      "Quasicrystal" – A crystal-like material with short-range order, but without long-range order. "Molecule"
-      – A finite group of atoms bonded together forming an independent unit. "Liquid" – A fluid structure
-      (e.g. the molten state of a material) "Gas" – A structure where atoms are far apart and only interact
-      during collisions. "Plasma" – A gas comprised of ions and electrons. Other user-specified value
-      if none of the above apply.
   - name: description
     required: false
     description: >-
       An explanation of the nature of the material, e.g. a crystal structure designation, a chemical formula
       for a molecule, etc.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: A string containing the material description.
   - name: microstructure
     required: false
-    description: The arrangement of phases, grains and defects in a material.
-    type: null
-    extent: null
-    kind: null
+    description: >-
+      For a solid state phase, a description of the arrangement of phases, grains and defects in the
+      material.
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: A string containing a description of the microstructure of the material.
 - name: computation
   required: true
   description: A description of a computer simulation used to generate data in the dataset.

@@ -87,3 +87,51 @@ def test_creator_and_contributor_follow_0014(entity, required):
         name, ('identifier', False, False, None, (), (value, affiliation_scheme))))
     assert tree(prop) == (entity, required, True, None, (), (name, identifier, affiliation))
     assert legacy_fields(prop) == []
+
+
+def sub(p, name):
+    """Return the subproperty of p with the given name.
+
+    p (dict): property entry; name (str): the subproperty's name.
+    """
+    return next(s for s in p['subproperties'] if s['name'] == name)
+
+
+def test_material_component_structure():
+    """A material component lists its constituents and its phases, with optional prose; phase is a list
+    (one or more phases per component), so it is named in the plural (0004 naming rule)."""
+    p = minimal('material-component')
+    phases = ('phases', True, False, 'string', ('Amorphous', 'Crystal', 'Quasicrystal', 'Molecule', 'Liquid',
+                                                 'Gas', 'Plasma'), ())
+    constituent = ('constituent', True, True, None, (), (
+        ('species', True, False, 'string', (), ()), ('concentration', True, False, 'float', (), ())))
+    assert tree(p) == ('material-component', True, True, None, (), (
+        constituent, phases, ('description', False, False, 'string', (), ()),
+        ('microstructure', False, False, 'string', (), ())))
+    assert sub(p, 'phases')['extent'] == [':']
+    assert legacy_fields(p) == []
+
+
+@pytest.mark.parametrize('value, ok', [(0, True), (12.5, True), (100, True), (-1, False), (100.5, False)])
+def test_concentration_is_an_atomic_percent(value, ok):
+    """concentration is an atomic percentage, a dimensionless number from 0 to 100 that carries no unit.
+
+    value (float): a candidate concentration; ok (bool): whether it conforms.
+    """
+    c = sub(sub(minimal('material-component'), 'constituent'), 'concentration')
+    assert (c['kind'], c['extent']) == ('dimensionless', [])
+    assert 'atomic' in c['description']
+    assert Draft202012Validator(value_schema(c)).is_valid(value) == ok
+
+
+@pytest.mark.parametrize('value, ok', [('C', True), ('Si', True), ('Og', True), ('D', False), ('X', False),
+                                       ('si', False), ('Uut', False)])
+def test_species_is_an_element_symbol(value, ok):
+    """species is one of the 118 element symbols of the IUPAC periodic table and nothing else; an unknown
+    symbol would leave the material's composition undefined.
+
+    value (str): a candidate symbol; ok (bool): whether it conforms.
+    """
+    s = sub(sub(minimal('material-component'), 'constituent'), 'species')
+    assert len(s['values']['enum']) == len(set(s['values']['enum'])) == 118
+    assert Draft202012Validator(value_schema(s)).is_valid(value) == ok
