@@ -242,7 +242,8 @@ record or marked PROPOSED, NOT DECIDED.
      and disclaimer's typed fields filled (step 5); material-component's typed fields filled, with
      `phase` renamed `phases` (a list), concentration in atomic percent (0–100) and species an enum
      of the 118 IUPAC element symbols (step 5); concentration's note states that a material
-     component's concentrations sum to 100 (0004 item 40).
+     component's concentrations sum to 100 (0004 item 40); §1.3 states the units rule of 0001 A1.1
+     and lists Kind and Recommended unit among a property's features (0001 A1.2, 0015).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -302,8 +303,9 @@ record or marked PROPOSED, NOT DECIDED.
    100 (0004 item 40): the sentence is in concentration's note.
    [done] species stays elements only: no isotopes or pseudo-species (0004 item 41).
    [done] Long value lists render inline (0004 item 42).
-   [todo] 0015: the `unit` check in validate_schema.py and 0001 A1.1/A1.2 in §1.3 (one PR), before
-   the computation PR. (A1.1/A1.2 were missed when step 3 handed Part A to step 5.)
+   [done, branch unit-check, PR pending] 0015: scripts/check_units.py (called by
+   validate_schema.py) checks the fixed `unit` form; 0001 A1.1/A1.2 applied to §1.3 with "Kind".
+   (A1.1/A1.2 were missed when step 3 handed Part A to step 5.)
    [todo] 0013 `depends-on`/`cases`: meta-schema, check_values.py, build_docs.py, tests (one
    PR), before the computation PR.
    [todo] The rest of minimal in file order, starting with computation.
