@@ -292,7 +292,7 @@ record or marked PROPOSED, NOT DECIDED.
    percent, species an enum of the IUPAC symbols (from CIAAW's Standard Atomic Weights table);
    examples/minimal.xml writes <phases>Crystal</phases>; legacy_* deleted.
    [done] Recommended unit null for dimensionless kinds (0004 item 39).
-   [done, branch concentration-sum, PR pending] Concentrations of a material component sum to
+   [done, PR #21 merged 2026-11-03] Concentrations of a material component sum to
    100 (0004 item 40): the sentence is in concentration's note.
    [done] species stays elements only: no isotopes or pseudo-species (0004 item 41).
    [done] Long value lists render inline (0004 item 42).
