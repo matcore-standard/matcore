@@ -80,6 +80,10 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
 - Every dimensioned value in an instance file carries a `unit`; no default unit is ever implied.
 - The schema declares `kind` + `recommended-unit`, not a fixed unit. Validation = kind compatibility
   via the dimension vector in units.yaml, using the closed symbol set. No unit parsing.
+- A property with a physical kind (a units.yaml kind other than dimensionless) has exactly one
+  required `unit` subproperty in one fixed form (string, [], inapplicable, values null, fixed
+  description), and a dimensionless or inapplicable property has none; validate_schema.py checks
+  both. A `unit` under a container (generic parameters, free-form units) is outside the check (0015).
 - Reserved kinds: dimensionless (ratios, counts), inapplicable (non-quantities), any (fixed by the
   instance or by a required enumerated subproperty).
   Angles and moles are NOT dimensionless.
@@ -296,6 +300,8 @@ record or marked PROPOSED, NOT DECIDED.
    100 (0004 item 40): the sentence is in concentration's note.
    [done] species stays elements only: no isotopes or pseudo-species (0004 item 41).
    [done] Long value lists render inline (0004 item 42).
+   [todo] 0015: the `unit` check in validate_schema.py and 0001 A1.1/A1.2 in §1.3 (one PR), before
+   the computation PR. (A1.1/A1.2 were missed when step 3 handed Part A to step 5.)
    [todo] The rest of minimal in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
