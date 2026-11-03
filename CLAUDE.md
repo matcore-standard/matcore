@@ -58,7 +58,8 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   string. (The meaning of `file` in an instance is PROPOSED, NOT DECIDED; define it in the data
   model, independent of any serialization.)
 - `recommended-unit`: informative only; must be a symbol in units.yaml with matching kind.
-  PROPOSED, NOT DECIDED: no recommended unit when kind is `any`; null when kind is `dimensionless`.
+  Null when kind is `dimensionless` (0004 item 39).
+  PROPOSED, NOT DECIDED: no recommended unit when kind is `any`.
 - `values`: structured; replaces the old prose "Values" (0002). Null or a mapping of `terms` (open
   vocabulary: unlisted strings conform, reported as user-specified, near-misses as possible typos),
   `enum` (closed list), `minimum`/`maximum` (inclusive), `format` (a JSON Schema 2020-12 format
@@ -289,6 +290,7 @@ record or marked PROPOSED, NOT DECIDED.
    `phase`; open terms, definitions in the note per 0013's settlement), concentration in atomic
    percent, species an enum of the IUPAC symbols (from CIAAW's Standard Atomic Weights table);
    examples/minimal.xml writes <phases>Crystal</phases>; legacy_* deleted.
+   [done] Recommended unit null for dimensionless kinds (0004 item 39).
    [todo] The rest of minimal in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
