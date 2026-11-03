@@ -303,7 +303,7 @@ record or marked PROPOSED, NOT DECIDED.
    100 (0004 item 40): the sentence is in concentration's note.
    [done] species stays elements only: no isotopes or pseudo-species (0004 item 41).
    [done] Long value lists render inline (0004 item 42).
-   [done, branch unit-check, PR pending] 0015: scripts/check_units.py (called by
+   [done, PR #22 merged 2026-11-03] 0015: scripts/check_units.py (called by
    validate_schema.py) checks the fixed `unit` form; 0001 A1.1/A1.2 applied to §1.3 with "Kind".
    (A1.1/A1.2 were missed when step 3 handed Part A to step 5.)
    [todo] 0013 `depends-on`/`cases`: meta-schema, check_values.py, build_docs.py, tests (one
