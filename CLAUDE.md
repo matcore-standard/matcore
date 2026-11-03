@@ -235,7 +235,8 @@ record or marked PROPOSED, NOT DECIDED.
      creation-date's typed fields filled, its two date forms as a pattern (step 5); description's
      and disclaimer's typed fields filled (step 5); material-component's typed fields filled, with
      `phase` renamed `phases` (a list), concentration in atomic percent (0–100) and species an enum
-     of the 118 IUPAC element symbols (step 5).
+     of the 118 IUPAC element symbols (step 5); concentration's note states that a material
+     component's concentrations sum to 100 (0004 item 40).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -291,8 +292,8 @@ record or marked PROPOSED, NOT DECIDED.
    percent, species an enum of the IUPAC symbols (from CIAAW's Standard Atomic Weights table);
    examples/minimal.xml writes <phases>Crystal</phases>; legacy_* deleted.
    [done] Recommended unit null for dimensionless kinds (0004 item 39).
-   [todo] Concentrations of a material component sum to 100 (0004 item 40): add the sentence
-   to concentration's note (one PR).
+   [done, branch concentration-sum, PR pending] Concentrations of a material component sum to
+   100 (0004 item 40): the sentence is in concentration's note.
    [done] species stays elements only: no isotopes or pseudo-species (0004 item 41).
    [done] Long value lists render inline (0004 item 42).
    [todo] The rest of minimal in file order, starting with computation.

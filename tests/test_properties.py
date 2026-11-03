@@ -135,3 +135,10 @@ def test_species_is_an_element_symbol(value, ok):
     s = sub(sub(minimal('material-component'), 'constituent'), 'species')
     assert len(s['values']['enum']) == len(set(s['values']['enum'])) == 118
     assert Draft202012Validator(value_schema(s)).is_valid(value) == ok
+
+
+def test_concentration_note_states_the_sum():
+    """The constituents of a material component account for all of it, so their concentrations sum to
+    100 (0004 item 40); the schema cannot check the rule, so the note states it for readers and reviewers."""
+    c = sub(sub(minimal('material-component'), 'constituent'), 'concentration')
+    assert 'sum to 100' in (c['values'].get('note') or '')

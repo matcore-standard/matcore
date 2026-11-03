@@ -320,6 +320,7 @@ properties:
       values:
         minimum: 0
         maximum: 100
+        note: The concentrations of a material component's constituents sum to 100.
       repeatable: false
   - name: phases
     required: true

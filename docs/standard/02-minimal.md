@@ -326,7 +326,7 @@ The atomic fraction of the material composed of this element, in percent.
 |---|---|---|---|---|---|
 | yes | no | float | [] | dimensionless | — |
 
-From 0 to 100.
+From 0 to 100. The concentrations of a material component's constituents sum to 100.
 
 </details>
 
