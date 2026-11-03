@@ -68,8 +68,9 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   unlisted value would make the data meaningless. Keys apply together and are tied to `type`
   (terms/enum/format/pattern: string; minimum/maximum: int, float); at most one of terms/enum and
   of format/pattern (0013). A term's definition is prose in `note`, in the baseline's wording;
-  terms and enum stay plain lists (0013, settled 2026-11-02). Deferred to the first property that
-  needs them: values that depend on another property (0013 item 4 holds the proposal).
+  terms and enum stay plain lists (0013, settled 2026-11-02). Values that depend on a sibling use
+  `depends-on` (the sibling) and `cases` (its listed values → the values that apply); with no
+  matching case any value of the type is accepted (0013, settled 2026-11-03).
 - `legacy_*` fields hold the Google Doc prose from the baseline migration. Delete each one once its
   content is transferred to the typed fields; the original wording remains in the baseline .docx and
   in git history (tag v0.9-baseline). A section is complete when no legacy_* remain.
@@ -116,8 +117,9 @@ the kind; group 3 and all other typed properties use Annex U symbols only (0001 
 PROPOSED, NOT DECIDED: state conditional validation rules (the allowed unit or values of one
 subproperty depend on another's value: `convention` for k-point-spacing, `basis` for
 exciton-momentum, `scaling` for PF lengths and times) once in §1.3, so each property refers to the
-rule rather than restating it. Needs a decision before implementation. Decide it together with the
-`depends-on`/`cases` proposal of 0013 item 4, when md opens.
+rule rather than restating it. Needs a decision before implementation, when the first such
+property comes up (dft k-point-spacing); whether 0013's `depends-on`/`cases` can express it is part
+of that decision.
 PROPOSED, NOT DECIDED: define this pattern once in §1.3 under a name such as "generic parameter", with
 each such entry tagged `pattern: generic-parameter` and checked by validate_schema.py against one
 canonical definition. Needs a decision before implementation.
@@ -302,6 +304,8 @@ record or marked PROPOSED, NOT DECIDED.
    [done] Long value lists render inline (0004 item 42).
    [todo] 0015: the `unit` check in validate_schema.py and 0001 A1.1/A1.2 in §1.3 (one PR), before
    the computation PR. (A1.1/A1.2 were missed when step 3 handed Part A to step 5.)
+   [todo] 0013 `depends-on`/`cases`: meta-schema, check_values.py, build_docs.py, tests (one
+   PR), before the computation PR.
    [todo] The rest of minimal in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.

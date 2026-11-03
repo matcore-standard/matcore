@@ -35,3 +35,10 @@ Decision 0002 replaced the prose "Values" of each property with a structured `va
 
 ## Settled 2026-11-02 (Ellad Tadmor)
 1. **Terms that carry a definition** (item 4, first needed by minimal `material-component` › `phase`). The definitions are written as prose in `note`, one per term, in the baseline's wording. `terms` and `enum` stay plain lists of strings, and no key is added for definitions.
+2. **Values that depend on another property** (settled 2026-11-03; item 4, first needed by minimal `computation` › `method`, whose terms depend on `method-class`). The proposal of item 4 is adopted:
+   - `depends-on` names a sibling, a property under the same parent, of type string with `terms` or `enum`.
+   - `cases` maps values of that sibling to the `values` that apply when the sibling has that value. Each key is one of the sibling's listed values; each case is a `values` mapping valid for the property's type under items 1 and 2, without `depends-on` or `cases` of its own.
+   - `depends-on` and `cases` appear together. Other keys beside them (e.g. `note`, `examples`) apply in every case.
+   - When the sibling holds a value with no case (a user-specified value, or a listed value without a case), no case applies and any value of the property's type is accepted.
+   - validate_schema.py checks these rules, and that every `examples` entry satisfies at least one case. build_docs.py renders the cases.
+   The conditional rules proposed for §1.3 (`convention`, `basis`, `scaling`) are not decided by this item.
