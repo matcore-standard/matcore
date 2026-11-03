@@ -293,6 +293,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done] Recommended unit null for dimensionless kinds (0004 item 39).
    [todo] Concentrations of a material component sum to 100 (0004 item 40): add the sentence
    to concentration's note (one PR).
+   [done] species stays elements only: no isotopes or pseudo-species (0004 item 41).
    [todo] The rest of minimal in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
