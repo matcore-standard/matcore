@@ -311,37 +311,37 @@ A chemical element included in the material.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the chemical designation of the element (e.g. "C").</span>
+One of `H`, `He`, `Li`, `Be`, `B`, `C`, `N`, `O`, `F`, `Ne`, `Na`, `Mg`, `Al`, `Si`, `P`, `S`, `Cl`, `Ar`, `K`, `Ca`, `Sc`, `Ti`, `V`, `Cr`, `Mn`, `Fe`, `Co`, `Ni`, `Cu`, `Zn`, `Ga`, `Ge`, `As`, `Se`, `Br`, `Kr`, `Rb`, `Sr`, `Y`, `Zr`, `Nb`, `Mo`, `Tc`, `Ru`, `Rh`, `Pd`, `Ag`, `Cd`, `In`, `Sn`, `Sb`, `Te`, `I`, `Xe`, `Cs`, `Ba`, `La`, `Ce`, `Pr`, `Nd`, `Pm`, `Sm`, `Eu`, `Gd`, `Tb`, `Dy`, `Ho`, `Er`, `Tm`, `Yb`, `Lu`, `Hf`, `Ta`, `W`, `Re`, `Os`, `Ir`, `Pt`, `Au`, `Hg`, `Tl`, `Pb`, `Bi`, `Po`, `At`, `Rn`, `Fr`, `Ra`, `Ac`, `Th`, `Pa`, `U`, `Np`, `Pu`, `Am`, `Cm`, `Bk`, `Cf`, `Es`, `Fm`, `Md`, `No`, `Lr`, `Rf`, `Db`, `Sg`, `Bh`, `Hs`, `Mt`, `Ds`, `Rg`, `Cn`, `Nh`, `Fl`, `Mc`, `Lv`, `Ts`, `Og`. Examples: `C`. The symbol of the element, as in the IUPAC Periodic Table of the Elements (listed with atomic numbers 1 to 118 in the [Standard Atomic Weights](https://www.ciaaw.org/atomic-weights.htm) table of the IUPAC Commission on Isotopic Abundances and Atomic Weights).
 
 </details>
 
 <details class="note mc-property" id="minimal.material-component.constituent.concentration" markdown="1">
 <summary><span class="mc-name">concentration<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The fraction of the material composed of this element.
+The atomic fraction of the material composed of this element, in percent.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | float | [] | dimensionless | — |
 
-<span class='legacy'>Legacy: A string containing the concentration in percent.</span>
+From 0 to 100.
 
 </details>
 
 </details>
 
-<details class="note mc-property" id="minimal.material-component.phase" markdown="1">
-<summary><span class="mc-name">phase<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<details class="note mc-property" id="minimal.material-component.phases" markdown="1">
+<summary><span class="mc-name">phases<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The phase of the material included in the dataset.
+The phase(s) of the material included in the dataset.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [:] | inapplicable | — |
 
-<span class='legacy'>Legacy: A list of strings containing one or more of the following values: "Amorphous" – A solid material without crystalline order "Crystal" – A solid material characterized by a repeating pattern of atoms. "Quasicrystal" – A crystal-like material with short-range order, but without long-range order. "Molecule" – A finite group of atoms bonded together forming an independent unit. "Liquid" – A fluid structure (e.g. the molten state of a material) "Gas" – A structure where atoms are far apart and only interact during collisions. "Plasma" – A gas comprised of ions and electrons. Other user-specified value if none of the above apply.</span>
+Recommended: `Amorphous`, `Crystal`, `Quasicrystal`, `Molecule`, `Liquid`, `Gas`, `Plasma`. Other values are allowed. One or more of: "Amorphous" – A solid material without crystalline order. "Crystal" – A solid material characterized by a repeating pattern of atoms. "Quasicrystal" – A crystal-like material with short-range order, but without long-range order. "Molecule" – A finite group of atoms bonded together forming an independent unit. "Liquid" – A fluid structure (e.g. the molten state of a material). "Gas" – A structure where atoms are far apart and only interact during collisions. "Plasma" – A gas comprised of ions and electrons.
 
 </details>
 
@@ -352,22 +352,18 @@ An explanation of the nature of the material, e.g. a crystal structure designati
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the material description.</span>
+| no | no | string | [] | inapplicable | — |
 
 </details>
 
 <details class="note mc-property" id="minimal.material-component.microstructure" markdown="1">
 <summary><span class="mc-name">microstructure</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The arrangement of phases, grains and defects in a material.
+For a solid state phase, a description of the arrangement of phases, grains and defects in the material.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing a description of the microstructure of the material.</span>
+| no | no | string | [] | inapplicable | — |
 
 </details>
 
@@ -1007,7 +1003,7 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
   <creation-date>2021-02-22</creation-date>
   <description>The original DFT training data for the general-purpose silicon interatomic potential described in the associated publication. The kinds of configuration that were included were selected based on intuition and past experience to obtain good coverage pertaining to a range of properties.</description>
   <material-component>
-    <phase>crystal</phase>
+    <phases>Crystal</phases>
     <constituent>
       <species>Si</species>
       <concentration>100</concentration>

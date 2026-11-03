@@ -28,7 +28,7 @@
   <creation-date>2021-02-22</creation-date>
   <description>The original DFT training data for the general-purpose silicon interatomic potential described in the associated publication. The kinds of configuration that were included were selected based on intuition and past experience to obtain good coverage pertaining to a range of properties.</description>
   <material-component>
-    <phase>crystal</phase>
+    <phases>Crystal</phases>
     <constituent>
       <species>Si</species>
       <concentration>100</concentration>
