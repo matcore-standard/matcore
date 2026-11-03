@@ -291,6 +291,8 @@ record or marked PROPOSED, NOT DECIDED.
    percent, species an enum of the IUPAC symbols (from CIAAW's Standard Atomic Weights table);
    examples/minimal.xml writes <phases>Crystal</phases>; legacy_* deleted.
    [done] Recommended unit null for dimensionless kinds (0004 item 39).
+   [todo] Concentrations of a material component sum to 100 (0004 item 40): add the sentence
+   to concentration's note (one PR).
    [todo] The rest of minimal in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
