@@ -255,7 +255,8 @@ record or marked PROPOSED, NOT DECIDED.
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
      gains a checksum beside unique-identifier (step 5); dft valence-electron-model's typed fields
-     filled, the basis set given the same checksum split (step 5).
+     filled, the basis set given the same checksum split (step 5); dft calculation-physics's typed
+     fields filled (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -398,7 +399,9 @@ record or marked PROPOSED, NOT DECIDED.
    value + unit (Energy, recommended eV, minimum 0; 0001 A3.1); two baseline typos fixed (a
    trailing comma, a stray space); examples/dft.xml writes the cutoff as 250.0 eV; legacy_*
    deleted.
-   [todo] The rest of dft in file order, starting with calculation-physics.
+   [done, branch calculation-physics, PR pending] dft calculation-physics: a repeatable string with
+   open terms (the baseline's five), "e.g. DFT+U" in the note; legacy_* deleted.
+   [todo] The rest of dft in file order, starting with k-point-mesh.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
