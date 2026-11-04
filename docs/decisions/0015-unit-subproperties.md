@@ -61,3 +61,12 @@ Under items 2 and 3, a quantity with a physical Kind had both a value of its own
 3. **Check.** validate_schema.py fails when a property has subproperties and a non-null type, extent, kind, recommended unit or values; when a leaf with a physical Kind is not named `value` or has no sibling `unit`; when such a `value` or its `unit` departs from the fixed form (required, repeatable and description for `value`; all of item 2 for `unit`); or when a `unit` sits beside a `value` whose Kind is `dimensionless` or `inapplicable`. The generic parameters (whose `value` has Kind `any`) and the free-form units (a `unit` with no `value`) of 0001 and 0003 remain outside this check, as before.
 
 Items 1, 4 and 5 stand; item 4 applies to `value`'s Kind. The minimal computation pull request applies the amendment: check_units.py and its tests, the ten simulation-conditions quantities restructured, and §1.3's units bullet worded for `value` and `unit`.
+
+## Second amendment 2026-11-04 (Ellad Tadmor)
+Every numerical value takes one format. The first amendment left a dimensionless value as a bare leaf, so a reader had to know a property's Kind to find its number. The second amendment replaces the first amendment's rule for pure numbers.
+
+1. **Leaves are non-quantities.** A leaf has Kind `inapplicable` (strings, booleans, identifiers). A value whose Kind is physical or `dimensionless` is a container holding `value` and `unit` in the fixed forms of the first amendment's item 2. An instance: `<concentration><value>0.5</value><unit>dimensionless</unit></concentration>`.
+2. **The unit of a dimensionless value.** The `unit` form is unchanged. Its rule, an Annex U symbol whose Kind is the Kind of `value`, admits only `dimensionless`, the one symbol of that Kind; the instance validator (item 4) checks it. `value`'s recommended unit is `dimensionless` (0004 item 46).
+3. **Check.** validate_schema.py fails when a leaf whose Kind is physical or `dimensionless` is not a `value` in the fixed form beside exactly one `unit` in the fixed form. The check of a `unit` beside a dimensionless `value` is dropped. Containers, generic parameters (`value` of Kind `any`) and free-form units are checked as in the first amendment.
+
+One pull request applies it: check_units.py and its tests; minimal `concentration` (a fraction, 0004 item 46), `number-of-particles` and `strain` as containers; examples/minimal.xml; and §1.3's units bullet.

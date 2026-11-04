@@ -58,7 +58,7 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   string. (The meaning of `file` in an instance is PROPOSED, NOT DECIDED; define it in the data
   model, independent of any serialization.)
 - `recommended-unit`: informative only; must be a symbol in units.yaml with matching kind.
-  Null when kind is `dimensionless` (0004 item 39).
+  `dimensionless` when kind is `dimensionless` (0004 items 39, 46).
   PROPOSED, NOT DECIDED: no recommended unit when kind is `any`.
 - `values`: structured; replaces the old prose "Values" (0002). Null or a mapping of `terms` (open
   vocabulary: unlisted strings conform, reported as user-specified, near-misses as possible typos),
@@ -82,12 +82,13 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
 - The schema declares `kind` + `recommended-unit`, not a fixed unit. Validation = kind compatibility
   via the dimension vector in units.yaml, using the closed symbol set. No unit parsing.
 - A property is either a leaf (a value of its own, no subproperties) or a container (subproperties,
-  typed fields null), never both. A quantity with a physical kind (a units.yaml kind other than
-  dimensionless) is a container holding two leaves: `value` (required, fixed description; carries
-  type, extent, kind, recommended-unit, values) and `unit` (one fixed form: string, [],
-  inapplicable, values null, fixed description). A dimensionless or inapplicable leaf is not
-  wrapped and has no `unit`. validate_schema.py checks all of this; generic parameters (value
-  kind any) and free-form units are outside the check (0015, amended 2026-11-04).
+  typed fields null), never both. A leaf has kind inapplicable. Every numerical value (a units.yaml
+  kind, physical or dimensionless) is a container holding two leaves: `value` (required, fixed
+  description; carries type, extent, kind, recommended-unit, values) and `unit` (one fixed form:
+  string, [], inapplicable, values null, fixed description); a dimensionless value's unit is
+  `dimensionless`, the only symbol of that kind. validate_schema.py checks all of this; generic
+  parameters (value kind any) and free-form units are outside the check (0015, amended twice
+  2026-11-04).
 - Reserved kinds: dimensionless (ratios, counts), inapplicable (non-quantities), any (fixed by the
   instance or by a required enumerated subproperty).
   Angles and moles are NOT dimensionless.
@@ -258,9 +259,9 @@ record or marked PROPOSED, NOT DECIDED.
      typed fields filled (step 5); the Minimal example's title made descriptive (0004 item 38);
      creation-date's typed fields filled, its two date forms as a pattern (step 5); description's
      and disclaimer's typed fields filled (step 5); material-component's typed fields filled, with
-     `phase` renamed `phases` (a list), concentration in atomic percent (0–100) and species an enum
+     `phase` renamed `phases` (a list), concentration an atomic fraction (0–1) and species an enum
      of the 118 IUPAC element symbols (step 5); concentration's note states that a material
-     component's concentrations sum to 100 (0004 item 40); §1.3 states the units rule of 0001 A1.1
+     component's concentrations sum to 1 (0004 items 40, 46); §1.3 states the units rule of 0001 A1.1
      and lists Kind and Recommended unit among a property's features (0001 A1.2, 0015); §1.3's
      bullets nested as in the baseline, with Type and Extent added, Values trimmed, plain wording
      for pure numbers and nested SubProperties (0004 items 43–45); the italics of *universal*
@@ -354,6 +355,9 @@ record or marked PROPOSED, NOT DECIDED.
    doi in Annex I's https URI form (0014, settled 2026-11-04), its pattern locked to the table by
    tests/test_properties.py; link format uri; legacy_* deleted. Both uri links of minimal get an
    example: citation › link the Si GAP paper's arXiv page, software › file › link its ColabFit page.
+   [todo] 0015's second amendment (one PR, before funding): check_units.py and its tests;
+   concentration (a fraction, 0004 item 46), number-of-particles and strain as value + unit;
+   examples/minimal.xml; §1.3's units bullet.
    [todo] The rest of minimal in file order, starting with funding.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
