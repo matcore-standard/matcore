@@ -97,6 +97,14 @@ summary:hover > .mc-permalink, .mc-permalink:focus-visible { opacity: 1; }
   .md-nav--primary > .md-nav__title .md-nav__button.md-logo { display: inline-flex; margin: 0; padding: 0; }
   .md-nav--primary > .md-nav__title .md-nav__button.md-logo img { height: 1.8rem; width: auto; }
 }
+/* The section entries under "2. Schema", the only menu group at level 3, get the same left bar as the
+   page headings under "1. Preamble" (the theme's rule for the integrated table of contents). */
+@media screen and (min-width: 76.25em) {
+  [dir=ltr] .md-nav--integrated .md-nav[data-md-level="3"] { border-left: .05rem solid var(--md-primary-fg-color); }
+}
+/* The current page's entry, clicked, collapses what lies under it (layout.js); as specific as the
+   theme's rule that shows the integrated table of contents, and later, so it wins. */
+.md-nav--integrated .md-nav__list .md-nav__item.mc-collapsed > nav { display: none; }
 /* Property tree placed under the current page's menu entry: indented like the menu's own levels. */
 .mc-tree--in-menu { padding: .1rem 0 .4rem .6rem; }
 
