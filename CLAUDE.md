@@ -278,7 +278,7 @@ record or marked PROPOSED, NOT DECIDED.
      2026-11-04) (step 5);
      related-content's typed fields filled, `links` renamed `link`, one URI per entry (step 5);
      provenance's typed fields filled, `comments` renamed `comment`, checksum a container of file,
-     algorithm and value (step 5).
+     algorithm and value (step 5); matcore-id's typed fields filled, its form left open (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -391,7 +391,12 @@ record or marked PROPOSED, NOT DECIDED.
    §8.4 terms, value in lowercase hex), replacing the baseline's two-string list, defined as "A
    digital fingerprint for the dataset or an associated file modified by the provenance event.";
    legacy_* deleted.
-   [todo] The rest of minimal in file order, starting with matcore-id.
+   [done, branch matcore-id, PR pending] matcore-id: a required scalar string, no pattern, since the
+   baseline calls the example's format tentative; legacy_* deleted.
+   PROPOSED, NOT DECIDED (for step 6): the form of a MatCore ID, including whether it has a URI
+   form (so it could be a related-content link), and who issues one; matcore-id is required, yet
+   the standard does not say where an author obtains it.
+   [todo] The rest of minimal in file order, starting with matcore-date.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must

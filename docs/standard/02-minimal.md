@@ -1301,9 +1301,7 @@ An identifier for the dataset.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the MatCore identifier.</span>
+| yes | no | string | [] | inapplicable | — |
 
 </details>
 

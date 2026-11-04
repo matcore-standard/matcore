@@ -1251,13 +1251,12 @@ properties:
 - name: matcore-id
   required: true
   description: An identifier for the dataset.
-  type: null
-  extent: null
-  kind: null
+  type: string
+  extent: []
+  kind: inapplicable
   recommended-unit: null
   values: null
   repeatable: false
-  legacy_values: A string containing the MatCore identifier.
 - name: matcore-date
   required: true
   description: The calendar date and time when this MatCore document was created.
