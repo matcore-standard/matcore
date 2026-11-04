@@ -282,6 +282,8 @@ record or marked PROPOSED, NOT DECIDED.
    - [done, PR #26 merged 2026-11-04] Menu consistency: the entries under "2. Schema" get
      the left bar the theme draws under "1. Preamble"; clicking the current page's entry collapses
      and expands what is listed under it (headings or property tree) instead of reloading the page.
+   - [todo] A "Collapse all" button at the end of each schema page's key line closes every open
+     property block (0007, resolved 2026-11-04); added by layout.js.
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
 3. [done, PR #9 merged 2026-11-01] Apply 0001 Part A (kind/recommended-unit/convention): merged
    into step 5, property by property (0004). What remained of this step did not belong to any one
