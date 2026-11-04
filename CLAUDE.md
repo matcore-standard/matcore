@@ -385,7 +385,7 @@ record or marked PROPOSED, NOT DECIDED.
    xc-parameter is the first generic parameter in the form of 0016, the baseline's hint on its
    description moved to a note on xc-parameter; legacy_* deleted. The same PR adds
    scripts/check_generic.py (called by validate_schema.py) and §1.3's definition of the term.
-   [done, branch core-electron-model, PR pending] dft core-electron-model: type and pseudopotential
+   [done, PR #38 merged 2026-11-04] dft core-electron-model: type and pseudopotential
    type open terms; number-of-valence-electrons value + unit (int, minimum 1); doi in Annex I's
    form; a new `checksum` (provenance's file, algorithm, value) for a checksum of the
    pseudopotential file, `unique-identifier` kept for any other designation, each note pointing
