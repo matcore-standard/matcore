@@ -320,13 +320,35 @@ One of `H`, `He`, `Li`, `Be`, `B`, `C`, `N`, `O`, `F`, `Ne`, `Na`, `Mg`, `Al`, `
 <details class="note mc-property" id="minimal.material-component.constituent.concentration" markdown="1">
 <summary><span class="mc-name">concentration<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The atomic fraction of the material composed of this element, in percent.
+The atomic fraction of the material composed of this element.
+
+| Required | Repeatable |
+|---|---|
+| yes | no |
+
+<details class="note mc-property" id="minimal.material-component.constituent.concentration.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | float | [] | dimensionless | — |
+| yes | no | float | [] | dimensionless | dimensionless |
 
-From 0 to 100. The concentrations of a material component's constituents sum to 100.
+From 0 to 1. The concentrations of a material component's constituents sum to 1.
+
+</details>
+
+<details class="note mc-property" id="minimal.material-component.constituent.concentration.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -446,11 +468,33 @@ Explanatory text clarifying the simulation type selection.
 
 A count of atoms or other discrete entities comprising the material.
 
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.number-of-particles.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | int | [] | dimensionless | — |
+| yes | no | int | [] | dimensionless | dimensionless |
 
 The number of particles <i>N</i>.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.number-of-particles.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -721,13 +765,35 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 A deformation relative to a reference configuration imposed on the simulation cell expressed in the referential frame (Lagrangian strain tensor).
 
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+Note: Requires the definition of cell-reference in order for the basis to be defined relative to which the tensor components are given.
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.strain.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | float | [6] | dimensionless | — |
+| yes | no | float | [6] | dimensionless | dimensionless |
 
 The components of the (symmetric) Lagrangian strain tensor <i>E</i> in the following order: [<i>E</i><sub>11</sub>, <i>E</i><sub>22</sub>, <i>E</i><sub>33</sub>, <i>E</i><sub>23</sub>, <i>E</i><sub>13</sub>, <i>E</i><sub>12</sub>]. The strain components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a<sub>0</sub>, e<sub>2</sub> is in the direction of c<sub>0</sub>╳a<sub>0</sub>, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) are the vectors defining the cell in the reference configuration, which may not be orthogonal.
 
-Note: Requires the definition of cell-reference in order for the basis to be defined relative to which the tensor components are given.
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.strain.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -926,7 +992,7 @@ A URI pointing to a permanent location of the file online.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Format: `uri` (JSON Schema 2020-12). Examples: `https://materials.colabfit.org/id/DS_u9wd92plbetq_0`.
+Format: `uri` (JSON Schema 2020-12).
 
 </details>
 
@@ -1224,7 +1290,10 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
     <phases>Crystal</phases>
     <constituent>
       <species>Si</species>
-      <concentration>100</concentration>
+      <concentration>
+        <value>1</value>
+        <unit>dimensionless</unit>
+      </concentration>
     </constituent>
     <description>A variety of Si configurations including different phases, surfaces, vacancies, interstitials, dislocations and crack tips.</description>
   </material-component>
