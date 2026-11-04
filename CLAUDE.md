@@ -385,7 +385,7 @@ record or marked PROPOSED, NOT DECIDED.
    example the Cambridge deposit of Si_PRX_GAP); description a string; its definition made
    singular ("Another dataset that is connected to the current one in some manner."); legacy_*
    deleted.
-   [done, branch provenance, PR pending] provenance: event-type open terms (definitions in the
+   [done, PR #33 merged 2026-11-04] provenance: event-type open terms (definitions in the
    note); date the creation-date pattern, copied and locked by a test; agent a string; `comments`
    renamed `comment` (a scalar); checksum a repeatable container (file, algorithm with SPDX 2.3.1
    §8.4 terms, value in lowercase hex), replacing the baseline's two-string list, defined as "A
