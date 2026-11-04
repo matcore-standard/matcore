@@ -76,7 +76,7 @@ For a planewave code, the basis set cutoff employed for the dielectric matrix. T
 
 <span class='legacy'>Legacy: A real number containing the cutoff.</span> <span class='legacy'>Legacy unit: Rydberg (Ry)</span>
 
-Note:Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
+Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
 
 </details>
 
@@ -91,7 +91,7 @@ For local orbital codes, the name of the basis set .
 
 <span class='legacy'>Legacy: A string containing the name of the atomic orbital basis. (e.g. "cc-pV6Z").</span>
 
-Note:Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
+Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
 
 </details>
 

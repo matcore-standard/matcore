@@ -99,7 +99,7 @@ properties:
     repeatable: false
     notes:
     - >-
-      Note:Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
+      Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
     legacy_values: A real number containing the cutoff.
     legacy_unit: Rydberg (Ry)
   - name: localized-orbital-basis-set
@@ -113,7 +113,7 @@ properties:
     repeatable: false
     notes:
     - >-
-      Note:Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
+      Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
     legacy_values: A string containing the name of the atomic orbital basis. (e.g. "cc-pV6Z").
   - name: frequency
     required: false

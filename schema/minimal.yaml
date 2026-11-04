@@ -4,7 +4,7 @@ source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.
 introduction: |
-  The minimal MatCore metadata includes aspects of a dataset deemed important to report for data findability and reuse and are universal across all computational methods. The list of minimal metadata is tabulated below.
+  The minimal MatCore metadata includes aspects of a dataset deemed important to report for data findability and reuse and are *universal* across all computational methods. The list of minimal metadata is tabulated below.
 examples:
   - caption: Minimal MatCore Metadata
     file: minimal.xml
@@ -383,7 +383,7 @@ properties:
     repeatable: false
     notes:
     - >-
-      Note:The categories listed above are based on the [MODA standard](https://data.europa.eu/doi/10.2777/404734).
+      Note: The categories listed above are based on the [MODA standard](https://data.europa.eu/doi/10.2777/404734).
     legacy_values: >-
       A string containing one of the following values: "Electronic" "Atomistic" "Mesoscopic" "Continuum"
       "Data-driven" Other user-specified value if none of the above apply.
