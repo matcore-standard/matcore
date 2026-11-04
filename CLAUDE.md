@@ -391,7 +391,7 @@ record or marked PROPOSED, NOT DECIDED.
    §8.4 terms, value in lowercase hex), replacing the baseline's two-string list, defined as "A
    digital fingerprint for the dataset or an associated file modified by the provenance event.";
    legacy_* deleted.
-   [done, branch matcore-id, PR pending] matcore-id: a required scalar string, no pattern, since the
+   [done, PR #34 merged 2026-11-04] matcore-id: a required scalar string, no pattern, since the
    baseline calls the example's format tentative; legacy_* deleted.
    PROPOSED, NOT DECIDED (for step 6): the form of a MatCore ID, including whether it has a URI
    form (so it could be a related-content link), and who issues one; matcore-id is required, yet
