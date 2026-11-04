@@ -401,7 +401,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #35 merged 2026-11-04] matcore-date: written as creation-date (same pattern,
    examples and note, locked by a test); legacy_* deleted. provenance › date gets creation-date's
    note too (missed in PR #33), and a test now compares all of its values.
-   [done, branch license, PR pending] license: a required string holding an SPDX license
+   [done, PR #36 merged 2026-11-04] license: a required string holding an SPDX license
    expression, described in its note (the SPDX specification 2.3.1, the SPDX License List,
    LicenseRef-), with no list copied into the schema; legacy_* deleted. minimal is complete: it
    declares `legacy_complete: true` (0004 item 36).
