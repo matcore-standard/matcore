@@ -58,7 +58,7 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   string. (The meaning of `file` in an instance is PROPOSED, NOT DECIDED; define it in the data
   model, independent of any serialization.)
 - `recommended-unit`: informative only; must be a symbol in units.yaml with matching kind.
-  `dimensionless` when kind is `dimensionless` (0004 items 39, 46).
+  Null when kind is `dimensionless` (0004 items 39, 48).
   PROPOSED, NOT DECIDED: no recommended unit when kind is `any`.
 - `values`: structured; replaces the old prose "Values" (0002). Null or a mapping of `terms` (open
   vocabulary: unlisted strings conform, reported as user-specified, near-misses as possible typos),
@@ -82,14 +82,13 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
 - The schema declares `kind` + `recommended-unit`, not a fixed unit. Validation = kind compatibility
   via the dimension vector in units.yaml, using the closed symbol set. No unit parsing.
 - A property is either a leaf (a value of its own, no subproperties) or a container (subproperties,
-  typed fields null), never both. A leaf has kind inapplicable. Every numerical value (a units.yaml
-  kind, physical or dimensionless) is a container holding two leaves: `value` (required, fixed
-  description; carries type, extent, kind, recommended-unit, values) and `unit` (one fixed form:
-  string, [], inapplicable, values null, fixed description); a dimensionless value's unit is
-  `dimensionless`, the only symbol of that kind, and that `unit`'s values hold only the note "The
-  only allowed unit is `dimensionless`.". validate_schema.py checks all of this; generic
-  parameters (value kind any) and free-form units are outside the check (0015, amended twice
-  2026-11-04, item 4 settled 2026-11-04).
+  typed fields null), never both. A leaf has kind inapplicable or dimensionless; a dimensionless
+  leaf carries no `unit`. A quantity with a physical kind (a units.yaml kind other than
+  dimensionless) is a container holding two leaves: `value` (required, fixed description; carries
+  type, extent, kind, recommended-unit, values) and `unit` (one fixed form: string, [],
+  inapplicable, values null, fixed description). validate_schema.py checks all of this; generic
+  parameters (value kind any) and free-form units are outside the check (0015, third amendment
+  2026-11-04, which reverses the second).
 - Reserved kinds: dimensionless (ratios, counts), inapplicable (non-quantities), any (fixed by the
   instance or by a required enumerated subproperty).
   Angles and moles are NOT dimensionless.
@@ -411,6 +410,10 @@ record or marked PROPOSED, NOT DECIDED.
    Fermi-Dirac and Marzari-Vanderbilt; smearing-width in eV; methfessel-paxton-order replaced by
    the generic smearing-parameter; examples/dft.xml loses its spacing, writes the smearing width
    as 0.05 eV and the mesh type as Regular shifted (was Monkhorst-Pack); legacy_* deleted.
+   [todo] 0015's third amendment (one PR, before self-consistent-field-convergence): check_units.py
+   and its tests; minimal concentration, number-of-particles, strain and dft
+   number-of-valence-electrons, number-of-points, shift back to leaves (recommended unit null);
+   examples/minimal.xml and examples/dft.xml; §1.3's units bullet.
    [todo] The rest of dft in file order, starting with self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.

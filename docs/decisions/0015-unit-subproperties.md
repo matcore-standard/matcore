@@ -71,3 +71,12 @@ Every numerical value takes one format. The first amendment left a dimensionless
 4. **The unit of a dimensionless value states its one symbol** (settled 2026-11-04). Beside a `value` of Kind `dimensionless`, the `unit` has the fixed form of the first amendment except for `values`, which holds only a `note` reading "The only allowed unit is `dimensionless`.", so a reader sees the rule of item 2 on the property itself. Beside a `value` of any other numerical Kind, `values` stays null. The check of item 3 applies the form that matches the Kind of `value`. A second pull request applies this item: check_units.py and its tests, and the `unit` of minimal `concentration`, `number-of-particles` and `strain`.
 
 One pull request applies it: check_units.py and its tests; minimal `concentration` (a fraction, 0004 item 46), `number-of-particles` and `strain` as containers; examples/minimal.xml; and §1.3's units bullet.
+
+## Third amendment 2026-11-04 (Ellad Tadmor)
+The second amendment is reversed. A dimensionless value has no unit to state, so wrapping it in `value` and `unit` made every count and ratio three lines long in an instance for no information; a dimensionless number is written as itself, e.g. `<number-of-points>6 6 6</number-of-points>`.
+
+1. **Leaves.** A leaf has Kind `inapplicable` or `dimensionless`; a dimensionless leaf carries no `unit` and its recommended unit is null (0004 item 48).
+2. **Quantities with a unit.** A value whose Kind is physical (a units.yaml kind other than `dimensionless`) is a container of `value` and `unit` in the fixed forms of the first amendment's item 2, unchanged.
+3. **Check.** As in the first amendment's item 3: validate_schema.py fails when a container has typed fields, when a leaf with a physical Kind is not a fixed `value` beside exactly one fixed `unit`, or when a `unit` sits beside a `value` whose Kind is `dimensionless` or `inapplicable`. The second amendment's item 4 (the note on a dimensionless value's `unit`) lapses with it. Generic parameters (0016) and free-form units are unaffected; a generic parameter's `unit` may still be `dimensionless`.
+
+One pull request applies it: check_units.py and its tests; minimal `concentration`, `number-of-particles` and `strain` and dft `number-of-valence-electrons`, `number-of-points` and `shift` back to leaves; examples/minimal.xml and examples/dft.xml; and §1.3's units bullet.
