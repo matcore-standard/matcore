@@ -1325,9 +1325,9 @@ A contract defining the terms and conditions under which the dataset can be used
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the dataset license in a format conforming to the [SPDX](https://spdx.org/licenses/)[ Standard](https://spdx.org/licenses/).</span>
+Examples: `GPL-3.0-only`, `CC-BY-4.0`. A license expression as defined in the [SPDX specification, version 2.3.1](https://spdx.github.io/spdx-spec/v2.3.1/SPDX-license-expressions/), built from current identifiers of the [SPDX License List](https://spdx.org/licenses/): a single identifier (e.g. `GPL-3.0-only`) or a combination (e.g. `MIT OR Apache-2.0`). A license not on the list is written `LicenseRef-` followed by an identifier.
 
 </details>
 
