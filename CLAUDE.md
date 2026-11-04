@@ -86,12 +86,10 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   kind, physical or dimensionless) is a container holding two leaves: `value` (required, fixed
   description; carries type, extent, kind, recommended-unit, values) and `unit` (one fixed form:
   string, [], inapplicable, values null, fixed description); a dimensionless value's unit is
-  `dimensionless`, the only symbol of that kind. validate_schema.py checks all of this; generic
+  `dimensionless`, the only symbol of that kind, and that `unit`'s values hold only the note "The
+  only allowed unit is `dimensionless`.". validate_schema.py checks all of this; generic
   parameters (value kind any) and free-form units are outside the check (0015, amended twice
-  2026-11-04).
-  PROPOSED, NOT DECIDED: a note telling the reader that `dimensionless` is the only allowed unit
-  of a dimensionless value, on its `unit` or its `value`; placement and wording open (raised
-  2026-11-04).
+  2026-11-04, item 4 settled 2026-11-04).
 - Reserved kinds: dimensionless (ratios, counts), inapplicable (non-quantities), any (fixed by the
   instance or by a required enumerated subproperty).
   Angles and moles are NOT dimensionless.
@@ -365,6 +363,8 @@ record or marked PROPOSED, NOT DECIDED.
    concentration (an atomic fraction 0–1, 0004 item 46), number-of-particles and strain as
    value + unit, recommended unit `dimensionless`; examples/minimal.xml writes the Si
    concentration as 1 with unit dimensionless; §1.3's units bullet covers pure numbers.
+   [todo] 0015 second amendment item 4: the note on a dimensionless value's `unit` (one PR,
+   before funding): check_units.py and its tests; the three `unit` entries in minimal.
    [todo] The rest of minimal in file order, starting with funding.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
