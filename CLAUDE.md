@@ -248,39 +248,9 @@ record or marked PROPOSED, NOT DECIDED.
      repository. Site pages do not link to them.
    - [done, PR #3] Versioning (0010): releases.yaml, generated Revision History, version line on
      standard pages, versioned permalinks, CI deploys per version. 0.4.0 released 2026-11-01
-     (tag v0.4.0); the site's `latest` is 0.4.0 and `dev` is main.
-   - Changes to the standard since 0.4.0, for the next release's entry in releases.yaml: the
-     Preamble's italics fixed (PR #4); contributor and its affiliation optional, and exactly one
-     basis entry for the MBPT dielectric matrix (0011); creator and contributor descriptions
-     reworded (primary creator vs secondary contributor); step 4: 0001 Part B fixes (B1, B3, B4,
-     B6, B7, B8, B10, B11) and the MBPT `local-orbital-basis-set` renamed `localized-orbital-basis-set`;
-     Annex U says "Kind" for MatCore's kinds (0004 item 14); Annex I, Identifier Schemes, added (0014);
-     creator and contributor restructured by 0014 (`identifier` with value + scheme; `affiliation` a
-     container with name + at most one identifier) and their typed fields filled (step 5); title's
-     typed fields filled (step 5); the Minimal example's title made descriptive (0004 item 38);
-     creation-date's typed fields filled, its two date forms as a pattern (step 5); description's
-     and disclaimer's typed fields filled (step 5); material-component's typed fields filled, with
-     `phase` renamed `phases` (a list), concentration an atomic fraction (0–1) and species an enum
-     of the 118 IUPAC element symbols (step 5); concentration's note states that a material
-     component's concentrations sum to 1 (0004 items 40, 46); §1.3 states the units rule of 0001 A1.1
-     and lists Kind and Recommended unit among a property's features (0001 A1.2, 0015); §1.3's
-     bullets nested as in the baseline, with Type and Extent added, Values trimmed, plain wording
-     for pure numbers and nested SubProperties (0004 items 43–45); the italics of *universal*
-     and five "Note: " spaces restored (migration losses); computation's typed fields filled, with
-     method depending on method-class, simulation conditions typed per 0001 A2.2, the ten physical
-     ones as containers of `value` and `unit` (0015, amended), the SI-units note removed (0001
-     A2.1) and the .docx notation restored (step 5); §1.3's units bullet states the leaf/container
-     rule and the `value` + `unit` form (0015, amended); citation's typed fields filled, every
-     `doi` in Annex I's https URI form (0014, settled 2026-11-04) (step 5); every dimensionless
-     value written as `value` + `unit` (`dimensionless`), concentration an atomic fraction (0015,
-     second amendment; 0004 item 46), its `unit` noting that `dimensionless` is the only allowed unit.
-     funding's typed fields filled, funder restructured as a name and an identifier (0014, settled
-     2026-11-04) (step 5);
-     related-content's typed fields filled, `links` renamed `link`, one URI per entry (step 5);
-     provenance's typed fields filled, `comments` renamed `comment`, checksum a container of file,
-     algorithm and value (step 5); matcore-id's typed fields filled, its form left open (step 5);
-     matcore-date's typed fields filled, written as creation-date (step 5);
-     license's typed fields filled, an SPDX license expression; minimal complete (step 5).
+     (tag v0.4.0). 0.5.0 added to releases.yaml 2026-11-04 (minimal complete); the human tags
+     v0.5.0, after which the site's `latest` is 0.5.0 and `dev` is main.
+   - Changes to the standard since 0.5.0, for the next release's entry in releases.yaml: none yet.
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).

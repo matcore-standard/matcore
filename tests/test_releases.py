@@ -37,9 +37,11 @@ def test_releases_are_semantic_versions_newest_first():
 
 
 def test_first_repository_release_is_0_4_0_after_matcore_org_0_3_0():
-    """0.4.0 follows the last matcore.org release, 0.3.0 (0010 item 7)."""
-    assert [r['version'] for r in RELEASES[:2]] == ['0.4.0', '0.3.0']
-    assert build_docs.current_version() == '0.4.0'
+    """0.4.0 directly follows the last matcore.org release, 0.3.0 (0010 item 7), and the current version
+    is the newest entry (0010 item 3)."""
+    versions = [r['version'] for r in RELEASES]
+    assert versions[versions.index('0.4.0') + 1] == '0.3.0'
+    assert build_docs.current_version() == versions[0]
 
 
 def test_section_files_carry_no_version_of_their_own():
@@ -55,9 +57,9 @@ def test_revision_history_reproduces_the_published_rows():
     """The generated page keeps the matcore.org rows character for character, with the newest release on top."""
     page = build_docs.render_revision_history(RELEASES)
     rows = [l for l in page.splitlines() if l.startswith('| 0.')]
-    assert rows[0].startswith('| 0.4.0 | ')
+    assert rows[0].startswith(f"| {RELEASES[0]['version']} | ")
     expected = (ROOT / 'tests/fixtures/revision_history_0.3.0_and_earlier.md').read_text().splitlines()
-    assert rows[1:] == expected
+    assert rows[-len(expected):] == expected
 
 
 def test_every_standard_page_states_its_version(tmp_path):

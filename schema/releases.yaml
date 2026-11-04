@@ -3,6 +3,19 @@
 # page from this file. A release adds an entry here in one commit on main, then tags that commit vX.Y.Z.
 # description: one item per line of the history table's cell.
 releases:
+  - version: 0.5.0
+    date: 2026-11-04
+    change_type: Minor (Breaking)
+    sections: Across document
+    description:
+      - "- Minimal section complete: every property has a type, extent, Kind, recommended unit and structured values"
+      - "- Every numerical value is written as a value with its unit; pure numbers use the unit dimensionless"
+      - "- Added Annex I, Identifier Schemes; creators, contributors, affiliations and funders carry scheme-tagged identifiers"
+      - "- Renaming of some properties (e.g. phase to phases, links to link, comments to comment)"
+      - "- Restructured properties (e.g. funder as a name and an identifier, checksum with its algorithm)"
+      - "- Preamble: rules for units, Type, Extent, Kind and Recommended unit; the original list nesting restored"
+      - "- Corrections to unit symbols and property names, and to text lost in the migration from the Google Doc"
+    approved_by: E. B. Tadmor
   - version: 0.4.0
     date: 2026-11-01
     change_type: Minor (Breaking)

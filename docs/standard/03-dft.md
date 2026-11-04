@@ -1,6 +1,6 @@
 # 2.2 Density Functional Theory (DFT) Metadata
 
-<p class="mc-version" data-version="0.4.0">Version 0.4.0</p>
+<p class="mc-version" data-version="0.5.0">Version 0.5.0</p>
 
 The metadata for density functional theory (DFT) data (MatCore-DFT) is tabulated below. This includes the level of theory (exchange-correlation functional, core-electron model, and valence-electron model) and associated parameters. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 

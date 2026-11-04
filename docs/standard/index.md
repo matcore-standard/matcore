@@ -1,7 +1,7 @@
 <p class="mc-doc-title">Material Core Metadata (MatCore) Standard</p>
 
 <!-- BEGIN generated: version from schema/releases.yaml by scripts/build_docs.py; do not edit -->
-<p class="mc-version" data-version="0.4.0">Version 0.4.0</p>
+<p class="mc-version" data-version="0.5.0">Version 0.5.0</p>
 <!-- END generated -->
 
 # 1. Preamble
