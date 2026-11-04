@@ -312,6 +312,8 @@ record or marked PROPOSED, NOT DECIDED.
    every values key.
    creator and contributor are restructured by 0014: `identifier` containers (value + scheme,
    open terms) and `affiliation` as a container (name + at most one identifier).
+   funding › funder is restructured like affiliation (name + at most one identifier, schemes ROR
+   and ISNI), since the Crossref Open Funder Registry moves into ROR (0014, settled 2026-11-04).
    [done, PR #12 merged 2026-11-01] schema/identifier-schemes.yaml built (ORCID, ROR, DOI, SWHID,
    ISNI, each traced to its documentation), checked by validate_schema.py, published as Annex I.
    dft `unique-identifier` is a hash and does not use it (0014, settled 2026-11-01). Every `doi`
