@@ -371,7 +371,7 @@ record or marked PROPOSED, NOT DECIDED.
    the note "The only allowed unit is `dimensionless`." on the `unit` beside every dimensionless
    `value`, and no note elsewhere; the `unit` of concentration, number-of-particles and strain
    carry it.
-   [done, branch funding, PR pending] funding: award-title and award-number strings; funder a
+   [done, PR #30 merged 2026-11-04] funding: award-title and award-number strings; funder a
    container like affiliation (name + at most one ROR/ISNI identifier; 0014, settled 2026-11-04),
    with NSF as the example (ROR https://ror.org/021nxhr62, award 2404283); legacy_* deleted.
    [todo] The rest of minimal in file order, starting with related-content.
