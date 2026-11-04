@@ -185,7 +185,20 @@ items are applied in their "alone" form (see 0001's note). Kept for reference.
 - Table MD-3 was malformed in the Google Doc: its header row was actually the `source` parent row.
   Migration handled it; check md.yaml › particle-interactions / source against the docx (0004).
 - The accepted items of docs/decisions/0001-units-change-list.md Part B (see its Status line).
-  B2 (added note), B4 (Ė symbol), B5 and B9 are PROPOSED, NOT DECIDED.
+  B2 (added note), B5 and B9 are PROPOSED, NOT DECIDED. B4's Ė symbol needs no decision: the
+  baseline .docx already writes the strain-rate tensor as Ė (Word equation objects), and the
+  migration dropped the dot; the computation PR restores it.
+
+## Migration losses found by the 2026-11-03 audit of the .docx
+All 518 descriptions and legacy texts, the Preamble, the section introductions and the example
+captions were compared with the baseline .docx. Apart from intentional changes, these were lost:
+- §1.3 bullet nesting (three levels in the .docx; flat on the site).
+- The italics of *universal* in the minimal introduction.
+- The space after "Note:" in five notes (minimal method-class, md particle-interactions, ml
+  ml-task › type, the two mbpt dielectric-matrix notes) and in some legacy texts.
+- Subscripts and superscripts (σ₁₁, e₁, a₀, G₀W₀ written σ11, e1, a0, G0W0) in ten minimal
+  simulation-conditions entries and mbpt self-consistency; the dot of Ė in minimal strain-rate;
+  ASCII `|` replaced by `│` in minimal cell and cell-reference. Restored in those properties' PRs.
 
 ## Status / next steps (update this list as work lands)
 The audit of this file is complete (rulings in docs/decisions/0004): every statement is backed by a
@@ -306,6 +319,8 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #22 merged 2026-11-03] 0015: scripts/check_units.py (called by
    validate_schema.py) checks the fixed `unit` form; 0001 A1.1/A1.2 applied to §1.3 with "Kind".
    (A1.1/A1.2 were missed when step 3 handed Part A to step 5.)
+   [todo] §1.3 and migration fixes (one PR): restore the nesting; apply 0004 items 43–45; restore
+   *universal* in the minimal introduction and the space after "Note:" in the five notes.
    [todo] 0013 `depends-on`/`cases`: meta-schema, check_values.py, build_docs.py, tests (one
    PR), before the computation PR.
    [todo] The rest of minimal in file order, starting with computation.
