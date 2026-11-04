@@ -363,7 +363,7 @@ record or marked PROPOSED, NOT DECIDED.
    concentration (an atomic fraction 0–1, 0004 item 46), number-of-particles and strain as
    value + unit, recommended unit `dimensionless`; examples/minimal.xml writes the Si
    concentration as 1 with unit dimensionless; §1.3's units bullet covers pure numbers.
-   [done, branch unit-note, PR pending] 0015 second amendment item 4: check_units.py requires
+   [done, PR #29 merged 2026-11-04] 0015 second amendment item 4: check_units.py requires
    the note "The only allowed unit is `dimensionless`." on the `unit` beside every dimensionless
    `value`, and no note elsewhere; the `unit` of concentration, number-of-particles and strain
    carry it.
