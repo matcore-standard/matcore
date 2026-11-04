@@ -1121,37 +1121,35 @@ properties:
     repeatable: false
 - name: related-content
   required: false
-  description: Other datasets that are connected to the current one in some manner.
+  description: Another dataset that is connected to the current one in some manner.
   type: null
   extent: null
   kind: null
   recommended-unit: null
   values: null
   repeatable: true
-  legacy_values: Contains SubProperties as listed below.
   subproperties:
-  - name: links
+  - name: link
     required: true
-    description: Pointer to one or more related datasets.
-    type: null
-    extent: null
-    kind: null
+    description: Pointer to a related dataset.
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      format: uri
+      examples: ['https://doi.org/10.17863/CAM.65004']
     repeatable: false
-    legacy_values: >-
-      A list of permanent pointers to related datasets (such as MatCore IDs, DOIs, URIs, etc.)
   - name: description
     required: false
     description: >-
       Explanation of the relationship between the related content and the current dataset.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: A string containing a description of the related content.
 - name: provenance
   required: false
   description: History of the dataset, detailing its origins and transformations.
