@@ -73,6 +73,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (label) label.after(a); else summary.appendChild(a);
   });
 
+  // "Collapse all" at the end of the key line (0007, resolved 2026-11-04) closes every open block. The
+  // blocks close innermost first, so the last toggle event is a top-level block's, which clears the mark
+  // and the address as closing a top-level block does.
+  const legend = article.querySelector('.mc-legend');
+  if (legend) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'mc-collapse-all';
+    // Icon: Material Design Icons "collapse-all-outline", as bundled with mkdocs-material.
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2a2 2 0 0 0-2 2v10h2V4h10V2zm4 4a2 2 0 0 0-2 2v10h2V8h10V6zm12 6v8h-8v-8zm0-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2m-1 7h-6v-2h6z"/></svg>Collapse all';
+    b.addEventListener('click', () => {
+      [...article.querySelectorAll('details.mc-property[open]')].reverse().forEach(d => { d.open = false; });
+    });
+    legend.appendChild(b);
+  }
+
   function build(d) {
     const li = document.createElement('li');
     const a = document.createElement('a');
