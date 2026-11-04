@@ -81,10 +81,13 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
 - Every dimensioned value in an instance file carries a `unit`; no default unit is ever implied.
 - The schema declares `kind` + `recommended-unit`, not a fixed unit. Validation = kind compatibility
   via the dimension vector in units.yaml, using the closed symbol set. No unit parsing.
-- A property with a physical kind (a units.yaml kind other than dimensionless) has exactly one
-  required `unit` subproperty in one fixed form (string, [], inapplicable, values null, fixed
-  description), and a dimensionless or inapplicable property has none; validate_schema.py checks
-  both. A `unit` under a container (generic parameters, free-form units) is outside the check (0015).
+- A property is either a leaf (a value of its own, no subproperties) or a container (subproperties,
+  typed fields null), never both. A quantity with a physical kind (a units.yaml kind other than
+  dimensionless) is a container holding two leaves: `value` (required, fixed description; carries
+  type, extent, kind, recommended-unit, values) and `unit` (one fixed form: string, [],
+  inapplicable, values null, fixed description). A dimensionless or inapplicable leaf is not
+  wrapped and has no `unit`. validate_schema.py checks all of this; generic parameters (value
+  kind any) and free-form units are outside the check (0015, amended 2026-11-04).
 - Reserved kinds: dimensionless (ratios, counts), inapplicable (non-quantities), any (fixed by the
   instance or by a required enumerated subproperty).
   Angles and moles are NOT dimensionless.
