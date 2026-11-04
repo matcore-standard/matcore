@@ -350,7 +350,7 @@ record or marked PROPOSED, NOT DECIDED.
    open terms; the .docx notation restored (subscripts, Ė, |); legacy_* deleted. The same PR
    applies the 0015 amendment: check_units.py checks leaves, containers and value + unit; §1.3's
    units bullet reworded.
-   [done, branch citation, PR pending] citation: a repeatable container; reference a free string;
+   [done, PR #27 merged 2026-11-04] citation: a repeatable container; reference a free string;
    doi in Annex I's https URI form (0014, settled 2026-11-04), its pattern locked to the table by
    tests/test_properties.py; link format uri; legacy_* deleted. Both uri links of minimal get an
    example: citation › link the Si GAP paper's arXiv page, software › file › link its ColabFit page.
