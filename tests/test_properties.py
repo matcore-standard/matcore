@@ -104,7 +104,8 @@ def test_material_component_structure():
     phases = ('phases', True, False, 'string', ('Amorphous', 'Crystal', 'Quasicrystal', 'Molecule', 'Liquid',
                                                  'Gas', 'Plasma'), ())
     constituent = ('constituent', True, True, None, (), (
-        ('species', True, False, 'string', (), ()), ('concentration', True, False, 'float', (), ())))
+        ('species', True, False, 'string', (), ()), ('concentration', True, False, None, (), (
+            ('value', True, False, 'float', (), ()), ('unit', True, False, 'string', (), ())))))
     assert tree(p) == ('material-component', True, True, None, (), (
         constituent, phases, ('description', False, False, 'string', (), ()),
         ('microstructure', False, False, 'string', (), ())))
@@ -112,15 +113,18 @@ def test_material_component_structure():
     assert legacy_fields(p) == []
 
 
-@pytest.mark.parametrize('value, ok', [(0, True), (12.5, True), (100, True), (-1, False), (100.5, False)])
-def test_concentration_is_an_atomic_percent(value, ok):
-    """concentration is an atomic percentage, a dimensionless number from 0 to 100 that carries no unit.
+@pytest.mark.parametrize('value, ok', [(0, True), (0.125, True), (1, True), (-0.1, False), (1.5, False),
+                                       (12.5, False)])
+def test_concentration_is_an_atomic_fraction(value, ok):
+    """concentration is an atomic fraction, a dimensionless number from 0 to 1 whose unit is
+    `dimensionless`; a percentage such as 12.5 does not conform (0004 item 46).
 
     value (float): a candidate concentration; ok (bool): whether it conforms.
     """
-    c = sub(sub(minimal('material-component'), 'constituent'), 'concentration')
-    assert (c['kind'], c['extent']) == ('dimensionless', [])
-    assert 'atomic' in c['description']
+    conc = sub(sub(minimal('material-component'), 'constituent'), 'concentration')
+    c = datum(conc)
+    assert (c['kind'], c['extent'], c['recommended-unit']) == ('dimensionless', [], 'dimensionless')
+    assert 'atomic fraction' in conc['description'] and 'percent' not in conc['description']
     assert Draft202012Validator(value_schema(c)).is_valid(value) == ok
 
 
@@ -139,15 +143,15 @@ def test_species_is_an_element_symbol(value, ok):
 
 def test_concentration_note_states_the_sum():
     """The constituents of a material component account for all of it, so their concentrations sum to
-    100 (0004 item 40); the schema cannot check the rule, so the note states it for readers and reviewers."""
-    c = sub(sub(minimal('material-component'), 'constituent'), 'concentration')
-    assert 'sum to 100' in (c['values'].get('note') or '')
+    1 (0004 items 40, 46); the schema cannot check the rule, so the note states it for readers and reviewers."""
+    c = datum(sub(sub(minimal('material-component'), 'constituent'), 'concentration'))
+    assert 'sum to 1.' in (c['values'].get('note') or '')
 
 
 # 0001 Part A, A2.2: the Kind and recommended unit of each simulation condition, with the shape its
 # baseline values text gives (three cell vectors of three components, six tensor components, ...).
 SIMULATION_CONDITIONS = {
-    'number-of-particles': ('int', [], 'dimensionless', None),
+    'number-of-particles': ('int', [], 'dimensionless', 'dimensionless'),
     'volume': ('float', [], 'Volume', 'angstrom^3'),
     'mass-density': ('float', [], 'MassDensity', 'kg/m^3'),
     'number-density': ('float', [], 'NumberDensity', '1/angstrom^3'),
@@ -156,7 +160,7 @@ SIMULATION_CONDITIONS = {
     'cell-periodicity': ('bool', [3], 'inapplicable', None),
     'temperature': ('float', [], 'Temperature', 'K'),
     'stress': ('float', [6], 'Pressure', 'GPa'),
-    'strain': ('float', [6], 'dimensionless', None),
+    'strain': ('float', [6], 'dimensionless', 'dimensionless'),
     'strain-rate': ('float', [6], 'InverseTime', '1/s'),
     'heat-flux': ('float', [3], 'HeatFluxDensity', 'W/m^2'),
     'temperature-gradient': ('float', [3], 'TemperatureGradient', 'K/m'),

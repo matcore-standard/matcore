@@ -270,7 +270,9 @@ record or marked PROPOSED, NOT DECIDED.
      ones as containers of `value` and `unit` (0015, amended), the SI-units note removed (0001
      A2.1) and the .docx notation restored (step 5); §1.3's units bullet states the leaf/container
      rule and the `value` + `unit` form (0015, amended); citation's typed fields filled, every
-     `doi` in Annex I's https URI form (0014, settled 2026-11-04) (step 5).
+     `doi` in Annex I's https URI form (0014, settled 2026-11-04) (step 5); every dimensionless
+     value written as `value` + `unit` (`dimensionless`), concentration an atomic fraction (0015,
+     second amendment; 0004 item 46).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -355,9 +357,11 @@ record or marked PROPOSED, NOT DECIDED.
    doi in Annex I's https URI form (0014, settled 2026-11-04), its pattern locked to the table by
    tests/test_properties.py; link format uri; legacy_* deleted. Both uri links of minimal get an
    example: citation › link the Si GAP paper's arXiv page, software › file › link its ColabFit page.
-   [todo] 0015's second amendment (one PR, before funding): check_units.py and its tests;
-   concentration (a fraction, 0004 item 46), number-of-particles and strain as value + unit;
-   examples/minimal.xml; §1.3's units bullet.
+   [done, branch dimensionless-values, PR pending] 0015's second amendment: check_units.py
+   requires every numerical leaf (kind physical or dimensionless) to be a `value` beside a `unit`;
+   concentration (an atomic fraction 0–1, 0004 item 46), number-of-particles and strain as
+   value + unit, recommended unit `dimensionless`; examples/minimal.xml writes the Si
+   concentration as 1 with unit dimensionless; §1.3's units bullet covers pure numbers.
    [todo] The rest of minimal in file order, starting with funding.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
