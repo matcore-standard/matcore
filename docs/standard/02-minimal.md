@@ -348,6 +348,8 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
+The only allowed unit is `dimensionless`.
+
 </details>
 
 </details>
@@ -493,6 +495,8 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
+
+The only allowed unit is `dimensionless`.
 
 </details>
 
@@ -792,6 +796,8 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
+
+The only allowed unit is `dimensionless`.
 
 </details>
 

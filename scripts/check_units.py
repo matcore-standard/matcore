@@ -3,7 +3,8 @@
 
 A property with subproperties is a container and has no typed fields. A leaf whose Kind is numerical
 (any units.yaml kind, physical or `dimensionless`) is named `value`, has the fixed fields of VALUE_FORM,
-and has exactly one sibling `unit` in the fixed form UNIT_FORM; other leaves have Kind `inapplicable`.
+and has exactly one sibling `unit` in the fixed form UNIT_FORM, or DIMENSIONLESS_UNIT_FORM beside a
+`value` of Kind `dimensionless`; other leaves have Kind `inapplicable`.
 A `value` of Kind `any` (generic parameters) and a `unit` with no `value` (free-form units) are outside
 the check. Called by scripts/validate_schema.py for every property.
 """
@@ -31,6 +32,8 @@ UNIT_FORM = {
     'values': None,
     'repeatable': False,
 }
+# Beside a dimensionless value, the unit notes its only allowed symbol (0015, second amendment item 4).
+DIMENSIONLESS_UNIT_FORM = UNIT_FORM | {'values': {'note': 'The only allowed unit is `dimensionless`.'}}
 
 
 def unit_errors(p, siblings):
@@ -49,4 +52,5 @@ def unit_errors(p, siblings):
     out = [] if {k: p.get(k) for k in VALUE_FORM} == VALUE_FORM else ['value departs from the fixed form of 0015']
     if len(units) != 1:
         return out + [f"value of kind {p['kind']} needs exactly one sibling unit (0015)"]
-    return out + ([] if units[0] == UNIT_FORM else ['unit departs from the fixed form of 0015'])
+    form = DIMENSIONLESS_UNIT_FORM if p['kind'] == 'dimensionless' else UNIT_FORM
+    return out + ([] if units[0] == form else ['unit departs from the fixed form of 0015'])

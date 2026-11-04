@@ -13,7 +13,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from check_units import NUMERICAL, UNIT_FORM, VALUE_FORM, unit_errors  # noqa: E402
+from check_units import DIMENSIONLESS_UNIT_FORM, NUMERICAL, UNIT_FORM, VALUE_FORM, unit_errors  # noqa: E402
 
 
 def value(kind='Temperature', **change):
@@ -76,7 +76,7 @@ def test_value_and_unit_that_depart_from_the_fixed_form_fail():
 def test_every_number_is_a_value_beside_a_unit():
     """A dimensionless value takes the same form as a physical one, so every number in an instance sits in
     a `value` beside its `unit`; only non-quantities are leaves (0015, second amendment)."""
-    assert errors([value('dimensionless'), dict(UNIT_FORM)]) == []
+    assert errors([value('dimensionless'), dict(DIMENSIONLESS_UNIT_FORM)]) == []
     assert errors([{'name': 'number-of-particles', 'type': 'int', 'kind': 'dimensionless'}])
     assert errors([value('dimensionless')])
     assert errors([{'name': 'title', 'type': 'string', 'kind': 'inapplicable'}]) == []
@@ -102,3 +102,13 @@ def test_validate_schema_applies_the_check(tmp_path):
     f.write_text(yaml.safe_dump(doc, sort_keys=False, allow_unicode=True))
     run = subprocess.run([sys.executable, tmp_path / 'scripts/validate_schema.py'], capture_output=True, text=True)
     assert run.returncode == 1 and 'concentration' in run.stdout and 'unit' in run.stdout
+
+
+def test_the_unit_of_a_dimensionless_value_states_its_one_symbol():
+    """Beside a dimensionless value, `unit` notes that `dimensionless` is the only allowed unit, so a
+    reader sees the rule on the property; beside any other number it has no note (0015, second
+    amendment item 4)."""
+    assert DIMENSIONLESS_UNIT_FORM == UNIT_FORM | {'values': {'note': 'The only allowed unit is `dimensionless`.'}}
+    assert errors([value('dimensionless'), dict(UNIT_FORM)])
+    assert errors([value('Temperature'), dict(DIMENSIONLESS_UNIT_FORM)])
+    assert errors([value('Temperature'), dict(UNIT_FORM)]) == []
