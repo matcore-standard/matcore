@@ -18,6 +18,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// The current page's menu entry shows what lies under it: the page's headings, or on a schema section
+// page its property tree (decision 0008 item 3). Clicking the entry collapses that list; clicking again
+// expands it. Without this the click would only reload the page.
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.md-nav--primary li > a.md-nav__link--active').forEach(a => {
+    const li = a.parentElement;
+    a.addEventListener('click', e => {
+      if (!li.querySelector(':scope > nav, :scope > .mc-tree')) return;
+      e.preventDefault();
+      li.classList.toggle('mc-collapsed');
+    });
+  });
+});
+
 // Standard-page behaviour of decision record 0007, for pages whose property blocks
 // scripts/build_docs.py writes (details.mc-property, id = citable address). Adds: a permalink button on each block,
 // a property tree in the left sidebar, a breadcrumb bar for narrow screens, opening the block
