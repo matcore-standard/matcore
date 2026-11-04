@@ -279,7 +279,8 @@ record or marked PROPOSED, NOT DECIDED.
      related-content's typed fields filled, `links` renamed `link`, one URI per entry (step 5);
      provenance's typed fields filled, `comments` renamed `comment`, checksum a container of file,
      algorithm and value (step 5); matcore-id's typed fields filled, its form left open (step 5);
-     matcore-date's typed fields filled, written as creation-date (step 5).
+     matcore-date's typed fields filled, written as creation-date (step 5);
+     license's typed fields filled, an SPDX license expression; minimal complete (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -400,7 +401,11 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #35 merged 2026-11-04] matcore-date: written as creation-date (same pattern,
    examples and note, locked by a test); legacy_* deleted. provenance › date gets creation-date's
    note too (missed in PR #33), and a test now compares all of its values.
-   [todo] The rest of minimal in file order, starting with license.
+   [done, branch license, PR pending] license: a required string holding an SPDX license
+   expression, described in its note (the SPDX specification 2.3.1, the SPDX License List,
+   LicenseRef-), with no list copied into the schema; legacy_* deleted. minimal is complete: it
+   declares `legacy_complete: true` (0004 item 36).
+   [todo] dft, in file order.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must

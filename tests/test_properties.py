@@ -375,3 +375,22 @@ def test_matcore_date_is_written_as_creation_date():
     assert [p[k] for k in ('type', 'extent', 'kind', 'recommended-unit', 'values')] == \
            [c[k] for k in ('type', 'extent', 'kind', 'recommended-unit', 'values')]
     assert legacy_fields(p) == []
+
+
+def test_license_is_an_spdx_expression_described_in_its_note():
+    """A dataset has exactly one license, a string holding an SPDX license expression. The SPDX License
+    List changes every few months, so the note names the forms instead of the schema copying the list."""
+    p = minimal('license')
+    assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind']) == (
+        True, False, 'string', [], 'inapplicable')
+    v = p['values']
+    assert v['examples'] == ['GPL-3.0-only', 'CC-BY-4.0'] and 'terms' not in v and 'enum' not in v
+    assert 'https://spdx.org/licenses/' in v['note'] and 'LicenseRef-' in v['note']
+    assert legacy_fields(p) == []
+
+
+def test_minimal_is_complete():
+    """Every typed field of the minimal section is filled, so it declares itself complete (0004 item 36)."""
+    doc = yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))
+    assert doc.get('legacy_complete') is True
+    assert [k for p in doc['properties'] for k in legacy_fields(p)] == []
