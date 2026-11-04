@@ -339,7 +339,9 @@ properties:
         extent: []
         kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            The only allowed unit is `dimensionless`.
         repeatable: false
   - name: phases
     required: true
@@ -495,7 +497,9 @@ properties:
         extent: []
         kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            The only allowed unit is `dimensionless`.
         repeatable: false
     - name: volume
       required: false
@@ -790,7 +794,9 @@ properties:
         extent: []
         kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            The only allowed unit is `dimensionless`.
         repeatable: false
     - name: strain-rate
       required: false

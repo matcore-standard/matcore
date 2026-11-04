@@ -273,7 +273,7 @@ record or marked PROPOSED, NOT DECIDED.
      rule and the `value` + `unit` form (0015, amended); citation's typed fields filled, every
      `doi` in Annex I's https URI form (0014, settled 2026-11-04) (step 5); every dimensionless
      value written as `value` + `unit` (`dimensionless`), concentration an atomic fraction (0015,
-     second amendment; 0004 item 46).
+     second amendment; 0004 item 46), its `unit` noting that `dimensionless` is the only allowed unit.
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -363,8 +363,10 @@ record or marked PROPOSED, NOT DECIDED.
    concentration (an atomic fraction 0–1, 0004 item 46), number-of-particles and strain as
    value + unit, recommended unit `dimensionless`; examples/minimal.xml writes the Si
    concentration as 1 with unit dimensionless; §1.3's units bullet covers pure numbers.
-   [todo] 0015 second amendment item 4: the note on a dimensionless value's `unit` (one PR,
-   before funding): check_units.py and its tests; the three `unit` entries in minimal.
+   [done, branch unit-note, PR pending] 0015 second amendment item 4: check_units.py requires
+   the note "The only allowed unit is `dimensionless`." on the `unit` beside every dimensionless
+   `value`, and no note elsewhere; the `unit` of concentration, number-of-particles and strain
+   carry it.
    [todo] The rest of minimal in file order, starting with funding.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
