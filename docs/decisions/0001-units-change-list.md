@@ -1,6 +1,6 @@
 # MatCore Metadata Schema — Change List for Units Handling
 
-Status (2026-10-31, see 0004): Part A accepted. Part B: B1, B3, B4 (unit), B6, B7, B8, B10, B11 accepted; B2 (added note), B4 (Ė symbol), B5, B9 proposed, not decided; B12 no action. A6 proposed, not decided.
+Status (2026-10-31, see 0004): Part A accepted. Part B: B1, B3, B4 (unit), B6, B7, B8, B10, B11 accepted; B2 (added note), B4 (Ė symbol), B5, B9 proposed, not decided; B12 no action. A6 proposed, not decided. B9 decided for the generic parameters by 0016 (2026-11-04).
 
 A3.3 removed 2026-10-31: referred to a DFT `computation-parameter` that does not exist; the MD entry is covered by A4.1.
 

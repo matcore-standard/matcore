@@ -125,9 +125,10 @@ exciton-momentum, `scaling` for PF lengths and times) once in §1.3, so each pro
 rule rather than restating it. Needs a decision before implementation, when the first such
 property comes up (dft k-point-spacing); whether 0013's `depends-on`/`cases` can express it is part
 of that decision.
-PROPOSED, NOT DECIDED: define this pattern once in §1.3 under a name such as "generic parameter", with
-each such entry tagged `pattern: generic-parameter` and checked by validate_schema.py against one
-canonical definition. Needs a decision before implementation.
+Group 1 is defined once in §1.3 as a *generic parameter* (0016): a container of `name*`, `value*`
+(type, extent and kind any), `unit*` (fixed description "The unit in which the associated value is
+expressed." (0001 B9) and the A3.2 note) and `description`, in that order. It is recognised by a
+`value` of kind any, with no tag; validate_schema.py checks each one against the canonical form.
 
 ## Instance serialization
 The standard is agnostic to serialization format, as §1.3 states. The XML examples in the standard
@@ -190,9 +191,9 @@ items are applied in their "alone" form (see 0001's note). Kept for reference.
 - Table MD-3 was malformed in the Google Doc: its header row was actually the `source` parent row.
   Migration handled it; check md.yaml › particle-interactions / source against the docx (0004).
 - The accepted items of docs/decisions/0001-units-change-list.md Part B (see its Status line).
-  B2 (added note), B5 and B9 are PROPOSED, NOT DECIDED. B4's Ė symbol needs no decision: the
-  baseline .docx already writes the strain-rate tensor as Ė (Word equation objects), and the
-  migration dropped the dot; the computation PR restores it.
+  B2 (added note) and B5 are PROPOSED, NOT DECIDED; B9 is decided for generic parameters (0016).
+  B4's Ė symbol needs no decision: the baseline .docx already writes the strain-rate tensor as Ė
+  (Word equation objects), and the migration dropped the dot; the computation PR restores it.
 
 ## Migration losses found by the 2026-11-03 audit of the .docx
 All 518 descriptions and legacy texts, the Preamble, the section introductions and the example
@@ -375,7 +376,8 @@ record or marked PROPOSED, NOT DECIDED.
    expression, described in its note (the SPDX specification 2.3.1, the SPDX License List,
    LicenseRef-), with no list copied into the schema; legacy_* deleted. minimal is complete: it
    declares `legacy_complete: true` (0004 item 36).
-   [todo] dft, in file order.
+   [todo] dft, in file order, starting with xc-functional; its PR also adds the generic-parameter
+   check of 0016 and the §1.3 definition.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
