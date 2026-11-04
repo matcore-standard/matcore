@@ -287,3 +287,29 @@ def test_funder_identifier_example_is_a_valid_ror_id():
     v = sub(sub(sub(minimal('funding'), 'funder'), 'identifier'), 'value')
     assert v['values']['examples'] == ['https://ror.org/021nxhr62']
     assert identifier_errors('ROR', v['values']['examples'][0]) == []
+
+
+def test_related_content_structure():
+    """Each related-content entry points to one related dataset, since the entry itself repeats: a
+    required link in the form of citation's link (a URI), and an optional description."""
+    r = minimal('related-content')
+    assert tree(r) == ('related-content', False, True, None, (), (
+        ('link', True, False, 'string', (), ()),
+        ('description', False, False, 'string', (), ())))
+    link = sub(r, 'link')
+    assert (link['extent'], link['kind']) == ([], 'inapplicable')
+    assert link['values']['format'] == sub(minimal('citation'), 'link')['values']['format'] == 'uri'
+    assert legacy_fields(r) == []
+
+
+@pytest.mark.parametrize('value, ok', [('https://doi.org/10.17863/CAM.65004', True),
+                                       (['https://doi.org/10.17863/CAM.65004'], False),
+                                       ('mc-ad83jsd3-1', False)])
+def test_related_content_link_is_one_uri(value, ok):
+    """A link is one URI, not a list, and a bare MatCore ID is not a URI.
+
+    value (str | list): a candidate link; ok (bool): whether it conforms.
+    """
+    check = Draft202012Validator(value_schema(sub(minimal('related-content'), 'link')),
+                                 format_checker=Draft202012Validator.FORMAT_CHECKER)
+    assert check.is_valid(value) == ok

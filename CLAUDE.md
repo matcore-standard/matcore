@@ -275,7 +275,8 @@ record or marked PROPOSED, NOT DECIDED.
      value written as `value` + `unit` (`dimensionless`), concentration an atomic fraction (0015,
      second amendment; 0004 item 46), its `unit` noting that `dimensionless` is the only allowed unit.
      funding's typed fields filled, funder restructured as a name and an identifier (0014, settled
-     2026-11-04) (step 5).
+     2026-11-04) (step 5);
+     related-content's typed fields filled, `links` renamed `link`, one URI per entry (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -377,7 +378,12 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #30 merged 2026-11-04] funding: award-title and award-number strings; funder a
    container like affiliation (name + at most one ROR/ISNI identifier; 0014, settled 2026-11-04),
    with NSF as the example (ROR https://ror.org/021nxhr62, award 2404283); legacy_* deleted.
-   [todo] The rest of minimal in file order, starting with related-content.
+   [done, branch related-content, PR pending] related-content: `links` (a list) renamed `link`, one
+   URI per entry since related-content repeats, in the form of citation's link (format uri;
+   example the Cambridge deposit of Si_PRX_GAP); description a string; its definition made
+   singular ("Another dataset that is connected to the current one in some manner."); legacy_*
+   deleted.
+   [todo] The rest of minimal in file order, starting with provenance.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
