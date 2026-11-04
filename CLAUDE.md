@@ -323,7 +323,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #22 merged 2026-11-03] 0015: scripts/check_units.py (called by
    validate_schema.py) checks the fixed `unit` form; 0001 A1.1/A1.2 applied to §1.3 with "Kind".
    (A1.1/A1.2 were missed when step 3 handed Part A to step 5.)
-   [done, branch preamble-format, PR pending] §1.3 and migration fixes: the nesting restored;
+   [done, PR #23 merged 2026-11-04] §1.3 and migration fixes: the nesting restored;
    0004 items 43–45 applied; *universal* restored in the minimal introduction and the space after
    "Note:" in the five notes; nested bullets use the .docx's symbols ● ○ ■ (disc, circle,
    square in layout.css); tests/test_preamble.py checks the nesting, the notes and the bullets.
