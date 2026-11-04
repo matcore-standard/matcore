@@ -1047,41 +1047,78 @@ properties:
   recommended-unit: null
   values: null
   repeatable: true
-  legacy_values: Contains SubProperties as listed below.
   subproperties:
   - name: award-title
     required: true
     description: Name of the grant that provided funding to generate the dataset.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: A string containing the award title.
   - name: funder
     required: true
     description: >-
-      The name of the funding agency that provided money and/or resources to generate the dataset.
+      The funding agency that provided money and/or resources to generate the dataset.
     type: null
     extent: null
     kind: null
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: >-
-      A string containing the funding agency using [Crossref Open Funder Registry](https://www.crossref.org/services/funder-registry/)
-      designation.
+    subproperties:
+    - name: name
+      required: true
+      description: The name of the funding agency.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        examples: [U.S. National Science Foundation]
+      repeatable: false
+    - name: identifier
+      required: false
+      description: >-
+        A unique, persistent identifier that globally and unambiguously identifies the funding agency.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      subproperties:
+      - name: value
+        required: true
+        description: The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          examples: ['https://ror.org/021nxhr62']
+        repeatable: false
+      - name: scheme
+        required: true
+        description: The identifier scheme that the value belongs to.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [ROR, ISNI]
+        repeatable: false
   - name: award-number
     required: false
     description: A funder identifier for the grant.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      examples: ['2404283']
     repeatable: false
-    legacy_values: A string containing the award number.
 - name: related-content
   required: false
   description: Other datasets that are connected to the current one in some manner.

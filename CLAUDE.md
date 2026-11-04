@@ -274,6 +274,8 @@ record or marked PROPOSED, NOT DECIDED.
      `doi` in Annex I's https URI form (0014, settled 2026-11-04) (step 5); every dimensionless
      value written as `value` + `unit` (`dimensionless`), concentration an atomic fraction (0015,
      second amendment; 0004 item 46), its `unit` noting that `dimensionless` is the only allowed unit.
+     funding's typed fields filled, funder restructured as a name and an identifier (0014, settled
+     2026-11-04) (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -369,7 +371,10 @@ record or marked PROPOSED, NOT DECIDED.
    the note "The only allowed unit is `dimensionless`." on the `unit` beside every dimensionless
    `value`, and no note elsewhere; the `unit` of concentration, number-of-particles and strain
    carry it.
-   [todo] The rest of minimal in file order, starting with funding.
+   [done, branch funding, PR pending] funding: award-title and award-number strings; funder a
+   container like affiliation (name + at most one ROR/ISNI identifier; 0014, settled 2026-11-04),
+   with NSF as the example (ROR https://ror.org/021nxhr62, award 2404283); legacy_* deleted.
+   [todo] The rest of minimal in file order, starting with related-content.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
