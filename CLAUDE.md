@@ -254,7 +254,8 @@ record or marked PROPOSED, NOT DECIDED.
    - Changes to the standard since 0.5.0, for the next release's entry in releases.yaml: §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
-     gains a checksum beside unique-identifier (step 5).
+     gains a checksum beside unique-identifier (step 5); dft valence-electron-model's typed fields
+     filled, the basis set given the same checksum split (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -391,7 +392,13 @@ record or marked PROPOSED, NOT DECIDED.
    pseudopotential file, `unique-identifier` kept for any other designation, each note pointing
    to the other; examples/dft.xml writes the valence-electron count as value + unit; legacy_*
    deleted.
-   [todo] The rest of dft in file order, starting with valence-electron-model.
+   [done, branch valence-electron-model, PR pending] dft valence-electron-model: type open terms
+   (repeatable); the localized-orbital basis set gets the pseudopotential's checksum /
+   unique-identifier split and Annex I's doi; kinetic-energy-cutoff and charge-density-cutoff
+   value + unit (Energy, recommended eV, minimum 0; 0001 A3.1); two baseline typos fixed (a
+   trailing comma, a stray space); examples/dft.xml writes the cutoff as 250.0 eV; legacy_*
+   deleted.
+   [todo] The rest of dft in file order, starting with calculation-physics.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
