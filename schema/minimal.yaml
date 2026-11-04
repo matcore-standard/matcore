@@ -370,39 +370,42 @@ properties:
   recommended-unit: null
   values: null
   repeatable: true
-  legacy_values: Contains SubProperties as listed below.
   subproperties:
   - name: method-class
     required: true
     description: The general category to which the computational technique belongs.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      terms: [Electronic, Atomistic, Mesoscopic, Continuum, Data-driven]
     repeatable: false
     notes:
     - >-
-      Note: The categories listed above are based on the [MODA standard](https://data.europa.eu/doi/10.2777/404734).
-    legacy_values: >-
-      A string containing one of the following values: "Electronic" "Atomistic" "Mesoscopic" "Continuum"
-      "Data-driven" Other user-specified value if none of the above apply.
+      Note: The categories listed above are based on the [MODA
+      standard](https://data.europa.eu/doi/10.2777/404734).
   - name: method
     required: true
     description: The computational materials science (CMS) approach used in the computation.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      depends-on: method-class
+      cases:
+        Electronic: {terms: [CC, QMC, DFT, MBPT]}
+        Atomistic: {terms: [MC, MD]}
+        Mesoscopic: {terms: [DDD, KMC, CGMD]}
+        Continuum: {terms: [PF]}
+        Data-driven: {terms: [ML]}
+      note: >-
+        "CC" – Coupled Cluster; "QMC" – Quantum Monte Carlo; "DFT" – Density Functional Theory; "MBPT" –
+        Many-Body Perturbation Theory methods (such as GW and BSE); "MC" – Monte Carlo; "MD" – Molecular
+        Dynamics; "DDD" – Discrete Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "CGMD" –
+        Coarse-grained MD; "PF" – Phase Field; "ML" – Machine Learning.
     repeatable: false
-    legacy_values: >-
-      A string containing one of the following values: For method-class "Electronic": "CC" – Coupled Cluster
-      "QMC" – Quantum Monte Carlo "DFT" – Density Functional Theory "MBPT" – Many-Body Perturbation Theory
-      methods (such as GW and BSE) For method-class "Atomistic": "MC" – Monte Carlo "MD" – Molecular Dynamics
-      For method-class "Mesoscopic": "DDD" – Discrete Dislocation Dynamics "KMC" – Kinetic Monte Carlo
-      "CGMD" – Coarse-grained MD For method-class "Continuum": "PF" – Phase Field For method-class "Data-driven":
-      "ML" – Machine Learning Other user-specified value if none of the above apply.
   - name: simulation-conditions
     required: true
     description: >-
@@ -414,47 +417,48 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: Contains SubSubProperties as defined in the table below.
+    notes:
+    - >-
+      Note: The SubSubProperties listed below (aside from type and description) are provided as
+      appropriate given the nature of the simulation. Providing a SubSubProperty means that its value is
+      imposed on the simulation as an external constraint.
     subproperties:
     - name: type
       required: true
       description: >-
-        The nature of the simulation being performed, whether equilibrium, nonequilibrium, or nonstandard.
-      type: null
-      extent: null
-      kind: null
+        The nature of the simulation being performed, whether equilibrium, nonequilibrium, or
+        nonstandard.
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Equilibrium, Nonequilibrium, Other]
+        note: >-
+          "Equilibrium" – Thermodynamic equilibrium. "Nonequilibrium" – Conforming to some definition of
+          nonequilibrium thermodynamics. "Other" – A simulation not fitting into the equilibrium and
+          nonequilibrium categories.
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values defining the simulation conditions: "Equilibrium"
-        – Thermodynamic equilibrium "Nonequilibrium" – Conforming to some definition of nonequilibrium
-        thermodynamics "Other" – A simulation not fitting into the equilibrium and nonequilibrium categories.
-        Note 1: The SubSubProperties listed below (aside from description) are provided as appropriate
-        given the nature of the simulation. Providing a SubSubProperty means that its value is imposed
-        on the simulation as an external constraint. Note 2:Units for dimensioned variables are to be
-        given in the SI unit system.
     - name: description
       required: false
       description: Explanatory text clarifying the simulation type selection.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: A string containing the simulation type explanation.
     - name: number-of-particles
       required: false
       description: A count of atoms or other discrete entities comprising the material.
-      type: null
-      extent: null
-      kind: null
+      type: int
+      extent: []
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        note: >-
+          The number of particles <i>N</i>.
       repeatable: false
-      legacy_values: An integer containing the number of particles *N*.
-      legacy_unit: dimensionless
     - name: volume
       required: false
       description: The amount of space occupied by the material.
@@ -464,8 +468,27 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: A real number containing the volume *V*.
-      legacy_unit: cubic meters (m^3)
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: Volume
+        recommended-unit: angstrom^3
+        values:
+          note: >-
+            The volume <i>V</i>.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
     - name: mass-density
       required: false
       description: The total mass of the material divided by the volume it occupies.
@@ -475,20 +498,57 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: A real number containing the mass density *𝜌*.
-      legacy_unit: kilograms per cubic meter (kg/m^3)
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: MassDensity
+        recommended-unit: kg/m^3
+        values:
+          note: >-
+            The mass density <i>ρ</i>.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
     - name: number-density
       required: false
-      description: >-
-        The total number of particles comprising the material divided by the volume it occupies.
+      description: The total number of particles comprising the material divided by the volume it occupies.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: A real number containing the number density *n*.
-      legacy_unit: inverse cubic meter (1/m^3)
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: NumberDensity
+        recommended-unit: 1/angstrom^3
+        values:
+          note: >-
+            The number density <i>n</i>.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
     - name: cell
       required: false
       description: The domain occupied by the material in the simulation (if fixed).
@@ -498,11 +558,29 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: >-
-        Ordered list of three vectors (a, b, c), each with three components, that define the simulation
-        cell. The vectors (a, b, c) need not be orthogonal, and the magnitudes (│a│, │b│, │c│) are the
-        supercell vector lengths.
-      legacy_unit: meter (m)
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: [3, 3]
+        kind: Length
+        recommended-unit: angstrom
+        values:
+          note: >-
+            Ordered list of three vectors (a, b, c), each with three components, that define the
+            simulation cell. The vectors (a, b, c) need not be orthogonal, and the magnitudes (|a|, |b|,
+            |c|) are the supercell vector lengths. The unit applies to all nine components.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
     - name: cell-reference
       required: false
       description: >-
@@ -514,37 +592,78 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: >-
-        Ordered list of three vectors (a0, b0, c0), each with three components, that define the cell used
-        in the simulation in its reference configuration. The vectors (a0, b0, c0) need not be orthogonal,
-        and the magnitudes (│a0│, │b0│, │c0│) are the reference cell vector lengths.
-      legacy_unit: meter (m)
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: [3, 3]
+        kind: Length
+        recommended-unit: angstrom
+        values:
+          note: >-
+            Ordered list of three vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>), each with three
+            components, that define the cell used in the simulation in its reference configuration. The
+            vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) need not be orthogonal, and the
+            magnitudes (|a<sub>0</sub>|, |b<sub>0</sub>|, |c<sub>0</sub>|) are the reference cell vector
+            lengths. The unit applies to all nine components.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
     - name: cell-periodicity
       required: false
       description: >-
-        Specification of whether periodic boundary conditions are applied along the cell vector directions.
-        This applies to both cell and cell-reference.
-      type: null
-      extent: null
-      kind: null
+        Specification of whether periodic boundary conditions are applied along the cell vector
+        directions. This applies to both cell and cell-reference.
+      type: bool
+      extent: [3]
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        note: >-
+          Ordered list of three booleans (<i>p</i><sub>a</sub>, <i>p</i><sub>b</sub>,
+          <i>p</i><sub>c</sub>), which are set to true if periodic boundary conditions are applied along
+          the corresponding cell vectors (a, b, c).
       repeatable: false
-      legacy_values: >-
-        Ordered list of three booleans (*pa*,, *pb*,, *pc*,), which are set to true if periodic boundary
-        conditions are applied along the corresponding cell vectors (a, b, c).
     - name: temperature
       required: false
       description: >-
-        A measure of the hotness or coldness of an external heat bath in thermal contact with the material.
+        A measure of the hotness or coldness of an external heat bath in thermal contact with the
+        material.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: A real number containing the temperature *T*.
-      legacy_unit: kelvin (K)
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: Temperature
+        recommended-unit: K
+        values:
+          note: >-
+            The temperature <i>T</i>.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
     - name: stress
       required: false
       description: >-
@@ -556,43 +675,72 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: >-
-        An array of six real numbers containing the components of the (symmetric) Cauchy stress tensor
-        σ in the following order: [*σ*11, *σ*22, *σ*33, *σ*23, *σ*13, *σ*12]. The stress component are
-        expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a, e2
-        is in the direction of c╳a, and e3= e1╳e2, where (a, b, c) are the vectors defining the cell,
-        which may not be orthogonal. Note 1: Requires the definition of the cell subproperty in order
-        for a basis to be defined relative to which the tensor components are given. Note 2:The adopted
-        sign convention is for tensile normal stresses to be positive, and compressive normal stresses
-        to be negative. This implies that for a material subjected to a positive pressure *p*, the stress
-        tensor components are [-*p*, -*p*, -*p*, 0, 0, 0].
-      legacy_unit: pascal (Pa)
+      notes:
+      - >-
+        Note 1: Requires the definition of the cell subproperty in order for a basis to be defined
+        relative to which the tensor components are given.
+      - >-
+        Note 2: The adopted sign convention is for tensile normal stresses to be positive, and
+        compressive normal stresses to be negative. This implies that for a material subjected to a
+        positive pressure <i>p</i>, the stress tensor components are [-<i>p</i>, -<i>p</i>, -<i>p</i>,
+        0, 0, 0].
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: [6]
+        kind: Pressure
+        recommended-unit: GPa
+        values:
+          note: >-
+            The components of the (symmetric) Cauchy stress tensor <i>σ</i> in the following order:
+            [<i>σ</i><sub>11</sub>, <i>σ</i><sub>22</sub>, <i>σ</i><sub>33</sub>, <i>σ</i><sub>23</sub>,
+            <i>σ</i><sub>13</sub>, <i>σ</i><sub>12</sub>]. The stress components are expressed relative
+            to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub>
+            is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> =
+            e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may
+            not be orthogonal. The unit applies to all six components.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
     - name: strain
       required: false
       description: >-
         A deformation relative to a reference configuration imposed on the simulation cell expressed in
         the referential frame (Lagrangian strain tensor).
-      type: null
-      extent: null
-      kind: null
+      type: float
+      extent: [6]
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        note: >-
+          The components of the (symmetric) Lagrangian strain tensor <i>E</i> in the following order:
+          [<i>E</i><sub>11</sub>, <i>E</i><sub>22</sub>, <i>E</i><sub>33</sub>, <i>E</i><sub>23</sub>,
+          <i>E</i><sub>13</sub>, <i>E</i><sub>12</sub>]. The strain components are expressed relative to
+          an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in
+          the direction of a<sub>0</sub>, e<sub>2</sub> is in the direction of
+          c<sub>0</sub>╳a<sub>0</sub>, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where
+          (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) are the vectors defining the cell in the
+          reference configuration, which may not be orthogonal.
       repeatable: false
-      legacy_values: >-
-        An array of six real numbers containing the components of the (symmetric) Lagrangian strain tensor
-        Ein the following order: [*E*11, *E*22, *E*33, *E*23, *E*13, *E*12]. The strain component are
-        expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a0, e2
-        is in the direction of c0╳a0, and e3= e1╳e2, where (a0, b0, c0) are the vectors defining the cell
-        in the reference configuration, which may not be orthogonal. Note: Requires the definition of
-        cell-reference in order for the basis to be defined relative to which the tensor components are
-        given.
-      legacy_unit: dimensionless
+      notes:
+      - >-
+        Note: Requires the definition of cell-reference in order for the basis to be defined relative to
+        which the tensor components are given.
     - name: strain-rate
       required: false
       description: >-
-        The derivative with respect to time of a deformation relative to a reference configuration imposed
-        on the simulation cell expressed in the referential frame (Lagrangian strain rate tensor), which
-        is constant throughout the simulation.
+        The derivative with respect to time of a deformation relative to a reference configuration
+        imposed on the simulation cell expressed in the referential frame (Lagrangian strain rate
+        tensor), which is constant throughout the simulation.
       type: null
       extent: null
       kind: null
@@ -603,30 +751,70 @@ properties:
       - >-
         Requires the definition of cell-reference in order for the basis to be defined relative to which
         the tensor components are given
-      legacy_values: >-
-        An array of six real numbers containing the components of the (symmetric) Lagrangian strain rate
-        tensor E in the following order: [*E11, E22, E33, E23, E13, E12,*]. The strain component are expressed
-        relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a0, e2 is in the
-        direction of c0╳a0, and e3= e1╳e2, where (a0, b0, c0) are the vectors defining the cell in the
-        reference configuration, which may not be orthogonal.
-      legacy_unit: inverse seconds (1/s)
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: [6]
+        kind: InverseTime
+        recommended-unit: 1/s
+        values:
+          note: >-
+            The components of the (symmetric) Lagrangian strain rate tensor <i>Ė</i> in the following
+            order: [<i>Ė</i><sub>11</sub>, <i>Ė</i><sub>22</sub>, <i>Ė</i><sub>33</sub>,
+            <i>Ė</i><sub>23</sub>, <i>Ė</i><sub>13</sub>, <i>Ė</i><sub>12</sub>]. The strain rate
+            components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>,
+            e<sub>3</sub>), where e<sub>1</sub> is in the direction of a<sub>0</sub>, e<sub>2</sub> is
+            in the direction of c<sub>0</sub>╳a<sub>0</sub>, and e<sub>3</sub> =
+            e<sub>1</sub>╳e<sub>2</sub>, where (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) are the
+            vectors defining the cell in the reference configuration, which may not be orthogonal.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
     - name: heat-flux
       required: false
       description: >-
-        The amount of thermal energy transferred to the material per unit area per unit time along a given
-        direction.
+        The amount of thermal energy transferred to the material per unit area per unit time along a
+        given direction.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: >-
-        An array of three real numbers containing the components of the heat flux vector q. The heat flux
-        component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction
-        of a, e2 is in the direction of c╳a, and e3= e1╳e2, where (a, b, c) are the vectors defining the
-        cell, which may not be orthogonal.
-      legacy_unit: watts per square meter (W/m^2)
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: [3]
+        kind: HeatFluxDensity
+        recommended-unit: W/m^2
+        values:
+          note: >-
+            The components of the heat flux vector q. The heat flux components are expressed relative to
+            an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is
+            in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> =
+            e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may
+            not be orthogonal.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
     - name: temperature-gradient
       required: false
       description: >-
@@ -638,12 +826,31 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: >-
-        An array of three real numbers containing the components of the temperature gradient vector ∇*T*.
-        The temperature gradient component are expressed relative to an orthonormal basis (e1, e2, e3),
-        where e1 is in the direction of a, e2 is in the direction of c╳a, and e3= e1╳e2, where (a, b,
-        c) are the vectors defining cell, which may not be orthogonal.
-      legacy_unit: kelvin per meter (K/m)
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: [3]
+        kind: TemperatureGradient
+        recommended-unit: K/m
+        values:
+          note: >-
+            The components of the temperature gradient vector ∇<i>T</i>. The temperature gradient
+            components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>,
+            e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the
+            direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the
+            vectors defining the cell, which may not be orthogonal.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
   - name: software
     required: true
     description: Identification of a computer package used to perform the calculations.
@@ -653,28 +860,27 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
-    legacy_values: Contains SubSubProperties as defined in the table below.
     subproperties:
     - name: name
       required: true
       description: The name of the software package.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        examples: [VASP]
       repeatable: false
-      legacy_values: A string containing the name of the software package (e.g. "VASP").
     - name: version
       required: false
       description: The version of the software package.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        examples: ['6.3.1']
       repeatable: false
-      legacy_values: A string containing the software version (e.g. "6.3.1")
     - name: file
       required: false
       description: >-
@@ -687,50 +893,46 @@ properties:
       recommended-unit: null
       values: null
       repeatable: true
-      legacy_values: Contains SubSubSubProperties as defined in the table below.
       subproperties:
       - name: name
         required: true
         description: The file name.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: A string containing the name of the included file.
       - name: description
         required: true
         description: A brief description of the file and its contents.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: A string containing the file description.
       - name: contents
         required: false
         description: >-
-          The text and/or data contained in the file. Not required in case a link to the file is provided
-          instead.
-        type: null
-        extent: null
-        kind: null
+          The text and/or data contained in the file. Not required in case a link to the file is
+          provided instead.
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: A string containing the file contents.
       - name: link
         required: false
         description: A URI pointing to a permanent location of the file online.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          format: uri
         repeatable: false
-        legacy_values: A string containing the file URI.
 - name: citation
   required: false
   description: Information that uniquely identifies a source being acknowledged.

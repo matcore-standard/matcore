@@ -36,7 +36,7 @@ def walk(props, path):
             if u not in symbols: print(f"ERROR {here}: recommended-unit {u!r} not in units.yaml"); errors += 1
             elif k not in (None,'any') and units['units'][u]['kind'] != k:
                 print(f"ERROR {here}: unit {u} has kind {units['units'][u]['kind']}, property kind is {k}"); errors += 1
-        for e in values_errors(p) + dependency_errors(p, props) + unit_errors(p):  # decisions 0013, 0015
+        for e in values_errors(p) + dependency_errors(p, props) + unit_errors(p, props):  # decisions 0013, 0015
             print(f"ERROR {here}: {e}"); errors += 1
         if p.get('type') in ('float','int') and k is None and p.get('legacy_values') is None:
             print(f"WARN  {here}: numeric type with no kind")

@@ -202,7 +202,8 @@ captions were compared with the baseline .docx. Apart from intentional changes, 
   ml-task › type, the two mbpt dielectric-matrix notes) and in some legacy texts.
 - Subscripts and superscripts (σ₁₁, e₁, a₀, G₀W₀ written σ11, e1, a0, G0W0) in ten minimal
   simulation-conditions entries and mbpt self-consistency; the dot of Ė in minimal strain-rate;
-  ASCII `|` replaced by `│` in minimal cell and cell-reference. Restored in those properties' PRs.
+  ASCII `|` replaced by `│` in minimal cell and cell-reference. Restored in those properties' PRs:
+  minimal computation's are restored; mbpt self-consistency's remain.
 
 ## Status / next steps (update this list as work lands)
 The audit of this file is complete (rulings in docs/decisions/0004): every statement is backed by a
@@ -263,7 +264,11 @@ record or marked PROPOSED, NOT DECIDED.
      and lists Kind and Recommended unit among a property's features (0001 A1.2, 0015); §1.3's
      bullets nested as in the baseline, with Type and Extent added, Values trimmed, plain wording
      for pure numbers and nested SubProperties (0004 items 43–45); the italics of *universal*
-     and five "Note: " spaces restored (migration losses).
+     and five "Note: " spaces restored (migration losses); computation's typed fields filled, with
+     method depending on method-class, simulation conditions typed per 0001 A2.2, the ten physical
+     ones as containers of `value` and `unit` (0015, amended), the SI-units note removed (0001
+     A2.1) and the .docx notation restored (step 5); §1.3's units bullet states the leaf/container
+     rule and the `value` + `unit` form (0015, amended).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -337,7 +342,13 @@ record or marked PROPOSED, NOT DECIDED.
    (`$defs/value-keys`, shared by values and each case; the two keys come together; cases do not
    nest), check_values.dependency_errors() (called by validate_schema.py with the siblings),
    build_docs.py ("Depends on `x`. For `A`: …"), tests.
-   [todo] The rest of minimal in file order, starting with computation.
+   [done, branch computation, PR pending] computation: method's terms depend on method-class
+   (0013 depends-on/cases); simulation-conditions typed per 0001 A2.2, its ten physical
+   quantities containers of the fixed `value` and `unit` (0015, amended 2026-11-04); type has
+   open terms; the .docx notation restored (subscripts, Ė, |); legacy_* deleted. The same PR
+   applies the 0015 amendment: check_units.py checks leaves, containers and value + unit; §1.3's
+   units bullet reworded.
+   [todo] The rest of minimal in file order, starting with citation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must

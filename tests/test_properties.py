@@ -142,3 +142,67 @@ def test_concentration_note_states_the_sum():
     100 (0004 item 40); the schema cannot check the rule, so the note states it for readers and reviewers."""
     c = sub(sub(minimal('material-component'), 'constituent'), 'concentration')
     assert 'sum to 100' in (c['values'].get('note') or '')
+
+
+# 0001 Part A, A2.2: the Kind and recommended unit of each simulation condition, with the shape its
+# baseline values text gives (three cell vectors of three components, six tensor components, ...).
+SIMULATION_CONDITIONS = {
+    'number-of-particles': ('int', [], 'dimensionless', None),
+    'volume': ('float', [], 'Volume', 'angstrom^3'),
+    'mass-density': ('float', [], 'MassDensity', 'kg/m^3'),
+    'number-density': ('float', [], 'NumberDensity', '1/angstrom^3'),
+    'cell': ('float', [3, 3], 'Length', 'angstrom'),
+    'cell-reference': ('float', [3, 3], 'Length', 'angstrom'),
+    'cell-periodicity': ('bool', [3], 'inapplicable', None),
+    'temperature': ('float', [], 'Temperature', 'K'),
+    'stress': ('float', [6], 'Pressure', 'GPa'),
+    'strain': ('float', [6], 'dimensionless', None),
+    'strain-rate': ('float', [6], 'InverseTime', '1/s'),
+    'heat-flux': ('float', [3], 'HeatFluxDensity', 'W/m^2'),
+    'temperature-gradient': ('float', [3], 'TemperatureGradient', 'K/m'),
+}
+
+
+def datum(p):
+    """Return the leaf that holds a property's value: the property itself, or its `value` (0015, amended).
+
+    p (dict): property entry.
+    """
+    return sub(p, 'value') if p.get('subproperties') else p
+
+
+def test_simulation_conditions_follow_0001_part_a():
+    """Each imposed condition has the Kind, recommended unit and shape 0001 A2.2 gives it, so a value
+    can be read without a default unit; type and description are plain strings. A condition with a
+    physical Kind holds them in its `value`, beside a `unit`; a pure number is a leaf (0015, amended)."""
+    sc = sub(minimal('computation'), 'simulation-conditions')
+    got = {s['name']: (d['type'], d['extent'], d['kind'], d['recommended-unit'])
+           for s in sc['subproperties'] for d in [datum(s)]}
+    assert got == SIMULATION_CONDITIONS | {'type': ('string', [], 'inapplicable', None),
+                                           'description': ('string', [], 'inapplicable', None)}
+    assert sub(sc, 'type')['values']['terms'] == ['Equilibrium', 'Nonequilibrium', 'Other']
+
+
+def test_method_terms_depend_on_method_class():
+    """A method is listed under the class it belongs to, so a validator can flag DFT given as Atomistic
+    as user-specified (0013, settled 2026-11-03)."""
+    c = minimal('computation')
+    assert sub(c, 'method-class')['values']['terms'] == ['Electronic', 'Atomistic', 'Mesoscopic', 'Continuum',
+                                                         'Data-driven']
+    v = sub(c, 'method')['values']
+    assert v['depends-on'] == 'method-class'
+    assert {k: c_['terms'] for k, c_ in v['cases'].items()} == {
+        'Electronic': ['CC', 'QMC', 'DFT', 'MBPT'], 'Atomistic': ['MC', 'MD'], 'Mesoscopic': ['DDD', 'KMC', 'CGMD'],
+        'Continuum': ['PF'], 'Data-driven': ['ML']}
+
+
+def test_computation_restores_the_docx_notation():
+    """The tensor and vector notation of the .docx survives: subscripts, the dot of the strain rate Ė,
+    and ASCII bars for vector lengths (the migration had flattened them)."""
+    sc = sub(minimal('computation'), 'simulation-conditions')
+    note = lambda n: datum(sub(sc, n))['values']['note']
+    assert '<i>σ</i><sub>11</sub>' in note('stress') and '<i>E</i><sub>11</sub>' in note('strain')
+    assert '<i>Ė</i><sub>11</sub>' in note('strain-rate') and 'Ė' in note('strain-rate')
+    assert '|a|' in note('cell') and '│' not in note('cell') + note('cell-reference')
+    assert 'a<sub>0</sub>' in note('cell-reference')
+    assert legacy_fields(minimal('computation')) == []

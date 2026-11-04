@@ -385,9 +385,9 @@ The general category to which the computational technique belongs.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing one of the following values: "Electronic" "Atomistic" "Mesoscopic" "Continuum" "Data-driven" Other user-specified value if none of the above apply.</span>
+Recommended: `Electronic`, `Atomistic`, `Mesoscopic`, `Continuum`, `Data-driven`. Other values are allowed.
 
 Note: The categories listed above are based on the [MODA standard](https://data.europa.eu/doi/10.2777/404734).
 
@@ -400,9 +400,9 @@ The computational materials science (CMS) approach used in the computation.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing one of the following values: For method-class "Electronic": "CC" – Coupled Cluster "QMC" – Quantum Monte Carlo "DFT" – Density Functional Theory "MBPT" – Many-Body Perturbation Theory methods (such as GW and BSE) For method-class "Atomistic": "MC" – Monte Carlo "MD" – Molecular Dynamics For method-class "Mesoscopic": "DDD" – Discrete Dislocation Dynamics "KMC" – Kinetic Monte Carlo "CGMD" – Coarse-grained MD For method-class "Continuum": "PF" – Phase Field For method-class "Data-driven": "ML" – Machine Learning Other user-specified value if none of the above apply.</span>
+Depends on `method-class`. For `Electronic`: Recommended: `CC`, `QMC`, `DFT`, `MBPT`. Other values are allowed. For `Atomistic`: Recommended: `MC`, `MD`. Other values are allowed. For `Mesoscopic`: Recommended: `DDD`, `KMC`, `CGMD`. Other values are allowed. For `Continuum`: Recommended: `PF`. Other values are allowed. For `Data-driven`: Recommended: `ML`. Other values are allowed. "CC" – Coupled Cluster; "QMC" – Quantum Monte Carlo; "DFT" – Density Functional Theory; "MBPT" – Many-Body Perturbation Theory methods (such as GW and BSE); "MC" – Monte Carlo; "MD" – Molecular Dynamics; "DDD" – Discrete Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "CGMD" – Coarse-grained MD; "PF" – Phase Field; "ML" – Machine Learning.
 
 </details>
 
@@ -415,6 +415,8 @@ The interactions between the system being modeled and the rest of the world main
 |---|---|
 | yes | no |
 
+Note: The SubSubProperties listed below (aside from type and description) are provided as appropriate given the nature of the simulation. Providing a SubSubProperty means that its value is imposed on the simulation as an external constraint.
+
 <details class="note mc-property" id="minimal.computation.simulation-conditions.type" markdown="1">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
@@ -422,9 +424,9 @@ The nature of the simulation being performed, whether equilibrium, nonequilibriu
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values defining the simulation conditions: "Equilibrium" – Thermodynamic equilibrium "Nonequilibrium" – Conforming to some definition of nonequilibrium thermodynamics "Other" – A simulation not fitting into the equilibrium and nonequilibrium categories. Note 1: The SubSubProperties listed below (aside from description) are provided as appropriate given the nature of the simulation. Providing a SubSubProperty means that its value is imposed on the simulation as an external constraint. Note 2:Units for dimensioned variables are to be given in the SI unit system.</span>
+Recommended: `Equilibrium`, `Nonequilibrium`, `Other`. Other values are allowed. "Equilibrium" – Thermodynamic equilibrium. "Nonequilibrium" – Conforming to some definition of nonequilibrium thermodynamics. "Other" – A simulation not fitting into the equilibrium and nonequilibrium categories.
 
 </details>
 
@@ -435,9 +437,7 @@ Explanatory text clarifying the simulation type selection.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the simulation type explanation.</span>
+| no | no | string | [] | inapplicable | — |
 
 </details>
 
@@ -448,9 +448,9 @@ A count of atoms or other discrete entities comprising the material.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | int | [] | dimensionless | — |
 
-<span class='legacy'>Legacy: An integer containing the number of particles *N*.</span> <span class='legacy'>Legacy unit: dimensionless</span>
+The number of particles <i>N</i>.
 
 </details>
 
@@ -459,11 +459,33 @@ A count of atoms or other discrete entities comprising the material.
 
 The amount of space occupied by the material.
 
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.volume.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| yes | no | float | [] | Volume | angstrom^3 |
 
-<span class='legacy'>Legacy: A real number containing the volume *V*.</span> <span class='legacy'>Legacy unit: cubic meters (m^3)</span>
+The volume <i>V</i>.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.volume.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -472,11 +494,33 @@ The amount of space occupied by the material.
 
 The total mass of the material divided by the volume it occupies.
 
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.mass-density.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| yes | no | float | [] | MassDensity | kg/m^3 |
 
-<span class='legacy'>Legacy: A real number containing the mass density *𝜌*.</span> <span class='legacy'>Legacy unit: kilograms per cubic meter (kg/m^3)</span>
+The mass density <i>ρ</i>.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.mass-density.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -485,11 +529,33 @@ The total mass of the material divided by the volume it occupies.
 
 The total number of particles comprising the material divided by the volume it occupies.
 
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.number-density.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| yes | no | float | [] | NumberDensity | 1/angstrom^3 |
 
-<span class='legacy'>Legacy: A real number containing the number density *n*.</span> <span class='legacy'>Legacy unit: inverse cubic meter (1/m^3)</span>
+The number density <i>n</i>.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.number-density.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -498,11 +564,33 @@ The total number of particles comprising the material divided by the volume it o
 
 The domain occupied by the material in the simulation (if fixed).
 
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.cell.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| yes | no | float | [3,3] | Length | angstrom |
 
-<span class='legacy'>Legacy: Ordered list of three vectors (a, b, c), each with three components, that define the simulation cell. The vectors (a, b, c) need not be orthogonal, and the magnitudes (│a│, │b│, │c│) are the supercell vector lengths.</span> <span class='legacy'>Legacy unit: meter (m)</span>
+Ordered list of three vectors (a, b, c), each with three components, that define the simulation cell. The vectors (a, b, c) need not be orthogonal, and the magnitudes (|a|, |b|, |c|) are the supercell vector lengths. The unit applies to all nine components.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.cell.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -511,11 +599,33 @@ The domain occupied by the material in the simulation (if fixed).
 
 The domain occupied by the material in the simulation in configuration relative to which strains are defined.
 
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.cell-reference.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| yes | no | float | [3,3] | Length | angstrom |
 
-<span class='legacy'>Legacy: Ordered list of three vectors (a0, b0, c0), each with three components, that define the cell used in the simulation in its reference configuration. The vectors (a0, b0, c0) need not be orthogonal, and the magnitudes (│a0│, │b0│, │c0│) are the reference cell vector lengths.</span> <span class='legacy'>Legacy unit: meter (m)</span>
+Ordered list of three vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>), each with three components, that define the cell used in the simulation in its reference configuration. The vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) need not be orthogonal, and the magnitudes (|a<sub>0</sub>|, |b<sub>0</sub>|, |c<sub>0</sub>|) are the reference cell vector lengths. The unit applies to all nine components.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.cell-reference.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -526,9 +636,9 @@ Specification of whether periodic boundary conditions are applied along the cell
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | bool | [3] | inapplicable | — |
 
-<span class='legacy'>Legacy: Ordered list of three booleans (*pa*,, *pb*,, *pc*,), which are set to true if periodic boundary conditions are applied along the corresponding cell vectors (a, b, c).</span>
+Ordered list of three booleans (<i>p</i><sub>a</sub>, <i>p</i><sub>b</sub>, <i>p</i><sub>c</sub>), which are set to true if periodic boundary conditions are applied along the corresponding cell vectors (a, b, c).
 
 </details>
 
@@ -537,11 +647,33 @@ Specification of whether periodic boundary conditions are applied along the cell
 
 A measure of the hotness or coldness of an external heat bath in thermal contact with the material.
 
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| yes | no | float | [] | Temperature | K |
 
-<span class='legacy'>Legacy: A real number containing the temperature *T*.</span> <span class='legacy'>Legacy unit: kelvin (K)</span>
+The temperature <i>T</i>.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -550,11 +682,37 @@ A measure of the hotness or coldness of an external heat bath in thermal contact
 
 A uniform force per unit current area, including both normal and shear components, applied to the material during the simulation through contact with an external loading device.
 
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+Note 1: Requires the definition of the cell subproperty in order for a basis to be defined relative to which the tensor components are given.
+
+Note 2: The adopted sign convention is for tensile normal stresses to be positive, and compressive normal stresses to be negative. This implies that for a material subjected to a positive pressure <i>p</i>, the stress tensor components are [-<i>p</i>, -<i>p</i>, -<i>p</i>, 0, 0, 0].
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.stress.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| yes | no | float | [6] | Pressure | GPa |
 
-<span class='legacy'>Legacy: An array of six real numbers containing the components of the (symmetric) Cauchy stress tensor σ in the following order: [*σ*11, *σ*22, *σ*33, *σ*23, *σ*13, *σ*12]. The stress component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a, e2 is in the direction of c╳a, and e3= e1╳e2, where (a, b, c) are the vectors defining the cell, which may not be orthogonal. Note 1: Requires the definition of the cell subproperty in order for a basis to be defined relative to which the tensor components are given. Note 2:The adopted sign convention is for tensile normal stresses to be positive, and compressive normal stresses to be negative. This implies that for a material subjected to a positive pressure *p*, the stress tensor components are [-*p*, -*p*, -*p*, 0, 0, 0].</span> <span class='legacy'>Legacy unit: pascal (Pa)</span>
+The components of the (symmetric) Cauchy stress tensor <i>σ</i> in the following order: [<i>σ</i><sub>11</sub>, <i>σ</i><sub>22</sub>, <i>σ</i><sub>33</sub>, <i>σ</i><sub>23</sub>, <i>σ</i><sub>13</sub>, <i>σ</i><sub>12</sub>]. The stress components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal. The unit applies to all six components.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.stress.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -565,9 +723,11 @@ A deformation relative to a reference configuration imposed on the simulation ce
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | float | [6] | dimensionless | — |
 
-<span class='legacy'>Legacy: An array of six real numbers containing the components of the (symmetric) Lagrangian strain tensor Ein the following order: [*E*11, *E*22, *E*33, *E*23, *E*13, *E*12]. The strain component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a0, e2 is in the direction of c0╳a0, and e3= e1╳e2, where (a0, b0, c0) are the vectors defining the cell in the reference configuration, which may not be orthogonal. Note: Requires the definition of cell-reference in order for the basis to be defined relative to which the tensor components are given.</span> <span class='legacy'>Legacy unit: dimensionless</span>
+The components of the (symmetric) Lagrangian strain tensor <i>E</i> in the following order: [<i>E</i><sub>11</sub>, <i>E</i><sub>22</sub>, <i>E</i><sub>33</sub>, <i>E</i><sub>23</sub>, <i>E</i><sub>13</sub>, <i>E</i><sub>12</sub>]. The strain components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a<sub>0</sub>, e<sub>2</sub> is in the direction of c<sub>0</sub>╳a<sub>0</sub>, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) are the vectors defining the cell in the reference configuration, which may not be orthogonal.
+
+Note: Requires the definition of cell-reference in order for the basis to be defined relative to which the tensor components are given.
 
 </details>
 
@@ -576,13 +736,35 @@ A deformation relative to a reference configuration imposed on the simulation ce
 
 The derivative with respect to time of a deformation relative to a reference configuration imposed on the simulation cell expressed in the referential frame (Lagrangian strain rate tensor), which is constant throughout the simulation.
 
-| Required | Repeatable | Type | Extent | Kind | Rec. unit |
-|---|---|---|---|---|---|
-| no | no | — | — | — | — |
-
-<span class='legacy'>Legacy: An array of six real numbers containing the components of the (symmetric) Lagrangian strain rate tensor E in the following order: [*E11, E22, E33, E23, E13, E12,*]. The strain component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a0, e2 is in the direction of c0╳a0, and e3= e1╳e2, where (a0, b0, c0) are the vectors defining the cell in the reference configuration, which may not be orthogonal.</span> <span class='legacy'>Legacy unit: inverse seconds (1/s)</span>
+| Required | Repeatable |
+|---|---|
+| no | no |
 
 Requires the definition of cell-reference in order for the basis to be defined relative to which the tensor components are given
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.strain-rate.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | float | [6] | InverseTime | 1/s |
+
+The components of the (symmetric) Lagrangian strain rate tensor <i>Ė</i> in the following order: [<i>Ė</i><sub>11</sub>, <i>Ė</i><sub>22</sub>, <i>Ė</i><sub>33</sub>, <i>Ė</i><sub>23</sub>, <i>Ė</i><sub>13</sub>, <i>Ė</i><sub>12</sub>]. The strain rate components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a<sub>0</sub>, e<sub>2</sub> is in the direction of c<sub>0</sub>╳a<sub>0</sub>, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) are the vectors defining the cell in the reference configuration, which may not be orthogonal.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.strain-rate.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -591,11 +773,33 @@ Requires the definition of cell-reference in order for the basis to be defined r
 
 The amount of thermal energy transferred to the material per unit area per unit time along a given direction.
 
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.heat-flux.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| yes | no | float | [3] | HeatFluxDensity | W/m^2 |
 
-<span class='legacy'>Legacy: An array of three real numbers containing the components of the heat flux vector q. The heat flux component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a, e2 is in the direction of c╳a, and e3= e1╳e2, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.</span> <span class='legacy'>Legacy unit: watts per square meter (W/m^2)</span>
+The components of the heat flux vector q. The heat flux components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.heat-flux.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -604,11 +808,33 @@ The amount of thermal energy transferred to the material per unit area per unit 
 
 A physical quantity that describes the rate and direction of maximum temperature change per unit distance.
 
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature-gradient.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| yes | no | float | [3] | TemperatureGradient | K/m |
 
-<span class='legacy'>Legacy: An array of three real numbers containing the components of the temperature gradient vector ∇*T*. The temperature gradient component are expressed relative to an orthonormal basis (e1, e2, e3), where e1 is in the direction of a, e2 is in the direction of c╳a, and e3= e1╳e2, where (a, b, c) are the vectors defining cell, which may not be orthogonal.</span> <span class='legacy'>Legacy unit: kelvin per meter (K/m)</span>
+The components of the temperature gradient vector ∇<i>T</i>. The temperature gradient components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature-gradient.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -630,9 +856,9 @@ The name of the software package.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the name of the software package (e.g. "VASP").</span>
+Examples: `VASP`.
 
 </details>
 
@@ -643,9 +869,9 @@ The version of the software package.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the software version (e.g. "6.3.1")</span>
+Examples: `6.3.1`.
 
 </details>
 
@@ -665,9 +891,7 @@ The file name.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the name of the included file.</span>
+| yes | no | string | [] | inapplicable | — |
 
 </details>
 
@@ -678,9 +902,7 @@ A brief description of the file and its contents.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the file description.</span>
+| yes | no | string | [] | inapplicable | — |
 
 </details>
 
@@ -691,9 +913,7 @@ The text and/or data contained in the file. Not required in case a link to the f
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the file contents.</span>
+| no | no | string | [] | inapplicable | — |
 
 </details>
 
@@ -704,9 +924,9 @@ A URI pointing to a permanent location of the file online.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the file URI.</span>
+Format: `uri` (JSON Schema 2020-12).
 
 </details>
 
