@@ -394,3 +394,28 @@ def test_minimal_is_complete():
     doc = yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))
     assert doc.get('legacy_complete') is True
     assert [k for p in doc['properties'] for k in legacy_fields(p)] == []
+
+
+def dft(name):
+    """Return a top-level property of schema/dft.yaml.
+
+    name (str): the property's name.
+    """
+    return next(p for p in yaml.safe_load(open(ROOT / 'schema/dft.yaml'))['properties'] if p['name'] == name)
+
+
+def test_xc_functional_structure():
+    """A calculation names each exchange-correlation functional by its form, with optional prose and
+    parameters; the parameter is a generic parameter, since the schema cannot know which a functional
+    uses (0016)."""
+    from check_generic import generic_errors
+    xc = dft('xc-functional')
+    param = ('xc-parameter', False, True, None, (), (
+        ('name', True, False, 'string', (), ()), ('value', True, False, 'any', (), ()),
+        ('unit', True, False, 'string', (), ()), ('description', False, False, 'string', (), ())))
+    assert tree(xc) == ('xc-functional', True, True, None, (), (
+        ('type', True, False, 'string', ('LDA', 'GGA', 'Meta GGA', 'Hybrid', 'ML'), ()),
+        ('description', False, False, 'string', (), ()), param))
+    assert generic_errors(sub(xc, 'xc-parameter')) == []
+    assert 'LibXC:LDA_C_GK72' in sub(xc, 'description')['values']['note']
+    assert legacy_fields(xc) == []
