@@ -259,7 +259,8 @@ record or marked PROPOSED, NOT DECIDED.
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
      gains a checksum beside unique-identifier (step 5); dft valence-electron-model's typed fields
      filled, the basis set given the same checksum split (step 5); dft calculation-physics's typed
-     fields filled (step 5).
+     fields filled (step 5); dft k-point-mesh's typed fields filled, k-point-spacing removed and
+     methfessel-paxton-order replaced by a generic smearing-parameter (0004 item 47) (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -404,7 +405,13 @@ record or marked PROPOSED, NOT DECIDED.
    deleted.
    [done, PR #40 merged 2026-11-04] dft calculation-physics: a repeatable string with
    open terms (the baseline's five), "e.g. DFT+U" in the note; legacy_* deleted.
-   [todo] The rest of dft in file order, starting with k-point-mesh.
+   [done, branch k-point-mesh, PR pending] dft k-point-mesh (0004 item 47): type terms Regular
+   gamma-centered, Regular shifted, Irregular; number-of-points value + unit (int [3], minimum 1);
+   k-point-spacing removed; shift fractional (float [3], dimensionless); smearing-type terms with
+   Fermi-Dirac and Marzari-Vanderbilt; smearing-width in eV; methfessel-paxton-order replaced by
+   the generic smearing-parameter; examples/dft.xml loses its spacing, writes the smearing width
+   as 0.05 eV and the mesh type as Regular shifted (was Monkhorst-Pack); legacy_* deleted.
+   [todo] The rest of dft in file order, starting with self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must

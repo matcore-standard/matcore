@@ -514,46 +514,51 @@ properties:
   recommended-unit: null
   values: null
   repeatable: false
-  legacy_values: Contains SubProperties as listed below.
   subproperties:
   - name: type
     required: true
     description: The choice of how k-points are distributed on the mesh.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      terms: [Regular gamma-centered, Regular shifted, Irregular]
     repeatable: false
-    legacy_values: >-
-      String containing one of the following values: "Monkhorst-Pack" "Gamma centered" "Irregular" Other
-      user-specified value if none of the above apply.
   - name: number-of-points
     required: false
-    description: How many k-points are included along each reciprocal lattice vector.
+    description: The number of k-points included along each reciprocal lattice vector.
     type: null
     extent: null
     kind: null
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: >-
-      Ordered list of three integer numbers containing the number k-points along the three reciprocal
-      lattice vector directions.
-    legacy_unit: dimensionless
-  - name: k-point-spacing
-    required: false
-    description: Separation between k-points along each reciprocal lattice vector direction.
-    type: null
-    extent: null
-    kind: null
-    recommended-unit: null
-    values: null
-    repeatable: false
-    notes:
-    - State whether the factor 2π is included in the reciprocal length.
-    legacy_values: Real number containing the k-point spacing.
-    legacy_unit: 1/angstrom (1/Å)
+    subproperties:
+    - name: value
+      required: true
+      description: The value of the property, in the unit given by `unit`.
+      type: int
+      extent: [3]
+      kind: dimensionless
+      recommended-unit: dimensionless
+      values:
+        minimum: 1
+        note: >-
+          Ordered list of three integers, the number of k-points along the three reciprocal lattice
+          vector directions.
+      repeatable: false
+    - name: unit
+      required: true
+      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          The only allowed unit is `dimensionless`.
+      repeatable: false
   - name: shift
     required: false
     description: Translation of the k-point mesh along the reciprocal lattice vector directions.
@@ -563,25 +568,44 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: >-
-      Ordered list of three real numbers containing the shifts along the three reciprocal lattice vector
-      directions.
-    legacy_unit: 1/angstrom (1/Å)
+    subproperties:
+    - name: value
+      required: true
+      description: The value of the property, in the unit given by `unit`.
+      type: float
+      extent: [3]
+      kind: dimensionless
+      recommended-unit: dimensionless
+      values:
+        note: >-
+          Ordered list of three real numbers, the shifts along the three reciprocal lattice vector
+          directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice
+          vector.
+      repeatable: false
+    - name: unit
+      required: true
+      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          The only allowed unit is `dimensionless`.
+      repeatable: false
   - name: smearing-type
     required: false
     description: >-
       The choice of method for assigning fractional occupancies of electronic states and/or facilitating
       reciprocal space integrations.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      terms: [None, None - tetrahedron, None - Blöchl-corrected tetrahedron, Gaussian, Fermi-Dirac,
+        Methfessel-Paxton, Marzari-Vanderbilt]
     repeatable: false
-    legacy_values: >-
-      String containing one of the following values: "None" "None - tetrahedron" "None - Blöchl-corrected
-      tetrahedron" "Gaussian" "Fermi" "Methfessel-Paxton" Other user-specified value if none of the above
-      apply.
   - name: smearing-width
     required: false
     description: >-
@@ -592,21 +616,78 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: Real number containing the smearing width.
-    legacy_unit: electron Volt (eV)
-  - name: methfessel-paxton-order
+    subproperties:
+    - name: value
+      required: true
+      description: The value of the property, in the unit given by `unit`.
+      type: float
+      extent: []
+      kind: Energy
+      recommended-unit: eV
+      values:
+        minimum: 0
+      repeatable: false
+    - name: unit
+      required: true
+      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+  - name: smearing-parameter
     required: false
     description: >-
-      For smearing-type "Methfessel-Paxton", level of polynomial approximation used in the Methfessel-Paxton
-      smearing method
+      A fixed variable associated with the specified smearing method (e.g. the order of the
+      Methfessel-Paxton method).
     type: null
     extent: null
     kind: null
     recommended-unit: null
     values: null
-    repeatable: false
-    legacy_values: Integer containing the Methfessel-Paxton order.
-    legacy_unit: dimensionless
+    repeatable: true
+    subproperties:
+    - name: name
+      required: true
+      description: The designation of the smearing parameter.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+    - name: value
+      required: true
+      description: The data associated with the smearing parameter.
+      type: any
+      extent: any
+      kind: any
+      recommended-unit: null
+      values: null
+      repeatable: false
+    - name: unit
+      required: true
+      description: The unit in which the associated value is expressed.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+          only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+          (accepted with a validation warning).
+      repeatable: false
+    - name: description
+      required: false
+      description: An explanation of the meaning, source, or purpose of the parameter.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
 - name: self-consistent-field-convergence
   required: false
   description: >-
