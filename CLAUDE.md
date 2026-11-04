@@ -392,7 +392,7 @@ record or marked PROPOSED, NOT DECIDED.
    pseudopotential file, `unique-identifier` kept for any other designation, each note pointing
    to the other; examples/dft.xml writes the valence-electron count as value + unit; legacy_*
    deleted.
-   [done, branch valence-electron-model, PR pending] dft valence-electron-model: type open terms
+   [done, PR #39 merged 2026-11-04] dft valence-electron-model: type open terms
    (repeatable); the localized-orbital basis set gets the pseudopotential's checksum /
    unique-identifier split and Annex I's doi; kinetic-energy-cutoff and charge-density-cutoff
    value + unit (Energy, recommended eV, minimum 0; 0001 A3.1); two baseline typos fixed (a
