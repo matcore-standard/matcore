@@ -64,6 +64,9 @@ def values_text(p, show_legacy):
         out.append(f"Format: `{v['format']}` (JSON Schema 2020-12).")
     if 'pattern' in v:
         out.append(f"Pattern: `{v['pattern']}`.")
+    if 'depends-on' in v:  # values that depend on a sibling (0013, settled 2026-11-03)
+        out.append(f"Depends on `{v['depends-on']}`.")
+        out += [f'For `{k}`: ' + values_text({'values': case}, False) for k, case in v['cases'].items()]
     if 'examples' in v:
         out.append('Examples: ' + ', '.join(f'`{x}`' for x in v['examples']) + '.')
     if 'note' in v:

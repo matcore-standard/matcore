@@ -146,6 +146,10 @@ def test_values_text_states_every_values_key():
     assert text({'minimum': 0, 'maximum': 1}) == 'From 0 to 1.'
     assert text({'minimum': 0}) == 'Minimum: 0.'
     assert text({'maximum': 1}) == 'Maximum: 1.'
+    assert text({'depends-on': 'method-class',
+                 'cases': {'Electronic': {'terms': ['DFT']}, 'Atomistic': {'terms': ['MD']}}}) == (
+        'Depends on `method-class`. For `Electronic`: Recommended: `DFT`. Other values are allowed. '
+        'For `Atomistic`: Recommended: `MD`. Other values are allowed.')
     assert text({'format': 'date'}) == 'Format: `date` (JSON Schema 2020-12).'
     assert text({'pattern': 'MC-[0-9]{4}'}) == 'Pattern: `MC-[0-9]{4}`.'
     assert text({'format': 'uri', 'examples': ['https://ror.org/x'], 'note': 'An ROR ID.'}) == \

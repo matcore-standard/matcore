@@ -327,8 +327,10 @@ record or marked PROPOSED, NOT DECIDED.
    0004 items 43–45 applied; *universal* restored in the minimal introduction and the space after
    "Note:" in the five notes; nested bullets use the .docx's symbols ● ○ ■ (disc, circle,
    square in layout.css); tests/test_preamble.py checks the nesting, the notes and the bullets.
-   [todo] 0013 `depends-on`/`cases`: meta-schema, check_values.py, build_docs.py, tests (one
-   PR), before the computation PR.
+   [done, branch depends-on, PR pending] 0013 `depends-on`/`cases`: meta-schema.yaml
+   (`$defs/value-keys`, shared by values and each case; the two keys come together; cases do not
+   nest), check_values.dependency_errors() (called by validate_schema.py with the siblings),
+   build_docs.py ("Depends on `x`. For `A`: …"), tests.
    [todo] The rest of minimal in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
