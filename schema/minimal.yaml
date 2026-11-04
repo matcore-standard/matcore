@@ -1185,6 +1185,9 @@ properties:
     values:
       pattern: '\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?'
       examples: ['2021-02-22', '2021-02-22T14:30:00Z']
+      note: >-
+        A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the
+        [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
     repeatable: false
   - name: agent
     required: true
@@ -1260,15 +1263,17 @@ properties:
 - name: matcore-date
   required: true
   description: The calendar date and time when this MatCore document was created.
-  type: null
-  extent: null
-  kind: null
+  type: string
+  extent: []
+  kind: inapplicable
   recommended-unit: null
-  values: null
+  values:
+    pattern: '\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?'
+    examples: ['2021-02-22', '2021-02-22T14:30:00Z']
+    note: >-
+      A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the
+      [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
   repeatable: false
-  legacy_values: >-
-    A string containing the creation date in either format YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssz (where "z"
-    indicates UTC time zone) format (following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html)).
 - name: license
   required: true
   description: >-

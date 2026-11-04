@@ -1218,7 +1218,7 @@ The date and time when the change was made.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Pattern: `\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?`. Examples: `2021-02-22`, `2021-02-22T14:30:00Z`.
+Pattern: `\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?`. Examples: `2021-02-22`, `2021-02-22T14:30:00Z`. A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
 
 </details>
 
@@ -1312,9 +1312,9 @@ The calendar date and time when this MatCore document was created.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the creation date in either format YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssz (where "z" indicates UTC time zone) format (following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html)).</span>
+Pattern: `\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?`. Examples: `2021-02-22`, `2021-02-22T14:30:00Z`. A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
 
 </details>
 

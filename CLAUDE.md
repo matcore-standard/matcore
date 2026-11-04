@@ -278,7 +278,8 @@ record or marked PROPOSED, NOT DECIDED.
      2026-11-04) (step 5);
      related-content's typed fields filled, `links` renamed `link`, one URI per entry (step 5);
      provenance's typed fields filled, `comments` renamed `comment`, checksum a container of file,
-     algorithm and value (step 5); matcore-id's typed fields filled, its form left open (step 5).
+     algorithm and value (step 5); matcore-id's typed fields filled, its form left open (step 5);
+     matcore-date's typed fields filled, written as creation-date (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -396,7 +397,10 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED (for step 6): the form of a MatCore ID, including whether it has a URI
    form (so it could be a related-content link), and who issues one; matcore-id is required, yet
    the standard does not say where an author obtains it.
-   [todo] The rest of minimal in file order, starting with matcore-date.
+   [done, branch matcore-date, PR pending] matcore-date: written as creation-date (same pattern,
+   examples and note, locked by a test); legacy_* deleted. provenance › date gets creation-date's
+   note too (missed in PR #33), and a test now compares all of its values.
+   [todo] The rest of minimal in file order, starting with license.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
