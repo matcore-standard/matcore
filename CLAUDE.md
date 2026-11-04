@@ -192,7 +192,8 @@ items are applied in their "alone" form (see 0001's note). Kept for reference.
 ## Migration losses found by the 2026-11-03 audit of the .docx
 All 518 descriptions and legacy texts, the Preamble, the section introductions and the example
 captions were compared with the baseline .docx. Apart from intentional changes, these were lost:
-- §1.3 bullet nesting (three levels in the .docx; flat on the site).
+- §1.3 bullet nesting (three levels in the .docx; flat on the site), and the bullet symbol of
+  each level (● ○ ■ in the .docx; ● at every level in the theme).
 - The italics of *universal* in the minimal introduction.
 - The space after "Note:" in five notes (minimal method-class, md particle-interactions, ml
   ml-task › type, the two mbpt dielectric-matrix notes) and in some legacy texts.
@@ -256,7 +257,10 @@ record or marked PROPOSED, NOT DECIDED.
      `phase` renamed `phases` (a list), concentration in atomic percent (0–100) and species an enum
      of the 118 IUPAC element symbols (step 5); concentration's note states that a material
      component's concentrations sum to 100 (0004 item 40); §1.3 states the units rule of 0001 A1.1
-     and lists Kind and Recommended unit among a property's features (0001 A1.2, 0015).
+     and lists Kind and Recommended unit among a property's features (0001 A1.2, 0015); §1.3's
+     bullets nested as in the baseline, with Type and Extent added, Values trimmed, plain wording
+     for pure numbers and nested SubProperties (0004 items 43–45); the italics of *universal*
+     and five "Note: " spaces restored (migration losses).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -319,8 +323,10 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #22 merged 2026-11-03] 0015: scripts/check_units.py (called by
    validate_schema.py) checks the fixed `unit` form; 0001 A1.1/A1.2 applied to §1.3 with "Kind".
    (A1.1/A1.2 were missed when step 3 handed Part A to step 5.)
-   [todo] §1.3 and migration fixes (one PR): restore the nesting; apply 0004 items 43–45; restore
-   *universal* in the minimal introduction and the space after "Note:" in the five notes.
+   [done, branch preamble-format, PR pending] §1.3 and migration fixes: the nesting restored;
+   0004 items 43–45 applied; *universal* restored in the minimal introduction and the space after
+   "Note:" in the five notes; nested bullets use the .docx's symbols ● ○ ■ (disc, circle,
+   square in layout.css); tests/test_preamble.py checks the nesting, the notes and the bullets.
    [todo] 0013 `depends-on`/`cases`: meta-schema, check_values.py, build_docs.py, tests (one
    PR), before the computation PR.
    [todo] The rest of minimal in file order, starting with computation.

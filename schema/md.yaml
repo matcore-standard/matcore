@@ -150,7 +150,7 @@ properties:
   repeatable: true
   notes:
   - >-
-    Note:This field can be repeated in cases where there are multiple interaction models used in the same
+    Note: This field can be repeated in cases where there are multiple interaction models used in the same
     simulation (e.g. hybrid calculations combining multiple models or QM/MM style computations).
   legacy_values: Contains SubProperties as listed below.
   subproperties:
