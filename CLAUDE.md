@@ -378,7 +378,7 @@ record or marked PROPOSED, NOT DECIDED.
    expression, described in its note (the SPDX specification 2.3.1, the SPDX License List,
    LicenseRef-), with no list copied into the schema; legacy_* deleted. minimal is complete: it
    declares `legacy_complete: true` (0004 item 36).
-   [done, branch xc-functional, PR pending] dft xc-functional: type open terms (LDA, GGA, Meta GGA,
+   [done, PR #37 merged 2026-11-04] dft xc-functional: type open terms (LDA, GGA, Meta GGA,
    Hybrid, ML; definitions in the note); description keeps the baseline's guide as its note, with
    the baseline's typo VMN corrected to VWN (Vosko–Wilk–Nusair);
    xc-parameter is the first generic parameter in the form of 0016, the baseline's hint on its
