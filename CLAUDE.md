@@ -89,6 +89,9 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   `dimensionless`, the only symbol of that kind. validate_schema.py checks all of this; generic
   parameters (value kind any) and free-form units are outside the check (0015, amended twice
   2026-11-04).
+  PROPOSED, NOT DECIDED: a note telling the reader that `dimensionless` is the only allowed unit
+  of a dimensionless value, on its `unit` or its `value`; placement and wording open (raised
+  2026-11-04).
 - Reserved kinds: dimensionless (ratios, counts), inapplicable (non-quantities), any (fixed by the
   instance or by a required enumerated subproperty).
   Angles and moles are NOT dimensionless.
@@ -357,7 +360,7 @@ record or marked PROPOSED, NOT DECIDED.
    doi in Annex I's https URI form (0014, settled 2026-11-04), its pattern locked to the table by
    tests/test_properties.py; link format uri; legacy_* deleted. Both uri links of minimal get an
    example: citation › link the Si GAP paper's arXiv page, software › file › link its ColabFit page.
-   [done, branch dimensionless-values, PR pending] 0015's second amendment: check_units.py
+   [done, PR #28 merged 2026-11-04] 0015's second amendment: check_units.py
    requires every numerical leaf (kind physical or dimensionless) to be a `value` beside a `unit`;
    concentration (an atomic fraction 0–1, 0004 item 46), number-of-particles and strain as
    value + unit, recommended unit `dimensionless`; examples/minimal.xml writes the Si
