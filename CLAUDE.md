@@ -327,7 +327,7 @@ record or marked PROPOSED, NOT DECIDED.
    0004 items 43–45 applied; *universal* restored in the minimal introduction and the space after
    "Note:" in the five notes; nested bullets use the .docx's symbols ● ○ ■ (disc, circle,
    square in layout.css); tests/test_preamble.py checks the nesting, the notes and the bullets.
-   [done, branch depends-on, PR pending] 0013 `depends-on`/`cases`: meta-schema.yaml
+   [done, PR #24 merged 2026-11-04] 0013 `depends-on`/`cases`: meta-schema.yaml
    (`$defs/value-keys`, shared by values and each case; the two keys come together; cases do not
    nest), check_values.dependency_errors() (called by validate_schema.py with the siblings),
    build_docs.py ("Depends on `x`. For `A`: …"), tests.
