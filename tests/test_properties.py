@@ -206,3 +206,55 @@ def test_computation_restores_the_docx_notation():
     assert '|a|' in note('cell') and '│' not in note('cell') + note('cell-reference')
     assert 'a<sub>0</sub>' in note('cell-reference')
     assert legacy_fields(minimal('computation')) == []
+
+
+def test_citation_structure():
+    """A citation is a repeatable container of a required reference and an optional doi and link, all
+    plain strings; the link is a URI."""
+    c = minimal('citation')
+    assert tree(c) == ('citation', False, True, None, (), (
+        ('reference', True, False, 'string', (), ()),
+        ('doi', False, False, 'string', (), ()),
+        ('link', False, False, 'string', (), ())))
+    assert sub(c, 'link')['values']['format'] == 'uri'
+    assert legacy_fields(c) == []
+
+
+def doi_properties():
+    """Return every property named doi in the section files, with its location.
+
+    Returns list[tuple[str, dict]]: the section/path and the property entry.
+    """
+    out = []
+    for f in sorted((ROOT / 'schema').glob('*.yaml')):
+        doc = yaml.safe_load(f.read_text())
+        stack = [(f.stem, p) for p in doc.get('properties') or []] if 'section' in doc else []
+        while stack:
+            path, p = stack.pop()
+            here = f"{path}/{p['name']}"
+            if p['name'] == 'doi':
+                out.append((here, p))
+            stack += [(here, s) for s in p.get('subproperties') or []]
+    return out
+
+
+def test_every_typed_doi_uses_the_annex_i_pattern():
+    """A DOI is written one way everywhere: the pattern of Annex I's DOI entry, copied exactly, so no
+    copy drifts from the table (0014, settled 2026-11-04)."""
+    pattern = yaml.safe_load((ROOT / 'schema/identifier-schemes.yaml').read_text())['schemes']['DOI']['pattern']
+    dois = doi_properties()
+    assert len(dois) == 4 and 'minimal/citation/doi' in [h for h, _ in dois]
+    for here, p in dois:
+        if p['type'] is not None:
+            assert (p['type'], p['extent'], p['kind']) == ('string', [], 'inapplicable'), here
+            assert p['values']['pattern'] == pattern, here
+
+
+@pytest.mark.parametrize('value, ok', [('https://doi.org/10.1000/182', True),
+                                       ('https://doi.org/10.1103/PhysRevX.8.041048', True),
+                                       ('10.1000/182', False), ('doi:10.1000/182', False),
+                                       ('http://dx.doi.org/10.1000/182', False)])
+def test_citation_doi_is_the_https_uri(value, ok):
+    """Only the https URI form at doi.org conforms; the bare and legacy forms do not."""
+    check = Draft202012Validator(value_schema(sub(minimal('citation'), 'doi')))
+    assert check.is_valid(value) == ok

@@ -926,7 +926,7 @@ A URI pointing to a permanent location of the file online.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Format: `uri` (JSON Schema 2020-12).
+Format: `uri` (JSON Schema 2020-12). Examples: `https://materials.colabfit.org/id/DS_u9wd92plbetq_0`.
 
 </details>
 
@@ -952,9 +952,7 @@ Text that uniquely identifies the source of information being cited.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the reference to the source.</span>
+| yes | no | string | [] | inapplicable | — |
 
 </details>
 
@@ -965,9 +963,9 @@ The digital object identifier (DOI) for the source.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the source DOI.</span>
+Pattern: `https://doi\.org/10\.[^/]+/.+`. Examples: `https://doi.org/10.1000/182`.
 
 </details>
 
@@ -978,9 +976,9 @@ A URI pointing to a permanent location of the source.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the file URI.</span>
+Format: `uri` (JSON Schema 2020-12). Examples: `https://arxiv.org/abs/1805.01568`.
 
 </details>
 

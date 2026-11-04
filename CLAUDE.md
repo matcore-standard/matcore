@@ -268,7 +268,8 @@ record or marked PROPOSED, NOT DECIDED.
      method depending on method-class, simulation conditions typed per 0001 A2.2, the ten physical
      ones as containers of `value` and `unit` (0015, amended), the SI-units note removed (0001
      A2.1) and the .docx notation restored (step 5); §1.3's units bullet states the leaf/container
-     rule and the `value` + `unit` form (0015, amended).
+     rule and the `value` + `unit` form (0015, amended); citation's typed fields filled, every
+     `doi` in Annex I's https URI form (0014, settled 2026-11-04) (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -349,7 +350,11 @@ record or marked PROPOSED, NOT DECIDED.
    open terms; the .docx notation restored (subscripts, Ė, |); legacy_* deleted. The same PR
    applies the 0015 amendment: check_units.py checks leaves, containers and value + unit; §1.3's
    units bullet reworded.
-   [todo] The rest of minimal in file order, starting with citation.
+   [done, branch citation, PR pending] citation: a repeatable container; reference a free string;
+   doi in Annex I's https URI form (0014, settled 2026-11-04), its pattern locked to the table by
+   tests/test_properties.py; link format uri; legacy_* deleted. Both uri links of minimal get an
+   example: citation › link the Si GAP paper's arXiv page, software › file › link its ColabFit page.
+   [todo] The rest of minimal in file order, starting with funding.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must

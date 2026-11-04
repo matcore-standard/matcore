@@ -932,6 +932,7 @@ properties:
         recommended-unit: null
         values:
           format: uri
+          examples: ['https://materials.colabfit.org/id/DS_u9wd92plbetq_0']
         repeatable: false
 - name: citation
   required: false
@@ -942,38 +943,38 @@ properties:
   recommended-unit: null
   values: null
   repeatable: true
-  legacy_values: Contains SubProperties as listed below.
   subproperties:
   - name: reference
     required: true
     description: Text that uniquely identifies the source of information being cited.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: A string containing the reference to the source.
   - name: doi
     required: false
     description: The digital object identifier (DOI) for the source.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      pattern: 'https://doi\.org/10\.[^/]+/.+'
+      examples: ['https://doi.org/10.1000/182']
     repeatable: false
-    legacy_values: A string containing the source DOI.
   - name: link
     required: false
     description: A URI pointing to a permanent location of the source.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      format: uri
+      examples: ['https://arxiv.org/abs/1805.01568']
     repeatable: false
-    legacy_values: A string containing the file URI.
 - name: funding
   required: false
   description: >-
