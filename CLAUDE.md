@@ -104,11 +104,12 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
 
 ## Generic parameters and free-form units (decided; see docs/decisions/0001 and 0003)
 Three groups, not to be merged:
-1. Generic parameters: xc-parameter (dft), computation-parameter and td-parameter (md),
-   model-parameter (pf), calculation-parameter (derived). Their `value` has type any, extent any,
-   kind any; the instance supplies type, shape and unit. The generic-parameter rule applies to
-   these only. The instance type is one of float, int, string, bool, and is stated in the instance,
-   not inferred from how the value is written; each serialization (defined in §1.3) defines how.
+1. Generic parameters: xc-parameter and smearing-parameter (dft; 0004 item 47), computation-parameter
+   and td-parameter (md), model-parameter (pf), calculation-parameter (derived). Their `value` has
+   type any, extent any, kind any; the instance supplies type, shape and unit. The generic-parameter
+   rule applies to these only. The instance type is one of float, int, string, bool, and is stated
+   in the instance, not inferred from how the value is written; each serialization (defined in
+   §1.3) defines how.
    The value need not be a scalar (0004).
 2. Free-form units: field-variable, free-energy (pf). No `value`; a free-form `unit` whose kind
    the schema does not fix.
@@ -120,11 +121,11 @@ Every `unit` subproperty has kind inapplicable and holds an Annex U symbol or `d
 `x-gnu:` escape (Annex U Rule 4) is permitted only in groups 1 and 2, where the schema does not fix
 the kind; group 3 and all other typed properties use Annex U symbols only (0001 A1.1).
 PROPOSED, NOT DECIDED: state conditional validation rules (the allowed unit or values of one
-subproperty depend on another's value: `convention` for k-point-spacing, `basis` for
-exciton-momentum, `scaling` for PF lengths and times) once in §1.3, so each property refers to the
-rule rather than restating it. Needs a decision before implementation, when the first such
-property comes up (dft k-point-spacing); whether 0013's `depends-on`/`cases` can express it is part
-of that decision.
+subproperty depend on another's value: `basis` for exciton-momentum, `scaling` for PF lengths and
+times) once in §1.3, so each property refers to the rule rather than restating it. Needs a decision
+before implementation, when the first such property comes up (mbpt exciton-momentum); whether
+0013's `depends-on`/`cases` can express it is part of that decision. (dft k-point-spacing, the
+first candidate, is removed: 0004 item 47.)
 Group 1 is defined once in §1.3 as a *generic parameter* (0016): a container of `name*`, `value*`
 (type, extent and kind any), `unit*` (fixed description "The unit in which the associated value is
 expressed." (0001 B9) and the A3.2 note) and `description`, in that order. It is recognised by a
@@ -191,7 +192,9 @@ items are applied in their "alone" form (see 0001's note). Kept for reference.
 - Table MD-3 was malformed in the Google Doc: its header row was actually the `source` parent row.
   Migration handled it; check md.yaml › particle-interactions / source against the docx (0004).
 - The accepted items of docs/decisions/0001-units-change-list.md Part B (see its Status line).
-  B2 (added note) and B5 are PROPOSED, NOT DECIDED; B9 is decided for generic parameters (0016).
+  B2 (added note) is PROPOSED, NOT DECIDED; B9 is decided for generic parameters (0016); B5 is
+  settled as fractional shifts, k-point-spacing removed and methfessel-paxton-order replaced by a
+  generic smearing-parameter (0004 item 47).
   B4's Ė symbol needs no decision: the baseline .docx already writes the strain-rate tensor as Ė
   (Word equation objects), and the migration dropped the dot; the computation PR restores it.
 
