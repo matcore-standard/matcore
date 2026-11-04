@@ -405,7 +405,7 @@ record or marked PROPOSED, NOT DECIDED.
    deleted.
    [done, PR #40 merged 2026-11-04] dft calculation-physics: a repeatable string with
    open terms (the baseline's five), "e.g. DFT+U" in the note; legacy_* deleted.
-   [done, branch k-point-mesh, PR pending] dft k-point-mesh (0004 item 47): type terms Regular
+   [done, PR #41 merged 2026-11-04] dft k-point-mesh (0004 item 47): type terms Regular
    gamma-centered, Regular shifted, Irregular; number-of-points value + unit (int [3], minimum 1);
    k-point-spacing removed; shift fractional (float [3], dimensionless); smearing-type terms with
    Fermi-Dirac and Marzari-Vanderbilt; smearing-width in eV; methfessel-paxton-order replaced by
