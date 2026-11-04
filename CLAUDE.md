@@ -309,8 +309,9 @@ record or marked PROPOSED, NOT DECIDED.
    open terms) and `affiliation` as a container (name + at most one identifier).
    [done, PR #12 merged 2026-11-01] schema/identifier-schemes.yaml built (ORCID, ROR, DOI, SWHID,
    ISNI, each traced to its documentation), checked by validate_schema.py, published as Annex I.
-   dft `unique-identifier` is a hash and does not use it; the dft `doi` properties are decided in
-   their PR (0014, settled 2026-11-01).
+   dft `unique-identifier` is a hash and does not use it (0014, settled 2026-11-01). Every `doi`
+   property is a string in Annex I's https URI form, its pattern copied exactly from the table's
+   DOI entry and kept in step by a test (0014, settled 2026-11-04).
    [done, PR #13 merged 2026-11-02] creator: restructured by 0014, typed fields filled,
    legacy_* deleted; examples/minimal.xml affiliations get a `name`; tests/test_properties.py
    locks the 0014 tree.
