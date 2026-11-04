@@ -340,9 +340,9 @@ def test_provenance_structure():
 
 
 def test_provenance_date_takes_the_creation_date_forms():
-    """An event's date is written as the dataset's creation date is, so one rule reads both."""
-    assert (sub(minimal('provenance'), 'date')['values']['pattern']
-            == minimal('creation-date')['values']['pattern'])
+    """An event's date is written as the dataset's creation date is, with the same pattern, examples and
+    note, so one rule reads both."""
+    assert sub(minimal('provenance'), 'date')['values'] == minimal('creation-date')['values']
 
 
 @pytest.mark.parametrize('value, ok', [('9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', True),
@@ -364,4 +364,14 @@ def test_matcore_id_is_a_string_whose_form_is_open():
     assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind'], p['recommended-unit']) == (
         True, False, 'string', [], 'inapplicable', None)
     assert 'pattern' not in (p['values'] or {}) and 'format' not in (p['values'] or {})
+    assert legacy_fields(p) == []
+
+
+def test_matcore_date_is_written_as_creation_date():
+    """The date of the MatCore document is written as the dataset's creation date is: the same type,
+    pattern, examples and note, so one rule reads both."""
+    p, c = minimal('matcore-date'), minimal('creation-date')
+    assert (p['required'], p['repeatable']) == (True, False)
+    assert [p[k] for k in ('type', 'extent', 'kind', 'recommended-unit', 'values')] == \
+           [c[k] for k in ('type', 'extent', 'kind', 'recommended-unit', 'values')]
     assert legacy_fields(p) == []
