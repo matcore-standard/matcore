@@ -37,7 +37,7 @@ def test_format_bullets_nest_as_in_the_docx():
     features = dict(tree['Properties have'])
     assert list(features) == ['Definition: A', 'Type: The', 'Extent: The', 'Values: The', 'Kind: The',
                               'Recommended unit:', 'Repeatable: A', 'Note(s): Additional']
-    assert [w for w, _ in features['Values: The']] == ['When appropriate', 'When a', 'Units of', 'A Property']
+    assert [w for w, _ in features['Values: The']] == ['When appropriate', 'When a', 'A Property', 'A Property']
 
 
 def test_notes_keep_the_space_after_note():

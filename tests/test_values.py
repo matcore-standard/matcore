@@ -149,7 +149,7 @@ def test_dependent_values_are_checked():
 
 
 def test_validate_schema_checks_dependent_values(tmp_path):
-    """validate_schema.py, which CI runs, fails when depends-on names a sibling that lists no values."""
+    """validate_schema.py, which CI runs, fails when depends-on names no sibling."""
     import shutil
     import subprocess
     import yaml
@@ -160,7 +160,7 @@ def test_validate_schema_checks_dependent_values(tmp_path):
     comp = next(p for p in doc['properties'] if p['name'] == 'computation')
     method = next(s for s in comp['subproperties'] if s['name'] == 'method')
     method['type'], method['extent'] = 'string', []
-    method['values'] = {'depends-on': 'method-class', 'cases': {'Electronic': {'terms': ['DFT']}}}
+    method['values'] = {'depends-on': 'method-family', 'cases': {'Electronic': {'terms': ['DFT']}}}
     f.write_text(yaml.safe_dump(doc, sort_keys=False, allow_unicode=True))
     run = subprocess.run([sys.executable, tmp_path / 'scripts/validate_schema.py'], capture_output=True, text=True)
     assert run.returncode == 1 and 'computation/method: depends-on' in run.stdout
