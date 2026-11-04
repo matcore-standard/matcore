@@ -397,7 +397,7 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED (for step 6): the form of a MatCore ID, including whether it has a URI
    form (so it could be a related-content link), and who issues one; matcore-id is required, yet
    the standard does not say where an author obtains it.
-   [done, branch matcore-date, PR pending] matcore-date: written as creation-date (same pattern,
+   [done, PR #35 merged 2026-11-04] matcore-date: written as creation-date (same pattern,
    examples and note, locked by a test); legacy_* deleted. provenance › date gets creation-date's
    note too (missed in PR #33), and a test now compares all of its values.
    [todo] The rest of minimal in file order, starting with license.
