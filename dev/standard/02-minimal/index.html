@@ -3387,14 +3387,14 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing one of the following values: "Initial creation" – Initial creation of the dataset "Admin update" – Editorial update to the dataset not requiring a version update (e.g. spelling correction). "Version update" – Change to the dataset or associated files requiring a new version "Metadata update" – Change to the metadata, but not the dataset itself. Other user-specified value if none of the above apply.</span></p>
+<p>Recommended: <code>Initial creation</code>, <code>Admin update</code>, <code>Version update</code>, <code>Metadata update</code>. Other values are allowed. "Initial creation" – Initial creation of the dataset. "Admin update" – Editorial update to the dataset not requiring a version update (e.g. spelling correction). "Version update" – Change to the dataset or associated files requiring a new version. "Metadata update" – Change to the metadata, but not the dataset itself.</p>
 </details>
 <details class="note mc-property" id="minimal.provenance.date">
 <summary><span class="mc-name">date<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -3414,14 +3414,14 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing the creation date in either format YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssz (where "z" indicates UTC time zone) format (following the <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601 Date and Time Format Standard</a>).</span></p>
+<p>Pattern: <code>\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?</code>. Examples: <code>2021-02-22</code>, <code>2021-02-22T14:30:00Z</code>.</p>
 </details>
 <details class="note mc-property" id="minimal.provenance.agent">
 <summary><span class="mc-name">agent<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -3441,17 +3441,16 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing the name or other designation identifying who or what is responsible for the change.</span></p>
 </details>
-<details class="note mc-property" id="minimal.provenance.comments">
-<summary><span class="mc-name">comments</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<details class="note mc-property" id="minimal.provenance.comment">
+<summary><span class="mc-name">comment</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>Explanation for the change in provenance.</p>
 <table>
 <thead>
@@ -3468,18 +3467,34 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing an explanation for the nature of the changes leading to the revised provenance.</span></p>
 </details>
 <details class="note mc-property" id="minimal.provenance.checksum">
-<summary><span class="mc-name">checksum</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-<p>A digital fingerprint for the dataset of associated files.</p>
+<summary><span class="mc-name">checksum</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>A digital fingerprint for the dataset or an associated file modified by the provenance event.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="minimal.provenance.checksum.file">
+<summary><span class="mc-name">file<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The name of the file.</p>
 <table>
 <thead>
 <tr>
@@ -3493,16 +3508,70 @@
 </thead>
 <tbody>
 <tr>
+<td>yes</td>
 <td>no</td>
-<td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A list containing two strings: The name of a file, and the checksum for the file (e.g. the SHA-256 encoding for file).</span></p>
+</details>
+<details class="note mc-property" id="minimal.provenance.checksum.algorithm">
+<summary><span class="mc-name">algorithm<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The algorithm that computed the checksum.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>SHA1</code>, <code>SHA224</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>SHA3-256</code>, <code>SHA3-384</code>, <code>SHA3-512</code>, <code>BLAKE2b-256</code>, <code>BLAKE2b-384</code>, <code>BLAKE2b-512</code>, <code>BLAKE3</code>, <code>MD2</code>, <code>MD4</code>, <code>MD5</code>, <code>MD6</code>, <code>ADLER32</code>. Other values are allowed. The algorithm names of <a href="https://spdx.github.io/spdx-spec/v2.3.1/file-information/">SPDX 2.3.1 §8.4</a> (File checksum field).</p>
+</details>
+<details class="note mc-property" id="minimal.provenance.checksum.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The checksum of the file, in lowercase hexadecimal digits.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Pattern: <code>[0-9a-f]+</code>.</p>
+</details>
 </details>
 </details>
 <details class="note mc-property" id="minimal.matcore-id">
