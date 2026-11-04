@@ -272,7 +272,7 @@ record or marked PROPOSED, NOT DECIDED.
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
-   - [done, branch menu-toggle, PR pending] Menu consistency: the entries under "2. Schema" get
+   - [done, PR #26 merged 2026-11-04] Menu consistency: the entries under "2. Schema" get
      the left bar the theme draws under "1. Preamble"; clicking the current page's entry collapses
      and expands what is listed under it (headings or property tree) instead of reloading the page.
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
@@ -342,7 +342,7 @@ record or marked PROPOSED, NOT DECIDED.
    (`$defs/value-keys`, shared by values and each case; the two keys come together; cases do not
    nest), check_values.dependency_errors() (called by validate_schema.py with the siblings),
    build_docs.py ("Depends on `x`. For `A`: …"), tests.
-   [done, branch computation, PR pending] computation: method's terms depend on method-class
+   [done, PR #25 merged 2026-11-04] computation: method's terms depend on method-class
    (0013 depends-on/cases); simulation-conditions typed per 0001 A2.2, its ten physical
    quantities containers of the fixed `value` and `unit` (0015, amended 2026-11-04); type has
    open terms; the .docx notation restored (subscripts, Ė, |); legacy_* deleted. The same PR
