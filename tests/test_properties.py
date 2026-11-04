@@ -262,3 +262,28 @@ def test_citation_doi_is_the_https_uri(value, ok):
     """Only the https URI form at doi.org conforms; the bare and legacy forms do not."""
     check = Draft202012Validator(value_schema(sub(minimal('citation'), 'doi')))
     assert check.is_valid(value) == ok
+
+
+def test_funding_structure():
+    """A funding entry names its award and its funder; the funder has the structure of an affiliation, a
+    name with at most one ROR or ISNI identifier, since the Crossref Open Funder Registry moves into ROR
+    (0014, settled 2026-11-04)."""
+    f = minimal('funding')
+    value = ('value', True, False, 'string', (), ())
+    identifier = ('identifier', False, False, None, (), (value, ('scheme', True, False, 'string', ('ROR', 'ISNI'), ())))
+    assert tree(f) == ('funding', False, True, None, (), (
+        ('award-title', True, False, 'string', (), ()),
+        ('funder', True, False, None, (), (('name', True, False, 'string', (), ()), identifier)),
+        ('award-number', False, False, 'string', (), ())))
+    affiliation = sub(minimal('creator'), 'affiliation')
+    assert tree(sub(sub(f, 'funder'), 'identifier')) == tree(sub(affiliation, 'identifier'))
+    assert legacy_fields(f) == []
+
+
+def test_funder_identifier_example_is_a_valid_ror_id():
+    """The example funder identifier passes Annex I's ROR pattern and check digits, so it shows a value a
+    validator accepts."""
+    from check_identifiers import identifier_errors
+    v = sub(sub(sub(minimal('funding'), 'funder'), 'identifier'), 'value')
+    assert v['values']['examples'] == ['https://ror.org/021nxhr62']
+    assert identifier_errors('ROR', v['values']['examples'][0]) == []
