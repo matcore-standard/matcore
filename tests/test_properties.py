@@ -313,3 +313,45 @@ def test_related_content_link_is_one_uri(value, ok):
     check = Draft202012Validator(value_schema(sub(minimal('related-content'), 'link')),
                                  format_checker=Draft202012Validator.FORMAT_CHECKER)
     assert check.is_valid(value) == ok
+
+
+# SPDX 2.3.1 §8.4 (File checksum field), Table 39: the checksum algorithms SPDX names.
+SPDX_CHECKSUM_ALGORITHMS = ['SHA1', 'SHA224', 'SHA256', 'SHA384', 'SHA512', 'SHA3-256', 'SHA3-384', 'SHA3-512',
+                            'BLAKE2b-256', 'BLAKE2b-384', 'BLAKE2b-512', 'BLAKE3', 'MD2', 'MD4', 'MD5', 'MD6',
+                            'ADLER32']
+
+
+def test_provenance_structure():
+    """A provenance event says what changed, when and by whom, with an optional comment and the checksums
+    of the files it touched; a checksum names its file and algorithm, so it can be verified."""
+    p = minimal('provenance')
+    checksum = ('checksum', False, True, None, (), (
+        ('file', True, False, 'string', (), ()),
+        ('algorithm', True, False, 'string', tuple(SPDX_CHECKSUM_ALGORITHMS), ()),
+        ('value', True, False, 'string', (), ())))
+    assert tree(p) == ('provenance', False, True, None, (), (
+        ('event-type', True, False, 'string', ('Initial creation', 'Admin update', 'Version update',
+                                               'Metadata update'), ()),
+        ('date', True, False, 'string', (), ()),
+        ('agent', True, False, 'string', (), ()),
+        ('comment', False, False, 'string', (), ()),
+        checksum))
+    assert legacy_fields(p) == []
+
+
+def test_provenance_date_takes_the_creation_date_forms():
+    """An event's date is written as the dataset's creation date is, so one rule reads both."""
+    assert (sub(minimal('provenance'), 'date')['values']['pattern']
+            == minimal('creation-date')['values']['pattern'])
+
+
+@pytest.mark.parametrize('value, ok', [('9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', True),
+                                       ('da39a3ee5e6b4b0d3255bfef95601890afd80709', True),
+                                       ('9F86D081884C7D65', False), ('sha256:9f86d081', False), ('', False)])
+def test_checksum_value_is_lowercase_hexadecimal(value, ok):
+    """A checksum value is written as SPDX writes it, in lowercase hexadecimal digits.
+
+    value (str): a candidate checksum; ok (bool): whether it conforms.
+    """
+    v = sub(sub(minimal('provenance'), 'checksum'), 'value')
+    assert Draft202012Validator(value_schema(v)).is_valid(value) == ok

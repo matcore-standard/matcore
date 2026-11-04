@@ -276,7 +276,9 @@ record or marked PROPOSED, NOT DECIDED.
      second amendment; 0004 item 46), its `unit` noting that `dimensionless` is the only allowed unit.
      funding's typed fields filled, funder restructured as a name and an identifier (0014, settled
      2026-11-04) (step 5);
-     related-content's typed fields filled, `links` renamed `link`, one URI per entry (step 5).
+     related-content's typed fields filled, `links` renamed `link`, one URI per entry (step 5);
+     provenance's typed fields filled, `comments` renamed `comment`, checksum a container of file,
+     algorithm and value (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -383,7 +385,13 @@ record or marked PROPOSED, NOT DECIDED.
    example the Cambridge deposit of Si_PRX_GAP); description a string; its definition made
    singular ("Another dataset that is connected to the current one in some manner."); legacy_*
    deleted.
-   [todo] The rest of minimal in file order, starting with provenance.
+   [done, branch provenance, PR pending] provenance: event-type open terms (definitions in the
+   note); date the creation-date pattern, copied and locked by a test; agent a string; `comments`
+   renamed `comment` (a scalar); checksum a repeatable container (file, algorithm with SPDX 2.3.1
+   §8.4 terms, value in lowercase hex), replacing the baseline's two-string list, defined as "A
+   digital fingerprint for the dataset or an associated file modified by the provenance event.";
+   legacy_* deleted.
+   [todo] The rest of minimal in file order, starting with matcore-id.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
