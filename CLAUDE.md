@@ -399,7 +399,7 @@ record or marked PROPOSED, NOT DECIDED.
    value + unit (Energy, recommended eV, minimum 0; 0001 A3.1); two baseline typos fixed (a
    trailing comma, a stray space); examples/dft.xml writes the cutoff as 250.0 eV; legacy_*
    deleted.
-   [done, branch calculation-physics, PR pending] dft calculation-physics: a repeatable string with
+   [done, PR #40 merged 2026-11-04] dft calculation-physics: a repeatable string with
    open terms (the baseline's five), "e.g. DFT+U" in the note; legacy_* deleted.
    [todo] The rest of dft in file order, starting with k-point-mesh.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
