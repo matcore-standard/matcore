@@ -493,16 +493,16 @@ properties:
 - name: calculation-physics
   required: false
   description: Additional phenomena included beyond the standard DFT calculation.
-  type: null
-  extent: null
-  kind: null
+  type: string
+  extent: []
+  kind: inapplicable
   recommended-unit: null
-  values: null
+  values:
+    terms: [Relativistic effects, Spin polarization, Noncollinear spin polarization, On-site correlation,
+      Van der Waals]
+    note: >-
+      "On-site correlation" – e.g. DFT+U.
   repeatable: true
-  legacy_values: >-
-    String containing one of the following values: "Relativistic effects" "Spin polarization" "Noncollinear
-    spin polarization" "On-site correlation" (e.g. DFT+U) "Van der Waals" Other user-specified value if
-    none of the above apply.
 - name: k-point-mesh
   required: false
   description: >-

@@ -532,9 +532,9 @@ Additional phenomena included beyond the standard DFT calculation.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | yes | — | — | — | — |
+| no | yes | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Relativistic effects" "Spin polarization" "Noncollinear spin polarization" "On-site correlation" (e.g. DFT+U) "Van der Waals" Other user-specified value if none of the above apply.</span>
+Recommended: `Relativistic effects`, `Spin polarization`, `Noncollinear spin polarization`, `On-site correlation`, `Van der Waals`. Other values are allowed. "On-site correlation" – e.g. DFT+U.
 
 </details>
 

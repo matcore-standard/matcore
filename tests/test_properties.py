@@ -502,3 +502,15 @@ def test_cutoffs_are_energies(name):
     v = sub(sub(dft('valence-electron-model'), name), 'value')
     assert (v['extent'], v['kind'], v['recommended-unit']) == ([], 'Energy', 'eV')
     assert v['values']['minimum'] == 0
+
+
+def test_calculation_physics_lists_the_added_phenomena():
+    """Each phenomenon beyond a standard DFT calculation is one entry from an open vocabulary, so a
+    calculation that includes several repeats the property."""
+    p = dft('calculation-physics')
+    assert tree(p) == ('calculation-physics', False, True, 'string', (
+        'Relativistic effects', 'Spin polarization', 'Noncollinear spin polarization', 'On-site correlation',
+        'Van der Waals'), ())
+    assert (p['extent'], p['kind']) == ([], 'inapplicable')
+    assert 'DFT+U' in p['values']['note']
+    assert legacy_fields(p) == []
