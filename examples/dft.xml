@@ -9,7 +9,10 @@
     <pseudopotential>
       <name>Ultrasoft Pseudopotentials (USP)</name>
       <type>Ultrasoft</type>
-      <number-of-valence-electrons>4</number-of-valence-electrons>
+      <number-of-valence-electrons>
+        <value>4</value>
+        <unit>dimensionless</unit>
+      </number-of-valence-electrons>
     </pseudopotential>
   </core-electron-model>
   <valence-electron-model>

@@ -118,22 +118,21 @@ properties:
   recommended-unit: null
   values: null
   repeatable: false
-  legacy_values: Contains SubProperties as listed below.
   subproperties:
   - name: type
     required: true
     description: The method used to model the electrons.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      terms: [All Electron, LAPW, Pseudopotential, PAW]
+      note: >-
+        "All Electron" – All of the electrons in an atom are modeled explicitly. "LAPW" – Linearized
+        Augmented Plane Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core
+        electrons are modeled by a simplified potential. "PAW" – Projector Augmented Wave.
     repeatable: false
-    legacy_values: >-
-      String containing one of the following values: "All Electron" – All of the electrons in an atom
-      are modeled explicitly. "LAPW" – "Linearized Augmented Plane Wave" "Pseudopotential" – Valence electrons
-      are treated explicitly, and core electrons are modeled by a simplified potential. "PAW" – Projector
-      Augmented Wave Other user-specified value if none of the above apply.
   - name: pseudopotential
     required: false
     description: >-
@@ -144,41 +143,36 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
-    legacy_values: Contains SubSubProperties as defined in the table below.
     subproperties:
     - name: name
       required: true
       description: The name of the pseudopotential.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: A string containing the pseudopotential name.
     - name: type
       required: true
       description: The physical form of the pseudopotential.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Norm conserving, Ultrasoft]
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "Norm conserving" "Ultrasoft" Other user-specified
-        value if none of the above apply.
     - name: description
       required: false
       description: >-
         Explanatory text about the pseudopotential including any relevant identifying information.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: A string containing the pseudopotential description.
     - name: number-of-valence-electrons
       required: true
       description: The number of electrons treated explicitly.
@@ -188,49 +182,118 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: An integer containing the number of valence electrons.
-      legacy_unit: dimensionless
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: int
+        extent: []
+        kind: dimensionless
+        recommended-unit: dimensionless
+        values:
+          minimum: 1
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            The only allowed unit is `dimensionless`.
+        repeatable: false
     - name: repository
       required: false
       description: The database from which the pseudopotential was obtained.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: String containing the name of the repository.
     - name: version
       required: false
       description: The version of the pseudopotential.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        examples: ['6.3.1']
       repeatable: false
-      legacy_values: A string containing the pseudopotential version (e.g. "6.3.1")
     - name: doi
       required: false
       description: The digital object identifier (DOI) for the pseudopotential.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        pattern: 'https://doi\.org/10\.[^/]+/.+'
+      repeatable: false
+    - name: checksum
+      required: false
+      description: A digital fingerprint of the pseudopotential file, computed by a named algorithm.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: A string containing the pseudopotential DOI.
+      notes:
+      - >-
+        Note: Use checksum when the pseudopotential is identified by a checksum of its file (e.g. the
+        SHA256 hash of a VASP POTCAR file). For any other designation, use unique-identifier.
+      subproperties:
+      - name: file
+        required: true
+        description: The name of the file.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: algorithm
+        required: true
+        description: The algorithm that computed the checksum.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [SHA1, SHA224, SHA256, SHA384, SHA512, SHA3-256, SHA3-384, SHA3-512, BLAKE2b-256, BLAKE2b-384,
+            BLAKE2b-512, BLAKE3, MD2, MD4, MD5, MD6, ADLER32]
+          note: >-
+            The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/)
+            (File checksum field).
+        repeatable: false
+      - name: value
+        required: true
+        description: The checksum of the file, in lowercase hexadecimal digits.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          pattern: '[0-9a-f]+'
+        repeatable: false
     - name: unique-identifier
       required: false
-      description: A hash or other token providing a digital signature for the pseudopotential.
-      type: null
-      extent: null
-      kind: null
+      description: >-
+        A token other than a checksum that identifies the pseudopotential, such as a label or code
+        assigned by the library that distributes it.
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: >-
-        A string containing the pseudopotential identifier (e.g. a SHA256 hash for a VASP pseudopotential).
+      notes:
+      - >-
+        Note: For a checksum of the pseudopotential file, use checksum instead.
 - name: valence-electron-model
   required: true
   description: The elementary functions used for expanding electronic wave functions.

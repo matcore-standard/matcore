@@ -419,3 +419,49 @@ def test_xc_functional_structure():
     assert generic_errors(sub(xc, 'xc-parameter')) == []
     assert 'LibXC:LDA_C_GK72' in sub(xc, 'description')['values']['note']
     assert legacy_fields(xc) == []
+
+
+def test_core_electron_model_structure():
+    """The core-electron model names its method and, for pseudopotential methods, each pseudopotential: its
+    name and form, how many electrons it treats explicitly, where it came from, and what identifies it."""
+    c = dft('core-electron-model')
+    count = ('number-of-valence-electrons', True, False, None, (), (
+        ('value', True, False, 'int', (), ()), ('unit', True, False, 'string', (), ())))
+    checksum = ('checksum', False, False, None, (), tuple(tree(s) for s in
+                                                          sub(minimal('provenance'), 'checksum')['subproperties']))
+    pseudopotential = ('pseudopotential', False, True, None, (), (
+        ('name', True, False, 'string', (), ()),
+        ('type', True, False, 'string', ('Norm conserving', 'Ultrasoft'), ()),
+        ('description', False, False, 'string', (), ()), count,
+        ('repository', False, False, 'string', (), ()), ('version', False, False, 'string', (), ()),
+        ('doi', False, False, 'string', (), ()), checksum,
+        ('unique-identifier', False, False, 'string', (), ())))
+    assert tree(c) == ('core-electron-model', True, False, None, (), (
+        ('type', True, False, 'string', ('All Electron', 'LAPW', 'Pseudopotential', 'PAW'), ()), pseudopotential))
+    assert legacy_fields(c) == []
+
+
+def test_pseudopotential_checksum_is_provenance_checksum():
+    """A pseudopotential's checksum is written exactly as a provenance checksum (file, algorithm with the
+    SPDX names, value in lowercase hex), so one rule reads both."""
+    p = sub(sub(dft('core-electron-model'), 'pseudopotential'), 'checksum')
+    assert p['subproperties'] == sub(minimal('provenance'), 'checksum')['subproperties']
+
+
+def test_checksum_and_unique_identifier_point_to_each_other():
+    """A checksum and any other designation are kept apart: each note sends the reader to the other."""
+    pp = sub(dft('core-electron-model'), 'pseudopotential')
+    assert 'unique-identifier' in sub(pp, 'checksum')['notes'][0]
+    assert 'checksum' in sub(pp, 'unique-identifier')['notes'][0]
+    assert 'hash' not in sub(pp, 'unique-identifier')['description'].lower()
+
+
+@pytest.mark.parametrize('value, ok', [(1, True), (4, True), (19, True), (0, False), (4.0, True), (4.5, False)])
+def test_number_of_valence_electrons_is_a_positive_count(value, ok):
+    """A pseudopotential treats at least one electron explicitly.
+
+    value (int | float): a candidate count; ok (bool): whether it conforms.
+    """
+    v = sub(sub(sub(dft('core-electron-model'), 'pseudopotential'), 'number-of-valence-electrons'), 'value')
+    assert (v['kind'], v['recommended-unit']) == ('dimensionless', 'dimensionless')
+    assert Draft202012Validator(value_schema(v)).is_valid(value) == ok
