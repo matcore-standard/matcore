@@ -17,7 +17,10 @@
   </core-electron-model>
   <valence-electron-model>
     <type>Plane waves</type>
-    <kinetic-energy-cutoff>250.0</kinetic-energy-cutoff>
+    <kinetic-energy-cutoff>
+      <value>250.0</value>
+      <unit>eV</unit>
+    </kinetic-energy-cutoff>
   </valence-electron-model>
   <k-point-mesh>
     <type>Monkhorst-Pack</type>
