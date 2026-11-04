@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'scripts'))
 from check_values import dependency_errors, values_errors
 from check_units import unit_errors
+from check_generic import generic_errors
 from check_identifiers import SCHEMES, scheme_terms_errors, table_errors
 meta = yaml.safe_load((ROOT/'schema/meta-schema.yaml').read_text())
 units = yaml.safe_load((ROOT/'schema/units.yaml').read_text())
@@ -36,7 +37,7 @@ def walk(props, path):
             if u not in symbols: print(f"ERROR {here}: recommended-unit {u!r} not in units.yaml"); errors += 1
             elif k not in (None,'any') and units['units'][u]['kind'] != k:
                 print(f"ERROR {here}: unit {u} has kind {units['units'][u]['kind']}, property kind is {k}"); errors += 1
-        for e in values_errors(p) + dependency_errors(p, props) + unit_errors(p, props):  # decisions 0013, 0015
+        for e in values_errors(p) + dependency_errors(p, props) + unit_errors(p, props) + generic_errors(p):  # 0013, 0015, 0016
             print(f"ERROR {here}: {e}"); errors += 1
         if p.get('type') in ('float','int') and k is None and p.get('legacy_values') is None:
             print(f"WARN  {here}: numeric type with no kind")

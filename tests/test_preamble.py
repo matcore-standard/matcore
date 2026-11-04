@@ -37,7 +37,7 @@ def test_format_bullets_nest_as_in_the_docx():
     features = dict(tree['Properties have'])
     assert list(features) == ['Definition: A', 'Type: The', 'Extent: The', 'Values: The', 'Kind: The',
                               'Recommended unit:', 'Repeatable: A', 'Note(s): Additional']
-    assert [w for w, _ in features['Values: The']] == ['When appropriate', 'When a', 'A Property', 'A Property']
+    assert [w for w, _ in features['Values: The']] == ['When appropriate', 'When a', 'A Property', 'A generic', 'A Property']
 
 
 def test_notes_keep_the_space_after_note():
@@ -60,3 +60,13 @@ def test_bullet_symbols_change_with_depth():
     css = re.sub(r'\s+', ' ', (ROOT / 'docs/assets/matcore/layout.css').read_text())
     assert '.md-typeset ul ul { list-style-type: circle; }' in css
     assert '.md-typeset ul ul ul { list-style-type: square; }' in css
+
+
+def test_preamble_defines_the_generic_parameter():
+    """§1.3 defines the term once, naming the four subproperties in their order, so the five properties
+    that use the form can refer to it (0016 item 4)."""
+    text = (ROOT / 'docs/standard/index.md').read_text()
+    line = next(l for l in text.splitlines() if 'A *generic parameter*' in l)
+    assert [line.index(f'`{n}` (') for n in ('name', 'value', 'unit', 'description')] == sorted(
+        line.index(f'`{n}` (') for n in ('name', 'value', 'unit', 'description'))
+    assert '`x-gnu:`' in line and '`any`' in line

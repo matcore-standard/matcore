@@ -20,42 +20,40 @@ properties:
   recommended-unit: null
   values: null
   repeatable: true
-  legacy_values: Contains SubProperties as listed below.
   subproperties:
   - name: type
     required: true
     description: The mathematical form of the exchange-correlation functional.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      terms: [LDA, GGA, Meta GGA, Hybrid, ML]
+      note: >-
+        "LDA" – Local Density Approximation. "GGA" – Generalized Gradient Approximation. "Meta GGA" –
+        Extension to GGA including dependence on Laplacian of electron density. "Hybrid" – An
+        approximation for the exchange-correlation (XC) functional that includes a portion of the exact
+        XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio
+        or empirical). "ML" – Machine learning based functional.
     repeatable: false
-    legacy_values: >-
-      String containing one of the following values: "LDA" – Local Density Approximation "GGA" – Generalized
-      Gradient Approximation "Meta GGA" – Extension to GGA including dependence on Laplacian of electron
-      density "Hybrid" – An approximation for the exchange-correlation (XC) functional that includes a
-      portion of the exact XC from Hartree–Fock theory or machine learning with the rest coming from other
-      sources (ab initio or empirical). "ML" – Machine learning based functional Other user-specified
-      value if none of the above apply.
   - name: description
     required: false
     description: >-
       Explanatory text providing more information about the type of the exchange-correlation method used
       including any relevant identifying information.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      note: >-
+        Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical
+        choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS,
+        SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA,
+        CIDER, etc. Others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. LibXC
+        designation: LibXC:LDA_C_GK72 (include source as prefix).
     repeatable: false
-    legacy_values: >-
-      A string containing more information about the exchange-correlation type. Examples of possible content
-      by type: LDA: Common parameterizations: VMN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE,
-      revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP,
-      PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. others: BEEF, VdW-corrections
-      (added on top of XC, e.g., D2, D3, D4), etc. LibXC designation: LibXC:LDA_C_GK72 (include source
-      as prefix)
   - name: xc-parameter
     required: false
     description: >-
@@ -66,54 +64,51 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
-    legacy_values: Contains SubSubProperties as defined in the table below.
+    notes:
+    - >-
+      Note: For example, the mixing parameter of a hybrid exchange-correlation functional, or another
+      method-specific parameter.
     subproperties:
     - name: name
       required: true
       description: The designation of the exchange-correlation parameter.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: A string containing the name of an exchange-correlation parameter.
     - name: value
       required: true
       description: The data associated with the exchange-correlation parameter.
-      type: null
-      extent: null
-      kind: null
+      type: any
+      extent: any
+      kind: any
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: An integer, real, boolean, or string containing the parameter value.
     - name: unit
       required: true
-      description: >-
-        A standardized string or identifier that defines the dimension or measurement system of the associated
-        value.
-      type: null
-      extent: null
-      kind: null
+      description: The unit in which the associated value is expressed.
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        note: >-
+          A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+          only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+          (accepted with a validation warning).
       repeatable: false
-      legacy_values: >-
-        A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
-        (or the text "dimensionless").
     - name: description
       required: false
       description: An explanation of the meaning, source, or purpose of the parameter.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: >-
-        A string explaining the exchange-correlation parameter. This can be the mixing parameter for a
-        hybrid exchange-correlation, or other method-specific parameters.
 - name: core-electron-model
   required: true
   description: Model of the electrons used in the calculation.

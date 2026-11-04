@@ -251,7 +251,9 @@ record or marked PROPOSED, NOT DECIDED.
      standard pages, versioned permalinks, CI deploys per version. 0.4.0 released 2026-11-01
      (tag v0.4.0). 0.5.0 added to releases.yaml 2026-11-04 (minimal complete); the human tags
      v0.5.0, after which the site's `latest` is 0.5.0 and `dev` is main.
-   - Changes to the standard since 0.5.0, for the next release's entry in releases.yaml: none yet.
+   - Changes to the standard since 0.5.0, for the next release's entry in releases.yaml: §1.3
+     defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
+     typed fields filled (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -376,8 +378,13 @@ record or marked PROPOSED, NOT DECIDED.
    expression, described in its note (the SPDX specification 2.3.1, the SPDX License List,
    LicenseRef-), with no list copied into the schema; legacy_* deleted. minimal is complete: it
    declares `legacy_complete: true` (0004 item 36).
-   [todo] dft, in file order, starting with xc-functional; its PR also adds the generic-parameter
-   check of 0016 and the §1.3 definition.
+   [done, branch xc-functional, PR pending] dft xc-functional: type open terms (LDA, GGA, Meta GGA,
+   Hybrid, ML; definitions in the note); description keeps the baseline's guide as its note, with
+   the baseline's typo VMN corrected to VWN (Vosko–Wilk–Nusair);
+   xc-parameter is the first generic parameter in the form of 0016, the baseline's hint on its
+   description moved to a note on xc-parameter; legacy_* deleted. The same PR adds
+   scripts/check_generic.py (called by validate_schema.py) and §1.3's definition of the term.
+   [todo] The rest of dft in file order, starting with core-electron-model.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
