@@ -1048,12 +1048,32 @@
 </li>
 <li>
 <p>Properties have the following features:</p>
-</li>
+<ul>
 <li>
 <p>Definition: A short explanation of the nature of the Property. Best-practice is to not use words from the Property name in the definition to prevent circular definitions, except in cases where confusion is unlikely.</p>
 </li>
 <li>
-<p>Values: A description of the type of variable (string, integer, real), form (scalar, list, array), and possible values that the Property can take on. </p>
+<p>Type: The data type of the Property's value: string, float, int, bool, file, or any (the instance states the type). A Property that only contains SubProperties has no type.</p>
+</li>
+<li>
+<p>Extent: The shape of the value, in KIM notation: [] for a scalar, [3,3] for a 3×3 array, [:] for a list of any length, or any when the schema does not fix it.</p>
+</li>
+<li>
+<p>Values: The values the Property can take on, such as a controlled vocabulary, bounds, a format or a pattern, with examples.</p>
+<ul>
+<li>
+<p>When appropriate a controlled vocabulary can be defined. In this case sentence case format is adopted (i.e. for a phrase containing several words, the first letter of the first word is capitalized and all others are lower case except for proper names or acronyms). An option should always be added for users to add terms not included in the controlled vocabulary to allow the standard to support future developments. New terms may eventually be standardized and added to the controlled vocabulary.</p>
+</li>
+<li>
+<p>When a controlled vocabulary is used, adoption of existing standards is recommended whenever possible. </p>
+</li>
+<li>
+<p><strong>Units of physical quantities.</strong> Every property whose value is a physical quantity (i.e. whose Kind is neither "dimensionless" nor "inapplicable") SHALL carry a <code>unit</code> subproperty in the metadata instance. The value of <code>unit</code> SHALL be a symbol from the MatCore Unit Table (Annex U) whose Kind is compatible with the property's declared Kind. A property value without a <code>unit</code>, or with a unit incompatible with its Kind, is non-conformant; no default unit is ever implied. The Recommended unit listed for each property is informative and does not affect how values are interpreted. Where a <code>unit</code> is given for a pure number (a ratio or a count), as in a generic parameter or a nondimensional length, it is the reserved symbol <code>dimensionless</code>; a property whose Kind is <code>dimensionless</code> carries no <code>unit</code>. Plane angles use an angle unit (<code>rad</code> or <code>degree</code>). Where the meaning of a value depends on a convention that a unit cannot express (e.g. inclusion of a factor 2π in reciprocal lengths, or components given in a lattice basis), the property has a <code>convention</code> or <code>basis</code> subproperty, required as stated in its description. Conversion factors to SI for units not exactly defined in SI terms (<code>bohr</code>, <code>hartree</code>, <code>Ry</code>) are those of CODATA 2022, as listed in Annex U.</p>
+</li>
+<li>
+<p>A Property that contains SubProperties shows them nested within it.</p>
+</li>
+</ul>
 </li>
 <li>
 <p>Kind: The physical dimension of the Property's value, given as a MatCore Kind name mapped to a QUDT QuantityKind IRI in Annex U (e.g. Energy, Length, InverseLength, Temperature, Pressure). Reserved values: <code>dimensionless</code> (ratios, counts), <code>inapplicable</code> (strings, identifiers, and the <code>unit</code> subproperty itself), <code>any</code> (the <code>value</code> of a generic name/value/unit parameter, whose Kind is then given by the instance <code>unit</code>).</p>
@@ -1062,22 +1082,12 @@
 <p>Recommended unit: The unit customarily used for this Property in the community. Informative only; used by templates and tools.</p>
 </li>
 <li>
-<p>When appropriate a controlled vocabulary can be defined. In this case sentence case format is adopted (i.e. for a phrase containing several words, the first letter of the first word is capitalized and all others are lower case except for proper names or acronyms). An option should always be added for users to add terms not included in the controlled vocabulary to allow the standard to support future developments. New terms may eventually be standardized and added to the controlled vocabulary.</p>
-</li>
-<li>
-<p>When a controlled vocabulary is used, adoption of existing standards is recommended whenever possible. </p>
-</li>
-<li>
-<p><strong>Units of physical quantities.</strong> Every property whose value is a physical quantity (i.e. whose Kind is neither "dimensionless" nor "inapplicable") SHALL carry a <code>unit</code> subproperty in the metadata instance. The value of <code>unit</code> SHALL be a symbol from the MatCore Unit Table (Annex U) whose Kind is compatible with the property's declared Kind. A property value without a <code>unit</code>, or with a unit incompatible with its Kind, is non-conformant; no default unit is ever implied. The Recommended unit listed for each property is informative and does not affect how values are interpreted. Quantities of dimension one use the reserved symbol <code>dimensionless</code>; plane angles use an angle unit (<code>rad</code> or <code>degree</code>). Where the meaning of a value depends on a convention that a unit cannot express (e.g. inclusion of a factor 2π in reciprocal lengths, or components given in a lattice basis), the property has a <code>convention</code> or <code>basis</code> subproperty, required as stated in its description. Conversion factors to SI for units not exactly defined in SI terms (<code>bohr</code>, <code>hartree</code>, <code>Ry</code>) are those of CODATA 2022, as listed in Annex U.</p>
-</li>
-<li>
-<p>For Properties that contain SubProperties, this is indicated with the phrase “Contains SubProperties as defined in the table below” (where “table below” points to the specification for the SubProperty standard).</p>
-</li>
-<li>
 <p>Repeatable: A boolean variable that is “True” for Properties that may appear multiple times inside the metadata file. For example, for a dataset created by more than one person, the creator Property can be repeated as many times as needed, each with its own SubProperties.</p>
 </li>
 <li>
 <p>Note(s): Additional clarifying information regarding a Property.</p>
+</li>
+</ul>
 </li>
 </ul>
 <p>In addition to the required and optional Properties, other arbitrary Properties can be added to any MatCore Standard metadata files to support developments in the field. Such Properties may eventually be standardized and added to the MatCore Standard.</p>

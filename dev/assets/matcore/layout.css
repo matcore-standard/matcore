@@ -127,3 +127,7 @@ summary:hover > .mc-permalink, .mc-permalink:focus-visible { opacity: 1; }
   .md-nav--primary > .md-nav__title .md-logo { background: url(logo-light.svg) left center / contain no-repeat content-box; }
   .md-nav--primary > .md-nav__title .md-logo img { opacity: 0; }
 }
+
+/* Bullets change with depth, as in the baseline .docx: ● ○ ■ (the theme uses ● at every level). */
+.md-typeset ul ul { list-style-type: circle; }
+.md-typeset ul ul ul { list-style-type: square; }
