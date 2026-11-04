@@ -26,6 +26,17 @@ properties:
     type: array
     items: {$ref: "#/$defs/property"}
 $defs:
+  value-keys:
+    # the keys of a property's values, or of one case of them (decision 0013)
+    properties:
+      terms: {type: array, items: {type: string}}  # open vocabulary
+      enum: {type: array, items: {type: string}}   # closed list
+      minimum: {type: number}
+      maximum: {type: number}
+      format: {type: string}
+      pattern: {type: string}
+      examples: {type: array}
+      note: {type: string}
   property:
     type: object
     required: [name, required, description, repeatable]
@@ -55,16 +66,13 @@ $defs:
         oneOf:
           - type: "null"
           - type: object
-            additionalProperties: false
+            $ref: "#/$defs/value-keys"
             properties:
-              terms: {type: array, items: {type: string}}  # open vocabulary
-              enum: {type: array, items: {type: string}}   # closed list
-              minimum: {type: number}
-              maximum: {type: number}
-              format: {type: string}
-              pattern: {type: string}
-              examples: {type: array}
-              note: {type: string}
+              # values that depend on a sibling's value (0013, settled 2026-11-03)
+              depends-on: {type: string}
+              cases: {type: object, additionalProperties: {type: object, $ref: "#/$defs/value-keys", unevaluatedProperties: false}}
+            dependentRequired: {depends-on: [cases], cases: [depends-on]}
+            unevaluatedProperties: false
       convention:
         # required enumerated convention subproperty, e.g. {name: convention, enum: [2pi-included, 2pi-excluded]}
         oneOf: [{type: "null"}, {type: object, required: [name, enum], properties: {name: {type: string}, enum: {type: array, items: {type: string}}}}]

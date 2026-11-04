@@ -4,7 +4,8 @@
 Each key applies only to the types it belongs to; `terms` and `enum`, and `format` and `pattern`,
 exclude each other; `minimum` does not exceed `maximum`; a format is a JSON Schema 2020-12 name;
 a pattern compiles; and every example satisfies the property's own type, extent and values, with
-formats checked in full. Called by scripts/validate_schema.py for every property.
+formats checked in full. dependency_errors() checks values that depend on a sibling (`depends-on`,
+`cases`). Called by scripts/validate_schema.py for every property.
 """
 import re
 
@@ -60,4 +61,28 @@ def values_errors(p):
     if not out:
         check = Draft202012Validator(value_schema(p), format_checker=Draft202012Validator.FORMAT_CHECKER)
         out += [f'example {ex!r}: {e.message}' for ex in v.get('examples') or [] for e in check.iter_errors(ex)]
+    return out
+
+
+def dependency_errors(p, siblings):
+    """Return the errors in a property's dependent values (decision 0013, settled 2026-11-03), as messages.
+
+    p (dict): property entry; siblings (list[dict]): the properties under the same parent, p included.
+    The sibling named by `depends-on` is a string listing its values; each case key is one of them;
+    each case is valid values for p; every example satisfies at least one case.
+    """
+    v = p.get('values') or {}
+    if 'depends-on' not in v:
+        return []
+    sib = next((s for s in siblings if s['name'] == v['depends-on'] and s is not p), None)
+    listed = (sib.get('values') or {}).get('terms') or (sib.get('values') or {}).get('enum') if sib else None
+    if sib is None or sib.get('type') != 'string' or not listed:
+        return [f"depends-on {v['depends-on']!r} is not a sibling of type string with terms or enum"]
+    out = [f'case {k!r} is not a listed value of {sib["name"]}' for k in v['cases'] if k not in listed]
+    for k, case in v['cases'].items():
+        out += [f'case {k!r}: {e}' for e in values_errors(p | {'values': case})]
+    schemas = [Draft202012Validator(value_schema(p | {'values': c}), format_checker=Draft202012Validator.FORMAT_CHECKER)
+               for c in v['cases'].values()]
+    out += [f'example {ex!r} satisfies no case' for ex in v.get('examples') or []
+            if not any(s.is_valid(ex) for s in schemas)]
     return out

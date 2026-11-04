@@ -127,3 +127,23 @@ def test_notes_name_only_properties_that_exist():
     for key in ['minimal', 'dft', 'md', 'mbpt', 'ml', 'pf', 'derived']:
         walk(yaml.safe_load(open(ROOT / f'schema/{key}.yaml'))['properties'], key)
     assert [c for c in cited if c[1] not in names] == []
+
+
+def test_meta_schema_pairs_depends_on_with_cases():
+    """depends-on and cases come together, and a case cannot depend on anything itself (0013 settled 2)."""
+    meta = yaml.safe_load((ROOT/'schema/meta-schema.yaml').read_text())
+    v = jsonschema.Draft202012Validator(meta)
+    def section(values):
+        """Return a one-property section whose property has these values.
+
+        values (dict): the property's values.
+        """
+        return {'section': 'x', 'title': 'x', 'properties': [
+            {'name': 'm', 'required': True, 'description': 'd', 'type': 'string', 'extent': [], 'kind': 'inapplicable',
+             'recommended-unit': None, 'values': values, 'repeatable': False}]}
+    case = {'terms': ['DFT']}
+    assert v.is_valid(section({'depends-on': 'c', 'cases': {'A': case}, 'note': 'n'}))
+    assert not v.is_valid(section({'depends-on': 'c'}))
+    assert not v.is_valid(section({'cases': {'A': case}}))
+    assert not v.is_valid(section({'depends-on': 'c', 'cases': {'A': {'depends-on': 'd', 'cases': {}}}}))
+    assert not v.is_valid(section({'depends-on': 'c', 'cases': {'A': {'colour': 'red'}}}))
