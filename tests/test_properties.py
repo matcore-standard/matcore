@@ -355,3 +355,13 @@ def test_checksum_value_is_lowercase_hexadecimal(value, ok):
     """
     v = sub(sub(minimal('provenance'), 'checksum'), 'value')
     assert Draft202012Validator(value_schema(v)).is_valid(value) == ok
+
+
+def test_matcore_id_is_a_string_whose_form_is_open():
+    """Every dataset has exactly one MatCore ID, a plain string. The baseline calls the example's format
+    tentative, so no pattern is fixed until the form of a MatCore ID is decided."""
+    p = minimal('matcore-id')
+    assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind'], p['recommended-unit']) == (
+        True, False, 'string', [], 'inapplicable', None)
+    assert 'pattern' not in (p['values'] or {}) and 'format' not in (p['values'] or {})
+    assert legacy_fields(p) == []
