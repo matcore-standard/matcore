@@ -378,7 +378,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #30 merged 2026-11-04] funding: award-title and award-number strings; funder a
    container like affiliation (name + at most one ROR/ISNI identifier; 0014, settled 2026-11-04),
    with NSF as the example (ROR https://ror.org/021nxhr62, award 2404283); legacy_* deleted.
-   [done, branch related-content, PR pending] related-content: `links` (a list) renamed `link`, one
+   [done, PR #32 merged 2026-11-04] related-content: `links` (a list) renamed `link`, one
    URI per entry since related-content repeats, in the form of citation's link (format uri;
    example the Cambridge deposit of Si_PRX_GAP); description a string; its definition made
    singular ("Another dataset that is connected to the current one in some manner."); legacy_*
