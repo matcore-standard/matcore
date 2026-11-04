@@ -514,3 +514,37 @@ def test_calculation_physics_lists_the_added_phenomena():
     assert (p['extent'], p['kind']) == ([], 'inapplicable')
     assert 'DFT+U' in p['values']['note']
     assert legacy_fields(p) == []
+
+
+def test_k_point_mesh_structure():
+    """A k-point mesh is given by its kind and its explicit number of points, never also by a spacing that
+    could contradict them, with fractional shifts and the smearing and its parameters (0004 item 47)."""
+    from check_generic import generic_errors
+    k = dft('k-point-mesh')
+    number = lambda n, t: (n, False, False, None, (), (('value', True, False, t, (), ()),
+                                                      ('unit', True, False, 'string', (), ())))
+    param = ('smearing-parameter', False, True, None, (), (
+        ('name', True, False, 'string', (), ()), ('value', True, False, 'any', (), ()),
+        ('unit', True, False, 'string', (), ()), ('description', False, False, 'string', (), ())))
+    assert tree(k) == ('k-point-mesh', False, False, None, (), (
+        ('type', True, False, 'string', ('Regular gamma-centered', 'Regular shifted', 'Irregular'), ()),
+        number('number-of-points', 'int'), number('shift', 'float'),
+        ('smearing-type', False, False, 'string', ('None', 'None - tetrahedron',
+                                                    'None - Blöchl-corrected tetrahedron', 'Gaussian', 'Fermi-Dirac',
+                                                    'Methfessel-Paxton', 'Marzari-Vanderbilt'), ()),
+        number('smearing-width', 'float'), param))
+    assert generic_errors(sub(k, 'smearing-parameter')) == []
+    assert legacy_fields(k) == []
+
+
+def test_k_point_mesh_quantities():
+    """Three points counted along each reciprocal lattice vector (at least one), three fractional shifts,
+    and a smearing width in eV (0001 A3.1; 0004 item 47)."""
+    k = dft('k-point-mesh')
+    v = lambda n: sub(sub(k, n), 'value')
+    assert (v('number-of-points')['extent'], v('number-of-points')['kind'], v('number-of-points')['values']['minimum']) \
+        == ([3], 'dimensionless', 1)
+    assert (v('shift')['extent'], v('shift')['kind'], v('shift')['recommended-unit']) == ([3], 'dimensionless',
+                                                                                         'dimensionless')
+    assert 'fractions of the mesh spacing' in v('shift')['values']['note']
+    assert (v('smearing-width')['kind'], v('smearing-width')['recommended-unit']) == ('Energy', 'eV')
