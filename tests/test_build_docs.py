@@ -156,6 +156,24 @@ def test_values_text_states_every_values_key():
         'Format: `uri` (JSON Schema 2020-12). Examples: `https://ror.org/x`. An ROR ID.'
 
 
+
+def test_bounds_on_an_array_apply_to_each_component():
+    """A bound on a list of numbers holds for each number, so the page says so instead of reading as one
+    bound on the whole list (0013, settled 2026-11-05); a scalar's bounds keep the plain wording."""
+    def text(values, extent):
+        """Return the values text of an int property with these values and extent.
+
+        values (dict): the property's values; extent (list | str): its extent.
+        """
+        return build_docs.values_text({'type': 'int', 'extent': extent, 'values': values}, show_legacy=False)
+    assert text({'minimum': 1}, [3]) == 'Minimum: 1, for each component.'
+    assert text({'maximum': 9}, [3, 3]) == 'Maximum: 9, for each component.'
+    assert text({'minimum': 0, 'maximum': 1}, [':']) == 'From 0 to 1, for each component.'
+    assert text({'minimum': 1}, []) == 'Minimum: 1.'
+    assert text({'minimum': 1}, 'any') == 'Minimum: 1.'
+    md = build_docs.render_section(load('dft'), show_legacy=False)
+    assert 'Minimum: 1, for each component.' in md
+
 def test_inline_svgs_have_an_intrinsic_size():
     """An SVG without width/height renders page-wide until the stylesheet loads (0007 constraint)."""
     md = build_docs.render_section(load('minimal'), show_legacy=False)

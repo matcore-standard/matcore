@@ -419,8 +419,9 @@ record or marked PROPOSED, NOT DECIDED.
    number-of-points, shift are leaves again (recommended unit null); examples/minimal.xml and
    examples/dft.xml write the concentration and the valence-electron count as bare numbers;
    §1.3's units bullet says a pure number carries no unit.
-   [todo] 0013 settlement 3 (one PR, before self-consistent-field-convergence): build_docs.py
-   renders bounds on a non-scalar value as "…, for each component.", with a test.
+   [done, branch array-bounds, PR pending] 0013 settlement 3: build_docs.py renders bounds on a
+   value whose extent lists dimensions as "…, for each component." (scalars and extent any keep
+   the plain wording); tests/test_build_docs.py covers both; only dft number-of-points changes.
    [todo] The rest of dft in file order, starting with self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
