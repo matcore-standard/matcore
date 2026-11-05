@@ -411,7 +411,7 @@ record or marked PROPOSED, NOT DECIDED.
    Fermi-Dirac and Marzari-Vanderbilt; smearing-width in eV; methfessel-paxton-order replaced by
    the generic smearing-parameter; examples/dft.xml loses its spacing, writes the smearing width
    as 0.05 eV and the mesh type as Regular shifted (was Monkhorst-Pack); legacy_* deleted.
-   [done, branch dimensionless-leaves, PR pending] 0015's third amendment: check_units.py applies
+   [done, PR #42 merged 2026-11-05] 0015's third amendment: check_units.py applies
    the value + unit rule to physical kinds only and rejects a unit beside a dimensionless value;
    minimal concentration, number-of-particles, strain and dft number-of-valence-electrons,
    number-of-points, shift are leaves again (recommended unit null); examples/minimal.xml and
