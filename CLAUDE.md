@@ -430,6 +430,12 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #43 merged 2026-11-05] 0013 settlement 3: build_docs.py renders bounds on a
    value whose extent lists dimensions as "…, for each component." (scalars and extent any keep
    the plain wording); tests/test_build_docs.py covers both; only dft number-of-points changes.
+   [todo] dft xc-functional revised by 0017 (one PR, before self-consistent-field-convergence):
+   a new optional `name` (the functional as the author names it) and `normalization` container
+   (`components*` list + `source*`, open terms LibXC); `type` stays the family; description's
+   LibXC hint points to `normalization`.
+   PROPOSED, NOT DECIDED (step 9): the instance validator warns when `type` and the components'
+   LibXC family prefix disagree; LibXC does not document its prefixes, so a source is needed first.
    [todo] The rest of dft in file order, starting with self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
