@@ -70,7 +70,9 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   of format/pattern (0013). A term's definition is prose in `note`, in the baseline's wording;
   terms and enum stay plain lists (0013, settled 2026-11-02). Values that depend on a sibling use
   `depends-on` (the sibling) and `cases` (its listed values → the values that apply); with no
-  matching case any value of the type is accepted (0013, settled 2026-11-03).
+  matching case any value of the type is accepted (0013, settled 2026-11-03). For an array value
+  (an extent listing dimensions) the keys apply to each component, and each example is a whole array; the
+  pages say "for each component" for bounds (0013, settled 2026-11-05).
 - `legacy_*` fields hold the Google Doc prose from the baseline migration. Delete each one once its
   content is transferred to the typed fields; the original wording remains in the baseline .docx and
   in git history (tag v0.9-baseline). A section is complete when no legacy_* remain.
@@ -417,6 +419,8 @@ record or marked PROPOSED, NOT DECIDED.
    number-of-points, shift are leaves again (recommended unit null); examples/minimal.xml and
    examples/dft.xml write the concentration and the valence-electron count as bare numbers;
    §1.3's units bullet says a pure number carries no unit.
+   [todo] 0013 settlement 3 (one PR, before self-consistent-field-convergence): build_docs.py
+   renders bounds on a non-scalar value as "…, for each component.", with a test.
    [todo] The rest of dft in file order, starting with self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
