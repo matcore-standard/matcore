@@ -37,6 +37,16 @@ properties:
         XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio
         or empirical). "ML" – Machine learning based functional.
     repeatable: false
+  - name: name
+    required: false
+    description: The exchange-correlation functional as the author names it.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      examples: [PBE, HSE06]
+    repeatable: false
   - name: description
     required: false
     description: >-
@@ -51,9 +61,44 @@ properties:
         Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical
         choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS,
         SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA,
-        CIDER, etc. Others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. LibXC
-        designation: LibXC:LDA_C_GK72 (include source as prefix).
+        CIDER, etc. Others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. A
+        decomposition into the components of a community library such as LibXC is given in
+        normalization.
     repeatable: false
+  - name: normalization
+    required: false
+    description: >-
+      The functional decomposed into the components of a community library, which names the components.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    subproperties:
+    - name: components
+      required: true
+      description: The components of the functional, in the identifiers of the source.
+      type: string
+      extent: [':']
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        examples: [[GGA_X_PBE, GGA_C_PBE]]
+      repeatable: false
+    - name: source
+      required: true
+      description: The library whose identifiers the components use.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [LibXC]
+        note: >-
+          "LibXC" – the [Libxc library of exchange-correlation
+          functionals](https://libxc.gitlab.io/functionals/).
+      repeatable: false
   - name: xc-parameter
     required: false
     description: >-
