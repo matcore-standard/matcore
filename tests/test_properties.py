@@ -104,8 +104,7 @@ def test_material_component_structure():
     phases = ('phases', True, False, 'string', ('Amorphous', 'Crystal', 'Quasicrystal', 'Molecule', 'Liquid',
                                                  'Gas', 'Plasma'), ())
     constituent = ('constituent', True, True, None, (), (
-        ('species', True, False, 'string', (), ()), ('concentration', True, False, None, (), (
-            ('value', True, False, 'float', (), ()), ('unit', True, False, 'string', (), ())))))
+        ('species', True, False, 'string', (), ()), ('concentration', True, False, 'float', (), ())))
     assert tree(p) == ('material-component', True, True, None, (), (
         constituent, phases, ('description', False, False, 'string', (), ()),
         ('microstructure', False, False, 'string', (), ())))
@@ -117,14 +116,14 @@ def test_material_component_structure():
                                        (12.5, False)])
 def test_concentration_is_an_atomic_fraction(value, ok):
     """concentration is an atomic fraction, a dimensionless number from 0 to 1 whose unit is
-    `dimensionless`; a percentage such as 12.5 does not conform (0004 item 46).
+    nothing, since a pure number carries no unit; a percentage such as 12.5 does not conform (0004 items
+    46, 48).
 
     value (float): a candidate concentration; ok (bool): whether it conforms.
     """
-    conc = sub(sub(minimal('material-component'), 'constituent'), 'concentration')
-    c = datum(conc)
-    assert (c['kind'], c['extent'], c['recommended-unit']) == ('dimensionless', [], 'dimensionless')
-    assert 'atomic fraction' in conc['description'] and 'percent' not in conc['description']
+    c = sub(sub(minimal('material-component'), 'constituent'), 'concentration')
+    assert (c['kind'], c['extent'], c['recommended-unit'], c.get('subproperties')) == ('dimensionless', [], None, None)
+    assert 'atomic fraction' in c['description'] and 'percent' not in c['description']
     assert Draft202012Validator(value_schema(c)).is_valid(value) == ok
 
 
@@ -151,7 +150,7 @@ def test_concentration_note_states_the_sum():
 # 0001 Part A, A2.2: the Kind and recommended unit of each simulation condition, with the shape its
 # baseline values text gives (three cell vectors of three components, six tensor components, ...).
 SIMULATION_CONDITIONS = {
-    'number-of-particles': ('int', [], 'dimensionless', 'dimensionless'),
+    'number-of-particles': ('int', [], 'dimensionless', None),
     'volume': ('float', [], 'Volume', 'angstrom^3'),
     'mass-density': ('float', [], 'MassDensity', 'kg/m^3'),
     'number-density': ('float', [], 'NumberDensity', '1/angstrom^3'),
@@ -160,7 +159,7 @@ SIMULATION_CONDITIONS = {
     'cell-periodicity': ('bool', [3], 'inapplicable', None),
     'temperature': ('float', [], 'Temperature', 'K'),
     'stress': ('float', [6], 'Pressure', 'GPa'),
-    'strain': ('float', [6], 'dimensionless', 'dimensionless'),
+    'strain': ('float', [6], 'dimensionless', None),
     'strain-rate': ('float', [6], 'InverseTime', '1/s'),
     'heat-flux': ('float', [3], 'HeatFluxDensity', 'W/m^2'),
     'temperature-gradient': ('float', [3], 'TemperatureGradient', 'K/m'),
@@ -425,8 +424,7 @@ def test_core_electron_model_structure():
     """The core-electron model names its method and, for pseudopotential methods, each pseudopotential: its
     name and form, how many electrons it treats explicitly, where it came from, and what identifies it."""
     c = dft('core-electron-model')
-    count = ('number-of-valence-electrons', True, False, None, (), (
-        ('value', True, False, 'int', (), ()), ('unit', True, False, 'string', (), ())))
+    count = ('number-of-valence-electrons', True, False, 'int', (), ())
     checksum = ('checksum', False, False, None, (), tuple(tree(s) for s in
                                                           sub(minimal('provenance'), 'checksum')['subproperties']))
     pseudopotential = ('pseudopotential', False, True, None, (), (
@@ -462,8 +460,8 @@ def test_number_of_valence_electrons_is_a_positive_count(value, ok):
 
     value (int | float): a candidate count; ok (bool): whether it conforms.
     """
-    v = sub(sub(sub(dft('core-electron-model'), 'pseudopotential'), 'number-of-valence-electrons'), 'value')
-    assert (v['kind'], v['recommended-unit']) == ('dimensionless', 'dimensionless')
+    v = sub(sub(dft('core-electron-model'), 'pseudopotential'), 'number-of-valence-electrons')
+    assert (v['kind'], v['recommended-unit']) == ('dimensionless', None)
     assert Draft202012Validator(value_schema(v)).is_valid(value) == ok
 
 
@@ -528,7 +526,7 @@ def test_k_point_mesh_structure():
         ('unit', True, False, 'string', (), ()), ('description', False, False, 'string', (), ())))
     assert tree(k) == ('k-point-mesh', False, False, None, (), (
         ('type', True, False, 'string', ('Regular gamma-centered', 'Regular shifted', 'Irregular'), ()),
-        number('number-of-points', 'int'), number('shift', 'float'),
+        ('number-of-points', False, False, 'int', (), ()), ('shift', False, False, 'float', (), ()),
         ('smearing-type', False, False, 'string', ('None', 'None - tetrahedron',
                                                     'None - Blöchl-corrected tetrahedron', 'Gaussian', 'Fermi-Dirac',
                                                     'Methfessel-Paxton', 'Marzari-Vanderbilt'), ()),
@@ -541,10 +539,10 @@ def test_k_point_mesh_quantities():
     """Three points counted along each reciprocal lattice vector (at least one), three fractional shifts,
     and a smearing width in eV (0001 A3.1; 0004 item 47)."""
     k = dft('k-point-mesh')
-    v = lambda n: sub(sub(k, n), 'value')
+    v = lambda n: datum(sub(k, n))
     assert (v('number-of-points')['extent'], v('number-of-points')['kind'], v('number-of-points')['values']['minimum']) \
         == ([3], 'dimensionless', 1)
-    assert (v('shift')['extent'], v('shift')['kind'], v('shift')['recommended-unit']) == ([3], 'dimensionless',
-                                                                                         'dimensionless')
+    assert (v('shift')['extent'], v('shift')['kind'], v('shift')['recommended-unit']) == ([3], 'dimensionless', None)
+    assert sub(k, 'number-of-points').get('subproperties') is None and sub(k, 'shift').get('subproperties') is None
     assert 'fractions of the mesh spacing' in v('shift')['values']['note']
     assert (v('smearing-width')['kind'], v('smearing-width')['recommended-unit']) == ('Energy', 'eV')

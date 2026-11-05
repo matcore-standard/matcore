@@ -31,10 +31,7 @@
     <phases>Crystal</phases>
     <constituent>
       <species>Si</species>
-      <concentration>
-        <value>1</value>
-        <unit>dimensionless</unit>
-      </concentration>
+      <concentration>1</concentration>
     </constituent>
     <description>A variety of Si configurations including different phases, surfaces, vacancies, interstitials, dislocations and crack tips.</description>
   </material-component>

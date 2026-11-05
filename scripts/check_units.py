@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-"""Check leaves, containers and numerical values against decision 0015 (amended twice 2026-11-04).
+"""Check leaves, containers and quantities with a unit against decision 0015 (third amendment).
 
-A property with subproperties is a container and has no typed fields. A leaf whose Kind is numerical
-(any units.yaml kind, physical or `dimensionless`) is named `value`, has the fixed fields of VALUE_FORM,
-and has exactly one sibling `unit` in the fixed form UNIT_FORM, or DIMENSIONLESS_UNIT_FORM beside a
-`value` of Kind `dimensionless`; other leaves have Kind `inapplicable`.
-A `value` of Kind `any` (generic parameters) and a `unit` with no `value` (free-form units) are outside
-the check. Called by scripts/validate_schema.py for every property.
+A property with subproperties is a container and has no typed fields. A leaf whose Kind is physical
+(a units.yaml kind other than `dimensionless`) is named `value`, has the fixed fields of VALUE_FORM,
+and has exactly one sibling `unit` in the fixed form UNIT_FORM; a `value` whose Kind is
+`dimensionless` or `inapplicable` has no sibling `unit`. A `value` of Kind `any` (generic parameters)
+and a `unit` with no `value` (free-form units) are outside the check. Called by
+scripts/validate_schema.py for every property.
 """
 from pathlib import Path
 
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-NUMERICAL = set(yaml.safe_load((ROOT / 'schema/units.yaml').read_text())['kinds'])
+PHYSICAL = set(yaml.safe_load((ROOT / 'schema/units.yaml').read_text())['kinds']) - {'dimensionless'}
 TYPED = ('type', 'extent', 'kind', 'recommended-unit', 'values')
 VALUE_FORM = {
     'name': 'value',
@@ -32,8 +32,6 @@ UNIT_FORM = {
     'values': None,
     'repeatable': False,
 }
-# Beside a dimensionless value, the unit notes its only allowed symbol (0015, second amendment item 4).
-DIMENSIONLESS_UNIT_FORM = UNIT_FORM | {'values': {'note': 'The only allowed unit is `dimensionless`.'}}
 
 
 def unit_errors(p, siblings):
@@ -45,12 +43,13 @@ def unit_errors(p, siblings):
         typed = [k for k in TYPED if p.get(k) is not None]
         return [f"a container has no value of its own, but {', '.join(typed)} set (0015)"] if typed else []
     units = [s for s in siblings if s['name'] == 'unit']
-    if p.get('kind') not in NUMERICAL:
+    if p.get('kind') not in PHYSICAL:
+        if p['name'] == 'value' and p.get('kind') in ('dimensionless', 'inapplicable') and units:
+            return [f"value of kind {p['kind']} carries no unit (0015)"]
         return []
     if p['name'] != 'value':
         return [f"kind {p['kind']} makes this a container of value and unit (0015)"]
     out = [] if {k: p.get(k) for k in VALUE_FORM} == VALUE_FORM else ['value departs from the fixed form of 0015']
     if len(units) != 1:
         return out + [f"value of kind {p['kind']} needs exactly one sibling unit (0015)"]
-    form = DIMENSIONLESS_UNIT_FORM if p['kind'] == 'dimensionless' else UNIT_FORM
-    return out + ([] if units[0] == form else ['unit departs from the fixed form of 0015'])
+    return out + ([] if units[0] == UNIT_FORM else ['unit departs from the fixed form of 0015'])

@@ -173,35 +173,11 @@ Explanatory text about the pseudopotential including any relevant identifying in
 
 The number of electrons treated explicitly.
 
-| Required | Repeatable |
-|---|---|
-| yes | no |
-
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.number-of-valence-electrons.value" markdown="1">
-<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-
-The value of the property, in the unit given by `unit`.
-
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | int | [] | dimensionless | dimensionless |
+| yes | no | int | [] | dimensionless | — |
 
 Minimum: 1.
-
-</details>
-
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.number-of-valence-electrons.unit" markdown="1">
-<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-
-The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-
-| Required | Repeatable | Type | Extent | Kind | Rec. unit |
-|---|---|---|---|---|---|
-| yes | no | string | [] | inapplicable | — |
-
-The only allowed unit is `dimensionless`.
-
-</details>
 
 </details>
 
@@ -565,35 +541,11 @@ Recommended: `Regular gamma-centered`, `Regular shifted`, `Irregular`. Other val
 
 The number of k-points included along each reciprocal lattice vector.
 
-| Required | Repeatable |
-|---|---|
-| no | no |
-
-<details class="note mc-property" id="dft.k-point-mesh.number-of-points.value" markdown="1">
-<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-
-The value of the property, in the unit given by `unit`.
-
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | int | [3] | dimensionless | dimensionless |
+| no | no | int | [3] | dimensionless | — |
 
 Minimum: 1. Ordered list of three integers, the number of k-points along the three reciprocal lattice vector directions.
-
-</details>
-
-<details class="note mc-property" id="dft.k-point-mesh.number-of-points.unit" markdown="1">
-<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-
-The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-
-| Required | Repeatable | Type | Extent | Kind | Rec. unit |
-|---|---|---|---|---|---|
-| yes | no | string | [] | inapplicable | — |
-
-The only allowed unit is `dimensionless`.
-
-</details>
 
 </details>
 
@@ -602,35 +554,11 @@ The only allowed unit is `dimensionless`.
 
 Translation of the k-point mesh along the reciprocal lattice vector directions.
 
-| Required | Repeatable |
-|---|---|
-| no | no |
-
-<details class="note mc-property" id="dft.k-point-mesh.shift.value" markdown="1">
-<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-
-The value of the property, in the unit given by `unit`.
-
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | float | [3] | dimensionless | dimensionless |
+| no | no | float | [3] | dimensionless | — |
 
 Ordered list of three real numbers, the shifts along the three reciprocal lattice vector directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice vector.
-
-</details>
-
-<details class="note mc-property" id="dft.k-point-mesh.shift.unit" markdown="1">
-<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-
-The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-
-| Required | Repeatable | Type | Extent | Kind | Rec. unit |
-|---|---|---|---|---|---|
-| yes | no | string | [] | inapplicable | — |
-
-The only allowed unit is `dimensionless`.
-
-</details>
 
 </details>
 
@@ -833,10 +761,7 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
     <pseudopotential>
       <name>Ultrasoft Pseudopotentials (USP)</name>
       <type>Ultrasoft</type>
-      <number-of-valence-electrons>
-        <value>4</value>
-        <unit>dimensionless</unit>
-      </number-of-valence-electrons>
+      <number-of-valence-electrons>4</number-of-valence-electrons>
     </pseudopotential>
   </core-electron-model>
   <valence-electron-model>
