@@ -56,17 +56,20 @@ def values_text(p, show_legacy):
         out.append('Recommended: ' + ', '.join(f'`{x}`' for x in v['terms']) + '. Other values are allowed.')
     if 'enum' in v:
         out.append('One of ' + ', '.join(f'`{x}`' for x in v['enum']) + '.')
+    # On a value whose extent lists dimensions, a bound holds for each component (0013, settled 2026-11-05).
+    each = ', for each component' if isinstance(p.get('extent'), list) and p['extent'] else ''
     if 'minimum' in v and 'maximum' in v:
-        out.append(f"From {v['minimum']} to {v['maximum']}.")
+        out.append(f"From {v['minimum']} to {v['maximum']}{each}.")
     elif 'minimum' in v or 'maximum' in v:
-        out.append(f"Minimum: {v['minimum']}." if 'minimum' in v else f"Maximum: {v['maximum']}.")
+        out.append(f"Minimum: {v['minimum']}{each}." if 'minimum' in v else f"Maximum: {v['maximum']}{each}.")
     if 'format' in v:
         out.append(f"Format: `{v['format']}` (JSON Schema 2020-12).")
     if 'pattern' in v:
         out.append(f"Pattern: `{v['pattern']}`.")
     if 'depends-on' in v:  # values that depend on a sibling (0013, settled 2026-11-03)
         out.append(f"Depends on `{v['depends-on']}`.")
-        out += [f'For `{k}`: ' + values_text({'values': case}, False) for k, case in v['cases'].items()]
+        out += [f'For `{k}`: ' + values_text({'extent': p.get('extent'), 'values': case}, False)
+                for k, case in v['cases'].items()]
     if 'examples' in v:
         out.append('Examples: ' + ', '.join(f'`{x}`' for x in v['examples']) + '.')
     if 'note' in v:

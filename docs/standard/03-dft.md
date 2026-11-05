@@ -545,7 +545,7 @@ The number of k-points included along each reciprocal lattice vector.
 |---|---|---|---|---|---|
 | no | no | int | [3] | dimensionless | — |
 
-Minimum: 1. Ordered list of three integers, the number of k-points along the three reciprocal lattice vector directions.
+Minimum: 1, for each component. Ordered list of three integers, the number of k-points along the three reciprocal lattice vector directions.
 
 </details>
 
