@@ -431,7 +431,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #43 merged 2026-11-05] 0013 settlement 3: build_docs.py renders bounds on a
    value whose extent lists dimensions as "…, for each component." (scalars and extent any keep
    the plain wording); tests/test_build_docs.py covers both; only dft number-of-points changes.
-   [done, branch xc-normalization, PR pending] dft xc-functional revised by 0017: a new optional
+   [done, PR #44 merged 2026-11-05] dft xc-functional revised by 0017: a new optional
    `name` (examples PBE, HSE06) and `normalization` container (`components*`, a list, example
    GGA_X_PBE + GGA_C_PBE; `source*`, open terms LibXC); `type` stays the family; description's
    LibXC hint now points to `normalization`; examples/dft.xml unchanged. build_docs.py renders a
