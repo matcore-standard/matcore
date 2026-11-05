@@ -259,7 +259,8 @@ record or marked PROPOSED, NOT DECIDED.
      gains a checksum beside unique-identifier (step 5); dft valence-electron-model's typed fields
      filled, the basis set given the same checksum split (step 5); dft calculation-physics's typed
      fields filled (step 5); dft k-point-mesh's typed fields filled, k-point-spacing removed and
-     methfessel-paxton-order replaced by a generic smearing-parameter (0004 item 47) (step 5).
+     methfessel-paxton-order replaced by a generic smearing-parameter (0004 item 47) (step 5); dimensionless
+     values written as leaves again, with no unit (0015, third amendment; 0004 item 48).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -410,10 +411,12 @@ record or marked PROPOSED, NOT DECIDED.
    Fermi-Dirac and Marzari-Vanderbilt; smearing-width in eV; methfessel-paxton-order replaced by
    the generic smearing-parameter; examples/dft.xml loses its spacing, writes the smearing width
    as 0.05 eV and the mesh type as Regular shifted (was Monkhorst-Pack); legacy_* deleted.
-   [todo] 0015's third amendment (one PR, before self-consistent-field-convergence): check_units.py
-   and its tests; minimal concentration, number-of-particles, strain and dft
-   number-of-valence-electrons, number-of-points, shift back to leaves (recommended unit null);
-   examples/minimal.xml and examples/dft.xml; §1.3's units bullet.
+   [done, branch dimensionless-leaves, PR pending] 0015's third amendment: check_units.py applies
+   the value + unit rule to physical kinds only and rejects a unit beside a dimensionless value;
+   minimal concentration, number-of-particles, strain and dft number-of-valence-electrons,
+   number-of-points, shift are leaves again (recommended unit null); examples/minimal.xml and
+   examples/dft.xml write the concentration and the valence-electron count as bare numbers;
+   §1.3's units bullet says a pure number carries no unit.
    [todo] The rest of dft in file order, starting with self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.

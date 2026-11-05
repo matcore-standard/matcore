@@ -176,34 +176,13 @@ properties:
     - name: number-of-valence-electrons
       required: true
       description: The number of electrons treated explicitly.
-      type: null
-      extent: null
-      kind: null
+      type: int
+      extent: []
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        minimum: 1
       repeatable: false
-      subproperties:
-      - name: value
-        required: true
-        description: The value of the property, in the unit given by `unit`.
-        type: int
-        extent: []
-        kind: dimensionless
-        recommended-unit: dimensionless
-        values:
-          minimum: 1
-        repeatable: false
-      - name: unit
-        required: true
-        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-        type: string
-        extent: []
-        kind: inapplicable
-        recommended-unit: null
-        values:
-          note: >-
-            The only allowed unit is `dimensionless`.
-        repeatable: false
     - name: repository
       required: false
       description: The database from which the pseudopotential was obtained.
@@ -528,71 +507,29 @@ properties:
   - name: number-of-points
     required: false
     description: The number of k-points included along each reciprocal lattice vector.
-    type: null
-    extent: null
-    kind: null
+    type: int
+    extent: [3]
+    kind: dimensionless
     recommended-unit: null
-    values: null
+    values:
+      minimum: 1
+      note: >-
+        Ordered list of three integers, the number of k-points along the three reciprocal lattice
+        vector directions.
     repeatable: false
-    subproperties:
-    - name: value
-      required: true
-      description: The value of the property, in the unit given by `unit`.
-      type: int
-      extent: [3]
-      kind: dimensionless
-      recommended-unit: dimensionless
-      values:
-        minimum: 1
-        note: >-
-          Ordered list of three integers, the number of k-points along the three reciprocal lattice
-          vector directions.
-      repeatable: false
-    - name: unit
-      required: true
-      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values:
-        note: >-
-          The only allowed unit is `dimensionless`.
-      repeatable: false
   - name: shift
     required: false
     description: Translation of the k-point mesh along the reciprocal lattice vector directions.
-    type: null
-    extent: null
-    kind: null
+    type: float
+    extent: [3]
+    kind: dimensionless
     recommended-unit: null
-    values: null
+    values:
+      note: >-
+        Ordered list of three real numbers, the shifts along the three reciprocal lattice vector
+        directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice
+        vector.
     repeatable: false
-    subproperties:
-    - name: value
-      required: true
-      description: The value of the property, in the unit given by `unit`.
-      type: float
-      extent: [3]
-      kind: dimensionless
-      recommended-unit: dimensionless
-      values:
-        note: >-
-          Ordered list of three real numbers, the shifts along the three reciprocal lattice vector
-          directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice
-          vector.
-      repeatable: false
-    - name: unit
-      required: true
-      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values:
-        note: >-
-          The only allowed unit is `dimensionless`.
-      repeatable: false
   - name: smearing-type
     required: false
     description: >-

@@ -314,36 +314,15 @@ properties:
     - name: concentration
       required: true
       description: The atomic fraction of the material composed of this element.
-      type: null
-      extent: null
-      kind: null
+      type: float
+      extent: []
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        minimum: 0
+        maximum: 1
+        note: The concentrations of a material component's constituents sum to 1.
       repeatable: false
-      subproperties:
-      - name: value
-        required: true
-        description: The value of the property, in the unit given by `unit`.
-        type: float
-        extent: []
-        kind: dimensionless
-        recommended-unit: dimensionless
-        values:
-          minimum: 0
-          maximum: 1
-          note: The concentrations of a material component's constituents sum to 1.
-        repeatable: false
-      - name: unit
-        required: true
-        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-        type: string
-        extent: []
-        kind: inapplicable
-        recommended-unit: null
-        values:
-          note: >-
-            The only allowed unit is `dimensionless`.
-        repeatable: false
   - name: phases
     required: true
     description: The phase(s) of the material included in the dataset.
@@ -473,35 +452,14 @@ properties:
     - name: number-of-particles
       required: false
       description: A count of atoms or other discrete entities comprising the material.
-      type: null
-      extent: null
-      kind: null
+      type: int
+      extent: []
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        note: >-
+          The number of particles <i>N</i>.
       repeatable: false
-      subproperties:
-      - name: value
-        required: true
-        description: The value of the property, in the unit given by `unit`.
-        type: int
-        extent: []
-        kind: dimensionless
-        recommended-unit: dimensionless
-        values:
-          note: >-
-            The number of particles <i>N</i>.
-        repeatable: false
-      - name: unit
-        required: true
-        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-        type: string
-        extent: []
-        kind: inapplicable
-        recommended-unit: null
-        values:
-          note: >-
-            The only allowed unit is `dimensionless`.
-        repeatable: false
     - name: volume
       required: false
       description: The amount of space occupied by the material.
@@ -759,46 +717,25 @@ properties:
       description: >-
         A deformation relative to a reference configuration imposed on the simulation cell expressed in
         the referential frame (Lagrangian strain tensor).
-      type: null
-      extent: null
-      kind: null
+      type: float
+      extent: [6]
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        note: >-
+          The components of the (symmetric) Lagrangian strain tensor <i>E</i> in the following order:
+          [<i>E</i><sub>11</sub>, <i>E</i><sub>22</sub>, <i>E</i><sub>33</sub>, <i>E</i><sub>23</sub>,
+          <i>E</i><sub>13</sub>, <i>E</i><sub>12</sub>]. The strain components are expressed relative
+          to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub>
+          is in the direction of a<sub>0</sub>, e<sub>2</sub> is in the direction of
+          c<sub>0</sub>╳a<sub>0</sub>, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where
+          (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) are the vectors defining the cell in the
+          reference configuration, which may not be orthogonal.
       repeatable: false
       notes:
       - >-
         Note: Requires the definition of cell-reference in order for the basis to be defined relative to
         which the tensor components are given.
-      subproperties:
-      - name: value
-        required: true
-        description: The value of the property, in the unit given by `unit`.
-        type: float
-        extent: [6]
-        kind: dimensionless
-        recommended-unit: dimensionless
-        values:
-          note: >-
-            The components of the (symmetric) Lagrangian strain tensor <i>E</i> in the following order:
-            [<i>E</i><sub>11</sub>, <i>E</i><sub>22</sub>, <i>E</i><sub>33</sub>, <i>E</i><sub>23</sub>,
-            <i>E</i><sub>13</sub>, <i>E</i><sub>12</sub>]. The strain components are expressed relative
-            to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub>
-            is in the direction of a<sub>0</sub>, e<sub>2</sub> is in the direction of
-            c<sub>0</sub>╳a<sub>0</sub>, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where
-            (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) are the vectors defining the cell in the
-            reference configuration, which may not be orthogonal.
-        repeatable: false
-      - name: unit
-        required: true
-        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-        type: string
-        extent: []
-        kind: inapplicable
-        recommended-unit: null
-        values:
-          note: >-
-            The only allowed unit is `dimensionless`.
-        repeatable: false
     - name: strain-rate
       required: false
       description: >-

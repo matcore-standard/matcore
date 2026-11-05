@@ -1,5 +1,5 @@
-"""A property is a leaf or a container, never both, and every numerical value is a container holding a
-fixed `value` and a fixed `unit` (decision 0015, amended twice 2026-11-04).
+"""A property is a leaf or a container, never both, and a physical quantity is a container holding a
+fixed `value` and a fixed `unit`; a pure number is a leaf with no unit (decision 0015, third amendment).
 
 Every value with a physical Kind must state its unit, since no default unit is ever implied; one fixed
 form for `value` and `unit` lets a validator relate the symbol to the value's Kind through units.yaml,
@@ -13,7 +13,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from check_units import DIMENSIONLESS_UNIT_FORM, NUMERICAL, UNIT_FORM, VALUE_FORM, unit_errors  # noqa: E402
+from check_units import PHYSICAL, UNIT_FORM, VALUE_FORM, unit_errors  # noqa: E402
 
 
 def value(kind='Temperature', **change):
@@ -33,12 +33,10 @@ def errors(subs):
     return [e for s in subs for e in unit_errors(s, subs)]
 
 
-def test_numerical_kinds_are_the_unit_table_kinds():
-    """Every kind of units.yaml, dimensionless included, is the Kind of a number that needs a unit;
-    `dimensionless` is the only symbol of its Kind (0015, second amendment)."""
-    u = yaml.safe_load((ROOT / 'schema/units.yaml').read_text())
-    assert NUMERICAL == set(u['kinds']) and {'Temperature', 'dimensionless'} <= NUMERICAL
-    assert [s for s, x in u['units'].items() if x['kind'] == 'dimensionless'] == ['dimensionless']
+def test_physical_kinds_are_the_unit_table_kinds_except_dimensionless():
+    """dimensionless is listed among units.yaml's kinds but has no unit to state (0015 item 1)."""
+    kinds = set(yaml.safe_load((ROOT / 'schema/units.yaml').read_text())['kinds'])
+    assert PHYSICAL == kinds - {'dimensionless'} and 'Temperature' in PHYSICAL
 
 
 def test_a_value_and_unit_in_the_fixed_form_pass():
@@ -73,13 +71,13 @@ def test_value_and_unit_that_depart_from_the_fixed_form_fail():
     assert errors([value(), dict(UNIT_FORM), dict(UNIT_FORM)])
 
 
-def test_every_number_is_a_value_beside_a_unit():
-    """A dimensionless value takes the same form as a physical one, so every number in an instance sits in
-    a `value` beside its `unit`; only non-quantities are leaves (0015, second amendment)."""
-    assert errors([value('dimensionless'), dict(DIMENSIONLESS_UNIT_FORM)]) == []
-    assert errors([{'name': 'number-of-particles', 'type': 'int', 'kind': 'dimensionless'}])
-    assert errors([value('dimensionless')])
+def test_a_pure_number_is_a_leaf_with_no_unit():
+    """A dimensionless or inapplicable value carries no unit and is not wrapped, so a count is written as
+    itself in an instance (0015, third amendment)."""
+    assert errors([{'name': 'number-of-particles', 'type': 'int', 'kind': 'dimensionless'}]) == []
     assert errors([{'name': 'title', 'type': 'string', 'kind': 'inapplicable'}]) == []
+    assert errors([value('dimensionless'), dict(UNIT_FORM)])
+    assert errors([value('inapplicable'), dict(UNIT_FORM)])
 
 
 def test_generic_parameters_and_free_form_units_are_outside_the_check():
@@ -90,25 +88,17 @@ def test_generic_parameters_and_free_form_units_are_outside_the_check():
 
 
 def test_validate_schema_applies_the_check(tmp_path):
-    """validate_schema.py, which CI runs, fails when a number is written as a bare leaf with no unit."""
+    """validate_schema.py, which CI runs, fails when a physical quantity is written as a bare leaf."""
     for d in ('schema', 'scripts', 'examples'):
         shutil.copytree(ROOT / d, tmp_path / d)
     f = tmp_path / 'schema/minimal.yaml'
     doc = yaml.safe_load(f.read_text())
-    mc = next(p for p in doc['properties'] if p['name'] == 'material-component')
-    c = next(s for s in mc['subproperties'][0]['subproperties'] if s['name'] == 'concentration')
-    value = c.pop('subproperties')[0]
-    c.update({k: value[k] for k in ('type', 'extent', 'kind', 'recommended-unit', 'values')})
+    comp = next(p for p in doc['properties'] if p['name'] == 'computation')
+    sc = next(s for s in comp['subproperties'] if s['name'] == 'simulation-conditions')
+    t = next(s for s in sc['subproperties'] if s['name'] == 'temperature')
+    value = t.pop('subproperties')[0]
+    t.update({k: value[k] for k in ('type', 'extent', 'kind', 'recommended-unit', 'values')})
     f.write_text(yaml.safe_dump(doc, sort_keys=False, allow_unicode=True))
     run = subprocess.run([sys.executable, tmp_path / 'scripts/validate_schema.py'], capture_output=True, text=True)
-    assert run.returncode == 1 and 'concentration' in run.stdout and 'unit' in run.stdout
+    assert run.returncode == 1 and 'temperature' in run.stdout and 'unit' in run.stdout
 
-
-def test_the_unit_of_a_dimensionless_value_states_its_one_symbol():
-    """Beside a dimensionless value, `unit` notes that `dimensionless` is the only allowed unit, so a
-    reader sees the rule on the property; beside any other number it has no note (0015, second
-    amendment item 4)."""
-    assert DIMENSIONLESS_UNIT_FORM == UNIT_FORM | {'values': {'note': 'The only allowed unit is `dimensionless`.'}}
-    assert errors([value('dimensionless'), dict(UNIT_FORM)])
-    assert errors([value('Temperature'), dict(DIMENSIONLESS_UNIT_FORM)])
-    assert errors([value('Temperature'), dict(UNIT_FORM)]) == []
