@@ -412,12 +412,27 @@ def test_xc_functional_structure():
     param = ('xc-parameter', False, True, None, (), (
         ('name', True, False, 'string', (), ()), ('value', True, False, 'any', (), ()),
         ('unit', True, False, 'string', (), ()), ('description', False, False, 'string', (), ())))
+    normalization = ('normalization', False, False, None, (), (
+        ('components', True, False, 'string', (), ()), ('source', True, False, 'string', ('LibXC',), ())))
     assert tree(xc) == ('xc-functional', True, True, None, (), (
         ('type', True, False, 'string', ('LDA', 'GGA', 'Meta GGA', 'Hybrid', 'ML'), ()),
-        ('description', False, False, 'string', (), ()), param))
+        ('name', False, False, 'string', (), ()),
+        ('description', False, False, 'string', (), ()), normalization, param))
     assert generic_errors(sub(xc, 'xc-parameter')) == []
-    assert 'LibXC:LDA_C_GK72' in sub(xc, 'description')['values']['note']
+    assert 'normalization' in sub(xc, 'description')['values']['note']
     assert legacy_fields(xc) == []
+
+
+def test_xc_functional_keeps_the_name_beside_its_normalization():
+    """The functional is kept as the author names it (e.g. PBE), and a normalized decomposition, if given,
+    always names its source, so the two never stand without each other's context (0017)."""
+    xc = dft('xc-functional')
+    name, norm = sub(xc, 'name'), sub(xc, 'normalization')
+    assert (name['extent'], name['kind']) == ([], 'inapplicable') and 'PBE' in name['values']['examples']
+    components = sub(norm, 'components')
+    assert (components['extent'], components['kind']) == ([':'], 'inapplicable')
+    assert components['values']['examples'] == [['GGA_X_PBE', 'GGA_C_PBE']]
+    assert sub(norm, 'source')['values']['terms'] == ['LibXC']
 
 
 def test_core_electron_model_structure():

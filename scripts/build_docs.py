@@ -70,8 +70,9 @@ def values_text(p, show_legacy):
         out.append(f"Depends on `{v['depends-on']}`.")
         out += [f'For `{k}`: ' + values_text({'extent': p.get('extent'), 'values': case}, False)
                 for k, case in v['cases'].items()]
-    if 'examples' in v:
-        out.append('Examples: ' + ', '.join(f'`{x}`' for x in v['examples']) + '.')
+    if 'examples' in v:  # a list-valued example is written as a bracketed list of its items
+        show = lambda x: '[' + ', '.join(show(i) for i in x) + ']' if isinstance(x, list) else str(x)
+        out.append('Examples: ' + ', '.join(f'`{show(x)}`' for x in v['examples']) + '.')
     if 'note' in v:
         out.append(v['note'])
     if p.get('convention'):

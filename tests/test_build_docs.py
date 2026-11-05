@@ -174,6 +174,20 @@ def test_bounds_on_an_array_apply_to_each_component():
     md = build_docs.render_section(load('dft'), show_legacy=False)
     assert 'Minimum: 1, for each component.' in md
 
+
+def test_list_examples_render_as_bracketed_lists():
+    """An example of a list-valued property reads as a list of its items, not as Python's notation."""
+    def text(examples, extent):
+        """Return the values text of a string property with these examples and extent.
+
+        examples (list): the examples; extent (list): the property's extent.
+        """
+        return build_docs.values_text({'type': 'string', 'extent': extent, 'values': {'examples': examples}},
+                                      show_legacy=False)
+    assert text([['GGA_X_PBE', 'GGA_C_PBE']], [':']) == 'Examples: `[GGA_X_PBE, GGA_C_PBE]`.'
+    assert text([[[1, 0], [0, 1]]], [2, 2]) == 'Examples: `[[1, 0], [0, 1]]`.'
+    assert text(['PBE', 'HSE06'], []) == 'Examples: `PBE`, `HSE06`.'
+
 def test_inline_svgs_have_an_intrinsic_size():
     """An SVG without width/height renders page-wide until the stylesheet loads (0007 constraint)."""
     md = build_docs.render_section(load('minimal'), show_legacy=False)

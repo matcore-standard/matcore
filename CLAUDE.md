@@ -266,7 +266,8 @@ record or marked PROPOSED, NOT DECIDED.
      filled, the basis set given the same checksum split (step 5); dft calculation-physics's typed
      fields filled (step 5); dft k-point-mesh's typed fields filled, k-point-spacing removed and
      methfessel-paxton-order replaced by a generic smearing-parameter (0004 item 47) (step 5); dimensionless
-     values written as leaves again, with no unit (0015, third amendment; 0004 item 48).
+     values written as leaves again, with no unit (0015, third amendment; 0004 item 48); dft
+     xc-functional gains a `name` and a `normalization` (0017).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -430,10 +431,11 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #43 merged 2026-11-05] 0013 settlement 3: build_docs.py renders bounds on a
    value whose extent lists dimensions as "…, for each component." (scalars and extent any keep
    the plain wording); tests/test_build_docs.py covers both; only dft number-of-points changes.
-   [todo] dft xc-functional revised by 0017 (one PR, before self-consistent-field-convergence):
-   a new optional `name` (the functional as the author names it) and `normalization` container
-   (`components*` list + `source*`, open terms LibXC); `type` stays the family; description's
-   LibXC hint points to `normalization`.
+   [done, branch xc-normalization, PR pending] dft xc-functional revised by 0017: a new optional
+   `name` (examples PBE, HSE06) and `normalization` container (`components*`, a list, example
+   GGA_X_PBE + GGA_C_PBE; `source*`, open terms LibXC); `type` stays the family; description's
+   LibXC hint now points to `normalization`; examples/dft.xml unchanged. build_docs.py renders a
+   list-valued example as `[a, b]` (it was Python's repr; this is the first such example).
    PROPOSED, NOT DECIDED (step 9): the instance validator warns when `type` and the components'
    LibXC family prefix disagree; LibXC does not document its prefixes, so a source is needed first.
    [todo] The rest of dft in file order, starting with self-consistent-field-convergence.
