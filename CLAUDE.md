@@ -60,6 +60,10 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
 - `recommended-unit`: informative only; must be a symbol in units.yaml with matching kind.
   Null when kind is `dimensionless` (0004 items 39, 48).
   PROPOSED, NOT DECIDED: no recommended unit when kind is `any`.
+- `convention`: an optional property field in meta-schema.yaml, rendered by build_docs.py but
+  used by no property; the units model below expresses conventions as subproperties instead.
+  PROPOSED, NOT DECIDED: remove the field, or define its use, when the next convention-like
+  property comes up (mbpt exciton-momentum's `basis`).
 - `values`: structured; replaces the old prose "Values" (0002). Null or a mapping of `terms` (open
   vocabulary: unlisted strings conform, reported as user-specified, near-misses as possible typos),
   `enum` (closed list), `minimum`/`maximum` (inclusive), `format` (a JSON Schema 2020-12 format
@@ -253,8 +257,8 @@ record or marked PROPOSED, NOT DECIDED.
      repository. Site pages do not link to them.
    - [done, PR #3] Versioning (0010): releases.yaml, generated Revision History, version line on
      standard pages, versioned permalinks, CI deploys per version. 0.4.0 released 2026-11-01
-     (tag v0.4.0). 0.5.0 added to releases.yaml 2026-11-04 (minimal complete); the human tags
-     v0.5.0, after which the site's `latest` is 0.5.0 and `dev` is main.
+     (tag v0.4.0). 0.5.0 released 2026-11-04 (tag v0.5.0; minimal complete); the site's `latest`
+     is 0.5.0 and `dev` is main.
    - Changes to the standard since 0.5.0, for the next release's entry in releases.yaml: §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -325,10 +329,12 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #20 merged 2026-11-03] material-component: `phases` (renamed from
    `phase`; open terms, definitions in the note per 0013's settlement), concentration in atomic
    percent, species an enum of the IUPAC symbols (from CIAAW's Standard Atomic Weights table);
-   examples/minimal.xml writes <phases>Crystal</phases>; legacy_* deleted.
+   examples/minimal.xml writes <phases>Crystal</phases>; legacy_* deleted. (Superseded:
+   concentration is an atomic fraction, 0–1, by 0004 item 46.)
    [done] Recommended unit null for dimensionless kinds (0004 item 39).
    [done, PR #21 merged 2026-11-03] Concentrations of a material component sum to
-   100 (0004 item 40): the sentence is in concentration's note.
+   100 (0004 item 40): the sentence is in concentration's note. (Superseded: they sum to 1, 0004
+   item 46.)
    [done] species stays elements only: no isotopes or pseudo-species (0004 item 41).
    [done] Long value lists render inline (0004 item 42).
    [done, PR #22 merged 2026-11-03] 0015: scripts/check_units.py (called by
@@ -357,10 +363,11 @@ record or marked PROPOSED, NOT DECIDED.
    concentration (an atomic fraction 0–1, 0004 item 46), number-of-particles and strain as
    value + unit, recommended unit `dimensionless`; examples/minimal.xml writes the Si
    concentration as 1 with unit dimensionless; §1.3's units bullet covers pure numbers.
+   (Superseded: reversed by the third amendment, PR #42; dimensionless values are leaves.)
    [done, PR #29 merged 2026-11-04] 0015 second amendment item 4: check_units.py requires
    the note "The only allowed unit is `dimensionless`." on the `unit` beside every dimensionless
    `value`, and no note elsewhere; the `unit` of concentration, number-of-particles and strain
-   carry it.
+   carry it. (Superseded: lapsed with the third amendment, PR #42.)
    [done, PR #30 merged 2026-11-04] funding: award-title and award-number strings; funder a
    container like affiliation (name + at most one ROR/ISNI identifier; 0014, settled 2026-11-04),
    with NSF as the example (ROR https://ror.org/021nxhr62, award 2404283); legacy_* deleted.
@@ -398,7 +405,7 @@ record or marked PROPOSED, NOT DECIDED.
    form; a new `checksum` (provenance's file, algorithm, value) for a checksum of the
    pseudopotential file, `unique-identifier` kept for any other designation, each note pointing
    to the other; examples/dft.xml writes the valence-electron count as value + unit; legacy_*
-   deleted.
+   deleted. (Superseded: number-of-valence-electrons is a leaf again, PR #42.)
    [done, PR #39 merged 2026-11-04] dft valence-electron-model: type open terms
    (repeatable); the localized-orbital basis set gets the pseudopotential's checksum /
    unique-identifier split and Annex I's doi; kinetic-energy-cutoff and charge-density-cutoff
@@ -413,6 +420,7 @@ record or marked PROPOSED, NOT DECIDED.
    Fermi-Dirac and Marzari-Vanderbilt; smearing-width in eV; methfessel-paxton-order replaced by
    the generic smearing-parameter; examples/dft.xml loses its spacing, writes the smearing width
    as 0.05 eV and the mesh type as Regular shifted (was Monkhorst-Pack); legacy_* deleted.
+   (Superseded: number-of-points and shift are leaves again, PR #42.)
    [done, PR #42 merged 2026-11-05] 0015's third amendment: check_units.py applies
    the value + unit rule to physical kinds only and rejects a unit beside a dimensionless value;
    minimal concentration, number-of-particles, strain and dft number-of-valence-electrons,
@@ -439,6 +447,24 @@ record or marked PROPOSED, NOT DECIDED.
    step 7.
 
 ## Working rules (apply in every session)
+- Session practice (how the work proceeds, not decisions about the standard; 0004 item 49):
+  - Keep CLAUDE.md, docs/decisions and anything else a new session needs current with the state
+    of this one at every step, so that a session that ends without warning can be resumed where
+    it left off: each ruling as it is made, each open question as it is raised (as PROPOSED, NOT
+    DECIDED), and the state of the work in progress (the branch, whether it is committed, pushed
+    or in a pull request, and what awaits the human). Before ending each turn, check whether
+    anything said, found or decided in it exists only in the conversation, and if so record it;
+    when a later change makes an earlier entry untrue, mark that entry "(Superseded: …)".
+  - The human runs `mkdocs serve` on port 8000 in this folder, so the local site shows whatever is
+    checked out. Say so before switching branches, and keep the folder on the branch under review.
+  - A ruling is committed on main first; the branch for its pull request is cut from that commit.
+  - A property pull request's description has these parts: the cross-check against the .docx,
+    the changes (file by file), changes decided in review, judgment calls, and the checks run
+    (including that /ponytail-review was done and whether Codex ran). After opening it, offer
+    Auto-fix; a fix it needs is committed and handed to the human to push.
+  - After a merge: pull main, delete the merged local branch, mark the status entry "[done, PR #N
+    merged <date>]", and commit that alone as "Record <property> as merged in PR #N".
+  - A status entry later reversed or replaced keeps its text and gets a "(Superseded: …)" note.
 - Decisions are made only by the human running the session. Never treat a suggestion, whether yours,
   from CLAUDE.md, or from an earlier conversation, as decided unless the human has explicitly confirmed
   it. If you find something in CLAUDE.md or in your task that is not backed by a decision record or an
