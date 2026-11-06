@@ -1283,9 +1283,9 @@
 </details>
 </details>
 </details>
-<details class="note mc-property" id="dft.core-electron-model">
-<summary><span class="mc-name">core-electron-model<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-<p>Model of the electrons used in the calculation.</p>
+<details class="note mc-property" id="dft.core-electron-treatment">
+<summary><span class="mc-name">core-electron-treatment<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The treatment of the core electrons in the calculation.</p>
 <table>
 <thead>
 <tr>
@@ -1300,9 +1300,9 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="dft.core-electron-model.type">
+<details class="note mc-property" id="dft.core-electron-treatment.type">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-<p>The method used to model the electrons.</p>
+<p>The method used to treat the core electrons.</p>
 <table>
 <thead>
 <tr>
@@ -1325,9 +1325,9 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>All Electron</code>, <code>LAPW</code>, <code>Pseudopotential</code>, <code>PAW</code>. Other values are allowed. "All Electron" – All of the electrons in an atom are modeled explicitly. "LAPW" – Linearized Augmented Plane Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential. "PAW" – Projector Augmented Wave.</p>
+<p>Recommended: <code>All-electron</code>, <code>PAW</code>, <code>Pseudopotential</code>. Other values are allowed. "All-electron" – All of the electrons in an atom are modeled explicitly. "PAW" – Projector Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential.</p>
 </details>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential">
 <summary><span class="mc-name">pseudopotential</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 <p>For type "Pseudopotential", or type "PAW", additional information about the pseudopotentials.</p>
 <table>
@@ -1344,7 +1344,7 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.name">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.name">
 <summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The name of the pseudopotential.</p>
 <table>
@@ -1370,7 +1370,7 @@
 </tbody>
 </table>
 </details>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.type">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.type">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The physical form of the pseudopotential.</p>
 <table>
@@ -1397,7 +1397,7 @@
 </table>
 <p>Recommended: <code>Norm conserving</code>, <code>Ultrasoft</code>. Other values are allowed.</p>
 </details>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.description">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.description">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>Explanatory text about the pseudopotential including any relevant identifying information.</p>
 <table>
@@ -1423,7 +1423,7 @@
 </tbody>
 </table>
 </details>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.number-of-valence-electrons">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.number-of-valence-electrons">
 <summary><span class="mc-name">number-of-valence-electrons<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The number of electrons treated explicitly.</p>
 <table>
@@ -1450,7 +1450,7 @@
 </table>
 <p>Minimum: 1.</p>
 </details>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.repository">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.repository">
 <summary><span class="mc-name">repository</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The database from which the pseudopotential was obtained.</p>
 <table>
@@ -1476,7 +1476,7 @@
 </tbody>
 </table>
 </details>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.version">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.version">
 <summary><span class="mc-name">version</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The version of the pseudopotential.</p>
 <table>
@@ -1503,7 +1503,7 @@
 </table>
 <p>Examples: <code>6.3.1</code>.</p>
 </details>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.doi">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.doi">
 <summary><span class="mc-name">doi</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The digital object identifier (DOI) for the pseudopotential.</p>
 <table>
@@ -1530,7 +1530,7 @@
 </table>
 <p>Pattern: <code>https://doi\.org/10\.[^/]+/.+</code>.</p>
 </details>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.checksum">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.checksum">
 <summary><span class="mc-name">checksum</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>A digital fingerprint of the pseudopotential file, computed by a named algorithm.</p>
 <table>
@@ -1548,7 +1548,7 @@
 </tbody>
 </table>
 <p>Note: Use checksum when the pseudopotential is identified by a checksum of its file (e.g. the SHA256 hash of a VASP POTCAR file). For any other designation, use unique-identifier.</p>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.checksum.file">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.checksum.file">
 <summary><span class="mc-name">file<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The name of the file.</p>
 <table>
@@ -1574,7 +1574,7 @@
 </tbody>
 </table>
 </details>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.checksum.algorithm">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.checksum.algorithm">
 <summary><span class="mc-name">algorithm<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The algorithm that computed the checksum.</p>
 <table>
@@ -1601,7 +1601,7 @@
 </table>
 <p>Recommended: <code>SHA1</code>, <code>SHA224</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>SHA3-256</code>, <code>SHA3-384</code>, <code>SHA3-512</code>, <code>BLAKE2b-256</code>, <code>BLAKE2b-384</code>, <code>BLAKE2b-512</code>, <code>BLAKE3</code>, <code>MD2</code>, <code>MD4</code>, <code>MD5</code>, <code>MD6</code>, <code>ADLER32</code>. Other values are allowed. The algorithm names of <a href="https://spdx.github.io/spdx-spec/v2.3.1/file-information/">SPDX 2.3.1 §8.4</a> (File checksum field).</p>
 </details>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.checksum.value">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.checksum.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The checksum of the file, in lowercase hexadecimal digits.</p>
 <table>
@@ -1629,7 +1629,7 @@
 <p>Pattern: <code>[0-9a-f]+</code>.</p>
 </details>
 </details>
-<details class="note mc-property" id="dft.core-electron-model.pseudopotential.unique-identifier">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.unique-identifier">
 <summary><span class="mc-name">unique-identifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>A token other than a checksum that identifies the pseudopotential, such as a label or code assigned by the library that distributes it.</p>
 <table>
@@ -1658,9 +1658,9 @@
 </details>
 </details>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model">
-<summary><span class="mc-name">valence-electron-model<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-<p>The elementary functions used for expanding electronic wave functions.</p>
+<details class="note mc-property" id="dft.wavefunction-representation">
+<summary><span class="mc-name">wavefunction-representation<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The representation used to expand the electronic wave functions.</p>
 <table>
 <thead>
 <tr>
@@ -1675,9 +1675,9 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="dft.valence-electron-model.type">
+<details class="note mc-property" id="dft.wavefunction-representation.type">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
-<p>The choice of a basis set to expand electronic wave functions.</p>
+<p>The method used to represent the electronic wave functions.</p>
 <table>
 <thead>
 <tr>
@@ -1700,11 +1700,11 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>Plane waves</code>, <code>LAPW</code>, <code>Localized orbitals</code>, <code>PAW</code>. Other values are allowed. "LAPW" – Linearized Augmented Plane Wave.</p>
+<p>Recommended: <code>Gaussian basis sets</code>, <code>LAPW</code>, <code>Local atomic orbitals</code>, <code>Numerical atomic orbitals</code>, <code>Plane waves</code>, <code>Real space grids</code>. Other values are allowed. The terms fall into three groups. (1) Basis-function expansions: "Gaussian basis sets" – Atom-centered Gaussian-type orbitals. "Local atomic orbitals" – Atom-centered orbitals of a form not covered by the previous or the next term, e.g. Slater-type orbitals. "Numerical atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius. "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff. (2) Grid methods: "Real space grids" – Values on a mesh of points in real space (finite differences or finite elements). (3) Augmented methods: "LAPW" – Linearized Augmented Plane Wave: atomic-like functions inside spheres around the atoms, plane waves between them.</p>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.localized-orbital-basis-set">
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set">
 <summary><span class="mc-name">localized-orbital-basis-set</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
-<p>For type "Localized orbitals", additional information about the localized orbital basis set.</p>
+<p>For type "Gaussian basis sets", "Local atomic orbitals" or "Numerical atomic orbitals", additional information about the basis set.</p>
 <table>
 <thead>
 <tr>
@@ -1719,7 +1719,7 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="dft.valence-electron-model.localized-orbital-basis-set.type">
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.type">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The designation of the set of orbital functions used for expanding electronic wave functions.</p>
 <table>
@@ -1746,7 +1746,7 @@
 </table>
 <p>Examples: <code>6-31G</code>, <code>DZP</code>.</p>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.localized-orbital-basis-set.repository">
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.repository">
 <summary><span class="mc-name">repository</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The database from which the localized-orbital basis set was obtained.</p>
 <table>
@@ -1772,7 +1772,7 @@
 </tbody>
 </table>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.localized-orbital-basis-set.version">
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.version">
 <summary><span class="mc-name">version</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The version of the localized-orbital basis set.</p>
 <table>
@@ -1798,7 +1798,7 @@
 </tbody>
 </table>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.localized-orbital-basis-set.doi">
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.doi">
 <summary><span class="mc-name">doi</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The digital object identifier (DOI) for the localized-orbital basis set.</p>
 <table>
@@ -1825,7 +1825,7 @@
 </table>
 <p>Pattern: <code>https://doi\.org/10\.[^/]+/.+</code>.</p>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.localized-orbital-basis-set.checksum">
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.checksum">
 <summary><span class="mc-name">checksum</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>A digital fingerprint of the localized-orbital basis set file, computed by a named algorithm.</p>
 <table>
@@ -1843,7 +1843,7 @@
 </tbody>
 </table>
 <p>Note: Use checksum when the basis set is identified by a checksum of its file. For any other designation, use unique-identifier.</p>
-<details class="note mc-property" id="dft.valence-electron-model.localized-orbital-basis-set.checksum.file">
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.checksum.file">
 <summary><span class="mc-name">file<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The name of the file.</p>
 <table>
@@ -1869,7 +1869,7 @@
 </tbody>
 </table>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.localized-orbital-basis-set.checksum.algorithm">
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.checksum.algorithm">
 <summary><span class="mc-name">algorithm<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The algorithm that computed the checksum.</p>
 <table>
@@ -1896,7 +1896,7 @@
 </table>
 <p>Recommended: <code>SHA1</code>, <code>SHA224</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>SHA3-256</code>, <code>SHA3-384</code>, <code>SHA3-512</code>, <code>BLAKE2b-256</code>, <code>BLAKE2b-384</code>, <code>BLAKE2b-512</code>, <code>BLAKE3</code>, <code>MD2</code>, <code>MD4</code>, <code>MD5</code>, <code>MD6</code>, <code>ADLER32</code>. Other values are allowed. The algorithm names of <a href="https://spdx.github.io/spdx-spec/v2.3.1/file-information/">SPDX 2.3.1 §8.4</a> (File checksum field).</p>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.localized-orbital-basis-set.checksum.value">
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.checksum.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The checksum of the file, in lowercase hexadecimal digits.</p>
 <table>
@@ -1924,7 +1924,7 @@
 <p>Pattern: <code>[0-9a-f]+</code>.</p>
 </details>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.localized-orbital-basis-set.unique-identifier">
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.unique-identifier">
 <summary><span class="mc-name">unique-identifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>A token other than a checksum that identifies the localized-orbital basis set, such as a label or code assigned by the library that distributes it.</p>
 <table>
@@ -1952,9 +1952,9 @@
 <p>Note: For a checksum of the basis set file, use checksum instead.</p>
 </details>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.kinetic-energy-cutoff">
+<details class="note mc-property" id="dft.wavefunction-representation.kinetic-energy-cutoff">
 <summary><span class="mc-name">kinetic-energy-cutoff</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-<p>For type not "Localized orbitals", the maximum kinetic energy of the plane waves included in the calculation of wave functions.</p>
+<p>For type "LAPW" or "Plane waves", the maximum kinetic energy of the plane waves included in the calculation of wave functions.</p>
 <table>
 <thead>
 <tr>
@@ -1969,7 +1969,7 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="dft.valence-electron-model.kinetic-energy-cutoff.value">
+<details class="note mc-property" id="dft.wavefunction-representation.kinetic-energy-cutoff.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The value of the property, in the unit given by <code>unit</code>.</p>
 <table>
@@ -1996,7 +1996,7 @@
 </table>
 <p>Minimum: 0.</p>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.kinetic-energy-cutoff.unit">
+<details class="note mc-property" id="dft.wavefunction-representation.kinetic-energy-cutoff.unit">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The unit of the value, an Annex U symbol whose Kind is the Kind of <code>value</code>.</p>
 <table>
@@ -2023,9 +2023,9 @@
 </table>
 </details>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.charge-density-cutoff">
+<details class="note mc-property" id="dft.wavefunction-representation.charge-density-cutoff">
 <summary><span class="mc-name">charge-density-cutoff</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-<p>For type not "Localized orbitals", the energy value used to truncate the plane wave expansion of the electron charge density.</p>
+<p>For type "LAPW" or "Plane waves", the energy value used to truncate the plane wave expansion of the electron charge density.</p>
 <table>
 <thead>
 <tr>
@@ -2040,7 +2040,7 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="dft.valence-electron-model.charge-density-cutoff.value">
+<details class="note mc-property" id="dft.wavefunction-representation.charge-density-cutoff.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The value of the property, in the unit given by <code>unit</code>.</p>
 <table>
@@ -2067,7 +2067,7 @@
 </table>
 <p>Minimum: 0.</p>
 </details>
-<details class="note mc-property" id="dft.valence-electron-model.charge-density-cutoff.unit">
+<details class="note mc-property" id="dft.wavefunction-representation.charge-density-cutoff.unit">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The unit of the value, an Annex U symbol whose Kind is the Kind of <code>value</code>.</p>
 <table>
@@ -2603,21 +2603,21 @@
 <span class="w">    </span><span class="nt">&lt;type&gt;</span>GGA<span class="nt">&lt;/type&gt;</span>
 <span class="w">    </span><span class="nt">&lt;description&gt;</span>PW91<span class="w"> </span>functional<span class="w"> </span>(the<span class="w"> </span>choice<span class="w"> </span>is<span class="w"> </span>motivated<span class="w"> </span>by<span class="w"> </span>the<span class="w"> </span>existence<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>large-scale<span class="w"> </span>simulation<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>melting<span class="w"> </span>point<span class="w"> </span>with<span class="w"> </span>this<span class="w"> </span>functional)<span class="nt">&lt;/description&gt;</span>
 <span class="w">  </span><span class="nt">&lt;/xc-functional&gt;</span>
-<span class="w">  </span><span class="nt">&lt;core-electron-model&gt;</span>
+<span class="w">  </span><span class="nt">&lt;core-electron-treatment&gt;</span>
 <span class="w">    </span><span class="nt">&lt;type&gt;</span>Pseudopotential<span class="nt">&lt;/type&gt;</span>
 <span class="w">    </span><span class="nt">&lt;pseudopotential&gt;</span>
 <span class="w">      </span><span class="nt">&lt;name&gt;</span>Ultrasoft<span class="w"> </span>Pseudopotentials<span class="w"> </span>(USP)<span class="nt">&lt;/name&gt;</span>
 <span class="w">      </span><span class="nt">&lt;type&gt;</span>Ultrasoft<span class="nt">&lt;/type&gt;</span>
 <span class="w">      </span><span class="nt">&lt;number-of-valence-electrons&gt;</span>4<span class="nt">&lt;/number-of-valence-electrons&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/pseudopotential&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/core-electron-model&gt;</span>
-<span class="w">  </span><span class="nt">&lt;valence-electron-model&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/core-electron-treatment&gt;</span>
+<span class="w">  </span><span class="nt">&lt;wavefunction-representation&gt;</span>
 <span class="w">    </span><span class="nt">&lt;type&gt;</span>Plane<span class="w"> </span>waves<span class="nt">&lt;/type&gt;</span>
 <span class="w">    </span><span class="nt">&lt;kinetic-energy-cutoff&gt;</span>
 <span class="w">      </span><span class="nt">&lt;value&gt;</span>250.0<span class="nt">&lt;/value&gt;</span>
 <span class="w">      </span><span class="nt">&lt;unit&gt;</span>eV<span class="nt">&lt;/unit&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/kinetic-energy-cutoff&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/valence-electron-model&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/wavefunction-representation&gt;</span>
 <span class="w">  </span><span class="nt">&lt;k-point-mesh&gt;</span>
 <span class="w">    </span><span class="nt">&lt;type&gt;</span>Regular<span class="w"> </span>shifted<span class="nt">&lt;/type&gt;</span>
 <span class="w">    </span><span class="nt">&lt;smearing-width&gt;</span>
