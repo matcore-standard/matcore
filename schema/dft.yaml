@@ -690,34 +690,86 @@ properties:
   recommended-unit: null
   values: null
   repeatable: false
-  legacy_values: Contains SubProperties as listed below.
   subproperties:
-  - name: method
+  - name: method-density
     required: false
     description: >-
       The self-consistent field mixing and/or extrapolation scheme for the iterative solution of the Kohn-Sham
       equations.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      terms: [Simple mixing, Pulay mixing, DIIS, Broyden mixing]
+      note: >-
+        "DIIS" – Direct Inversion in the Iterative Subspace.
     repeatable: false
-    legacy_values: >-
-      String containing one of the following values: "Simple mixing" "Pulay mixing" "Blocked Davidson"
-      "DIIS" – Direct Inversion in the Iterative Subspace "BFGS" – Broyden–Fletcher–Goldfarb–Shanno algorithm
-      Other user-specified value if none of the above apply.
+  - name: method-diagonalization
+    required: false
+    description: The method used to obtain the Kohn-Sham orbitals at each step of the self-consistent loop.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      terms: [Car-Parrinello, Chebyshev filtering, Conjugate gradient, Davidson method, Direct diagonalization,
+        Lanczos, LOBPCG, RMM-DIIS]
+      note: >-
+        "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization.
+        "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters. "Davidson method" –
+        Including blocked variants. "Direct diagonalization" – A dense eigensolver applied to the full
+        Hamiltonian matrix (e.g. LAPACK, ScaLAPACK). "LOBPCG" – Locally Optimal Block Preconditioned
+        Conjugate Gradient. "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the
+        Iterative Subspace.
+    repeatable: true
   - name: tolerance
     required: true
-    description: Convergence criterion (on total energy) for the self-consistent loop.
+    description: Convergence criterion for the self-consistent loop.
     type: null
     extent: null
     kind: null
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: Real number containing the convergence tolerance
-    legacy_unit: electron Volt (eV)
+    subproperties:
+    - name: criterion
+      required: true
+      description: The quantity whose convergence the tolerance measures.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Energy, Charge density, Potential]
+        note: >-
+          "Energy" – The change in the total energy between successive iterations. "Charge density" – The
+          change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham
+          potential.
+      repeatable: false
+    - name: value
+      required: true
+      description: The value of the property, in the unit given by `unit`.
+      type: float
+      extent: []
+      kind: any
+      recommended-unit: null
+      values:
+        minimum: 0
+      repeatable: false
+    - name: unit
+      required: true
+      description: The unit in which the associated value is expressed.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only
+          if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted
+          with a validation warning).
+      repeatable: false
 - name: relaxation-tolerance-energy
   required: false
   description: Total energy convergence criterion for atomic relaxation.

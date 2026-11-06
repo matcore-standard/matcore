@@ -60,7 +60,7 @@ Each standard consists of a set of Properties with possible SubProperties, SubSu
 
         - A Property that contains SubProperties shows them nested within it.
 
-    - Kind: The physical dimension of the Property's value, given as a MatCore Kind name mapped to a QUDT QuantityKind IRI in Annex U (e.g. Energy, Length, InverseLength, Temperature, Pressure). Reserved values: `dimensionless` (ratios, counts), `inapplicable` (strings, identifiers, and the `unit` subproperty itself), `any` (the `value` of a generic name/value/unit parameter, whose Kind is then given by the instance `unit`).
+    - Kind: The physical dimension of the Property's value, given as a MatCore Kind name mapped to a QUDT QuantityKind IRI in Annex U (e.g. Energy, Length, InverseLength, Temperature, Pressure). Reserved values: `dimensionless` (ratios, counts), `inapplicable` (strings, identifiers, and the `unit` subproperty itself), `any` (a `value` whose Kind is given by the instance `unit`, as in a generic parameter).
 
     - Recommended unit: The unit customarily used for this Property in the community. Informative only; used by templates and tools.
 

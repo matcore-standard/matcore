@@ -9,6 +9,7 @@ from jsonschema import Draft202012Validator
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from check_values import value_schema  # noqa: E402
+from check_generic import UNIT_DESCRIPTION, UNIT_NOTE  # noqa: E402
 
 
 def tree(p):
@@ -541,6 +542,38 @@ def test_cutoffs_are_energies(name):
     v = sub(sub(dft('wavefunction-representation'), name), 'value')
     assert (v['extent'], v['kind'], v['recommended-unit']) == ([], 'Energy', 'eV')
     assert v['values']['minimum'] == 0
+
+
+def test_scf_convergence_structure():
+    """The SCF loop records how the density is mixed, how the orbitals are obtained (several methods may
+    be combined), and the tolerance with the quantity it applies to (0019, 0020)."""
+    s = dft('self-consistent-field-convergence')
+    tolerance = ('tolerance', True, False, None, (), (
+        ('criterion', True, False, 'string', ('Energy', 'Charge density', 'Potential'), ()),
+        ('value', True, False, 'float', (), ()), ('unit', True, False, 'string', (), ())))
+    assert tree(s) == ('self-consistent-field-convergence', False, False, None, (), (
+        ('method-density', False, False, 'string', ('Simple mixing', 'Pulay mixing', 'DIIS', 'Broyden mixing'),
+         ()),
+        ('method-diagonalization', False, True, 'string', (
+            'Car-Parrinello', 'Chebyshev filtering', 'Conjugate gradient', 'Davidson method',
+            'Direct diagonalization', 'Lanczos', 'LOBPCG', 'RMM-DIIS'), ()), tolerance))
+    assert legacy_fields(s) == []
+
+
+def test_scf_tolerance_value_has_an_open_kind():
+    """The tolerance's unit depends on the criterion, so its Kind is open, it has no recommended unit,
+    and its unit is written as a generic parameter's (0019 items 1, 5)."""
+    t = sub(dft('self-consistent-field-convergence'), 'tolerance')
+    v, u = sub(t, 'value'), sub(t, 'unit')
+    assert (v['extent'], v['kind'], v['recommended-unit'], v['values']['minimum']) == ([], 'any', None, 0)
+    assert (u['description'], u['values']) == (UNIT_DESCRIPTION, {'note': UNIT_NOTE})
+
+
+def test_diagonalization_note_defines_the_acronyms_and_car_parrinello():
+    """Every acronym, and the one term that is not a diagonalization, is explained in the note (0020)."""
+    note = sub(dft('self-consistent-field-convergence'), 'method-diagonalization')['values']['note']
+    for term in ('Car-Parrinello', 'LOBPCG', 'RMM-DIIS'):
+        assert f'"{term}" –' in note
 
 
 def test_calculation_physics_lists_the_added_phenomena():

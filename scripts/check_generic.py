@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Check generic parameters against their canonical form (decision 0016).
 
-A container is a generic parameter when one of its subproperties is a `value` of Kind `any`. Its
+A container is a generic parameter when one of its subproperties is a `value` whose Type and Kind are
+both `any` (0019 item 3). Its
 subproperties are then exactly `name`, `value`, `unit` and `description`, in that order, each with the
 fields of FORM; `unit` also has the fixed description and note of 0001 B9 and A3.2. The descriptions of
 `name`, `value` and `description` are the parameter's own. Called by scripts/validate_schema.py for
@@ -27,7 +28,7 @@ def generic_errors(p):
     p (dict): property entry, with its subproperties.
     """
     subs = p.get('subproperties') or []
-    if not any(s['name'] == 'value' and s.get('kind') == 'any' for s in subs):
+    if not any(s['name'] == 'value' and s.get('type') == s.get('kind') == 'any' for s in subs):
         return []
     names = [s['name'] for s in subs]
     if names != list(FORM):
