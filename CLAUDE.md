@@ -464,8 +464,8 @@ record or marked PROPOSED, NOT DECIDED.
    `pseudopotential-or-paw` by 0021: type terms Norm conserving, PAW, Ultrasoft; "the
    pseudopotential" becomes "the pseudopotential or PAW dataset" in its descriptions and notes;
    examples/dft.xml renamed to match.
-   [todo] dft relaxation-tolerance-energy: value + unit (Energy, recommended eV, minimum 0; 0001
-   A3.1); legacy_* deleted. On branch relaxation-tolerance-energy (committed, not pushed; PR to open).
+   [done, PR #48 merged 2026-11-06] dft relaxation-tolerance-energy: value + unit (Energy,
+   recommended eV, minimum 0; 0001 A3.1); legacy_* deleted.
    [todo] The rest of dft in file order, after relaxation-tolerance-energy.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
