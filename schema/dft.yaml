@@ -782,8 +782,26 @@ properties:
   recommended-unit: null
   values: null
   repeatable: false
-  legacy_values: Real number containing the convergence tolerance
-  legacy_unit: electron Volt (eV)
+  subproperties:
+  - name: value
+    required: true
+    description: The value of the property, in the unit given by `unit`.
+    type: float
+    extent: []
+    kind: Energy
+    recommended-unit: eV
+    values:
+      minimum: 0
+    repeatable: false
+  - name: unit
+    required: true
+    description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values: null
+    repeatable: false
 - name: relaxation-tolerance-forces
   required: false
   description: Maximum force convergence criterion for atomic relaxation.

@@ -594,6 +594,17 @@ def test_diagonalization_note_defines_the_acronyms_and_car_parrinello():
         assert f'"{term}" –' in note
 
 
+def test_relaxation_tolerance_energy_is_an_energy():
+    """The relaxation stops on a change in total energy: a non-negative energy, recommended in eV, with
+    its unit stated (0001 A3.1)."""
+    r = dft('relaxation-tolerance-energy')
+    assert tree(r) == ('relaxation-tolerance-energy', False, False, None, (), (
+        ('value', True, False, 'float', (), ()), ('unit', True, False, 'string', (), ())))
+    v = sub(r, 'value')
+    assert (v['extent'], v['kind'], v['recommended-unit'], v['values']) == ([], 'Energy', 'eV', {'minimum': 0})
+    assert legacy_fields(r) == []
+
+
 def test_calculation_physics_lists_the_added_phenomena():
     """Each phenomenon beyond a standard DFT calculation is one entry from an open vocabulary, so a
     calculation that includes several repeats the property."""
