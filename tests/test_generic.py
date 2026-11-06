@@ -74,6 +74,15 @@ def test_only_a_value_of_kind_any_makes_a_generic_parameter():
     assert generic_errors(leaf('title', True, 'A title.')) == []
 
 
+def test_a_value_of_fixed_type_and_kind_any_is_not_a_generic_parameter():
+    """A float whose unit the instance chooses, as the SCF tolerance, is not a generic parameter: only a
+    value whose Type and Kind are both open is one (0019 item 3)."""
+    tolerance = {'name': 'tolerance', 'subproperties': [
+        leaf('criterion', True, 'c'), leaf('value', True, 'v', type='float', kind='any'),
+        leaf('unit', True, UNIT_DESCRIPTION, values={'note': UNIT_NOTE})]}
+    assert generic_errors(tolerance) == []
+
+
 def test_validate_schema_applies_the_check(tmp_path):
     """validate_schema.py, which CI runs, fails when a generic parameter loses its unit's fixed note."""
     for d in ('schema', 'scripts', 'examples'):

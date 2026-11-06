@@ -271,7 +271,10 @@ record or marked PROPOSED, NOT DECIDED.
      values written as leaves again, with no unit (0015, third amendment; 0004 item 48); dft
      xc-functional gains a `name` and a `normalization` (0017); dft core-electron-model and
      valence-electron-model renamed core-electron-treatment and wavefunction-representation, with
-     new terms (0018; breaks 0.5.0 instances).
+     new terms (0018; breaks 0.5.0 instances); dft self-consistent-field-convergence's typed fields
+     filled, its tolerance given a criterion and an open Kind, a generic parameter recognised by
+     Type and Kind any, §1.3's Kind `any` reworded (0019); `method` renamed `method-density` (breaks
+     0.5.0 instances) and `method-diagonalization` added (0020).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -455,6 +458,7 @@ record or marked PROPOSED, NOT DECIDED.
    renamed `method-density` (Simple mixing, Pulay mixing, DIIS, Broyden mixing); new repeatable
    `method-diagonalization` (Car-Parrinello, Chebyshev filtering, Conjugate gradient, Davidson
    method, Direct diagonalization, Lanczos, LOBPCG, RMM-DIIS); legacy_* deleted.
+   In progress on branch scf-convergence (committed, not pushed; PR to open).
    [todo] The rest of dft in file order, after self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
