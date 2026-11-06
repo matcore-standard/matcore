@@ -59,7 +59,7 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   model, independent of any serialization.)
 - `recommended-unit`: informative only; must be a symbol in units.yaml with matching kind.
   Null when kind is `dimensionless` (0004 items 39, 48).
-  PROPOSED, NOT DECIDED: no recommended unit when kind is `any`.
+  No recommended unit when kind is `any` (0019).
 - `convention`: an optional property field in meta-schema.yaml, rendered by build_docs.py but
   used by no property; the units model below expresses conventions as subproperties instead.
   PROPOSED, NOT DECIDED: remove the field, or define its use, when the next convention-like
@@ -123,8 +123,9 @@ Three groups, not to be merged:
    domain-size they carry a required `scaling` subproperty [physical, nondimensional]; when
    nondimensional, `unit` SHALL be `dimensionless` (0003).
 Every `unit` subproperty has kind inapplicable and holds an Annex U symbol or `dimensionless`. The
-`x-gnu:` escape (Annex U Rule 4) is permitted only in groups 1 and 2, where the schema does not fix
-the kind; group 3 and all other typed properties use Annex U symbols only (0001 A1.1).
+`x-gnu:` escape (Annex U Rule 4) is permitted only where the schema does not fix the kind: groups 1
+and 2, and the `unit` beside any other `value` of kind any (dft SCF tolerance, 0019); group 3 and all
+other typed properties use Annex U symbols only (0001 A1.1).
 PROPOSED, NOT DECIDED: state conditional validation rules (the allowed unit or values of one
 subproperty depend on another's value: `basis` for exciton-momentum, `scaling` for PF lengths and
 times) once in §1.3, so each property refers to the rule rather than restating it. Needs a decision
@@ -134,7 +135,8 @@ first candidate, is removed: 0004 item 47.)
 Group 1 is defined once in §1.3 as a *generic parameter* (0016): a container of `name*`, `value*`
 (type, extent and kind any), `unit*` (fixed description "The unit in which the associated value is
 expressed." (0001 B9) and the A3.2 note) and `description`, in that order. It is recognised by a
-`value` of kind any, with no tag; validate_schema.py checks each one against the canonical form.
+`value` whose type and kind are both any, with no tag (0019 amends 0016); validate_schema.py checks
+each one against the canonical form.
 
 ## Instance serialization
 The standard is agnostic to serialization format, as §1.3 states. The XML examples in the standard
@@ -446,7 +448,14 @@ record or marked PROPOSED, NOT DECIDED.
    Numerical atomic orbitals, Plane waves, Real space grids; a note groups them as (1), (2), (3)
    and explains each in a phrase, wording in 0018); descriptions of both,
    localized-orbital-basis-set and the two cutoffs reworded; examples/dft.xml renamed to match.
-   [todo] The rest of dft in file order, starting with self-consistent-field-convergence.
+   [todo] dft self-consistent-field-convergence, by 0019 and 0020 (one PR): tolerance a
+   container of criterion* (open terms Energy, Charge density, Potential), value* (float, kind
+   any, minimum 0, no unit check against the criterion) and unit* (a generic parameter's unit);
+   check_generic.py recognises a generic parameter by a value of type and kind any; `method`
+   renamed `method-density` (Simple mixing, Pulay mixing, DIIS, Broyden mixing); new repeatable
+   `method-diagonalization` (Car-Parrinello, Chebyshev filtering, Conjugate gradient, Davidson
+   method, Direct diagonalization, Lanczos, LOBPCG, RMM-DIIS); legacy_* deleted.
+   [todo] The rest of dft in file order, after self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must

@@ -2,6 +2,8 @@
 
 Date: 2026-11-04. Status: accepted. Decided by: Ellad Tadmor.
 
+Amended 2026-11-06 by 0019: item 2 recognises a generic parameter by a `value` whose Type and Kind are both `any`; the `x-gnu:` escape follows Annex U Rule 4.
+
 ## Context
 Five properties of the standard hold a parameter whose meaning the schema does not fix: dft `xc-functional` › `xc-parameter`, md `computation-parameter` and `td-parameter`, pf `model-parameter`, and derived `calculation-parameter`. Each has the same four subproperties in the baseline: `name*`, `value*`, `unit*` and `description`. 0001 A3.2 (and A7.4 for pf) gives the `value` Kind `any` and the `unit` its allowed forms; 0004 item 16 states that the instance gives the value's type (float, int, string or bool) and that the value need not be a scalar. CLAUDE.md proposed defining the pattern once and checking every such entry against one canonical definition, but left it undecided. dft `xc-parameter` is the first of the five to be filled (status step 5).
 
