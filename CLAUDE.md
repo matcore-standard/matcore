@@ -469,10 +469,9 @@ record or marked PROPOSED, NOT DECIDED.
    recommended eV, minimum 0; 0001 A3.1); legacy_* deleted.
    [done, PR #49 merged 2026-11-06] dft relaxation-tolerance-forces: value + unit (Force,
    recommended eV/angstrom, minimum 0; 0001 A3.1); legacy_* deleted.
-   [todo] dft comment: a repeatable scalar string, values null; legacy_* deleted. dft is complete:
-   it declares `legacy_complete: true` (0004 item 36). On branch dft-comment (committed, not pushed; PR
-   to open).
-   [todo] md in file order, after dft is merged.
+   [done, PR #50 merged 2026-11-06] dft comment: a repeatable scalar string, values null; legacy_*
+   deleted. dft is complete: it declares `legacy_complete: true` (0004 item 36).
+   [todo] md in file order.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
