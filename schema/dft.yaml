@@ -178,10 +178,11 @@ properties:
         Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core
         electrons are modeled by a simplified potential.
     repeatable: false
-  - name: pseudopotential
+  - name: pseudopotential-or-paw
     required: false
     description: >-
-      For type "Pseudopotential", or type "PAW", additional information about the pseudopotentials.
+      For type "Pseudopotential", or type "PAW", additional information about each pseudopotential or
+      PAW dataset.
     type: null
     extent: null
     kind: null
@@ -191,7 +192,7 @@ properties:
     subproperties:
     - name: name
       required: true
-      description: The name of the pseudopotential.
+      description: The name of the pseudopotential or PAW dataset.
       type: string
       extent: []
       kind: inapplicable
@@ -200,18 +201,19 @@ properties:
       repeatable: false
     - name: type
       required: true
-      description: The physical form of the pseudopotential.
+      description: The physical form of the pseudopotential or PAW dataset.
       type: string
       extent: []
       kind: inapplicable
       recommended-unit: null
       values:
-        terms: [Norm conserving, Ultrasoft]
+        terms: [Norm conserving, PAW, Ultrasoft]
       repeatable: false
     - name: description
       required: false
       description: >-
-        Explanatory text about the pseudopotential including any relevant identifying information.
+        Explanatory text about the pseudopotential or PAW dataset including any relevant identifying
+        information.
       type: string
       extent: []
       kind: inapplicable
@@ -230,7 +232,7 @@ properties:
       repeatable: false
     - name: repository
       required: false
-      description: The database from which the pseudopotential was obtained.
+      description: The database from which the pseudopotential or PAW dataset was obtained.
       type: string
       extent: []
       kind: inapplicable
@@ -239,7 +241,7 @@ properties:
       repeatable: false
     - name: version
       required: false
-      description: The version of the pseudopotential.
+      description: The version of the pseudopotential or PAW dataset.
       type: string
       extent: []
       kind: inapplicable
@@ -249,7 +251,7 @@ properties:
       repeatable: false
     - name: doi
       required: false
-      description: The digital object identifier (DOI) for the pseudopotential.
+      description: The digital object identifier (DOI) for the pseudopotential or PAW dataset.
       type: string
       extent: []
       kind: inapplicable
@@ -259,7 +261,8 @@ properties:
       repeatable: false
     - name: checksum
       required: false
-      description: A digital fingerprint of the pseudopotential file, computed by a named algorithm.
+      description: >-
+        A digital fingerprint of the pseudopotential or PAW dataset file, computed by a named algorithm.
       type: null
       extent: null
       kind: null
@@ -268,8 +271,8 @@ properties:
       repeatable: false
       notes:
       - >-
-        Note: Use checksum when the pseudopotential is identified by a checksum of its file (e.g. the
-        SHA256 hash of a VASP POTCAR file). For any other designation, use unique-identifier.
+        Note: Use checksum when the pseudopotential or PAW dataset is identified by a checksum of its file
+        (e.g. the SHA256 hash of a VASP POTCAR file). For any other designation, use unique-identifier.
       subproperties:
       - name: file
         required: true
@@ -307,8 +310,8 @@ properties:
     - name: unique-identifier
       required: false
       description: >-
-        A token other than a checksum that identifies the pseudopotential, such as a label or code
-        assigned by the library that distributes it.
+        A token other than a checksum that identifies the pseudopotential or PAW dataset, such as a label
+        or code assigned by the library that distributes it.
       type: string
       extent: []
       kind: inapplicable
@@ -317,7 +320,7 @@ properties:
       repeatable: false
       notes:
       - >-
-        Note: For a checksum of the pseudopotential file, use checksum instead.
+        Note: For a checksum of the pseudopotential or PAW dataset file, use checksum instead.
 - name: wavefunction-representation
   required: true
   description: The representation used to expand the electronic wave functions.
