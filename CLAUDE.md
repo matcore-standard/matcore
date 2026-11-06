@@ -451,14 +451,13 @@ record or marked PROPOSED, NOT DECIDED.
    Numerical atomic orbitals, Plane waves, Real space grids; a note groups them as (1), (2), (3)
    and explains each in a phrase, wording in 0018); descriptions of both,
    localized-orbital-basis-set and the two cutoffs reworded; examples/dft.xml renamed to match.
-   [todo] dft self-consistent-field-convergence, by 0019 and 0020 (one PR): tolerance a
-   container of criterion* (open terms Energy, Charge density, Potential), value* (float, kind
+   [done, PR #46 merged 2026-11-06] dft self-consistent-field-convergence, by 0019 and 0020:
+   tolerance a container of criterion* (open terms Energy, Charge density, Potential), value* (float, kind
    any, minimum 0, no unit check against the criterion) and unit* (a generic parameter's unit);
    check_generic.py recognises a generic parameter by a value of type and kind any; `method`
    renamed `method-density` (Simple mixing, Pulay mixing, DIIS, Broyden mixing); new repeatable
    `method-diagonalization` (Car-Parrinello, Chebyshev filtering, Conjugate gradient, Davidson
    method, Direct diagonalization, Lanczos, LOBPCG, RMM-DIIS); legacy_* deleted.
-   In progress on branch scf-convergence (committed, not pushed; PR to open).
    [todo] The rest of dft in file order, after self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
