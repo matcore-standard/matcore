@@ -277,7 +277,7 @@ record or marked PROPOSED, NOT DECIDED.
      0.5.0 instances) and `method-diagonalization` added (0020); dft pseudopotential renamed
      `pseudopotential-or-paw`, its type gaining the term PAW (0021; breaks 0.5.0 instances); dft
      relaxation-tolerance-energy's typed fields filled (step 5); dft relaxation-tolerance-forces's
-     typed fields filled (step 5).
+     typed fields filled (step 5); dft comment's typed fields filled, dft complete (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -469,7 +469,10 @@ record or marked PROPOSED, NOT DECIDED.
    recommended eV, minimum 0; 0001 A3.1); legacy_* deleted.
    [done, PR #49 merged 2026-11-06] dft relaxation-tolerance-forces: value + unit (Force,
    recommended eV/angstrom, minimum 0; 0001 A3.1); legacy_* deleted.
-   [todo] The rest of dft in file order, after relaxation-tolerance-forces.
+   [todo] dft comment: a repeatable scalar string, values null; legacy_* deleted. dft is complete:
+   it declares `legacy_complete: true` (0004 item 36). On branch dft-comment (committed, not pushed; PR
+   to open).
+   [todo] md in file order, after dft is merged.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must

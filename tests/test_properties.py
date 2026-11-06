@@ -617,6 +617,21 @@ def test_relaxation_tolerance_forces_is_a_force():
     assert legacy_fields(r) == []
 
 
+def test_dft_comment_is_free_text():
+    """A DFT comment is free text that may be given several times, one remark per entry."""
+    c = dft('comment')
+    assert (c['required'], c['repeatable'], c['type'], c['extent'], c['kind'], c['recommended-unit'],
+            c['values']) == (False, True, 'string', [], 'inapplicable', None, None)
+    assert legacy_fields(c) == []
+
+
+def test_dft_is_complete():
+    """Every typed field of the dft section is filled, so it declares itself complete (0004 item 36)."""
+    doc = yaml.safe_load(open(ROOT / 'schema/dft.yaml'))
+    assert doc.get('legacy_complete') is True
+    assert [k for p in doc['properties'] for k in legacy_fields(p)] == []
+
+
 def test_calculation_physics_lists_the_added_phenomena():
     """Each phenomenon beyond a standard DFT calculation is one entry from an open vocabulary, so a
     calculation that includes several repeats the property."""
