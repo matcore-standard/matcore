@@ -267,7 +267,9 @@ record or marked PROPOSED, NOT DECIDED.
      fields filled (step 5); dft k-point-mesh's typed fields filled, k-point-spacing removed and
      methfessel-paxton-order replaced by a generic smearing-parameter (0004 item 47) (step 5); dimensionless
      values written as leaves again, with no unit (0015, third amendment; 0004 item 48); dft
-     xc-functional gains a `name` and a `normalization` (0017).
+     xc-functional gains a `name` and a `normalization` (0017); dft core-electron-model and
+     valence-electron-model renamed core-electron-treatment and wavefunction-representation, with
+     new terms (0018; breaks 0.5.0 instances).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -443,7 +445,8 @@ record or marked PROPOSED, NOT DECIDED.
    PAW, Pseudopotential) and `wavefunction-representation` (terms Gaussian basis sets, LAPW,
    Local atomic orbitals, Numerical atomic orbitals, Plane waves, Real space grids; a note groups
    them as (1), (2), (3) and explains each in a phrase, wording in 0018); descriptions of both, localized-orbital-basis-set and the
-   two cutoffs reworded; examples/dft.xml renamed to match.
+   two cutoffs reworded; examples/dft.xml renamed to match. In progress on branch
+   core-wavefunction-0018 (committed, not pushed; PR to open).
    [todo] The rest of dft in file order, starting with self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.

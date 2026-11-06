@@ -4,21 +4,21 @@
     <type>GGA</type>
     <description>PW91 functional (the choice is motivated by the existence of a large-scale simulation of the melting point with this functional)</description>
   </xc-functional>
-  <core-electron-model>
+  <core-electron-treatment>
     <type>Pseudopotential</type>
     <pseudopotential>
       <name>Ultrasoft Pseudopotentials (USP)</name>
       <type>Ultrasoft</type>
       <number-of-valence-electrons>4</number-of-valence-electrons>
     </pseudopotential>
-  </core-electron-model>
-  <valence-electron-model>
+  </core-electron-treatment>
+  <wavefunction-representation>
     <type>Plane waves</type>
     <kinetic-energy-cutoff>
       <value>250.0</value>
       <unit>eV</unit>
     </kinetic-energy-cutoff>
-  </valence-electron-model>
+  </wavefunction-representation>
   <k-point-mesh>
     <type>Regular shifted</type>
     <smearing-width>

@@ -435,10 +435,10 @@ def test_xc_functional_keeps_the_name_beside_its_normalization():
     assert sub(norm, 'source')['values']['terms'] == ['LibXC']
 
 
-def test_core_electron_model_structure():
-    """The core-electron model names its method and, for pseudopotential methods, each pseudopotential: its
+def test_core_electron_treatment_structure():
+    """The core-electron treatment names its method and, for pseudopotential methods, each pseudopotential: its
     name and form, how many electrons it treats explicitly, where it came from, and what identifies it."""
-    c = dft('core-electron-model')
+    c = dft('core-electron-treatment')
     count = ('number-of-valence-electrons', True, False, 'int', (), ())
     checksum = ('checksum', False, False, None, (), tuple(tree(s) for s in
                                                           sub(minimal('provenance'), 'checksum')['subproperties']))
@@ -449,21 +449,21 @@ def test_core_electron_model_structure():
         ('repository', False, False, 'string', (), ()), ('version', False, False, 'string', (), ()),
         ('doi', False, False, 'string', (), ()), checksum,
         ('unique-identifier', False, False, 'string', (), ())))
-    assert tree(c) == ('core-electron-model', True, False, None, (), (
-        ('type', True, False, 'string', ('All Electron', 'LAPW', 'Pseudopotential', 'PAW'), ()), pseudopotential))
+    assert tree(c) == ('core-electron-treatment', True, False, None, (), (
+        ('type', True, False, 'string', ('All-electron', 'PAW', 'Pseudopotential'), ()), pseudopotential))
     assert legacy_fields(c) == []
 
 
 def test_pseudopotential_checksum_is_provenance_checksum():
     """A pseudopotential's checksum is written exactly as a provenance checksum (file, algorithm with the
     SPDX names, value in lowercase hex), so one rule reads both."""
-    p = sub(sub(dft('core-electron-model'), 'pseudopotential'), 'checksum')
+    p = sub(sub(dft('core-electron-treatment'), 'pseudopotential'), 'checksum')
     assert p['subproperties'] == sub(minimal('provenance'), 'checksum')['subproperties']
 
 
 def test_checksum_and_unique_identifier_point_to_each_other():
     """A checksum and any other designation are kept apart: each note sends the reader to the other."""
-    pp = sub(dft('core-electron-model'), 'pseudopotential')
+    pp = sub(dft('core-electron-treatment'), 'pseudopotential')
     assert 'unique-identifier' in sub(pp, 'checksum')['notes'][0]
     assert 'checksum' in sub(pp, 'unique-identifier')['notes'][0]
     assert 'hash' not in sub(pp, 'unique-identifier')['description'].lower()
@@ -475,15 +475,15 @@ def test_number_of_valence_electrons_is_a_positive_count(value, ok):
 
     value (int | float): a candidate count; ok (bool): whether it conforms.
     """
-    v = sub(sub(dft('core-electron-model'), 'pseudopotential'), 'number-of-valence-electrons')
+    v = sub(sub(dft('core-electron-treatment'), 'pseudopotential'), 'number-of-valence-electrons')
     assert (v['kind'], v['recommended-unit']) == ('dimensionless', None)
     assert Draft202012Validator(value_schema(v)).is_valid(value) == ok
 
 
-def test_valence_electron_model_structure():
-    """The valence-electron model names its basis types, the localized-orbital basis sets used, and the
+def test_wavefunction_representation_structure():
+    """The wavefunction representation names its types, the localized-orbital basis sets used, and the
     plane-wave cutoffs; a basis set is identified as a pseudopotential is, by checksum or other token."""
-    v = dft('valence-electron-model')
+    v = dft('wavefunction-representation')
     checksum = ('checksum', False, False, None, (), tuple(tree(s) for s in
                                                           sub(minimal('provenance'), 'checksum')['subproperties']))
     basis = ('localized-orbital-basis-set', False, True, None, (), (
@@ -492,15 +492,41 @@ def test_valence_electron_model_structure():
         ('unique-identifier', False, False, 'string', (), ())))
     cutoff = lambda n: (n, False, False, None, (), (('value', True, False, 'float', (), ()),
                                                     ('unit', True, False, 'string', (), ())))
-    assert tree(v) == ('valence-electron-model', True, False, None, (), (
-        ('type', True, True, 'string', ('Plane waves', 'LAPW', 'Localized orbitals', 'PAW'), ()), basis,
+    assert tree(v) == ('wavefunction-representation', True, False, None, (), (
+        ('type', True, True, 'string', (
+            'Gaussian basis sets', 'LAPW', 'Local atomic orbitals', 'Numerical atomic orbitals', 'Plane waves',
+            'Real space grids'), ()), basis,
         cutoff('kinetic-energy-cutoff'), cutoff('charge-density-cutoff')))
     assert legacy_fields(v) == []
 
 
+def test_representation_note_groups_every_term():
+    """The note numbers the three groups of 0018 and explains every representation term, so no term is
+    listed without a meaning."""
+    t = sub(dft('wavefunction-representation'), 'type')['values']
+    assert t['terms'] == sorted(t['terms'])
+    for mark in ('(1) Basis-function expansions:', '(2) Grid methods:', '(3) Augmented methods:'):
+        assert mark in t['note']
+    assert all(f'"{term}" –' in t['note'] for term in t['terms'])
+
+
+@pytest.mark.parametrize('name, terms', [
+    ('localized-orbital-basis-set', ['Gaussian basis sets', 'Local atomic orbitals', 'Numerical atomic orbitals']),
+    ('kinetic-energy-cutoff', ['LAPW', 'Plane waves']), ('charge-density-cutoff', ['LAPW', 'Plane waves'])])
+def test_conditional_subproperties_name_the_types_they_serve(name, terms):
+    """A subproperty that applies to some representations names them, and each named one is a listed term.
+
+    name (str): the subproperty; terms (list[str]): the types it serves.
+    """
+    w = dft('wavefunction-representation')
+    listed = sub(w, 'type')['values']['terms']
+    d = sub(w, name)['description']
+    assert all(t in listed and f'"{t}"' in d for t in terms) and 'Localized orbitals' not in d
+
+
 def test_basis_set_identifiers_match_the_pseudopotential_split():
     """The basis set's checksum is provenance's, and its two identifiers point to each other."""
-    b = sub(dft('valence-electron-model'), 'localized-orbital-basis-set')
+    b = sub(dft('wavefunction-representation'), 'localized-orbital-basis-set')
     assert sub(b, 'checksum')['subproperties'] == sub(minimal('provenance'), 'checksum')['subproperties']
     assert 'unique-identifier' in sub(b, 'checksum')['notes'][0]
     assert 'checksum' in sub(b, 'unique-identifier')['notes'][0]
@@ -512,7 +538,7 @@ def test_cutoffs_are_energies(name):
 
     name (str): the cutoff's name.
     """
-    v = sub(sub(dft('valence-electron-model'), name), 'value')
+    v = sub(sub(dft('wavefunction-representation'), name), 'value')
     assert (v['extent'], v['kind'], v['recommended-unit']) == ([], 'Energy', 'eV')
     assert v['values']['minimum'] == 0
 
