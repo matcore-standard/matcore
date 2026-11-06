@@ -458,6 +458,10 @@ record or marked PROPOSED, NOT DECIDED.
    renamed `method-density` (Simple mixing, Pulay mixing, DIIS, Broyden mixing); new repeatable
    `method-diagonalization` (Car-Parrinello, Chebyshev filtering, Conjugate gradient, Davidson
    method, Direct diagonalization, Lanczos, LOBPCG, RMM-DIIS); legacy_* deleted.
+   [todo] dft core-electron-treatment › pseudopotential renamed `pseudopotential-or-paw` by 0021
+   (one PR, before relaxation-tolerance-energy): type terms Norm conserving, PAW, Ultrasoft; "the
+   pseudopotential" becomes "the pseudopotential or PAW dataset" in its descriptions and notes;
+   examples/dft.xml renamed to match.
    [todo] The rest of dft in file order, after self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
