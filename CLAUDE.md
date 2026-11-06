@@ -467,9 +467,8 @@ record or marked PROPOSED, NOT DECIDED.
    examples/dft.xml renamed to match.
    [done, PR #48 merged 2026-11-06] dft relaxation-tolerance-energy: value + unit (Energy,
    recommended eV, minimum 0; 0001 A3.1); legacy_* deleted.
-   [todo] dft relaxation-tolerance-forces: value + unit (Force, recommended eV/angstrom, minimum 0;
-   0001 A3.1); legacy_* deleted. On branch relaxation-tolerance-forces (committed, not pushed;
-   PR to open).
+   [done, PR #49 merged 2026-11-06] dft relaxation-tolerance-forces: value + unit (Force,
+   recommended eV/angstrom, minimum 0; 0001 A3.1); legacy_* deleted.
    [todo] The rest of dft in file order, after relaxation-tolerance-forces.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
