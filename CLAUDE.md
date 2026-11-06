@@ -276,7 +276,8 @@ record or marked PROPOSED, NOT DECIDED.
      Type and Kind any, §1.3's Kind `any` reworded (0019); `method` renamed `method-density` (breaks
      0.5.0 instances) and `method-diagonalization` added (0020); dft pseudopotential renamed
      `pseudopotential-or-paw`, its type gaining the term PAW (0021; breaks 0.5.0 instances); dft
-     relaxation-tolerance-energy's typed fields filled (step 5).
+     relaxation-tolerance-energy's typed fields filled (step 5); dft relaxation-tolerance-forces's
+     typed fields filled (step 5).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -466,7 +467,10 @@ record or marked PROPOSED, NOT DECIDED.
    examples/dft.xml renamed to match.
    [done, PR #48 merged 2026-11-06] dft relaxation-tolerance-energy: value + unit (Energy,
    recommended eV, minimum 0; 0001 A3.1); legacy_* deleted.
-   [todo] The rest of dft in file order, after relaxation-tolerance-energy.
+   [todo] dft relaxation-tolerance-forces: value + unit (Force, recommended eV/angstrom, minimum 0;
+   0001 A3.1); legacy_* deleted. On branch relaxation-tolerance-forces (committed, not pushed;
+   PR to open).
+   [todo] The rest of dft in file order, after relaxation-tolerance-forces.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must

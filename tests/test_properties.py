@@ -605,6 +605,18 @@ def test_relaxation_tolerance_energy_is_an_energy():
     assert legacy_fields(r) == []
 
 
+def test_relaxation_tolerance_forces_is_a_force():
+    """The relaxation stops when the largest force falls below a bound: a non-negative force, recommended
+    in eV/angstrom, with its unit stated (0001 A3.1)."""
+    r = dft('relaxation-tolerance-forces')
+    assert tree(r) == ('relaxation-tolerance-forces', False, False, None, (), (
+        ('value', True, False, 'float', (), ()), ('unit', True, False, 'string', (), ())))
+    v = sub(r, 'value')
+    assert (v['extent'], v['kind'], v['recommended-unit'], v['values']) == (
+        [], 'Force', 'eV/angstrom', {'minimum': 0})
+    assert legacy_fields(r) == []
+
+
 def test_calculation_physics_lists_the_added_phenomena():
     """Each phenomenon beyond a standard DFT calculation is one entry from an open vocabulary, so a
     calculation that includes several repeats the property."""
