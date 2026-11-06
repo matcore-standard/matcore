@@ -440,13 +440,12 @@ record or marked PROPOSED, NOT DECIDED.
    list-valued example as `[a, b]` (it was Python's repr; this is the first such example).
    PROPOSED, NOT DECIDED (step 9): the instance validator warns when `type` and the components'
    LibXC family prefix disagree; LibXC does not document its prefixes, so a source is needed first.
-   [todo] dft core-electron-model and valence-electron-model revised by 0018 (one PR, before
-   self-consistent-field-convergence): renamed `core-electron-treatment` (terms All-electron,
-   PAW, Pseudopotential) and `wavefunction-representation` (terms Gaussian basis sets, LAPW,
-   Local atomic orbitals, Numerical atomic orbitals, Plane waves, Real space grids; a note groups
-   them as (1), (2), (3) and explains each in a phrase, wording in 0018); descriptions of both, localized-orbital-basis-set and the
-   two cutoffs reworded; examples/dft.xml renamed to match. In progress on branch
-   core-wavefunction-0018 (committed, not pushed; PR to open).
+   [done, PR #45 merged 2026-11-06] dft core-electron-model and valence-electron-model revised
+   by 0018: renamed `core-electron-treatment` (terms All-electron, PAW, Pseudopotential) and
+   `wavefunction-representation` (terms Gaussian basis sets, LAPW, Local atomic orbitals,
+   Numerical atomic orbitals, Plane waves, Real space grids; a note groups them as (1), (2), (3)
+   and explains each in a phrase, wording in 0018); descriptions of both,
+   localized-orbital-basis-set and the two cutoffs reworded; examples/dft.xml renamed to match.
    [todo] The rest of dft in file order, starting with self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
