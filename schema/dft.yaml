@@ -154,9 +154,9 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-- name: core-electron-model
+- name: core-electron-treatment
   required: true
-  description: Model of the electrons used in the calculation.
+  description: The treatment of the core electrons in the calculation.
   type: null
   extent: null
   kind: null
@@ -166,17 +166,17 @@ properties:
   subproperties:
   - name: type
     required: true
-    description: The method used to model the electrons.
+    description: The method used to treat the core electrons.
     type: string
     extent: []
     kind: inapplicable
     recommended-unit: null
     values:
-      terms: [All Electron, LAPW, Pseudopotential, PAW]
+      terms: [All-electron, PAW, Pseudopotential]
       note: >-
-        "All Electron" – All of the electrons in an atom are modeled explicitly. "LAPW" – Linearized
-        Augmented Plane Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core
-        electrons are modeled by a simplified potential. "PAW" – Projector Augmented Wave.
+        "All-electron" – All of the electrons in an atom are modeled explicitly. "PAW" – Projector
+        Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core
+        electrons are modeled by a simplified potential.
     repeatable: false
   - name: pseudopotential
     required: false
@@ -318,9 +318,9 @@ properties:
       notes:
       - >-
         Note: For a checksum of the pseudopotential file, use checksum instead.
-- name: valence-electron-model
+- name: wavefunction-representation
   required: true
-  description: The elementary functions used for expanding electronic wave functions.
+  description: The representation used to expand the electronic wave functions.
   type: null
   extent: null
   kind: null
@@ -330,20 +330,29 @@ properties:
   subproperties:
   - name: type
     required: true
-    description: The choice of a basis set to expand electronic wave functions.
+    description: The method used to represent the electronic wave functions.
     type: string
     extent: []
     kind: inapplicable
     recommended-unit: null
     values:
-      terms: [Plane waves, LAPW, Localized orbitals, PAW]
+      terms: [Gaussian basis sets, LAPW, Local atomic orbitals, Numerical atomic orbitals, Plane waves,
+        Real space grids]
       note: >-
-        "LAPW" – Linearized Augmented Plane Wave.
+        The terms fall into three groups. (1) Basis-function expansions: "Gaussian basis sets" –
+        Atom-centered Gaussian-type orbitals. "Local atomic orbitals" – Atom-centered orbitals of a
+        form not covered by the previous or the next term, e.g. Slater-type orbitals. "Numerical
+        atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius.
+        "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff. (2) Grid methods: "Real
+        space grids" – Values on a mesh of points in real space (finite differences or finite
+        elements). (3) Augmented methods: "LAPW" – Linearized Augmented Plane Wave: atomic-like
+        functions inside spheres around the atoms, plane waves between them.
     repeatable: true
   - name: localized-orbital-basis-set
     required: false
     description: >-
-      For type "Localized orbitals", additional information about the localized orbital basis set.
+      For type "Gaussian basis sets", "Local atomic orbitals" or "Numerical atomic orbitals",
+      additional information about the basis set.
     type: null
     extent: null
     kind: null
@@ -455,7 +464,7 @@ properties:
   - name: kinetic-energy-cutoff
     required: false
     description: >-
-      For type not "Localized orbitals", the maximum kinetic energy of the plane waves included in the
+      For type "LAPW" or "Plane waves", the maximum kinetic energy of the plane waves included in the
       calculation of wave functions.
     type: null
     extent: null
@@ -486,7 +495,7 @@ properties:
   - name: charge-density-cutoff
     required: false
     description: >-
-      For type not "Localized orbitals", the energy value used to truncate the plane wave expansion of
+      For type "LAPW" or "Plane waves", the energy value used to truncate the plane wave expansion of
       the electron charge density.
     type: null
     extent: null
