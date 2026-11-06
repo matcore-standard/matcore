@@ -443,9 +443,9 @@ def test_core_electron_treatment_structure():
     count = ('number-of-valence-electrons', True, False, 'int', (), ())
     checksum = ('checksum', False, False, None, (), tuple(tree(s) for s in
                                                           sub(minimal('provenance'), 'checksum')['subproperties']))
-    pseudopotential = ('pseudopotential', False, True, None, (), (
+    pseudopotential = ('pseudopotential-or-paw', False, True, None, (), (
         ('name', True, False, 'string', (), ()),
-        ('type', True, False, 'string', ('Norm conserving', 'Ultrasoft'), ()),
+        ('type', True, False, 'string', ('Norm conserving', 'PAW', 'Ultrasoft'), ()),
         ('description', False, False, 'string', (), ()), count,
         ('repository', False, False, 'string', (), ()), ('version', False, False, 'string', (), ()),
         ('doi', False, False, 'string', (), ()), checksum,
@@ -455,16 +455,34 @@ def test_core_electron_treatment_structure():
     assert legacy_fields(c) == []
 
 
+def test_pseudopotential_or_paw_names_both_in_every_text():
+    """A PAW dataset is described in the same container as a pseudopotential, so no description or note
+    of the container names the pseudopotential alone (0021)."""
+    def texts(p):
+        """Yield the description and notes of p and of every subproperty below it.
+
+        p (dict): property entry.
+        """
+        yield p['description']
+        yield from p.get('notes') or []
+        for s in p.get('subproperties') or []:
+            yield from texts(s)
+    pp = sub(dft('core-electron-treatment'), 'pseudopotential-or-paw')
+    alone = [t for t in texts(pp) if 'pseudopotential' in t.replace('pseudopotential or PAW', '')
+             .replace('Pseudopotential', '')]
+    assert alone == []
+
+
 def test_pseudopotential_checksum_is_provenance_checksum():
     """A pseudopotential's checksum is written exactly as a provenance checksum (file, algorithm with the
     SPDX names, value in lowercase hex), so one rule reads both."""
-    p = sub(sub(dft('core-electron-treatment'), 'pseudopotential'), 'checksum')
+    p = sub(sub(dft('core-electron-treatment'), 'pseudopotential-or-paw'), 'checksum')
     assert p['subproperties'] == sub(minimal('provenance'), 'checksum')['subproperties']
 
 
 def test_checksum_and_unique_identifier_point_to_each_other():
     """A checksum and any other designation are kept apart: each note sends the reader to the other."""
-    pp = sub(dft('core-electron-treatment'), 'pseudopotential')
+    pp = sub(dft('core-electron-treatment'), 'pseudopotential-or-paw')
     assert 'unique-identifier' in sub(pp, 'checksum')['notes'][0]
     assert 'checksum' in sub(pp, 'unique-identifier')['notes'][0]
     assert 'hash' not in sub(pp, 'unique-identifier')['description'].lower()
@@ -476,7 +494,7 @@ def test_number_of_valence_electrons_is_a_positive_count(value, ok):
 
     value (int | float): a candidate count; ok (bool): whether it conforms.
     """
-    v = sub(sub(dft('core-electron-treatment'), 'pseudopotential'), 'number-of-valence-electrons')
+    v = sub(sub(dft('core-electron-treatment'), 'pseudopotential-or-paw'), 'number-of-valence-electrons')
     assert (v['kind'], v['recommended-unit']) == ('dimensionless', None)
     assert Draft202012Validator(value_schema(v)).is_valid(value) == ok
 

@@ -274,7 +274,8 @@ record or marked PROPOSED, NOT DECIDED.
      new terms (0018; breaks 0.5.0 instances); dft self-consistent-field-convergence's typed fields
      filled, its tolerance given a criterion and an open Kind, a generic parameter recognised by
      Type and Kind any, §1.3's Kind `any` reworded (0019); `method` renamed `method-density` (breaks
-     0.5.0 instances) and `method-diagonalization` added (0020).
+     0.5.0 instances) and `method-diagonalization` added (0020); dft pseudopotential renamed
+     `pseudopotential-or-paw`, its type gaining the term PAW (0021; breaks 0.5.0 instances).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -461,7 +462,8 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] dft core-electron-treatment › pseudopotential renamed `pseudopotential-or-paw` by 0021
    (one PR, before relaxation-tolerance-energy): type terms Norm conserving, PAW, Ultrasoft; "the
    pseudopotential" becomes "the pseudopotential or PAW dataset" in its descriptions and notes;
-   examples/dft.xml renamed to match.
+   examples/dft.xml renamed to match. In progress on branch pseudopotential-or-paw (committed,
+   not pushed; PR to open).
    [todo] The rest of dft in file order, after self-consistent-field-convergence.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.

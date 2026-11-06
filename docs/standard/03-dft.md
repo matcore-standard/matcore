@@ -174,19 +174,19 @@ Recommended: `All-electron`, `PAW`, `Pseudopotential`. Other values are allowed.
 
 </details>
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential" markdown="1">
-<summary><span class="mc-name">pseudopotential</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw" markdown="1">
+<summary><span class="mc-name">pseudopotential-or-paw</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-For type "Pseudopotential", or type "PAW", additional information about the pseudopotentials.
+For type "Pseudopotential", or type "PAW", additional information about each pseudopotential or PAW dataset.
 
 | Required | Repeatable |
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.name" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.name" markdown="1">
 <summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The name of the pseudopotential.
+The name of the pseudopotential or PAW dataset.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
@@ -194,23 +194,23 @@ The name of the pseudopotential.
 
 </details>
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.type" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.type" markdown="1">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The physical form of the pseudopotential.
+The physical form of the pseudopotential or PAW dataset.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Norm conserving`, `Ultrasoft`. Other values are allowed.
+Recommended: `Norm conserving`, `PAW`, `Ultrasoft`. Other values are allowed.
 
 </details>
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.description" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.description" markdown="1">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-Explanatory text about the pseudopotential including any relevant identifying information.
+Explanatory text about the pseudopotential or PAW dataset including any relevant identifying information.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
@@ -218,7 +218,7 @@ Explanatory text about the pseudopotential including any relevant identifying in
 
 </details>
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.number-of-valence-electrons" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.number-of-valence-electrons" markdown="1">
 <summary><span class="mc-name">number-of-valence-electrons<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The number of electrons treated explicitly.
@@ -231,10 +231,10 @@ Minimum: 1.
 
 </details>
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.repository" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.repository" markdown="1">
 <summary><span class="mc-name">repository</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The database from which the pseudopotential was obtained.
+The database from which the pseudopotential or PAW dataset was obtained.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
@@ -242,10 +242,10 @@ The database from which the pseudopotential was obtained.
 
 </details>
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.version" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.version" markdown="1">
 <summary><span class="mc-name">version</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The version of the pseudopotential.
+The version of the pseudopotential or PAW dataset.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
@@ -255,10 +255,10 @@ Examples: `6.3.1`.
 
 </details>
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.doi" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.doi" markdown="1">
 <summary><span class="mc-name">doi</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The digital object identifier (DOI) for the pseudopotential.
+The digital object identifier (DOI) for the pseudopotential or PAW dataset.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
@@ -268,18 +268,18 @@ Pattern: `https://doi\.org/10\.[^/]+/.+`.
 
 </details>
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.checksum" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.checksum" markdown="1">
 <summary><span class="mc-name">checksum</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-A digital fingerprint of the pseudopotential file, computed by a named algorithm.
+A digital fingerprint of the pseudopotential or PAW dataset file, computed by a named algorithm.
 
 | Required | Repeatable |
 |---|---|
 | no | no |
 
-Note: Use checksum when the pseudopotential is identified by a checksum of its file (e.g. the SHA256 hash of a VASP POTCAR file). For any other designation, use unique-identifier.
+Note: Use checksum when the pseudopotential or PAW dataset is identified by a checksum of its file (e.g. the SHA256 hash of a VASP POTCAR file). For any other designation, use unique-identifier.
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.checksum.file" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.checksum.file" markdown="1">
 <summary><span class="mc-name">file<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The name of the file.
@@ -290,7 +290,7 @@ The name of the file.
 
 </details>
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.checksum.algorithm" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.checksum.algorithm" markdown="1">
 <summary><span class="mc-name">algorithm<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The algorithm that computed the checksum.
@@ -303,7 +303,7 @@ Recommended: `SHA1`, `SHA224`, `SHA256`, `SHA384`, `SHA512`, `SHA3-256`, `SHA3-3
 
 </details>
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.checksum.value" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.checksum.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The checksum of the file, in lowercase hexadecimal digits.
@@ -318,16 +318,16 @@ Pattern: `[0-9a-f]+`.
 
 </details>
 
-<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential.unique-identifier" markdown="1">
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.unique-identifier" markdown="1">
 <summary><span class="mc-name">unique-identifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-A token other than a checksum that identifies the pseudopotential, such as a label or code assigned by the library that distributes it.
+A token other than a checksum that identifies the pseudopotential or PAW dataset, such as a label or code assigned by the library that distributes it.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Note: For a checksum of the pseudopotential file, use checksum instead.
+Note: For a checksum of the pseudopotential or PAW dataset file, use checksum instead.
 
 </details>
 
@@ -858,11 +858,11 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
   </xc-functional>
   <core-electron-treatment>
     <type>Pseudopotential</type>
-    <pseudopotential>
+    <pseudopotential-or-paw>
       <name>Ultrasoft Pseudopotentials (USP)</name>
       <type>Ultrasoft</type>
       <number-of-valence-electrons>4</number-of-valence-electrons>
-    </pseudopotential>
+    </pseudopotential-or-paw>
   </core-electron-treatment>
   <wavefunction-representation>
     <type>Plane waves</type>

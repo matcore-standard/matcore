@@ -6,11 +6,11 @@
   </xc-functional>
   <core-electron-treatment>
     <type>Pseudopotential</type>
-    <pseudopotential>
+    <pseudopotential-or-paw>
       <name>Ultrasoft Pseudopotentials (USP)</name>
       <type>Ultrasoft</type>
       <number-of-valence-electrons>4</number-of-valence-electrons>
-    </pseudopotential>
+    </pseudopotential-or-paw>
   </core-electron-treatment>
   <wavefunction-representation>
     <type>Plane waves</type>
