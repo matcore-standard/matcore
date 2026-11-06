@@ -883,9 +883,7 @@ Additional information on the DFT calculation. For example, non-self-consistent 
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | yes | — | — | — | — |
-
-<span class='legacy'>Legacy: String containing the calculation comments.</span>
+| no | yes | string | [] | inapplicable | — |
 
 </details>
 

@@ -235,9 +235,9 @@ def test_main_writes_every_page_and_honours_the_flag(tmp_path):
     build_docs.main(['--out', str(tmp_path)])
     names = sorted(p.name for p in tmp_path.iterdir())
     assert names == sorted([f'{i:02d}-{k}.md' for i, k in enumerate(SECTIONS, start=2)] + ['annex-i-identifiers.md', 'annex-u-units.md', 'index.md', 'revision-history.md'])
-    assert 'Legacy:' not in (tmp_path / '03-dft.md').read_text()  # dft still holds legacy text
+    assert 'Legacy:' not in (tmp_path / '04-md.md').read_text()  # md still holds legacy text
     build_docs.main(['--out', str(tmp_path), '--show-legacy'])
-    assert 'Legacy:' in (tmp_path / '03-dft.md').read_text()
+    assert 'Legacy:' in (tmp_path / '04-md.md').read_text()
 
 
 def test_every_section_has_a_well_formed_example():
