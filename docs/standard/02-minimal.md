@@ -286,16 +286,36 @@ A statement of applicability provided by the creator(s) informing users of the i
 
 </details>
 
-<details class="note mc-property" id="minimal.material-component" markdown="1">
-<summary><span class="mc-name">material-component<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<details class="note mc-property" id="minimal.structure" markdown="1">
+<summary><span class="mc-name">structure<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-A description of the chemical composition and structure of a substance in this dataset.
+A system modeled in the dataset, e.g. a bulk crystal or a thin film on a substrate, and the materials that make it up.
 
 | Required | Repeatable |
 |---|---|
 | yes | yes |
 
-<details class="note mc-property" id="minimal.material-component.constituent" markdown="1">
+<details class="note mc-property" id="minimal.structure.description" markdown="1">
+<summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+An explanation of the structure as a whole, e.g. the stacking order of its layers, the number of periods of a superlattice, or how its components meet.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.material-component" markdown="1">
+<summary><span class="mc-name">material-component<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+One part of the structure, made of a single material, with its composition, form, role and phase.
+
+| Required | Repeatable |
+|---|---|
+| yes | yes |
+
+<details class="note mc-property" id="minimal.structure.material-component.constituent" markdown="1">
 <summary><span class="mc-name">constituent<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 A chemical element included in the material component and its concentration.
@@ -304,7 +324,7 @@ A chemical element included in the material component and its concentration.
 |---|---|
 | yes | yes |
 
-<details class="note mc-property" id="minimal.material-component.constituent.species" markdown="1">
+<details class="note mc-property" id="minimal.structure.material-component.constituent.species" markdown="1">
 <summary><span class="mc-name">species<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 A chemical element included in the material.
@@ -317,7 +337,7 @@ One of `H`, `He`, `Li`, `Be`, `B`, `C`, `N`, `O`, `F`, `Ne`, `Na`, `Mg`, `Al`, `
 
 </details>
 
-<details class="note mc-property" id="minimal.material-component.constituent.concentration" markdown="1">
+<details class="note mc-property" id="minimal.structure.material-component.constituent.concentration" markdown="1">
 <summary><span class="mc-name">concentration<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The atomic fraction of the material composed of this element.
@@ -332,20 +352,59 @@ From 0 to 1. The concentrations of a material component's constituents sum to 1.
 
 </details>
 
-<details class="note mc-property" id="minimal.material-component.phases" markdown="1">
-<summary><span class="mc-name">phases<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<details class="note mc-property" id="minimal.structure.material-component.form" markdown="1">
+<summary><span class="mc-name">form<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The phase(s) of the material included in the dataset.
+The geometric form of the component as modeled.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | string | [:] | inapplicable | — |
+| yes | no | string | [] | inapplicable | — |
 
-Recommended: `Amorphous`, `Crystal`, `Quasicrystal`, `Molecule`, `Liquid`, `Gas`, `Plasma`. Other values are allowed. One or more of: "Amorphous" – A solid material without crystalline order. "Crystal" – A solid material characterized by a repeating pattern of atoms. "Quasicrystal" – A crystal-like material with short-range order, but without long-range order. "Molecule" – A finite group of atoms bonded together forming an independent unit. "Liquid" – A fluid structure (e.g. the molten state of a material). "Gas" – A structure where atoms are far apart and only interact during collisions. "Plasma" – A gas comprised of ions and electrons.
+Recommended: `2D material`, `Bulk`, `Chain`, `Cluster`, `Molecule`, `Monolayer`, `Nanoparticle`, `Nanoribbon`, `Nanotube`, `Nanowire`, `Slab`, `Thin film`. Other values are allowed. One of: "2D material" – A crystalline solid that is a single unit cell thick (typically a few nanometers or less), while extending infinitely or to large dimensions in the lateral plane, e.g. graphene. "Bulk" – A material extending without bound in all three directions, e.g. a periodic crystal or a liquid. "Chain" – A one-dimensional sequence of atoms or monomers, e.g. an isolated polymer chain or a monatomic chain. "Cluster" – A finite aggregate of atoms or molecules, smaller than a nanoparticle. "Molecule" – A single molecule. "Monolayer" – A single layer of atoms or molecules deposited on another material. "Nanoparticle" – A solid particle of nanometer size in all three directions. "Nanoribbon" – A strip of a 2D material of nanometer width. "Nanotube" – A hollow cylinder of nanometer diameter, e.g. a carbon nanotube. "Nanowire" – A solid wire of nanometer diameter, extending without bound along its axis. "Slab" – A truncated bulk structure that can be used, for example, to model surfaces. "Thin film" – A layer of finite thickness, free-standing or on a substrate. The form is that of the component as modeled, e.g. a substrate modeled as a slab is a Slab.
 
 </details>
 
-<details class="note mc-property" id="minimal.material-component.description" markdown="1">
+<details class="note mc-property" id="minimal.structure.material-component.role" markdown="1">
+<summary><span class="mc-name">role</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The part the component plays in the structure.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `Adsorbate`, `Core`, `Film`, `Inclusion`, `Layer`, `Matrix`, `Shell`, `Solute`, `Solvent`, `Substrate`. Other values are allowed. One of: "Adsorbate" – A molecule, cluster or particle on the surface of a substrate. "Core" – The inner part of a particle, enclosed by a shell. "Film" – A layer of finite thickness on a substrate. "Inclusion" – A material enclosed in a matrix, e.g. a precipitate or an embedded nanotube. "Layer" – One of the layers of a layered structure, e.g. a heterostructure, a superlattice or a stack of 2D materials. "Matrix" – A material that encloses one or more inclusions. "Shell" – A layer enclosing a core. "Solute" – A material dissolved in a solvent. "Solvent" – A liquid in which a solute is dissolved. "Substrate" – A material on which a film, layer or adsorbate lies. Give a role for each component when the structure has more than one.
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.material-component.fraction" markdown="1">
+<summary><span class="mc-name">fraction</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The atomic fraction of the structure made up of this component, i.e. the number of atoms in the component divided by the number of atoms in the structure.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | float | [] | dimensionless | — |
+
+From 0 to 1. The fractions of a structure's components sum to 1.
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.material-component.phase" markdown="1">
+<summary><span class="mc-name">phase</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+A phase of the material.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | yes | string | [] | inapplicable | — |
+
+Recommended: `Amorphous`, `Single crystal`, `Polycrystal`, `Quasicrystal`, `Liquid`, `Gas`, `Plasma`. Other values are allowed. One of: "Amorphous" – A solid material without crystalline order. "Single crystal" – A solid material characterized by a repeating pattern of atoms that extends throughout it without interruption. "Polycrystal" – A solid material made of more than one crystalline grain of differing orientation. "Quasicrystal" – A crystal-like material with short-range order, but without long-range order. "Liquid" – A fluid structure (e.g. the molten state of a material). "Gas" – A state where molecules or atoms are far apart and only interact during collisions. "Plasma" – A gas comprised of ions and electrons. Omit for a component whose form is Molecule.
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.material-component.description" markdown="1">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 An explanation of the nature of the material, e.g. a crystal structure designation, a chemical formula for a molecule, etc.
@@ -354,9 +413,11 @@ An explanation of the nature of the material, e.g. a crystal structure designati
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
+e.g. a surface facet such as Pt(111), an orientation relationship such as (111)Pt ∥ (001)CeO₂, or the chirality of a nanotube.
+
 </details>
 
-<details class="note mc-property" id="minimal.material-component.microstructure" markdown="1">
+<details class="note mc-property" id="minimal.structure.material-component.microstructure" markdown="1">
 <summary><span class="mc-name">microstructure</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 For a solid state phase, a description of the arrangement of phases, grains and defects in the material.
@@ -364,6 +425,8 @@ For a solid state phase, a description of the arrangement of phases, grains and 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -1293,14 +1356,27 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
   <title>Si_PRX_GAP: A foundational Density Functional Theory dataset with silicon configurations for training machine learning interatomic potentials</title>
   <creation-date>2021-02-22</creation-date>
   <description>The original DFT training data for the general-purpose silicon interatomic potential described in the associated publication. The kinds of configuration that were included were selected based on intuition and past experience to obtain good coverage pertaining to a range of properties.</description>
-  <material-component>
-    <phases>Crystal</phases>
-    <constituent>
-      <species>Si</species>
-      <concentration>1</concentration>
-    </constituent>
-    <description>A variety of Si configurations including different phases, surfaces, vacancies, interstitials, dislocations and crack tips.</description>
-  </material-component>
+  <structure>
+    <material-component>
+      <constituent>
+        <species>Si</species>
+        <concentration>1</concentration>
+      </constituent>
+      <form>Bulk</form>
+      <phase>Single crystal</phase>
+      <description>A variety of Si configurations including different phases, surfaces, vacancies, interstitials, dislocations and crack tips.</description>
+    </material-component>
+  </structure>
+  <structure>
+    <material-component>
+      <constituent>
+        <species>Si</species>
+        <concentration>1</concentration>
+      </constituent>
+      <form>Slab</form>
+      <phase>Single crystal</phase>
+    </material-component>
+  </structure>
   <computation>
     <method-class>Electronic</method-class>
     <method>DFT</method>

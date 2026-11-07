@@ -271,10 +271,11 @@ properties:
   recommended-unit: null
   values: null
   repeatable: false
-- name: material-component
+- name: structure
   required: true
   description: >-
-    A description of the chemical composition and structure of a substance in this dataset.
+    A system modeled in the dataset, e.g. a bulk crystal or a thin film on a substrate, and the materials
+    that make it up.
   type: null
   extent: null
   kind: null
@@ -282,9 +283,21 @@ properties:
   values: null
   repeatable: true
   subproperties:
-  - name: constituent
+  - name: description
+    required: false
+    description: >-
+      An explanation of the structure as a whole, e.g. the stacking order of its layers, the number of periods
+      of a superlattice, or how its components meet.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values: null
+    repeatable: false
+  - name: material-component
     required: true
-    description: A chemical element included in the material component and its concentration.
+    description: >-
+      One part of the structure, made of a single material, with its composition, form, role and phase.
     type: null
     extent: null
     kind: null
@@ -292,28 +305,93 @@ properties:
     values: null
     repeatable: true
     subproperties:
-    - name: species
+    - name: constituent
       required: true
-      description: A chemical element included in the material.
+      description: A chemical element included in the material component and its concentration.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: species
+        required: true
+        description: A chemical element included in the material.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          enum: [H, He, Li, Be, B, C, N, O, F, Ne, Na, Mg, Al, Si, P, S, Cl, Ar, K, Ca, Sc, Ti, V, Cr, Mn, Fe,
+            Co, Ni, Cu, Zn, Ga, Ge, As, Se, Br, Kr, Rb, Sr, Y, Zr, Nb, Mo, Tc, Ru, Rh, Pd, Ag, Cd, In, Sn, Sb,
+            Te, I, Xe, Cs, Ba, La, Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu, Hf, Ta, W, Re, Os,
+            Ir, Pt, Au, Hg, Tl, Pb, Bi, Po, At, Rn, Fr, Ra, Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm, Md,
+            'No', Lr, Rf, Db, Sg, Bh, Hs, Mt, Ds, Rg, Cn, Nh, Fl, Mc, Lv, Ts, Og]
+          examples: [C]
+          note: >-
+            The symbol of the element, as in the IUPAC Periodic Table of the Elements (listed with atomic
+            numbers 1 to 118 in the [Standard Atomic Weights](https://www.ciaaw.org/atomic-weights.htm) table
+            of the IUPAC Commission on Isotopic Abundances and Atomic Weights).
+        repeatable: false
+      - name: concentration
+        required: true
+        description: The atomic fraction of the material composed of this element.
+        type: float
+        extent: []
+        kind: dimensionless
+        recommended-unit: null
+        values:
+          minimum: 0
+          maximum: 1
+          note: The concentrations of a material component's constituents sum to 1.
+        repeatable: false
+    - name: form
+      required: true
+      description: The geometric form of the component as modeled.
       type: string
       extent: []
       kind: inapplicable
       recommended-unit: null
       values:
-        enum: [H, He, Li, Be, B, C, N, O, F, Ne, Na, Mg, Al, Si, P, S, Cl, Ar, K, Ca, Sc, Ti, V, Cr, Mn, Fe,
-          Co, Ni, Cu, Zn, Ga, Ge, As, Se, Br, Kr, Rb, Sr, Y, Zr, Nb, Mo, Tc, Ru, Rh, Pd, Ag, Cd, In, Sn, Sb,
-          Te, I, Xe, Cs, Ba, La, Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu, Hf, Ta, W, Re, Os,
-          Ir, Pt, Au, Hg, Tl, Pb, Bi, Po, At, Rn, Fr, Ra, Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm, Md,
-          'No', Lr, Rf, Db, Sg, Bh, Hs, Mt, Ds, Rg, Cn, Nh, Fl, Mc, Lv, Ts, Og]
-        examples: [C]
+        terms: [2D material, Bulk, Chain, Cluster, Molecule, Monolayer, Nanoparticle, Nanoribbon, Nanotube,
+          Nanowire, Slab, Thin film]
         note: >-
-          The symbol of the element, as in the IUPAC Periodic Table of the Elements (listed with atomic
-          numbers 1 to 118 in the [Standard Atomic Weights](https://www.ciaaw.org/atomic-weights.htm) table
-          of the IUPAC Commission on Isotopic Abundances and Atomic Weights).
+          One of: "2D material" – A crystalline solid that is a single unit cell thick (typically a few
+          nanometers or less), while extending infinitely or to large dimensions in the lateral plane, e.g.
+          graphene. "Bulk" – A material extending without bound in all three directions, e.g. a periodic
+          crystal or a liquid. "Chain" – A one-dimensional sequence of atoms or monomers, e.g. an isolated
+          polymer chain or a monatomic chain. "Cluster" – A finite aggregate of atoms or molecules, smaller
+          than a nanoparticle. "Molecule" – A single molecule. "Monolayer" – A single layer of atoms or
+          molecules deposited on another material. "Nanoparticle" – A solid particle of nanometer size in all
+          three directions. "Nanoribbon" – A strip of a 2D material of nanometer width. "Nanotube" – A hollow cylinder of nanometer diameter, e.g. a carbon
+          nanotube. "Nanowire" – A solid wire of nanometer diameter, extending without bound along its axis.
+          "Slab" – A truncated bulk structure that can be used, for example, to model surfaces. "Thin film" –
+          A layer of finite thickness, free-standing or on a substrate. The form is that of the component as
+          modeled, e.g. a substrate modeled as a slab is a Slab.
       repeatable: false
-    - name: concentration
-      required: true
-      description: The atomic fraction of the material composed of this element.
+    - name: role
+      required: false
+      description: The part the component plays in the structure.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Adsorbate, Core, Film, Inclusion, Layer, Matrix, Shell, Solute, Solvent, Substrate]
+        note: >-
+          One of: "Adsorbate" – A molecule, cluster or particle on the surface of a substrate. "Core" – The
+          inner part of a particle, enclosed by a shell. "Film" – A layer of finite thickness on a substrate.
+          "Inclusion" – A material enclosed in a matrix, e.g. a precipitate or an embedded nanotube. "Layer" –
+          One of the layers of a layered structure, e.g. a heterostructure, a superlattice or a stack of 2D
+          materials. "Matrix" – A material that encloses one or more inclusions. "Shell" – A layer enclosing a
+          core. "Solute" – A material dissolved in a solvent. "Solvent" – A liquid in which a solute is
+          dissolved. "Substrate" – A material on which a film, layer or adsorbate lies. Give a role for each
+          component when the structure has more than one.
+      repeatable: false
+    - name: fraction
+      required: false
+      description: The atomic fraction of the structure made up of this component, i.e. the number of atoms in the component divided by the number of atoms in the structure.
       type: float
       extent: []
       kind: dimensionless
@@ -321,47 +399,50 @@ properties:
       values:
         minimum: 0
         maximum: 1
-        note: The concentrations of a material component's constituents sum to 1.
+        note: The fractions of a structure's components sum to 1.
       repeatable: false
-  - name: phases
-    required: true
-    description: The phase(s) of the material included in the dataset.
-    type: string
-    extent: [':']
-    kind: inapplicable
-    recommended-unit: null
-    values:
-      terms: [Amorphous, Crystal, Quasicrystal, Molecule, Liquid, Gas, Plasma]
-      note: >-
-        One or more of: "Amorphous" – A solid material without crystalline order. "Crystal" – A solid
-        material characterized by a repeating pattern of atoms. "Quasicrystal" – A crystal-like material
-        with short-range order, but without long-range order. "Molecule" – A finite group of atoms bonded
-        together forming an independent unit. "Liquid" – A fluid structure (e.g. the molten state of a
-        material). "Gas" – A structure where atoms are far apart and only interact during collisions.
-        "Plasma" – A gas comprised of ions and electrons.
-    repeatable: false
-  - name: description
-    required: false
-    description: >-
-      An explanation of the nature of the material, e.g. a crystal structure designation, a chemical formula
-      for a molecule, etc.
-    type: string
-    extent: []
-    kind: inapplicable
-    recommended-unit: null
-    values: null
-    repeatable: false
-  - name: microstructure
-    required: false
-    description: >-
-      For a solid state phase, a description of the arrangement of phases, grains and defects in the
-      material.
-    type: string
-    extent: []
-    kind: inapplicable
-    recommended-unit: null
-    values: null
-    repeatable: false
+    - name: phase
+      required: false
+      description: A phase of the material.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Amorphous, Single crystal, Polycrystal, Quasicrystal, Liquid, Gas, Plasma]
+        note: >-
+          One of: "Amorphous" – A solid material without crystalline order. "Single crystal" – A solid
+          material characterized by a repeating pattern of atoms that extends throughout it without
+          interruption. "Polycrystal" – A solid material made of more than one crystalline grain of differing orientation. "Quasicrystal" – A crystal-like material with short-range order, but without
+          long-range order. "Liquid" – A fluid structure (e.g. the molten state of a material). "Gas" – A
+          state where molecules or atoms are far apart and only interact during collisions. "Plasma" – A
+          gas comprised of ions and electrons. Omit for a component whose form is Molecule.
+      repeatable: true
+    - name: description
+      required: false
+      description: >-
+        An explanation of the nature of the material, e.g. a crystal structure designation, a chemical formula
+        for a molecule, etc.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          e.g. a surface facet such as Pt(111), an orientation relationship such as (111)Pt ∥ (001)CeO₂, or the
+          chirality of a nanotube.
+      repeatable: false
+    - name: microstructure
+      required: false
+      description: >-
+        For a solid state phase, a description of the arrangement of phases, grains and defects in the
+        material.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
 - name: computation
   required: true
   description: A description of a computer simulation used to generate data in the dataset.

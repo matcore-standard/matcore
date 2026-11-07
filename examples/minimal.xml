@@ -27,14 +27,27 @@
   <title>Si_PRX_GAP: A foundational Density Functional Theory dataset with silicon configurations for training machine learning interatomic potentials</title>
   <creation-date>2021-02-22</creation-date>
   <description>The original DFT training data for the general-purpose silicon interatomic potential described in the associated publication. The kinds of configuration that were included were selected based on intuition and past experience to obtain good coverage pertaining to a range of properties.</description>
-  <material-component>
-    <phases>Crystal</phases>
-    <constituent>
-      <species>Si</species>
-      <concentration>1</concentration>
-    </constituent>
-    <description>A variety of Si configurations including different phases, surfaces, vacancies, interstitials, dislocations and crack tips.</description>
-  </material-component>
+  <structure>
+    <material-component>
+      <constituent>
+        <species>Si</species>
+        <concentration>1</concentration>
+      </constituent>
+      <form>Bulk</form>
+      <phase>Single crystal</phase>
+      <description>A variety of Si configurations including different phases, surfaces, vacancies, interstitials, dislocations and crack tips.</description>
+    </material-component>
+  </structure>
+  <structure>
+    <material-component>
+      <constituent>
+        <species>Si</species>
+        <concentration>1</concentration>
+      </constituent>
+      <form>Slab</form>
+      <phase>Single crystal</phase>
+    </material-component>
+  </structure>
   <computation>
     <method-class>Electronic</method-class>
     <method>DFT</method>

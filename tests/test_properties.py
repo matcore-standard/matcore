@@ -98,19 +98,63 @@ def sub(p, name):
     return next(s for s in p['subproperties'] if s['name'] == name)
 
 
-def test_material_component_structure():
-    """A material component lists its constituents and its phases, with optional prose; phase is a list
-    (one or more phases per component), so it is named in the plural (0004 naming rule)."""
-    p = minimal('material-component')
-    phases = ('phases', True, False, 'string', ('Amorphous', 'Crystal', 'Quasicrystal', 'Molecule', 'Liquid',
-                                                 'Gas', 'Plasma'), ())
+FORMS = ('2D material', 'Bulk', 'Chain', 'Cluster', 'Molecule', 'Monolayer', 'Nanoparticle', 'Nanoribbon',
+         'Nanotube', 'Nanowire', 'Slab', 'Thin film')
+ROLES = ('Adsorbate', 'Core', 'Film', 'Inclusion', 'Layer', 'Matrix', 'Shell', 'Solute', 'Solvent', 'Substrate')
+PHASES = ('Amorphous', 'Single crystal', 'Polycrystal', 'Quasicrystal', 'Liquid', 'Gas', 'Plasma')
+
+
+def material_component():
+    """Return minimal structure › material-component."""
+    return sub(minimal('structure'), 'material-component')
+
+
+def test_structure_is_made_of_components_with_a_form_and_a_role():
+    """A dataset models one or more structures, each made of material components; a composite has no single
+    form, so each component carries its own form, and its role says how it combines with the others (a
+    film on a substrate, an inclusion in a matrix). A component may have several phases, each a separate
+    entry, so phase is singular (0025)."""
+    p = minimal('structure')
     constituent = ('constituent', True, True, None, (), (
         ('species', True, False, 'string', (), ()), ('concentration', True, False, 'float', (), ())))
-    assert tree(p) == ('material-component', True, True, None, (), (
-        constituent, phases, ('description', False, False, 'string', (), ()),
-        ('microstructure', False, False, 'string', (), ())))
-    assert sub(p, 'phases')['extent'] == [':']
+    component = ('material-component', True, True, None, (), (
+        constituent, ('form', True, False, 'string', FORMS, ()), ('role', False, False, 'string', ROLES, ()),
+        ('fraction', False, False, 'float', (), ()), ('phase', False, True, 'string', PHASES, ()),
+        ('description', False, False, 'string', (), ()), ('microstructure', False, False, 'string', (), ())))
+    assert tree(p) == ('structure', True, True, None, (), (
+        ('description', False, False, 'string', (), ()), component))
+    assert sub(material_component(), 'phase')['extent'] == []
     assert legacy_fields(p) == []
+    assert not any(q['name'] == 'material-component'
+                   for q in yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))['properties'])
+
+
+def test_structure_notes_define_every_term_and_state_the_rules():
+    """Every form, role and phase is defined in its note; a structure of layers is described by roles, not
+    by form terms, and a molecule has no phase (0025)."""
+    form = sub(material_component(), 'form')['values']['note']
+    role = sub(material_component(), 'role')['values']['note']
+    phase = sub(material_component(), 'phase')['values']['note']
+    assert all(f'"{t}" –' in form for t in FORMS) and form.endswith('a substrate modeled as a slab is a Slab.')
+    assert not any(f'"{t}"' in form for t in ('Surface', 'Interface', 'Heterostructure', 'Superlattice'))
+    assert all(f'"{t}" –' in role for t in ROLES)
+    assert role.endswith('Give a role for each component when the structure has more than one.')
+    assert all(f'"{t}" –' in phase for t in PHASES)
+    assert '"Crystal"' not in phase and '"Molecule"' not in phase
+    assert '"Gas" – A state where' in phase and phase.endswith('Omit for a component whose form is Molecule.')
+
+
+@pytest.mark.parametrize('value, ok', [(0, True), (0.05, True), (1, True), (-0.1, False), (5, False)])
+def test_fraction_is_an_atomic_fraction_of_the_structure(value, ok):
+    """fraction is the share of the structure's atoms in one component, a pure number from 0 to 1 with no
+    unit; the fractions of a structure sum to 1, a rule its note states (0025, as concentration, 0004 item 46).
+
+    value (float): a candidate fraction; ok (bool): whether it conforms.
+    """
+    f = sub(material_component(), 'fraction')
+    assert (f['kind'], f['extent'], f['recommended-unit'], f.get('subproperties')) == ('dimensionless', [], None, None)
+    assert 'atomic fraction' in f['description'] and 'sum to 1.' in f['values']['note']
+    assert Draft202012Validator(value_schema(f)).is_valid(value) == ok
 
 
 @pytest.mark.parametrize('value, ok', [(0, True), (0.125, True), (1, True), (-0.1, False), (1.5, False),
@@ -122,7 +166,7 @@ def test_concentration_is_an_atomic_fraction(value, ok):
 
     value (float): a candidate concentration; ok (bool): whether it conforms.
     """
-    c = sub(sub(minimal('material-component'), 'constituent'), 'concentration')
+    c = sub(sub(material_component(), 'constituent'), 'concentration')
     assert (c['kind'], c['extent'], c['recommended-unit'], c.get('subproperties')) == ('dimensionless', [], None, None)
     assert 'atomic fraction' in c['description'] and 'percent' not in c['description']
     assert Draft202012Validator(value_schema(c)).is_valid(value) == ok
@@ -136,7 +180,7 @@ def test_species_is_an_element_symbol(value, ok):
 
     value (str): a candidate symbol; ok (bool): whether it conforms.
     """
-    s = sub(sub(minimal('material-component'), 'constituent'), 'species')
+    s = sub(sub(material_component(), 'constituent'), 'species')
     assert len(s['values']['enum']) == len(set(s['values']['enum'])) == 118
     assert Draft202012Validator(value_schema(s)).is_valid(value) == ok
 
@@ -144,7 +188,7 @@ def test_species_is_an_element_symbol(value, ok):
 def test_concentration_note_states_the_sum():
     """The constituents of a material component account for all of it, so their concentrations sum to
     1 (0004 items 40, 46); the schema cannot check the rule, so the note states it for readers and reviewers."""
-    c = datum(sub(sub(minimal('material-component'), 'constituent'), 'concentration'))
+    c = datum(sub(sub(material_component(), 'constituent'), 'concentration'))
     assert 'sum to 1.' in (c['values'].get('note') or '')
 
 
