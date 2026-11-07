@@ -1774,6 +1774,10 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
   <matcore-id>mc-ad83jsd3-1</matcore-id>
   <matcore-author>
     <name>Ellad B. Tadmor</name>
+    <identifier>
+      <value>https://orcid.org/0000-0003-3311-6299</value>
+      <scheme>ORCID</scheme>
+    </identifier>
     <affiliation>
       <name>University of Minnesota</name>
     </affiliation>

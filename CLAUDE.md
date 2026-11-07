@@ -568,7 +568,8 @@ record or marked PROPOSED, NOT DECIDED.
    property after matcore-id, with creator's structure, naming who created the metadata record;
    examples/minimal.xml gives Ellad B. Tadmor, University of Minnesota.
    [todo] 0033 amended: the example's matcore-author gains ORCID https://orcid.org/0000-0003-3311-6299.
-   Ruling on main; PR to follow.
+   Ruling on main; on branch example-matcore-author-orcid (committed, not pushed; PR to
+   open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.

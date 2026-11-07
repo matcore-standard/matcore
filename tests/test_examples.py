@@ -53,3 +53,15 @@ def test_every_example_conforms_to_the_current_standard(key):
     for ex in section['examples']:
         root = ET.parse(ROOT / 'examples' / ex['file']).getroot()
         assert check_examples.structure_errors(root, section['properties'], key) == []
+
+
+def test_example_identifiers_pass_annex_i():
+    """Every identifier written in an example, with its scheme, is in Annex I's form and passes its check
+    digits, so the examples show values a validator accepts; the record's author carries an ORCID iD
+    (0033, amended)."""
+    from check_identifiers import identifier_errors
+    root = ET.parse(ROOT / 'examples/minimal.xml').getroot()
+    ids = [(i.findtext('scheme'), i.findtext('value')) for i in root.iter('identifier') if i.find('scheme') is not None]
+    assert ('ORCID', 'https://orcid.org/0000-0003-3311-6299') in [
+        (i.findtext('scheme'), i.findtext('value')) for i in root.find('matcore-author').findall('identifier')]
+    assert all(identifier_errors(scheme, value) == [] for scheme, value in ids)
