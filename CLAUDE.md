@@ -526,12 +526,11 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #57 merged 2026-11-07] minimal phase › Quasicrystal by 0027: "A solid material
    with long-range order but without translational periodicity, e.g. one whose diffraction
    pattern shows five-fold rotational symmetry." (the baseline's said short-range order only).
-   [todo] minimal combined methods by 0028: §1.2 distinguishes methods that supply energies and
-   forces from those that use them; `method` gets a note (give the method that produces the
+   [done, PR #59 merged 2026-11-07] minimal combined methods by 0028: §1.2 distinguishes
+   methods that supply energies and forces from those that use them; `method` gets a note (give the method that produces the
    data; the force source goes in interaction-model); new optional repeatable
    `interaction-model` after method (open terms CC, DFT, Empirical potential, ML potential, QMC,
-   Tight binding). Ruling on main; on branch minimal-interaction-model (committed, not
-   pushed; PR to open).
+   Tight binding).
    PROPOSED, NOT DECIDED: how md particle-interactions › model-type relates to
    interaction-model (md PR); whether 0028's rule matches MODA's classification principle
    (check the MODA source).
