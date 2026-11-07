@@ -288,7 +288,8 @@ record or marked PROPOSED, NOT DECIDED.
      repeatable `phase` with Single crystal and Polycrystal (0025; breaks 0.5.0 instances);
      simulation-conditions explains varying conditions in its description and flags them as
      spatially-varying or time-varying, and composition is given as set up when it varies (0026);
-     the phase term Quasicrystal has long-range order without translational periodicity (0027).
+     the phase term Quasicrystal has long-range order without translational periodicity (0027);
+     §1.3 spells out KIM, CODATA and IRI and describes QUDT (0004 item 51).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -532,7 +533,8 @@ record or marked PROPOSED, NOT DECIDED.
    interaction-model (md PR); whether 0028's rule matches MODA's classification principle
    (check the MODA source).
    [todo] Preamble acronyms by 0004 item 51: spell out KIM, CODATA, QUDT and IRI at their
-   first use, each expansion traced to its defining body. Ruling on main; PR to follow.
+   first use, each expansion traced to its defining body. Ruling on main; on branch
+   preamble-acronyms (committed, not pushed; PR to open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
