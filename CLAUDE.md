@@ -473,11 +473,11 @@ record or marked PROPOSED, NOT DECIDED.
    recommended eV/angstrom, minimum 0; 0001 A3.1); legacy_* deleted.
    [done, PR #50 merged 2026-11-06] dft comment: a repeatable scalar string, values null; legacy_*
    deleted. dft is complete: it declares `legacy_complete: true` (0004 item 36).
-   [todo] dft calculation-physics revised by 0022: terms Collinear spin polarization, Noncollinear
-   spin polarization, On-site correlation, Orbital polarization, Spin-orbit coupling, Van der Waals;
-   a note defining each, allowing at most one of the two spin terms and asking for one entry per
-   phenomenon. On branch calculation-physics (committed, not pushed; PR to open).
-   [todo] md in file order, after calculation-physics.
+   [done, PR #51 merged 2026-11-07] dft calculation-physics revised by 0022: terms Collinear spin
+   polarization, Noncollinear spin polarization, On-site correlation, Orbital polarization,
+   Spin-orbit coupling, Van der Waals; a note defining each, allowing at most one of the two spin
+   terms and asking for one entry per phenomenon.
+   [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
