@@ -349,7 +349,8 @@ record or marked PROPOSED, NOT DECIDED.
    `phase`; open terms, definitions in the note per 0013's settlement), concentration in atomic
    percent, species an enum of the IUPAC symbols (from CIAAW's Standard Atomic Weights table);
    examples/minimal.xml writes <phases>Crystal</phases>; legacy_* deleted. (Superseded:
-   concentration is an atomic fraction, 0–1, by 0004 item 46.)
+   concentration is an atomic fraction, 0–1, by 0004 item 46. `phases` is now a repeatable
+   `phase` inside structure › material-component, by 0025, PR #55.)
    [done] Recommended unit null for dimensionless kinds (0004 item 39).
    [done, PR #21 merged 2026-11-03] Concentrations of a material component sum to
    100 (0004 item 40): the sentence is in concentration's note. (Superseded: they sum to 1, 0004
@@ -496,16 +497,16 @@ record or marked PROPOSED, NOT DECIDED.
    "Van der Waals" (0022, 0024).
    [done, PR #54 merged 2026-11-07] §1.1 FAIR data and AI readiness (0004 item 50): one sentence
    at the end of the first paragraph, no link; the paragraph's double space removed.
-   [todo] minimal structure by 0025: a required, repeatable top-level `structure` (an optional
-   description, then material-component, moved inside it, with no structure-level type);
+   [done, PR #55 merged 2026-11-07] minimal structure by 0025: a required, repeatable top-level
+   `structure` (an optional description, then material-component, moved inside it, with no
+   structure-level type);
    material-component gains a required `form` (open terms 2D material, Bulk, Chain, Cluster,
    Molecule, Monolayer, Nanoparticle, Nanoribbon, Nanotube, Nanowire, Slab, Thin film), an
    optional `role` (Adsorbate, Core, Film, Inclusion, Layer, Matrix, Shell, Solute, Solvent,
    Substrate) and an optional `fraction` (atomic, 0–1); `phases` renamed `phase`, optional and
    a repeatable scalar, Crystal replaced by Single crystal and Polycrystal, Molecule removed,
    Gas redefined; description gains a note on facets and orientations; examples/minimal.xml
-   gets a Bulk and a Slab structure (breaks 0.5.0 instances). Ruling on main; on branch
-   minimal-structure (committed, not pushed; PR to open).
+   gets a Bulk and a Slab structure (breaks 0.5.0 instances).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
