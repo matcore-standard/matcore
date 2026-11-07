@@ -595,7 +595,7 @@ def test_diagonalization_note_defines_the_acronyms_and_car_parrinello():
 
 
 def test_relaxation_tolerance_energy_is_an_energy():
-    """The relaxation stops on a change in total energy: a non-negative energy, recommended in eV, with
+    """The relaxation stops on a change in energy: a non-negative energy, recommended in eV, with
     its unit stated (0001 A3.1)."""
     r = dft('relaxation-tolerance-energy')
     assert tree(r) == ('relaxation-tolerance-energy', False, False, None, (), (
@@ -603,6 +603,20 @@ def test_relaxation_tolerance_energy_is_an_energy():
     v = sub(r, 'value')
     assert (v['extent'], v['kind'], v['recommended-unit'], v['values']) == ([], 'Energy', 'eV', {'minimum': 0})
     assert legacy_fields(r) == []
+
+
+def test_convergence_energy_is_the_free_energy_when_smeared():
+    """With smeared occupations the forces derive from F = E − TS, so the relaxation's energy is F; without
+    smearing it is E. The SCF criterion "Energy" uses the same definition (0023)."""
+    r = dft('relaxation-tolerance-energy')
+    assert r['description'] == 'Energy convergence criterion for atomic relaxation.'
+    assert r['notes'] == ['Note: The energy is the Helmholtz free energy F = E − TS, including the entropy S of '
+                          'the smeared electrons at the smearing temperature T, when occupations are smeared '
+                          '(e.g. a metal), and the total energy E otherwise (e.g. an insulator). It is not the '
+                          'energy extrapolated to zero smearing.']
+    criterion = sub(sub(dft('self-consistent-field-convergence'), 'tolerance'), 'criterion')
+    assert ('"Energy" – The change in the energy between successive iterations, defined as for '
+            '`relaxation-tolerance-energy`.') in ' '.join(criterion['values']['note'].split())
 
 
 def test_relaxation_tolerance_forces_is_a_force():

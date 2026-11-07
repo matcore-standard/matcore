@@ -772,7 +772,7 @@ The quantity whose convergence the tolerance measures.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Energy`, `Charge density`, `Potential`. Other values are allowed. "Energy" – The change in the total energy between successive iterations. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham potential.
+Recommended: `Energy`, `Charge density`, `Potential`. Other values are allowed. "Energy" – The change in the energy between successive iterations, defined as for `relaxation-tolerance-energy`. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham potential.
 
 </details>
 
@@ -809,11 +809,13 @@ A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensio
 <details class="note mc-property" id="dft.relaxation-tolerance-energy" markdown="1">
 <summary><span class="mc-name">relaxation-tolerance-energy</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-Total energy convergence criterion for atomic relaxation.
+Energy convergence criterion for atomic relaxation.
 
 | Required | Repeatable |
 |---|---|
 | no | no |
+
+Note: The energy is the Helmholtz free energy F = E − TS, including the entropy S of the smeared electrons at the smearing temperature T, when occupations are smeared (e.g. a metal), and the total energy E otherwise (e.g. an insulator). It is not the energy extrapolated to zero smearing.
 
 <details class="note mc-property" id="dft.relaxation-tolerance-energy.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
