@@ -509,16 +509,14 @@ record or marked PROPOSED, NOT DECIDED.
    a repeatable scalar, Crystal replaced by Single crystal and Polycrystal, Molecule removed,
    Gas redefined; description gains a note on facets and orientations; examples/minimal.xml
    gets a Bulk and a Slab structure (breaks 0.5.0 instances).
-   [todo] minimal varying conditions by 0026: simulation-conditions › description covers how
-   any condition varies in space or time and what a varying condition's value represents
+   [done, PR #56 merged 2026-11-07] minimal varying conditions by 0026: simulation-conditions ›
+   description covers how any condition varies in space or time and what a varying condition's value represents
    (initial, mean or final, or the value in one region); the simulation-conditions note, reworded
    without "SubSubProperties", says a varying condition gives a single representative value;
    stress's note says "cell" for "the cell subproperty"; strain-rate drops "constant throughout
    the simulation"; concentration and fraction notes give the composition as set up when it
    changes (e.g. semi-grand-canonical). Two optional bool flags, spatially-varying and
    time-varying, follow description.
-   Ruling on main; on branch minimal-varying-conditions (committed, not pushed; PR to
-   open).
    PROPOSED, NOT DECIDED (md): a semi-grand-canonical term for thermodynamic-constraint › type,
    and whether its `system` states the region as 0026's description does.
    [todo] md in file order, starting with computation.
