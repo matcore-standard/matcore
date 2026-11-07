@@ -416,7 +416,7 @@ record or marked PROPOSED, NOT DECIDED.
    renamed `comment` (a scalar); checksum a repeatable container (file, algorithm with SPDX 2.3.1
    §8.4 terms, value in lowercase hex), replacing the baseline's two-string list, defined as "A
    digital fingerprint for the dataset or an associated file modified by the provenance event.";
-   legacy_* deleted.
+   legacy_* deleted. (Superseded: a file holds its checksums by 0032, PR #63.)
    [done, PR #34 merged 2026-11-04] matcore-id: a required scalar string, no pattern, since the
    baseline calls the example's format tentative; legacy_* deleted.
    PROPOSED, NOT DECIDED (for step 6): the form of a MatCore ID, including whether it has a URI
@@ -441,13 +441,14 @@ record or marked PROPOSED, NOT DECIDED.
    form; a new `checksum` (provenance's file, algorithm, value) for a checksum of the
    pseudopotential file, `unique-identifier` kept for any other designation, each note pointing
    to the other; examples/dft.xml writes the valence-electron count as value + unit; legacy_*
-   deleted. (Superseded: number-of-valence-electrons is a leaf again, PR #42.)
+   deleted. (Superseded: number-of-valence-electrons is a leaf again, PR #42; a file holds its
+   checksums by 0032, PR #63.)
    [done, PR #39 merged 2026-11-04] dft valence-electron-model: type open terms
    (repeatable); the localized-orbital basis set gets the pseudopotential's checksum /
    unique-identifier split and Annex I's doi; kinetic-energy-cutoff and charge-density-cutoff
    value + unit (Energy, recommended eV, minimum 0; 0001 A3.1); two baseline typos fixed (a
    trailing comma, a stray space); examples/dft.xml writes the cutoff as 250.0 eV; legacy_*
-   deleted.
+   deleted. (Superseded: a file holds its checksums by 0032, PR #63.)
    [done, PR #40 merged 2026-11-04] dft calculation-physics: a repeatable string with
    open terms (the baseline's five), "e.g. DFT+U" in the note; legacy_* deleted.
    [done, PR #41 merged 2026-11-04] dft k-point-mesh (0004 item 47): type terms Regular
@@ -558,11 +559,10 @@ record or marked PROPOSED, NOT DECIDED.
    SPDX expression or LicenseRef-; name; link; applies-to); the note says to give the short
    identifier and, for a LicenseRef, its name and a link; data-license examples;
    examples/minimal.xml keeps GPL-3.0-only (the deposit's license) as an entry.
-   [todo] file with checksum by 0032: minimal provenance › checksum becomes provenance › file
+   [done, PR #63 merged 2026-11-07] file with checksum by 0032: minimal provenance › checksum becomes provenance › file
    (name*, checksum* repeatable of algorithm* and value*); dft pseudopotential-or-paw and
    localized-orbital-basis-set › checksum become › file likewise, their notes and
-   unique-identifier's naming file. Ruling on main; on branch file-with-checksum (committed, not
-   pushed; PR to open).
+   unique-identifier's naming file.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
