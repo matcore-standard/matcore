@@ -262,10 +262,10 @@ properties:
       values:
         pattern: 'https://doi\.org/10\.[^/]+/.+'
       repeatable: false
-    - name: checksum
+    - name: file
       required: false
       description: >-
-        A digital fingerprint of the pseudopotential or PAW dataset file, computed by a named algorithm.
+        The pseudopotential or PAW dataset file, with its checksums.
       type: null
       extent: null
       kind: null
@@ -274,10 +274,10 @@ properties:
       repeatable: false
       notes:
       - >-
-        Note: Use checksum when the pseudopotential or PAW dataset is identified by a checksum of its file
-        (e.g. the SHA256 hash of a VASP POTCAR file). For any other designation, use unique-identifier.
+        Note: Use file when the pseudopotential or PAW dataset is identified by a checksum of its file (e.g.
+        the SHA256 hash of a VASP POTCAR file). For any other designation, use unique-identifier.
       subproperties:
-      - name: file
+      - name: name
         required: true
         description: The name of the file.
         type: string
@@ -286,30 +286,40 @@ properties:
         recommended-unit: null
         values: null
         repeatable: false
-      - name: algorithm
+      - name: checksum
         required: true
-        description: The algorithm that computed the checksum.
-        type: string
-        extent: []
-        kind: inapplicable
+        description: A digital fingerprint of the file, computed by a named algorithm.
+        type: null
+        extent: null
+        kind: null
         recommended-unit: null
-        values:
-          terms: [SHA1, SHA224, SHA256, SHA384, SHA512, SHA3-256, SHA3-384, SHA3-512, BLAKE2b-256, BLAKE2b-384,
-            BLAKE2b-512, BLAKE3, MD2, MD4, MD5, MD6, ADLER32]
-          note: >-
-            The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/)
-            (File checksum field).
-        repeatable: false
-      - name: value
-        required: true
-        description: The checksum of the file, in lowercase hexadecimal digits.
-        type: string
-        extent: []
-        kind: inapplicable
-        recommended-unit: null
-        values:
-          pattern: '[0-9a-f]+'
-        repeatable: false
+        values: null
+        repeatable: true
+        subproperties:
+        - name: algorithm
+          required: true
+          description: The algorithm that computed the checksum.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [SHA1, SHA224, SHA256, SHA384, SHA512, SHA3-256, SHA3-384, SHA3-512, BLAKE2b-256, BLAKE2b-384,
+              BLAKE2b-512, BLAKE3, MD2, MD4, MD5, MD6, ADLER32]
+            note: >-
+              The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/)
+              (File checksum field).
+          repeatable: false
+        - name: value
+          required: true
+          description: The checksum of the file, in lowercase hexadecimal digits.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            pattern: '[0-9a-f]+'
+          repeatable: false
     - name: unique-identifier
       required: false
       description: >-
@@ -323,7 +333,7 @@ properties:
       repeatable: false
       notes:
       - >-
-        Note: For a checksum of the pseudopotential or PAW dataset file, use checksum instead.
+        Note: For a checksum of the pseudopotential or PAW dataset file, use file instead.
 - name: wavefunction-representation
   required: true
   description: The representation used to expand the electronic wave functions.
@@ -405,10 +415,10 @@ properties:
       values:
         pattern: 'https://doi\.org/10\.[^/]+/.+'
       repeatable: false
-    - name: checksum
+    - name: file
       required: false
       description: >-
-        A digital fingerprint of the localized-orbital basis set file, computed by a named algorithm.
+        The localized-orbital basis set file, with its checksums.
       type: null
       extent: null
       kind: null
@@ -417,10 +427,10 @@ properties:
       repeatable: false
       notes:
       - >-
-        Note: Use checksum when the basis set is identified by a checksum of its file. For any other
-        designation, use unique-identifier.
+        Note: Use file when the basis set is identified by a checksum of its file. For any other designation,
+        use unique-identifier.
       subproperties:
-      - name: file
+      - name: name
         required: true
         description: The name of the file.
         type: string
@@ -429,30 +439,40 @@ properties:
         recommended-unit: null
         values: null
         repeatable: false
-      - name: algorithm
+      - name: checksum
         required: true
-        description: The algorithm that computed the checksum.
-        type: string
-        extent: []
-        kind: inapplicable
+        description: A digital fingerprint of the file, computed by a named algorithm.
+        type: null
+        extent: null
+        kind: null
         recommended-unit: null
-        values:
-          terms: [SHA1, SHA224, SHA256, SHA384, SHA512, SHA3-256, SHA3-384, SHA3-512, BLAKE2b-256, BLAKE2b-384,
-            BLAKE2b-512, BLAKE3, MD2, MD4, MD5, MD6, ADLER32]
-          note: >-
-            The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/)
-            (File checksum field).
-        repeatable: false
-      - name: value
-        required: true
-        description: The checksum of the file, in lowercase hexadecimal digits.
-        type: string
-        extent: []
-        kind: inapplicable
-        recommended-unit: null
-        values:
-          pattern: '[0-9a-f]+'
-        repeatable: false
+        values: null
+        repeatable: true
+        subproperties:
+        - name: algorithm
+          required: true
+          description: The algorithm that computed the checksum.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [SHA1, SHA224, SHA256, SHA384, SHA512, SHA3-256, SHA3-384, SHA3-512, BLAKE2b-256, BLAKE2b-384,
+              BLAKE2b-512, BLAKE3, MD2, MD4, MD5, MD6, ADLER32]
+            note: >-
+              The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/)
+              (File checksum field).
+          repeatable: false
+        - name: value
+          required: true
+          description: The checksum of the file, in lowercase hexadecimal digits.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            pattern: '[0-9a-f]+'
+          repeatable: false
     - name: unique-identifier
       required: false
       description: >-
@@ -466,7 +486,7 @@ properties:
       repeatable: false
       notes:
       - >-
-        Note: For a checksum of the basis set file, use checksum instead.
+        Note: For a checksum of the basis set file, use file instead.
   - name: kinetic-energy-cutoff
     required: false
     description: >-

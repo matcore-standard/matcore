@@ -391,20 +391,21 @@ SPDX_CHECKSUM_ALGORITHMS = ['SHA1', 'SHA224', 'SHA256', 'SHA384', 'SHA512', 'SHA
 
 
 def test_provenance_structure():
-    """A provenance event says what changed, when and by whom, with an optional comment and the checksums
-    of the files it touched; a checksum names its file and algorithm, so it can be verified."""
+    """A provenance event says what changed, when and by whom, with an optional comment and the files it
+    touched; each file holds its checksums, each naming its algorithm so it can be verified, and a file with
+    several checksums gives its name once (0032)."""
     p = minimal('provenance')
-    checksum = ('checksum', False, True, None, (), (
-        ('file', True, False, 'string', (), ()),
+    checksum = ('checksum', True, True, None, (), (
         ('algorithm', True, False, 'string', tuple(SPDX_CHECKSUM_ALGORITHMS), ()),
         ('value', True, False, 'string', (), ())))
+    file = ('file', False, True, None, (), (('name', True, False, 'string', (), ()), checksum))
     assert tree(p) == ('provenance', False, True, None, (), (
         ('event-type', True, False, 'string', ('Initial creation', 'Admin update', 'Version update',
                                                'Metadata update'), ()),
         ('date', True, False, 'string', (), ()),
         tree(sub(p, 'agent')),
         ('comment', False, False, 'string', (), ()),
-        checksum))
+        file))
     assert legacy_fields(p) == []
 
 
@@ -434,7 +435,7 @@ def test_checksum_value_is_lowercase_hexadecimal(value, ok):
 
     value (str): a candidate checksum; ok (bool): whether it conforms.
     """
-    v = sub(sub(minimal('provenance'), 'checksum'), 'value')
+    v = sub(sub(sub(minimal('provenance'), 'file'), 'checksum'), 'value')
     assert Draft202012Validator(value_schema(v)).is_valid(value) == ok
 
 
@@ -548,14 +549,13 @@ def test_core_electron_treatment_structure():
     name and form, how many electrons it treats explicitly, where it came from, and what identifies it."""
     c = dft('core-electron-treatment')
     count = ('number-of-valence-electrons', True, False, 'int', (), ())
-    checksum = ('checksum', False, False, None, (), tuple(tree(s) for s in
-                                                          sub(minimal('provenance'), 'checksum')['subproperties']))
+    file = ('file', False, False, None, (), tuple(tree(s) for s in sub(minimal('provenance'), 'file')['subproperties']))
     pseudopotential = ('pseudopotential-or-paw', False, True, None, (), (
         ('name', True, False, 'string', (), ()),
         ('type', True, False, 'string', ('Norm conserving', 'PAW', 'Ultrasoft'), ()),
         ('description', False, False, 'string', (), ()), count,
         ('repository', False, False, 'string', (), ()), ('version', False, False, 'string', (), ()),
-        ('doi', False, False, 'string', (), ()), checksum,
+        ('doi', False, False, 'string', (), ()), file,
         ('unique-identifier', False, False, 'string', (), ())))
     assert tree(c) == ('core-electron-treatment', True, False, None, (), (
         ('type', True, False, 'string', ('All-electron', 'PAW', 'Pseudopotential'), ()), pseudopotential))
@@ -580,18 +580,19 @@ def test_pseudopotential_or_paw_names_both_in_every_text():
     assert alone == []
 
 
-def test_pseudopotential_checksum_is_provenance_checksum():
-    """A pseudopotential's checksum is written exactly as a provenance checksum (file, algorithm with the
-    SPDX names, value in lowercase hex), so one rule reads both."""
-    p = sub(sub(dft('core-electron-treatment'), 'pseudopotential-or-paw'), 'checksum')
-    assert p['subproperties'] == sub(minimal('provenance'), 'checksum')['subproperties']
+def test_pseudopotential_file_is_provenance_file():
+    """A pseudopotential's file is written exactly as a provenance file (name, then checksums of an algorithm
+    with the SPDX names and a value in lowercase hex), so one rule reads both (0032)."""
+    p = sub(sub(dft('core-electron-treatment'), 'pseudopotential-or-paw'), 'file')
+    assert p['subproperties'] == sub(minimal('provenance'), 'file')['subproperties']
 
 
 def test_checksum_and_unique_identifier_point_to_each_other():
     """A checksum and any other designation are kept apart: each note sends the reader to the other."""
     pp = sub(dft('core-electron-treatment'), 'pseudopotential-or-paw')
-    assert 'unique-identifier' in sub(pp, 'checksum')['notes'][0]
-    assert 'checksum' in sub(pp, 'unique-identifier')['notes'][0]
+    assert sub(pp, 'file')['notes'][0].startswith('Note: Use file when')
+    assert 'use unique-identifier' in sub(pp, 'file')['notes'][0]
+    assert sub(pp, 'unique-identifier')['notes'][0].endswith('use file instead.')
     assert 'hash' not in sub(pp, 'unique-identifier')['description'].lower()
 
 
@@ -610,11 +611,10 @@ def test_wavefunction_representation_structure():
     """The wavefunction representation names its types, the localized-orbital basis sets used, and the
     plane-wave cutoffs; a basis set is identified as a pseudopotential is, by checksum or other token."""
     v = dft('wavefunction-representation')
-    checksum = ('checksum', False, False, None, (), tuple(tree(s) for s in
-                                                          sub(minimal('provenance'), 'checksum')['subproperties']))
+    file = ('file', False, False, None, (), tuple(tree(s) for s in sub(minimal('provenance'), 'file')['subproperties']))
     basis = ('localized-orbital-basis-set', False, True, None, (), (
         ('type', True, False, 'string', (), ()), ('repository', False, False, 'string', (), ()),
-        ('version', False, False, 'string', (), ()), ('doi', False, False, 'string', (), ()), checksum,
+        ('version', False, False, 'string', (), ()), ('doi', False, False, 'string', (), ()), file,
         ('unique-identifier', False, False, 'string', (), ())))
     cutoff = lambda n: (n, False, False, None, (), (('value', True, False, 'float', (), ()),
                                                     ('unit', True, False, 'string', (), ())))
@@ -651,11 +651,11 @@ def test_conditional_subproperties_name_the_types_they_serve(name, terms):
 
 
 def test_basis_set_identifiers_match_the_pseudopotential_split():
-    """The basis set's checksum is provenance's, and its two identifiers point to each other."""
+    """The basis set's file is provenance's, and its two identifiers point to each other (0032)."""
     b = sub(dft('wavefunction-representation'), 'localized-orbital-basis-set')
-    assert sub(b, 'checksum')['subproperties'] == sub(minimal('provenance'), 'checksum')['subproperties']
-    assert 'unique-identifier' in sub(b, 'checksum')['notes'][0]
-    assert 'checksum' in sub(b, 'unique-identifier')['notes'][0]
+    assert sub(b, 'file')['subproperties'] == sub(minimal('provenance'), 'file')['subproperties']
+    assert sub(b, 'file')['notes'][0].startswith('Note: Use file when')
+    assert sub(b, 'unique-identifier')['notes'][0].endswith('use file instead.')
 
 
 @pytest.mark.parametrize('name', ['kinetic-energy-cutoff', 'charge-density-cutoff'])
