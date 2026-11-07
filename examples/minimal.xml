@@ -64,6 +64,12 @@
     <link>https://www.repository.cam.ac.uk/handle/1810/317974</link>
   </dataset-location>
   <matcore-id>mc-ad83jsd3-1</matcore-id>
+  <matcore-author>
+    <name>Ellad B. Tadmor</name>
+    <affiliation>
+      <name>University of Minnesota</name>
+    </affiliation>
+  </matcore-author>
   <matcore-date>2026-02-14</matcore-date>
   <license>
     <identifier>GPL-3.0-only</identifier>
