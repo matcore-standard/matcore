@@ -11,7 +11,7 @@ Merging them into a single `name` was weighed and rejected:
 
 ## Decision
 1. **Both fields stay**, unchanged in name, order, type and flags.
-2. **`name`'s note** holds the list of named functionals by family, moved from `description` in its baseline wording, with the sentence pointing to `normalization`:
+2. **`name`'s note** holds the list of named functionals by family, moved from `description` in its baseline wording, with the sentence pointing to `normalization`. `name`'s `examples` (PBE, HSE06, from 0017) are removed, since the page would otherwise open with "Examples:" twice and the list already names both:
 
    > Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. Others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. A decomposition into the components of a community library such as LibXC is given in normalization.
 3. **`description`'s note** states its own use: "Free text on what `type` and `name` do not say, e.g. a modification of the functional or the reason for choosing it."

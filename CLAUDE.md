@@ -486,7 +486,7 @@ record or marked PROPOSED, NOT DECIDED.
    note's "Energy" refers to it (stating the definition in place, or linking, was declined).
    [todo] dft xc-functional name and description by 0024: both kept (a merge into `name` was
    declined); the list of named functionals moves to name's note with the pointer to
-   normalization; description's note states its use; examples/dft.xml gives <name>PW91</name>.
+   normalization, and name's examples (PBE, HSE06) are removed; description's note states its use; examples/dft.xml gives <name>PW91</name>.
    Ruling 0024 committed on main (not pushed); the PR branch is cut from it once pushed.
    PROPOSED, NOT DECIDED: whether name's note says that a dispersion correction's name may form
    part of `name` (e.g. PBE-D3) and that the correction is also recorded as calculation-physics

@@ -2,7 +2,7 @@
 
 Date: 2026-11-05. Status: accepted. Decided by: Ellad Tadmor.
 
-Amended 2026-11-07 by 0024: the list of named functionals moves from `description`'s note to `name`'s, with the pointer to `normalization`; `description`'s note states its own use.
+Amended 2026-11-07 by 0024: the list of named functionals moves from `description`'s note to `name`'s, with the pointer to `normalization`, and `name`'s examples are removed; `description`'s note states its own use.
 
 ## Context
 Community feedback on dft `xc-functional` asked for "a canonical normalization layer based on existing community resources such as LibXC", keeping the user-facing value (e.g. "PBE") while also allowing a normalized representation (e.g. the components GGA_X_PBE and GGA_C_PBE, with LibXC as the normalization source).
