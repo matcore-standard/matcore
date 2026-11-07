@@ -281,7 +281,8 @@ record or marked PROPOSED, NOT DECIDED.
      calculation-physics drops Relativistic effects, renames Spin polarization to Collinear spin
      polarization, adds Orbital polarization and Spin-orbit coupling (0022); the energy of dft
      relaxation-tolerance-energy and of the SCF criterion "Energy" defined: the free energy
-     E − TS when occupations are smeared, the total energy otherwise (0023).
+     E − TS when occupations are smeared, the total energy otherwise (0023); dft xc-functional's
+     list of named functionals moved from description's note to name's (0024).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -483,6 +484,13 @@ record or marked PROPOSED, NOT DECIDED.
    revised by 0023: the description drops "Total"; a note defines the energy (free energy E − TS
    with smeared occupations, total energy otherwise, not extrapolated to zero smearing); the SCF
    note's "Energy" refers to it (stating the definition in place, or linking, was declined).
+   [todo] dft xc-functional name and description by 0024: both kept (a merge into `name` was
+   declined); the list of named functionals moves to name's note with the pointer to
+   normalization; description's note states its use; examples/dft.xml gives <name>PW91</name>.
+   Ruling 0024 committed on main (not pushed); the PR branch is cut from it once pushed.
+   PROPOSED, NOT DECIDED: whether name's note says that a dispersion correction's name may form
+   part of `name` (e.g. PBE-D3) and that the correction is also recorded as calculation-physics
+   "Van der Waals" (0022, 0024).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
