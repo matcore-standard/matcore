@@ -385,6 +385,7 @@ record or marked PROPOSED, NOT DECIDED.
    doi in Annex I's https URI form (0014, settled 2026-11-04), its pattern locked to the table by
    tests/test_properties.py; link format uri; legacy_* deleted. Both uri links of minimal get an
    example: citation › link the Si GAP paper's arXiv page, software › file › link its ColabFit page.
+   (Superseded: citation is renamed publication by 0029, PR #60.)
    [done, PR #28 merged 2026-11-04] 0015's second amendment: check_units.py
    requires every numerical leaf (kind physical or dimensionless) to be a `value` beside a `unit`;
    concentration (an atomic fraction 0–1, 0004 item 46), number-of-particles and strain as
@@ -402,7 +403,8 @@ record or marked PROPOSED, NOT DECIDED.
    URI per entry since related-content repeats, in the form of citation's link (format uri;
    example the Cambridge deposit of Si_PRX_GAP); description a string; its definition made
    singular ("Another dataset that is connected to the current one in some manner."); legacy_*
-   deleted.
+   deleted. (Superseded: the Cambridge deposit is the Si GAP dataset itself; it moves to
+   dataset-location's examples by 0029, PR #60, and related-content › link has no example.)
    [done, PR #33 merged 2026-11-04] provenance: event-type open terms (definitions in the
    note); date the creation-date pattern, copied and locked by a test; agent a string; `comments`
    renamed `comment` (a scalar); checksum a repeatable container (file, algorithm with SPDX 2.3.1
@@ -538,12 +540,11 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #58 merged 2026-11-07] Preamble acronyms by 0004 item 51: KIM, CODATA and IRI
    spelled out at their first use in §1.3, each expansion traced to its defining body; QUDT,
    which gives no expansion, described in its own words.
-   [todo] minimal publication and dataset-location by 0029: `citation` renamed `publication`
-   (papers describing the dataset); new optional, repeatable top-level `dataset-location`
+   [done, PR #60 merged 2026-11-07] minimal publication and dataset-location by 0029: `citation`
+   renamed `publication` (papers describing the dataset); new optional, repeatable top-level `dataset-location`
    (repository, doi, link*) for where the dataset is stored; the Cambridge deposit moves from
    related-content › link's example to dataset-location's, and examples/minimal.xml gains a
-   dataset-location. Ruling on main; on branch minimal-publication-location (committed, not
-   pushed; PR to open).
+   dataset-location.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
