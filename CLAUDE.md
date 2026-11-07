@@ -531,8 +531,8 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED: how md particle-interactions › model-type relates to
    interaction-model (md PR); whether 0028's rule matches MODA's classification principle
    (check the MODA source).
-   [todo] Preamble acronyms by 0004 item 51: spell out AI, KIM, SI, CODATA, QUDT, XML and JSON
-   at their first use, each expansion traced to its defining body. Ruling on main; PR to follow.
+   [todo] Preamble acronyms by 0004 item 51: spell out KIM, CODATA, QUDT and IRI at their
+   first use, each expansion traced to its defining body. Ruling on main; PR to follow.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
@@ -569,8 +569,8 @@ record or marked PROPOSED, NOT DECIDED.
     merged <date>]", and commit that alone as "Record <property> as merged in PR #N".
   - A status entry later reversed or replaced keeps its text and gets a "(Superseded: …)" note.
 - Text added to the Preamble (docs/standard/index.md) defines each acronym at its first use in
-  the Preamble, unless the Preamble already defines it: spelled out, acronym in parentheses
-  (0004 item 51).
+  the Preamble, unless the Preamble already defines it or it is well known and understood in
+  context (e.g. AI, SI, XML, JSON): spelled out, acronym in parentheses (0004 item 51).
 - Decisions are made only by the human running the session. Never treat a suggestion, whether yours,
   from CLAUDE.md, or from an earlier conversation, as decided unless the human has explicitly confirmed
   it. If you find something in CLAUDE.md or in your task that is not backed by a decision record or an
