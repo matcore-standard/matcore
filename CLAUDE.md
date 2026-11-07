@@ -539,8 +539,9 @@ record or marked PROPOSED, NOT DECIDED.
    which gives no expansion, described in its own words.
    [todo] minimal publication and dataset-location by 0029: `citation` renamed `publication`
    (papers describing the dataset); new optional, repeatable top-level `dataset-location`
-   (repository, doi, link*) for where the dataset is stored; examples/minimal.xml moves the
-   Cambridge deposit from related-content to dataset-location. Ruling on main; PR to follow.
+   (repository, doi, link*) for where the dataset is stored; the Cambridge deposit moves from
+   related-content › link's example to dataset-location's, and examples/minimal.xml gains a
+   dataset-location. Ruling on main; PR to follow.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
