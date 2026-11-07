@@ -817,3 +817,24 @@ def test_varying_conditions_are_flagged_for_search():
             False, False, 'bool', [], 'inapplicable', None)
         assert f['notes'] == ['Note: If true, describe the details in `description`.']
     assert 'other than type, description, spatially-varying and time-varying,' in sc['notes'][0]
+
+
+INTERACTION_MODELS = ('CC', 'DFT', 'Empirical potential', 'ML potential', 'QMC', 'Tight binding')
+
+
+def test_combined_methods_name_the_source_of_energies_and_forces():
+    """A computation such as AIMD or MD with a machine-learned potential gives as method the one that produces
+    the data, and the model supplying its energies and forces in interaction-model, which repeats for QM/MM
+    (0028)."""
+    c = minimal('computation')
+    names = [s['name'] for s in c['subproperties']]
+    assert names[:3] == ['method-class', 'method', 'interaction-model']
+    assert sub(c, 'method')['notes'] == [
+        'Note: Give the method that produces the configurations or properties of the dataset. When another '
+        'method supplies its energies and forces, give that one in `interaction-model`.']
+    im = sub(c, 'interaction-model')
+    assert tree(im) == ('interaction-model', False, True, 'string', INTERACTION_MODELS, ())
+    assert (im['extent'], im['kind']) == ([], 'inapplicable')
+    note = im['values']['note']
+    assert all(f'"{t}" –' in note for t in INTERACTION_MODELS)
+    assert note.endswith('Give one entry per model, e.g. DFT and Empirical potential for a QM/MM simulation.')

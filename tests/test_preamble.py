@@ -97,3 +97,11 @@ def test_less_familiar_acronyms_are_spelled_out_at_first_use(acronym, expansion)
     text = (ROOT / 'docs/standard/index.md').read_text()
     first = re.search(rf'\b{acronym}\b', text).start()
     assert text.find(expansion) != -1 and text.find(expansion) <= first <= text.find(expansion) + len(expansion)
+
+
+def test_scope_distinguishes_methods_that_supply_energies_and_forces():
+    """§1.2's paragraph on combined methods opens by separating methods that supply energies and forces
+    from those that use them, before its AIMD example (0028)."""
+    text = (ROOT / 'docs/standard/index.md').read_text()
+    assert ('Some methods supply energies and forces (e.g. DFT), others use them to sample or evolve a system '
+            '(e.g. MD). It is allowable to include multiple method-specific metadata') in text

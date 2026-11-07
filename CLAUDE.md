@@ -289,7 +289,9 @@ record or marked PROPOSED, NOT DECIDED.
      simulation-conditions explains varying conditions in its description and flags them as
      spatially-varying or time-varying, and composition is given as set up when it varies (0026);
      the phase term Quasicrystal has long-range order without translational periodicity (0027);
-     §1.3 spells out KIM, CODATA and IRI and describes QUDT (0004 item 51).
+     §1.3 spells out KIM, CODATA and IRI and describes QUDT (0004 item 51);
+     §1.2 distinguishes methods that supply energies and forces, and computation gains
+     interaction-model with a note on method (0028).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -528,7 +530,8 @@ record or marked PROPOSED, NOT DECIDED.
    forces from those that use them; `method` gets a note (give the method that produces the
    data; the force source goes in interaction-model); new optional repeatable
    `interaction-model` after method (open terms CC, DFT, Empirical potential, ML potential, QMC,
-   Tight binding). Ruling on main; PR to follow.
+   Tight binding). Ruling on main; on branch minimal-interaction-model (committed, not
+   pushed; PR to open).
    PROPOSED, NOT DECIDED: how md particle-interactions › model-type relates to
    interaction-model (md PR); whether 0028's rule matches MODA's classification principle
    (check the MODA source).
