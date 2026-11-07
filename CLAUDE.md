@@ -557,6 +557,10 @@ record or marked PROPOSED, NOT DECIDED.
    SPDX expression or LicenseRef-; name; link; applies-to); the note says to give the short
    identifier and, for a LicenseRef, its name and a link; data-license examples;
    examples/minimal.xml keeps GPL-3.0-only (the deposit's license) as an entry.
+   [todo] file with checksum by 0032: minimal provenance › checksum becomes provenance › file
+   (name*, checksum* repeatable of algorithm* and value*); dft pseudopotential-or-paw and
+   localized-orbital-basis-set › checksum become › file likewise, their notes and
+   unique-identifier's naming file. Ruling on main; PR to follow.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
