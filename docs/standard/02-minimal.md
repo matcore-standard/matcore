@@ -1512,15 +1512,65 @@ Pattern: `\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[
 </details>
 
 <details class="note mc-property" id="minimal.license" markdown="1">
-<summary><span class="mc-name">license<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<summary><span class="mc-name">license<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 A contract defining the terms and conditions under which the dataset can be used.
+
+| Required | Repeatable |
+|---|---|
+| yes | yes |
+
+Note: A license expression as defined in the [SPDX specification, version 2.3.1](https://spdx.github.io/spdx-spec/v2.3.1/SPDX-license-expressions/), built from current identifiers of the [SPDX License List](https://spdx.org/licenses/): a single identifier (e.g. `CC-BY-4.0`) or a combination (e.g. `CC-BY-4.0 OR CC0-1.0`). Give the SPDX short identifier, not the license's full name, so that the value can be read by tools. A license not on the SPDX License List, including a custom license, is written `LicenseRef-` followed by letters, digits, `-` or `.` (e.g. `LicenseRef-NIST-data`), with its `name` and a `link` to its full text, both required in this case. A license for data is usually one written for data, e.g. `CC-BY-4.0`, `CC0-1.0` or `ODbL-1.0`, rather than one written for software.
+
+<details class="note mc-property" id="minimal.license.identifier" markdown="1">
+<summary><span class="mc-name">identifier<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The license as an SPDX license expression built from short identifiers of the SPDX License List, or as `LicenseRef-` followed by an identifier for a license not on the list.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Examples: `GPL-3.0-only`, `CC-BY-4.0`. A license expression as defined in the [SPDX specification, version 2.3.1](https://spdx.github.io/spdx-spec/v2.3.1/SPDX-license-expressions/), built from current identifiers of the [SPDX License List](https://spdx.org/licenses/): a single identifier (e.g. `GPL-3.0-only`) or a combination (e.g. `MIT OR Apache-2.0`). A license not on the list is written `LicenseRef-` followed by an identifier.
+Examples: `CC-BY-4.0`, `CC0-1.0`, `LicenseRef-NIST-data`.
+
+</details>
+
+<details class="note mc-property" id="minimal.license.name" markdown="1">
+<summary><span class="mc-name">name</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The full name of the license.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Examples: `Creative Commons Attribution 4.0 International`.
+
+</details>
+
+<details class="note mc-property" id="minimal.license.link" markdown="1">
+<summary><span class="mc-name">link</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+A URI pointing to the full text of the license.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Format: `uri` (JSON Schema 2020-12).
+
+</details>
+
+<details class="note mc-property" id="minimal.license.applies-to" markdown="1">
+<summary><span class="mc-name">applies-to</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The part of the dataset the license covers, when the dataset has more than one license, e.g. the data or the code.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
@@ -1596,7 +1646,11 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
   </dataset-location>
   <matcore-id>mc-ad83jsd3-1</matcore-id>
   <matcore-date>2026-02-14</matcore-date>
-  <license>GPL-3.0-only</license>
+  <license>
+    <identifier>GPL-3.0-only</identifier>
+    <name>GNU General Public License v3.0 only</name>
+    <link>https://www.gnu.org/licenses/gpl-3.0.en.html</link>
+  </license>
 </root>
 ```
 

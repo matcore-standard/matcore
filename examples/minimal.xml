@@ -65,5 +65,9 @@
   </dataset-location>
   <matcore-id>mc-ad83jsd3-1</matcore-id>
   <matcore-date>2026-02-14</matcore-date>
-  <license>GPL-3.0-only</license>
+  <license>
+    <identifier>GPL-3.0-only</identifier>
+    <name>GNU General Public License v3.0 only</name>
+    <link>https://www.gnu.org/licenses/gpl-3.0.en.html</link>
+  </license>
 </root>

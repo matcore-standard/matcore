@@ -293,7 +293,9 @@ record or marked PROPOSED, NOT DECIDED.
      §1.2 distinguishes methods that supply energies and forces, and computation gains
      interaction-model with a note on method (0028); `citation` renamed `publication`, and a
      new optional `dataset-location` says where the dataset is stored (0029); funding award-title is
-     optional, provenance is recommended and its agent is structured like a creator (0030).
+     optional, provenance is recommended and its agent is structured like a creator (0030); license is a
+     repeatable container of an SPDX identifier or LicenseRef-, a name, a link and what it applies
+     to (0031).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -553,7 +555,8 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] minimal license by 0031: license a required, repeatable container (identifier*, an
    SPDX expression or LicenseRef-; name; link; applies-to); the note says to give the short
    identifier and, for a LicenseRef, its name and a link; data-license examples; examples/minimal.xml
-   keeps GPL-3.0-only (the deposit's license) as an entry. Ruling on main; PR to follow.
+   keeps GPL-3.0-only (the deposit's license) as an entry. Ruling on main; on branch
+   minimal-license (committed, not pushed; PR to open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
