@@ -142,6 +142,9 @@ def test_structure_notes_define_every_term_and_state_the_rules():
     assert all(f'"{t}" –' in phase for t in PHASES)
     assert '"Crystal"' not in phase and '"Molecule"' not in phase
     assert '"Gas" – A state where' in phase and phase.endswith('Omit for a component whose form is Molecule.')
+    assert ('"Quasicrystal" – A solid material with long-range order but without translational periodicity, e.g. '
+            'one whose diffraction pattern shows five-fold rotational symmetry.') in phase
+    assert 'short-range order' not in phase
 
 
 @pytest.mark.parametrize('value, ok', [(0, True), (0.05, True), (1, True), (-0.1, False), (5, False)])
