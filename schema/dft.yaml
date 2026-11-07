@@ -755,8 +755,8 @@ properties:
       values:
         terms: [Energy, Charge density, Potential]
         note: >-
-          "Energy" – The change in the total energy between successive iterations. "Charge density" – The
-          change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham
+          "Energy" – The change in the energy between successive iterations, defined as for
+          `relaxation-tolerance-energy`. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham
           potential.
       repeatable: false
     - name: value
@@ -784,13 +784,18 @@ properties:
       repeatable: false
 - name: relaxation-tolerance-energy
   required: false
-  description: Total energy convergence criterion for atomic relaxation.
+  description: Energy convergence criterion for atomic relaxation.
   type: null
   extent: null
   kind: null
   recommended-unit: null
   values: null
   repeatable: false
+  notes:
+  - >-
+    Note: The energy is the Helmholtz free energy F = E − TS, including the entropy S of the smeared
+    electrons at the smearing temperature T, when occupations are smeared (e.g. a metal), and the total
+    energy E otherwise (e.g. an insulator). It is not the energy extrapolated to zero smearing.
   subproperties:
   - name: value
     required: true

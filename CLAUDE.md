@@ -482,8 +482,8 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] dft relaxation-tolerance-energy and SCF criterion "Energy" revised by 0023: the
    description drops "Total"; a note defines the energy (free energy E − TS with smeared
    occupations, total energy otherwise, not extrapolated to zero smearing); the SCF note's
-   "Energy" refers to it. Ruling 0023 committed on main (not pushed); the PR branch is cut
-   from it once pushed.
+   "Energy" refers to it. On branch energy-in-convergence-criteria (committed, not
+   pushed; PR to open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
