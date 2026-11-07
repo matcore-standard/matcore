@@ -484,11 +484,10 @@ record or marked PROPOSED, NOT DECIDED.
    revised by 0023: the description drops "Total"; a note defines the energy (free energy E − TS
    with smeared occupations, total energy otherwise, not extrapolated to zero smearing); the SCF
    note's "Energy" refers to it (stating the definition in place, or linking, was declined).
-   [todo] dft xc-functional name and description by 0024: both kept (a merge into `name` was
-   declined); the list of named functionals moves to name's note with the pointer to
-   normalization, and name's examples (PBE, HSE06) are removed; description's note states its use;
-   examples/dft.xml gives <name>PW91</name>. On branch xc-functional-name-description (committed,
-   not pushed; PR to open).
+   [done, PR #53 merged 2026-11-07] dft xc-functional name and description by 0024: both kept (a
+   merge into `name` was declined); the list of named functionals moves to name's note with the
+   pointer to normalization, and name's examples (PBE, HSE06) are removed; description's note
+   states its use; examples/dft.xml gives <name>PW91</name>.
    PROPOSED, NOT DECIDED: whether name's note says that a dispersion correction's name may form
    part of `name` (e.g. PBE-D3) and that the correction is also recorded as calculation-physics
    "Van der Waals" (0022, 0024).
