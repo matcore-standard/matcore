@@ -507,6 +507,14 @@ record or marked PROPOSED, NOT DECIDED.
    a repeatable scalar, Crystal replaced by Single crystal and Polycrystal, Molecule removed,
    Gas redefined; description gains a note on facets and orientations; examples/minimal.xml
    gets a Bulk and a Slab structure (breaks 0.5.0 instances).
+   [todo] minimal varying conditions by 0026: simulation-conditions › description covers how
+   any condition varies in space or time; the simulation-conditions note says a varying
+   condition gives a representative value (initial, mean or final) named in the description;
+   strain-rate drops "constant throughout the simulation"; concentration and fraction notes give
+   the composition as set up when it changes (e.g. semi-grand-canonical). No structural change.
+   Ruling on main; PR to follow.
+   PROPOSED, NOT DECIDED (md): a semi-grand-canonical term for thermodynamic-constraint › type,
+   and whether its `system` states the region as 0026's description does.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
