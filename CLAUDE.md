@@ -277,7 +277,9 @@ record or marked PROPOSED, NOT DECIDED.
      0.5.0 instances) and `method-diagonalization` added (0020); dft pseudopotential renamed
      `pseudopotential-or-paw`, its type gaining the term PAW (0021; breaks 0.5.0 instances); dft
      relaxation-tolerance-energy's typed fields filled (step 5); dft relaxation-tolerance-forces's
-     typed fields filled (step 5); dft comment's typed fields filled, dft complete (step 5).
+     typed fields filled (step 5); dft comment's typed fields filled, dft complete (step 5); dft
+     calculation-physics drops Relativistic effects, renames Spin polarization to Collinear spin
+     polarization, adds Orbital polarization and Spin-orbit coupling (0022).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -471,7 +473,11 @@ record or marked PROPOSED, NOT DECIDED.
    recommended eV/angstrom, minimum 0; 0001 A3.1); legacy_* deleted.
    [done, PR #50 merged 2026-11-06] dft comment: a repeatable scalar string, values null; legacy_*
    deleted. dft is complete: it declares `legacy_complete: true` (0004 item 36).
-   [todo] md in file order.
+   [todo] dft calculation-physics revised by 0022: terms Collinear spin polarization, Noncollinear
+   spin polarization, On-site correlation, Orbital polarization, Spin-orbit coupling, Van der Waals;
+   a note defining each and allowing at most one of the two spin terms. Ruling 0022 committed on main
+   (not pushed); the PR branch is cut from it once pushed.
+   [todo] md in file order, after calculation-physics.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
