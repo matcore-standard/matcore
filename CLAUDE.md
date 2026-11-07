@@ -545,6 +545,13 @@ record or marked PROPOSED, NOT DECIDED.
    (repository, doi, link*) for where the dataset is stored; the Cambridge deposit moves from
    related-content › link's example to dataset-location's, and examples/minimal.xml gains a
    dataset-location.
+   [todo] minimal funding and provenance by 0030: award-title optional; provenance gets a note
+   recommending it; provenance › agent takes creator's structure (required, repeatable).
+   Ruling on main; PR to follow.
+   [todo] minimal license by 0031: license a required, repeatable container (identifier*, an
+   SPDX expression or LicenseRef-; name; link; applies-to); the note says to give the short
+   identifier and, for a LicenseRef, its name and a link; data-license examples; examples/minimal.xml
+   keeps GPL-3.0-only (the deposit's license) as an entry. Ruling on main; PR to follow.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
