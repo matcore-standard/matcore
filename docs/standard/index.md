@@ -30,7 +30,7 @@ The MatCore standard is focused on CMS methods aimed at computing material prope
 
 All methods share a common minimal set of metadata defined by the MatCore standard. In addition, each method has its own MatCore extension, e.g. MatCore-DFT, MatCore-MD, etc., that inherits from the minimal MatCore metadata and adds additional method-specific metadata. 
 
-It is allowable to include multiple method-specific metadata if used in concert. For example, an ab initio molecular dynamics (AIMD) dataset could include both MatCore-DFT and MatCore-MD metadata files to document both aspects of the computation.
+Some methods supply energies and forces (e.g. DFT), others use them to sample or evolve a system (e.g. MD). It is allowable to include multiple method-specific metadata if used in concert. For example, an ab initio molecular dynamics (AIMD) dataset could include both MatCore-DFT and MatCore-MD metadata files to document both aspects of the computation.
 
 ## 1.3 Format
 

@@ -467,6 +467,21 @@ The computational materials science (CMS) approach used in the computation.
 
 Depends on `method-class`. For `Electronic`: Recommended: `CC`, `QMC`, `DFT`, `MBPT`. Other values are allowed. For `Atomistic`: Recommended: `MC`, `MD`. Other values are allowed. For `Mesoscopic`: Recommended: `DDD`, `KMC`, `CGMD`. Other values are allowed. For `Continuum`: Recommended: `PF`. Other values are allowed. For `Data-driven`: Recommended: `ML`. Other values are allowed. "CC" – Coupled Cluster; "QMC" – Quantum Monte Carlo; "DFT" – Density Functional Theory; "MBPT" – Many-Body Perturbation Theory methods (such as GW and BSE); "MC" – Monte Carlo; "MD" – Molecular Dynamics; "DDD" – Discrete Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "CGMD" – Coarse-grained MD; "PF" – Phase Field; "ML" – Machine Learning.
 
+Note: Give the method that produces the configurations or properties of the dataset. When another method supplies its energies and forces, give that one in `interaction-model`.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.interaction-model" markdown="1">
+<summary><span class="mc-name">interaction-model</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+The model that supplies the energies and forces used by `method`, when it is a different method.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | yes | string | [] | inapplicable | — |
+
+Recommended: `CC`, `DFT`, `Empirical potential`, `ML potential`, `QMC`, `Tight binding`. Other values are allowed. "CC" – Coupled Cluster; "DFT" – Density Functional Theory; "Empirical potential" – An interatomic potential with a fixed functional form fitted to data, e.g. Lennard-Jones or EAM; "ML potential" – A machine-learned interatomic potential, e.g. GAP or MACE; "QMC" – Quantum Monte Carlo; "Tight binding" – A semi-empirical electronic-structure model, e.g. DFTB. Give one entry per model, e.g. DFT and Empirical potential for a QM/MM simulation.
+
 </details>
 
 <details class="note mc-property" id="minimal.computation.simulation-conditions" markdown="1">

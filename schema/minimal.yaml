@@ -493,6 +493,27 @@ properties:
         Dynamics; "DDD" – Discrete Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "CGMD" –
         Coarse-grained MD; "PF" – Phase Field; "ML" – Machine Learning.
     repeatable: false
+    notes:
+    - >-
+      Note: Give the method that produces the configurations or properties of the dataset. When another
+      method supplies its energies and forces, give that one in `interaction-model`.
+  - name: interaction-model
+    required: false
+    description: >-
+      The model that supplies the energies and forces used by `method`, when it is a different method.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      terms: [CC, DFT, Empirical potential, ML potential, QMC, Tight binding]
+      note: >-
+        "CC" – Coupled Cluster; "DFT" – Density Functional Theory; "Empirical potential" – An interatomic
+        potential with a fixed functional form fitted to data, e.g. Lennard-Jones or EAM; "ML potential" – A
+        machine-learned interatomic potential, e.g. GAP or MACE; "QMC" – Quantum Monte Carlo; "Tight
+        binding" – A semi-empirical electronic-structure model, e.g. DFTB. Give one entry per model, e.g. DFT
+        and Empirical potential for a QM/MM simulation.
+    repeatable: true
   - name: simulation-conditions
     required: true
     description: >-
