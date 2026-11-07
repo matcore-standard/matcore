@@ -13,7 +13,7 @@ Committee change: after `matcore-id`, add a repeatable `matcore-author` with the
    - `name`: "The name of the entity that created the metadata record."
    - `identifier`: "A unique, persistent identifier that globally and unambiguously identifies the entity that created the metadata record."
    - `affiliation`: "The affiliation of the entity that created the metadata record if they have one."
-2. **examples/minimal.xml** gains, after `matcore-id`, a `matcore-author` with name "Ellad B. Tadmor" and affiliation name "University of Minnesota", as given by the decider; no identifiers are given.
+2. **examples/minimal.xml** gains, after `matcore-id`, a `matcore-author` with name "Ellad B. Tadmor", identifier https://orcid.org/0000-0003-3311-6299 (scheme ORCID; Annex I's https form, check digit verified) and affiliation name "University of Minnesota", as given by the decider. (Amended 2026-11-07: the ORCID iD added after PR #64.)
 
 ## Consequences
 - One pull request applies item 1 and item 2 (schema, tests, regenerated page, example). No MatCore instances exist yet, so the new required property breaks none.
