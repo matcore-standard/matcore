@@ -2,6 +2,7 @@
 <root>
   <xc-functional>
     <type>GGA</type>
+    <name>PW91</name>
     <description>PW91 functional (the choice is motivated by the existence of a large-scale simulation of the melting point with this functional)</description>
   </xc-functional>
   <core-electron-treatment>
