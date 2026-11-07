@@ -23,7 +23,7 @@ The metadata documents the essence of a simulation, not every detail of its inpu
    - **`spatially-varying`**: "Whether any imposed condition varies across the system, e.g. a thermostat applied to part of it."
    - **`time-varying`**: "Whether any imposed condition changes during the simulation, e.g. a temperature ramp or a change of ensemble."
 
-   When either is true, the description states how. The prefix `simulation-is-` was declined (the parent names the simulation), as was "inhomogeneous" (unclear for time) and `time-dependent` (pf's `time-dependence` describes the governing equation). An omitted flag means not stated; required flags were declined, so that a uniform equilibrium run needs no "false" entries.
+   Each carries the note "Note: If true, describe the details in `description`." The prefix `simulation-is-` was declined (the parent names the simulation), as was "inhomogeneous" (unclear for time) and `time-dependent` (pf's `time-dependence` describes the governing equation). An omitted flag means not stated; required flags were declined, so that a uniform equilibrium run needs no "false" entries.
 6. **`concentration`** and **`fraction`** each gain a sentence in their values note: "When the composition changes during the simulation (e.g. semi-grand-canonical Monte Carlo), give the composition as set up." These are the only composition fields in the schema.
 
 ## Consequences
