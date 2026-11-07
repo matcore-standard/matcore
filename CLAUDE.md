@@ -532,9 +532,9 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED: how md particle-interactions › model-type relates to
    interaction-model (md PR); whether 0028's rule matches MODA's classification principle
    (check the MODA source).
-   [todo] Preamble acronyms by 0004 item 51: spell out KIM, CODATA, QUDT and IRI at their
-   first use, each expansion traced to its defining body. Ruling on main; on branch
-   preamble-acronyms (committed, not pushed; PR to open).
+   [done, PR #58 merged 2026-11-07] Preamble acronyms by 0004 item 51: KIM, CODATA and IRI
+   spelled out at their first use in §1.3, each expansion traced to its defining body; QUDT,
+   which gives no expansion, described in its own words.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
