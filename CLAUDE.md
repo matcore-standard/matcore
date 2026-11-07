@@ -563,6 +563,9 @@ record or marked PROPOSED, NOT DECIDED.
    (name*, checksum* repeatable of algorithm* and value*); dft pseudopotential-or-paw and
    localized-orbital-basis-set › checksum become › file likewise, their notes and
    unique-identifier's naming file.
+   [todo] matcore-author by 0033: a new required, repeatable top-level property after matcore-id,
+   with creator's structure, naming who created the metadata record; examples/minimal.xml gives
+   Ellad B. Tadmor, University of Minnesota. Ruling on main; PR to follow.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
