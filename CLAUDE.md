@@ -512,7 +512,8 @@ record or marked PROPOSED, NOT DECIDED.
    (initial, mean or final, or the value in one region); the simulation-conditions note, reworded
    without "SubSubProperties", says a varying condition gives a single representative value;
    stress's note says "cell" for "the cell subproperty"; strain-rate drops "constant throughout the simulation"; concentration and fraction notes give
-   the composition as set up when it changes (e.g. semi-grand-canonical). No structural change.
+   the composition as set up when it changes (e.g. semi-grand-canonical). Two optional bool flags,
+   spatially-varying and time-varying, follow description.
    Ruling on main; PR to follow.
    PROPOSED, NOT DECIDED (md): a semi-grand-canonical term for thermodynamic-constraint › type,
    and whether its `system` states the region as 0026's description does.
