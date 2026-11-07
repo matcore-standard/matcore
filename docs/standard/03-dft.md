@@ -37,7 +37,7 @@ The exchange-correlation functional as the author names it.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Examples: `PBE`, `HSE06`.
+Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. Others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. A decomposition into the components of a community library such as LibXC is given in normalization.
 
 </details>
 
@@ -50,7 +50,7 @@ Explanatory text providing more information about the type of the exchange-corre
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. Others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. A decomposition into the components of a community library such as LibXC is given in normalization.
+Free text on what `type` and `name` do not say, e.g. a modification of the functional or the reason for choosing it.
 
 </details>
 
@@ -898,6 +898,7 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
 <root>
   <xc-functional>
     <type>GGA</type>
+    <name>PW91</name>
     <description>PW91 functional (the choice is motivated by the existence of a large-scale simulation of the melting point with this functional)</description>
   </xc-functional>
   <core-electron-treatment>

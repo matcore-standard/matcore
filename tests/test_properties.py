@@ -420,8 +420,23 @@ def test_xc_functional_structure():
         ('name', False, False, 'string', (), ()),
         ('description', False, False, 'string', (), ()), normalization, param))
     assert generic_errors(sub(xc, 'xc-parameter')) == []
-    assert 'normalization' in sub(xc, 'description')['values']['note']
     assert legacy_fields(xc) == []
+
+
+def test_xc_functional_name_lists_the_named_functionals_and_description_is_prose():
+    """The named functionals by family are examples of `name`, so its note lists them and points to the
+    normalization; `description` is free text for what `type` and `name` do not say (0024)."""
+    xc = dft('xc-functional')
+    name_values = sub(xc, 'name')['values']
+    assert 'examples' not in name_values  # the note's list names PBE and HSE06; a second "Examples:" repeats it
+    name_note = ' '.join(name_values['note'].split())
+    assert name_note.startswith('Examples of possible content by type: LDA: Common parameterizations: VWN')
+    assert 'GGA: Typical choices are PW91, PBE' in name_note and name_note.endswith('is given in normalization.')
+    assert sub(xc, 'description')['values']['note'] == (
+        'Free text on what `type` and `name` do not say, e.g. a modification of the functional or the reason '
+        'for choosing it.')
+    example = (ROOT / 'examples/dft.xml').read_text()
+    assert '<type>GGA</type>\n    <name>PW91</name>\n    <description>' in example
 
 
 def test_xc_functional_keeps_the_name_beside_its_normalization():
@@ -429,7 +444,7 @@ def test_xc_functional_keeps_the_name_beside_its_normalization():
     always names its source, so the two never stand without each other's context (0017)."""
     xc = dft('xc-functional')
     name, norm = sub(xc, 'name'), sub(xc, 'normalization')
-    assert (name['extent'], name['kind']) == ([], 'inapplicable') and 'PBE' in name['values']['examples']
+    assert (name['extent'], name['kind']) == ([], 'inapplicable')
     components = sub(norm, 'components')
     assert (components['extent'], components['kind']) == ([':'], 'inapplicable')
     assert components['values']['examples'] == [['GGA_X_PBE', 'GGA_C_PBE']]
