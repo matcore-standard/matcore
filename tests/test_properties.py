@@ -261,11 +261,14 @@ def test_computation_restores_the_docx_notation():
     assert legacy_fields(minimal('computation')) == []
 
 
-def test_citation_structure():
-    """A citation is a repeatable container of a required reference and an optional doi and link, all
-    plain strings; the link is a URI."""
-    c = minimal('citation')
-    assert tree(c) == ('citation', False, True, None, (), (
+def test_publication_structure():
+    """A publication describing the dataset is a repeatable container of a required reference and an optional
+    doi and link, all plain strings; the link is a URI. The dataset's own location is a separate property
+    (0029)."""
+    c = minimal('publication')
+    assert 'citation' not in [p['name'] for p in yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))['properties']]
+    assert c['notes'] == ['Note: The location where the dataset itself is stored is given in `dataset-location`.']
+    assert tree(c) == ('publication', False, True, None, (), (
         ('reference', True, False, 'string', (), ()),
         ('doi', False, False, 'string', (), ()),
         ('link', False, False, 'string', (), ())))
@@ -296,7 +299,7 @@ def test_every_typed_doi_uses_the_annex_i_pattern():
     copy drifts from the table (0014, settled 2026-11-04)."""
     pattern = yaml.safe_load((ROOT / 'schema/identifier-schemes.yaml').read_text())['schemes']['DOI']['pattern']
     dois = doi_properties()
-    assert len(dois) == 4 and 'minimal/citation/doi' in [h for h, _ in dois]
+    assert len(dois) == 5 and {'minimal/publication/doi', 'minimal/dataset-location/doi'} <= {h for h, _ in dois}
     for here, p in dois:
         if p['type'] is not None:
             assert (p['type'], p['extent'], p['kind']) == ('string', [], 'inapplicable'), here
@@ -307,9 +310,9 @@ def test_every_typed_doi_uses_the_annex_i_pattern():
                                        ('https://doi.org/10.1103/PhysRevX.8.041048', True),
                                        ('10.1000/182', False), ('doi:10.1000/182', False),
                                        ('http://dx.doi.org/10.1000/182', False)])
-def test_citation_doi_is_the_https_uri(value, ok):
+def test_publication_doi_is_the_https_uri(value, ok):
     """Only the https URI form at doi.org conforms; the bare and legacy forms do not."""
-    check = Draft202012Validator(value_schema(sub(minimal('citation'), 'doi')))
+    check = Draft202012Validator(value_schema(sub(minimal('publication'), 'doi')))
     assert check.is_valid(value) == ok
 
 
@@ -340,15 +343,32 @@ def test_funder_identifier_example_is_a_valid_ror_id():
 
 def test_related_content_structure():
     """Each related-content entry points to one related dataset, since the entry itself repeats: a
-    required link in the form of citation's link (a URI), and an optional description."""
+    required link in the form of publication's link (a URI), and an optional description."""
     r = minimal('related-content')
     assert tree(r) == ('related-content', False, True, None, (), (
         ('link', True, False, 'string', (), ()),
         ('description', False, False, 'string', (), ())))
     link = sub(r, 'link')
     assert (link['extent'], link['kind']) == ([], 'inapplicable')
-    assert link['values']['format'] == sub(minimal('citation'), 'link')['values']['format'] == 'uri'
+    assert link['values']['format'] == sub(minimal('publication'), 'link')['values']['format'] == 'uri'
     assert legacy_fields(r) == []
+    assert 'examples' not in link['values']
+
+
+def test_dataset_location_says_where_the_dataset_is_stored():
+    """A dataset may be stored in, or mirrored across, repositories; each location names its repository and
+    gives the dataset's DOI there and a required link. The property is optional, since metadata may
+    accompany the dataset itself (0029)."""
+    d = minimal('dataset-location')
+    names = [p['name'] for p in yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))['properties']]
+    assert names.index('dataset-location') == names.index('publication') + 1
+    assert tree(d) == ('dataset-location', False, True, None, (), (
+        ('repository', False, False, 'string', (), ()),
+        ('doi', False, False, 'string', (), ()),
+        ('link', True, False, 'string', (), ())))
+    assert d['notes'] == ['Note: Omit when the metadata accompanies the dataset itself.']
+    assert sub(d, 'link')['values']['format'] == 'uri'
+    assert sub(d, 'doi')['values']['examples'] == ['https://doi.org/10.17863/CAM.65004']
 
 
 @pytest.mark.parametrize('value, ok', [('https://doi.org/10.17863/CAM.65004', True),

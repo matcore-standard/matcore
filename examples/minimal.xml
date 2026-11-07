@@ -58,6 +58,11 @@
       <name>CASTEP</name>
     </software>
   </computation>
+  <dataset-location>
+    <repository>Apollo - University of Cambridge Repository</repository>
+    <doi>https://doi.org/10.17863/CAM.65004</doi>
+    <link>https://www.repository.cam.ac.uk/handle/1810/317974</link>
+  </dataset-location>
   <matcore-id>mc-ad83jsd3-1</matcore-id>
   <matcore-date>2026-02-14</matcore-date>
   <license>GPL-3.0-only</license>

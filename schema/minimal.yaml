@@ -1071,15 +1071,19 @@ properties:
         values:
           format: uri
         repeatable: false
-- name: citation
+- name: publication
   required: false
-  description: Information that uniquely identifies a source being acknowledged.
+  description: >-
+    A publication that describes the dataset or the work that produced it, e.g. a journal article or
+    preprint, to be cited when the dataset is used.
   type: null
   extent: null
   kind: null
   recommended-unit: null
   values: null
   repeatable: true
+  notes:
+  - 'Note: The location where the dataset itself is stored is given in `dataset-location`.'
   subproperties:
   - name: reference
     required: true
@@ -1111,6 +1115,50 @@ properties:
     values:
       format: uri
       examples: ['https://arxiv.org/abs/1805.01568']
+    repeatable: false
+- name: dataset-location
+  required: false
+  description: A repository where the dataset itself is stored and can be obtained.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  notes:
+  - 'Note: Omit when the metadata accompanies the dataset itself.'
+  subproperties:
+  - name: repository
+    required: false
+    description: The name of the repository.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      examples: [Zenodo, Materials Cloud Archive]
+    repeatable: false
+  - name: doi
+    required: false
+    description: The digital object identifier (DOI) of the dataset in the repository.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      pattern: 'https://doi\.org/10\.[^/]+/.+'
+      examples: ['https://doi.org/10.17863/CAM.65004']
+    repeatable: false
+  - name: link
+    required: true
+    description: A URI pointing to the dataset in the repository.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      format: uri
+      examples: ['https://www.repository.cam.ac.uk/handle/1810/317974']
     repeatable: false
 - name: funding
   required: false
@@ -1213,7 +1261,6 @@ properties:
     recommended-unit: null
     values:
       format: uri
-      examples: ['https://doi.org/10.17863/CAM.65004']
     repeatable: false
   - name: description
     required: false

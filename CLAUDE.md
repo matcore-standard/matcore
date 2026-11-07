@@ -291,7 +291,8 @@ record or marked PROPOSED, NOT DECIDED.
      the phase term Quasicrystal has long-range order without translational periodicity (0027);
      §1.3 spells out KIM, CODATA and IRI and describes QUDT (0004 item 51);
      §1.2 distinguishes methods that supply energies and forces, and computation gains
-     interaction-model with a note on method (0028).
+     interaction-model with a note on method (0028); `citation` renamed `publication`, and a
+     new optional `dataset-location` says where the dataset is stored (0029).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -541,7 +542,8 @@ record or marked PROPOSED, NOT DECIDED.
    (papers describing the dataset); new optional, repeatable top-level `dataset-location`
    (repository, doi, link*) for where the dataset is stored; the Cambridge deposit moves from
    related-content › link's example to dataset-location's, and examples/minimal.xml gains a
-   dataset-location. Ruling on main; PR to follow.
+   dataset-location. Ruling on main; on branch minimal-publication-location (committed, not
+   pushed; PR to open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
