@@ -70,3 +70,12 @@ def test_preamble_defines_the_generic_parameter():
     assert [line.index(f'`{n}` (') for n in ('name', 'value', 'unit', 'description')] == sorted(
         line.index(f'`{n}` (') for n in ('name', 'value', 'unit', 'description'))
     assert '`x-gnu:`' in line and '`any`' in line
+
+
+def test_objectives_state_fair_data_and_ai_readiness():
+    """§1.1's first paragraph names the project's goals of FAIR data and AI readiness (0004 item 50)."""
+    text = (ROOT / 'docs/standard/index.md').read_text()
+    first = text.split('## 1.1 Objectives', 1)[1].strip().split('\n\n', 1)[0]
+    assert first.endswith('guidelines for documentation of materials data. Its goals are to make computational '
+                          'materials data FAIR (findable, accessible, interoperable and reusable) and to '
+                          'contribute to its AI readiness.')

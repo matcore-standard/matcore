@@ -493,8 +493,8 @@ record or marked PROPOSED, NOT DECIDED.
    part of `name` (e.g. PBE-D3) and that the correction is also recorded as calculation-physics
    "Van der Waals" (0022, 0024).
    [todo] §1.1 FAIR data and AI readiness (0004 item 50): one sentence at the end of the first
-   paragraph, no link; the paragraph's double space removed. Ruling committed on main (not pushed);
-   the PR branch is cut from it once pushed.
+   paragraph, no link; the paragraph's double space removed. On branch preamble-fair-ai
+   (committed, not pushed; PR to open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
