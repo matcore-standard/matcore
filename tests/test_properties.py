@@ -68,7 +68,7 @@ def test_creation_date_takes_a_date_or_a_utc_date_time(value, ok):
     assert Draft202012Validator(value_schema(p)).is_valid(value) == ok
 
 
-@pytest.mark.parametrize('entity, required', [('creator', True), ('contributor', False)])
+@pytest.mark.parametrize('entity, required', [('creator', True), ('contributor', False), ('matcore-author', True)])
 def test_creator_and_contributor_follow_0014(entity, required):
     """creator and contributor carry scheme-tagged identifiers and affiliations that hold their own
     identifier (0014 item 1); each keeps its own required flag (contributor is optional, 0011).
@@ -881,3 +881,13 @@ def test_combined_methods_name_the_source_of_energies_and_forces():
     note = im['values']['note']
     assert all(f'"{t}" –' in note for t in INTERACTION_MODELS)
     assert note.endswith('Give one entry per model, e.g. DFT and Empirical potential for a QM/MM simulation.')
+
+
+def test_matcore_author_names_who_wrote_the_record():
+    """The MatCore record's author may differ from the dataset's creators, so it is its own property, placed
+    after matcore-id with the record's other details, and every record names one (0033)."""
+    names = [p['name'] for p in yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))['properties']]
+    assert names.index('matcore-author') == names.index('matcore-id') + 1 == names.index('matcore-date') - 1
+    a = minimal('matcore-author')
+    assert sub(a, 'name')['description'] == 'The name of the entity that created the metadata record.'
+    assert sub(sub(a, 'identifier'), 'scheme')['values'] == sub(sub(minimal('creator'), 'identifier'), 'scheme')['values']

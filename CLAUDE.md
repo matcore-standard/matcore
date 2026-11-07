@@ -296,7 +296,8 @@ record or marked PROPOSED, NOT DECIDED.
      optional, provenance is recommended and its agent is structured like a creator (0030); license is a
      repeatable container of an SPDX identifier or LicenseRef-, a name, a link and what it applies
      to (0031); provenance and the dft pseudopotential and basis set give a file holding its
-     checksums instead of a checksum naming its file (0032).
+     checksums instead of a checksum naming its file (0032); a required matcore-author names who
+     created the metadata record (0033).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -565,7 +566,8 @@ record or marked PROPOSED, NOT DECIDED.
    unique-identifier's naming file.
    [todo] matcore-author by 0033: a new required, repeatable top-level property after matcore-id,
    with creator's structure, naming who created the metadata record; examples/minimal.xml gives
-   Ellad B. Tadmor, University of Minnesota. Ruling on main; PR to follow.
+   Ellad B. Tadmor, University of Minnesota. Ruling on main; on branch
+   minimal-matcore-author (committed, not pushed; PR to open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
