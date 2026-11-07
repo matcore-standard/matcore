@@ -400,6 +400,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #30 merged 2026-11-04] funding: award-title and award-number strings; funder a
    container like affiliation (name + at most one ROR/ISNI identifier; 0014, settled 2026-11-04),
    with NSF as the example (ROR https://ror.org/021nxhr62, award 2404283); legacy_* deleted.
+   (Superseded: award-title is optional by 0030, PR #61.)
    [done, PR #32 merged 2026-11-04] related-content: `links` (a list) renamed `link`, one
    URI per entry since related-content repeats, in the form of citation's link (format uri;
    example the Cambridge deposit of Si_PRX_GAP); description a string; its definition made
@@ -407,7 +408,8 @@ record or marked PROPOSED, NOT DECIDED.
    deleted. (Superseded: the Cambridge deposit is the Si GAP dataset itself; it moves to
    dataset-location's examples by 0029, PR #60, and related-content › link has no example.)
    [done, PR #33 merged 2026-11-04] provenance: event-type open terms (definitions in the
-   note); date the creation-date pattern, copied and locked by a test; agent a string; `comments`
+   note); date the creation-date pattern, copied and locked by a test; agent a string (superseded:
+   structured like creator by 0030, PR #61); `comments`
    renamed `comment` (a scalar); checksum a repeatable container (file, algorithm with SPDX 2.3.1
    §8.4 terms, value in lowercase hex), replacing the baseline's two-string list, defined as "A
    digital fingerprint for the dataset or an associated file modified by the provenance event.";
@@ -546,9 +548,8 @@ record or marked PROPOSED, NOT DECIDED.
    (repository, doi, link*) for where the dataset is stored; the Cambridge deposit moves from
    related-content › link's example to dataset-location's, and examples/minimal.xml gains a
    dataset-location.
-   [todo] minimal funding and provenance by 0030: award-title optional; provenance gets a note
-   recommending it; provenance › agent takes creator's structure (required, repeatable).
-   Ruling on main; on branch minimal-funding-provenance (committed, not pushed; PR to open).
+   [done, PR #61 merged 2026-11-07] minimal funding and provenance by 0030: award-title
+   optional; provenance gets a note recommending it; provenance › agent takes creator's structure (required, repeatable).
    [todo] minimal license by 0031: license a required, repeatable container (identifier*, an
    SPDX expression or LicenseRef-; name; link; applies-to); the note says to give the short
    identifier and, for a LicenseRef, its name and a link; data-license examples; examples/minimal.xml
