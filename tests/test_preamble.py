@@ -4,6 +4,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import markdown
+import pytest
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -79,3 +80,20 @@ def test_objectives_state_fair_data_and_ai_readiness():
     assert first.endswith('guidelines for documentation of materials data. Its goals are to make computational '
                           'materials data FAIR (findable, accessible, interoperable and reusable) and to '
                           'contribute to its AI readiness.')
+
+
+@pytest.mark.parametrize('acronym, expansion', [
+    ('KIM', 'Knowledgebase of Interatomic Models (KIM)'),
+    ('CODATA', 'Committee on Data of the International Science Council (CODATA)'),
+    ('IRI', 'Internationalized Resource Identifier (IRI)'),
+    ('QUDT', 'QUDT, an ontology of quantities, quantity kinds, units, dimensions and data types'),
+])
+def test_less_familiar_acronyms_are_spelled_out_at_first_use(acronym, expansion):
+    """A reader of the Preamble may not know these acronyms, so each is spelled out where it first
+    appears; QUDT gives no expansion of its name, so it is described in its own terms (0004 item 51).
+
+    acronym (str): the acronym; expansion (str): the text at its first use.
+    """
+    text = (ROOT / 'docs/standard/index.md').read_text()
+    first = re.search(rf'\b{acronym}\b', text).start()
+    assert text.find(expansion) != -1 and text.find(expansion) <= first <= text.find(expansion) + len(expansion)
