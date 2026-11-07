@@ -2,6 +2,8 @@
 
 Date: 2026-11-06. Status: accepted. Decided by: Ellad Tadmor.
 
+Amended 2026-11-07 by 0023: in item 1's note, "Energy" is "The change in the energy between successive iterations, defined as for `relaxation-tolerance-energy`."
+
 ## Context
 dft `self-consistent-field-convergence` › `tolerance*` is "a real number containing the convergence tolerance" in eV in the baseline. Codes converge on the total energy, the charge density or the potential, and the unit depends on which. 0001 B6 (accepted) adds a required `criterion`; 0001 A3.1 gives the tolerance Kind `any` and a required `unit`. Until now only B6's stopgap was applied: the description says "(on total energy)".
 

@@ -279,7 +279,9 @@ record or marked PROPOSED, NOT DECIDED.
      relaxation-tolerance-energy's typed fields filled (step 5); dft relaxation-tolerance-forces's
      typed fields filled (step 5); dft comment's typed fields filled, dft complete (step 5); dft
      calculation-physics drops Relativistic effects, renames Spin polarization to Collinear spin
-     polarization, adds Orbital polarization and Spin-orbit coupling (0022).
+     polarization, adds Orbital polarization and Spin-orbit coupling (0022); the energy of dft
+     relaxation-tolerance-energy and of the SCF criterion "Energy" defined: the free energy
+     E − TS when occupations are smeared, the total energy otherwise (0023).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -477,6 +479,11 @@ record or marked PROPOSED, NOT DECIDED.
    polarization, Noncollinear spin polarization, On-site correlation, Orbital polarization,
    Spin-orbit coupling, Van der Waals; a note defining each, allowing at most one of the two spin
    terms and asking for one entry per phenomenon.
+   [todo] dft relaxation-tolerance-energy and SCF criterion "Energy" revised by 0023: the
+   description drops "Total"; a note defines the energy (free energy E − TS with smeared
+   occupations, total energy otherwise, not extrapolated to zero smearing); the SCF note's
+   "Energy" refers to it. Ruling 0023 committed on main (not pushed); the PR branch is cut
+   from it once pushed.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
