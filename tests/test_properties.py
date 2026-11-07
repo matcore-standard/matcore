@@ -636,12 +636,23 @@ def test_calculation_physics_lists_the_added_phenomena():
     """Each phenomenon beyond a standard DFT calculation is one entry from an open vocabulary, so a
     calculation that includes several repeats the property."""
     p = dft('calculation-physics')
-    assert tree(p) == ('calculation-physics', False, True, 'string', (
-        'Relativistic effects', 'Spin polarization', 'Noncollinear spin polarization', 'On-site correlation',
-        'Van der Waals'), ())
+    terms = ('Collinear spin polarization', 'Noncollinear spin polarization', 'On-site correlation',
+             'Orbital polarization', 'Spin-orbit coupling', 'Van der Waals')
+    assert tree(p) == ('calculation-physics', False, True, 'string', terms, ())
     assert (p['extent'], p['kind']) == ([], 'inapplicable')
-    assert 'DFT+U' in p['values']['note']
     assert legacy_fields(p) == []
+
+
+def test_calculation_physics_note_defines_every_term_and_the_spin_rule():
+    """Each term is explained so users read it alike, and the note says a calculation gives at most one
+    of the two spin-polarization terms, which the schema cannot check (0022)."""
+    p = dft('calculation-physics')
+    note = p['values']['note']
+    for term in p['values']['terms']:
+        assert f'"{term}" – ' in note, term
+    assert 'DFT+U' in note and 'Brooks' in note
+    assert 'Give at most one of the two spin-polarization terms.' in note
+    assert 'List each phenomenon as a separate entry' in note
 
 
 def test_k_point_mesh_structure():

@@ -560,7 +560,7 @@ Additional phenomena included beyond the standard DFT calculation.
 |---|---|---|---|---|---|
 | no | yes | string | [] | inapplicable | — |
 
-Recommended: `Relativistic effects`, `Spin polarization`, `Noncollinear spin polarization`, `On-site correlation`, `Van der Waals`. Other values are allowed. "On-site correlation" – e.g. DFT+U.
+Recommended: `Collinear spin polarization`, `Noncollinear spin polarization`, `On-site correlation`, `Orbital polarization`, `Spin-orbit coupling`, `Van der Waals`. Other values are allowed. "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or antiparallel to one axis. "Noncollinear spin polarization" – Spin-polarized, with magnetic moments free to point in any direction. "On-site correlation" – e.g. DFT+U. "Orbital polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks' orbital-polarization term. "Spin-orbit coupling" – The coupling of the electron spin to its orbital motion. "Van der Waals" – Dispersion interactions, by a correction or a nonlocal functional. Give at most one of the two spin-polarization terms. List each phenomenon as a separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries, "Noncollinear spin polarization" and "Spin-orbit coupling".
 
 </details>
 
