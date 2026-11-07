@@ -519,6 +519,10 @@ record or marked PROPOSED, NOT DECIDED.
    time-varying, follow description.
    PROPOSED, NOT DECIDED (md): a semi-grand-canonical term for thermodynamic-constraint › type,
    and whether its `system` states the region as 0026's description does.
+   [todo] minimal phase › Quasicrystal by 0027: "A solid material with long-range order but
+   without translational periodicity, e.g. one whose diffraction pattern shows five-fold
+   rotational symmetry." (the baseline's said short-range order only). Ruling on main; PR to
+   follow.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
