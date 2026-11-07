@@ -283,7 +283,9 @@ record or marked PROPOSED, NOT DECIDED.
      relaxation-tolerance-energy and of the SCF criterion "Energy" defined: the free energy
      E − TS when occupations are smeared, the total energy otherwise (0023); dft xc-functional's
      list of named functionals moved from description's note to name's (0024); §1.1 states the
-     goals of FAIR data and AI readiness (0004 item 50).
+     goals of FAIR data and AI readiness (0004 item 50); minimal material-component moves into
+     a new top-level `structure` and gains form, role and fraction, `phases` becomes an optional
+     repeatable `phase` with Single crystal and Polycrystal (0025; breaks 0.5.0 instances).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -502,7 +504,8 @@ record or marked PROPOSED, NOT DECIDED.
    Substrate) and an optional `fraction` (atomic, 0–1); `phases` renamed `phase`, optional and
    a repeatable scalar, Crystal replaced by Single crystal and Polycrystal, Molecule removed,
    Gas redefined; description gains a note on facets and orientations; examples/minimal.xml
-   gets a Bulk and a Slab structure (breaks 0.5.0 instances). Ruling on main; PR to follow.
+   gets a Bulk and a Slab structure (breaks 0.5.0 instances). Ruling on main; on branch
+   minimal-structure (committed, not pushed; PR to open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
