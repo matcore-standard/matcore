@@ -427,7 +427,8 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #36 merged 2026-11-04] license: a required string holding an SPDX license
    expression, described in its note (the SPDX specification 2.3.1, the SPDX License List,
    LicenseRef-), with no list copied into the schema; legacy_* deleted. minimal is complete: it
-   declares `legacy_complete: true` (0004 item 36).
+   declares `legacy_complete: true` (0004 item 36). (Superseded: license is a repeatable
+   container of identifier, name, link and applies-to by 0031, PR #62.)
    [done, PR #37 merged 2026-11-04] dft xc-functional: type open terms (LDA, GGA, Meta GGA,
    Hybrid, ML; definitions in the note); description keeps the baseline's guide as its note, with
    the baseline's typo VMN corrected to VWN (Vosko–Wilk–Nusair);
@@ -552,11 +553,10 @@ record or marked PROPOSED, NOT DECIDED.
    dataset-location.
    [done, PR #61 merged 2026-11-07] minimal funding and provenance by 0030: award-title
    optional; provenance gets a note recommending it; provenance › agent takes creator's structure (required, repeatable).
-   [todo] minimal license by 0031: license a required, repeatable container (identifier*, an
+   [done, PR #62 merged 2026-11-07] minimal license by 0031: license a required, repeatable container (identifier*, an
    SPDX expression or LicenseRef-; name; link; applies-to); the note says to give the short
-   identifier and, for a LicenseRef, its name and a link; data-license examples; examples/minimal.xml
-   keeps GPL-3.0-only (the deposit's license) as an entry. Ruling on main; on branch
-   minimal-license (committed, not pushed; PR to open).
+   identifier and, for a LicenseRef, its name and a link; data-license examples;
+   examples/minimal.xml keeps GPL-3.0-only (the deposit's license) as an entry.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
