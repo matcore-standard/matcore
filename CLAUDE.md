@@ -282,7 +282,8 @@ record or marked PROPOSED, NOT DECIDED.
      polarization, adds Orbital polarization and Spin-orbit coupling (0022); the energy of dft
      relaxation-tolerance-energy and of the SCF criterion "Energy" defined: the free energy
      E − TS when occupations are smeared, the total energy otherwise (0023); dft xc-functional's
-     list of named functionals moved from description's note to name's (0024).
+     list of named functionals moved from description's note to name's (0024); §1.1 states the
+     goals of FAIR data and AI readiness (0004 item 50).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -491,6 +492,9 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED: whether name's note says that a dispersion correction's name may form
    part of `name` (e.g. PBE-D3) and that the correction is also recorded as calculation-physics
    "Van der Waals" (0022, 0024).
+   [todo] §1.1 FAIR data and AI readiness (0004 item 50): one sentence at the end of the first
+   paragraph, no link; the paragraph's double space removed. Ruling committed on main (not pushed);
+   the PR branch is cut from it once pushed.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
