@@ -1172,7 +1172,7 @@ properties:
   repeatable: true
   subproperties:
   - name: award-title
-    required: true
+    required: false
     description: Name of the grant that provided funding to generate the dataset.
     type: string
     extent: []
@@ -1281,6 +1281,8 @@ properties:
   recommended-unit: null
   values: null
   repeatable: true
+  notes:
+  - 'Note: It is recommended to record the provenance of the dataset and to keep it current with each change.'
   subproperties:
   - name: event-type
     required: true
@@ -1313,13 +1315,111 @@ properties:
     repeatable: false
   - name: agent
     required: true
-    description: Identity of the entity responsible for the change.
-    type: string
-    extent: []
-    kind: inapplicable
+    description: >-
+      An entity (e.g. person, organization, software agent) responsible for the change, and their
+      institutional affiliation if relevant.
+    type: null
+    extent: null
+    kind: null
     recommended-unit: null
     values: null
-    repeatable: false
+    repeatable: true
+    subproperties:
+    - name: name
+      required: true
+      description: The name of the entity that made the change.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        examples: [Albert Einstein, Lawrence Livermore National Laboratory, Claude Opus 5.5]
+      repeatable: false
+    - name: identifier
+      required: false
+      description: >-
+        A unique, persistent identifier that globally and unambiguously identifies the entity that made the
+        change.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: value
+        required: true
+        description: The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: scheme
+        required: true
+        description: The identifier scheme that the value belongs to.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [ORCID, ROR, DOI, SWHID, ISNI]
+          note: >-
+            For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital
+            Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo
+            software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state.
+            An ISNI may identify either individuals or organizations.
+        repeatable: false
+    - name: affiliation
+      required: false
+      description: The affiliation of the entity that made the change if they have one.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: name
+        required: true
+        description: The name of the affiliation.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: identifier
+        required: false
+        description: >-
+          A unique, persistent identifier that globally and unambiguously identifies the affiliation.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        subproperties:
+        - name: value
+          required: true
+          description: The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values: null
+          repeatable: false
+        - name: scheme
+          required: true
+          description: The identifier scheme that the value belongs to.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [ROR, ISNI]
+          repeatable: false
   - name: comment
     required: false
     description: Explanation for the change in provenance.

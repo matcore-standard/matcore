@@ -324,7 +324,7 @@ def test_funding_structure():
     value = ('value', True, False, 'string', (), ())
     identifier = ('identifier', False, False, None, (), (value, ('scheme', True, False, 'string', ('ROR', 'ISNI'), ())))
     assert tree(f) == ('funding', False, True, None, (), (
-        ('award-title', True, False, 'string', (), ()),
+        ('award-title', False, False, 'string', (), ()),
         ('funder', True, False, None, (), (('name', True, False, 'string', (), ()), identifier)),
         ('award-number', False, False, 'string', (), ())))
     affiliation = sub(minimal('creator'), 'affiliation')
@@ -402,10 +402,22 @@ def test_provenance_structure():
         ('event-type', True, False, 'string', ('Initial creation', 'Admin update', 'Version update',
                                                'Metadata update'), ()),
         ('date', True, False, 'string', (), ()),
-        ('agent', True, False, 'string', (), ()),
+        tree(sub(p, 'agent')),
         ('comment', False, False, 'string', (), ()),
         checksum))
     assert legacy_fields(p) == []
+
+
+def test_provenance_is_recommended_and_its_agent_is_described_like_a_creator():
+    """Provenance is optional but recommended; the entity that made a change is described as a creator is, with
+    a name, scheme-tagged identifiers and affiliations, and several may make one change (0030)."""
+    p = minimal('provenance')
+    assert p['notes'] == ['Note: It is recommended to record the provenance of the dataset and to keep it '
+                          'current with each change.']
+    agent, creator = sub(p, 'agent'), minimal('creator')
+    assert tree(agent)[1:] == tree(creator)[1:]
+    assert sub(agent, 'name')['description'] == 'The name of the entity that made the change.'
+    assert sub(sub(agent, 'identifier'), 'scheme')['values'] == sub(sub(creator, 'identifier'), 'scheme')['values']
 
 
 def test_provenance_date_takes_the_creation_date_forms():

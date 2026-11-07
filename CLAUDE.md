@@ -292,7 +292,8 @@ record or marked PROPOSED, NOT DECIDED.
      §1.3 spells out KIM, CODATA and IRI and describes QUDT (0004 item 51);
      §1.2 distinguishes methods that supply energies and forces, and computation gains
      interaction-model with a note on method (0028); `citation` renamed `publication`, and a
-     new optional `dataset-location` says where the dataset is stored (0029).
+     new optional `dataset-location` says where the dataset is stored (0029); funding award-title is
+     optional, provenance is recommended and its agent is structured like a creator (0030).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -547,7 +548,7 @@ record or marked PROPOSED, NOT DECIDED.
    dataset-location.
    [todo] minimal funding and provenance by 0030: award-title optional; provenance gets a note
    recommending it; provenance › agent takes creator's structure (required, repeatable).
-   Ruling on main; PR to follow.
+   Ruling on main; on branch minimal-funding-provenance (committed, not pushed; PR to open).
    [todo] minimal license by 0031: license a required, repeatable container (identifier*, an
    SPDX expression or LicenseRef-; name; link; applies-to); the note says to give the short
    identifier and, for a LicenseRef, its name and a link; data-license examples; examples/minimal.xml
