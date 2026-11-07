@@ -458,15 +458,26 @@ def test_matcore_date_is_written_as_creation_date():
     assert legacy_fields(p) == []
 
 
-def test_license_is_an_spdx_expression_described_in_its_note():
-    """A dataset has exactly one license, a string holding an SPDX license expression. The SPDX License
-    List changes every few months, so the note names the forms instead of the schema copying the list."""
+def test_license_entries_name_an_spdx_expression_or_a_custom_license():
+    """A dataset may have several licenses, each applying to its part; each entry gives an SPDX expression of
+    short identifiers, or a LicenseRef- with the custom license's name and a link to its text. The SPDX
+    License List changes every few months, so the note names the forms instead of the schema copying the
+    list (0031)."""
     p = minimal('license')
-    assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind']) == (
-        True, False, 'string', [], 'inapplicable')
-    v = p['values']
-    assert v['examples'] == ['GPL-3.0-only', 'CC-BY-4.0'] and 'terms' not in v and 'enum' not in v
-    assert 'https://spdx.org/licenses/' in v['note'] and 'LicenseRef-' in v['note']
+    assert tree(p) == ('license', True, True, None, (), (
+        ('identifier', True, False, 'string', (), ()),
+        ('name', False, False, 'string', (), ()),
+        ('link', False, False, 'string', (), ()),
+        ('applies-to', False, False, 'string', (), ())))
+    ident = sub(p, 'identifier')['values']
+    assert ident['examples'] == ['CC-BY-4.0', 'CC0-1.0', 'LicenseRef-NIST-data']
+    assert 'terms' not in ident and 'enum' not in ident
+    assert sub(p, 'link')['values']['format'] == 'uri'
+    note = p['notes'][0]
+    assert 'https://spdx.org/licenses/' in note and '`CC-BY-4.0 OR CC0-1.0`' in note
+    assert 'Give the SPDX short identifier, not the license\'s full name' in note
+    assert 'with its `name` and a `link` to its full text, both required in this case' in note
+    assert 'GPL' not in note and 'MIT' not in note
     assert legacy_fields(p) == []
 
 

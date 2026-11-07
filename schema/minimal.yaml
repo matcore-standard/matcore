@@ -1500,16 +1500,64 @@ properties:
   required: true
   description: >-
     A contract defining the terms and conditions under which the dataset can be used.
-  type: string
-  extent: []
-  kind: inapplicable
+  type: null
+  extent: null
+  kind: null
   recommended-unit: null
-  values:
-    examples: [GPL-3.0-only, CC-BY-4.0]
-    note: >-
-      A license expression as defined in the [SPDX specification, version
-      2.3.1](https://spdx.github.io/spdx-spec/v2.3.1/SPDX-license-expressions/), built from current
-      identifiers of the [SPDX License List](https://spdx.org/licenses/): a single identifier (e.g.
-      `GPL-3.0-only`) or a combination (e.g. `MIT OR Apache-2.0`). A license not on the list is written
-      `LicenseRef-` followed by an identifier.
-  repeatable: false
+  values: null
+  repeatable: true
+  notes:
+  - >-
+    Note: A license expression as defined in the [SPDX specification, version
+    2.3.1](https://spdx.github.io/spdx-spec/v2.3.1/SPDX-license-expressions/), built from current
+    identifiers of the [SPDX License List](https://spdx.org/licenses/): a single identifier (e.g.
+    `CC-BY-4.0`) or a combination (e.g. `CC-BY-4.0 OR CC0-1.0`). Give the SPDX short identifier, not the
+    license's full name, so that the value can be read by tools. A license not on the SPDX License List,
+    including a custom license, is written `LicenseRef-` followed by letters, digits, `-` or `.` (e.g.
+    `LicenseRef-NIST-data`), with its `name` and a `link` to its full text, both required in this case. A
+    license for data is usually one written for data, e.g. `CC-BY-4.0`, `CC0-1.0` or `ODbL-1.0`, rather
+    than one written for software.
+  subproperties:
+  - name: identifier
+    required: true
+    description: >-
+      The license as an SPDX license expression built from short identifiers of the SPDX License List, or
+      as `LicenseRef-` followed by an identifier for a license not on the list.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      examples: [CC-BY-4.0, CC0-1.0, LicenseRef-NIST-data]
+    repeatable: false
+  - name: name
+    required: false
+    description: The full name of the license.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      examples: [Creative Commons Attribution 4.0 International]
+    repeatable: false
+  - name: link
+    required: false
+    description: A URI pointing to the full text of the license.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      format: uri
+    repeatable: false
+  - name: applies-to
+    required: false
+    description: >-
+      The part of the dataset the license covers, when the dataset has more than one license, e.g. the data
+      or the code.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values: null
+    repeatable: false
