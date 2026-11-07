@@ -227,7 +227,9 @@ def test_simulation_conditions_follow_0001_part_a():
     got = {s['name']: (d['type'], d['extent'], d['kind'], d['recommended-unit'])
            for s in sc['subproperties'] for d in [datum(s)]}
     assert got == SIMULATION_CONDITIONS | {'type': ('string', [], 'inapplicable', None),
-                                           'description': ('string', [], 'inapplicable', None)}
+                                           'description': ('string', [], 'inapplicable', None),
+                                           'spatially-varying': ('bool', [], 'inapplicable', None),
+                                           'time-varying': ('bool', [], 'inapplicable', None)}
     assert sub(sc, 'type')['values']['terms'] == ['Equilibrium', 'Nonequilibrium', 'Other']
 
 
@@ -760,3 +762,55 @@ def test_k_point_mesh_quantities():
     assert sub(k, 'number-of-points').get('subproperties') is None and sub(k, 'shift').get('subproperties') is None
     assert 'fractions of the mesh spacing' in v('shift')['values']['note']
     assert (v('smearing-width')['kind'], v('smearing-width')['recommended-unit']) == ('Energy', 'eV')
+
+
+def test_varying_conditions_are_explained_not_structured():
+    """A condition that varies in space or time keeps one representative value, and the shared description
+    says how it varies and which value is given; no condition is defined as constant (0026)."""
+    sc = sub(minimal('computation'), 'simulation-conditions')
+    description = sub(sc, 'description')['description']
+    assert description.startswith('Explanatory text clarifying the simulation type, and how any condition varies')
+    assert description.endswith('For a condition that varies, it states what the given value represents, e.g. '
+                                'the initial, mean or final value, or the value in one region.')
+    assert sc['notes'][0].endswith('A condition that varies in space or time gives a single representative value, '
+                                   'which the description explains.')
+    assert 'constant throughout' not in sub(sc, 'strain-rate')['description']
+    assert not sc['repeatable']
+
+
+@pytest.mark.parametrize('path', [('constituent', 'concentration'), ('fraction',)])
+def test_composition_is_given_as_set_up_when_it_varies(path):
+    """In a semi-grand-canonical simulation the composition changes; concentration and fraction give it as set
+    up (0026).
+
+    path (tuple): names leading from material-component to the property.
+    """
+    p = material_component()
+    for name in path:
+        p = sub(p, name)
+    assert p['values']['note'].endswith(
+        'When the composition changes during the simulation (e.g. semi-grand-canonical Monte Carlo), give the '
+        'composition as set up.')
+
+
+def test_reviewed_sections_do_not_name_the_nesting_level():
+    """The tree nests to any depth, so text names a property or calls it a condition, never a "SubProperty"
+    or "SubSubProperty", the baseline's per-table terms (0026)."""
+    import re
+    for section in ('minimal', 'dft'):
+        text = re.sub(r'^\s*-? ?subproperties:', '', open(ROOT / f'schema/{section}.yaml').read(), flags=re.M)
+        assert not re.search(r'sub(sub)*propert', text, re.I), section
+
+
+def test_varying_conditions_are_flagged_for_search():
+    """Two optional flags, after description, let a search find simulations whose conditions vary in space or
+    in time; they are not conditions, so the note excludes them from what is imposed (0026)."""
+    sc = sub(minimal('computation'), 'simulation-conditions')
+    names = [s['name'] for s in sc['subproperties']]
+    assert names[:4] == ['type', 'description', 'spatially-varying', 'time-varying']
+    for name in ('spatially-varying', 'time-varying'):
+        f = sub(sc, name)
+        assert (f['required'], f['repeatable'], f['type'], f['extent'], f['kind'], f['values']) == (
+            False, False, 'bool', [], 'inapplicable', None)
+        assert f['notes'] == ['Note: If true, describe the details in `description`.']
+    assert 'other than type, description, spatially-varying and time-varying,' in sc['notes'][0]

@@ -344,7 +344,9 @@ properties:
         values:
           minimum: 0
           maximum: 1
-          note: The concentrations of a material component's constituents sum to 1.
+          note: >-
+            The concentrations of a material component's constituents sum to 1. When the composition changes
+            during the simulation (e.g. semi-grand-canonical Monte Carlo), give the composition as set up.
         repeatable: false
     - name: form
       required: true
@@ -399,7 +401,9 @@ properties:
       values:
         minimum: 0
         maximum: 1
-        note: The fractions of a structure's components sum to 1.
+        note: >-
+          The fractions of a structure's components sum to 1. When the composition changes during the
+          simulation (e.g. semi-grand-canonical Monte Carlo), give the composition as set up.
       repeatable: false
     - name: phase
       required: false
@@ -501,9 +505,10 @@ properties:
     repeatable: false
     notes:
     - >-
-      Note: The SubSubProperties listed below (aside from type and description) are provided as
-      appropriate given the nature of the simulation. Providing a SubSubProperty means that its value is
-      imposed on the simulation as an external constraint.
+      Note: The conditions below, other than type, description, spatially-varying and time-varying, are
+      given as appropriate to the simulation. Giving a condition means that its value is imposed on the simulation as an external
+      constraint. A condition that varies in space or time gives a single representative value, which the
+      description explains.
     subproperties:
     - name: type
       required: true
@@ -523,13 +528,42 @@ properties:
       repeatable: false
     - name: description
       required: false
-      description: Explanatory text clarifying the simulation type selection.
+      description: >-
+        Explanatory text clarifying the simulation type, and how any condition varies in space or time, e.g.
+        a temperature ramp, a thermostat applied to part of the system, or a composition set by chemical
+        potentials. For a condition that varies, it states what the given value represents, e.g. the
+        initial, mean or final value, or the value in one region.
       type: string
       extent: []
       kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
+    - name: spatially-varying
+      required: false
+      description: >-
+        Whether any imposed condition varies across the system, e.g. a thermostat applied to part of it.
+      type: bool
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+      notes:
+      - 'Note: If true, describe the details in `description`.'
+    - name: time-varying
+      required: false
+      description: >-
+        Whether any imposed condition changes during the simulation, e.g. a temperature ramp or a change of
+        ensemble.
+      type: bool
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+      notes:
+      - 'Note: If true, describe the details in `description`.'
     - name: number-of-particles
       required: false
       description: A count of atoms or other discrete entities comprising the material.
@@ -759,7 +793,7 @@ properties:
       repeatable: false
       notes:
       - >-
-        Note 1: Requires the definition of the cell subproperty in order for a basis to be defined
+        Note 1: Requires the definition of cell in order for a basis to be defined
         relative to which the tensor components are given.
       - >-
         Note 2: The adopted sign convention is for tensile normal stresses to be positive, and
@@ -822,7 +856,7 @@ properties:
       description: >-
         The derivative with respect to time of a deformation relative to a reference configuration
         imposed on the simulation cell expressed in the referential frame (Lagrangian strain rate
-        tensor), which is constant throughout the simulation.
+        tensor).
       type: null
       extent: null
       kind: null

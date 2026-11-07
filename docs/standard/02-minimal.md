@@ -346,7 +346,7 @@ The atomic fraction of the material composed of this element.
 |---|---|---|---|---|---|
 | yes | no | float | [] | dimensionless | — |
 
-From 0 to 1. The concentrations of a material component's constituents sum to 1.
+From 0 to 1. The concentrations of a material component's constituents sum to 1. When the composition changes during the simulation (e.g. semi-grand-canonical Monte Carlo), give the composition as set up.
 
 </details>
 
@@ -387,7 +387,7 @@ The atomic fraction of the structure made up of this component, i.e. the number 
 |---|---|---|---|---|---|
 | no | no | float | [] | dimensionless | — |
 
-From 0 to 1. The fractions of a structure's components sum to 1.
+From 0 to 1. The fractions of a structure's components sum to 1. When the composition changes during the simulation (e.g. semi-grand-canonical Monte Carlo), give the composition as set up.
 
 </details>
 
@@ -478,7 +478,7 @@ The interactions between the system being modeled and the rest of the world main
 |---|---|
 | yes | no |
 
-Note: The SubSubProperties listed below (aside from type and description) are provided as appropriate given the nature of the simulation. Providing a SubSubProperty means that its value is imposed on the simulation as an external constraint.
+Note: The conditions below, other than type, description, spatially-varying and time-varying, are given as appropriate to the simulation. Giving a condition means that its value is imposed on the simulation as an external constraint. A condition that varies in space or time gives a single representative value, which the description explains.
 
 <details class="note mc-property" id="minimal.computation.simulation-conditions.type" markdown="1">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -496,11 +496,37 @@ Recommended: `Equilibrium`, `Nonequilibrium`, `Other`. Other values are allowed.
 <details class="note mc-property" id="minimal.computation.simulation-conditions.description" markdown="1">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-Explanatory text clarifying the simulation type selection.
+Explanatory text clarifying the simulation type, and how any condition varies in space or time, e.g. a temperature ramp, a thermostat applied to part of the system, or a composition set by chemical potentials. For a condition that varies, it states what the given value represents, e.g. the initial, mean or final value, or the value in one region.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.spatially-varying" markdown="1">
+<summary><span class="mc-name">spatially-varying</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+Whether any imposed condition varies across the system, e.g. a thermostat applied to part of it.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | bool | [] | inapplicable | — |
+
+Note: If true, describe the details in `description`.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.time-varying" markdown="1">
+<summary><span class="mc-name">time-varying</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+Whether any imposed condition changes during the simulation, e.g. a temperature ramp or a change of ensemble.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | bool | [] | inapplicable | — |
+
+Note: If true, describe the details in `description`.
 
 </details>
 
@@ -749,7 +775,7 @@ A uniform force per unit current area, including both normal and shear component
 |---|---|
 | no | no |
 
-Note 1: Requires the definition of the cell subproperty in order for a basis to be defined relative to which the tensor components are given.
+Note 1: Requires the definition of cell in order for a basis to be defined relative to which the tensor components are given.
 
 Note 2: The adopted sign convention is for tensile normal stresses to be positive, and compressive normal stresses to be negative. This implies that for a material subjected to a positive pressure <i>p</i>, the stress tensor components are [-<i>p</i>, -<i>p</i>, -<i>p</i>, 0, 0, 0].
 
@@ -797,7 +823,7 @@ Note: Requires the definition of cell-reference in order for the basis to be def
 <details class="note mc-property" id="minimal.computation.simulation-conditions.strain-rate" markdown="1">
 <summary><span class="mc-name">strain-rate</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The derivative with respect to time of a deformation relative to a reference configuration imposed on the simulation cell expressed in the referential frame (Lagrangian strain rate tensor), which is constant throughout the simulation.
+The derivative with respect to time of a deformation relative to a reference configuration imposed on the simulation cell expressed in the referential frame (Lagrangian strain rate tensor).
 
 | Required | Repeatable |
 |---|---|

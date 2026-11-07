@@ -285,7 +285,9 @@ record or marked PROPOSED, NOT DECIDED.
      list of named functionals moved from description's note to name's (0024); §1.1 states the
      goals of FAIR data and AI readiness (0004 item 50); minimal material-component moves into
      a new top-level `structure` and gains form, role and fraction, `phases` becomes an optional
-     repeatable `phase` with Single crystal and Polycrystal (0025; breaks 0.5.0 instances).
+     repeatable `phase` with Single crystal and Polycrystal (0025; breaks 0.5.0 instances);
+     simulation-conditions explains varying conditions in its description and flags them as
+     spatially-varying or time-varying, and composition is given as set up when it varies (0026).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -511,10 +513,12 @@ record or marked PROPOSED, NOT DECIDED.
    any condition varies in space or time and what a varying condition's value represents
    (initial, mean or final, or the value in one region); the simulation-conditions note, reworded
    without "SubSubProperties", says a varying condition gives a single representative value;
-   stress's note says "cell" for "the cell subproperty"; strain-rate drops "constant throughout the simulation"; concentration and fraction notes give
-   the composition as set up when it changes (e.g. semi-grand-canonical). Two optional bool flags,
-   spatially-varying and time-varying, follow description.
-   Ruling on main; PR to follow.
+   stress's note says "cell" for "the cell subproperty"; strain-rate drops "constant throughout
+   the simulation"; concentration and fraction notes give the composition as set up when it
+   changes (e.g. semi-grand-canonical). Two optional bool flags, spatially-varying and
+   time-varying, follow description.
+   Ruling on main; on branch minimal-varying-conditions (committed, not pushed; PR to
+   open).
    PROPOSED, NOT DECIDED (md): a semi-grand-canonical term for thermodynamic-constraint › type,
    and whether its `system` states the region as 0026's description does.
    [todo] md in file order, starting with computation.
