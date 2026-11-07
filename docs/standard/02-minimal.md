@@ -400,7 +400,7 @@ A phase of the material.
 |---|---|---|---|---|---|
 | no | yes | string | [] | inapplicable | — |
 
-Recommended: `Amorphous`, `Single crystal`, `Polycrystal`, `Quasicrystal`, `Liquid`, `Gas`, `Plasma`. Other values are allowed. One of: "Amorphous" – A solid material without crystalline order. "Single crystal" – A solid material characterized by a repeating pattern of atoms that extends throughout it without interruption. "Polycrystal" – A solid material made of more than one crystalline grain of differing orientation. "Quasicrystal" – A crystal-like material with short-range order, but without long-range order. "Liquid" – A fluid structure (e.g. the molten state of a material). "Gas" – A state where molecules or atoms are far apart and only interact during collisions. "Plasma" – A gas comprised of ions and electrons. Omit for a component whose form is Molecule.
+Recommended: `Amorphous`, `Single crystal`, `Polycrystal`, `Quasicrystal`, `Liquid`, `Gas`, `Plasma`. Other values are allowed. One of: "Amorphous" – A solid material without crystalline order. "Single crystal" – A solid material characterized by a repeating pattern of atoms that extends throughout it without interruption. "Polycrystal" – A solid material made of more than one crystalline grain of differing orientation. "Quasicrystal" – A solid material with long-range order but without translational periodicity, e.g. one whose diffraction pattern shows five-fold rotational symmetry. "Liquid" – A fluid structure (e.g. the molten state of a material). "Gas" – A state where molecules or atoms are far apart and only interact during collisions. "Plasma" – A gas comprised of ions and electrons. Omit for a component whose form is Molecule.
 
 </details>
 

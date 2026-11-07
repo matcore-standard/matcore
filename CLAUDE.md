@@ -287,7 +287,8 @@ record or marked PROPOSED, NOT DECIDED.
      a new top-level `structure` and gains form, role and fraction, `phases` becomes an optional
      repeatable `phase` with Single crystal and Polycrystal (0025; breaks 0.5.0 instances);
      simulation-conditions explains varying conditions in its description and flags them as
-     spatially-varying or time-varying, and composition is given as set up when it varies (0026).
+     spatially-varying or time-varying, and composition is given as set up when it varies (0026);
+     the phase term Quasicrystal has long-range order without translational periodicity (0027).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -521,8 +522,8 @@ record or marked PROPOSED, NOT DECIDED.
    and whether its `system` states the region as 0026's description does.
    [todo] minimal phase › Quasicrystal by 0027: "A solid material with long-range order but
    without translational periodicity, e.g. one whose diffraction pattern shows five-fold
-   rotational symmetry." (the baseline's said short-range order only). Ruling on main; PR to
-   follow.
+   rotational symmetry." (the baseline's said short-range order only). Ruling on main; on branch
+   minimal-quasicrystal (committed, not pushed; PR to open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
