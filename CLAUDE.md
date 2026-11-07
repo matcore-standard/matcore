@@ -495,10 +495,13 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #54 merged 2026-11-07] §1.1 FAIR data and AI readiness (0004 item 50): one sentence
    at the end of the first paragraph, no link; the paragraph's double space removed.
    [todo] minimal structure by 0025: a required, repeatable top-level `structure` (type, open
-   terms Bulk, Cluster, Monolayer, Nanoparticle, Nanotube, Nanowire, Surface, Thin film; then
-   material-component, moved inside it); `phases` renamed `phase`, a repeatable scalar; description
-   and microstructure stay in material-component; examples/minimal.xml gets a Bulk and a Surface
-   structure (breaks 0.5.0 instances). Ruling on main; PR to follow.
+   terms 2D heterostructure, 2D material, Bulk, Chain, Cluster, Heterostructure, Molecule,
+   Monolayer, Nanoparticle, Nanoribbon, Nanotube, Nanowire, Slab, Superlattice, Thin film; then
+   material-component, moved inside it); `phases` renamed `phase`, a repeatable scalar, its term
+   Crystal replaced by Single crystal and Polycrystal, Molecule removed (a single molecule's phase
+   is Gas), Gas redefined; description and microstructure stay in material-component;
+   examples/minimal.xml gets a Bulk and a Slab structure (breaks 0.5.0 instances). Ruling on
+   main; PR to follow.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
