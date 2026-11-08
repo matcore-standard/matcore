@@ -45,6 +45,7 @@
 | `1/angstrom^3` | NumberDensity | — | 1/angstrom^3 | 1 × 10³⁰ m⁻³ | exact |
 | `1/m^3` | NumberDensity | PER-M3 | 1/m^3 | 1 | exact |
 | `W/m^2` | HeatFluxDensity | W-PER-M2 | W/m^2 | 1 | exact |
+| `V/m` | ElectricFieldStrength | V-PER-M | V/m | 1 | exact |
 | `rad` | Angle | RAD | radian | 1 | exact |
 | `degree` | Angle | DEG | degree | π/180 rad | exact |
 | `mol` | AmountOfSubstance | MOL | mol | 1 | exact |
