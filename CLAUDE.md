@@ -627,15 +627,14 @@ record or marked PROPOSED, NOT DECIDED.
    basis notes and two value notes tidied. Wording only.
    PROPOSED, NOT DECIDED: whether the minimal metadata should list the quantities a dataset
    contains (e.g. energies, forces, a heat flux) (0039).
-   [todo] applied fields by 0040: Kinds ElectricFieldStrength, MagneticFluxDensity, Acceleration;
+   [done, PR #77 merged 2026-11-08] applied fields by 0040: Kinds ElectricFieldStrength, MagneticFluxDensity, Acceleration;
    units V/m, V/angstrom, T, m/s^2, one PR each with every field traced (the first of each Kind adds
    the Kind); then electric-field (V/m), magnetic-field (B, T) and body-force (per unit mass, m/s^2)
    as [3] vector conditions after temperature-gradient. Ruling committed on main. [done, PR #72
    merged 2026-11-08] unit V/m with the Kind ElectricFieldStrength.
    [done, PR #73 merged 2026-11-08] unit V/angstrom.
    [done, PR #74 merged 2026-11-08] unit T with the Kind MagneticFluxDensity.
-   [done, PR #75 merged 2026-11-08] unit m/s^2 with the Kind Acceleration. The conditions on branch
-   applied-fields (committed, not pushed; PR to open).
+   [done, PR #75 merged 2026-11-08] unit m/s^2 with the Kind Acceleration. The conditions in PR #77.
    [todo] electrode potential by 0041: Kind ElectricPotential; unit V by its own PR; then
    electrode-potential (value, unit, reference* with terms SHE, RHE, Vacuum, qualifier) after
    body-force, for the working electrode. Ruling committed on main. [done, PR #76 merged 2026-11-08]
