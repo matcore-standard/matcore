@@ -10,7 +10,7 @@ examples:
     file: minimal.json
     source: https://doi.org/10.60732/8e9bc5b0
     notes: >-
-      The matcore-id format in the example is tentative and subject to change.
+      The form of the id in the example's matcore is tentative and subject to change.
 legacy_complete: true
 properties:
 - name: creator
@@ -2279,76 +2279,74 @@ properties:
         values:
           pattern: '[0-9a-f]+'
         repeatable: false
-- name: matcore-id
-  required: true
-  description: An identifier for the dataset.
-  type: string
-  extent: []
-  kind: inapplicable
-  recommended-unit: null
-  values: null
-  repeatable: false
-- name: matcore-author
+- name: matcore
   required: true
   description: >-
-    An entity (e.g. person, organization, software agent) responsible for creating the MatCore metadata
-    record, and their institutional affiliation if relevant.
+    Information about this MatCore metadata record: the standard it follows, the dataset version it
+    describes, and who created it and when.
   type: null
   extent: null
   kind: null
   recommended-unit: null
   values: null
-  repeatable: true
+  repeatable: false
   subproperties:
-  - name: name
+  - name: standard-version
     required: true
-    description: The name of the entity that created the metadata record.
+    description: The version of the MatCore standard this record follows.
     type: string
     extent: []
     kind: inapplicable
     recommended-unit: null
     values:
-      examples: [Albert Einstein, Lawrence Livermore National Laboratory, Claude Opus 5.5]
+      pattern: "(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)"
+      examples: [0.6.0]
     repeatable: false
-  - name: identifier
+  - name: standard-link
     required: false
-    description: >-
-      A unique, persistent identifier that globally and unambiguously identifies the entity that created
-      the metadata record.
-    type: null
-    extent: null
-    kind: null
+    description: A URI for the schema of that version of the standard.
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
-    repeatable: true
-    subproperties:
-    - name: value
-      required: true
-      description: The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-    - name: scheme
-      required: true
-      description: The identifier scheme that the value belongs to.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values:
-        terms: [ORCID, ROR, DOI, SWHID, ISNI]
-        note: >-
-          For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital
-          Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo
-          software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state.
-          An ISNI may identify either individuals or organizations.
-      repeatable: false
-  - name: affiliation
-    required: false
-    description: The affiliation of the entity that created the metadata record if they have one.
+    values:
+      format: uri
+    repeatable: false
+    notes:
+    - >-
+      Note: Give the DOI of the release where it has one; otherwise the address of the release's tag in the
+      MatCore repository.
+  - name: id
+    required: true
+    description: An identifier of the dataset, the same for all its versions.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      examples: [mc-ad83jsd3]
+    repeatable: false
+  - name: dataset-version
+    required: true
+    description: The version of the dataset this record describes.
+    type: int
+    extent: []
+    kind: dimensionless
+    recommended-unit: null
+    values:
+      minimum: 1
+    repeatable: false
+    notes:
+    - >-
+      Note: The first version is 1. Each provenance event of type Version update starts a new version: the
+      dataset's new version is described by a new record with the same id, its dataset-version raised by
+      1. Admin update and Metadata update events keep the version. When provenance is given,
+      dataset-version is 1 more than the number of Version update events.
+  - name: record-author
+    required: true
+    description: >-
+      An entity (e.g. person, organization, software agent) responsible for creating this metadata record,
+      and their institutional affiliation if relevant.
     type: null
     extent: null
     kind: null
@@ -2358,23 +2356,25 @@ properties:
     subproperties:
     - name: name
       required: true
-      description: The name of the affiliation.
+      description: The name of the entity that created the metadata record.
       type: string
       extent: []
       kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        examples: [Albert Einstein, Lawrence Livermore National Laboratory, Claude Opus 5.5]
       repeatable: false
     - name: identifier
       required: false
       description: >-
-        A unique, persistent identifier that globally and unambiguously identifies the affiliation.
+        A unique, persistent identifier that globally and unambiguously identifies the entity that created
+        the metadata record.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
-      repeatable: false
+      repeatable: true
       subproperties:
       - name: value
         required: true
@@ -2393,22 +2393,76 @@ properties:
         kind: inapplicable
         recommended-unit: null
         values:
-          terms: [ROR, ISNI]
+          terms: [ORCID, ROR, DOI, SWHID, ISNI]
+          note: >-
+            For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital
+            Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo
+            software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state.
+            An ISNI may identify either individuals or organizations.
         repeatable: false
-- name: matcore-date
-  required: true
-  description: The calendar date and time when this MatCore document was created.
-  type: string
-  extent: []
-  kind: inapplicable
-  recommended-unit: null
-  values:
-    pattern: '\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?'
-    examples: ['2021-02-22', '2021-02-22T14:30:00Z']
-    note: >-
-      A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the
-      [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
-  repeatable: false
+    - name: affiliation
+      required: false
+      description: The affiliation of the entity that created the metadata record if they have one.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: name
+        required: true
+        description: The name of the affiliation.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: identifier
+        required: false
+        description: >-
+          A unique, persistent identifier that globally and unambiguously identifies the affiliation.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        subproperties:
+        - name: value
+          required: true
+          description: The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values: null
+          repeatable: false
+        - name: scheme
+          required: true
+          description: The identifier scheme that the value belongs to.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [ROR, ISNI]
+          repeatable: false
+  - name: creation-date
+    required: true
+    description: The date, or date and time, when this metadata record was created.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      pattern: '\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?'
+      examples: ['2021-02-22', '2021-02-22T14:30:00Z']
+      note: >-
+        A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the
+        [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
+    repeatable: false
 - name: license
   required: true
   description: >-

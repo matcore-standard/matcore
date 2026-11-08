@@ -86,24 +86,29 @@
         "link": "https://www.repository.cam.ac.uk/handle/1810/317974"
       }
     ],
-    "matcore-id": "mc-ad83jsd3-1",
-    "matcore-author": [
-      {
-        "name": "Ellad B. Tadmor",
-        "identifier": [
-          {
-            "value": "https://orcid.org/0000-0003-3311-6299",
-            "scheme": "ORCID"
-          }
-        ],
-        "affiliation": [
-          {
-            "name": "University of Minnesota"
-          }
-        ]
-      }
-    ],
-    "matcore-date": "2026-02-14",
+    "matcore": {
+      "standard-version": "0.6.0",
+      "standard-link": "https://github.com/matcore-standard/matcore/tree/v0.6.0/schema",
+      "id": "mc-ad83jsd3",
+      "dataset-version": 1,
+      "record-author": [
+        {
+          "name": "Ellad B. Tadmor",
+          "identifier": [
+            {
+              "value": "https://orcid.org/0000-0003-3311-6299",
+              "scheme": "ORCID"
+            }
+          ],
+          "affiliation": [
+            {
+              "name": "University of Minnesota"
+            }
+          ]
+        }
+      ],
+      "creation-date": "2026-02-14"
+    },
     "license": [
       {
         "identifier": "GPL-3.0-only",
