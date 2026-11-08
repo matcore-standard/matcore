@@ -316,7 +316,9 @@ record or marked PROPOSED, NOT DECIDED.
      instances); §1.3 states that a multi-dimensional value is a list of lists, first index
      outermost, and cell and cell-reference say each row is a vector in Cartesian components (0038);
      every simulation condition is defined as imposed, and a measured quantity is a result, not a
-     condition (0039).
+     condition (0039); the conditions electric-field, magnetic-field (as B) and body-force (per unit
+     mass) are added, with the Kinds ElectricFieldStrength, MagneticFluxDensity and Acceleration and
+     the units V/m, V/angstrom, T and m/s^2 (0040).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -632,7 +634,8 @@ record or marked PROPOSED, NOT DECIDED.
    merged 2026-11-08] unit V/m with the Kind ElectricFieldStrength.
    [done, PR #73 merged 2026-11-08] unit V/angstrom.
    [done, PR #74 merged 2026-11-08] unit T with the Kind MagneticFluxDensity.
-   [done, PR #75 merged 2026-11-08] unit m/s^2 with the Kind Acceleration.
+   [done, PR #75 merged 2026-11-08] unit m/s^2 with the Kind Acceleration. The conditions on branch
+   applied-fields (committed, not pushed; PR to open).
    [todo] electrode potential by 0041: Kind ElectricPotential; unit V by its own PR; then
    electrode-potential (value, unit, reference* with terms SHE, RHE, Vacuum, qualifier) after
    body-force, for the working electrode. Ruling committed on main. [done, PR #76 merged 2026-11-08]

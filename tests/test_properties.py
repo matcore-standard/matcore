@@ -255,6 +255,9 @@ SIMULATION_CONDITIONS = {
     'strain-rate': ('float', [6], 'InverseTime', '1/s'),
     'heat-flux': ('float', [3], 'HeatFluxDensity', 'W/m^2'),
     'temperature-gradient': ('float', [3], 'TemperatureGradient', 'K/m'),
+    'electric-field': ('float', [3], 'ElectricFieldStrength', 'V/m'),
+    'magnetic-field': ('float', [3], 'MagneticFluxDensity', 'T'),
+    'body-force': ('float', [3], 'Acceleration', 'm/s^2'),
 }
 
 
@@ -923,6 +926,11 @@ IMPOSED_DEFINITIONS = {
                  'through it, e.g. by exchanging energy between a heat source and a heat sink.',
     'temperature-gradient': 'The temperature gradient imposed on the simulated system, e.g. by thermostatting two '
                             'regions at different temperatures.',
+    'electric-field': 'The electric field imposed on the simulated system, e.g. a uniform applied field.',
+    'magnetic-field': 'The magnetic field imposed on the simulated system, given as the magnetic flux density '
+                      '<i>B</i>.',
+    'body-force': 'The body force per unit mass imposed on the simulated system, e.g. gravity or a constant force '
+                  'driving a flow.',
 }
 SC_NOTE = ('Note: The conditions below, other than type and description, are given as appropriate to the simulation. '
            'Each is imposed on the simulation as an external constraint. A quantity computed from the simulation, e.g. '
@@ -951,6 +959,23 @@ def test_simulation_conditions_are_defined_as_imposed():
         assert sub(sc, name)['notes'][0] == note, name
     assert 'supercell' not in datum(sub(sc, 'cell'))['values']['note']
     assert 'heat flux vector <i>q</i>' in datum(sub(sc, 'heat-flux'))['values']['note']
+
+
+@pytest.mark.parametrize('name, vector', [
+    ('electric-field', 'electric field vector <i>E</i>'),
+    ('magnetic-field', 'magnetic flux density vector <i>B</i>'),
+    ('body-force', 'body force per unit mass <i>g</i>')])
+def test_applied_fields_are_vectors_in_the_cell_basis(name, vector):
+    """An applied field is a vector given in the orthonormal basis built from the cell, as the heat flux is, so
+    it requires cell (0040 item 3).
+
+    name (str): the condition; vector (str): the vector its value note names.
+    """
+    c = sub(sub(minimal('computation'), 'simulation-conditions'), name)
+    note = datum(c)['values']['note']
+    assert note.startswith(f'The components of the {vector}. ')
+    assert 'where e<sub>1</sub> is in the direction of a' in note
+    assert c['notes'] == ['Note: Requires cell, which defines the basis of the vector components.']
 
 
 def test_number_density_is_gone():
