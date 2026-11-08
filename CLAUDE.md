@@ -97,6 +97,10 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   inapplicable, values null, fixed description). validate_schema.py checks all of this; generic
   parameters (value kind any) and free-form units are outside the check (0015, third amendment
   2026-11-04, which reverses the second).
+- A value that varies is given as repeated entries, each with a `qualifier` leaf (open terms
+  Average, Final, Initial, Maximum, Minimum; one fixed form) beside `value` and `unit`; a
+  dimensionless value may sit in a container with a qualifier and no unit. Without a qualifier a
+  condition's value holds throughout (0035, amending 0015 and 0026).
 - Reserved kinds: dimensionless (ratios, counts), inapplicable (non-quantities), any (fixed by the
   instance or by a required enumerated subproperty).
   Angles and moles are NOT dimensionless.
@@ -581,10 +585,15 @@ record or marked PROPOSED, NOT DECIDED.
    InChI and SMILES; replaces `molecule` by the second amendment); scripts/check_formula.py parses
    and checks formulas (called by validate_schema.py; reused by step 9); Annex I gains AFLOW, InChI
    and SMILES rows;
-   examples/minimal.xml writes <formula>Si</formula>.
-   PROPOSED, NOT DECIDED (next): simulation conditions (temperature, stress, …)
-   as repeatable value + unit with a `type` (minimum, maximum, average, initial, final) for
-   nonuniform conditions, amending 0026; it also takes up fraction's "as set up" note.
+   examples/minimal.xml writes <formula>Si</formula>. (Superseded in part: `variable › type` is
+   renamed `qualifier` by 0035.)
+   [todo] qualified values by 0035: a `qualifier` leaf (Average, Final, Initial, Maximum, Minimum;
+   fixed form, checked by check_units.py) wherever a value varies; the twelve numerical
+   simulation conditions repeatable with an optional qualifier (number-of-particles and strain
+   become containers of value + qualifier); fraction a repeatable value + qualifier, its "as set
+   up" sentence removed; variable › type renamed qualifier (still required); simulation-conditions'
+   note and description reworded (amends 0015 and 0026; breaks 0.5.0 instances). Ruling committed on
+   main.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
