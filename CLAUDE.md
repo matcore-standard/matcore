@@ -19,8 +19,8 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
 - `schema/units.yaml` — Annex U, the normative unit table (kinds, symbols, QUDT/GNU mapping, SI factors).
   The single source of Annex U's Tables U.3 and U.4, which build_docs.py generates into
   annex-u-units.md; it prevails over the annex. Factors are exact decimal text, e.g. "1e3" (0009).
-- `schema/identifier-schemes.yaml` — Annex I, the identifier schemes (ORCID, ROR, DOI, SWHID, ISNI):
-  for each, entities identified, canonical form, pattern, check digit, example, source. Single source
+- `schema/identifier-schemes.yaml` — Annex I, the identifier schemes (ORCID, ROR, DOI, SWHID, ISNI;
+  InChI and SMILES for molecules, 0034): for each, entities identified, canonical form, pattern, check digit, example, source. Single source
   of Annex I's Table I.1 and of identifier checks (scripts/check_identifiers.py), as units.yaml is
   for units; it prevails over the annex (0014).
 - `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
@@ -34,6 +34,7 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
   is stored there as the baseline artifact.
 - `scripts/validate_schema.py` — checks section files against the meta-schema and units.yaml. It
   validates the standard itself, not instance files (the instance validator is status step 9).
+  scripts/check_formula.py (0034) parses formulas and checks the examples' material components.
 - `scripts/build_docs.py` — regenerates docs from YAML in the layout of 0007; tested by
   tests/test_build_docs.py. Run it with `--show-legacy` until status step 5 is complete (CI does).
   CI runs both scripts.
@@ -297,7 +298,10 @@ record or marked PROPOSED, NOT DECIDED.
      repeatable container of an SPDX identifier or LicenseRef-, a name, a link and what it applies
      to (0031); provenance and the dft pseudopotential and basis set give a file holding its
      checksums instead of a checksum naming its file (0032); a required matcore-author names who
-     created the metadata record (0033).
+     created the metadata record (0033); a material component's composition is one chemical
+     formula (groups, decimal counts, variables in braces, user-defined species J…) with
+     `variable` and `molecule` (InChI, SMILES, added to Annex I), and `constituent` is removed
+     (0034; breaks 0.5.0 instances).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -576,8 +580,7 @@ record or marked PROPOSED, NOT DECIDED.
    InChI and SMILES; replaces `molecule` by the second amendment); scripts/check_formula.py parses
    and checks formulas (called by validate_schema.py; reused by step 9); Annex I gains AFLOW, InChI
    and SMILES rows;
-   examples/minimal.xml writes <formula>Si</formula>. In PR #66 (open; second amendment
-   to be applied).
+   examples/minimal.xml writes <formula>Si</formula>. In PR #66 (open).
    PROPOSED, NOT DECIDED (next, after 0034 lands): simulation conditions (temperature, stress, …)
    as repeatable value + unit with a `type` (minimum, maximum, average, initial, final) for
    nonuniform conditions, amending 0026; it also takes up fraction's "as set up" note.

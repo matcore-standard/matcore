@@ -32,4 +32,6 @@ Table I.1 is generated from `schema/identifier-schemes.yaml`, which prevails.
 | DOI | software, dataset, publication | The https URI at doi.org. | `https://doi\.org/10\.[^/]+/.+` | — | `https://doi.org/10.1000/182` | [www.doi.org](https://www.doi.org/doi_handbook/2_Numbering.html) |
 | SWHID | software | The core identifier, optionally followed by qualifiers. | `swh:1:(snp|rel|rev|dir|cnt):[0-9a-f]{40}(;.+)?` | — | `swh:1:rel:22ece559cc7cc2364edc5e5593d63ae8bd229f9f` | [www.swhid.org](https://www.swhid.org/specification/v1.2/) |
 | ISNI | person, organization | The https URI at isni.org. | `https://isni\.org/isni/[0-9]{15}[0-9X]` | ISO/IEC 7064 MOD 11-2 | `https://isni.org/isni/0000000121491740` | [isni.org](https://isni.org/page/linked-data/) |
+| InChI | molecule | The Standard InChI, which begins InChI=1S/. | `InChI=1S/.+` | — | `InChI=1S/C5H5N5O/c6-5-9-3-2(4(11)10-5)7-1-8-3/h1H,(H4,6,7,8,9,10,11)` | [github.com](https://github.com/IUPAC-InChI/InChI/blob/main/INCHI-1-DOC/FAQ/html/inchi-faq.html) |
+| SMILES | molecule | A SMILES string as the OpenSMILES grammar defines it. | `[A-Za-z0-9@+\-\[\]()=#$:/\\.%*]+` | — | `CCO` | [github.com](https://github.com/opensmiles/OpenSMILES/blob/master/opensmiles.asciidoc) |
 <!-- END generated -->

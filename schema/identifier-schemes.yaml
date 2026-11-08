@@ -40,3 +40,17 @@ schemes:
     checksum: iso7064-mod11-2
     example: "https://isni.org/isni/0000000121491740"
     source: https://isni.org/page/linked-data/
+  InChI:
+    identifies: [molecule]
+    form: The Standard InChI, which begins InChI=1S/.
+    pattern: "InChI=1S/.+"
+    checksum: null
+    example: "InChI=1S/C5H5N5O/c6-5-9-3-2(4(11)10-5)7-1-8-3/h1H,(H4,6,7,8,9,10,11)"
+    source: https://github.com/IUPAC-InChI/InChI/blob/main/INCHI-1-DOC/FAQ/html/inchi-faq.html
+  SMILES:
+    identifies: [molecule]
+    form: A SMILES string as the OpenSMILES grammar defines it.
+    pattern: "[A-Za-z0-9@+\\-\\[\\]()=#$:/\\\\.%*]+"
+    checksum: null
+    example: "CCO"
+    source: https://github.com/opensmiles/OpenSMILES/blob/master/opensmiles.asciidoc

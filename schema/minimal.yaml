@@ -305,9 +305,37 @@ properties:
     values: null
     repeatable: true
     subproperties:
-    - name: constituent
+    - name: formula
       required: true
-      description: A chemical element included in the material component and its concentration.
+      description: The chemical formula of the material component.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        pattern: "[A-Za-z0-9.(){}+-]+"
+        examples: [Si, SiO2, H2O2, Si0.7Ge0.3, 'Si{x}Ge{1-x}', '(H2O)0.9(C2H6O)0.1', Ja0.8Jb0.2]
+        note: >-
+          A formula is a sequence of terms. A term is an element symbol, a user-defined species or a group in
+          parentheses, each followed by an optional count. An element symbol is one of the 118 symbols of the
+          IUPAC Periodic Table of the Elements (listed with atomic numbers 1 to 118 in the [Standard Atomic
+          Weights](https://www.ciaaw.org/atomic-weights.htm) table of the IUPAC Commission on Isotopic
+          Abundances and Atomic Weights). A user-defined species, for particles that are not chemical
+          elements (e.g. in a Lennard-Jones model), is `J` followed by lowercase letters (e.g. `Ja`, `Jlj`);
+          no element symbol begins with J. A count is a positive number, whole or decimal (e.g. `H2O`,
+          `Si0.7Ge0.3`), or an expression in braces (e.g. `Si{x}Ge{1-x}`). A count of 1 is omitted. An
+          expression contains at least one variable, given in `variable`, and is linear in its variables; it
+          is built from numbers, one-letter variables, `+`, `-`, implied multiplication and parentheses (e.g.
+          `1-x`, `3x`, `2(1-x)`). A variable is used only when the composition varies, so a fixed composition
+          is written with its numbers (e.g. `Si0.3Ge0.7`). A formula that is a sequence of two or more groups
+          is a mixture of substances: the groups' counts are their mole fractions and sum to 1 (e.g.
+          `(H2O)0.9(C2H6O)0.1`). Elements may appear in any order. A molecule is written with its molecular
+          formula (e.g. `H2O2`, not `HO`). Separate phases, e.g. a film on a substrate, are separate material
+          components.
+      repeatable: false
+    - name: variable
+      required: false
+      description: A value of a variable used in `formula`.
       type: null
       extent: null
       kind: null
@@ -315,39 +343,92 @@ properties:
       values: null
       repeatable: true
       subproperties:
-      - name: species
+      - name: name
         required: true
-        description: A chemical element included in the material.
+        description: The name of the variable, as written in `formula`.
         type: string
         extent: []
         kind: inapplicable
         recommended-unit: null
         values:
-          enum: [H, He, Li, Be, B, C, N, O, F, Ne, Na, Mg, Al, Si, P, S, Cl, Ar, K, Ca, Sc, Ti, V, Cr, Mn, Fe,
-            Co, Ni, Cu, Zn, Ga, Ge, As, Se, Br, Kr, Rb, Sr, Y, Zr, Nb, Mo, Tc, Ru, Rh, Pd, Ag, Cd, In, Sn, Sb,
-            Te, I, Xe, Cs, Ba, La, Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu, Hf, Ta, W, Re, Os,
-            Ir, Pt, Au, Hg, Tl, Pb, Bi, Po, At, Rn, Fr, Ra, Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm, Md,
-            'No', Lr, Rf, Db, Sg, Bh, Hs, Mt, Ds, Rg, Cn, Nh, Fl, Mc, Lv, Ts, Og]
-          examples: [C]
-          note: >-
-            The symbol of the element, as in the IUPAC Periodic Table of the Elements (listed with atomic
-            numbers 1 to 118 in the [Standard Atomic Weights](https://www.ciaaw.org/atomic-weights.htm) table
-            of the IUPAC Commission on Isotopic Abundances and Atomic Weights).
+          pattern: "[a-z]"
+          examples: [x]
         repeatable: false
-      - name: concentration
+      - name: value
         required: true
-        description: The atomic fraction of the material composed of this element.
+        description: A value of the variable.
         type: float
         extent: []
         kind: dimensionless
         recommended-unit: null
-        values:
-          minimum: 0
-          maximum: 1
-          note: >-
-            The concentrations of a material component's constituents sum to 1. When the composition changes
-            during the simulation (e.g. semi-grand-canonical Monte Carlo), give the composition as set up.
+        values: null
         repeatable: false
+      - name: type
+        required: true
+        description: What the value represents.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Average, Initial, Maximum, Minimum]
+          note: >-
+            The entries of one variable share its name, with at most one entry per type.
+        repeatable: false
+    - name: molecule
+      required: false
+      description: A molecule in the material component, identified by its structure, e.g. to distinguish isomers.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: formula
+        required: true
+        description: >-
+          The molecular formula of the molecule, written as a group of the material component's formula or as
+          the whole formula.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          examples: [C2H6O]
+        repeatable: false
+      - name: identifier
+        required: true
+        description: An identifier of the molecule's structure.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: true
+        subproperties:
+        - name: value
+          required: true
+          description: The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            examples: ['InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3', CCO]
+          repeatable: false
+        - name: scheme
+          required: true
+          description: The identifier scheme that the value belongs to.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [InChI, SMILES]
+            note: >-
+              InChI is preferred where it can represent the molecule; SMILES otherwise or in addition.
+          repeatable: false
     - name: form
       required: true
       description: The geometric form of the component as modeled.

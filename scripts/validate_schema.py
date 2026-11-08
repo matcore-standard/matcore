@@ -14,6 +14,7 @@ from check_values import dependency_errors, values_errors
 from check_units import unit_errors
 from check_generic import generic_errors
 from check_identifiers import SCHEMES, scheme_terms_errors, table_errors
+from check_formula import formula_errors, example_errors as formula_example_errors
 meta = yaml.safe_load((ROOT/'schema/meta-schema.yaml').read_text())
 units = yaml.safe_load((ROOT/'schema/units.yaml').read_text())
 kinds = set(units['kinds']) | set(units['reserved_kinds'])
@@ -39,6 +40,9 @@ def walk(props, path):
                 print(f"ERROR {here}: unit {u} has kind {units['units'][u]['kind']}, property kind is {k}"); errors += 1
         for e in values_errors(p) + dependency_errors(p, props) + unit_errors(p, props) + generic_errors(p):  # 0013, 0015, 0016
             print(f"ERROR {here}: {e}"); errors += 1
+        if p['name'] == 'formula':  # every example formula follows the grammar (0034)
+            for e in (e for ex in (p.get('values') or {}).get('examples') or [] for e in formula_errors(ex)):
+                print(f"ERROR {here}: example {e}"); errors += 1
         if p.get('type') in ('float','int') and k is None and p.get('legacy_values') is None:
             print(f"WARN  {here}: numeric type with no kind")
         walk(p.get('subproperties', []), here)
@@ -95,7 +99,7 @@ for f in sorted(glob.glob(str(ROOT/'schema/[a-z]*.yaml'))):
     print(f"ok    {Path(f).name}: {len(errs)} schema errors")
 # Examples follow the structure of the current standard (decision 0012).
 from check_examples import all_errors
-example_errors = all_errors()
+example_errors = all_errors() + formula_example_errors()  # 0012, 0034
 for e in example_errors: print(f"ERROR {e}")
 errors += len(example_errors)
 print(f"ok    examples: {len(example_errors)} structural errors" if not example_errors else f"FAIL  examples: {len(example_errors)} structural errors")
