@@ -674,11 +674,10 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED: a recommended format for the full software environment that a record
    points to (e.g. the HPC software metadata standard in preparation at BSC; CodeMeta, SPDX or
    CycloneDX SBOMs, Spack specifications to check); KIM IDs as an Annex I scheme (0043).
-   [todo] matcore container by 0045: a required top-level `matcore` (standard-version*, standard-link,
+   [done, PR #82 merged 2026-11-08] matcore container by 0045: a required top-level `matcore` (standard-version*, standard-link,
    id*, dataset-version*, record-author*, creation-date*) replaces matcore-id, matcore-author and
    matcore-date; dataset-version is 1 + the number of provenance Version update events; the example
-   gives 0.6.0, the v0.6.0 tag address, id mc-ad83jsd3 and dataset-version 1. On branch
-   matcore-container (committed, not pushed; PR to open).
+   gives 0.6.0, the v0.6.0 tag address, id mc-ad83jsd3 and dataset-version 1.
    PROPOSED, NOT DECIDED: GitHub releases with Zenodo so each release gets a DOI (0010), the step it
    adds to the release procedure, and a .zenodo.json or CITATION.cff for the record's metadata (0045).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
