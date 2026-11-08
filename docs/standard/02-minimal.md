@@ -604,18 +604,70 @@ The interactions between the system being modeled and the rest of the world main
 |---|---|
 | yes | no |
 
-Note: The conditions below, other than type, description, spatially-varying and time-varying, are given as appropriate to the simulation. Giving a condition means that its value is imposed on the simulation as an external constraint. A condition that varies is given as several entries, each with a qualifier; the description explains how it varies.
+Note: The conditions below, other than type and description, are given as appropriate to the simulation. Giving a condition means that its value is imposed on the simulation as an external constraint. A condition that varies is given as several entries, each with a qualifier; the description explains how it varies.
 
 <details class="note mc-property" id="minimal.computation.simulation-conditions.type" markdown="1">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The nature of the simulation being performed, whether equilibrium, nonequilibrium, or nonstandard.
+The nature of the simulation being performed.
+
+| Required | Repeatable |
+|---|---|
+| yes | no |
+
+Note: Detailed explanations of the simulation conditions are given in `description`.
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.type.thermodynamic-state" markdown="1">
+<summary><span class="mc-name">thermodynamic-state<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+Whether the simulated system is at equilibrium, in a steady state, or evolving in time.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Equilibrium`, `Nonequilibrium`, `Other`. Other values are allowed. "Equilibrium" – Thermodynamic equilibrium. "Nonequilibrium" – Conforming to some definition of nonequilibrium thermodynamics. "Other" – A simulation not fitting into the equilibrium and nonequilibrium categories.
+Recommended: `Equilibrium`, `Steady state`, `Transient`. Other values are allowed. One of: "Equilibrium" – The system samples thermodynamic equilibrium. "Steady state" – A nonequilibrium state whose averages do not change in time, maintained by a driving such as a strain rate or a heat flux. "Transient" – A state whose averages change in time, e.g. relaxation toward equilibrium or a steady state, or a quench.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.type.system-openness" markdown="1">
+<summary><span class="mc-name">system-openness</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+What the system exchanges with its surroundings.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `Isolated`, `Closed`, `Open`. Other values are allowed. One of: "Isolated" – Exchanges neither energy nor particles, e.g. the microcanonical ensemble. "Closed" – Exchanges energy but not particles, e.g. the canonical or isothermal-isobaric ensemble. "Open" – Exchanges particles, or their species, with a reservoir, e.g. the grand-canonical or semi-grand-canonical ensemble.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.type.time-dependence" markdown="1">
+<summary><span class="mc-name">time-dependence</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+How the imposed conditions change during the simulation.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `Constant`, `Varying`, `Cyclic`. Other values are allowed. One of: "Constant" – No imposed condition changes. "Varying" – An imposed condition changes, e.g. a temperature ramp or a change of ensemble. "Cyclic" – An imposed condition changes periodically, e.g. cyclic loading.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.type.spatial-uniformity" markdown="1">
+<summary><span class="mc-name">spatial-uniformity</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+How the imposed conditions vary across the system.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `Uniform`, `Nonuniform`, `Periodic`. Other values are allowed. One of: "Uniform" – Every imposed condition is the same throughout the system. "Nonuniform" – An imposed condition differs between parts of the system, e.g. a thermostat applied to part of it. "Periodic" – An imposed condition varies periodically across the system, e.g. sinusoidal heating. Not to be confused with `cell-periodicity`.
+
+</details>
 
 </details>
 
@@ -627,32 +679,6 @@ Explanatory text clarifying the simulation type, and how any condition varies in
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
-
-</details>
-
-<details class="note mc-property" id="minimal.computation.simulation-conditions.spatially-varying" markdown="1">
-<summary><span class="mc-name">spatially-varying</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-
-Whether any imposed condition varies across the system, e.g. a thermostat applied to part of it.
-
-| Required | Repeatable | Type | Extent | Kind | Rec. unit |
-|---|---|---|---|---|---|
-| no | no | bool | [] | inapplicable | — |
-
-Note: If true, describe the details in `description`.
-
-</details>
-
-<details class="note mc-property" id="minimal.computation.simulation-conditions.time-varying" markdown="1">
-<summary><span class="mc-name">time-varying</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-
-Whether any imposed condition changes during the simulation, e.g. a temperature ramp or a change of ensemble.
-
-| Required | Repeatable | Type | Extent | Kind | Rec. unit |
-|---|---|---|---|---|---|
-| no | no | bool | [] | inapplicable | — |
-
-Note: If true, describe the details in `description`.
 
 </details>
 
@@ -2043,7 +2069,9 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
     <method-class>Electronic</method-class>
     <method>DFT</method>
     <simulation-conditions>
-      <type>Equilibrium</type>
+      <type>
+        <thermodynamic-state>Equilibrium</thermodynamic-state>
+      </type>
     </simulation-conditions>
     <software>
       <name>CASTEP</name>

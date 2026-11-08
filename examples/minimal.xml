@@ -46,7 +46,9 @@
     <method-class>Electronic</method-class>
     <method>DFT</method>
     <simulation-conditions>
-      <type>Equilibrium</type>
+      <type>
+        <thermodynamic-state>Equilibrium</thermodynamic-state>
+      </type>
     </simulation-conditions>
     <software>
       <name>CASTEP</name>

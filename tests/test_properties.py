@@ -273,12 +273,8 @@ def test_simulation_conditions_follow_0001_part_a():
     physical Kind holds them in its `value`, beside a `unit`; a pure number is a leaf (0015, amended)."""
     sc = sub(minimal('computation'), 'simulation-conditions')
     got = {s['name']: (d['type'], d['extent'], d['kind'], d['recommended-unit'])
-           for s in sc['subproperties'] for d in [datum(s)]}
-    assert got == SIMULATION_CONDITIONS | {'type': ('string', [], 'inapplicable', None),
-                                           'description': ('string', [], 'inapplicable', None),
-                                           'spatially-varying': ('bool', [], 'inapplicable', None),
-                                           'time-varying': ('bool', [], 'inapplicable', None)}
-    assert sub(sc, 'type')['values']['terms'] == ['Equilibrium', 'Nonequilibrium', 'Other']
+           for s in sc['subproperties'] if s['name'] != 'type' for d in [datum(s)]}
+    assert got == SIMULATION_CONDITIONS | {'description': ('string', [], 'inapplicable', None)}
 
 
 def test_method_terms_depend_on_method_class():
@@ -874,8 +870,7 @@ def test_varying_conditions_are_qualified_entries(name):
 
 def test_varying_conditions_note_and_description():
     """The note and description say how a varying condition is given, as qualified entries, and the
-    description says how it varies; the flags stay, since Maximum does not say space or time (0035 items
-    3 and 4)."""
+    description says how it varies (0035 items 3 and 4); type's axes replace the flags (0036)."""
     sc = sub(minimal('computation'), 'simulation-conditions')
     description = sub(sc, 'description')['description']
     assert description.startswith('Explanatory text clarifying the simulation type, and how any condition varies')
@@ -885,7 +880,7 @@ def test_varying_conditions_note_and_description():
                                    'the description explains how it varies.')
     assert 'representative value' not in sc['notes'][0]
     assert 'constant throughout' not in sub(sc, 'strain-rate')['description']
-    assert {'spatially-varying', 'time-varying'} <= {s['name'] for s in sc['subproperties']}
+    assert not {'spatially-varying', 'time-varying'} & {s['name'] for s in sc['subproperties']}
     assert not sc['repeatable']
     assert not sub(sc, 'cell-periodicity')['repeatable']
 
@@ -904,18 +899,30 @@ def test_reviewed_sections_do_not_name_the_nesting_level():
         assert not re.search(r'sub(sub)*propert', text, re.I), section
 
 
-def test_varying_conditions_are_flagged_for_search():
-    """Two optional flags, after description, let a search find simulations whose conditions vary in space or
-    in time; they are not conditions, so the note excludes them from what is imposed (0026)."""
+SIMULATION_TYPE = {
+    'thermodynamic-state': (True, ('Equilibrium', 'Steady state', 'Transient')),
+    'system-openness': (False, ('Isolated', 'Closed', 'Open')),
+    'time-dependence': (False, ('Constant', 'Varying', 'Cyclic')),
+    'spatial-uniformity': (False, ('Uniform', 'Nonuniform', 'Periodic')),
+}
+
+
+def test_simulation_type_has_four_axes():
+    """A simulation is classified by its thermodynamic state, what it exchanges, and how the imposed
+    conditions change in time and vary in space, so a steady state or a relaxation toward equilibrium can
+    be said and searched for; every term is defined in its note (0036)."""
     sc = sub(minimal('computation'), 'simulation-conditions')
-    names = [s['name'] for s in sc['subproperties']]
-    assert names[:4] == ['type', 'description', 'spatially-varying', 'time-varying']
-    for name in ('spatially-varying', 'time-varying'):
-        f = sub(sc, name)
-        assert (f['required'], f['repeatable'], f['type'], f['extent'], f['kind'], f['values']) == (
-            False, False, 'bool', [], 'inapplicable', None)
-        assert f['notes'] == ['Note: If true, describe the details in `description`.']
-    assert 'other than type, description, spatially-varying and time-varying,' in sc['notes'][0]
+    t = sub(sc, 'type')
+    assert tree(t) == ('type', True, False, None, (), tuple(
+        (name, required, False, 'string', terms, ()) for name, (required, terms) in SIMULATION_TYPE.items()))
+    assert t['notes'] == ['Note: Detailed explanations of the simulation conditions are given in `description`.']
+    for name, (_, terms) in SIMULATION_TYPE.items():
+        note = sub(t, name)['values']['note']
+        assert all(f'"{term}" –' in note for term in terms), name
+    assert 'cell-periodicity' in sub(t, 'spatial-uniformity')['values']['note']
+    assert [s['name'] for s in sc['subproperties']][:2] == ['type', 'description']
+    assert sc['notes'][0].startswith('Note: The conditions below, other than type and description, are given as '
+                                     'appropriate to the simulation.')
 
 
 INTERACTION_MODELS = ('CC', 'DFT', 'Empirical potential', 'ML potential', 'QMC', 'Tight binding')
