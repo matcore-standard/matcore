@@ -544,7 +544,8 @@ record or marked PROPOSED, NOT DECIDED.
    stress's note says "cell" for "the cell subproperty"; strain-rate drops "constant throughout
    the simulation"; concentration and fraction notes give the composition as set up when it
    changes (e.g. semi-grand-canonical). Two optional bool flags, spatially-varying and
-   time-varying, follow description.
+   time-varying, follow description. (Superseded: the "as set up" notes by 0035; the flags by
+   0036's spatial-uniformity and time-dependence.)
    PROPOSED, NOT DECIDED (md): a semi-grand-canonical term for thermodynamic-constraint › type,
    and whether its `system` states the region as 0026's description does.
    [done, PR #57 merged 2026-11-07] minimal phase › Quasicrystal by 0027: "A solid material
@@ -596,6 +597,14 @@ record or marked PROPOSED, NOT DECIDED.
    become containers of value + qualifier); fraction a repeatable value + qualifier, its "as set
    up" sentence removed; variable › type renamed qualifier (still required); simulation-conditions'
    note and description reworded (amends 0015 and 0026; breaks 0.5.0 instances).
+   [todo] simulation type by 0036: simulation-conditions › type becomes a container of
+   thermodynamic-state* (Equilibrium, Steady state, Transient), system-openness (Isolated, Closed,
+   Open), time-dependence (Constant, Varying, Cyclic) and spatial-uniformity (Uniform, Nonuniform,
+   Periodic), with a note pointing to description; spatially-varying and time-varying removed
+   (reverses 0026 item 5); examples/minimal.xml nests Equilibrium under thermodynamic-state
+   (breaks 0.5.0 instances). Ruling committed on main.
+   PROPOSED, NOT DECIDED (md): how thermodynamic-constraint (the ensemble) relates to
+   system-openness (0036).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
