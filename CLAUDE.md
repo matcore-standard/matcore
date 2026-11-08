@@ -652,6 +652,13 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #79 merged 2026-11-08] chemical potential by 0042: simulation-conditions › chemical-potential (value in Energy,
    recommended eV; unit; species*; relative-to for a difference; qualifier, its note "for the
    species") after electrode-potential.
+   [todo] software layers by 0043: software is one entry per layer (outermost first), gaining role
+   (Calculation method, Script, Simulation code, Workflow framework), description, link, revision,
+   identifier (DOI, SWHID), dependency (name, version, role) and build-options; file gains encoding
+   (Base64); examples/minimal.xml gives CASTEP role Simulation code. Ruling committed on main.
+   PROPOSED, NOT DECIDED: a recommended format for the full software environment that a record
+   points to (e.g. the HPC software metadata standard in preparation at BSC; CodeMeta, SPDX or
+   CycloneDX SBOMs, Spack specifications to check); KIM IDs as an Annex I scheme (0043).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that simulation-conditions holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
