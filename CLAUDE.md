@@ -654,11 +654,10 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #79 merged 2026-11-08] chemical potential by 0042: simulation-conditions › chemical-potential (value in Energy,
    recommended eV; unit; species*; relative-to for a difference; qualifier, its note "for the
    species") after electrode-potential.
-   [todo] software layers by 0043: software is one entry per layer (outermost first), gaining role
+   [done, PR #80 merged 2026-11-08] software layers by 0043: software is one entry per layer (outermost first), gaining role
    (Calculation method, Script, Simulation code, Workflow framework), description, link, revision,
    identifier (DOI, SWHID), dependency (name, version, role) and build-options; file gains encoding
-   (Base64) and, by the amendment of 2026-11-08, checksum in 0032's structure; examples/minimal.xml gives CASTEP role Simulation code. Ruling committed on main. On
-   branch software-layers (committed, not pushed; PR to open).
+   (Base64) and, by the amendment of 2026-11-08, checksum in 0032's structure; examples/minimal.xml gives CASTEP role Simulation code.
    PROPOSED, NOT DECIDED: a recommended format for the full software environment that a record
    points to (e.g. the HPC software metadata standard in preparation at BSC; CodeMeta, SPDX or
    CycloneDX SBOMs, Spack specifications to check); KIM IDs as an Annex I scheme (0043).
