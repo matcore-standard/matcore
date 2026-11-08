@@ -110,6 +110,7 @@ QUDT namespace: `http://qudt.org/vocab/unit/`. "—" in the QUDT column means th
 | `1/m^3` | NumberDensity | PER-M3 | 1/m^3 | 1 | exact |
 | `W/m^2` | HeatFluxDensity | W-PER-M2 | W/m^2 | 1 | exact |
 | `V/m` | ElectricFieldStrength | V-PER-M | V/m | 1 | exact |
+| `V/angstrom` | ElectricFieldStrength | — | V/angstrom | 1 × 10¹⁰ V·m⁻¹ | exact |
 | `rad` | Angle | RAD | radian | 1 | exact |
 | `degree` | Angle | DEG | degree | π/180 rad | exact |
 | `mol` | AmountOfSubstance | MOL | mol | 1 | exact |
@@ -128,7 +129,7 @@ QUDT namespace: `http://qudt.org/vocab/unit/`. "—" in the QUDT column means th
 
 **Note 6 (GNU spelling of bohr).** GNU Units does not define `bohr`; the GNU name is `bohrradius`. The MatCore symbol remains `bohr`; the mapping is given in the GNU column.
 
-**Note 7 (units absent from QUDT).** `Ry`, `bohr`, `meV`, `nm^3`, `1/ps`, `1/bohr`, `bohr^3`, `K/angstrom`, `eV/angstrom^3`, `hartree/bohr` and `1/angstrom^3` have no unit IRI in QUDT Units v3.3.0. For these, the MatCore symbol is the identifier and the quantity-kind IRI in Table U.3 supplies the semantic anchor. QUDT accepts contributions through its public repository, and IRIs will be added to this table if and when they are published.
+**Note 7 (units absent from QUDT).** `Ry`, `bohr`, `meV`, `nm^3`, `1/ps`, `1/bohr`, `bohr^3`, `K/angstrom`, `eV/angstrom^3`, `hartree/bohr`, `1/angstrom^3` and `V/angstrom` have no unit IRI in QUDT Units v3.3.0. For these, the MatCore symbol is the identifier and the quantity-kind IRI in Table U.3 supplies the semantic anchor. QUDT accepts contributions through its public repository, and IRIs will be added to this table if and when they are published.
 
 ## U.5 References
 

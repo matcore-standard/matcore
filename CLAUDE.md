@@ -630,6 +630,7 @@ record or marked PROPOSED, NOT DECIDED.
    the Kind); then electric-field (V/m), magnetic-field (B, T) and body-force (per unit mass, m/s^2)
    as [3] vector conditions after temperature-gradient. Ruling committed on main. [done, PR #72
    merged 2026-11-08] unit V/m with the Kind ElectricFieldStrength.
+   Unit V/angstrom on branch unit-v-per-angstrom (committed, not pushed; PR to open).
    [todo] electrode potential by 0041: Kind ElectricPotential; unit V by its own PR; then
    electrode-potential (value, unit, reference* with terms SHE, RHE, Vacuum, qualifier) after
    body-force, for the working electrode. Ruling committed on main.
