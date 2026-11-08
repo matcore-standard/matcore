@@ -599,7 +599,8 @@ record or marked PROPOSED, NOT DECIDED.
    simulation conditions repeatable with an optional qualifier (number-of-particles and strain
    become containers of value + qualifier); fraction a repeatable value + qualifier, its "as set
    up" sentence removed; variable › type renamed qualifier (still required); simulation-conditions'
-   note and description reworded (amends 0015 and 0026; breaks 0.5.0 instances).
+   note and description reworded (amends 0015 and 0026; breaks 0.5.0 instances). (Superseded in
+   part: number-density is removed by 0037, so eleven conditions remain.)
    [done, PR #68 merged 2026-11-08] simulation type by 0036: simulation-conditions › type becomes a container of
    thermodynamic-state* (Equilibrium, Steady state, Transient), system-openness (Isolated, Closed,
    Open), time-dependence (Constant, Varying, Cyclic) and spatial-uniformity (Uniform, Nonuniform,
@@ -608,6 +609,8 @@ record or marked PROPOSED, NOT DECIDED.
    (breaks 0.5.0 instances).
    PROPOSED, NOT DECIDED (md): how thermodynamic-constraint (the ensemble) relates to
    system-openness (0036).
+   [todo] number-density removed by 0037: simulation-conditions › number-density dropped as
+   redundant with number-of-particles and volume (breaks 0.5.0 instances). Ruling committed on main.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
