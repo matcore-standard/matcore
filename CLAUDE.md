@@ -671,8 +671,8 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] matcore container by 0045: a required top-level `matcore` (standard-version*, standard-link,
    id*, dataset-version*, record-author*, creation-date*) replaces matcore-id, matcore-author and
    matcore-date; dataset-version is 1 + the number of provenance Version update events; the example
-   gives 0.6.0, the v0.6.0 tag address, id mc-ad83jsd3 and dataset-version 1. After the JSON
-   examples PR (0044). Ruling committed on main.
+   gives 0.6.0, the v0.6.0 tag address, id mc-ad83jsd3 and dataset-version 1. Ruling committed on
+   main.
    PROPOSED, NOT DECIDED: GitHub releases with Zenodo so each release gets a DOI (0010), the step it
    adds to the release procedure, and a .zenodo.json or CITATION.cff for the record's metadata (0045).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
@@ -688,9 +688,9 @@ record or marked PROPOSED, NOT DECIDED.
    this step may run alongside step 6, and the requirements section may be written earlier. It
    opens with a decision record choosing the first serialization, which step 9 then uses.
    [done] First serialization chosen: JSON (0044).
-   [todo] JSON examples by 0044: the seven examples converted from XML by script; check_examples.py,
+   [done, PR #81 merged 2026-11-08] JSON examples by 0044: the seven examples converted from XML by script; check_examples.py,
    check_formula.py and build_docs.py read JSON; meta-schema `file` requires .json; §1.3 says the
-   examples are in JSON. On branch json-examples (committed, not pushed; PR to open).
+   examples are in JSON.
 8. [merged into step 2] Site content migration from matcore.org.
 9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools. After step 7;
    the validator reuses step 7's generated schema (0004).
