@@ -52,6 +52,7 @@
     </simulation-conditions>
     <software>
       <name>CASTEP</name>
+      <role>Simulation code</role>
     </software>
   </computation>
   <dataset-location>
