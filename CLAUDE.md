@@ -571,10 +571,11 @@ record or marked PROPOSED, NOT DECIDED.
    https://orcid.org/0000-0003-3311-6299; tests/test_examples.py checks every identifier in the
    minimal example against Annex I.
    [todo] minimal composition formula by 0034: material-component's `constituent` replaced by
-   `formula*` (grammar in its note), `variable` (name, value, type) and `molecule` (formula,
+   `formula*` (grammar in its note), `variable` (name*, value*, type*; type required by the
+   amendment of 2026-11-08) and `molecule` (formula,
    identifier with schemes InChI and SMILES); scripts/check_formula.py parses and checks formulas
    (called by validate_schema.py; reused by step 9); Annex I gains InChI and SMILES rows;
-   examples/minimal.xml writes <formula>Si</formula>. Ruling not yet committed.
+   examples/minimal.xml writes <formula>Si</formula>. Ruling committed on main.
    PROPOSED, NOT DECIDED (next, after 0034 lands): simulation conditions (temperature, stress, …)
    as repeatable value + unit with a `type` (minimum, maximum, average, initial, final) for
    nonuniform conditions, amending 0026; it also takes up fraction's "as set up" note.

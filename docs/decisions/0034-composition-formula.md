@@ -24,7 +24,7 @@ Sources compared:
    - **`variable`**: optional, repeatable, a container. Description: "A value of a variable used in `formula`." Its subproperties:
      - `name*`: string, pattern one lowercase letter. Description: "The name of the variable, as written in `formula`."
      - `value*`: float, dimensionless. Description: "A value of the variable."
-     - `type`: string, open terms Average, Initial, Maximum, Minimum. Description: "What the value represents." The note says that without a `type`, the value holds throughout. It also says that the entries of one variable share its name, with at most one entry per type.
+     - `type*`: string, open terms Average, Initial, Maximum, Minimum. Description: "What the value represents." The note says that the entries of one variable share its name, with at most one entry per type. (Amended 2026-11-08: `type` is required. A value without a type would hold throughout, a fixed composition, which item 3 writes as a number in the formula.)
    - **`molecule`**: optional, repeatable, a container. Description: "A molecule in the material component, identified by its structure, e.g. to distinguish isomers." Its subproperties:
      - `formula*`: string. Description: "The molecular formula of the molecule, written as a group of the material component's formula or as the whole formula."
      - `identifier*`: repeatable, a container of `value*` and `scheme*` as in creator's identifier, with scheme terms InChI and SMILES. The note says InChI is preferred where it can represent the molecule, and SMILES otherwise or in addition.
