@@ -27,9 +27,10 @@ Principles applied:
    - **`build-options`**: string. Description: "The options the software was built or run with that can change its results, e.g. compiler flags or enabled features."
    - **`file`**: kept, last.
 3. **`file`** gains **`encoding`** after `contents`: optional; string, open terms Base64. Description: "How contents is encoded." Note: "Note: Without encoding, contents is the file's text. With Base64, contents is the file's bytes encoded as Base64 (RFC 4648); use it for a binary file, or for a text file whose exact bytes matter." `contents`'s description becomes: "The contents of the file: its text, or its bytes encoded as given in encoding. Not required in case a link to the file is provided instead."
-4. **examples/minimal.xml**: CASTEP gains `<role>Simulation code</role>`. No version or build is invented for the Si GAP data.
+4. **`file`** gains **`checksum`** after `link`: optional, repeatable, in the structure of 0032 (`algorithm*` with the SPDX 2.3.1 terms and note, `value*` in lowercase hexadecimal), with the description of provenance's file checksum. A checksum lets a reader confirm that a linked file, which may change at its address, or a Base64-encoded file is the one the data was made with; a checksum is written the same way under every file (0032). The software itself needs none: a SWHID in `identifier` is already a hash of the exact state of its code. (Amended 2026-11-08.)
+5. **examples/minimal.xml**: CASTEP gains `<role>Simulation code</role>`. No version or build is invented for the Si GAP data.
 
 ## Consequences
-- One pull request applies items 1–4 (schema, tests, regenerated page, example). No instance is broken: every addition is optional.
+- One pull request applies items 1–5 (schema, tests, regenerated page, example). No instance is broken: every addition is optional.
 - The full software environment (dependency graph, modules, hardware) is outside MatCore; a record points to a document holding it, as a `file` or a `link`. PROPOSED, NOT DECIDED: naming a recommended format for that document, e.g. the HPC software metadata standard in preparation at BSC, once it exists. Candidate formats to check against their specifications: CodeMeta, SPDX and CycloneDX software bills of materials, Spack specifications.
 - PROPOSED, NOT DECIDED: KIM IDs as an Annex I scheme, so an OpenKIM test or model can be cited by its KIM ID.
