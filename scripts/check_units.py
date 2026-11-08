@@ -4,9 +4,10 @@
 A property with subproperties is a container and has no typed fields. A leaf whose Kind is physical
 (a units.yaml kind other than `dimensionless`) is named `value`, has the fixed fields of VALUE_FORM,
 and has exactly one sibling `unit` in the fixed form UNIT_FORM; a `value` whose Kind is
-`dimensionless` or `inapplicable` has no sibling `unit`. A `value` of Kind `any` (generic parameters)
-and a `unit` with no `value` (free-form units) are outside the check. Called by
-scripts/validate_schema.py for every property.
+`dimensionless` or `inapplicable` has no sibling `unit`. A `qualifier`, wherever it appears, has the
+fixed fields of QUALIFIER_FORM and its open terms (decision 0035); its required flag and note vary. A
+`value` of Kind `any` (generic parameters) and a `unit` with no `value` (free-form units) are outside
+the check. Called by scripts/validate_schema.py for every property.
 """
 from pathlib import Path
 
@@ -34,6 +35,18 @@ UNIT_FORM = {
 }
 
 
+QUALIFIER_FORM = {
+    'name': 'qualifier',
+    'description': 'What the value represents.',
+    'type': 'string',
+    'extent': [],
+    'kind': 'inapplicable',
+    'recommended-unit': None,
+    'repeatable': False,
+    'values': {'terms': ['Average', 'Final', 'Initial', 'Maximum', 'Minimum']},
+}
+
+
 def unit_errors(p, siblings):
     """Return the errors in a property's shape as a leaf, a container or a quantity's value, as messages.
 
@@ -42,6 +55,10 @@ def unit_errors(p, siblings):
     if p.get('subproperties'):
         typed = [k for k in TYPED if p.get(k) is not None]
         return [f"a container has no value of its own, but {', '.join(typed)} set (0015)"] if typed else []
+    if p['name'] == 'qualifier':
+        form = {k: p.get(k) for k in QUALIFIER_FORM} | {'values': {'terms': (p.get('values') or {}).get('terms')}}
+        extra = set(p.get('values') or {}) - {'terms', 'note'}
+        return [] if form == QUALIFIER_FORM and not extra else ['qualifier departs from the fixed form of 0035']
     units = [s for s in siblings if s['name'] == 'unit']
     if p.get('kind') not in PHYSICAL:
         if p['name'] == 'value' and p.get('kind') in ('dimensionless', 'inapplicable') and units:

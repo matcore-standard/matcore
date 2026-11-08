@@ -115,7 +115,7 @@ COMPOSITION = (
     ('formula', True, False, 'string', (), ()),
     ('variable', False, True, None, (), (
         ('name', True, False, 'string', (), ()), ('value', True, False, 'float', (), ()),
-        ('type', True, False, 'string', ('Average', 'Final', 'Initial', 'Maximum', 'Minimum'), ()))),
+        ('qualifier', True, False, 'string', ('Average', 'Final', 'Initial', 'Maximum', 'Minimum'), ()))),
     ('topology', False, True, None, (), (
         ('substance', True, False, 'string', (), ()),
         ('identifier', True, True, None, (), (
@@ -130,7 +130,9 @@ def test_structure_is_made_of_components_with_a_form_and_a_role():
     p = minimal('structure')
     component = ('material-component', True, True, None, (), (
         *COMPOSITION, ('form', True, False, 'string', FORMS, ()), ('role', False, False, 'string', ROLES, ()),
-        ('fraction', False, False, 'float', (), ()), ('phase', False, True, 'string', PHASES, ()),
+        ('fraction', False, True, None, (), (
+            ('value', True, False, 'float', (), ()), ('qualifier', False, False, 'string', QUALIFIERS, ()))),
+        ('phase', False, True, 'string', PHASES, ()),
         ('description', False, False, 'string', (), ()), ('microstructure', False, False, 'string', (), ())))
     assert tree(p) == ('structure', True, True, None, (), (
         ('description', False, False, 'string', (), ()), component))
@@ -161,14 +163,20 @@ def test_structure_notes_define_every_term_and_state_the_rules():
 @pytest.mark.parametrize('value, ok', [(0, True), (0.05, True), (1, True), (-0.1, False), (5, False)])
 def test_fraction_is_an_atomic_fraction_of_the_structure(value, ok):
     """fraction is the share of the structure's atoms in one component, a pure number from 0 to 1 with no
-    unit; the fractions of a structure sum to 1, a rule its note states (0025, as concentration, 0004 item 46).
+    unit, given as qualified entries when it changes; the fractions of a structure sum to 1, for the
+    unqualified entries and for each of Initial, Final and Average (0025; 0035 item 5).
 
     value (float): a candidate fraction; ok (bool): whether it conforms.
     """
     f = sub(material_component(), 'fraction')
-    assert (f['kind'], f['extent'], f['recommended-unit'], f.get('subproperties')) == ('dimensionless', [], None, None)
-    assert 'atomic fraction' in f['description'] and 'sum to 1.' in f['values']['note']
-    assert Draft202012Validator(value_schema(f)).is_valid(value) == ok
+    assert tree(f) == ('fraction', False, True, None, (), (
+        ('value', True, False, 'float', (), ()), ('qualifier', False, False, 'string', QUALIFIERS, ())))
+    v = datum(f)
+    assert (v['kind'], v['extent'], v['recommended-unit']) == ('dimensionless', [], None)
+    assert 'atomic fraction' in f['description']
+    assert v['values']['note'] == ("The fractions of a structure's components sum to 1, for the entries without a "
+                                   'qualifier and for each of Initial, Final and Average.')
+    assert Draft202012Validator(value_schema(v)).is_valid(value) == ok
 
 
 def test_formula_note_states_the_grammar_and_its_examples_parse():
@@ -223,6 +231,13 @@ def test_topology_says_when_to_give_it():
 def test_constituent_is_gone():
     """The element-and-fraction constituent is replaced by the formula (0034 item 1)."""
     assert 'constituent' not in [s['name'] for s in material_component()['subproperties']]
+
+
+QUALIFIERS = ('Average', 'Final', 'Initial', 'Maximum', 'Minimum')
+QUALIFIER_NOTE = ('Without a qualifier, the value holds throughout the simulation and across the system, and the '
+                  'entry is the only one for the condition. Otherwise give one entry for each qualifier that '
+                  'applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or '
+                  'tensor, Minimum and Maximum are taken component by component.')
 
 
 # 0001 Part A, A2.2: the Kind and recommended unit of each simulation condition, with the shape its
@@ -840,32 +855,44 @@ def test_k_point_mesh_quantities():
     assert (v('smearing-width')['kind'], v('smearing-width')['recommended-unit']) == ('Energy', 'eV')
 
 
-def test_varying_conditions_are_explained_not_structured():
-    """A condition that varies in space or time keeps one representative value, and the shared description
-    says how it varies and which value is given; no condition is defined as constant (0026)."""
+@pytest.mark.parametrize('name', [n for n in SIMULATION_CONDITIONS if n != 'cell-periodicity'])
+def test_varying_conditions_are_qualified_entries(name):
+    """Each numerical condition repeats, one entry per qualifier, so a tool reads a ramp or a range instead
+    of prose; a pure number keeps no unit (0035 items 2 and 6).
+
+    name (str): the condition.
+    """
+    c = sub(sub(minimal('computation'), 'simulation-conditions'), name)
+    names = [s['name'] for s in c['subproperties']]
+    unit = [] if datum(c)['kind'] == 'dimensionless' else ['unit']
+    assert c['repeatable'] and names == ['value', *unit, 'qualifier']
+    q = sub(c, 'qualifier')
+    assert (q['required'], q['values']['terms'], q['values']['note']) == (False, list(QUALIFIERS), QUALIFIER_NOTE)
+    if not unit:
+        assert datum(c)['description'] == 'The value of the property.'
+
+
+def test_varying_conditions_note_and_description():
+    """The note and description say how a varying condition is given, as qualified entries, and the
+    description says how it varies; the flags stay, since Maximum does not say space or time (0035 items
+    3 and 4)."""
     sc = sub(minimal('computation'), 'simulation-conditions')
     description = sub(sc, 'description')['description']
     assert description.startswith('Explanatory text clarifying the simulation type, and how any condition varies')
-    assert description.endswith('For a condition that varies, it states what the given value represents, e.g. '
-                                'the initial, mean or final value, or the value in one region.')
-    assert sc['notes'][0].endswith('A condition that varies in space or time gives a single representative value, '
-                                   'which the description explains.')
+    assert description.endswith('For a condition that varies, it states how, e.g. the shape of a ramp or the '
+                                'region a value applies to.')
+    assert sc['notes'][0].endswith('A condition that varies is given as several entries, each with a qualifier; '
+                                   'the description explains how it varies.')
+    assert 'representative value' not in sc['notes'][0]
     assert 'constant throughout' not in sub(sc, 'strain-rate')['description']
+    assert {'spatially-varying', 'time-varying'} <= {s['name'] for s in sc['subproperties']}
     assert not sc['repeatable']
+    assert not sub(sc, 'cell-periodicity')['repeatable']
 
 
-@pytest.mark.parametrize('path', [('fraction',)])
-def test_composition_is_given_as_set_up_when_it_varies(path):
-    """In a semi-grand-canonical simulation the composition changes; fraction gives it as set up (0026).
-
-    path (tuple): names leading from material-component to the property.
-    """
-    p = material_component()
-    for name in path:
-        p = sub(p, name)
-    assert p['values']['note'].endswith(
-        'When the composition changes during the simulation (e.g. semi-grand-canonical Monte Carlo), give the '
-        'composition as set up.')
+def test_set_up_is_gone():
+    """The qualifier Initial says what "as set up" said, so no note repeats it (0035 item 5)."""
+    assert 'as set up' not in open(ROOT / 'schema/minimal.yaml').read()
 
 
 def test_reviewed_sections_do_not_name_the_nesting_level():

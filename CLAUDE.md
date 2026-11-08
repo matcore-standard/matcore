@@ -306,7 +306,10 @@ record or marked PROPOSED, NOT DECIDED.
      created the metadata record (0033); a material component's composition is one chemical
      formula (groups, decimal counts, variables in braces, user-defined species J…) with
      `variable` and `topology` (AFLOW, InChI, SMILES, added to Annex I), and `constituent` is removed
-     (0034; breaks 0.5.0 instances).
+     (0034; breaks 0.5.0 instances); a varying value is given as repeated entries with a `qualifier`
+     (Average, Final, Initial, Maximum, Minimum): the twelve numerical simulation conditions and
+     fraction become repeatable, number-of-particles, strain and fraction become containers, and
+     variable's type is renamed qualifier (0035; breaks 0.5.0 instances).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -592,8 +595,8 @@ record or marked PROPOSED, NOT DECIDED.
    simulation conditions repeatable with an optional qualifier (number-of-particles and strain
    become containers of value + qualifier); fraction a repeatable value + qualifier, its "as set
    up" sentence removed; variable › type renamed qualifier (still required); simulation-conditions'
-   note and description reworded (amends 0015 and 0026; breaks 0.5.0 instances). Ruling committed on
-   main.
+   note and description reworded (amends 0015 and 0026; breaks 0.5.0 instances). On branch qualified-values
+   (committed, not pushed; PR to open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
