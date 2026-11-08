@@ -610,9 +610,8 @@ record or marked PROPOSED, NOT DECIDED.
    (breaks 0.5.0 instances).
    PROPOSED, NOT DECIDED (md): how thermodynamic-constraint (the ensemble) relates to
    system-openness (0036).
-   [todo] number-density removed by 0037: simulation-conditions › number-density dropped as
-   redundant with number-of-particles and volume (breaks 0.5.0 instances). On branch
-   remove-number-density (committed, not pushed; PR to open).
+   [done, PR #69 merged 2026-11-08] number-density removed by 0037: simulation-conditions › number-density dropped as
+   redundant with number-of-particles and volume (breaks 0.5.0 instances).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
