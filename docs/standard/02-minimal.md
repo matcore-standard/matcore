@@ -833,7 +833,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [3,3] | Length | angstrom |
 
-Ordered list of three vectors (a, b, c), each with three components, that define the simulation cell. The vectors (a, b, c) need not be orthogonal, and the magnitudes (|a|, |b|, |c|) are the supercell vector lengths. The unit applies to all nine components.
+Ordered list of three vectors (a, b, c), each with three components, that define the simulation cell. `value[i][j]` is the j-th Cartesian component, in the frame of the simulation, of the i-th cell vector, so the rows are a, b and c. The vectors (a, b, c) need not be orthogonal, and the magnitudes (|a|, |b|, |c|) are the supercell vector lengths. The unit applies to all nine components.
 
 </details>
 
@@ -881,7 +881,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [3,3] | Length | angstrom |
 
-Ordered list of three vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>), each with three components, that define the cell used in the simulation in its reference configuration. The vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) need not be orthogonal, and the magnitudes (|a<sub>0</sub>|, |b<sub>0</sub>|, |c<sub>0</sub>|) are the reference cell vector lengths. The unit applies to all nine components.
+Ordered list of three vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>), each with three components, that define the cell used in the simulation in its reference configuration. `value[i][j]` is the j-th Cartesian component, in the frame of the simulation, of the i-th reference cell vector, so the rows are a<sub>0</sub>, b<sub>0</sub> and c<sub>0</sub>. The vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) need not be orthogonal, and the magnitudes (|a<sub>0</sub>|, |b<sub>0</sub>|, |c<sub>0</sub>|) are the reference cell vector lengths. The unit applies to all nine components.
 
 </details>
 
