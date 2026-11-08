@@ -600,12 +600,12 @@ record or marked PROPOSED, NOT DECIDED.
    become containers of value + qualifier); fraction a repeatable value + qualifier, its "as set
    up" sentence removed; variable › type renamed qualifier (still required); simulation-conditions'
    note and description reworded (amends 0015 and 0026; breaks 0.5.0 instances).
-   [todo] simulation type by 0036: simulation-conditions › type becomes a container of
+   [done, PR #68 merged 2026-11-08] simulation type by 0036: simulation-conditions › type becomes a container of
    thermodynamic-state* (Equilibrium, Steady state, Transient), system-openness (Isolated, Closed,
    Open), time-dependence (Constant, Varying, Cyclic) and spatial-uniformity (Uniform, Nonuniform,
    Periodic), with a note pointing to description; spatially-varying and time-varying removed
    (reverses 0026 item 5); examples/minimal.xml nests Equilibrium under thermodynamic-state
-   (breaks 0.5.0 instances). On branch simulation-type (committed, not pushed; PR to open).
+   (breaks 0.5.0 instances).
    PROPOSED, NOT DECIDED (md): how thermodynamic-constraint (the ensemble) relates to
    system-openness (0036).
    [todo] md in file order, starting with computation.
