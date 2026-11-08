@@ -316,3 +316,12 @@ def test_annex_i_keeps_its_prose_and_gets_its_table(tmp_path):
     strip = lambda s: re.sub(r'<!-- BEGIN generated:.*?<!-- END generated -->', '', s, flags=re.S)
     assert strip(out) == strip(src)
     assert out.startswith('# Annex I — Identifier Schemes')
+
+
+def test_note_7_lists_every_unit_absent_from_qudt():
+    """Annex U's Note 7 names exactly the units whose QUDT identifier is null, so a reader knows which
+    symbols have no QUDT IRI; the note is prose and must follow units.yaml (0009)."""
+    absent = {s for s, u in UNITS['units'].items() if u['qudt'] is None and s != 'dimensionless'}
+    text = (ROOT / 'docs/standard/annex-u-units.md').read_text()
+    note = text[text.index('**Note 7'):].split('\n')[0]
+    assert set(re.findall(r'`([^`]+)`', note)) == absent
