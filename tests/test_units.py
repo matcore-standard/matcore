@@ -13,7 +13,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from check_units import PHYSICAL, UNIT_FORM, VALUE_FORM, unit_errors  # noqa: E402
+from check_units import PHYSICAL, QUALIFIER_FORM, UNIT_FORM, VALUE_FORM, unit_errors  # noqa: E402
 
 
 def value(kind='Temperature', **change):
@@ -78,6 +78,31 @@ def test_a_pure_number_is_a_leaf_with_no_unit():
     assert errors([{'name': 'title', 'type': 'string', 'kind': 'inapplicable'}]) == []
     assert errors([value('dimensionless'), dict(UNIT_FORM)])
     assert errors([value('inapplicable'), dict(UNIT_FORM)])
+
+
+def qualifier(**change):
+    """Return a `qualifier` leaf in the fixed form of 0035, with the given changes.
+
+    change (dict): fields that replace those of the fixed form.
+    """
+    return QUALIFIER_FORM | {'required': False, 'values': {'terms': QUALIFIER_FORM['values']['terms'],
+                                                           'note': 'Any note.'}} | change
+
+
+def test_a_qualifier_in_the_fixed_form_passes_beside_any_value():
+    """A qualifier says what a value represents, beside a value and its unit or beside a pure number; its
+    required flag and note depend on where it sits (0035 items 1 and 6)."""
+    assert QUALIFIER_FORM['values']['terms'] == ['Average', 'Final', 'Initial', 'Maximum', 'Minimum']
+    assert errors([value(), dict(UNIT_FORM), qualifier()]) == []
+    assert errors([value('dimensionless'), qualifier(required=True)]) == []
+
+
+def test_a_qualifier_that_departs_from_the_fixed_form_fails():
+    """A qualifier with other terms, another description or shape, or that repeats, breaks the one form
+    that lets a tool read every varying value the same way (0035 item 1)."""
+    for change in ({'repeatable': True}, {'description': 'The statistic.'}, {'kind': 'dimensionless'},
+                   {'extent': [2]}, {'values': {'terms': ['Initial', 'Final']}}, {'values': {'enum': ['Initial']}}):
+        assert errors([value(), dict(UNIT_FORM), qualifier(**change)]), change
 
 
 def test_generic_parameters_and_free_form_units_are_outside_the_check():

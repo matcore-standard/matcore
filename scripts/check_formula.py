@@ -199,8 +199,9 @@ def counts(terms):
 def component_errors(formula, variables, topologies):
     """Return the errors of a material component's composition, as messages.
 
-    formula (str): its `formula`; variables (list[tuple]): its `variable` entries as (name, value, type), type
-    None when absent; topologies (list[str]): the `substance` of each of its `topology` entries.
+    formula (str): its `formula`; variables (list[tuple]): its `variable` entries as (name, value,
+    qualifier), qualifier None when absent; topologies (list[str]): the `substance` of each of its
+    `topology` entries.
     """
     parser = Parser(formula)
     try:
@@ -211,8 +212,8 @@ def component_errors(formula, variables, topologies):
            if not re.fullmatch('[a-z]', n)]
     used = {k for c in counts(terms) for k in c if k}
     given = {}
-    for name, value, type_ in variables:
-        given.setdefault(name, []).append((value, type_))
+    for name, value, qualifier in variables:
+        given.setdefault(name, []).append((value, qualifier))
     out += [f'{n!r} has no variable entry' for n in sorted(used - set(given))]
     out += [f'variable {n!r} is not in the formula' for n in sorted(set(given) - used)]
     for name, entries in given.items():
@@ -244,7 +245,7 @@ def example_errors():
     for section in SECTIONS:
         for ex in yaml.safe_load(open(ROOT / f'schema/{section}.yaml')).get('examples') or []:
             for mc in ET.parse(ROOT / 'examples' / ex['file']).getroot().iter('material-component'):
-                variables = [(v.findtext('name'), float(v.findtext('value')), v.findtext('type'))
+                variables = [(v.findtext('name'), float(v.findtext('value')), v.findtext('qualifier'))
                              for v in mc.findall('variable')]
                 topologies = [t.findtext('substance') for t in mc.findall('topology')]
                 out += [f'examples/{ex["file"]}: {e}'
