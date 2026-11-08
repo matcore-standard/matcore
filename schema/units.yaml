@@ -26,6 +26,7 @@ kinds:
   HeatFluxDensity:     {qudt: HeatFluxDensity,          dimension: A0E0L0I0M1H0T-3D0, si_unit: 'W·m⁻²', si_dimension: 'kg·s⁻³'}
   ElectricFieldStrength: {qudt: ElectricFieldStrength,  dimension: A0E-1L1I0M1H0T-3D0, si_unit: 'V·m⁻¹', si_dimension: 'kg·m·s⁻³·A⁻¹'}
   MagneticFluxDensity: {qudt: MagneticFluxDensity,      dimension: A0E-1L0I0M1H0T-2D0, si_unit: 'T', si_dimension: 'kg·s⁻²·A⁻¹'}
+  Acceleration:        {qudt: Acceleration,             dimension: A0E0L1I0M0H0T-2D0, si_unit: 'm·s⁻²', si_dimension: 'm·s⁻²'}
   Angle:               {qudt: PlaneAngle,               dimension: A0E0L0I0M0H0T0D1, si_unit: 'rad', si_dimension: '1 (rad)'}
   AmountOfSubstance:   {qudt: AmountOfSubstance,        dimension: A1E0L0I0M0H0T0D0, si_unit: 'mol', si_dimension: 'mol'}
   dimensionless:       {qudt: Dimensionless,            dimension: A0E0L0I0M0H0T0D1, si_unit: '1', si_dimension: '1'}
@@ -79,6 +80,7 @@ units:
   V/m:           {kind: ElectricFieldStrength, qudt: V-PER-M, gnu: V/m, si_factor: "1", source: exact}
   V/angstrom:    {kind: ElectricFieldStrength, qudt: null, gnu: V/angstrom, si_factor: "1e10", source: exact}
   T:             {kind: MagneticFluxDensity, qudt: T, gnu: T, si_factor: "1", source: exact}
+  m/s^2:         {kind: Acceleration, qudt: M-PER-SEC2, gnu: m/s^2, si_factor: "1", source: exact}
   rad:           {kind: Angle, qudt: RAD, gnu: radian, si_factor: "1", source: exact}
   degree:        {kind: Angle, qudt: DEG, gnu: degree, exact: π/180, si_factor: "0.017453292519943295", source: exact}
   mol:           {kind: AmountOfSubstance, qudt: MOL, gnu: mol, si_factor: "1", source: exact}

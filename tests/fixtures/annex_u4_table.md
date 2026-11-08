@@ -48,6 +48,7 @@
 | `V/m` | ElectricFieldStrength | V-PER-M | V/m | 1 | exact |
 | `V/angstrom` | ElectricFieldStrength | — | V/angstrom | 1 × 10¹⁰ V·m⁻¹ | exact |
 | `T` | MagneticFluxDensity | T | T | 1 | exact |
+| `m/s^2` | Acceleration | M-PER-SEC2 | m/s^2 | 1 | exact |
 | `rad` | Angle | RAD | radian | 1 | exact |
 | `degree` | Angle | DEG | degree | π/180 rad | exact |
 | `mol` | AmountOfSubstance | MOL | mol | 1 | exact |
