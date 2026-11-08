@@ -109,16 +109,17 @@ def material_component():
     return sub(minimal('structure'), 'material-component')
 
 
-# 0034: a component's composition is one formula, with the variables it uses and the molecules it names.
+# 0034: a component's composition is one formula, with the variables it uses and, where the formula is
+# ambiguous, the topology of its isomers or polymorphs.
 COMPOSITION = (
     ('formula', True, False, 'string', (), ()),
     ('variable', False, True, None, (), (
         ('name', True, False, 'string', (), ()), ('value', True, False, 'float', (), ()),
-        ('type', True, False, 'string', ('Average', 'Initial', 'Maximum', 'Minimum'), ()))),
-    ('molecule', False, True, None, (), (
-        ('formula', True, False, 'string', (), ()),
+        ('type', True, False, 'string', ('Average', 'Final', 'Initial', 'Maximum', 'Minimum'), ()))),
+    ('topology', False, True, None, (), (
+        ('substance', True, False, 'string', (), ()),
         ('identifier', True, True, None, (), (
-            ('value', True, False, 'string', (), ()), ('scheme', True, False, 'string', ('InChI', 'SMILES'), ()))))))
+            ('value', True, False, 'string', (), ()), ('scheme', True, False, 'string', ('AFLOW', 'InChI', 'SMILES'), ()))))))
 
 
 def test_structure_is_made_of_components_with_a_form_and_a_role():
@@ -194,6 +195,29 @@ def test_a_variable_is_one_lowercase_letter(value, ok):
     assert Draft202012Validator(value_schema(n)).is_valid(value) == ok
     val = sub(sub(material_component(), 'variable'), 'value')
     assert (val['kind'], val['extent'], val['recommended-unit']) == ('dimensionless', [], None)
+
+
+def test_formula_is_named_once():
+    """Only the component's composition is called formula; topology names its substance (0034, third
+    amendment)."""
+    def names(p):
+        """Return the names of p and all its subproperties, at every depth.
+
+        p (dict): property entry.
+        """
+        return [p['name']] + [n for s in p.get('subproperties') or [] for n in names(s)]
+    assert names(material_component()).count('formula') == 1
+
+
+def test_topology_says_when_to_give_it():
+    """topology is given only when the formula alone is ambiguous, for molecular isomers and crystal
+    polymorphs alike (0034, second amendment)."""
+    t = sub(material_component(), 'topology')
+    assert t['notes'] == ['Note: Give topology only when the formula matches more than one isomer or polymorph '
+                          'and the data must say which, e.g. ethanol and dimethyl ether (C2H6O), or calcite and '
+                          'aragonite (CaCO3).']
+    note = sub(sub(t, 'identifier'), 'scheme')['values']['note']
+    assert 'InChI is preferred' in note and 'AFLOW prototype label' in note
 
 
 def test_constituent_is_gone():

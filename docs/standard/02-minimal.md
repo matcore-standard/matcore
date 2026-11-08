@@ -370,25 +370,27 @@ What the value represents.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. The entries of one variable share its name, with at most one entry per type.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. The entries of one variable share its name, with at most one entry per type.
 
 </details>
 
 </details>
 
-<details class="note mc-property" id="minimal.structure.material-component.molecule" markdown="1">
-<summary><span class="mc-name">molecule</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<details class="note mc-property" id="minimal.structure.material-component.topology" markdown="1">
+<summary><span class="mc-name">topology</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-A molecule in the material component, identified by its structure, e.g. to distinguish isomers.
+The structure of a substance in the material component, given by an identifier, when its formula alone does not determine it.
 
 | Required | Repeatable |
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="minimal.structure.material-component.molecule.formula" markdown="1">
-<summary><span class="mc-name">formula<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+Note: Give topology only when the formula matches more than one isomer or polymorph and the data must say which, e.g. ethanol and dimethyl ether (C2H6O), or calcite and aragonite (CaCO3).
 
-The molecular formula of the molecule, written as a group of the material component's formula or as the whole formula.
+<details class="note mc-property" id="minimal.structure.material-component.topology.substance" markdown="1">
+<summary><span class="mc-name">substance<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The formula of the substance, either a group in the material component's formula or the whole formula.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
@@ -398,16 +400,16 @@ Examples: `C2H6O`.
 
 </details>
 
-<details class="note mc-property" id="minimal.structure.material-component.molecule.identifier" markdown="1">
+<details class="note mc-property" id="minimal.structure.material-component.topology.identifier" markdown="1">
 <summary><span class="mc-name">identifier<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-An identifier of the molecule's structure.
+An identifier of the substance's structure.
 
 | Required | Repeatable |
 |---|---|
 | yes | yes |
 
-<details class="note mc-property" id="minimal.structure.material-component.molecule.identifier.value" markdown="1">
+<details class="note mc-property" id="minimal.structure.material-component.topology.identifier.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
@@ -416,11 +418,11 @@ The identifier, in the form Annex I gives for its scheme when the scheme is list
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Examples: `InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3`, `CCO`.
+Examples: `InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3`, `CCO`, `ABC3_oP20_62_c_c_cd`.
 
 </details>
 
-<details class="note mc-property" id="minimal.structure.material-component.molecule.identifier.scheme" markdown="1">
+<details class="note mc-property" id="minimal.structure.material-component.topology.identifier.scheme" markdown="1">
 <summary><span class="mc-name">scheme<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The identifier scheme that the value belongs to.
@@ -429,7 +431,7 @@ The identifier scheme that the value belongs to.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `InChI`, `SMILES`. Other values are allowed. InChI is preferred where it can represent the molecule; SMILES otherwise or in addition.
+Recommended: `AFLOW`, `InChI`, `SMILES`. Other values are allowed. For a molecule, InChI is preferred where it can represent it; SMILES otherwise or in addition. For a crystal, the AFLOW prototype label.
 
 </details>
 

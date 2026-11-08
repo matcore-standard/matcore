@@ -58,7 +58,7 @@ def test_the_grammar_rejects_what_0034_excludes(formula, fragment):
     assert any(fragment in e for e in found), found
 
 
-@pytest.mark.parametrize('formula, variables, molecules', [
+@pytest.mark.parametrize('formula, variables, topologies', [
     ('Si', [], []),
     ('Si{x}Ge{1-x}', [('x', 0, 'Minimum'), ('x', 1, 'Maximum')], []),
     ('Cu{x}Ni{1-x}', [('x', 0.5, 'Initial'), ('x', 0.42, 'Average')], []),
@@ -66,16 +66,16 @@ def test_the_grammar_rejects_what_0034_excludes(formula, fragment):
     ('(H2O)0.9(C2H6O)0.1', [], ['C2H6O']),
     ('C2H6O', [], ['C2H6O']),
 ])
-def test_a_conforming_component_has_no_errors(formula, variables, molecules):
-    """Variables with a range or several types, a mixture whose group counts sum to 1, and a molecule that is
-    a group of the formula or the whole formula all conform (0034 items 2-4).
+def test_a_conforming_component_has_no_errors(formula, variables, topologies):
+    """Variables with a range or several types, a mixture whose group counts sum to 1, and a topology whose
+    substance is a group of the formula or the whole formula all conform (0034 items 2-4).
 
-    formula (str); variables (list[tuple]): (name, value, type) entries; molecules (list[str]): molecule formulas.
+    formula (str); variables (list[tuple]): (name, value, type) entries; topologies (list[str]): topology substances.
     """
-    assert component_errors(formula, variables, molecules) == []
+    assert component_errors(formula, variables, topologies) == []
 
 
-@pytest.mark.parametrize('formula, variables, molecules, fragment', [
+@pytest.mark.parametrize('formula, variables, topologies, fragment', [
     ('Si{x}Ge{1-x}', [], [], "'x' has no variable entry"),
     ('Si', [('x', 0, 'Minimum'), ('x', 1, 'Maximum')], [], "'x' is not in the formula"),
     ('Si{x}Ge{1-x}', [('x', 0, 'Minimum'), ('x', 0.5, 'Minimum')], [], 'more than one Minimum'),
@@ -87,14 +87,14 @@ def test_a_conforming_component_has_no_errors(formula, variables, molecules):
     ('Si{xx}', [], [], 'linear'),
     ('Si', [('X', 0, 'Minimum'), ('X', 1, 'Maximum')], [], 'one lowercase letter'),
 ])
-def test_each_component_rule_is_reported(formula, variables, molecules, fragment):
+def test_each_component_rule_is_reported(formula, variables, topologies, fragment):
     """An undefined or unused variable, a repeated type, a negative
-    count, mixture counts that do not sum to 1, a molecule that is not part of the formula, and a bad
+    count, mixture counts that do not sum to 1, a topology substance that is not part of the formula, and a bad
     variable name are each reported (0034 items 2-4).
 
-    formula (str); variables (list[tuple]); molecules (list[str]); fragment (str): part of the expected message.
+    formula (str); variables (list[tuple]); topologies (list[str]); fragment (str): part of the expected message.
     """
-    found = component_errors(formula, variables, molecules)
+    found = component_errors(formula, variables, topologies)
     assert any(fragment in e for e in found), found
 
 

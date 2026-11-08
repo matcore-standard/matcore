@@ -40,6 +40,15 @@ schemes:
     checksum: iso7064-mod11-2
     example: "https://isni.org/isni/0000000121491740"
     source: https://isni.org/page/linked-data/
+  AFLOW:
+    identifies: [crystal structure]
+    form: >-
+      The AFLOW prototype label (stoichiometry, Pearson symbol, space group number and Wyckoff positions,
+      joined by underscores), without the library's enumeration suffix.
+    pattern: "[A-Z][A-Za-z0-9]*_[amothc][PCSABIFR][0-9]+_[0-9]{1,3}(_[A-Za-z0-9]+)+"
+    checksum: null
+    example: "ABC3_oP20_62_c_c_cd"
+    source: https://arxiv.org/abs/1607.02532
   InChI:
     identifies: [molecule]
     form: The Standard InChI, which begins InChI=1S/.

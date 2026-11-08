@@ -20,7 +20,8 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
   The single source of Annex U's Tables U.3 and U.4, which build_docs.py generates into
   annex-u-units.md; it prevails over the annex. Factors are exact decimal text, e.g. "1e3" (0009).
 - `schema/identifier-schemes.yaml` — Annex I, the identifier schemes (ORCID, ROR, DOI, SWHID, ISNI;
-  InChI and SMILES for molecules, 0034): for each, entities identified, canonical form, pattern, check digit, example, source. Single source
+  AFLOW, InChI and SMILES for crystal structures and molecules, 0034): for each, entities
+  identified, canonical form, pattern, check digit, example, source. Single source
   of Annex I's Table I.1 and of identifier checks (scripts/check_identifiers.py), as units.yaml is
   for units; it prevails over the annex (0014).
 - `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
@@ -300,7 +301,7 @@ record or marked PROPOSED, NOT DECIDED.
      checksums instead of a checksum naming its file (0032); a required matcore-author names who
      created the metadata record (0033); a material component's composition is one chemical
      formula (groups, decimal counts, variables in braces, user-defined species J…) with
-     `variable` and `molecule` (InChI, SMILES, added to Annex I), and `constituent` is removed
+     `variable` and `topology` (AFLOW, InChI, SMILES, added to Annex I), and `constituent` is removed
      (0034; breaks 0.5.0 instances).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn

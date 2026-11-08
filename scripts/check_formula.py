@@ -2,7 +2,7 @@
 """Parse and check a material component's chemical formula (decision 0034).
 
 formula_errors() checks one formula against the grammar of the `formula` note; component_errors() also
-checks it against the component's `variable` and `molecule` entries; example_errors() applies
+checks it against the component's `variable` and `topology` entries; example_errors() applies
 component_errors() to every material component in examples/. Called by scripts/validate_schema.py;
 component_errors() is also what an instance validator applies.
 
@@ -196,11 +196,11 @@ def counts(terms):
             yield from counts(item)
 
 
-def component_errors(formula, variables, molecules):
+def component_errors(formula, variables, topologies):
     """Return the errors of a material component's composition, as messages.
 
     formula (str): its `formula`; variables (list[tuple]): its `variable` entries as (name, value, type), type
-    None when absent; molecules (list[str]): the `formula` of each of its `molecule` entries.
+    None when absent; topologies (list[str]): the `substance` of each of its `topology` entries.
     """
     parser = Parser(formula)
     try:
@@ -233,7 +233,7 @@ def component_errors(formula, variables, molecules):
             total.update(c)
         if abs(total[''] - 1) > TOLERANCE or any(abs(v) > TOLERANCE for k, v in total.items() if k):
             out.append(f'the counts of the groups of {formula!r}, a mixture, must sum to 1')
-    out += [f'molecule {m!r} is not a group of {formula!r} or the whole formula' for m in molecules
+    out += [f'topology {m!r} is not a group of {formula!r} or the whole formula' for m in topologies
             if m != formula and m not in parser.groups]
     return out
 
@@ -246,7 +246,7 @@ def example_errors():
             for mc in ET.parse(ROOT / 'examples' / ex['file']).getroot().iter('material-component'):
                 variables = [(v.findtext('name'), float(v.findtext('value')), v.findtext('type'))
                              for v in mc.findall('variable')]
-                molecules = [m.findtext('formula') for m in mc.findall('molecule')]
+                topologies = [t.findtext('substance') for t in mc.findall('topology')]
                 out += [f'examples/{ex["file"]}: {e}'
-                        for e in component_errors(mc.findtext('formula') or '', variables, molecules)]
+                        for e in component_errors(mc.findtext('formula') or '', variables, topologies)]
     return out

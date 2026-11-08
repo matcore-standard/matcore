@@ -371,25 +371,31 @@ properties:
         kind: inapplicable
         recommended-unit: null
         values:
-          terms: [Average, Initial, Maximum, Minimum]
+          terms: [Average, Final, Initial, Maximum, Minimum]
           note: >-
             The entries of one variable share its name, with at most one entry per type.
         repeatable: false
-    - name: molecule
+    - name: topology
       required: false
-      description: A molecule in the material component, identified by its structure, e.g. to distinguish isomers.
+      description: >-
+        The structure of a substance in the material component, given by an identifier, when its formula
+        alone does not determine it.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
       repeatable: true
+      notes:
+      - >-
+        Note: Give topology only when the formula matches more than one isomer or polymorph and the data must
+        say which, e.g. ethanol and dimethyl ether (C2H6O), or calcite and aragonite (CaCO3).
       subproperties:
-      - name: formula
+      - name: substance
         required: true
         description: >-
-          The molecular formula of the molecule, written as a group of the material component's formula or as
-          the whole formula.
+          The formula of the substance, either a group in the material component's formula or the whole
+          formula.
         type: string
         extent: []
         kind: inapplicable
@@ -399,7 +405,7 @@ properties:
         repeatable: false
       - name: identifier
         required: true
-        description: An identifier of the molecule's structure.
+        description: An identifier of the substance's structure.
         type: null
         extent: null
         kind: null
@@ -415,7 +421,7 @@ properties:
           kind: inapplicable
           recommended-unit: null
           values:
-            examples: ['InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3', CCO]
+            examples: ['InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3', CCO, ABC3_oP20_62_c_c_cd]
           repeatable: false
         - name: scheme
           required: true
@@ -425,9 +431,10 @@ properties:
           kind: inapplicable
           recommended-unit: null
           values:
-            terms: [InChI, SMILES]
+            terms: [AFLOW, InChI, SMILES]
             note: >-
-              InChI is preferred where it can represent the molecule; SMILES otherwise or in addition.
+              For a molecule, InChI is preferred where it can represent it; SMILES otherwise or in addition. For
+              a crystal, the AFLOW prototype label.
           repeatable: false
     - name: form
       required: true
