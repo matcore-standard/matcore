@@ -575,14 +575,14 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #65 merged 2026-11-07] 0033 amended: the example's matcore-author gains ORCID
    https://orcid.org/0000-0003-3311-6299; tests/test_examples.py checks every identifier in the
    minimal example against Annex I.
-   [todo] minimal composition formula by 0034: material-component's `constituent` replaced by
+   [done, PR #66 merged 2026-11-08] minimal composition formula by 0034: material-component's `constituent` replaced by
    `formula*` (grammar in its note), `variable` (name*, value*, type*; type required, and Final
    added, by the amendments of 2026-11-08) and `topology` (substance, identifier with schemes AFLOW,
    InChI and SMILES; replaces `molecule` by the second amendment); scripts/check_formula.py parses
    and checks formulas (called by validate_schema.py; reused by step 9); Annex I gains AFLOW, InChI
    and SMILES rows;
-   examples/minimal.xml writes <formula>Si</formula>. In PR #66 (open).
-   PROPOSED, NOT DECIDED (next, after 0034 lands): simulation conditions (temperature, stress, …)
+   examples/minimal.xml writes <formula>Si</formula>.
+   PROPOSED, NOT DECIDED (next): simulation conditions (temperature, stress, …)
    as repeatable value + unit with a `type` (minimum, maximum, average, initial, final) for
    nonuniform conditions, amending 0026; it also takes up fraction's "as set up" note.
    [todo] md in file order, starting with computation.
