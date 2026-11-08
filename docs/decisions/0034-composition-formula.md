@@ -27,7 +27,7 @@ Sources compared:
      - `value*`: float, dimensionless. Description: "A value of the variable."
      - `type*`: string, open terms Average, Final, Initial, Maximum, Minimum. Description: "What the value represents." The note says that the entries of one variable share its name, with at most one entry per type. (Amended 2026-11-08: `type` is required. A value without a type would hold throughout, a fixed composition, which item 3 writes as a number in the formula. Second amendment, 2026-11-08: Final is added, for a composition at the end of a simulation in which it changes.)
    - **`topology`**: optional, repeatable, a container. Description: "The structure of a substance in the material component, given by an identifier, when its formula alone does not determine it." Note: "Give topology only when the formula matches more than one isomer or polymorph and the data must say which, e.g. ethanol and dimethyl ether (C2H6O), or calcite and aragonite (CaCO3)." Its subproperties:
-     - `formula*`: string. Description: "The formula of the substance, written as a group of the material component's formula or as the whole formula."
+     - `substance*`: string. Description: "The formula of the substance, either a group in the material component's formula or the whole formula." (Third amendment, 2026-11-08: named `substance`, not `formula`, so that the component's `formula` is the only property of that name.)
      - `identifier*`: repeatable, a container of `value*` and `scheme*` as in creator's identifier, with scheme terms AFLOW, InChI and SMILES. The note says: for a molecule, InChI is preferred where it can represent it, and SMILES otherwise or in addition; for a crystal, the AFLOW prototype label.
 
      (Second amendment, 2026-11-08: `topology` replaces `molecule`, so that polymorphs of a crystal, which share a formula, are identified as isomers of a molecule are; its note says when to give it.)
@@ -46,7 +46,7 @@ Sources compared:
    - the element symbols;
    - that every variable in `formula` has at least one `variable` entry, and every `variable` entry names a variable of the formula;
    - that counts stay at or above 0, and that the counts of a mixture of groups sum to 1, at each value given for the variables (for a linear expression, Minimum and Maximum bound the range);
-   - that each `topology › formula` is a group of the component's formula or the whole formula.
+   - that each `topology › substance` is a group of the component's formula or the whole formula.
 
    The 118 symbols, now the parser's list, keep their source: the CIAAW Standard Atomic Weights table.
 5. **Annex I** gains rows for InChI and SMILES (identifies: molecule) and AFLOW (identifies: crystal structure; the prototype label without the enumeration suffix; second amendment), each field traced to the scheme's own documentation in the pull request. Their checks are a pattern on the form only, with no checksum.

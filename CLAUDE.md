@@ -572,7 +572,7 @@ record or marked PROPOSED, NOT DECIDED.
    minimal example against Annex I.
    [todo] minimal composition formula by 0034: material-component's `constituent` replaced by
    `formula*` (grammar in its note), `variable` (name*, value*, type*; type required, and Final
-   added, by the amendments of 2026-11-08) and `topology` (formula, identifier with schemes AFLOW,
+   added, by the amendments of 2026-11-08) and `topology` (substance, identifier with schemes AFLOW,
    InChI and SMILES; replaces `molecule` by the second amendment); scripts/check_formula.py parses
    and checks formulas (called by validate_schema.py; reused by step 9); Annex I gains AFLOW, InChI
    and SMILES rows;
