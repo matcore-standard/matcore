@@ -47,6 +47,7 @@ QUDT namespace: `http://qudt.org/vocab/quantitykind/`. The dimension vector is Q
 | MassDensity | MassDensity | A0E0L-3I0M1H0T0D0 | kg·m⁻³ |
 | NumberDensity | NumberDensity | A0E0L-3I0M0H0T0D0 | m⁻³ |
 | HeatFluxDensity | HeatFluxDensity | A0E0L0I0M1H0T-3D0 | kg·s⁻³ |
+| ElectricFieldStrength | ElectricFieldStrength | A0E-1L1I0M1H0T-3D0 | kg·m·s⁻³·A⁻¹ |
 | Angle | PlaneAngle | A0E0L0I0M0H0T0D1 | 1 (rad) |
 | AmountOfSubstance | AmountOfSubstance | A1E0L0I0M0H0T0D0 | mol |
 | dimensionless | Dimensionless | A0E0L0I0M0H0T0D1 | 1 |
@@ -108,6 +109,7 @@ QUDT namespace: `http://qudt.org/vocab/unit/`. "—" in the QUDT column means th
 | `1/angstrom^3` | NumberDensity | — | 1/angstrom^3 | 1 × 10³⁰ m⁻³ | exact |
 | `1/m^3` | NumberDensity | PER-M3 | 1/m^3 | 1 | exact |
 | `W/m^2` | HeatFluxDensity | W-PER-M2 | W/m^2 | 1 | exact |
+| `V/m` | ElectricFieldStrength | V-PER-M | V/m | 1 | exact |
 | `rad` | Angle | RAD | radian | 1 | exact |
 | `degree` | Angle | DEG | degree | π/180 rad | exact |
 | `mol` | AmountOfSubstance | MOL | mol | 1 | exact |
