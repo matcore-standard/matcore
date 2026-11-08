@@ -1424,6 +1424,80 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
+<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential" markdown="1">
+<summary><span class="mc-name">chemical-potential</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+The chemical potential of a species imposed on the simulated system by a reservoir, e.g. in a grand-canonical or semi-grand-canonical simulation.
+
+| Required | Repeatable |
+|---|---|
+| no | yes |
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | float | [] | Energy | eV |
+
+The chemical potential <i>μ</i> per particle, or the difference <i>μ</i>(species) − <i>μ</i>(relative-to). An absolute value is relative to the energy zero of the model given in `interaction-model`, so absolute values from different models do not compare. A value in a molar unit (e.g. kJ/mol) is converted to an energy per particle before it is given.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential.species" markdown="1">
+<summary><span class="mc-name">species<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The species whose chemical potential is given, as an element symbol, a user-defined species or a group of a material component's formula.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+Examples: `Cu`, `H2O`, `Ja`.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential.relative-to" markdown="1">
+<summary><span class="mc-name">relative-to</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+A second species, when the value is the difference between the chemical potentials of species and of this one.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Note: Give relative-to when the simulation imposes a difference of chemical potentials, as a semi-grand-canonical simulation does.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential.qualifier" markdown="1">
+<summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+What the value represents.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the species. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+
+</details>
+
+</details>
+
 </details>
 
 <details class="note mc-property" id="minimal.computation.software" markdown="1">
