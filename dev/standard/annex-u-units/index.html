@@ -1574,6 +1574,14 @@
 <td>exact</td>
 </tr>
 <tr>
+<td><code>V/angstrom</code></td>
+<td>ElectricFieldStrength</td>
+<td>—</td>
+<td>V/angstrom</td>
+<td>1 × 10¹⁰ V·m⁻¹</td>
+<td>exact</td>
+</tr>
+<tr>
 <td><code>rad</code></td>
 <td>Angle</td>
 <td>RAD</td>
@@ -1615,7 +1623,7 @@
 <p><strong>Note 4 (QUDT quantity-kind links are not a validation basis).</strong> QUDT attaches its own quantity kinds to units, and these are often narrower or differently named than MatCore's: <code>PER-SEC</code> is linked to Frequency and DecayConstant (not InverseTime); <code>PER-M3</code> to InverseVolume (not NumberDensity); <code>W-PER-M2</code> to PowerPerArea (not HeatFluxDensity); <code>GigaPA</code>, <code>KiloBAR</code> and <code>BAR</code> to ForcePerArea (not Pressure); <code>EV-PER-ANGSTROM</code> to TotalLinearStoppingPower (not Force). In every case the dimension vector agrees with the MatCore kind, so compatibility is validated by dimension vector (Rule 7), and the QUDT unit IRI serves only as a stable identifier.</p>
 <p><strong>Note 5 (stale constants in reference vocabularies).</strong> QUDT's own conversion multipliers for <code>E_h</code> (4.359 743 94 × 10⁻¹⁸ J) and <code>AMU</code> (1.660 538 782 83 × 10⁻²⁷ kg) are CODATA 2006 values, and GNU Units 2.23 uses CODATA 2018 values (hartree 4.359 744 722 2071 × 10⁻¹⁸ J, bohrradius 5.291 772 109 02 × 10⁻¹¹ m, amu 1.660 539 066 6 × 10⁻²⁷ kg). The factors in Table U.4 are therefore normative in MatCore (Rule 5) and take precedence over the values embedded in either reference vocabulary.</p>
 <p><strong>Note 6 (GNU spelling of bohr).</strong> GNU Units does not define <code>bohr</code>; the GNU name is <code>bohrradius</code>. The MatCore symbol remains <code>bohr</code>; the mapping is given in the GNU column.</p>
-<p><strong>Note 7 (units absent from QUDT).</strong> <code>Ry</code>, <code>bohr</code>, <code>meV</code>, <code>nm^3</code>, <code>1/ps</code>, <code>1/bohr</code>, <code>bohr^3</code>, <code>K/angstrom</code>, <code>eV/angstrom^3</code>, <code>hartree/bohr</code> and <code>1/angstrom^3</code> have no unit IRI in QUDT Units v3.3.0. For these, the MatCore symbol is the identifier and the quantity-kind IRI in Table U.3 supplies the semantic anchor. QUDT accepts contributions through its public repository, and IRIs will be added to this table if and when they are published.</p>
+<p><strong>Note 7 (units absent from QUDT).</strong> <code>Ry</code>, <code>bohr</code>, <code>meV</code>, <code>nm^3</code>, <code>1/ps</code>, <code>1/bohr</code>, <code>bohr^3</code>, <code>K/angstrom</code>, <code>eV/angstrom^3</code>, <code>hartree/bohr</code>, <code>1/angstrom^3</code> and <code>V/angstrom</code> have no unit IRI in QUDT Units v3.3.0. For these, the MatCore symbol is the identifier and the quantity-kind IRI in Table U.3 supplies the semantic anchor. QUDT accepts contributions through its public repository, and IRIs will be added to this table if and when they are published.</p>
 <h2 id="u5-references">U.5 References</h2>
 <ul>
 <li>QUDT Units Vocabulary v3.3.0 and QUDT Quantity Kinds Vocabulary, <code>https://qudt.org/vocab/unit/</code> and <code>https://qudt.org/vocab/quantitykind/</code> (source: <code>https://github.com/qudt/qudt-public-repo</code>), consulted 2026-09-27.</li>
