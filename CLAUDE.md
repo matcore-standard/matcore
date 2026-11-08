@@ -318,7 +318,8 @@ record or marked PROPOSED, NOT DECIDED.
      every simulation condition is defined as imposed, and a measured quantity is a result, not a
      condition (0039); the conditions electric-field, magnetic-field (as B) and body-force (per unit
      mass) are added, with the Kinds ElectricFieldStrength, MagneticFluxDensity and Acceleration and
-     the units V/m, V/angstrom, T and m/s^2 (0040).
+     the units V/m, V/angstrom, T and m/s^2 (0040); electrode-potential is added with a required
+     reference (SHE, RHE, Vacuum), the Kind ElectricPotential and the unit V (0041).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -638,7 +639,8 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] electrode potential by 0041: Kind ElectricPotential; unit V by its own PR; then
    electrode-potential (value, unit, reference* with terms SHE, RHE, Vacuum, qualifier) after
    body-force, for the working electrode. Ruling committed on main. [done, PR #76 merged 2026-11-08]
-   unit V with the Kind ElectricPotential.
+   unit V with the Kind ElectricPotential. The condition on branch electrode-potential (committed, not
+   pushed; PR to open).
    PROPOSED, NOT DECIDED: an `electrode` subproperty naming the electrode, so several electrodes can
    each have entries (0041).
    PROPOSED, NOT DECIDED (md): a minimal `chemical-potential` condition (repeatable, naming a

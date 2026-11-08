@@ -1453,6 +1453,66 @@ properties:
             Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
             Maximum are taken component by component.
         repeatable: false
+    - name: electrode-potential
+      required: false
+      description: >-
+        The potential of the working electrode imposed on the simulated system, e.g. by a potentiostat in a
+        constant-potential simulation, relative to the reference given in `reference`.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: ElectricPotential
+        recommended-unit: V
+        values:
+          note: >-
+            The potential of the working electrode relative to `reference`.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: reference
+        required: true
+        description: The reference against which the potential is given.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [SHE, RHE, Vacuum]
+          note: >-
+            One of: "SHE" – The standard hydrogen electrode. "RHE" – The reversible hydrogen electrode, at the pH
+            of the simulation. "Vacuum" – The vacuum level, giving an absolute potential.
+        repeatable: false
+      - name: qualifier
+        required: false
+        description: What the value represents.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Average, Final, Initial, Maximum, Minimum]
+          note: >-
+            Without a qualifier, the value holds throughout the simulation and across the system, and the entry
+            is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g.
+            Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
+            Maximum are taken component by component.
+        repeatable: false
   - name: software
     required: true
     description: Identification of a computer package used to perform the calculations.

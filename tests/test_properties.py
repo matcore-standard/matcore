@@ -258,6 +258,7 @@ SIMULATION_CONDITIONS = {
     'electric-field': ('float', [3], 'ElectricFieldStrength', 'V/m'),
     'magnetic-field': ('float', [3], 'MagneticFluxDensity', 'T'),
     'body-force': ('float', [3], 'Acceleration', 'm/s^2'),
+    'electrode-potential': ('float', [], 'ElectricPotential', 'V'),
 }
 
 
@@ -863,7 +864,8 @@ def test_varying_conditions_are_qualified_entries(name):
     c = sub(sub(minimal('computation'), 'simulation-conditions'), name)
     names = [s['name'] for s in c['subproperties']]
     unit = [] if datum(c)['kind'] == 'dimensionless' else ['unit']
-    assert c['repeatable'] and names == ['value', *unit, 'qualifier']
+    convention = ['reference'] if name == 'electrode-potential' else []  # 0041
+    assert c['repeatable'] and names == ['value', *unit, *convention, 'qualifier']
     q = sub(c, 'qualifier')
     assert (q['required'], q['values']['terms'], q['values']['note']) == (False, list(QUALIFIERS), QUALIFIER_NOTE)
     if not unit:
@@ -931,6 +933,9 @@ IMPOSED_DEFINITIONS = {
                       '<i>B</i>.',
     'body-force': 'The body force per unit mass imposed on the simulated system, e.g. gravity or a constant force '
                   'driving a flow.',
+    'electrode-potential': 'The potential of the working electrode imposed on the simulated system, e.g. by a '
+                           'potentiostat in a constant-potential simulation, relative to the reference given in '
+                           '`reference`.',
 }
 SC_NOTE = ('Note: The conditions below, other than type and description, are given as appropriate to the simulation. '
            'Each is imposed on the simulation as an external constraint. A quantity computed from the simulation, e.g. '
@@ -976,6 +981,20 @@ def test_applied_fields_are_vectors_in_the_cell_basis(name, vector):
     assert note.startswith(f'The components of the {vector}. ')
     assert 'where e<sub>1</sub> is in the direction of a' in note
     assert c['notes'] == ['Note: Requires cell, which defines the basis of the vector components.']
+
+
+def test_electrode_potential_names_its_reference():
+    """A potential means nothing without its reference, which a unit cannot express, so it is a required
+    enumerated subproperty beside the value, each term defined (0041 item 3)."""
+    c = sub(sub(minimal('computation'), 'simulation-conditions'), 'electrode-potential')
+    r = sub(c, 'reference')
+    assert (r['required'], r['repeatable'], r['type'], r['extent'], r['kind'], r['recommended-unit']) == (
+        True, False, 'string', [], 'inapplicable', None)
+    assert r['values']['terms'] == ['SHE', 'RHE', 'Vacuum']
+    assert r['description'] == 'The reference against which the potential is given.'
+    assert r['values']['note'] == ('One of: "SHE" – The standard hydrogen electrode. "RHE" – The reversible hydrogen '
+                                   'electrode, at the pH of the simulation. "Vacuum" – The vacuum level, giving an '
+                                   'absolute potential.')
 
 
 def test_number_density_is_gone():
