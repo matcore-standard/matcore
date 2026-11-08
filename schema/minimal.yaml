@@ -630,8 +630,8 @@ properties:
   - name: simulation-conditions
     required: true
     description: >-
-      The interactions between the system being modeled and the rest of the world maintained during the
-      computation.
+      The conditions imposed on the simulated system during the computation, e.g. by a thermostat, a barostat,
+      a loading device or a fixed simulation cell.
     type: null
     extent: null
     kind: null
@@ -640,10 +640,11 @@ properties:
     repeatable: false
     notes:
     - >-
-      Note: The conditions below, other than type and description, are given as appropriate to the
-      simulation. Giving a condition means that its value is imposed on the simulation as an external
-      constraint. A condition that varies is given as several entries, each with a qualifier; the
-      description explains how it varies.
+      Note: The conditions below, other than type and description, are given as appropriate to the simulation.
+      Each is imposed on the simulation as an external constraint. A quantity computed from the simulation,
+      e.g. a heat flux measured under an imposed temperature gradient or the temperature of a microcanonical
+      run, is a result, not a condition, and is not given here. A condition that varies is given as several
+      entries, each with a qualifier; the description explains how it varies.
     subproperties:
     - name: type
       required: true
@@ -731,7 +732,9 @@ properties:
       repeatable: false
     - name: number-of-particles
       required: false
-      description: A count of atoms or other discrete entities comprising the material.
+      description: >-
+        The number of particles (atoms or other discrete entities) in the simulated system, as imposed by the
+        simulation.
       type: null
       extent: null
       kind: null
@@ -767,7 +770,7 @@ properties:
         repeatable: false
     - name: volume
       required: false
-      description: The amount of space occupied by the material.
+      description: The volume of the simulated system, as imposed by the simulation.
       type: null
       extent: null
       kind: null
@@ -812,7 +815,7 @@ properties:
         repeatable: false
     - name: mass-density
       required: false
-      description: The total mass of the material divided by the volume it occupies.
+      description: The mass density of the simulated system, as imposed by the simulation.
       type: null
       extent: null
       kind: null
@@ -857,7 +860,7 @@ properties:
         repeatable: false
     - name: cell
       required: false
-      description: The domain occupied by the material in the simulation (if fixed).
+      description: The simulation cell, as imposed by the simulation.
       type: null
       extent: null
       kind: null
@@ -877,7 +880,7 @@ properties:
             Ordered list of three vectors (a, b, c), each with three components, that define the
             simulation cell. `value[i][j]` is the j-th Cartesian component, in the frame of the simulation,
             of the i-th cell vector, so the rows are a, b and c. The vectors (a, b, c) need not be orthogonal, and the magnitudes (|a|, |b|,
-            |c|) are the supercell vector lengths. The unit applies to all nine components.
+            |c|) are the cell vector lengths. The unit applies to all nine components.
         repeatable: false
       - name: unit
         required: true
@@ -906,8 +909,8 @@ properties:
     - name: cell-reference
       required: false
       description: >-
-        The domain occupied by the material in the simulation in configuration relative to which strains
-        are defined.
+        The simulation cell in the reference configuration, relative to which strain and strain rate are
+        defined.
       type: null
       extent: null
       kind: null
@@ -959,8 +962,8 @@ properties:
     - name: cell-periodicity
       required: false
       description: >-
-        Specification of whether periodic boundary conditions are applied along the cell vector
-        directions. This applies to both cell and cell-reference.
+        Whether periodic boundary conditions are applied along each cell vector, for both cell and
+        cell-reference.
       type: bool
       extent: [3]
       kind: inapplicable
@@ -974,8 +977,8 @@ properties:
     - name: temperature
       required: false
       description: >-
-        A measure of the hotness or coldness of an external heat bath in thermal contact with the
-        material.
+        The temperature imposed on the simulated system, e.g. by a thermostat or a heat bath in thermal
+        contact with it.
       type: null
       extent: null
       kind: null
@@ -1021,8 +1024,8 @@ properties:
     - name: stress
       required: false
       description: >-
-        A uniform force per unit current area, including both normal and shear components, applied to
-        the material during the simulation through contact with an external loading device.
+        The stress, normal and shear components, imposed on the simulated system, e.g. by a barostat or an
+        external loading device.
       type: null
       extent: null
       kind: null
@@ -1031,13 +1034,11 @@ properties:
       repeatable: true
       notes:
       - >-
-        Note 1: Requires the definition of cell in order for a basis to be defined
-        relative to which the tensor components are given.
+        Note 1: Requires cell, which defines the basis of the tensor components.
       - >-
-        Note 2: The adopted sign convention is for tensile normal stresses to be positive, and
-        compressive normal stresses to be negative. This implies that for a material subjected to a
-        positive pressure <i>p</i>, the stress tensor components are [-<i>p</i>, -<i>p</i>, -<i>p</i>,
-        0, 0, 0].
+        Note 2: The adopted sign convention is for tensile normal stresses to be positive, and compressive
+        normal stresses to be negative. This implies that for a material subjected to a positive pressure
+        <i>p</i>, the stress tensor components are [-<i>p</i>, -<i>p</i>, -<i>p</i>, 0, 0, 0].
       subproperties:
       - name: value
         required: true
@@ -1083,8 +1084,7 @@ properties:
     - name: strain
       required: false
       description: >-
-        A deformation relative to a reference configuration imposed on the simulation cell expressed in
-        the referential frame (Lagrangian strain tensor).
+        The strain imposed on the simulation cell relative to cell-reference, as the Lagrangian strain tensor.
       type: null
       extent: null
       kind: null
@@ -1093,8 +1093,7 @@ properties:
       repeatable: true
       notes:
       - >-
-        Note: Requires the definition of cell-reference in order for the basis to be defined relative to
-        which the tensor components are given.
+        Note: Requires cell-reference, which defines the basis of the tensor components.
       subproperties:
       - name: value
         required: true
@@ -1132,9 +1131,8 @@ properties:
     - name: strain-rate
       required: false
       description: >-
-        The derivative with respect to time of a deformation relative to a reference configuration
-        imposed on the simulation cell expressed in the referential frame (Lagrangian strain rate
-        tensor).
+        The strain rate imposed on the simulation cell relative to cell-reference, as the time derivative of
+        the Lagrangian strain tensor.
       type: null
       extent: null
       kind: null
@@ -1143,8 +1141,7 @@ properties:
       repeatable: true
       notes:
       - >-
-        Requires the definition of cell-reference in order for the basis to be defined relative to which
-        the tensor components are given
+        Note: Requires cell-reference, which defines the basis of the tensor components.
       subproperties:
       - name: value
         required: true
@@ -1191,14 +1188,17 @@ properties:
     - name: heat-flux
       required: false
       description: >-
-        The amount of thermal energy transferred to the material per unit area per unit time along a
-        given direction.
+        The heat flux imposed on the simulated system, the thermal energy per unit area per unit time driven
+        through it, e.g. by exchanging energy between a heat source and a heat sink.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
       repeatable: true
+      notes:
+      - >-
+        Note: Give heat-flux or temperature-gradient, whichever the simulation imposes; the other is a result.
       subproperties:
       - name: value
         required: true
@@ -1209,7 +1209,7 @@ properties:
         recommended-unit: W/m^2
         values:
           note: >-
-            The components of the heat flux vector q. The heat flux components are expressed relative to
+            The components of the heat flux vector <i>q</i>. The heat flux components are expressed relative to
             an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is
             in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> =
             e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may
@@ -1242,14 +1242,17 @@ properties:
     - name: temperature-gradient
       required: false
       description: >-
-        A physical quantity that describes the rate and direction of maximum temperature change per unit
-        distance.
+        The temperature gradient imposed on the simulated system, e.g. by thermostatting two regions at
+        different temperatures.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
       repeatable: true
+      notes:
+      - >-
+        Note: Give heat-flux or temperature-gradient, whichever the simulation imposes; the other is a result.
       subproperties:
       - name: value
         required: true
