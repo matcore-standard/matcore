@@ -628,8 +628,8 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] applied fields by 0040: Kinds ElectricFieldStrength, MagneticFluxDensity, Acceleration;
    units V/m, V/angstrom, T, m/s^2, one PR each with every field traced (the first of each Kind adds
    the Kind); then electric-field (V/m), magnetic-field (B, T) and body-force (per unit mass, m/s^2)
-   as [3] vector conditions after temperature-gradient. Ruling committed on main. Unit V/m (with
-   ElectricFieldStrength) on branch unit-v-per-m (committed, not pushed; PR to open).
+   as [3] vector conditions after temperature-gradient. Ruling committed on main. [done, PR #72
+   merged 2026-11-08] unit V/m with the Kind ElectricFieldStrength.
    [todo] electrode potential by 0041: Kind ElectricPotential; unit V by its own PR; then
    electrode-potential (value, unit, reference* with terms SHE, RHE, Vacuum, qualifier) after
    body-force, for the working electrode. Ruling committed on main.
