@@ -265,9 +265,11 @@ record or marked PROPOSED, NOT DECIDED.
      repository. Site pages do not link to them.
    - [done, PR #3] Versioning (0010): releases.yaml, generated Revision History, version line on
      standard pages, versioned permalinks, CI deploys per version. 0.4.0 released 2026-11-01
-     (tag v0.4.0). 0.5.0 released 2026-11-04 (tag v0.5.0; minimal complete); the site's `latest`
-     is 0.5.0 and `dev` is main.
-   - Changes to the standard since 0.5.0, for the next release's entry in releases.yaml: §1.3
+     (tag v0.4.0). 0.5.0 released 2026-11-04 (tag v0.5.0; minimal complete). 0.6.0 entry committed
+     on main 2026-11-08 (dft complete; rulings 0016–0043); the human tags it v0.6.0 and pushes the
+     tag, after which the site's `latest` is 0.6.0 and `dev` is main.
+   - Changes to the standard since 0.6.0, for the next release's entry in releases.yaml: none yet.
+   - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
      gains a checksum beside unique-identifier (step 5); dft valence-electron-model's typed fields

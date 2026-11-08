@@ -3,6 +3,21 @@
 # page from this file. A release adds an entry here in one commit on main, then tags that commit vX.Y.Z.
 # description: one item per line of the history table's cell.
 releases:
+  - version: 0.6.0
+    date: 2026-11-08
+    change_type: Minor (Breaking)
+    sections: Across document
+    description:
+      - "- DFT section complete: every property has a type, extent, Kind, recommended unit and structured values"
+      - "- Structure and composition: a material component is described by one chemical formula (with variables, groups and user-defined species) and by its form, role, fraction and phase; isomers and polymorphs are identified by InChI, SMILES or AFLOW prototype labels"
+      - "- Simulation conditions: every condition is defined as imposed; a varying value is given as qualified entries (initial, final, average, minimum, maximum); the simulation type is classified by thermodynamic state, openness, time dependence and spatial uniformity; added electric and magnetic fields, body force, electrode potential and chemical potential; number density removed"
+      - "- Software: one entry per layer (simulation code, calculation method, workflow framework, script), with exact identification, dependencies and build options; files carry an encoding and checksums"
+      - "- Added publication, dataset location and the author of the metadata record; licenses as SPDX identifiers with name, link and scope; provenance agents described like creators"
+      - "- Pure numbers are written without a unit; generic parameters defined in the Preamble"
+      - "- Annex U gains four Kinds and five units; Annex I gains InChI, SMILES and AFLOW"
+      - "- Preamble: goals of FAIR data and AI readiness, acronyms defined, methods that supply energies and forces distinguished, and the order of array values"
+      - "- Renaming of some properties (e.g. citation to publication, pseudopotential to pseudopotential-or-paw, method to method-density)"
+    approved_by: E. B. Tadmor
   - version: 0.5.0
     date: 2026-11-04
     change_type: Minor (Breaking)

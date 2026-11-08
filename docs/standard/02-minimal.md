@@ -1,6 +1,6 @@
 # 2.1 Minimal MatCore Metadata
 
-<p class="mc-version" data-version="0.5.0">Version 0.5.0</p>
+<p class="mc-version" data-version="0.6.0">Version 0.6.0</p>
 
 The minimal MatCore metadata includes aspects of a dataset deemed important to report for data findability and reuse and are *universal* across all computational methods. The list of minimal metadata is tabulated below.
 
