@@ -29,10 +29,7 @@
   <description>The original DFT training data for the general-purpose silicon interatomic potential described in the associated publication. The kinds of configuration that were included were selected based on intuition and past experience to obtain good coverage pertaining to a range of properties.</description>
   <structure>
     <material-component>
-      <constituent>
-        <species>Si</species>
-        <concentration>1</concentration>
-      </constituent>
+      <formula>Si</formula>
       <form>Bulk</form>
       <phase>Single crystal</phase>
       <description>A variety of Si configurations including different phases, surfaces, vacancies, interstitials, dislocations and crack tips.</description>
@@ -40,10 +37,7 @@
   </structure>
   <structure>
     <material-component>
-      <constituent>
-        <species>Si</species>
-        <concentration>1</concentration>
-      </constituent>
+      <formula>Si</formula>
       <form>Slab</form>
       <phase>Single crystal</phase>
     </material-component>

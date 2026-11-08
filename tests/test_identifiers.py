@@ -3,6 +3,7 @@ and its own example passes its pattern and check digit, so a broken rule cannot 
 import sys
 from pathlib import Path
 
+import pytest
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -10,10 +11,37 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from check_identifiers import SCHEMES, identifier_errors, scheme_terms_errors, table_errors  # noqa: E402
 
 
-def test_table_lists_the_0014_schemes_and_is_well_formed():
-    """The five schemes of 0014 are present, and every entry passes its own checks."""
-    assert set(SCHEMES) == {'ORCID', 'ROR', 'DOI', 'SWHID', 'ISNI'}
+def test_table_lists_the_0014_and_0034_schemes_and_is_well_formed():
+    """The five schemes of 0014 and the three topology schemes of 0034 are present, and every entry passes
+    its own checks."""
+    assert set(SCHEMES) == {'ORCID', 'ROR', 'DOI', 'SWHID', 'ISNI', 'AFLOW', 'InChI', 'SMILES'}
+    assert SCHEMES['InChI']['identifies'] == SCHEMES['SMILES']['identifies'] == ['molecule']
+    assert SCHEMES['AFLOW']['identifies'] == ['crystal structure']
     assert table_errors(SCHEMES) == []
+
+
+@pytest.mark.parametrize('scheme, value, ok', [
+    ('InChI', 'InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3', True),   # ethanol
+    ('InChI', 'InChI=1S/C2H6O/c1-3-2/h1-2H3', True),        # dimethyl ether
+    ('InChI', 'InChI=1/C2H6O/c1-2-3/h3H,2H2,1H3', False),   # non-standard prefix
+    ('InChI', 'InChI=1BB/C30H18O14Ti', False),              # beta, "not stable across releases"
+    ('InChI', 'C2H6O', False),
+    ('SMILES', 'CCO', True), ('SMILES', '[CH3][CH2][OH]', True), ('SMILES', 'Oc1ccccc1.NCCO', True),
+    ('SMILES', 'C C O', False), ('SMILES', '', False),
+    ('AFLOW', 'ABC3_hR10_167_a_b_e', True),                 # calcite
+    ('AFLOW', 'ABC3_oP20_62_c_c_cd', True),                 # aragonite
+    ('AFLOW', 'AB2CD6_mP20_11_e_2e_e_2e2f', True),
+    ('AFLOW', 'ABC3_hR10_167_a_b_e-002', False),            # library enumeration suffix
+    ('AFLOW', 'ABC3_xR10_167_a_b_e', False),                # x is no crystal system
+    ('AFLOW', 'CaCO3', False)])
+def test_topology_identifiers(scheme, value, ok):
+    """A molecule's InChI is the Standard InChI (prefix InChI=1S/), stable across software versions; a SMILES
+    uses only the characters of the OpenSMILES grammar; a crystal's AFLOW prototype label has its four parts
+    and no enumeration suffix, as OpenKIM writes it (0034 item 5, second amendment).
+
+    scheme (str); value (str): a candidate identifier; ok (bool): whether it conforms.
+    """
+    assert (identifier_errors(scheme, value) == []) == ok
 
 
 def test_real_identifiers_pass_and_altered_ones_fail():

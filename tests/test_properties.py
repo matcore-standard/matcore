@@ -109,16 +109,27 @@ def material_component():
     return sub(minimal('structure'), 'material-component')
 
 
+# 0034: a component's composition is one formula, with the variables it uses and, where the formula is
+# ambiguous, the topology of its isomers or polymorphs.
+COMPOSITION = (
+    ('formula', True, False, 'string', (), ()),
+    ('variable', False, True, None, (), (
+        ('name', True, False, 'string', (), ()), ('value', True, False, 'float', (), ()),
+        ('type', True, False, 'string', ('Average', 'Final', 'Initial', 'Maximum', 'Minimum'), ()))),
+    ('topology', False, True, None, (), (
+        ('substance', True, False, 'string', (), ()),
+        ('identifier', True, True, None, (), (
+            ('value', True, False, 'string', (), ()), ('scheme', True, False, 'string', ('AFLOW', 'InChI', 'SMILES'), ()))))))
+
+
 def test_structure_is_made_of_components_with_a_form_and_a_role():
     """A dataset models one or more structures, each made of material components; a composite has no single
     form, so each component carries its own form, and its role says how it combines with the others (a
     film on a substrate, an inclusion in a matrix). A component may have several phases, each a separate
     entry, so phase is singular (0025)."""
     p = minimal('structure')
-    constituent = ('constituent', True, True, None, (), (
-        ('species', True, False, 'string', (), ()), ('concentration', True, False, 'float', (), ())))
     component = ('material-component', True, True, None, (), (
-        constituent, ('form', True, False, 'string', FORMS, ()), ('role', False, False, 'string', ROLES, ()),
+        *COMPOSITION, ('form', True, False, 'string', FORMS, ()), ('role', False, False, 'string', ROLES, ()),
         ('fraction', False, False, 'float', (), ()), ('phase', False, True, 'string', PHASES, ()),
         ('description', False, False, 'string', (), ()), ('microstructure', False, False, 'string', (), ())))
     assert tree(p) == ('structure', True, True, None, (), (
@@ -160,39 +171,58 @@ def test_fraction_is_an_atomic_fraction_of_the_structure(value, ok):
     assert Draft202012Validator(value_schema(f)).is_valid(value) == ok
 
 
-@pytest.mark.parametrize('value, ok', [(0, True), (0.125, True), (1, True), (-0.1, False), (1.5, False),
-                                       (12.5, False)])
-def test_concentration_is_an_atomic_fraction(value, ok):
-    """concentration is an atomic fraction, a dimensionless number from 0 to 1 whose unit is
-    nothing, since a pure number carries no unit; a percentage such as 12.5 does not conform (0004 items
-    46, 48).
+def test_formula_note_states_the_grammar_and_its_examples_parse():
+    """The note gives the rules a writer must follow (0034 item 3), and every example in the schema parses,
+    so the page shows only formulas a validator accepts."""
+    from check_formula import formula_errors
+    f = sub(material_component(), 'formula')
+    assert (f['type'], f['extent'], f['kind'], f['recommended-unit']) == ('string', [], 'inapplicable', None)
+    note = f['values']['note']
+    for rule in ('`J` followed by lowercase letters', 'A count of 1 is omitted.', 'sum to 1',
+                 'only when the composition varies', 'any order', 'molecular formula'):
+        assert rule in note, rule
+    assert {'Si0.7Ge0.3', 'Si{x}Ge{1-x}', '(H2O)0.9(C2H6O)0.1', 'Ja0.8Jb0.2'} <= set(f['values']['examples'])
+    assert all(formula_errors(e) == [] for e in f['values']['examples'])
 
-    value (float): a candidate concentration; ok (bool): whether it conforms.
+
+@pytest.mark.parametrize('value, ok', [('x', True), ('y', True), ('X', False), ('xy', False), ('1', False)])
+def test_a_variable_is_one_lowercase_letter(value, ok):
+    """A variable's name is one lowercase letter, as the formula writes it in braces (0034 item 2).
+
+    value (str): a candidate name; ok (bool): whether it conforms.
     """
-    c = sub(sub(material_component(), 'constituent'), 'concentration')
-    assert (c['kind'], c['extent'], c['recommended-unit'], c.get('subproperties')) == ('dimensionless', [], None, None)
-    assert 'atomic fraction' in c['description'] and 'percent' not in c['description']
-    assert Draft202012Validator(value_schema(c)).is_valid(value) == ok
+    n = sub(sub(material_component(), 'variable'), 'name')
+    assert Draft202012Validator(value_schema(n)).is_valid(value) == ok
+    val = sub(sub(material_component(), 'variable'), 'value')
+    assert (val['kind'], val['extent'], val['recommended-unit']) == ('dimensionless', [], None)
 
 
-@pytest.mark.parametrize('value, ok', [('C', True), ('Si', True), ('Og', True), ('D', False), ('X', False),
-                                       ('si', False), ('Uut', False)])
-def test_species_is_an_element_symbol(value, ok):
-    """species is one of the 118 element symbols of the IUPAC periodic table and nothing else; an unknown
-    symbol would leave the material's composition undefined.
+def test_formula_is_named_once():
+    """Only the component's composition is called formula; topology names its substance (0034, third
+    amendment)."""
+    def names(p):
+        """Return the names of p and all its subproperties, at every depth.
 
-    value (str): a candidate symbol; ok (bool): whether it conforms.
-    """
-    s = sub(sub(material_component(), 'constituent'), 'species')
-    assert len(s['values']['enum']) == len(set(s['values']['enum'])) == 118
-    assert Draft202012Validator(value_schema(s)).is_valid(value) == ok
+        p (dict): property entry.
+        """
+        return [p['name']] + [n for s in p.get('subproperties') or [] for n in names(s)]
+    assert names(material_component()).count('formula') == 1
 
 
-def test_concentration_note_states_the_sum():
-    """The constituents of a material component account for all of it, so their concentrations sum to
-    1 (0004 items 40, 46); the schema cannot check the rule, so the note states it for readers and reviewers."""
-    c = datum(sub(sub(material_component(), 'constituent'), 'concentration'))
-    assert 'sum to 1.' in (c['values'].get('note') or '')
+def test_topology_says_when_to_give_it():
+    """topology is given only when the formula alone is ambiguous, for molecular isomers and crystal
+    polymorphs alike (0034, second amendment)."""
+    t = sub(material_component(), 'topology')
+    assert t['notes'] == ['Note: Give topology only when the formula matches more than one isomer or polymorph '
+                          'and the data must say which, e.g. ethanol and dimethyl ether (C2H6O), or calcite and '
+                          'aragonite (CaCO3).']
+    note = sub(sub(t, 'identifier'), 'scheme')['values']['note']
+    assert 'InChI is preferred' in note and 'AFLOW prototype label' in note
+
+
+def test_constituent_is_gone():
+    """The element-and-fraction constituent is replaced by the formula (0034 item 1)."""
+    assert 'constituent' not in [s['name'] for s in material_component()['subproperties']]
 
 
 # 0001 Part A, A2.2: the Kind and recommended unit of each simulation condition, with the shape its
@@ -824,10 +854,9 @@ def test_varying_conditions_are_explained_not_structured():
     assert not sc['repeatable']
 
 
-@pytest.mark.parametrize('path', [('constituent', 'concentration'), ('fraction',)])
+@pytest.mark.parametrize('path', [('fraction',)])
 def test_composition_is_given_as_set_up_when_it_varies(path):
-    """In a semi-grand-canonical simulation the composition changes; concentration and fraction give it as set
-    up (0026).
+    """In a semi-grand-canonical simulation the composition changes; fraction gives it as set up (0026).
 
     path (tuple): names leading from material-component to the property.
     """
