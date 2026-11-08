@@ -598,13 +598,13 @@ Recommended: `CC`, `DFT`, `Empirical potential`, `ML potential`, `QMC`, `Tight b
 <details class="note mc-property" id="minimal.computation.simulation-conditions" markdown="1">
 <summary><span class="mc-name">simulation-conditions<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The interactions between the system being modeled and the rest of the world maintained during the computation.
+The conditions imposed on the simulated system during the computation, e.g. by a thermostat, a barostat, a loading device or a fixed simulation cell.
 
 | Required | Repeatable |
 |---|---|
 | yes | no |
 
-Note: The conditions below, other than type and description, are given as appropriate to the simulation. Giving a condition means that its value is imposed on the simulation as an external constraint. A condition that varies is given as several entries, each with a qualifier; the description explains how it varies.
+Note: The conditions below, other than type and description, are given as appropriate to the simulation. Each is imposed on the simulation as an external constraint. A quantity computed from the simulation, e.g. a heat flux measured under an imposed temperature gradient or the temperature of a microcanonical run, is a result, not a condition, and is not given here. A condition that varies is given as several entries, each with a qualifier; the description explains how it varies.
 
 <details class="note mc-property" id="minimal.computation.simulation-conditions.type" markdown="1">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -685,7 +685,7 @@ Explanatory text clarifying the simulation type, and how any condition varies in
 <details class="note mc-property" id="minimal.computation.simulation-conditions.number-of-particles" markdown="1">
 <summary><span class="mc-name">number-of-particles</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-A count of atoms or other discrete entities comprising the material.
+The number of particles (atoms or other discrete entities) in the simulated system, as imposed by the simulation.
 
 | Required | Repeatable |
 |---|---|
@@ -722,7 +722,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 <details class="note mc-property" id="minimal.computation.simulation-conditions.volume" markdown="1">
 <summary><span class="mc-name">volume</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-The amount of space occupied by the material.
+The volume of the simulated system, as imposed by the simulation.
 
 | Required | Repeatable |
 |---|---|
@@ -770,7 +770,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 <details class="note mc-property" id="minimal.computation.simulation-conditions.mass-density" markdown="1">
 <summary><span class="mc-name">mass-density</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-The total mass of the material divided by the volume it occupies.
+The mass density of the simulated system, as imposed by the simulation.
 
 | Required | Repeatable |
 |---|---|
@@ -818,7 +818,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 <details class="note mc-property" id="minimal.computation.simulation-conditions.cell" markdown="1">
 <summary><span class="mc-name">cell</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-The domain occupied by the material in the simulation (if fixed).
+The simulation cell, as imposed by the simulation.
 
 | Required | Repeatable |
 |---|---|
@@ -833,7 +833,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [3,3] | Length | angstrom |
 
-Ordered list of three vectors (a, b, c), each with three components, that define the simulation cell. `value[i][j]` is the j-th Cartesian component, in the frame of the simulation, of the i-th cell vector, so the rows are a, b and c. The vectors (a, b, c) need not be orthogonal, and the magnitudes (|a|, |b|, |c|) are the supercell vector lengths. The unit applies to all nine components.
+Ordered list of three vectors (a, b, c), each with three components, that define the simulation cell. `value[i][j]` is the j-th Cartesian component, in the frame of the simulation, of the i-th cell vector, so the rows are a, b and c. The vectors (a, b, c) need not be orthogonal, and the magnitudes (|a|, |b|, |c|) are the cell vector lengths. The unit applies to all nine components.
 
 </details>
 
@@ -866,7 +866,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 <details class="note mc-property" id="minimal.computation.simulation-conditions.cell-reference" markdown="1">
 <summary><span class="mc-name">cell-reference</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-The domain occupied by the material in the simulation in configuration relative to which strains are defined.
+The simulation cell in the reference configuration, relative to which strain and strain rate are defined.
 
 | Required | Repeatable |
 |---|---|
@@ -914,7 +914,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 <details class="note mc-property" id="minimal.computation.simulation-conditions.cell-periodicity" markdown="1">
 <summary><span class="mc-name">cell-periodicity</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-Specification of whether periodic boundary conditions are applied along the cell vector directions. This applies to both cell and cell-reference.
+Whether periodic boundary conditions are applied along each cell vector, for both cell and cell-reference.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
@@ -927,7 +927,7 @@ Ordered list of three booleans (<i>p</i><sub>a</sub>, <i>p</i><sub>b</sub>, <i>p
 <details class="note mc-property" id="minimal.computation.simulation-conditions.temperature" markdown="1">
 <summary><span class="mc-name">temperature</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-A measure of the hotness or coldness of an external heat bath in thermal contact with the material.
+The temperature imposed on the simulated system, e.g. by a thermostat or a heat bath in thermal contact with it.
 
 | Required | Repeatable |
 |---|---|
@@ -975,13 +975,13 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 <details class="note mc-property" id="minimal.computation.simulation-conditions.stress" markdown="1">
 <summary><span class="mc-name">stress</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-A uniform force per unit current area, including both normal and shear components, applied to the material during the simulation through contact with an external loading device.
+The stress, normal and shear components, imposed on the simulated system, e.g. by a barostat or an external loading device.
 
 | Required | Repeatable |
 |---|---|
 | no | yes |
 
-Note 1: Requires the definition of cell in order for a basis to be defined relative to which the tensor components are given.
+Note 1: Requires cell, which defines the basis of the tensor components.
 
 Note 2: The adopted sign convention is for tensile normal stresses to be positive, and compressive normal stresses to be negative. This implies that for a material subjected to a positive pressure <i>p</i>, the stress tensor components are [-<i>p</i>, -<i>p</i>, -<i>p</i>, 0, 0, 0].
 
@@ -1027,13 +1027,13 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 <details class="note mc-property" id="minimal.computation.simulation-conditions.strain" markdown="1">
 <summary><span class="mc-name">strain</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-A deformation relative to a reference configuration imposed on the simulation cell expressed in the referential frame (Lagrangian strain tensor).
+The strain imposed on the simulation cell relative to cell-reference, as the Lagrangian strain tensor.
 
 | Required | Repeatable |
 |---|---|
 | no | yes |
 
-Note: Requires the definition of cell-reference in order for the basis to be defined relative to which the tensor components are given.
+Note: Requires cell-reference, which defines the basis of the tensor components.
 
 <details class="note mc-property" id="minimal.computation.simulation-conditions.strain.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1066,13 +1066,13 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 <details class="note mc-property" id="minimal.computation.simulation-conditions.strain-rate" markdown="1">
 <summary><span class="mc-name">strain-rate</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-The derivative with respect to time of a deformation relative to a reference configuration imposed on the simulation cell expressed in the referential frame (Lagrangian strain rate tensor).
+The strain rate imposed on the simulation cell relative to cell-reference, as the time derivative of the Lagrangian strain tensor.
 
 | Required | Repeatable |
 |---|---|
 | no | yes |
 
-Requires the definition of cell-reference in order for the basis to be defined relative to which the tensor components are given
+Note: Requires cell-reference, which defines the basis of the tensor components.
 
 <details class="note mc-property" id="minimal.computation.simulation-conditions.strain-rate.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1116,11 +1116,13 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 <details class="note mc-property" id="minimal.computation.simulation-conditions.heat-flux" markdown="1">
 <summary><span class="mc-name">heat-flux</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-The amount of thermal energy transferred to the material per unit area per unit time along a given direction.
+The heat flux imposed on the simulated system, the thermal energy per unit area per unit time driven through it, e.g. by exchanging energy between a heat source and a heat sink.
 
 | Required | Repeatable |
 |---|---|
 | no | yes |
+
+Note: Give heat-flux or temperature-gradient, whichever the simulation imposes; the other is a result.
 
 <details class="note mc-property" id="minimal.computation.simulation-conditions.heat-flux.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1131,7 +1133,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [3] | HeatFluxDensity | W/m^2 |
 
-The components of the heat flux vector q. The heat flux components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
+The components of the heat flux vector <i>q</i>. The heat flux components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
 
 </details>
 
@@ -1164,11 +1166,13 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 <details class="note mc-property" id="minimal.computation.simulation-conditions.temperature-gradient" markdown="1">
 <summary><span class="mc-name">temperature-gradient</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-A physical quantity that describes the rate and direction of maximum temperature change per unit distance.
+The temperature gradient imposed on the simulated system, e.g. by thermostatting two regions at different temperatures.
 
 | Required | Repeatable |
 |---|---|
 | no | yes |
+
+Note: Give heat-flux or temperature-gradient, whichever the simulation imposes; the other is a result.
 
 <details class="note mc-property" id="minimal.computation.simulation-conditions.temperature-gradient.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>

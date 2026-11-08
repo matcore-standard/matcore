@@ -899,6 +899,60 @@ def test_cell_rows_are_the_vectors_in_cartesian_components(name, vector, rows):
             f'so the rows are {rows}.') in v['values']['note']
 
 
+# 0039: each simulation condition says what is imposed, in its own terms.
+IMPOSED_DEFINITIONS = {
+    'simulation-conditions': 'The conditions imposed on the simulated system during the computation, e.g. by a '
+                             'thermostat, a barostat, a loading device or a fixed simulation cell.',
+    'number-of-particles': 'The number of particles (atoms or other discrete entities) in the simulated system, as '
+                           'imposed by the simulation.',
+    'volume': 'The volume of the simulated system, as imposed by the simulation.',
+    'mass-density': 'The mass density of the simulated system, as imposed by the simulation.',
+    'cell': 'The simulation cell, as imposed by the simulation.',
+    'cell-reference': 'The simulation cell in the reference configuration, relative to which strain and strain rate '
+                      'are defined.',
+    'cell-periodicity': 'Whether periodic boundary conditions are applied along each cell vector, for both cell and '
+                        'cell-reference.',
+    'temperature': 'The temperature imposed on the simulated system, e.g. by a thermostat or a heat bath in thermal '
+                   'contact with it.',
+    'stress': 'The stress, normal and shear components, imposed on the simulated system, e.g. by a barostat or an '
+              'external loading device.',
+    'strain': 'The strain imposed on the simulation cell relative to cell-reference, as the Lagrangian strain tensor.',
+    'strain-rate': 'The strain rate imposed on the simulation cell relative to cell-reference, as the time derivative '
+                   'of the Lagrangian strain tensor.',
+    'heat-flux': 'The heat flux imposed on the simulated system, the thermal energy per unit area per unit time driven '
+                 'through it, e.g. by exchanging energy between a heat source and a heat sink.',
+    'temperature-gradient': 'The temperature gradient imposed on the simulated system, e.g. by thermostatting two '
+                            'regions at different temperatures.',
+}
+SC_NOTE = ('Note: The conditions below, other than type and description, are given as appropriate to the simulation. '
+           'Each is imposed on the simulation as an external constraint. A quantity computed from the simulation, e.g. '
+           'a heat flux measured under an imposed temperature gradient or the temperature of a microcanonical run, is '
+           'a result, not a condition, and is not given here. A condition that varies is given as several entries, '
+           'each with a qualifier; the description explains how it varies.')
+HEAT_NOTE = 'Note: Give heat-flux or temperature-gradient, whichever the simulation imposes; the other is a result.'
+BASIS_NOTES = {
+    'stress': 'Note 1: Requires cell, which defines the basis of the tensor components.',
+    'strain': 'Note: Requires cell-reference, which defines the basis of the tensor components.',
+    'strain-rate': 'Note: Requires cell-reference, which defines the basis of the tensor components.',
+}
+
+
+def test_simulation_conditions_are_defined_as_imposed():
+    """A condition is a constraint the simulation imposes, not a quantity it measures, and each definition
+    says so in the property's own terms (0039 items 1-5)."""
+    sc = sub(minimal('computation'), 'simulation-conditions')
+    got = {'simulation-conditions': sc['description']} | {
+        s['name']: s['description'] for s in sc['subproperties'] if s['name'] in IMPOSED_DEFINITIONS}
+    assert got == IMPOSED_DEFINITIONS
+    assert sc['notes'] == [SC_NOTE]
+    for name in ('heat-flux', 'temperature-gradient'):
+        assert sub(sc, name)['notes'] == [HEAT_NOTE], name
+    for name, note in BASIS_NOTES.items():
+        assert sub(sc, name)['notes'][0] == note, name
+    assert 'supercell' not in datum(sub(sc, 'cell'))['values']['note']
+    assert 'heat flux vector <i>q</i>' in datum(sub(sc, 'heat-flux'))['values']['note']
+
+
 def test_number_density_is_gone():
     """Number density is N/V, given by number-of-particles and volume, so a third value could only
     contradict them (0037)."""

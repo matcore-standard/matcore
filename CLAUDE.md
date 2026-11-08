@@ -314,7 +314,9 @@ record or marked PROPOSED, NOT DECIDED.
      spatial-uniformity, and the flags spatially-varying and time-varying are removed (0036; breaks
      0.5.0 instances); simulation-conditions › number-density is removed (0037; breaks 0.5.0
      instances); §1.3 states that a multi-dimensional value is a list of lists, first index
-     outermost, and cell and cell-reference say each row is a vector in Cartesian components (0038).
+     outermost, and cell and cell-reference say each row is a vector in Cartesian components (0038);
+     every simulation condition is defined as imposed, and a measured quantity is a result, not a
+     condition (0039).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -620,7 +622,8 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] imposed conditions by 0039: every simulation-condition definition says the value is
    imposed and uses its own term (temperature, stress, ...); the note says a measured quantity is a
    result, not a condition; heat-flux and temperature-gradient say to give whichever is imposed;
-   basis notes and two value notes tidied. Wording only. Ruling committed on main.
+   basis notes and two value notes tidied. Wording only. On branch imposed-conditions
+   (committed, not pushed; PR to open).
    PROPOSED, NOT DECIDED: whether the minimal metadata should list the quantities a dataset
    contains (e.g. energies, forces, a heat flux) (0039).
    [todo] md in file order, starting with computation.
