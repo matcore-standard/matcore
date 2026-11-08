@@ -1293,6 +1293,166 @@ properties:
             Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
             Maximum are taken component by component.
         repeatable: false
+    - name: electric-field
+      required: false
+      description: >-
+        The electric field imposed on the simulated system, e.g. a uniform applied field.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      notes:
+      - >-
+        Note: Requires cell, which defines the basis of the vector components.
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: [3]
+        kind: ElectricFieldStrength
+        recommended-unit: V/m
+        values:
+          note: >-
+            The components of the electric field vector <i>E</i>. The electric field components are expressed
+            relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where
+            e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and
+            e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell,
+            which may not be orthogonal.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: qualifier
+        required: false
+        description: What the value represents.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Average, Final, Initial, Maximum, Minimum]
+          note: >-
+            Without a qualifier, the value holds throughout the simulation and across the system, and the entry
+            is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g.
+            Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
+            Maximum are taken component by component.
+        repeatable: false
+    - name: magnetic-field
+      required: false
+      description: >-
+        The magnetic field imposed on the simulated system, given as the magnetic flux density <i>B</i>.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      notes:
+      - >-
+        Note: Requires cell, which defines the basis of the vector components.
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: [3]
+        kind: MagneticFluxDensity
+        recommended-unit: T
+        values:
+          note: >-
+            The components of the magnetic flux density vector <i>B</i>. The magnetic flux density components
+            are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>),
+            where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and
+            e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell,
+            which may not be orthogonal.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: qualifier
+        required: false
+        description: What the value represents.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Average, Final, Initial, Maximum, Minimum]
+          note: >-
+            Without a qualifier, the value holds throughout the simulation and across the system, and the entry
+            is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g.
+            Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
+            Maximum are taken component by component.
+        repeatable: false
+    - name: body-force
+      required: false
+      description: >-
+        The body force per unit mass imposed on the simulated system, e.g. gravity or a constant force driving
+        a flow.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      notes:
+      - >-
+        Note: Requires cell, which defines the basis of the vector components.
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: [3]
+        kind: Acceleration
+        recommended-unit: m/s^2
+        values:
+          note: >-
+            The components of the body force per unit mass <i>g</i>. The body force components are expressed
+            relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where
+            e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and
+            e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell,
+            which may not be orthogonal.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: qualifier
+        required: false
+        description: What the value represents.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Average, Final, Initial, Maximum, Minimum]
+          note: >-
+            Without a qualifier, the value holds throughout the simulation and across the system, and the entry
+            is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g.
+            Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
+            Maximum are taken component by component.
+        repeatable: false
   - name: software
     required: true
     description: Identification of a computer package used to perform the calculations.
