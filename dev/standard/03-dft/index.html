@@ -2820,36 +2820,43 @@
 </details>
 <h2 id="example-dft-method-specific-metadata">Example: DFT Method-Specific Metadata</h2>
 <p>Dataset source: <a href="https://doi.org/10.60732/8e9bc5b0">https://doi.org/10.60732/8e9bc5b0</a></p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="nt">&lt;root&gt;</span>
-<span class="w">  </span><span class="nt">&lt;xc-functional&gt;</span>
-<span class="w">    </span><span class="nt">&lt;type&gt;</span>GGA<span class="nt">&lt;/type&gt;</span>
-<span class="w">    </span><span class="nt">&lt;name&gt;</span>PW91<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;description&gt;</span>PW91<span class="w"> </span>functional<span class="w"> </span>(the<span class="w"> </span>choice<span class="w"> </span>is<span class="w"> </span>motivated<span class="w"> </span>by<span class="w"> </span>the<span class="w"> </span>existence<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>large-scale<span class="w"> </span>simulation<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>melting<span class="w"> </span>point<span class="w"> </span>with<span class="w"> </span>this<span class="w"> </span>functional)<span class="nt">&lt;/description&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/xc-functional&gt;</span>
-<span class="w">  </span><span class="nt">&lt;core-electron-treatment&gt;</span>
-<span class="w">    </span><span class="nt">&lt;type&gt;</span>Pseudopotential<span class="nt">&lt;/type&gt;</span>
-<span class="w">    </span><span class="nt">&lt;pseudopotential-or-paw&gt;</span>
-<span class="w">      </span><span class="nt">&lt;name&gt;</span>Ultrasoft<span class="w"> </span>Pseudopotentials<span class="w"> </span>(USP)<span class="nt">&lt;/name&gt;</span>
-<span class="w">      </span><span class="nt">&lt;type&gt;</span>Ultrasoft<span class="nt">&lt;/type&gt;</span>
-<span class="w">      </span><span class="nt">&lt;number-of-valence-electrons&gt;</span>4<span class="nt">&lt;/number-of-valence-electrons&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/pseudopotential-or-paw&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/core-electron-treatment&gt;</span>
-<span class="w">  </span><span class="nt">&lt;wavefunction-representation&gt;</span>
-<span class="w">    </span><span class="nt">&lt;type&gt;</span>Plane<span class="w"> </span>waves<span class="nt">&lt;/type&gt;</span>
-<span class="w">    </span><span class="nt">&lt;kinetic-energy-cutoff&gt;</span>
-<span class="w">      </span><span class="nt">&lt;value&gt;</span>250.0<span class="nt">&lt;/value&gt;</span>
-<span class="w">      </span><span class="nt">&lt;unit&gt;</span>eV<span class="nt">&lt;/unit&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/kinetic-energy-cutoff&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/wavefunction-representation&gt;</span>
-<span class="w">  </span><span class="nt">&lt;k-point-mesh&gt;</span>
-<span class="w">    </span><span class="nt">&lt;type&gt;</span>Regular<span class="w"> </span>shifted<span class="nt">&lt;/type&gt;</span>
-<span class="w">    </span><span class="nt">&lt;smearing-width&gt;</span>
-<span class="w">      </span><span class="nt">&lt;value&gt;</span>0.05<span class="nt">&lt;/value&gt;</span>
-<span class="w">      </span><span class="nt">&lt;unit&gt;</span>eV<span class="nt">&lt;/unit&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/smearing-width&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/k-point-mesh&gt;</span>
-<span class="nt">&lt;/root&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"dft"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"xc-functional"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GGA"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PW91"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PW91 functional (the choice is motivated by the existence of a large-scale simulation of the melting point with this functional)"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"core-electron-treatment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pseudopotential"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"pseudopotential-or-paw"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ultrasoft Pseudopotentials (USP)"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ultrasoft"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"number-of-valence-electrons"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"wavefunction-representation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"Plane waves"</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"kinetic-energy-cutoff"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">250.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eV"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"k-point-mesh"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Regular shifted"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"smearing-width"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eV"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 
 

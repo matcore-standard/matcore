@@ -1945,23 +1945,30 @@
 </details>
 <h2 id="example-md-method-specific-metadata">Example: MD Method-Specific Metadata</h2>
 <p>Dataset source: <a href="https://doi.org/10.6084/m9.figshare.6273170">https://doi.org/10.6084/m9.figshare.6273170</a></p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="nt">&lt;root&gt;</span>
-<span class="w">  </span><span class="nt">&lt;computation&gt;</span>
-<span class="w">    </span><span class="nt">&lt;mode&gt;</span>equilibrium-dynamics<span class="nt">&lt;/mode&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/computation&gt;</span>
-<span class="w">  </span><span class="nt">&lt;particle-style&gt;</span>atom<span class="nt">&lt;/particle-style&gt;</span>
-<span class="w">  </span><span class="nt">&lt;particle-interactions&gt;</span>
-<span class="w">    </span><span class="nt">&lt;model-type&gt;</span>Finnis-Sinclair<span class="w"> </span>potential<span class="nt">&lt;/model-type&gt;</span>
-<span class="w">    </span><span class="nt">&lt;bonding-type&gt;</span>Reactive<span class="nt">&lt;/bonding-type&gt;</span>
-<span class="w">    </span><span class="nt">&lt;theory-level&gt;</span>Classical<span class="w"> </span>physics-based<span class="nt">&lt;/theory-level&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/particle-interactions&gt;</span>
-<span class="w">  </span><span class="nt">&lt;thermodynamic-constraint&gt;</span>
-<span class="w">    </span><span class="nt">&lt;system&gt;</span>Entire<span class="w"> </span>system<span class="nt">&lt;/system&gt;</span>
-<span class="w">    </span><span class="nt">&lt;type&gt;</span>NPT<span class="nt">&lt;/type&gt;</span>
-<span class="w">    </span><span class="nt">&lt;description&gt;</span>Amorphous<span class="w"> </span>samples<span class="w"> </span>were<span class="w"> </span>produced<span class="w"> </span>by<span class="w"> </span>quenching<span class="w"> </span>the<span class="w"> </span>molten<span class="w"> </span>metal<span class="w"> </span>from<span class="w"> </span>2300<span class="w"> </span>to<span class="w"> </span>300<span class="w"> </span>K.<span class="nt">&lt;/description&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/thermodynamic-constraint&gt;</span>
-<span class="nt">&lt;/root&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"md"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"computation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equilibrium-dynamics"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"particle-style"</span><span class="p">:</span><span class="w"> </span><span class="s2">"atom"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"particle-interactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"model-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finnis-Sinclair potential"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"bonding-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reactive"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"theory-level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Classical physics-based"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"thermodynamic-constraint"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Entire system"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NPT"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amorphous samples were produced by quenching the molten metal from 2300 to 300 K."</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 
 

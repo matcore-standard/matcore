@@ -5888,86 +5888,121 @@
 </details>
 <h2 id="example-minimal-matcore-metadata">Example: Minimal MatCore Metadata</h2>
 <p>Dataset source: <a href="https://doi.org/10.60732/8e9bc5b0">https://doi.org/10.60732/8e9bc5b0</a></p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="nt">&lt;root&gt;</span>
-<span class="w">  </span><span class="nt">&lt;creator&gt;</span>
-<span class="w">    </span><span class="nt">&lt;name&gt;</span>Albert<span class="w"> </span>P.<span class="w"> </span>Bartók<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;affiliation&gt;</span>
-<span class="w">      </span><span class="nt">&lt;name&gt;</span>Rutherford<span class="w"> </span>Appleton<span class="w"> </span>Laboratory<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/affiliation&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/creator&gt;</span>
-<span class="w">  </span><span class="nt">&lt;creator&gt;</span>
-<span class="w">    </span><span class="nt">&lt;name&gt;</span>James<span class="w"> </span>Kermode<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;affiliation&gt;</span>
-<span class="w">      </span><span class="nt">&lt;name&gt;</span>University<span class="w"> </span>of<span class="w"> </span>Warwick<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/affiliation&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/creator&gt;</span>
-<span class="w">  </span><span class="nt">&lt;creator&gt;</span>
-<span class="w">    </span><span class="nt">&lt;name&gt;</span>Noam<span class="w"> </span>Bernstein<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;affiliation&gt;</span>
-<span class="w">      </span><span class="nt">&lt;name&gt;</span>Naval<span class="w"> </span>Research<span class="w"> </span>Laboratory<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/affiliation&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/creator&gt;</span>
-<span class="w">  </span><span class="nt">&lt;creator&gt;</span>
-<span class="w">    </span><span class="nt">&lt;name&gt;</span>Gábor<span class="w"> </span>Csányi<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;affiliation&gt;</span>
-<span class="w">      </span><span class="nt">&lt;name&gt;</span>University<span class="w"> </span>of<span class="w"> </span>Cambridge<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/affiliation&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/creator&gt;</span>
-<span class="w">  </span><span class="nt">&lt;title&gt;</span>Si_PRX_GAP:<span class="w"> </span>A<span class="w"> </span>foundational<span class="w"> </span>Density<span class="w"> </span>Functional<span class="w"> </span>Theory<span class="w"> </span>dataset<span class="w"> </span>with<span class="w"> </span>silicon<span class="w"> </span>configurations<span class="w"> </span>for<span class="w"> </span>training<span class="w"> </span>machine<span class="w"> </span>learning<span class="w"> </span>interatomic<span class="w"> </span>potentials<span class="nt">&lt;/title&gt;</span>
-<span class="w">  </span><span class="nt">&lt;creation-date&gt;</span>2021-02-22<span class="nt">&lt;/creation-date&gt;</span>
-<span class="w">  </span><span class="nt">&lt;description&gt;</span>The<span class="w"> </span>original<span class="w"> </span>DFT<span class="w"> </span>training<span class="w"> </span>data<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>general-purpose<span class="w"> </span>silicon<span class="w"> </span>interatomic<span class="w"> </span>potential<span class="w"> </span>described<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>associated<span class="w"> </span>publication.<span class="w"> </span>The<span class="w"> </span>kinds<span class="w"> </span>of<span class="w"> </span>configuration<span class="w"> </span>that<span class="w"> </span>were<span class="w"> </span>included<span class="w"> </span>were<span class="w"> </span>selected<span class="w"> </span>based<span class="w"> </span>on<span class="w"> </span>intuition<span class="w"> </span>and<span class="w"> </span>past<span class="w"> </span>experience<span class="w"> </span>to<span class="w"> </span>obtain<span class="w"> </span>good<span class="w"> </span>coverage<span class="w"> </span>pertaining<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>range<span class="w"> </span>of<span class="w"> </span>properties.<span class="nt">&lt;/description&gt;</span>
-<span class="w">  </span><span class="nt">&lt;structure&gt;</span>
-<span class="w">    </span><span class="nt">&lt;material-component&gt;</span>
-<span class="w">      </span><span class="nt">&lt;formula&gt;</span>Si<span class="nt">&lt;/formula&gt;</span>
-<span class="w">      </span><span class="nt">&lt;form&gt;</span>Bulk<span class="nt">&lt;/form&gt;</span>
-<span class="w">      </span><span class="nt">&lt;phase&gt;</span>Single<span class="w"> </span>crystal<span class="nt">&lt;/phase&gt;</span>
-<span class="w">      </span><span class="nt">&lt;description&gt;</span>A<span class="w"> </span>variety<span class="w"> </span>of<span class="w"> </span>Si<span class="w"> </span>configurations<span class="w"> </span>including<span class="w"> </span>different<span class="w"> </span>phases,<span class="w"> </span>surfaces,<span class="w"> </span>vacancies,<span class="w"> </span>interstitials,<span class="w"> </span>dislocations<span class="w"> </span>and<span class="w"> </span>crack<span class="w"> </span>tips.<span class="nt">&lt;/description&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/material-component&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/structure&gt;</span>
-<span class="w">  </span><span class="nt">&lt;structure&gt;</span>
-<span class="w">    </span><span class="nt">&lt;material-component&gt;</span>
-<span class="w">      </span><span class="nt">&lt;formula&gt;</span>Si<span class="nt">&lt;/formula&gt;</span>
-<span class="w">      </span><span class="nt">&lt;form&gt;</span>Slab<span class="nt">&lt;/form&gt;</span>
-<span class="w">      </span><span class="nt">&lt;phase&gt;</span>Single<span class="w"> </span>crystal<span class="nt">&lt;/phase&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/material-component&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/structure&gt;</span>
-<span class="w">  </span><span class="nt">&lt;computation&gt;</span>
-<span class="w">    </span><span class="nt">&lt;method-class&gt;</span>Electronic<span class="nt">&lt;/method-class&gt;</span>
-<span class="w">    </span><span class="nt">&lt;method&gt;</span>DFT<span class="nt">&lt;/method&gt;</span>
-<span class="w">    </span><span class="nt">&lt;simulation-conditions&gt;</span>
-<span class="w">      </span><span class="nt">&lt;type&gt;</span>
-<span class="w">        </span><span class="nt">&lt;thermodynamic-state&gt;</span>Equilibrium<span class="nt">&lt;/thermodynamic-state&gt;</span>
-<span class="w">      </span><span class="nt">&lt;/type&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/simulation-conditions&gt;</span>
-<span class="w">    </span><span class="nt">&lt;software&gt;</span>
-<span class="w">      </span><span class="nt">&lt;name&gt;</span>CASTEP<span class="nt">&lt;/name&gt;</span>
-<span class="w">      </span><span class="nt">&lt;role&gt;</span>Simulation<span class="w"> </span>code<span class="nt">&lt;/role&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/software&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/computation&gt;</span>
-<span class="w">  </span><span class="nt">&lt;dataset-location&gt;</span>
-<span class="w">    </span><span class="nt">&lt;repository&gt;</span>Apollo<span class="w"> </span>-<span class="w"> </span>University<span class="w"> </span>of<span class="w"> </span>Cambridge<span class="w"> </span>Repository<span class="nt">&lt;/repository&gt;</span>
-<span class="w">    </span><span class="nt">&lt;doi&gt;</span>https://doi.org/10.17863/CAM.65004<span class="nt">&lt;/doi&gt;</span>
-<span class="w">    </span><span class="nt">&lt;link&gt;</span>https://www.repository.cam.ac.uk/handle/1810/317974<span class="nt">&lt;/link&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/dataset-location&gt;</span>
-<span class="w">  </span><span class="nt">&lt;matcore-id&gt;</span>mc-ad83jsd3-1<span class="nt">&lt;/matcore-id&gt;</span>
-<span class="w">  </span><span class="nt">&lt;matcore-author&gt;</span>
-<span class="w">    </span><span class="nt">&lt;name&gt;</span>Ellad<span class="w"> </span>B.<span class="w"> </span>Tadmor<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;identifier&gt;</span>
-<span class="w">      </span><span class="nt">&lt;value&gt;</span>https://orcid.org/0000-0003-3311-6299<span class="nt">&lt;/value&gt;</span>
-<span class="w">      </span><span class="nt">&lt;scheme&gt;</span>ORCID<span class="nt">&lt;/scheme&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/identifier&gt;</span>
-<span class="w">    </span><span class="nt">&lt;affiliation&gt;</span>
-<span class="w">      </span><span class="nt">&lt;name&gt;</span>University<span class="w"> </span>of<span class="w"> </span>Minnesota<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/affiliation&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/matcore-author&gt;</span>
-<span class="w">  </span><span class="nt">&lt;matcore-date&gt;</span>2026-02-14<span class="nt">&lt;/matcore-date&gt;</span>
-<span class="w">  </span><span class="nt">&lt;license&gt;</span>
-<span class="w">    </span><span class="nt">&lt;identifier&gt;</span>GPL-3.0-only<span class="nt">&lt;/identifier&gt;</span>
-<span class="w">    </span><span class="nt">&lt;name&gt;</span>GNU<span class="w"> </span>General<span class="w"> </span>Public<span class="w"> </span>License<span class="w"> </span>v3.0<span class="w"> </span>only<span class="nt">&lt;/name&gt;</span>
-<span class="w">    </span><span class="nt">&lt;link&gt;</span>https://www.gnu.org/licenses/gpl-3.0.en.html<span class="nt">&lt;/link&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/license&gt;</span>
-<span class="nt">&lt;/root&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"minimal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Albert P. Bartók"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"affiliation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rutherford Appleton Laboratory"</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James Kermode"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"affiliation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"University of Warwick"</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Noam Bernstein"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"affiliation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Naval Research Laboratory"</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gábor Csányi"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"affiliation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"University of Cambridge"</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Si_PRX_GAP: A foundational Density Functional Theory dataset with silicon configurations for training machine learning interatomic potentials"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"creation-date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-02-22"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The original DFT training data for the general-purpose silicon interatomic potential described in the associated publication. The kinds of configuration that were included were selected based on intuition and past experience to obtain good coverage pertaining to a range of properties."</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"structure"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"material-component"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"formula"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Si"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"form"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bulk"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"phase"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="s2">"Single crystal"</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A variety of Si configurations including different phases, surfaces, vacancies, interstitials, dislocations and crack tips."</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"material-component"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"formula"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Si"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"form"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slab"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"phase"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="s2">"Single crystal"</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"computation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"method-class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronic"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DFT"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"simulation-conditions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"thermodynamic-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equilibrium"</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASTEP"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simulation code"</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"dataset-location"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"repository"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apollo - University of Cambridge Repository"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"doi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://doi.org/10.17863/CAM.65004"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.repository.cam.ac.uk/handle/1810/317974"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"matcore-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mc-ad83jsd3-1"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"matcore-author"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ellad B. Tadmor"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://orcid.org/0000-0003-3311-6299"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"scheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORCID"</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"affiliation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"University of Minnesota"</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"matcore-date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-02-14"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GPL-3.0-only"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GNU General Public License v3.0 only"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.gnu.org/licenses/gpl-3.0.en.html"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>Note: The matcore-id format in the example is tentative and subject to change.</p>
 
