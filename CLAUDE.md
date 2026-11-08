@@ -619,11 +619,10 @@ record or marked PROPOSED, NOT DECIDED.
    lists, first index outermost, and a serialization preserves the nesting; cell and
    cell-reference notes say value[i][j] is the j-th Cartesian component, in the frame of the
    simulation, of the i-th vector (rows a, b, c); extent stays [3, 3].
-   [todo] imposed conditions by 0039: every simulation-condition definition says the value is
+   [done, PR #71 merged 2026-11-08] imposed conditions by 0039: every simulation-condition definition says the value is
    imposed and uses its own term (temperature, stress, ...); the note says a measured quantity is a
    result, not a condition; heat-flux and temperature-gradient say to give whichever is imposed;
-   basis notes and two value notes tidied. Wording only. On branch imposed-conditions
-   (committed, not pushed; PR to open).
+   basis notes and two value notes tidied. Wording only.
    PROPOSED, NOT DECIDED: whether the minimal metadata should list the quantities a dataset
    contains (e.g. energies, forces, a heat flux) (0039).
    [todo] md in file order, starting with computation.
