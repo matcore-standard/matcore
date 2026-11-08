@@ -590,13 +590,12 @@ record or marked PROPOSED, NOT DECIDED.
    and SMILES rows;
    examples/minimal.xml writes <formula>Si</formula>. (Superseded in part: `variable › type` is
    renamed `qualifier` by 0035.)
-   [todo] qualified values by 0035: a `qualifier` leaf (Average, Final, Initial, Maximum, Minimum;
+   [done, PR #67 merged 2026-11-08] qualified values by 0035: a `qualifier` leaf (Average, Final, Initial, Maximum, Minimum;
    fixed form, checked by check_units.py) wherever a value varies; the twelve numerical
    simulation conditions repeatable with an optional qualifier (number-of-particles and strain
    become containers of value + qualifier); fraction a repeatable value + qualifier, its "as set
    up" sentence removed; variable › type renamed qualifier (still required); simulation-conditions'
-   note and description reworded (amends 0015 and 0026; breaks 0.5.0 instances). On branch qualified-values
-   (committed, not pushed; PR to open).
+   note and description reworded (amends 0015 and 0026; breaks 0.5.0 instances).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
