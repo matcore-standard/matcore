@@ -281,18 +281,19 @@ Method used to eliminate long-range Coulomb interactions between periodic replic
 
 Dataset source: [https://archive.materialscloud.org/record/2023.92](https://archive.materialscloud.org/record/2023.92)
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<root>
-  <mbpt-method>
-    <type>GW</type>
-    <self-consistency>G0W0</self-consistency>
-  </mbpt-method>
-  <starting-point>GGA</starting-point>
-  <dielectric-matrix>
-    <planewave-basis-cutoff>60.0</planewave-basis-cutoff>
-    <q-points>48</q-points>
-  </dielectric-matrix>
-</root>
+```json
+{
+  "mbpt": {
+    "mbpt-method": {
+      "type": "GW",
+      "self-consistency": "G0W0"
+    },
+    "starting-point": "GGA",
+    "dielectric-matrix": {
+      "planewave-basis-cutoff": "60.0",
+      "q-points": "48"
+    }
+  }
+}
 ```
 

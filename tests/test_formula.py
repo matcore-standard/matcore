@@ -104,7 +104,7 @@ def test_validate_schema_checks_the_example_formulas(tmp_path):
     import subprocess
     for d in ('schema', 'scripts', 'examples'):
         shutil.copytree(ROOT / d, tmp_path / d)
-    f = tmp_path / 'examples/minimal.xml'
-    f.write_text(f.read_text().replace('<formula>Si</formula>', '<formula>Si1</formula>', 1))
+    f = tmp_path / 'examples/minimal.json'
+    f.write_text(f.read_text(encoding='utf-8').replace('"formula": "Si"', '"formula": "Si1"', 1), encoding='utf-8')
     run = subprocess.run([sys.executable, tmp_path / 'scripts/validate_schema.py'], capture_output=True, text=True)
     assert run.returncode == 1 and 'count of 1' in run.stdout

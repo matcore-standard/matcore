@@ -1,0 +1,115 @@
+{
+  "minimal": {
+    "creator": [
+      {
+        "name": "Albert P. Bartók",
+        "affiliation": [
+          {
+            "name": "Rutherford Appleton Laboratory"
+          }
+        ]
+      },
+      {
+        "name": "James Kermode",
+        "affiliation": [
+          {
+            "name": "University of Warwick"
+          }
+        ]
+      },
+      {
+        "name": "Noam Bernstein",
+        "affiliation": [
+          {
+            "name": "Naval Research Laboratory"
+          }
+        ]
+      },
+      {
+        "name": "Gábor Csányi",
+        "affiliation": [
+          {
+            "name": "University of Cambridge"
+          }
+        ]
+      }
+    ],
+    "title": "Si_PRX_GAP: A foundational Density Functional Theory dataset with silicon configurations for training machine learning interatomic potentials",
+    "creation-date": "2021-02-22",
+    "description": "The original DFT training data for the general-purpose silicon interatomic potential described in the associated publication. The kinds of configuration that were included were selected based on intuition and past experience to obtain good coverage pertaining to a range of properties.",
+    "structure": [
+      {
+        "material-component": [
+          {
+            "formula": "Si",
+            "form": "Bulk",
+            "phase": [
+              "Single crystal"
+            ],
+            "description": "A variety of Si configurations including different phases, surfaces, vacancies, interstitials, dislocations and crack tips."
+          }
+        ]
+      },
+      {
+        "material-component": [
+          {
+            "formula": "Si",
+            "form": "Slab",
+            "phase": [
+              "Single crystal"
+            ]
+          }
+        ]
+      }
+    ],
+    "computation": [
+      {
+        "method-class": "Electronic",
+        "method": "DFT",
+        "simulation-conditions": {
+          "type": {
+            "thermodynamic-state": "Equilibrium"
+          }
+        },
+        "software": [
+          {
+            "name": "CASTEP",
+            "role": "Simulation code"
+          }
+        ]
+      }
+    ],
+    "dataset-location": [
+      {
+        "repository": "Apollo - University of Cambridge Repository",
+        "doi": "https://doi.org/10.17863/CAM.65004",
+        "link": "https://www.repository.cam.ac.uk/handle/1810/317974"
+      }
+    ],
+    "matcore-id": "mc-ad83jsd3-1",
+    "matcore-author": [
+      {
+        "name": "Ellad B. Tadmor",
+        "identifier": [
+          {
+            "value": "https://orcid.org/0000-0003-3311-6299",
+            "scheme": "ORCID"
+          }
+        ],
+        "affiliation": [
+          {
+            "name": "University of Minnesota"
+          }
+        ]
+      }
+    ],
+    "matcore-date": "2026-02-14",
+    "license": [
+      {
+        "identifier": "GPL-3.0-only",
+        "name": "GNU General Public License v3.0 only",
+        "link": "https://www.gnu.org/licenses/gpl-3.0.en.html"
+      }
+    ]
+  }
+}

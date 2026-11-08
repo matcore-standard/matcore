@@ -915,36 +915,43 @@ Additional information on the DFT calculation. For example, non-self-consistent 
 
 Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9bc5b0)
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<root>
-  <xc-functional>
-    <type>GGA</type>
-    <name>PW91</name>
-    <description>PW91 functional (the choice is motivated by the existence of a large-scale simulation of the melting point with this functional)</description>
-  </xc-functional>
-  <core-electron-treatment>
-    <type>Pseudopotential</type>
-    <pseudopotential-or-paw>
-      <name>Ultrasoft Pseudopotentials (USP)</name>
-      <type>Ultrasoft</type>
-      <number-of-valence-electrons>4</number-of-valence-electrons>
-    </pseudopotential-or-paw>
-  </core-electron-treatment>
-  <wavefunction-representation>
-    <type>Plane waves</type>
-    <kinetic-energy-cutoff>
-      <value>250.0</value>
-      <unit>eV</unit>
-    </kinetic-energy-cutoff>
-  </wavefunction-representation>
-  <k-point-mesh>
-    <type>Regular shifted</type>
-    <smearing-width>
-      <value>0.05</value>
-      <unit>eV</unit>
-    </smearing-width>
-  </k-point-mesh>
-</root>
+```json
+{
+  "dft": {
+    "xc-functional": [
+      {
+        "type": "GGA",
+        "name": "PW91",
+        "description": "PW91 functional (the choice is motivated by the existence of a large-scale simulation of the melting point with this functional)"
+      }
+    ],
+    "core-electron-treatment": {
+      "type": "Pseudopotential",
+      "pseudopotential-or-paw": [
+        {
+          "name": "Ultrasoft Pseudopotentials (USP)",
+          "type": "Ultrasoft",
+          "number-of-valence-electrons": 4
+        }
+      ]
+    },
+    "wavefunction-representation": {
+      "type": [
+        "Plane waves"
+      ],
+      "kinetic-energy-cutoff": {
+        "value": 250.0,
+        "unit": "eV"
+      }
+    },
+    "k-point-mesh": {
+      "type": "Regular shifted",
+      "smearing-width": {
+        "value": 0.05,
+        "unit": "eV"
+      }
+    }
+  }
+}
 ```
 

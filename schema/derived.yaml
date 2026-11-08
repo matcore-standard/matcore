@@ -22,7 +22,7 @@ introduction: |
   - X-ray scattering (diffraction, reflectivity, pair-distribution function, etc.)
 examples:
   - caption: Derived Property Metadata
-    file: derived.xml
+    file: derived.json
     source: https://archive.materialscloud.org/record/2024.116
 properties:
 - name: derived-property

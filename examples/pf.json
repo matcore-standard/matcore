@@ -1,0 +1,91 @@
+{
+  "pf": {
+    "physical-phenomena": [
+      "Homogeneous nucleation (single seed)"
+    ],
+    "problem-specification": {
+      "time-dependence": "Transient evolution",
+      "governing-equation": [
+        {
+          "type": "AC",
+          "evolved-variable": "phi",
+          "driving-energy": [
+            "f_total"
+          ]
+        }
+      ],
+      "free-energy": {
+        "name": "f_total",
+        "description": "Non-dimensionalized Ginzburg-Landau",
+        "expression": "0.5 * (nabla phi)^2 + g(phi) - delta_f * p(phi)",
+        "unit": "dimensionless"
+      }
+    },
+    "domain-and-mesh": {
+      "dimensionality": "2D",
+      "coordinate-system": "Cartesian",
+      "mesh-type": "Regular",
+      "domain-size": "100.0",
+      "boundary-conditions": [
+        "Periodic"
+      ],
+      "initial-conditions": [
+        "phi(r) = 0.5 * [1 - tanh((r - r_0) / sqrt(2))] where r = sqrt(x^2 + y^2)"
+      ]
+    },
+    "numerical-method": [
+      {
+        "spatial-discretization": "FVM",
+        "spatial-accuracy-order": "2",
+        "temporal-discretization": "Implicit",
+        "temporal-accuracy-order": "1",
+        "grid-spacing": [
+          {
+            "name": "dx",
+            "value": "1.0",
+            "unit": "dimensionless"
+          },
+          {
+            "name": "dy",
+            "value": "1.0",
+            "unit": "dimensionless"
+          }
+        ],
+        "time-step-size": [
+          {
+            "name": "dt",
+            "value": "0.01",
+            "unit": "dimensionless"
+          }
+        ],
+        "solver": [
+          "FiPy Default Linear Solver"
+        ]
+      }
+    ],
+    "variables": {
+      "model-parameter": [
+        {
+          "name": "delta_f",
+          "value": "0.04714045",
+          "unit": "dimensionless",
+          "description": "Non-dimensional nucleation driving force (sqrt(2)/30)"
+        },
+        {
+          "name": "r_0",
+          "value": "5.05",
+          "unit": "dimensionless",
+          "description": "Initial diffuse seed radius (e.g., 1.01 * r* for supercritical run)"
+        }
+      ],
+      "field-variable": [
+        {
+          "name": "phi",
+          "type": "Scalar",
+          "unit": "dimensionless",
+          "description": "Non-conserved phase field variable (0=liquid, 1=solid)"
+        }
+      ]
+    }
+  }
+}

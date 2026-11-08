@@ -1,0 +1,13 @@
+{
+  "mbpt": {
+    "mbpt-method": {
+      "type": "GW",
+      "self-consistency": "G0W0"
+    },
+    "starting-point": "GGA",
+    "dielectric-matrix": {
+      "planewave-basis-cutoff": "60.0",
+      "q-points": "48"
+    }
+  }
+}

@@ -114,3 +114,12 @@ def test_extent_states_the_order_of_an_array():
     assert ('or any when the schema does not fix it. A value with more than one dimension is a list of lists, the '
             'first index outermost: a value of extent [n,m] is a list of n entries, each a list of m components. '
             'A serialization preserves this nesting.') in text
+
+
+def test_examples_are_said_to_be_in_json():
+    """The Preamble names JSON, the first serialization, as the examples' format, and keeps them illustrative
+    (0044 item 6)."""
+    text = (ROOT / 'docs/standard/index.md').read_text()
+    assert ('Examples are provided after each Standard specification in JSON, the first serialization adopted for '
+            'MatCore instances. However, this is for clarification purposes only.') in text
+    assert 'in XML format' not in text

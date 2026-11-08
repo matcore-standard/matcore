@@ -254,7 +254,8 @@ record or marked PROPOSED, NOT DECIDED.
      section in examples/, taken from the .docx; PF's missing first 26 lines restored from
      matcore.org and Minimal's method-class closing tag corrected (0004 item 33; not noted on
      the site); rendered at the end of each section page with highlighting. Validating
-     examples against a generated schema is status step 7.
+     examples against a generated schema is status step 7. (Superseded: the examples are JSON, the
+     first serialization, by 0044.)
    - [done] Property layout chosen after rendered options were compared (0007).
    - [done, PR #1] build_docs.py renders the standard from the YAML
      in the layout of 0007 (tests in tests/test_build_docs.py); layout.css and layout.js in
@@ -271,7 +272,8 @@ record or marked PROPOSED, NOT DECIDED.
      (tag v0.4.0). 0.5.0 released 2026-11-04 (tag v0.5.0; minimal complete). 0.6.0 released 2026-11-08
      (tag v0.6.0 on b688e40; dft complete; rulings 0016–0043); the site's `latest` is 0.6.0 and `dev`
      is main. (An earlier v0.6.0 tag on 2908f57 failed CI's release check and was moved.)
-   - Changes to the standard since 0.6.0, for the next release's entry in releases.yaml: none yet.
+   - Changes to the standard since 0.6.0, for the next release's entry in releases.yaml: the
+     examples are written in JSON, the first serialization, and §1.3 says so (0044).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -688,7 +690,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done] First serialization chosen: JSON (0044).
    [todo] JSON examples by 0044: the seven examples converted from XML by script; check_examples.py,
    check_formula.py and build_docs.py read JSON; meta-schema `file` requires .json; §1.3 says the
-   examples are in JSON. Ruling committed on main.
+   examples are in JSON. On branch json-examples (committed, not pushed; PR to open).
 8. [merged into step 2] Site content migration from matcore.org.
 9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools. After step 7;
    the validator reuses step 7's generated schema (0004).

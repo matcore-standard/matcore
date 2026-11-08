@@ -241,23 +241,24 @@ def test_main_writes_every_page_and_honours_the_flag(tmp_path):
 
 
 def test_every_section_has_a_well_formed_example():
-    """Each section documents one real dataset with an XML example from the baseline (0004 items 23, 33)."""
-    from xml.etree import ElementTree as ET
+    """Each section documents one real dataset with an example from the baseline, written in JSON (0004 items 23,
+    33; 0044)."""
+    import json
     for key in SECTIONS:
         examples = load(key).get('examples')
         assert examples and len(examples) == 1, key
         ex = examples[0]
         assert ex['caption'] and ex['source'].startswith('https://'), key
-        ET.parse(ROOT / 'examples' / ex['file'])  # raises if not well-formed
+        json.loads((ROOT / 'examples' / ex['file']).read_text(encoding='utf-8'))  # raises if not well-formed
 
 
 def test_examples_appear_verbatim_after_the_properties(page):
-    """The example closes the section page, its XML shown exactly as in examples/, with its dataset source linked."""
+    """The example closes the section page, its JSON shown exactly as in examples/, with its dataset source linked."""
     data, md = page
     tail = md[md.rindex('</details>'):]
     for ex in data['examples']:
-        xml = (ROOT / 'examples' / ex['file']).read_text()
-        assert f"```xml\n{xml}```" in tail, ex['file']
+        text = (ROOT / 'examples' / ex['file']).read_text(encoding='utf-8')
+        assert f"```json\n{text}```" in tail, ex['file']
         assert f"({ex['source']})" in tail and ex['caption'] in tail
         if ex.get('notes'):
             assert ' '.join(ex['notes'].split()) in ' '.join(tail.split())

@@ -1,0 +1,15 @@
+{
+  "derived": {
+    "derived-property": [
+      {
+        "type": "Spectroscopy, vibrational",
+        "description": "Raman spectra plots of intensity versus wavenumber (frequency) representing inelastic light scattering (Raman effect) from a sample.",
+        "calculation-method": [
+          {
+            "description": "The Raman spectra is obtained in two steps: (1) Phonon eigenmodes and frequencies are computed for a given crystalline material within the harmonic approximation using force constants derived from density functional theory (DFT). (2) The Raman tensor is obtained by numerically differentiating the electronic susceptibility with respect to atomic displacements along each vibrational mode and using these tensors to compute Raman scattering intensities for all Raman-active modes, ultimately yielding a full Raman spectrum after appropriate averaging and broadening."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -162,9 +162,9 @@ def render_section(section, show_legacy):
     for p in section['properties']:
         render_property(p, [section['section'], p['name']], out, show_legacy)
     for ex in section.get('examples') or []:
-        xml = (ROOT / 'examples' / ex['file']).read_text()
+        text = (ROOT / 'examples' / ex['file']).read_text(encoding='utf-8')
         out += [f"## Example: {ex['caption']}", '', f"Dataset source: [{ex['source']}]({ex['source']})", '',
-                f'```xml\n{xml}```', '']
+                f'```json\n{text}```', '']
         if ex.get('notes'):
             out += [f"Note: {' '.join(ex['notes'].split())}", '']
     return '\n'.join(out)

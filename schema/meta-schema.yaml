@@ -18,7 +18,7 @@ properties:
       additionalProperties: false
       properties:
         caption: {type: string}
-        file: {type: string, pattern: "^[a-z0-9-]+\\.xml$"}  # a file in examples/
+        file: {type: string, pattern: "^[a-z0-9-]+\\.json$"}  # a JSON file in examples/ (0044)
         source: {type: string}                             # the dataset the example documents
         notes: {type: string}
   legacy_complete: {type: boolean}  # true once no legacy_* field remains in the section (0004 item 36)

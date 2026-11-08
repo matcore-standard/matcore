@@ -1,0 +1,37 @@
+{
+  "dft": {
+    "xc-functional": [
+      {
+        "type": "GGA",
+        "name": "PW91",
+        "description": "PW91 functional (the choice is motivated by the existence of a large-scale simulation of the melting point with this functional)"
+      }
+    ],
+    "core-electron-treatment": {
+      "type": "Pseudopotential",
+      "pseudopotential-or-paw": [
+        {
+          "name": "Ultrasoft Pseudopotentials (USP)",
+          "type": "Ultrasoft",
+          "number-of-valence-electrons": 4
+        }
+      ]
+    },
+    "wavefunction-representation": {
+      "type": [
+        "Plane waves"
+      ],
+      "kinetic-energy-cutoff": {
+        "value": 250.0,
+        "unit": "eV"
+      }
+    },
+    "k-point-mesh": {
+      "type": "Regular shifted",
+      "smearing-width": {
+        "value": 0.05,
+        "unit": "eV"
+      }
+    }
+  }
+}
