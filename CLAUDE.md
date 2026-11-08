@@ -625,6 +625,18 @@ record or marked PROPOSED, NOT DECIDED.
    basis notes and two value notes tidied. Wording only.
    PROPOSED, NOT DECIDED: whether the minimal metadata should list the quantities a dataset
    contains (e.g. energies, forces, a heat flux) (0039).
+   [todo] applied fields by 0040: Kinds ElectricFieldStrength, MagneticFluxDensity, Acceleration;
+   units V/m, V/angstrom, T, m/s^2, one PR each with every field traced (the first of each Kind adds
+   the Kind); then electric-field (V/m), magnetic-field (B, T) and body-force (per unit mass, m/s^2)
+   as [3] vector conditions after temperature-gradient. Ruling committed on main.
+   [todo] electrode potential by 0041: Kind ElectricPotential; unit V by its own PR; then
+   electrode-potential (value, unit, reference* with terms SHE, RHE, Vacuum, qualifier) after
+   body-force, for the working electrode. Ruling committed on main.
+   PROPOSED, NOT DECIDED: an `electrode` subproperty naming the electrode, so several electrodes can
+   each have entries (0041).
+   PROPOSED, NOT DECIDED (md): a minimal `chemical-potential` condition (repeatable, naming a
+   species from `formula`, Energy or MolarEnergy), since 0036 lets a simulation be Open but not say
+   to what; decided together with md's thermodynamic-constraint (0040; revisits 0026).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
