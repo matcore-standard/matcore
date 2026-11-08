@@ -1,0 +1,2912 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://matcore-standard.github.io/matcore/0.6.0/standard/03-dft/">
+      
+      
+        <link rel="prev" href="../02-minimal/">
+      
+      
+        <link rel="next" href="../04-md/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/matcore/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>2.2 Density Functional Theory (DFT) Metadata - MatCore</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/matcore/layout.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#22-density-functional-theory-dft-metadata" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MatCore" class="md-header__button md-logo" aria-label="MatCore" data-md-component="logo">
+      
+  <img src="../../assets/matcore/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MatCore
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.2 Density Functional Theory (DFT) Metadata
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/matcore-standard/matcore" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MatCore" class="md-nav__button md-logo" aria-label="MatCore" data-md-component="logo">
+      
+  <img src="../../assets/matcore/logo.svg" alt="logo">
+
+    </a>
+    MatCore
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/matcore-standard/matcore" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About MatCore
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../leadership/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Leadership
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browse Standard
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Browse Standard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Preamble
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Schema for the MatCore Standard
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Schema for the MatCore Standard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-minimal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Minimal MatCore Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 Density Functional Theory (DFT) Metadata
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 Density Functional Theory (DFT) Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-dft-method-specific-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: DFT Method-Specific Metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-md/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Molecular Dynamics (MD) Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-mbpt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Many-Body Perturbation Theory (MBPT) Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.5 Machine Learning (ML) Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-pf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.6 Phase Field (PF) Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-derived/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.7 Derived Property Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annex-u-units/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annex U. MatCore Unit Table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annex-i-identifiers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annex I. Identifier Schemes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../revision-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revision History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contact
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="22-density-functional-theory-dft-metadata">2.2 Density Functional Theory (DFT) Metadata</h1>
+<p class="mc-version" data-version="0.6.0">Version 0.6.0</p>
+
+<p>The metadata for density functional theory (DFT) data (MatCore-DFT) is tabulated below. This includes the level of theory (exchange-correlation functional, core-electron model, and valence-electron model) and associated parameters. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)</p>
+<p><span class="mc-legend"><span class="mc-key"><span class="mc-star">*</span> required</span><span class="mc-key"><span class="mc-icon mc-i-once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span> appears at most once</span><span class="mc-key"><span class="mc-icon mc-i-rep"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span> repeatable</span></span></p>
+<details class="note mc-property" id="dft.xc-functional">
+<summary><span class="mc-name">xc-functional<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>Approximation used to describe the electron exchange and electron correlation energies</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.xc-functional.type">
+<summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The mathematical form of the exchange-correlation functional.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>LDA</code>, <code>GGA</code>, <code>Meta GGA</code>, <code>Hybrid</code>, <code>ML</code>. Other values are allowed. "LDA" – Local Density Approximation. "GGA" – Generalized Gradient Approximation. "Meta GGA" – Extension to GGA including dependence on Laplacian of electron density. "Hybrid" – An approximation for the exchange-correlation (XC) functional that includes a portion of the exact XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio or empirical). "ML" – Machine learning based functional.</p>
+</details>
+<details class="note mc-property" id="dft.xc-functional.name">
+<summary><span class="mc-name">name</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The exchange-correlation functional as the author names it.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. Others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. A decomposition into the components of a community library such as LibXC is given in normalization.</p>
+</details>
+<details class="note mc-property" id="dft.xc-functional.description">
+<summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>Explanatory text providing more information about the type of the exchange-correlation method used including any relevant identifying information.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Free text on what <code>type</code> and <code>name</code> do not say, e.g. a modification of the functional or the reason for choosing it.</p>
+</details>
+<details class="note mc-property" id="dft.xc-functional.normalization">
+<summary><span class="mc-name">normalization</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The functional decomposed into the components of a community library, which names the components.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.xc-functional.normalization.components">
+<summary><span class="mc-name">components<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The components of the functional, in the identifiers of the source.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[:]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: <code>[GGA_X_PBE, GGA_C_PBE]</code>.</p>
+</details>
+<details class="note mc-property" id="dft.xc-functional.normalization.source">
+<summary><span class="mc-name">source<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The library whose identifiers the components use.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>LibXC</code>. Other values are allowed. "LibXC" – the <a href="https://libxc.gitlab.io/functionals/">Libxc library of exchange-correlation functionals</a>.</p>
+</details>
+</details>
+<details class="note mc-property" id="dft.xc-functional.xc-parameter">
+<summary><span class="mc-name">xc-parameter</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>A fixed variable associated with the specified exchange-correlation functional method.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Note: For example, the mixing parameter of a hybrid exchange-correlation functional, or another method-specific parameter.</p>
+<details class="note mc-property" id="dft.xc-functional.xc-parameter.name">
+<summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The designation of the exchange-correlation parameter.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="dft.xc-functional.xc-parameter.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The data associated with the exchange-correlation parameter.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>any</td>
+<td>any</td>
+<td>any</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="dft.xc-functional.xc-parameter.unit">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The unit in which the associated value is expressed.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning).</p>
+</details>
+<details class="note mc-property" id="dft.xc-functional.xc-parameter.description">
+<summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>An explanation of the meaning, source, or purpose of the parameter.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+</details>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment">
+<summary><span class="mc-name">core-electron-treatment<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The treatment of the core electrons in the calculation.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.core-electron-treatment.type">
+<summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The method used to treat the core electrons.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>All-electron</code>, <code>PAW</code>, <code>Pseudopotential</code>. Other values are allowed. "All-electron" – All of the electrons in an atom are modeled explicitly. "PAW" – Projector Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential.</p>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw">
+<summary><span class="mc-name">pseudopotential-or-paw</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>For type "Pseudopotential", or type "PAW", additional information about each pseudopotential or PAW dataset.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.name">
+<summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The name of the pseudopotential or PAW dataset.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.type">
+<summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The physical form of the pseudopotential or PAW dataset.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Norm conserving</code>, <code>PAW</code>, <code>Ultrasoft</code>. Other values are allowed.</p>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.description">
+<summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>Explanatory text about the pseudopotential or PAW dataset including any relevant identifying information.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.number-of-valence-electrons">
+<summary><span class="mc-name">number-of-valence-electrons<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The number of electrons treated explicitly.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>int</td>
+<td>[]</td>
+<td>dimensionless</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum: 1.</p>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.repository">
+<summary><span class="mc-name">repository</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The database from which the pseudopotential or PAW dataset was obtained.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.version">
+<summary><span class="mc-name">version</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The version of the pseudopotential or PAW dataset.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: <code>6.3.1</code>.</p>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.doi">
+<summary><span class="mc-name">doi</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The digital object identifier (DOI) for the pseudopotential or PAW dataset.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Pattern: <code>https://doi\.org/10\.[^/]+/.+</code>.</p>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.file">
+<summary><span class="mc-name">file</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The pseudopotential or PAW dataset file, with its checksums.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Use file when the pseudopotential or PAW dataset is identified by a checksum of its file (e.g. the SHA256 hash of a VASP POTCAR file). For any other designation, use unique-identifier.</p>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.file.name">
+<summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The name of the file.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.file.checksum">
+<summary><span class="mc-name">checksum<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>A digital fingerprint of the file, computed by a named algorithm.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.file.checksum.algorithm">
+<summary><span class="mc-name">algorithm<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The algorithm that computed the checksum.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>SHA1</code>, <code>SHA224</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>SHA3-256</code>, <code>SHA3-384</code>, <code>SHA3-512</code>, <code>BLAKE2b-256</code>, <code>BLAKE2b-384</code>, <code>BLAKE2b-512</code>, <code>BLAKE3</code>, <code>MD2</code>, <code>MD4</code>, <code>MD5</code>, <code>MD6</code>, <code>ADLER32</code>. Other values are allowed. The algorithm names of <a href="https://spdx.github.io/spdx-spec/v2.3.1/file-information/">SPDX 2.3.1 §8.4</a> (File checksum field).</p>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.file.checksum.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The checksum of the file, in lowercase hexadecimal digits.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Pattern: <code>[0-9a-f]+</code>.</p>
+</details>
+</details>
+</details>
+<details class="note mc-property" id="dft.core-electron-treatment.pseudopotential-or-paw.unique-identifier">
+<summary><span class="mc-name">unique-identifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>A token other than a checksum that identifies the pseudopotential or PAW dataset, such as a label or code assigned by the library that distributes it.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Note: For a checksum of the pseudopotential or PAW dataset file, use file instead.</p>
+</details>
+</details>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation">
+<summary><span class="mc-name">wavefunction-representation<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The representation used to expand the electronic wave functions.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.wavefunction-representation.type">
+<summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>The method used to represent the electronic wave functions.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>yes</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Gaussian basis sets</code>, <code>LAPW</code>, <code>Local atomic orbitals</code>, <code>Numerical atomic orbitals</code>, <code>Plane waves</code>, <code>Real space grids</code>. Other values are allowed. The terms fall into three groups. (1) Basis-function expansions: "Gaussian basis sets" – Atom-centered Gaussian-type orbitals. "Local atomic orbitals" – Atom-centered orbitals of a form not covered by the previous or the next term, e.g. Slater-type orbitals. "Numerical atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius. "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff. (2) Grid methods: "Real space grids" – Values on a mesh of points in real space (finite differences or finite elements). (3) Augmented methods: "LAPW" – Linearized Augmented Plane Wave: atomic-like functions inside spheres around the atoms, plane waves between them.</p>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set">
+<summary><span class="mc-name">localized-orbital-basis-set</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>For type "Gaussian basis sets", "Local atomic orbitals" or "Numerical atomic orbitals", additional information about the basis set.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.type">
+<summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The designation of the set of orbital functions used for expanding electronic wave functions.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: <code>6-31G</code>, <code>DZP</code>.</p>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.repository">
+<summary><span class="mc-name">repository</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The database from which the localized-orbital basis set was obtained.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.version">
+<summary><span class="mc-name">version</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The version of the localized-orbital basis set.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.doi">
+<summary><span class="mc-name">doi</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The digital object identifier (DOI) for the localized-orbital basis set.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Pattern: <code>https://doi\.org/10\.[^/]+/.+</code>.</p>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.file">
+<summary><span class="mc-name">file</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The localized-orbital basis set file, with its checksums.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Use file when the basis set is identified by a checksum of its file. For any other designation, use unique-identifier.</p>
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.file.name">
+<summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The name of the file.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.file.checksum">
+<summary><span class="mc-name">checksum<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>A digital fingerprint of the file, computed by a named algorithm.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.file.checksum.algorithm">
+<summary><span class="mc-name">algorithm<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The algorithm that computed the checksum.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>SHA1</code>, <code>SHA224</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>SHA3-256</code>, <code>SHA3-384</code>, <code>SHA3-512</code>, <code>BLAKE2b-256</code>, <code>BLAKE2b-384</code>, <code>BLAKE2b-512</code>, <code>BLAKE3</code>, <code>MD2</code>, <code>MD4</code>, <code>MD5</code>, <code>MD6</code>, <code>ADLER32</code>. Other values are allowed. The algorithm names of <a href="https://spdx.github.io/spdx-spec/v2.3.1/file-information/">SPDX 2.3.1 §8.4</a> (File checksum field).</p>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.file.checksum.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The checksum of the file, in lowercase hexadecimal digits.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Pattern: <code>[0-9a-f]+</code>.</p>
+</details>
+</details>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.localized-orbital-basis-set.unique-identifier">
+<summary><span class="mc-name">unique-identifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>A token other than a checksum that identifies the localized-orbital basis set, such as a label or code assigned by the library that distributes it.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Note: For a checksum of the basis set file, use file instead.</p>
+</details>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.kinetic-energy-cutoff">
+<summary><span class="mc-name">kinetic-energy-cutoff</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>For type "LAPW" or "Plane waves", the maximum kinetic energy of the plane waves included in the calculation of wave functions.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.wavefunction-representation.kinetic-energy-cutoff.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The value of the property, in the unit given by <code>unit</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>float</td>
+<td>[]</td>
+<td>Energy</td>
+<td>eV</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum: 0.</p>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.kinetic-energy-cutoff.unit">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The unit of the value, an Annex U symbol whose Kind is the Kind of <code>value</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.charge-density-cutoff">
+<summary><span class="mc-name">charge-density-cutoff</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>For type "LAPW" or "Plane waves", the energy value used to truncate the plane wave expansion of the electron charge density.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.wavefunction-representation.charge-density-cutoff.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The value of the property, in the unit given by <code>unit</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>float</td>
+<td>[]</td>
+<td>Energy</td>
+<td>eV</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum: 0.</p>
+</details>
+<details class="note mc-property" id="dft.wavefunction-representation.charge-density-cutoff.unit">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The unit of the value, an Annex U symbol whose Kind is the Kind of <code>value</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+</details>
+</details>
+<details class="note mc-property" id="dft.calculation-physics">
+<summary><span class="mc-name">calculation-physics</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>Additional phenomena included beyond the standard DFT calculation.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Collinear spin polarization</code>, <code>Noncollinear spin polarization</code>, <code>On-site correlation</code>, <code>Orbital polarization</code>, <code>Spin-orbit coupling</code>, <code>Van der Waals</code>. Other values are allowed. "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or antiparallel to one axis. "Noncollinear spin polarization" – Spin-polarized, with magnetic moments free to point in any direction. "On-site correlation" – e.g. DFT+U. "Orbital polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks' orbital-polarization term. "Spin-orbit coupling" – The coupling of the electron spin to its orbital motion. "Van der Waals" – Dispersion interactions, by a correction or a nonlocal functional. Give at most one of the two spin-polarization terms. List each phenomenon as a separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries, "Noncollinear spin polarization" and "Spin-orbit coupling".</p>
+</details>
+<details class="note mc-property" id="dft.k-point-mesh">
+<summary><span class="mc-name">k-point-mesh</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>For periodic systems, a grid of points sampled within the Brillouin zone, used to approximate integrals and calculate electronic properties by discretizing the wavefunction across reciprocal space.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.k-point-mesh.type">
+<summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The choice of how k-points are distributed on the mesh.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Regular gamma-centered</code>, <code>Regular shifted</code>, <code>Irregular</code>. Other values are allowed.</p>
+</details>
+<details class="note mc-property" id="dft.k-point-mesh.number-of-points">
+<summary><span class="mc-name">number-of-points</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The number of k-points included along each reciprocal lattice vector.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>int</td>
+<td>[3]</td>
+<td>dimensionless</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum: 1, for each component. Ordered list of three integers, the number of k-points along the three reciprocal lattice vector directions.</p>
+</details>
+<details class="note mc-property" id="dft.k-point-mesh.shift">
+<summary><span class="mc-name">shift</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>Translation of the k-point mesh along the reciprocal lattice vector directions.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>float</td>
+<td>[3]</td>
+<td>dimensionless</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Ordered list of three real numbers, the shifts along the three reciprocal lattice vector directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice vector.</p>
+</details>
+<details class="note mc-property" id="dft.k-point-mesh.smearing-type">
+<summary><span class="mc-name">smearing-type</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The choice of method for assigning fractional occupancies of electronic states and/or facilitating reciprocal space integrations.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>None</code>, <code>None - tetrahedron</code>, <code>None - Blöchl-corrected tetrahedron</code>, <code>Gaussian</code>, <code>Fermi-Dirac</code>, <code>Methfessel-Paxton</code>, <code>Marzari-Vanderbilt</code>. Other values are allowed.</p>
+</details>
+<details class="note mc-property" id="dft.k-point-mesh.smearing-width">
+<summary><span class="mc-name">smearing-width</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>A parameter that controls the broadening of the electron energy levels near the Fermi level.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.k-point-mesh.smearing-width.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The value of the property, in the unit given by <code>unit</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>float</td>
+<td>[]</td>
+<td>Energy</td>
+<td>eV</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum: 0.</p>
+</details>
+<details class="note mc-property" id="dft.k-point-mesh.smearing-width.unit">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The unit of the value, an Annex U symbol whose Kind is the Kind of <code>value</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+</details>
+<details class="note mc-property" id="dft.k-point-mesh.smearing-parameter">
+<summary><span class="mc-name">smearing-parameter</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>A fixed variable associated with the specified smearing method (e.g. the order of the Methfessel-Paxton method).</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.k-point-mesh.smearing-parameter.name">
+<summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The designation of the smearing parameter.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="dft.k-point-mesh.smearing-parameter.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The data associated with the smearing parameter.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>any</td>
+<td>any</td>
+<td>any</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="dft.k-point-mesh.smearing-parameter.unit">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The unit in which the associated value is expressed.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning).</p>
+</details>
+<details class="note mc-property" id="dft.k-point-mesh.smearing-parameter.description">
+<summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>An explanation of the meaning, source, or purpose of the parameter.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+</details>
+</details>
+<details class="note mc-property" id="dft.self-consistent-field-convergence">
+<summary><span class="mc-name">self-consistent-field-convergence</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>Method and termination criteria defining the precision of self-consistent solution of the Kohn-Sham equations.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.self-consistent-field-convergence.method-density">
+<summary><span class="mc-name">method-density</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The self-consistent field mixing and/or extrapolation scheme for the iterative solution of the Kohn-Sham equations.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Simple mixing</code>, <code>Pulay mixing</code>, <code>DIIS</code>, <code>Broyden mixing</code>. Other values are allowed. "DIIS" – Direct Inversion in the Iterative Subspace.</p>
+</details>
+<details class="note mc-property" id="dft.self-consistent-field-convergence.method-diagonalization">
+<summary><span class="mc-name">method-diagonalization</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>The method used to obtain the Kohn-Sham orbitals at each step of the self-consistent loop.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Car-Parrinello</code>, <code>Chebyshev filtering</code>, <code>Conjugate gradient</code>, <code>Davidson method</code>, <code>Direct diagonalization</code>, <code>Lanczos</code>, <code>LOBPCG</code>, <code>RMM-DIIS</code>. Other values are allowed. "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization. "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters. "Davidson method" – Including blocked variants. "Direct diagonalization" – A dense eigensolver applied to the full Hamiltonian matrix (e.g. LAPACK, ScaLAPACK). "LOBPCG" – Locally Optimal Block Preconditioned Conjugate Gradient. "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the Iterative Subspace.</p>
+</details>
+<details class="note mc-property" id="dft.self-consistent-field-convergence.tolerance">
+<summary><span class="mc-name">tolerance<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>Convergence criterion for the self-consistent loop.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.self-consistent-field-convergence.tolerance.criterion">
+<summary><span class="mc-name">criterion<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The quantity whose convergence the tolerance measures.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Energy</code>, <code>Charge density</code>, <code>Potential</code>. Other values are allowed. "Energy" – The change in the energy between successive iterations, defined as for <code>relaxation-tolerance-energy</code>. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham potential.</p>
+</details>
+<details class="note mc-property" id="dft.self-consistent-field-convergence.tolerance.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The value of the property, in the unit given by <code>unit</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>float</td>
+<td>[]</td>
+<td>any</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum: 0.</p>
+</details>
+<details class="note mc-property" id="dft.self-consistent-field-convergence.tolerance.unit">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The unit in which the associated value is expressed.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning).</p>
+</details>
+</details>
+</details>
+<details class="note mc-property" id="dft.relaxation-tolerance-energy">
+<summary><span class="mc-name">relaxation-tolerance-energy</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>Energy convergence criterion for atomic relaxation.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Note: The energy is the Helmholtz free energy F = E − TS, including the entropy S of the smeared electrons at the smearing temperature T, when occupations are smeared (e.g. a metal), and the total energy E otherwise (e.g. an insulator). It is not the energy extrapolated to zero smearing.</p>
+<details class="note mc-property" id="dft.relaxation-tolerance-energy.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The value of the property, in the unit given by <code>unit</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>float</td>
+<td>[]</td>
+<td>Energy</td>
+<td>eV</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum: 0.</p>
+</details>
+<details class="note mc-property" id="dft.relaxation-tolerance-energy.unit">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The unit of the value, an Annex U symbol whose Kind is the Kind of <code>value</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+</details>
+<details class="note mc-property" id="dft.relaxation-tolerance-forces">
+<summary><span class="mc-name">relaxation-tolerance-forces</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>Maximum force convergence criterion for atomic relaxation.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="dft.relaxation-tolerance-forces.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The value of the property, in the unit given by <code>unit</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>float</td>
+<td>[]</td>
+<td>Force</td>
+<td>eV/angstrom</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum: 0.</p>
+</details>
+<details class="note mc-property" id="dft.relaxation-tolerance-forces.unit">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The unit of the value, an Annex U symbol whose Kind is the Kind of <code>value</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+</details>
+<details class="note mc-property" id="dft.comment">
+<summary><span class="mc-name">comment</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>Additional information on the DFT calculation. For example, non-self-consistent constraints, such as details about imposed state occupation or moment freezing.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2 id="example-dft-method-specific-metadata">Example: DFT Method-Specific Metadata</h2>
+<p>Dataset source: <a href="https://doi.org/10.60732/8e9bc5b0">https://doi.org/10.60732/8e9bc5b0</a></p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;root&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xc-functional&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type&gt;</span>GGA<span class="nt">&lt;/type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>PW91<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>PW91<span class="w"> </span>functional<span class="w"> </span>(the<span class="w"> </span>choice<span class="w"> </span>is<span class="w"> </span>motivated<span class="w"> </span>by<span class="w"> </span>the<span class="w"> </span>existence<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>large-scale<span class="w"> </span>simulation<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>melting<span class="w"> </span>point<span class="w"> </span>with<span class="w"> </span>this<span class="w"> </span>functional)<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/xc-functional&gt;</span>
+<span class="w">  </span><span class="nt">&lt;core-electron-treatment&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type&gt;</span>Pseudopotential<span class="nt">&lt;/type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;pseudopotential-or-paw&gt;</span>
+<span class="w">      </span><span class="nt">&lt;name&gt;</span>Ultrasoft<span class="w"> </span>Pseudopotentials<span class="w"> </span>(USP)<span class="nt">&lt;/name&gt;</span>
+<span class="w">      </span><span class="nt">&lt;type&gt;</span>Ultrasoft<span class="nt">&lt;/type&gt;</span>
+<span class="w">      </span><span class="nt">&lt;number-of-valence-electrons&gt;</span>4<span class="nt">&lt;/number-of-valence-electrons&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/pseudopotential-or-paw&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/core-electron-treatment&gt;</span>
+<span class="w">  </span><span class="nt">&lt;wavefunction-representation&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type&gt;</span>Plane<span class="w"> </span>waves<span class="nt">&lt;/type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;kinetic-energy-cutoff&gt;</span>
+<span class="w">      </span><span class="nt">&lt;value&gt;</span>250.0<span class="nt">&lt;/value&gt;</span>
+<span class="w">      </span><span class="nt">&lt;unit&gt;</span>eV<span class="nt">&lt;/unit&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/kinetic-energy-cutoff&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/wavefunction-representation&gt;</span>
+<span class="w">  </span><span class="nt">&lt;k-point-mesh&gt;</span>
+<span class="w">    </span><span class="nt">&lt;type&gt;</span>Regular<span class="w"> </span>shifted<span class="nt">&lt;/type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;smearing-width&gt;</span>
+<span class="w">      </span><span class="nt">&lt;value&gt;</span>0.05<span class="nt">&lt;/value&gt;</span>
+<span class="w">      </span><span class="nt">&lt;unit&gt;</span>eV<span class="nt">&lt;/unit&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/smearing-width&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/k-point-mesh&gt;</span>
+<span class="nt">&lt;/root&gt;</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "toc.integrate", "content.code.copy", "search.suggest"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../../assets/matcore/layout.js"></script>
+      
+    
+  </body>
+</html>
