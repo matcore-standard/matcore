@@ -68,7 +68,8 @@ def test_creation_date_takes_a_date_or_a_utc_date_time(value, ok):
     assert Draft202012Validator(value_schema(p)).is_valid(value) == ok
 
 
-@pytest.mark.parametrize('entity, required', [('creator', True), ('contributor', False), ('matcore-author', True)])
+@pytest.mark.parametrize('entity, required', [('creator', True), ('contributor', False),
+                                              ('matcore/record-author', True)])
 def test_creator_and_contributor_follow_0014(entity, required):
     """creator and contributor carry scheme-tagged identifiers and affiliations that hold their own
     identifier (0014 item 1); each keeps its own required flag (contributor is optional, 0011).
@@ -78,7 +79,10 @@ def test_creator_and_contributor_follow_0014(entity, required):
 
     entity (str): the property's name; required (bool): whether a dataset must have one.
     """
-    prop = minimal(entity)
+    first, *rest = entity.split('/')
+    prop = minimal(first)
+    for n in rest:
+        prop = sub(prop, n)
     name = ('name', True, False, 'string', (), ())
     value = ('value', True, False, 'string', (), ())
     entity_scheme = ('scheme', True, False, 'string', ('ORCID', 'ROR', 'DOI', 'SWHID', 'ISNI'), ())
@@ -86,7 +90,7 @@ def test_creator_and_contributor_follow_0014(entity, required):
     identifier = ('identifier', False, True, None, (), (value, entity_scheme))
     affiliation = ('affiliation', False, True, None, (), (
         name, ('identifier', False, False, None, (), (value, affiliation_scheme))))
-    assert tree(prop) == (entity, required, True, None, (), (name, identifier, affiliation))
+    assert tree(prop) == (entity.split('/')[-1], required, True, None, (), (name, identifier, affiliation))
     assert legacy_fields(prop) == []
 
 
@@ -484,24 +488,38 @@ def test_checksum_value_is_lowercase_hexadecimal(value, ok):
     assert Draft202012Validator(value_schema(v)).is_valid(value) == ok
 
 
-def test_matcore_id_is_a_string_whose_form_is_open():
-    """Every dataset has exactly one MatCore ID, a plain string. The baseline calls the example's format
-    tentative, so no pattern is fixed until the form of a MatCore ID is decided."""
-    p = minimal('matcore-id')
-    assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind'], p['recommended-unit']) == (
-        True, False, 'string', [], 'inapplicable', None)
-    assert 'pattern' not in (p['values'] or {}) and 'format' not in (p['values'] or {})
-    assert legacy_fields(p) == []
+def test_matcore_gathers_the_record_information():
+    """One required container says which standard the record follows, which dataset and version it describes,
+    and who wrote it when; it replaces matcore-id, matcore-author and matcore-date at their place (0045)."""
+    names = [p['name'] for p in yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))['properties']]
+    assert not {'matcore-id', 'matcore-author', 'matcore-date'} & set(names)
+    assert names.index('matcore') == names.index('provenance') + 1
+    m = minimal('matcore')
+    assert [(s['name'], s['required'], s['repeatable']) for s in m['subproperties']] == [
+        ('standard-version', True, False), ('standard-link', False, False), ('id', True, False),
+        ('dataset-version', True, False), ('record-author', True, True), ('creation-date', True, False)]
+    assert (m['required'], m['repeatable']) == (True, False)
+    assert sub(m, 'standard-link')['values']['format'] == 'uri'
+    assert sub(m, 'id')['description'] == 'An identifier of the dataset, the same for all its versions.'
+    v = sub(m, 'dataset-version')
+    assert (v['type'], v['kind'], v['values']['minimum']) == ('int', 'dimensionless', 1)
+    assert v['notes'][0].endswith('When provenance is given, dataset-version is 1 more than the number of Version '
+                                  'update events.')
+    c, top = sub(m, 'creation-date'), minimal('creation-date')
+    assert [c[k] for k in ('type', 'extent', 'kind', 'recommended-unit', 'values')] == \
+           [top[k] for k in ('type', 'extent', 'kind', 'recommended-unit', 'values')]
+    assert legacy_fields(m) == []
 
 
-def test_matcore_date_is_written_as_creation_date():
-    """The date of the MatCore document is written as the dataset's creation date is: the same type,
-    pattern, examples and note, so one rule reads both."""
-    p, c = minimal('matcore-date'), minimal('creation-date')
-    assert (p['required'], p['repeatable']) == (True, False)
-    assert [p[k] for k in ('type', 'extent', 'kind', 'recommended-unit', 'values')] == \
-           [c[k] for k in ('type', 'extent', 'kind', 'recommended-unit', 'values')]
-    assert legacy_fields(p) == []
+@pytest.mark.parametrize('value, ok', [('0.6.0', True), ('1.10.2', True), ('0.6', False), ('v0.6.0', False),
+                                       ('01.6.0', False), ('0.6.0-dev', False)])
+def test_standard_version_is_a_release_number(value, ok):
+    """The standard version is written as releases.yaml writes a release, MAJOR.MINOR.PATCH (0010; 0045).
+
+    value (str): a candidate version; ok (bool): whether it conforms.
+    """
+    v = sub(minimal('matcore'), 'standard-version')
+    assert Draft202012Validator(value_schema(v)).is_valid(value) == ok
 
 
 def test_license_entries_name_an_spdx_expression_or_a_custom_license():
@@ -1152,11 +1170,18 @@ def test_combined_methods_name_the_source_of_energies_and_forces():
     assert note.endswith('Give one entry per model, e.g. DFT and Empirical potential for a QM/MM simulation.')
 
 
-def test_matcore_author_names_who_wrote_the_record():
-    """The MatCore record's author may differ from the dataset's creators, so it is its own property, placed
-    after matcore-id with the record's other details, and every record names one (0033)."""
-    names = [p['name'] for p in yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))['properties']]
-    assert names.index('matcore-author') == names.index('matcore-id') + 1 == names.index('matcore-date') - 1
-    a = minimal('matcore-author')
+def test_record_author_names_who_wrote_the_record():
+    """The record's author may differ from the dataset's creators, so it is its own member of matcore, with
+    creator's identifier schemes (0033; 0045)."""
+    a = sub(minimal('matcore'), 'record-author')
     assert sub(a, 'name')['description'] == 'The name of the entity that created the metadata record.'
     assert sub(sub(a, 'identifier'), 'scheme')['values'] == sub(sub(minimal('creator'), 'identifier'), 'scheme')['values']
+
+
+def test_example_record_names_its_standard_and_version():
+    """The example follows 0.6.0, points to its tag, and describes the first version of its dataset (0045 item 3)."""
+    import json
+    m = json.loads((ROOT / 'examples/minimal.json').read_text(encoding='utf-8'))['minimal']['matcore']
+    assert {k: m[k] for k in ('standard-version', 'standard-link', 'id', 'dataset-version', 'creation-date')} == {
+        'standard-version': '0.6.0', 'standard-link': 'https://github.com/matcore-standard/matcore/tree/v0.6.0/schema',
+        'id': 'mc-ad83jsd3', 'dataset-version': 1, 'creation-date': '2026-02-14'}

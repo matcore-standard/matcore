@@ -99,6 +99,6 @@ def test_example_identifiers_pass_annex_i():
     (0033, amended)."""
     from check_identifiers import identifier_errors
     minimal = json.loads((ROOT / 'examples/minimal.json').read_text(encoding='utf-8'))['minimal']
-    author = minimal['matcore-author'][0]['identifier']
+    author = minimal['matcore']['record-author'][0]['identifier']
     assert {'value': 'https://orcid.org/0000-0003-3311-6299', 'scheme': 'ORCID'} in author
     assert all(identifier_errors(scheme, value) == [] for scheme, value in identifiers(minimal))

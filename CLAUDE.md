@@ -273,7 +273,10 @@ record or marked PROPOSED, NOT DECIDED.
      (tag v0.6.0 on b688e40; dft complete; rulings 0016–0043); the site's `latest` is 0.6.0 and `dev`
      is main. (An earlier v0.6.0 tag on 2908f57 failed CI's release check and was moved.)
    - Changes to the standard since 0.6.0, for the next release's entry in releases.yaml: the
-     examples are written in JSON, the first serialization, and §1.3 says so (0044).
+     examples are written in JSON, the first serialization, and §1.3 says so (0044); a required
+     matcore container gives the standard version, an optional link to it, the dataset's id and
+     version, the record's author and creation date, replacing matcore-id, matcore-author and
+     matcore-date (0045; breaks 0.6.0 instances).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -451,11 +454,13 @@ record or marked PROPOSED, NOT DECIDED.
    digital fingerprint for the dataset or an associated file modified by the provenance event.";
    legacy_* deleted. (Superseded: a file holds its checksums by 0032, PR #63.)
    [done, PR #34 merged 2026-11-04] matcore-id: a required scalar string, no pattern, since the
-   baseline calls the example's format tentative; legacy_* deleted.
+   baseline calls the example's format tentative; legacy_* deleted. (Superseded: it is matcore › id by
+   0045.)
    PROPOSED, NOT DECIDED (for step 6): the form of a MatCore ID, including whether it has a URI
-   form (so it could be a related-content link), and who issues one; matcore-id is required, yet
-   the standard does not say where an author obtains it.
-   [done, PR #35 merged 2026-11-04] matcore-date: written as creation-date (same pattern,
+   form (so it could be a related-content link), and who issues one; matcore › id (0045) is required,
+   yet the standard does not say where an author obtains it.
+   [done, PR #35 merged 2026-11-04] (Superseded: matcore › creation-date by 0045.) matcore-date:
+   written as creation-date (same pattern,
    examples and note, locked by a test); legacy_* deleted. provenance › date gets creation-date's
    note too (missed in PR #33), and a test now compares all of its values.
    [done, PR #36 merged 2026-11-04] license: a required string holding an SPDX license
@@ -599,7 +604,8 @@ record or marked PROPOSED, NOT DECIDED.
    unique-identifier's naming file.
    [done, PR #64 merged 2026-11-07] matcore-author by 0033: a new required, repeatable top-level
    property after matcore-id, with creator's structure, naming who created the metadata record;
-   examples/minimal.xml gives Ellad B. Tadmor, University of Minnesota.
+   examples/minimal.xml gives Ellad B. Tadmor, University of Minnesota. (Superseded: matcore ›
+   record-author by 0045.)
    [done, PR #65 merged 2026-11-07] 0033 amended: the example's matcore-author gains ORCID
    https://orcid.org/0000-0003-3311-6299; tests/test_examples.py checks every identifier in the
    minimal example against Annex I.
@@ -671,8 +677,8 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] matcore container by 0045: a required top-level `matcore` (standard-version*, standard-link,
    id*, dataset-version*, record-author*, creation-date*) replaces matcore-id, matcore-author and
    matcore-date; dataset-version is 1 + the number of provenance Version update events; the example
-   gives 0.6.0, the v0.6.0 tag address, id mc-ad83jsd3 and dataset-version 1. Ruling committed on
-   main.
+   gives 0.6.0, the v0.6.0 tag address, id mc-ad83jsd3 and dataset-version 1. On branch
+   matcore-container (committed, not pushed; PR to open).
    PROPOSED, NOT DECIDED: GitHub releases with Zenodo so each release gets a DOI (0010), the step it
    adds to the release procedure, and a .zenodo.json or CITATION.cff for the record's metadata (0045).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
