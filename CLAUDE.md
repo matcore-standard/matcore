@@ -319,7 +319,8 @@ record or marked PROPOSED, NOT DECIDED.
      condition (0039); the conditions electric-field, magnetic-field (as B) and body-force (per unit
      mass) are added, with the Kinds ElectricFieldStrength, MagneticFluxDensity and Acceleration and
      the units V/m, V/angstrom, T and m/s^2 (0040); electrode-potential is added with a required
-     reference (SHE, RHE, Vacuum), the Kind ElectricPotential and the unit V (0041).
+     reference (SHE, RHE, Vacuum), the Kind ElectricPotential and the unit V (0041);
+     chemical-potential is added with species and an optional relative-to (0042).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -650,7 +651,8 @@ record or marked PROPOSED, NOT DECIDED.
    decided by 0042 before md.)
    [todo] chemical potential by 0042: simulation-conditions › chemical-potential (value in Energy,
    recommended eV; unit; species*; relative-to for a difference; qualifier, its note "for the
-   species") after electrode-potential. Ruling committed on main.
+   species") after electrode-potential. Ruling committed on main. On branch chemical-potential
+   (committed, not pushed; PR to open).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that simulation-conditions holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.

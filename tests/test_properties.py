@@ -259,6 +259,7 @@ SIMULATION_CONDITIONS = {
     'magnetic-field': ('float', [3], 'MagneticFluxDensity', 'T'),
     'body-force': ('float', [3], 'Acceleration', 'm/s^2'),
     'electrode-potential': ('float', [], 'ElectricPotential', 'V'),
+    'chemical-potential': ('float', [], 'Energy', 'eV'),
 }
 
 
@@ -864,10 +865,13 @@ def test_varying_conditions_are_qualified_entries(name):
     c = sub(sub(minimal('computation'), 'simulation-conditions'), name)
     names = [s['name'] for s in c['subproperties']]
     unit = [] if datum(c)['kind'] == 'dimensionless' else ['unit']
-    convention = ['reference'] if name == 'electrode-potential' else []  # 0041
+    convention = {'electrode-potential': ['reference'], 'chemical-potential': ['species', 'relative-to']}.get(
+        name, [])  # 0041, 0042
     assert c['repeatable'] and names == ['value', *unit, *convention, 'qualifier']
     q = sub(c, 'qualifier')
-    assert (q['required'], q['values']['terms'], q['values']['note']) == (False, list(QUALIFIERS), QUALIFIER_NOTE)
+    note = QUALIFIER_NOTE.replace('the only one for the condition', 'the only one for the species') \
+        if name == 'chemical-potential' else QUALIFIER_NOTE  # 0042
+    assert (q['required'], q['values']['terms'], q['values']['note']) == (False, list(QUALIFIERS), note)
     if not unit:
         assert datum(c)['description'] == 'The value of the property.'
 
@@ -936,6 +940,8 @@ IMPOSED_DEFINITIONS = {
     'electrode-potential': 'The potential of the working electrode imposed on the simulated system, e.g. by a '
                            'potentiostat in a constant-potential simulation, relative to the reference given in '
                            '`reference`.',
+    'chemical-potential': 'The chemical potential of a species imposed on the simulated system by a reservoir, e.g. '
+                          'in a grand-canonical or semi-grand-canonical simulation.',
 }
 SC_NOTE = ('Note: The conditions below, other than type and description, are given as appropriate to the simulation. '
            'Each is imposed on the simulation as an external constraint. A quantity computed from the simulation, e.g. '
@@ -995,6 +1001,24 @@ def test_electrode_potential_names_its_reference():
     assert r['values']['note'] == ('One of: "SHE" – The standard hydrogen electrode. "RHE" – The reversible hydrogen '
                                    'electrode, at the pH of the simulation. "Vacuum" – The vacuum level, giving an '
                                    'absolute potential.')
+
+
+def test_chemical_potential_names_its_species():
+    """A chemical potential belongs to a species of the formula, and a semi-grand-canonical simulation imposes a
+    difference between two; an absolute value depends on the model's energy zero (0042 item 1)."""
+    c = sub(sub(minimal('computation'), 'simulation-conditions'), 'chemical-potential')
+    for name, required in (('species', True), ('relative-to', False)):
+        p = sub(c, name)
+        assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind']) == (
+            required, False, 'string', [], 'inapplicable'), name
+    assert sub(c, 'species')['values']['examples'] == ['Cu', 'H2O', 'Ja']
+    assert sub(c, 'relative-to')['notes'] == ['Note: Give relative-to when the simulation imposes a difference of '
+                                              'chemical potentials, as a semi-grand-canonical simulation does.']
+    note = datum(c)['values']['note']
+    assert note.startswith('The chemical potential <i>μ</i> per particle, or the difference')
+    assert 'energy zero of the model given in `interaction-model`' in note and 'kJ/mol' in note
+    from check_formula import formula_errors
+    assert all(formula_errors(e) == [] for e in sub(c, 'species')['values']['examples'])
 
 
 def test_number_density_is_gone():

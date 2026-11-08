@@ -1513,6 +1513,83 @@ properties:
             Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
             Maximum are taken component by component.
         repeatable: false
+    - name: chemical-potential
+      required: false
+      description: >-
+        The chemical potential of a species imposed on the simulated system by a reservoir, e.g. in a
+        grand-canonical or semi-grand-canonical simulation.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: Energy
+        recommended-unit: eV
+        values:
+          note: >-
+            The chemical potential <i>μ</i> per particle, or the difference <i>μ</i>(species) −
+            <i>μ</i>(relative-to). An absolute value is relative to the energy zero of the model given in
+            `interaction-model`, so absolute values from different models do not compare. A value in a molar
+            unit (e.g. kJ/mol) is converted to an energy per particle before it is given.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: species
+        required: true
+        description: >-
+          The species whose chemical potential is given, as an element symbol, a user-defined species or a
+          group of a material component's formula.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          examples: [Cu, H2O, Ja]
+        repeatable: false
+      - name: relative-to
+        required: false
+        description: >-
+          A second species, when the value is the difference between the chemical potentials of species and of
+          this one.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+        notes:
+        - >-
+          Note: Give relative-to when the simulation imposes a difference of chemical potentials, as a
+          semi-grand-canonical simulation does.
+      - name: qualifier
+        required: false
+        description: What the value represents.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Average, Final, Initial, Maximum, Minimum]
+          note: >-
+            Without a qualifier, the value holds throughout the simulation and across the system, and the entry
+            is the only one for the species. Otherwise give one entry for each qualifier that applies, e.g.
+            Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
+            Maximum are taken component by component.
+        repeatable: false
   - name: software
     required: true
     description: Identification of a computer package used to perform the calculations.
