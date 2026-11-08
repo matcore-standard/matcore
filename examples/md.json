@@ -1,0 +1,24 @@
+{
+  "md": {
+    "computation": [
+      {
+        "mode": "equilibrium-dynamics"
+      }
+    ],
+    "particle-style": "atom",
+    "particle-interactions": [
+      {
+        "model-type": "Finnis-Sinclair potential",
+        "bonding-type": "Reactive",
+        "theory-level": "Classical physics-based"
+      }
+    ],
+    "thermodynamic-constraint": [
+      {
+        "system": "Entire system",
+        "type": "NPT",
+        "description": "Amorphous samples were produced by quenching the molten metal from 2300 to 300 K."
+      }
+    ]
+  }
+}

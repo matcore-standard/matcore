@@ -9,10 +9,10 @@ component_errors() is also what an instance validator applies.
 A count is held as a linear expression: a dict from variable name to coefficient, '' for the constant.
 """
 import itertools
+import json
 import re
 from collections import Counter
 from pathlib import Path
-from xml.etree import ElementTree as ET
 
 import yaml
 
@@ -239,15 +239,30 @@ def component_errors(formula, variables, topologies):
     return out
 
 
+def material_components(obj):
+    """Yield every material-component entry found anywhere in a parsed JSON instance (0044).
+
+    obj: a parsed JSON value.
+    """
+    if isinstance(obj, dict):
+        for key, value in obj.items():
+            if key == 'material-component' and isinstance(value, list):
+                yield from (mc for mc in value if isinstance(mc, dict))
+            yield from material_components(value)
+    elif isinstance(obj, list):
+        for value in obj:
+            yield from material_components(value)
+
+
 def example_errors():
     """Return the composition errors of every material component in the examples the section files list."""
     out = []
     for section in SECTIONS:
         for ex in yaml.safe_load(open(ROOT / f'schema/{section}.yaml')).get('examples') or []:
-            for mc in ET.parse(ROOT / 'examples' / ex['file']).getroot().iter('material-component'):
-                variables = [(v.findtext('name'), float(v.findtext('value')), v.findtext('qualifier'))
-                             for v in mc.findall('variable')]
-                topologies = [t.findtext('substance') for t in mc.findall('topology')]
+            doc = json.loads((ROOT / 'examples' / ex['file']).read_text(encoding='utf-8'))
+            for mc in material_components(doc):
+                variables = [(v.get('name'), v.get('value'), v.get('qualifier')) for v in mc.get('variable', [])]
+                topologies = [t.get('substance') for t in mc.get('topology', [])]
                 out += [f'examples/{ex["file"]}: {e}'
-                        for e in component_errors(mc.findtext('formula') or '', variables, topologies)]
+                        for e in component_errors(mc.get('formula') or '', variables, topologies)]
     return out

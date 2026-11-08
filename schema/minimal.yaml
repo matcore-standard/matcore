@@ -7,7 +7,7 @@ introduction: |
   The minimal MatCore metadata includes aspects of a dataset deemed important to report for data findability and reuse and are *universal* across all computational methods. The list of minimal metadata is tabulated below.
 examples:
   - caption: Minimal MatCore Metadata
-    file: minimal.xml
+    file: minimal.json
     source: https://doi.org/10.60732/8e9bc5b0
     notes: >-
       The matcore-id format in the example is tentative and subject to change.

@@ -38,12 +38,14 @@ def test_every_kind_states_its_si_unit_and_dimension():
 
 
 def test_meta_schema_types_the_examples():
-    """An example has a caption, an XML file in examples/, a dataset source, and optional notes; nothing else (0004 item 23)."""
+    """An example has a caption, a JSON file in examples/, a dataset source, and optional notes; nothing else (0004
+    item 23; 0044)."""
     meta = yaml.safe_load(open(ROOT / 'schema/meta-schema.yaml'))
     section = {'section': 'x', 'title': 'X', 'properties': []}
-    good = {'caption': 'C', 'file': 'minimal.xml', 'source': 'https://doi.org/x'}
+    good = {'caption': 'C', 'file': 'minimal.json', 'source': 'https://doi.org/x'}
     jsonschema.validate(section | {'examples': [good, good | {'notes': 'N'}]}, meta)
-    for bad in ({'caption': 'C', 'file': 'minimal.xml'}, good | {'file': 'sub/dir.xml'}, good | {'extra': 1}):
+    for bad in ({'caption': 'C', 'file': 'minimal.json'}, good | {'file': 'sub/dir.json'}, good | {'file': 'minimal.xml'},
+                good | {'extra': 1}):
         with pytest.raises(jsonschema.ValidationError):
             jsonschema.validate(section | {'examples': [bad]}, meta)
 

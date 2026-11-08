@@ -573,8 +573,9 @@ def test_xc_functional_name_lists_the_named_functionals_and_description_is_prose
     assert sub(xc, 'description')['values']['note'] == (
         'Free text on what `type` and `name` do not say, e.g. a modification of the functional or the reason '
         'for choosing it.')
-    example = (ROOT / 'examples/dft.xml').read_text()
-    assert '<type>GGA</type>\n    <name>PW91</name>\n    <description>' in example
+    import json
+    example = json.loads((ROOT / 'examples/dft.json').read_text(encoding='utf-8'))['dft']['xc-functional'][0]
+    assert list(example)[:3] == ['type', 'name', 'description'] and example['name'] == 'PW91'
 
 
 def test_xc_functional_keeps_the_name_beside_its_normalization():
@@ -1077,9 +1078,10 @@ def test_software_file_checksum_is_written_as_everywhere():
 
 def test_example_software_has_a_role():
     """The example names its simulation code's role and invents nothing else about the build (0043 item 4)."""
-    from xml.etree import ElementTree as ET
-    sw = ET.parse(ROOT / 'examples/minimal.xml').getroot().find('computation/software')
-    assert [c.tag for c in sw] == ['name', 'role'] and sw.findtext('role') == 'Simulation code'
+    import json
+    minimal = json.loads((ROOT / 'examples/minimal.json').read_text(encoding='utf-8'))['minimal']
+    sw = minimal['computation'][0]['software']
+    assert sw == [{'name': 'CASTEP', 'role': 'Simulation code'}]
 
 
 def test_number_density_is_gone():
