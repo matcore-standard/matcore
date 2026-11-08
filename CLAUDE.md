@@ -612,6 +612,10 @@ record or marked PROPOSED, NOT DECIDED.
    system-openness (0036).
    [done, PR #69 merged 2026-11-08] number-density removed by 0037: simulation-conditions › number-density dropped as
    redundant with number-of-particles and volume (breaks 0.5.0 instances).
+   [todo] array order by 0038: §1.3's Extent bullet says a multi-dimensional value is a list of
+   lists, first index outermost, and a serialization preserves the nesting; cell and
+   cell-reference notes say value[i][j] is the j-th Cartesian component, in the frame of the
+   simulation, of the i-th vector (rows a, b, c); extent stays [3, 3]. Ruling committed on main.
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
