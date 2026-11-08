@@ -649,10 +649,9 @@ record or marked PROPOSED, NOT DECIDED.
    species from `formula`, Energy or MolarEnergy), since 0036 lets a simulation be Open but not say
    to what; decided together with md's thermodynamic-constraint (0040; revisits 0026). (Superseded:
    decided by 0042 before md.)
-   [todo] chemical potential by 0042: simulation-conditions › chemical-potential (value in Energy,
+   [done, PR #79 merged 2026-11-08] chemical potential by 0042: simulation-conditions › chemical-potential (value in Energy,
    recommended eV; unit; species*; relative-to for a difference; qualifier, its note "for the
-   species") after electrode-potential. Ruling committed on main. On branch chemical-potential
-   (committed, not pushed; PR to open).
+   species") after electrode-potential.
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that simulation-conditions holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
