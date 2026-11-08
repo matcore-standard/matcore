@@ -631,7 +631,7 @@ record or marked PROPOSED, NOT DECIDED.
    as [3] vector conditions after temperature-gradient. Ruling committed on main. [done, PR #72
    merged 2026-11-08] unit V/m with the Kind ElectricFieldStrength.
    [done, PR #73 merged 2026-11-08] unit V/angstrom.
-   Unit T (with MagneticFluxDensity) on branch unit-tesla (committed, not pushed; PR to open).
+   [done, PR #74 merged 2026-11-08] unit T with the Kind MagneticFluxDensity.
    [todo] electrode potential by 0041: Kind ElectricPotential; unit V by its own PR; then
    electrode-potential (value, unit, reference* with terms SHE, RHE, Vacuum, qualifier) after
    body-force, for the working electrode. Ruling committed on main.
