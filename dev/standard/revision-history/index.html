@@ -932,7 +932,7 @@
 
 
 <h1 id="matcore-standard-revisions">MatCore Standard Revisions</h1>
-<p class="mc-version" data-version="0.5.0">Version 0.5.0</p>
+<p class="mc-version" data-version="0.6.0">Version 0.6.0</p>
 
 <table>
 <thead>
@@ -946,6 +946,14 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.6.0</td>
+<td>08-Nov-2026</td>
+<td>Minor (Breaking)</td>
+<td>Across document</td>
+<td>- DFT section complete: every property has a type, extent, Kind, recommended unit and structured values<br> - Structure and composition: a material component is described by one chemical formula (with variables, groups and user-defined species) and by its form, role, fraction and phase; isomers and polymorphs are identified by InChI, SMILES or AFLOW prototype labels<br> - Simulation conditions: every condition is defined as imposed; a varying value is given as qualified entries (initial, final, average, minimum, maximum); the simulation type is classified by thermodynamic state, openness, time dependence and spatial uniformity; added electric and magnetic fields, body force, electrode potential and chemical potential; number density removed<br> - Software: one entry per layer (simulation code, calculation method, workflow framework, script), with exact identification, dependencies and build options; files carry an encoding and checksums<br> - Added publication, dataset location and the author of the metadata record; licenses as SPDX identifiers with name, link and scope; provenance agents described like creators<br> - Pure numbers are written without a unit; generic parameters defined in the Preamble<br> - Annex U gains four Kinds and five units; Annex I gains InChI, SMILES and AFLOW<br> - Preamble: goals of FAIR data and AI readiness, acronyms defined, methods that supply energies and forces distinguished, and the order of array values<br> - Renaming of some properties (e.g. citation to publication, pseudopotential to pseudopotential-or-paw, method to method-density)</td>
+<td>E. B. Tadmor</td>
+</tr>
 <tr>
 <td>0.5.0</td>
 <td>04-Nov-2026</td>
