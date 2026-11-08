@@ -309,7 +309,10 @@ record or marked PROPOSED, NOT DECIDED.
      (0034; breaks 0.5.0 instances); a varying value is given as repeated entries with a `qualifier`
      (Average, Final, Initial, Maximum, Minimum): the twelve numerical simulation conditions and
      fraction become repeatable, number-of-particles, strain and fraction become containers, and
-     variable's type is renamed qualifier (0035; breaks 0.5.0 instances).
+     variable's type is renamed qualifier (0035; breaks 0.5.0 instances); simulation-conditions › type
+     becomes a container of thermodynamic-state, system-openness, time-dependence and
+     spatial-uniformity, and the flags spatially-varying and time-varying are removed (0036; breaks
+     0.5.0 instances).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -602,7 +605,7 @@ record or marked PROPOSED, NOT DECIDED.
    Open), time-dependence (Constant, Varying, Cyclic) and spatial-uniformity (Uniform, Nonuniform,
    Periodic), with a note pointing to description; spatially-varying and time-varying removed
    (reverses 0026 item 5); examples/minimal.xml nests Equilibrium under thermodynamic-state
-   (breaks 0.5.0 instances). Ruling committed on main.
+   (breaks 0.5.0 instances). On branch simulation-type (committed, not pushed; PR to open).
    PROPOSED, NOT DECIDED (md): how thermodynamic-constraint (the ensemble) relates to
    system-openness (0036).
    [todo] md in file order, starting with computation.

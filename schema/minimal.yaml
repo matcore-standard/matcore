@@ -640,27 +640,82 @@ properties:
     repeatable: false
     notes:
     - >-
-      Note: The conditions below, other than type, description, spatially-varying and time-varying, are
-      given as appropriate to the simulation. Giving a condition means that its value is imposed on the simulation as an external
+      Note: The conditions below, other than type and description, are given as appropriate to the
+      simulation. Giving a condition means that its value is imposed on the simulation as an external
       constraint. A condition that varies is given as several entries, each with a qualifier; the
       description explains how it varies.
     subproperties:
     - name: type
       required: true
-      description: >-
-        The nature of the simulation being performed, whether equilibrium, nonequilibrium, or
-        nonstandard.
-      type: string
-      extent: []
-      kind: inapplicable
+      description: The nature of the simulation being performed.
+      type: null
+      extent: null
+      kind: null
       recommended-unit: null
-      values:
-        terms: [Equilibrium, Nonequilibrium, Other]
-        note: >-
-          "Equilibrium" – Thermodynamic equilibrium. "Nonequilibrium" – Conforming to some definition of
-          nonequilibrium thermodynamics. "Other" – A simulation not fitting into the equilibrium and
-          nonequilibrium categories.
+      values: null
       repeatable: false
+      notes:
+      - 'Note: Detailed explanations of the simulation conditions are given in `description`.'
+      subproperties:
+      - name: thermodynamic-state
+        required: true
+        description: Whether the simulated system is at equilibrium, in a steady state, or evolving in time.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Equilibrium, Steady state, Transient]
+          note: >-
+            One of: "Equilibrium" – The system samples thermodynamic equilibrium. "Steady state" – A
+            nonequilibrium state whose averages do not change in time, maintained by a driving such as a strain
+            rate or a heat flux. "Transient" – A state whose averages change in time, e.g. relaxation toward
+            equilibrium or a steady state, or a quench.
+        repeatable: false
+      - name: system-openness
+        required: false
+        description: What the system exchanges with its surroundings.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Isolated, Closed, Open]
+          note: >-
+            One of: "Isolated" – Exchanges neither energy nor particles, e.g. the microcanonical ensemble.
+            "Closed" – Exchanges energy but not particles, e.g. the canonical or isothermal-isobaric ensemble.
+            "Open" – Exchanges particles, or their species, with a reservoir, e.g. the grand-canonical or
+            semi-grand-canonical ensemble.
+        repeatable: false
+      - name: time-dependence
+        required: false
+        description: How the imposed conditions change during the simulation.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Constant, Varying, Cyclic]
+          note: >-
+            One of: "Constant" – No imposed condition changes. "Varying" – An imposed condition changes, e.g. a
+            temperature ramp or a change of ensemble. "Cyclic" – An imposed condition changes periodically, e.g.
+            cyclic loading.
+        repeatable: false
+      - name: spatial-uniformity
+        required: false
+        description: How the imposed conditions vary across the system.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Uniform, Nonuniform, Periodic]
+          note: >-
+            One of: "Uniform" – Every imposed condition is the same throughout the system. "Nonuniform" – An
+            imposed condition differs between parts of the system, e.g. a thermostat applied to part of it.
+            "Periodic" – An imposed condition varies periodically across the system, e.g. sinusoidal heating.
+            Not to be confused with `cell-periodicity`.
+        repeatable: false
     - name: description
       required: false
       description: >-
@@ -674,31 +729,6 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-    - name: spatially-varying
-      required: false
-      description: >-
-        Whether any imposed condition varies across the system, e.g. a thermostat applied to part of it.
-      type: bool
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-      notes:
-      - 'Note: If true, describe the details in `description`.'
-    - name: time-varying
-      required: false
-      description: >-
-        Whether any imposed condition changes during the simulation, e.g. a temperature ramp or a change of
-        ensemble.
-      type: bool
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-      notes:
-      - 'Note: If true, describe the details in `description`.'
     - name: number-of-particles
       required: false
       description: A count of atoms or other discrete entities comprising the material.
