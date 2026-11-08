@@ -855,51 +855,6 @@ properties:
             Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
             Maximum are taken component by component.
         repeatable: false
-    - name: number-density
-      required: false
-      description: The total number of particles comprising the material divided by the volume it occupies.
-      type: null
-      extent: null
-      kind: null
-      recommended-unit: null
-      values: null
-      repeatable: true
-      subproperties:
-      - name: value
-        required: true
-        description: The value of the property, in the unit given by `unit`.
-        type: float
-        extent: []
-        kind: NumberDensity
-        recommended-unit: 1/angstrom^3
-        values:
-          note: >-
-            The number density <i>n</i>.
-        repeatable: false
-      - name: unit
-        required: true
-        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-        type: string
-        extent: []
-        kind: inapplicable
-        recommended-unit: null
-        values: null
-        repeatable: false
-      - name: qualifier
-        required: false
-        description: What the value represents.
-        type: string
-        extent: []
-        kind: inapplicable
-        recommended-unit: null
-        values:
-          terms: [Average, Final, Initial, Maximum, Minimum]
-          note: >-
-            Without a qualifier, the value holds throughout the simulation and across the system, and the entry
-            is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g.
-            Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
-            Maximum are taken component by component.
-        repeatable: false
     - name: cell
       required: false
       description: The domain occupied by the material in the simulation (if fixed).
