@@ -144,14 +144,17 @@ expressed." (0001 B9) and the A3.2 note) and `description`, in that order. It is
 `value` whose type and kind are both any, with no tag (0019 amends 0016); validate_schema.py checks
 each one against the canonical form.
 
-## Instance serialization
-The standard is agnostic to serialization format, as §1.3 states. The XML examples in the standard
-are illustrative only and do not prescribe a format for any implementation. Any serialization that
-preserves the property hierarchy, the required/repeatable semantics and the value/unit/convention
-structure is conformant. The MatCore tools (status item 9) will have to choose one or more concrete
-serializations to read and write; that is a tool decision, not yet made, and it does not bind other
-implementations. When it is made, a format-specific schema (e.g. XSD or JSON Schema) is generated
-from the YAML for that serialization and used by CI to validate the examples (0004).
+## Instance serialization (decided; see docs/decisions/0044)
+The standard is agnostic to serialization format, as §1.3 states; its examples are illustrative only
+and do not prescribe a format for any implementation. Any serialization that preserves the property
+hierarchy, the required/repeatable semantics and the value/unit/convention structure is conformant.
+JSON (RFC 8259, UTF-8, `.json`) is the first serialization: the examples are written in it and the
+MatCore tools (status item 9) read and write it (0044). Mapping (0044 item 2): an instance is an
+object with one member per section (minimal, dft, ...); a container is an object, a leaf a JSON
+value of its Type; a repeatable property is always an array; an extent is nested arrays, first index
+outermost (0038); an omitted optional property is absent, never null. A generic parameter's object
+carries a JSON-only member `type` (float, int, string, bool). A JSON Schema generated from the YAML
+validates the examples in CI (status step 7).
 
 ## Versions and releases (decided; see docs/decisions/0010)
 - Semantic versioning MAJOR.MINOR.PATCH; below 1.0, breaking changes or new property sets raise MINOR,
@@ -675,6 +678,10 @@ record or marked PROPOSED, NOT DECIDED.
    Order (0004): the examples and generated schema come after step 5, which fills the typed fields;
    this step may run alongside step 6, and the requirements section may be written earlier. It
    opens with a decision record choosing the first serialization, which step 9 then uses.
+   [done] First serialization chosen: JSON (0044).
+   [todo] JSON examples by 0044: the seven examples converted from XML by script; check_examples.py,
+   check_formula.py and build_docs.py read JSON; meta-schema `file` requires .json; §1.3 says the
+   examples are in JSON. Ruling committed on main.
 8. [merged into step 2] Site content migration from matcore.org.
 9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools. After step 7;
    the validator reuses step 7's generated schema (0004).
