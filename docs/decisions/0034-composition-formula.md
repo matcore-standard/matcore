@@ -16,6 +16,7 @@ Sources compared:
 - IUPAC, *Nomenclature of Inorganic Chemistry, Recommendations 2005* (Red Book), §IR-11.3.2 "Phases with variable composition" (pp. 237–238): a notation in which there are variables which define composition should be used, with the range of the variable stated, e.g. Cu_x Ni_{1−x} (0 ≤ x ≤ 1), Li_{2−2x} Mg_x Cl_2, Fe_{3x} Li_{4−x} Ti_{2(1−x)} O_6. A specific value may be written into the formula instead: x = 0.35 gives Fe1.05Li3.65Ti1.30O6.
 - InChI (IUPAC and the InChI Trust; software v1.07.5, MIT licence): a canonical identifier. Its FAQ says it covers "well-defined, covalently-bonded organic molecules and, with some limitations, organometallic compounds". Polymers and mixtures are not covered.
 - OpenSMILES (v1.0, 2016): a line notation that can write any element, but canonical SMILES "should *not* be considered a universal, global identifier". An IUPAC SMILES+ project (2019-002-2-024) is open.
+- AFLOW Library of Crystallographic Prototypes (Mehl et al., Comput. Mater. Sci. 136 (2017) S1, §12.1): the AFLOW prototype label is "The standardized name of a prototype, including stoichiometry, Pearson symbol, space group, and Wyckoff positions of the atoms". The Encyclopedia of Crystallographic Prototypes (aflow.org) lists calcite as `ABC3_hR10_167_a_b_e` and aragonite as `ABC3_oP20_62_c_c_cd`, both CaCO₃. OpenKIM's `prototype-label` uses the label without the library's enumeration suffix (e.g. `-001`).
 
 ## Decision
 1. **`constituent` is removed.** A material component's composition is one chemical formula, with no constituent level. A single phase whose composition mixes substances (a liquid mixture, a glass, a solid solution) is one formula. Separate phases (e.g. SiGe particles in an SiO₂ matrix, an SiO₂ film on an Si substrate) are separate material components, each with its own `role` (0025).
@@ -24,10 +25,12 @@ Sources compared:
    - **`variable`**: optional, repeatable, a container. Description: "A value of a variable used in `formula`." Its subproperties:
      - `name*`: string, pattern one lowercase letter. Description: "The name of the variable, as written in `formula`."
      - `value*`: float, dimensionless. Description: "A value of the variable."
-     - `type*`: string, open terms Average, Initial, Maximum, Minimum. Description: "What the value represents." The note says that the entries of one variable share its name, with at most one entry per type. (Amended 2026-11-08: `type` is required. A value without a type would hold throughout, a fixed composition, which item 3 writes as a number in the formula.)
-   - **`molecule`**: optional, repeatable, a container. Description: "A molecule in the material component, identified by its structure, e.g. to distinguish isomers." Its subproperties:
-     - `formula*`: string. Description: "The molecular formula of the molecule, written as a group of the material component's formula or as the whole formula."
-     - `identifier*`: repeatable, a container of `value*` and `scheme*` as in creator's identifier, with scheme terms InChI and SMILES. The note says InChI is preferred where it can represent the molecule, and SMILES otherwise or in addition.
+     - `type*`: string, open terms Average, Final, Initial, Maximum, Minimum. Description: "What the value represents." The note says that the entries of one variable share its name, with at most one entry per type. (Amended 2026-11-08: `type` is required. A value without a type would hold throughout, a fixed composition, which item 3 writes as a number in the formula. Second amendment, 2026-11-08: Final is added, for a composition at the end of a simulation in which it changes.)
+   - **`topology`**: optional, repeatable, a container. Description: "The structure of a substance in the material component, given by an identifier, when its formula alone does not determine it." Note: "Give topology only when the formula matches more than one isomer or polymorph and the data must say which, e.g. ethanol and dimethyl ether (C2H6O), or calcite and aragonite (CaCO3)." Its subproperties:
+     - `formula*`: string. Description: "The formula of the substance, written as a group of the material component's formula or as the whole formula."
+     - `identifier*`: repeatable, a container of `value*` and `scheme*` as in creator's identifier, with scheme terms AFLOW, InChI and SMILES. The note says: for a molecule, InChI is preferred where it can represent it, and SMILES otherwise or in addition; for a crystal, the AFLOW prototype label.
+
+     (Second amendment, 2026-11-08: `topology` replaces `molecule`, so that polymorphs of a crystal, which share a formula, are identified as isomers of a molecule are; its note says when to give it.)
 3. **Formula grammar** (the note on `formula`):
    - A formula is a sequence of terms. A term is an element symbol, a user-defined species or a group in parentheses, each followed by an optional count.
    - An element symbol is one of the 118 symbols of the IUPAC Periodic Table (as `species` listed them).
@@ -43,10 +46,10 @@ Sources compared:
    - the element symbols;
    - that every variable in `formula` has at least one `variable` entry, and every `variable` entry names a variable of the formula;
    - that counts stay at or above 0, and that the counts of a mixture of groups sum to 1, at each value given for the variables (for a linear expression, Minimum and Maximum bound the range);
-   - that each `molecule › formula` is a group of the component's formula or the whole formula.
+   - that each `topology › formula` is a group of the component's formula or the whole formula.
 
    The 118 symbols, now the parser's list, keep their source: the CIAAW Standard Atomic Weights table.
-5. **Annex I** gains rows for InChI and SMILES (identifies: molecule), each field traced to the scheme's own documentation in the pull request. Their checks are a pattern on the form only, with no checksum.
+5. **Annex I** gains rows for InChI and SMILES (identifies: molecule) and AFLOW (identifies: crystal structure; the prototype label without the enumeration suffix; second amendment), each field traced to the scheme's own documentation in the pull request. Their checks are a pattern on the form only, with no checksum.
 6. **examples/minimal.xml**: each Si constituent becomes `<formula>Si</formula>`.
 
 ## Consequences
