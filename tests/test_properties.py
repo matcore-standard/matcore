@@ -1021,6 +1021,67 @@ def test_chemical_potential_names_its_species():
     assert all(formula_errors(e) == [] for e in sub(c, 'species')['values']['examples'])
 
 
+SOFTWARE_ROLES = ('Calculation method', 'Script', 'Simulation code', 'Workflow framework')
+DEPENDENCY_ROLES = ('Compiler', 'FFT library', 'Interpreter', 'Library', 'Linear algebra library', 'MPI library')
+
+
+def test_software_is_one_entry_per_layer():
+    """Every layer that took part (a calculation method or workflow, the simulation code it drives, a custom
+    script) is a software entry with a role; each is identified exactly, lists the components that can
+    change its results, and holds the files it reads (0043 items 1-3)."""
+    sw = sub(minimal('computation'), 'software')
+    string = lambda name, required=False, terms=(): (name, required, False, 'string', terms, ())
+    identifier = ('identifier', False, True, None, (), (
+        ('value', True, False, 'string', (), ()), ('scheme', True, False, 'string', ('DOI', 'SWHID'), ())))
+    dependency = ('dependency', False, True, None, (), (
+        string('name', True), string('version'), string('role', terms=DEPENDENCY_ROLES)))
+    file = ('file', False, True, None, (), (
+        string('name', True), string('description', True), string('contents'), string('encoding', terms=('Base64',)),
+        string('link'), tree(sub(sub(minimal('provenance'), 'file'), 'checksum'))))
+    assert tree(sw) == ('software', True, True, None, (), (
+        string('name', True), string('role', terms=SOFTWARE_ROLES), string('description'), string('version'),
+        string('link'), string('revision'), identifier, dependency, string('build-options'), file))
+    assert sw['description'] == ('A program, package or script used to perform the calculations: the simulation '
+                                 'code, a calculation method or workflow framework that drives it, or a custom script.')
+    assert sw['notes'] == ['Note: Give one entry for each layer that took part, outermost first. A file is given '
+                           'under the entry that reads it; for a script, its own code is its file.']
+    for path, terms in ((('role',), SOFTWARE_ROLES), (('dependency', 'role'), DEPENDENCY_ROLES)):
+        p = sw
+        for n in path:
+            p = sub(p, n)
+        assert all(f'"{t}" –' in p['values']['note'] for t in terms), path
+    assert sub(sw, 'link')['values']['format'] == 'uri'
+    assert sub(sw, 'revision')['notes'] == ['Note: Give the full commit hash where possible; a tag or a branch can move.']
+    assert sub(sw, 'version')['notes'] == ['Note: Give the version for an official release. For any other state of the '
+                                           'code, e.g. a branch or a tag, give link and revision.']
+
+
+def test_file_contents_are_text_unless_encoded():
+    """A string holds Unicode text, so a binary file, or a text file whose exact bytes matter, is given in
+    Base64 and says so (0043 item 3)."""
+    f = sub(sub(minimal('computation'), 'software'), 'file')
+    assert sub(f, 'encoding')['notes'] == ['Note: Without encoding, contents is the file\'s text. With Base64, '
+                                           'contents is the file\'s bytes encoded as Base64 (RFC 4648); use it for a '
+                                           'binary file, or for a text file whose exact bytes matter.']
+    assert sub(f, 'contents')['description'] == ('The contents of the file: its text, or its bytes encoded as given '
+                                                 'in encoding. Not required in case a link to the file is provided '
+                                                 'instead.')
+
+
+def test_software_file_checksum_is_written_as_everywhere():
+    """A linked or Base64 file is checked against its checksum, written exactly as provenance's file checksum,
+    so one rule reads every checksum in the standard (0032; 0043 item 4, amended)."""
+    software = sub(sub(sub(minimal('computation'), 'software'), 'file'), 'checksum')
+    assert software == sub(sub(minimal('provenance'), 'file'), 'checksum')
+
+
+def test_example_software_has_a_role():
+    """The example names its simulation code's role and invents nothing else about the build (0043 item 4)."""
+    from xml.etree import ElementTree as ET
+    sw = ET.parse(ROOT / 'examples/minimal.xml').getroot().find('computation/software')
+    assert [c.tag for c in sw] == ['name', 'role'] and sw.findtext('role') == 'Simulation code'
+
+
 def test_number_density_is_gone():
     """Number density is N/V, given by number-of-particles and volume, so a third value could only
     contradict them (0037)."""

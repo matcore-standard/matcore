@@ -320,7 +320,9 @@ record or marked PROPOSED, NOT DECIDED.
      mass) are added, with the Kinds ElectricFieldStrength, MagneticFluxDensity and Acceleration and
      the units V/m, V/angstrom, T and m/s^2 (0040); electrode-potential is added with a required
      reference (SHE, RHE, Vacuum), the Kind ElectricPotential and the unit V (0041);
-     chemical-potential is added with species and an optional relative-to (0042).
+     chemical-potential is added with species and an optional relative-to (0042); software is one
+     entry per layer with role, description, link, revision, identifier, dependency and build-options,
+     and file gains encoding and checksum (0043).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -655,7 +657,8 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] software layers by 0043: software is one entry per layer (outermost first), gaining role
    (Calculation method, Script, Simulation code, Workflow framework), description, link, revision,
    identifier (DOI, SWHID), dependency (name, version, role) and build-options; file gains encoding
-   (Base64); examples/minimal.xml gives CASTEP role Simulation code. Ruling committed on main.
+   (Base64) and, by the amendment of 2026-11-08, checksum in 0032's structure; examples/minimal.xml gives CASTEP role Simulation code. Ruling committed on main. On
+   branch software-layers (committed, not pushed; PR to open).
    PROPOSED, NOT DECIDED: a recommended format for the full software environment that a record
    points to (e.g. the HPC software metadata standard in preparation at BSC; CodeMeta, SPDX or
    CycloneDX SBOMs, Spack specifications to check); KIM IDs as an Annex I scheme (0043).

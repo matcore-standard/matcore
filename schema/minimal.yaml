@@ -1592,13 +1592,19 @@ properties:
         repeatable: false
   - name: software
     required: true
-    description: Identification of a computer package used to perform the calculations.
+    description: >-
+      A program, package or script used to perform the calculations: the simulation code, a calculation
+      method or workflow framework that drives it, or a custom script.
     type: null
     extent: null
     kind: null
     recommended-unit: null
     values: null
     repeatable: true
+    notes:
+    - >-
+      Note: Give one entry for each layer that took part, outermost first. A file is given under the entry
+      that reads it; for a script, its own code is its file.
     subproperties:
     - name: name
       required: true
@@ -1610,6 +1616,31 @@ properties:
       values:
         examples: [VASP]
       repeatable: false
+    - name: role
+      required: false
+      description: The part this software played in the calculations.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Calculation method, Script, Simulation code, Workflow framework]
+        note: >-
+          One of: "Calculation method" – A packaged procedure that computes a defined property, e.g. an
+          OpenKIM test or an iprPy calculation. "Script" – Custom code written for the calculations, e.g. a
+          Python script using ASE. "Simulation code" – A program that performs the simulation or calculation
+          itself, e.g. LAMMPS or VASP. "Workflow framework" – A system that sets up, runs and manages
+          calculations with other software, e.g. pyiron, AiiDA or MedeA.
+      repeatable: false
+    - name: description
+      required: false
+      description: What this software did in the calculations.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
     - name: version
       required: false
       description: The version of the software package.
@@ -1619,6 +1650,122 @@ properties:
       recommended-unit: null
       values:
         examples: ['6.3.1']
+      repeatable: false
+      notes:
+      - >-
+        Note: Give the version for an official release. For any other state of the code, e.g. a branch or a
+        tag, give link and revision.
+    - name: link
+      required: false
+      description: A URI for the software, e.g. its source repository or home page.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        format: uri
+      repeatable: false
+    - name: revision
+      required: false
+      description: A tag or commit in the repository given in link.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+      notes:
+      - 'Note: Give the full commit hash where possible; a tag or a branch can move.'
+    - name: identifier
+      required: false
+      description: A persistent identifier of the software or of the exact state of its code.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: value
+        required: true
+        description: The identifier, in the form Annex I gives for its scheme when the scheme is listed there.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: scheme
+        required: true
+        description: The identifier scheme that the value belongs to.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [DOI, SWHID]
+          note: >-
+            A Digital Object Identifier (DOI) for the software or a version of it (e.g. a Zenodo software DOI),
+            or a Software Heritage ID (SWHID) for the exact state of its code, released or not.
+        repeatable: false
+    - name: dependency
+      required: false
+      description: A component the software was built with or ran on that can change its results.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      notes:
+      - >-
+        Note: List the components that can change results, e.g. the compiler, the MPI, linear-algebra and FFT
+        libraries, and libraries such as LibXC.
+      subproperties:
+      - name: name
+        required: true
+        description: The name of the component.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: version
+        required: false
+        description: The version of the component.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: role
+        required: false
+        description: The kind of component.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Compiler, FFT library, Interpreter, Library, Linear algebra library, MPI library]
+          note: >-
+            One of: "Compiler" – Translates source code into an executable, e.g. GCC or the Intel oneAPI
+            compilers. "FFT library" – Computes fast Fourier transforms, e.g. FFTW. "Interpreter" – Runs a
+            script, e.g. Python. "Library" – Any other library the software calls, e.g. LibXC or ASE. "Linear
+            algebra library" – Provides BLAS, LAPACK or ScaLAPACK routines, e.g. OpenBLAS or Intel MKL. "MPI
+            library" – Implements the Message Passing Interface (MPI), e.g. Open MPI or MPICH.
+        repeatable: false
+    - name: build-options
+      required: false
+      description: >-
+        The options the software was built or run with that can change its results, e.g. compiler flags or
+        enabled features.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
       repeatable: false
     - name: file
       required: false
@@ -1654,14 +1801,28 @@ properties:
       - name: contents
         required: false
         description: >-
-          The text and/or data contained in the file. Not required in case a link to the file is
-          provided instead.
+          The contents of the file: its text, or its bytes encoded as given in encoding. Not required in case
+          a link to the file is provided instead.
         type: string
         extent: []
         kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
+      - name: encoding
+        required: false
+        description: How contents is encoded.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Base64]
+        repeatable: false
+        notes:
+        - >-
+          Note: Without encoding, contents is the file's text. With Base64, contents is the file's bytes
+          encoded as Base64 (RFC 4648); use it for a binary file, or for a text file whose exact bytes matter.
       - name: link
         required: false
         description: A URI pointing to a permanent location of the file online.
@@ -1672,6 +1833,40 @@ properties:
         values:
           format: uri
         repeatable: false
+      - name: checksum
+        required: true
+        description: A digital fingerprint of the file, computed by a named algorithm.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: true
+        subproperties:
+        - name: algorithm
+          required: true
+          description: The algorithm that computed the checksum.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [SHA1, SHA224, SHA256, SHA384, SHA512, SHA3-256, SHA3-384, SHA3-512, BLAKE2b-256, BLAKE2b-384,
+              BLAKE2b-512, BLAKE3, MD2, MD4, MD5, MD6, ADLER32]
+            note: >-
+              The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/)
+              (File checksum field).
+          repeatable: false
+        - name: value
+          required: true
+          description: The checksum of the file, in lowercase hexadecimal digits.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            pattern: '[0-9a-f]+'
+          repeatable: false
 - name: publication
   required: false
   description: >-
