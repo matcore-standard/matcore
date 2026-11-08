@@ -46,7 +46,7 @@ Each standard consists of a set of Properties with possible SubProperties, SubSu
 
     - Type: The data type of the Property's value: string, float, int, bool, file, or any (the instance states the type). A Property that only contains SubProperties has no type.
 
-    - Extent: The shape of the value, in the notation of the Knowledgebase of Interatomic Models (KIM): [] for a scalar, [3,3] for a 3×3 array, [:] for a list of any length, or any when the schema does not fix it.
+    - Extent: The shape of the value, in the notation of the Knowledgebase of Interatomic Models (KIM): [] for a scalar, [3,3] for a 3×3 array, [:] for a list of any length, or any when the schema does not fix it. A value with more than one dimension is a list of lists, the first index outermost: a value of extent [n,m] is a list of n entries, each a list of m components. A serialization preserves this nesting.
 
     - Values: The values the Property can take on, such as a controlled vocabulary, bounds, a format or a pattern, with examples.
 

@@ -313,7 +313,8 @@ record or marked PROPOSED, NOT DECIDED.
      becomes a container of thermodynamic-state, system-openness, time-dependence and
      spatial-uniformity, and the flags spatially-varying and time-varying are removed (0036; breaks
      0.5.0 instances); simulation-conditions › number-density is removed (0037; breaks 0.5.0
-     instances).
+     instances); §1.3 states that a multi-dimensional value is a list of lists, first index
+     outermost, and cell and cell-reference say each row is a vector in Cartesian components (0038).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -615,7 +616,8 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] array order by 0038: §1.3's Extent bullet says a multi-dimensional value is a list of
    lists, first index outermost, and a serialization preserves the nesting; cell and
    cell-reference notes say value[i][j] is the j-th Cartesian component, in the frame of the
-   simulation, of the i-th vector (rows a, b, c); extent stays [3, 3]. Ruling committed on main.
+   simulation, of the i-th vector (rows a, b, c); extent stays [3, 3]. On branch array-order
+   (committed, not pushed; PR to open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.

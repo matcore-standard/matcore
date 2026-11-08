@@ -884,6 +884,21 @@ def test_varying_conditions_note_and_description():
     assert not sub(sc, 'cell-periodicity')['repeatable']
 
 
+@pytest.mark.parametrize('name, vector, rows', [
+    ('cell', 'cell vector', 'a, b and c'),
+    ('cell-reference', 'reference cell vector', 'a<sub>0</sub>, b<sub>0</sub> and c<sub>0</sub>')])
+def test_cell_rows_are_the_vectors_in_cartesian_components(name, vector, rows):
+    """Each row of the 3×3 value is one cell vector, in Cartesian components of the simulation's frame, not
+    of the stress basis built from the cell itself (0038 items 2-4).
+
+    name (str): the condition; vector (str): what each row is; rows (str): the rows, in order.
+    """
+    v = datum(sub(sub(minimal('computation'), 'simulation-conditions'), name))
+    assert v['extent'] == [3, 3]
+    assert (f'`value[i][j]` is the j-th Cartesian component, in the frame of the simulation, of the i-th {vector}, '
+            f'so the rows are {rows}.') in v['values']['note']
+
+
 def test_number_density_is_gone():
     """Number density is N/V, given by number-of-particles and volume, so a third value could only
     contradict them (0037)."""

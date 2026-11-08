@@ -105,3 +105,12 @@ def test_scope_distinguishes_methods_that_supply_energies_and_forces():
     text = (ROOT / 'docs/standard/index.md').read_text()
     assert ('Some methods supply energies and forces (e.g. DFT), others use them to sample or evolve a system '
             '(e.g. MD). It is allowable to include multiple method-specific metadata') in text
+
+
+def test_extent_states_the_order_of_an_array():
+    """A value with more than one dimension is nested with its first index outermost, so every
+    serialization writes the same array the same way (0038 item 1)."""
+    text = (ROOT / 'docs/standard/index.md').read_text()
+    assert ('or any when the schema does not fix it. A value with more than one dimension is a list of lists, the '
+            'first index outermost: a value of extent [n,m] is a list of n entries, each a list of m components. '
+            'A serialization preserves this nesting.') in text
