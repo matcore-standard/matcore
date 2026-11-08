@@ -615,7 +615,9 @@ record or marked PROPOSED, NOT DECIDED.
    (reverses 0026 item 5); examples/minimal.xml nests Equilibrium under thermodynamic-state
    (breaks 0.5.0 instances).
    PROPOSED, NOT DECIDED (md): how thermodynamic-constraint (the ensemble) relates to
-   system-openness (0036).
+   system-openness (0036). (Superseded in part: 0042 item 3 decides that md does not repeat a
+   quantity simulation-conditions holds and adds only how a condition is enforced and the
+   ensemble; how the ensemble term relates to system-openness is settled in the md PR.)
    [done, PR #69 merged 2026-11-08] number-density removed by 0037: simulation-conditions › number-density dropped as
    redundant with number-of-particles and volume (breaks 0.5.0 instances).
    [done, PR #70 merged 2026-11-08] array order by 0038: §1.3's Extent bullet says a multi-dimensional value is a list of
@@ -644,8 +646,14 @@ record or marked PROPOSED, NOT DECIDED.
    each have entries (0041).
    PROPOSED, NOT DECIDED (md): a minimal `chemical-potential` condition (repeatable, naming a
    species from `formula`, Energy or MolarEnergy), since 0036 lets a simulation be Open but not say
-   to what; decided together with md's thermodynamic-constraint (0040; revisits 0026).
-   [todo] md in file order, starting with computation.
+   to what; decided together with md's thermodynamic-constraint (0040; revisits 0026). (Superseded:
+   decided by 0042 before md.)
+   [todo] chemical potential by 0042: simulation-conditions › chemical-potential (value in Energy,
+   recommended eV; unit; species*; relative-to for a difference; qualifier, its note "for the
+   species") after electrode-potential. Ruling committed on main.
+   [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
+   quantity that simulation-conditions holds is repeated; md adds only how a condition is enforced
+   (thermostat, barostat and their parameters) and the ensemble.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
