@@ -636,11 +636,10 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #73 merged 2026-11-08] unit V/angstrom.
    [done, PR #74 merged 2026-11-08] unit T with the Kind MagneticFluxDensity.
    [done, PR #75 merged 2026-11-08] unit m/s^2 with the Kind Acceleration. The conditions in PR #77.
-   [todo] electrode potential by 0041: Kind ElectricPotential; unit V by its own PR; then
+   [done, PR #78 merged 2026-11-08] electrode potential by 0041: Kind ElectricPotential; unit V by its own PR; then
    electrode-potential (value, unit, reference* with terms SHE, RHE, Vacuum, qualifier) after
    body-force, for the working electrode. Ruling committed on main. [done, PR #76 merged 2026-11-08]
-   unit V with the Kind ElectricPotential. The condition on branch electrode-potential (committed, not
-   pushed; PR to open).
+   unit V with the Kind ElectricPotential. The condition in PR #78.
    PROPOSED, NOT DECIDED: an `electrode` subproperty naming the electrode, so several electrodes can
    each have entries (0041).
    PROPOSED, NOT DECIDED (md): a minimal `chemical-potential` condition (repeatable, naming a
