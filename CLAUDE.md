@@ -312,7 +312,8 @@ record or marked PROPOSED, NOT DECIDED.
      variable's type is renamed qualifier (0035; breaks 0.5.0 instances); simulation-conditions › type
      becomes a container of thermodynamic-state, system-openness, time-dependence and
      spatial-uniformity, and the flags spatially-varying and time-varying are removed (0036; breaks
-     0.5.0 instances).
+     0.5.0 instances); simulation-conditions › number-density is removed (0037; breaks 0.5.0
+     instances).
    - [done, PR #6] 0007's open points resolved except three optional additions:
      container tables show Required and Repeatable only; no alias addresses for now; logo redrawn
      as SVG (logo.svg; logo-light.svg on dark backgrounds; favicon).
@@ -610,7 +611,8 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED (md): how thermodynamic-constraint (the ensemble) relates to
    system-openness (0036).
    [todo] number-density removed by 0037: simulation-conditions › number-density dropped as
-   redundant with number-of-particles and volume (breaks 0.5.0 instances). Ruling committed on main.
+   redundant with number-of-particles and volume (breaks 0.5.0 instances). On branch
+   remove-number-density (committed, not pushed; PR to open).
    [todo] md in file order, starting with computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.

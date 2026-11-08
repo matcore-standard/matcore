@@ -246,7 +246,6 @@ SIMULATION_CONDITIONS = {
     'number-of-particles': ('int', [], 'dimensionless', None),
     'volume': ('float', [], 'Volume', 'angstrom^3'),
     'mass-density': ('float', [], 'MassDensity', 'kg/m^3'),
-    'number-density': ('float', [], 'NumberDensity', '1/angstrom^3'),
     'cell': ('float', [3, 3], 'Length', 'angstrom'),
     'cell-reference': ('float', [3, 3], 'Length', 'angstrom'),
     'cell-periodicity': ('bool', [3], 'inapplicable', None),
@@ -883,6 +882,13 @@ def test_varying_conditions_note_and_description():
     assert not {'spatially-varying', 'time-varying'} & {s['name'] for s in sc['subproperties']}
     assert not sc['repeatable']
     assert not sub(sc, 'cell-periodicity')['repeatable']
+
+
+def test_number_density_is_gone():
+    """Number density is N/V, given by number-of-particles and volume, so a third value could only
+    contradict them (0037)."""
+    sc = sub(minimal('computation'), 'simulation-conditions')
+    assert 'number-density' not in [s['name'] for s in sc['subproperties']]
 
 
 def test_set_up_is_gone():
