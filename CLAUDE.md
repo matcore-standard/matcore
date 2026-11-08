@@ -632,7 +632,7 @@ record or marked PROPOSED, NOT DECIDED.
    merged 2026-11-08] unit V/m with the Kind ElectricFieldStrength.
    [done, PR #73 merged 2026-11-08] unit V/angstrom.
    [done, PR #74 merged 2026-11-08] unit T with the Kind MagneticFluxDensity.
-   Unit m/s^2 (with Acceleration) on branch unit-m-per-s2 (committed, not pushed; PR to open).
+   [done, PR #75 merged 2026-11-08] unit m/s^2 with the Kind Acceleration.
    [todo] electrode potential by 0041: Kind ElectricPotential; unit V by its own PR; then
    electrode-potential (value, unit, reference* with terms SHE, RHE, Vacuum, qualifier) after
    body-force, for the working electrode. Ruling committed on main.
