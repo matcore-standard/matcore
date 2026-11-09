@@ -64,12 +64,12 @@ Worked case: AIMD of liquid Si is a computation `aimd` (Atomistic, MD, Dynamics;
 - One pull request applies items 1–7 and 11 to minimal, dft, the Preamble and the examples: examples/minimal.json labels its two structures and its computation and gives a task; examples/dft.json wraps its properties in `settings` naming that computation. It breaks 0.6.0 instances: labels and task are required, simulation-conditions is renamed, interaction-model is removed, and dft's properties move into `settings`. The check that every label is unique and that every reference names a label of the right kind is made by a test over the examples and by the step 9 instance validator.
 - Items 8 and 9 are applied in the md pull requests of status step 5, which create pim; item 10 and the `settings` container of mbpt, ml and pf in those sections' pull requests. The ml pull request decides what remains of `training-data` once its source is an input with the role Training data; the derived pull request decides how a derived property names its source computation.
 - PROPOSED, NOT DECIDED:
-  - where pim is numbered among the sections (before md renumbers 2.3–2.7 and their menu labels);
+  - where pim is numbered among the sections. (Settled 2026-11-09: 2.3, before md, which it serves; md, mbpt, ml, pf and derived become 2.4–2.8 in their titles and menu labels. The existing pages keep their file names, so their addresses do not change; pim's page is docs/standard/pim.md, since the numbers in file names no longer follow the section numbers.)
   - whether a series of runs differing only in an imposed condition (e.g. one MD run at each of several temperatures) is one computation or several;
   - a citation for a model that comes from a paper (md `source › reference`), which software has no field for;
   - for QM/MM, which region each interaction model covers;
   - a minimal term for an Electronic method with a learned ingredient (e.g. a learned Hamiltonian);
   - a particle-style term for eFF's nuclei (e.g. Nucleus), since "Atom" means an individual atom;
   - KIM IDs as an Annex I scheme (already raised by 0043);
-  - whether a DFT relaxation is one computation (DFT, task Optimization), as now, or an MS computation with the DFT computation as its Interaction model, as for AIMD; the second moves dft's relaxation tolerances to md (finding A4 of the minimal–dft analysis);
-  - whether md's title names molecular statics.
+  - whether a DFT relaxation is one computation (DFT, task Optimization), as now, or an MS computation with the DFT computation as its Interaction model, as for AIMD; the second moves dft's relaxation tolerances to md (finding A4 of the minimal–dft analysis). (Settled 2026-11-09: one computation, method DFT and task Optimization; dft keeps its relaxation tolerances. MS is for relaxations driven with a particle interaction model.)
+  - whether md's title names molecular statics. (Settled 2026-11-09: it does not; the title stays "Molecular Dynamics (MD) Metadata", whose introduction already includes energy minimization, and the key stays md.)

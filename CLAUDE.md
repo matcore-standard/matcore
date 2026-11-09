@@ -714,6 +714,10 @@ record or marked PROPOSED, NOT DECIDED.
    as evaluated (charge equilibration and long-range sums included), since they couple the model
    and the code; degrees of freedom propagated in time (iEL, Drude, LLG spins) are named in pim,
    their thermostats are md thermodynamic-constraint entries naming them in `system`.
+   0046 open points settled 2026-11-09: pim is 2.3, before md (md, mbpt, ml, pf, derived become
+   2.4–2.8 in titles and menu labels; existing page files keep their names and addresses; pim's
+   page is docs/standard/pim.md); md's title is unchanged; a DFT relaxation stays one computation
+   (DFT, task Optimization) with dft's relaxation tolerances, MS being for relaxations with a PIM.
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
