@@ -281,7 +281,9 @@ record or marked PROPOSED, NOT DECIDED.
      gives its task, structures and inputs (other computations with a role), simulation-conditions is
      renamed `conditions` and is optional, interaction-model is removed, method gains TB, MS and PIM,
      and dft's properties sit in `settings` blocks naming their computations (0046; breaks 0.6.0
-     instances).
+     instances); a new section 2.3 Particle Interaction Model (pim) holds md's model properties, md
+     keeps the dynamics in `settings`, and mbpt, ml, pf and derived become 2.5–2.8 (0046; breaks
+     0.6.0 md instances).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -719,7 +721,7 @@ record or marked PROPOSED, NOT DECIDED.
    2.4–2.8 in titles and menu labels; existing page files keep their names and addresses; pim's
    page is docs/standard/pim.md); md's title is unchanged; a DFT relaxation stays one computation
    (DFT, task Optimization) with dft's relaxation tolerances, MS being for relaxations with a PIM.
-   [in progress, branch pim-section, committed; awaiting push and PR] the pim section and md reduced to dynamics by
+   [done, PR #84 merged 2026-11-09] the pim section and md reduced to dynamics by
    0046 items 8 and 9, structure only (no typed field filled): schema/pim.yaml (2.3) with settings ›
    computation, theory-level, model-type, particle-style (now repeatable), bonding-type,
    charge-interactions, magnetic-interactions, legacy text moved with them; md (2.4) is settings ›
