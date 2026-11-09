@@ -582,7 +582,7 @@ record or marked PROPOSED, NOT DECIDED.
    `interaction-model` after method (open terms CC, DFT, Empirical potential, ML potential, QMC,
    Tight binding).
    PROPOSED, NOT DECIDED: how md particle-interactions › model-type relates to
-   interaction-model (md PR); whether 0028's rule matches MODA's classification principle
+   interaction-model (md PR) (Superseded: 0046 removes interaction-model and moves the model to pim); whether 0028's rule matches MODA's classification principle
    (check the MODA source).
    [done, PR #58 merged 2026-11-07] Preamble acronyms by 0004 item 51: KIM, CODATA and IRI
    spelled out at their first use in §1.3, each expansion traced to its defining body; QUDT,
@@ -680,6 +680,29 @@ record or marked PROPOSED, NOT DECIDED.
    gives 0.6.0, the v0.6.0 tag address, id mc-ad83jsd3 and dataset-version 1.
    PROPOSED, NOT DECIDED: GitHub releases with Zenodo so each release gets a DOI (0010), the step it
    adds to the release procedure, and a .zenodo.json or CITATION.cff for the record's metadata (0045).
+   [todo] computations and links by 0046 (from the minimal–dft analysis of 2026-11-08; ruling
+   drafted 2026-11-09, awaiting approval): structure and computation get a required `label`;
+   computation gains `task`, `structure` (labels) and `input` (computation label + role:
+   Interaction model, Initial configuration, Starting point, Training data, Parameters, Source
+   data); simulation-conditions renamed `conditions`, optional; interaction-model removed (reverses
+   0028 item 3); method terms TB, MS (molecular statics, described by md with MD) and PIM; software role Interaction model; every method section's
+   properties inside a repeatable `settings` naming the computations of its method; §1.2 states
+   that MatCore describes a dataset and does not reproduce its execution. One PR for minimal, dft,
+   the Preamble and the examples (breaks 0.6.0 instances). The new pim section (Particle
+   Interaction Model) and md's reduction to dynamics come in the md PRs; mbpt starting-point
+   becomes an input in the mbpt PR. 0046's Consequences list its PROPOSED, NOT DECIDED points (pim's
+   number, a series of runs as one computation or several, a model's citation, QM/MM regions, an
+   Electronic method with a learned ingredient, eFF's nuclei, KIM IDs in Annex I, whether a DFT
+   relaxation is DFT/Optimization or MS + DFT, md's title).
+   PROPOSED, NOT DECIDED (rest of the 2026-11-08 analysis): A2 a required species on
+   pseudopotential-or-paw and localized-orbital-basis-set; A3 a thermodynamic-state term for static
+   calculations (Superseded by 0046: task Single point, conditions optional); A4 a minimal task
+   (Superseded: 0046 adds `task`; still open: where the relaxation tolerances belong, and a stress
+   tolerance); B missing dft settings (total charge, initial magnetic moments, DFT+U values and
+   scheme, vdW correction method, a note that the smearing width is not the temperature
+   condition); C the dft introduction's pre-0018 names, doi strings vs identifier containers, two
+   shapes of `file`, `comment` vs `description`, smearing under k-point-mesh, RKmax for LAPW, the
+   LibXC version as a software dependency.
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that simulation-conditions holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
