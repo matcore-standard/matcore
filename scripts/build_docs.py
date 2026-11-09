@@ -16,7 +16,10 @@ import material
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-ORDER = ['minimal', 'dft', 'md', 'mbpt', 'ml', 'pf', 'derived']
+# Each section's page file. Files keep their names when sections are renumbered, so their addresses do not
+# change; the order is the order of the sections (0046, settled 2026-11-09).
+PAGES = {'minimal': '02-minimal.md', 'dft': '03-dft.md', 'pim': 'pim.md', 'md': '04-md.md', 'mbpt': '05-mbpt.md',
+         'ml': '06-ml.md', 'pf': '07-pf.md', 'derived': '08-derived.md'}
 ICON_DIR = Path(material.__file__).parent / 'templates/.icons/material'
 
 # Material Design Icons as bundled with mkdocs-material. Each SVG gets an intrinsic size so it
@@ -264,9 +267,9 @@ def main(argv=None):
     ap.add_argument('--out', type=Path, default=ROOT / 'docs/standard', help='output directory')
     args = ap.parse_args(argv)
     args.out.mkdir(parents=True, exist_ok=True)
-    for i, key in enumerate(ORDER, start=2):
+    for key, page in PAGES.items():
         section = yaml.safe_load(open(ROOT / f'schema/{key}.yaml'))
-        path = args.out / f'{i:02d}-{key}.md'
+        path = args.out / page
         path.write_text(render_section(section, args.show_legacy) + '\n')
         print('wrote', path)
     version = version_line() + '\n'

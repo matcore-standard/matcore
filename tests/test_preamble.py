@@ -51,7 +51,7 @@ def test_notes_keep_the_space_after_note():
         for p in props:
             yield from p.get('notes') or []
             yield from notes(p.get('subproperties') or [])
-    sections = ['minimal', 'dft', 'md', 'mbpt', 'ml', 'pf', 'derived']
+    sections = ['minimal', 'dft', 'pim', 'md', 'mbpt', 'ml', 'pf', 'derived']
     found = [n for s in sections for n in notes(yaml.safe_load(open(ROOT / f'schema/{s}.yaml'))['properties'])]
     assert found and not [n for n in found if re.match(r'Note\s*\d*:\S', n)]
 

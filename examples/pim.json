@@ -1,0 +1,17 @@
+{
+  "pim": {
+    "settings": [
+      {
+        "computation": [
+          "finnis-sinclair"
+        ],
+        "theory-level": "Classical physics-based",
+        "model-type": "Finnis-Sinclair potential",
+        "particle-style": [
+          "atom"
+        ],
+        "bonding-type": "Reactive"
+      }
+    ]
+  }
+}

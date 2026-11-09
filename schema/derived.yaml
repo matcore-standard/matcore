@@ -1,5 +1,5 @@
 section: derived
-title: 2.7 Derived Property Metadata
+title: 2.8 Derived Property Metadata
 source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.

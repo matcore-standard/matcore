@@ -152,3 +152,64 @@ def test_example_labels_are_unique_and_every_reference_resolves():
         assert {i['computation'] for i in c.get('input', [])} <= set(computations)
     named = [label for block in dft['settings'] for label in block['computation']]
     assert named and all(computations[n]['method'] == 'DFT' for n in named)
+
+
+TITLES = {'minimal': '2.1 Minimal MatCore Metadata', 'dft': '2.2 Density Functional Theory (DFT) Metadata',
+          'pim': '2.3 Particle Interaction Model (PIM) Metadata', 'md': '2.4 Molecular Dynamics (MD) Metadata',
+          'mbpt': '2.5 Many-Body Perturbation Theory (MBPT) Metadata', 'ml': '2.6 Machine Learning (ML) Metadata',
+          'pf': '2.7 Phase Field (PF) Metadata', 'derived': '2.8 Derived Property Metadata'}
+PAGES = {'minimal': '02-minimal.md', 'dft': '03-dft.md', 'pim': 'pim.md', 'md': '04-md.md', 'mbpt': '05-mbpt.md',
+         'ml': '06-ml.md', 'pf': '07-pf.md', 'derived': '08-derived.md'}
+
+
+def test_sections_are_numbered_with_pim_before_md():
+    """pim serves md, so it comes first; the other sections move down one (0046, settled 2026-11-09)."""
+    assert {k: section(k)['title'] for k in TITLES} == TITLES
+
+
+def test_pages_keep_their_addresses():
+    """Existing pages keep their file names, so links to them still work; pim's page is pim.md, and the menu
+    lists the sections in their numbered order (0046, settled 2026-11-09)."""
+    import sys
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import build_docs
+    assert build_docs.PAGES == PAGES and list(build_docs.PAGES) == list(TITLES)
+    nav = (ROOT / 'mkdocs.yml').read_text()
+    positions = [nav.index(f'standard/{page}') for page in PAGES.values()]
+    assert positions == sorted(positions)
+
+
+def test_pim_holds_the_model_properties_moved_from_md():
+    """The particle model's properties describe the interaction as evaluated, so they leave md for pim, with
+    particle-style repeatable for models with two kinds of particle (0046 item 8, amended 2026-11-09)."""
+    props = section('pim')['properties']
+    assert [p['name'] for p in props] == ['settings']
+    s = props[0]
+    assert (s['required'], s['repeatable']) == (True, True)
+    assert [(c['name'], c['required'], c['repeatable']) for c in s['subproperties']] == [
+        ('computation', True, True), ('theory-level', True, False), ('model-type', True, False),
+        ('particle-style', True, True), ('bonding-type', True, False), ('charge-interactions', False, True),
+        ('magnetic-interactions', False, True)]
+    assert [c['name'] for c in sub(s, 'charge-interactions')['subproperties']] == [
+        'charge-origin', 'charge-style', 'charge-variability', 'long-range-electrostatics', 'electric-dipole',
+        'electric-dipole-variability']
+    assert [c['name'] for c in sub(s, 'magnetic-interactions')['subproperties']] == ['spin-style', 'magnetic-dipole']
+
+
+def test_md_keeps_only_the_dynamics():
+    """md describes how particles are moved: its algorithm, parameters, initialization and constraints; mode is
+    minimal's task, and the model is in pim (0046 item 9)."""
+    props = section('md')['properties']
+    assert [p['name'] for p in props] == ['settings']
+    assert [c['name'] for c in props[0]['subproperties']] == [
+        'computation', 'algorithm', 'computation-parameter', 'initialization', 'thermodynamic-constraint']
+    text = (ROOT / 'schema/md.yaml').read_text()
+    for gone in ('name: mode', 'particle-style', 'particle-interactions', 'charge-interactions',
+                 'magnetic-interactions'):
+        assert gone not in text, gone
+
+
+def test_preamble_lists_pim_among_the_methods():
+    """§1.2 lists each method that has a section, in the order of the sections."""
+    text = (ROOT / 'docs/standard/index.md').read_text()
+    assert '- DFT: Density functional theory\n\n- PIM: Particle interaction models\n\n- MD:' in text

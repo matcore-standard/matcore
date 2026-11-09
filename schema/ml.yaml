@@ -1,5 +1,5 @@
 section: ml
-title: 2.5 Machine Learning (ML) Metadata
+title: 2.6 Machine Learning (ML) Metadata
 source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.

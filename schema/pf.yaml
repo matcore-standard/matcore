@@ -1,5 +1,5 @@
 section: pf
-title: 2.6 Phase Field (PF) Metadata
+title: 2.7 Phase Field (PF) Metadata
 source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.

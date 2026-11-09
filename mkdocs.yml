@@ -21,6 +21,7 @@ nav:
           - 2. Schema for the MatCore Standard:  # entries take their labels from the section titles in schema/*.yaml
               - standard/02-minimal.md
               - standard/03-dft.md
+              - standard/pim.md
               - standard/04-md.md
               - standard/05-mbpt.md
               - standard/06-ml.md

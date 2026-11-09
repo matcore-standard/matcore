@@ -1,4 +1,4 @@
-# 2.4 Many-Body Perturbation Theory (MBPT) Metadata
+# 2.5 Many-Body Perturbation Theory (MBPT) Metadata
 
 <p class="mc-version" data-version="0.6.0">Version 0.6.0</p>
 
