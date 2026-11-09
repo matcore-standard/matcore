@@ -1,0 +1,232 @@
+section: pim
+title: 2.3 Particle Interaction Model (PIM) Metadata
+source: >-
+  Moved from md.yaml by decision 0046 (particle-style, particle-interactions, charge-interactions and
+  magnetic-interactions). legacy_* fields hold the baseline prose and are to be replaced by typed fields in
+  subsequent PRs.
+introduction: |
+  The metadata for particle interaction models (MatCore-PIM) is tabulated below. A particle interaction model gives the energy and forces of a system of particles as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic potential, a bonded force field, a coarse-grained model or the electron force field. These properties describe a computation whose method is PIM, the evaluation of energies and forces used by another computation, e.g. molecular dynamics. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
+examples:
+  - caption: PIM Method-Specific Metadata
+    file: pim.json
+    source: https://doi.org/10.6084/m9.figshare.6273170
+properties:
+- name: settings
+  required: true
+  description: Settings shared by the computations named in it.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: true
+  subproperties:
+  - name: computation
+    required: true
+    description: The label of a computation these settings apply to.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values: null
+    repeatable: true
+  - name: theory-level
+    required: true
+    description: The rigor with which the atomic interactions are modeled.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Classical physics-based" – Electronic degrees of
+      freedom subsumed into a model of atomic bonding "Classical machine-learning" – Machine learning
+      model trained to take particle positions as input "Tight-binding" – Classical model of nuclear interactions
+      with approximate treatment of the electrons "Ab initio" – Some level of electronic structure determines
+      the particle interactions "Ab initio machine learning" – Machine learning model employing some level
+      of electronic structure in determining the particle interactions Other user-specified value if none
+      of the above apply.
+  - name: model-type
+    required: true
+    description: The kind of potential used to compute the particle interactions.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: A string containing the model type (e.g. Lennard-Jones, EAM, MACE, etc.).
+  - name: particle-style
+    required: true
+    description: The nature of the discrete entities used in the molecular dynamics simulation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: >-
+      String containing one of the following values: "Atom" – Each particle represents an individual atom
+      "Radical" – Each particle represents a free radical "United atom" – Each particle represents a fixed
+      grouping of atoms "Bead" – Each particle represents a user-tuneable group of atoms "Coarse grained"
+      – Each particle represents a higher scale particle obtained by scaling up the atomic representation
+      "Mesoscale" – Granular particles used to simulate microstructure at the mesoscopic scale "Classical
+      electron" – Antisymmetrized wave packet representation of valence electrons Other user-specified value
+      if none of the above apply.
+  - name: bonding-type
+    required: true
+    description: Specifies whether the bonds between particles are immutable or can be broken.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    legacy_values: >-
+      String containing one of the following values: "Reactive" – Bonds formed or broken on-the-fly based
+      on the particle environment "Bonded fixed" – Bonds defined *a priori *and cannot be broken during
+      the simulation. "Bonded mutable" – Bonds defined *a priori *but can be broken and/or formed during
+      the simulation. Other user-specified value if none of the above apply.
+  - name: charge-interactions
+    required: false
+    description: The model used to describe the interactions between charged particles.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubProperties as listed below.
+    subproperties:
+    - name: charge-origin
+      required: true
+      description: Nature of the particle charges.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing one of the following values: "Semi empirical" – Charges obtained from semi-empirical
+        quantum calculations "Quantum" – Charges obtained from quantum calculations "Electronic population"
+        – Charges obtained from electronic population analysis, e.g. Mulliken "Electronegativity" – Charges
+        obtained from electronegativity differences between atoms "Tabulated" – Charges obtained from an
+        external source Other user-specified value if none of the above apply.
+    - name: charge-style
+      required: true
+      description: >-
+        The nature of the charges associated with the particles, such as total or effective charges.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing one of the following values: "Coulomb full" – The particle charge accounting for
+        all electrons "Coulomb screened" – Effective charge due to screening or shielding by other electrons
+        (e.g. Slater) Other user-specified value if none of the above apply.
+    - name: charge-variability
+      required: true
+      description: >-
+        Attribute specifying the method for dynamically varying the local electric charge associated with
+        discrete entities.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing one of the following values: "Fixed" – Charges cannot change during the simulation
+        "QEq" – Charge equilibration method "EEM" – Electronegativity Equalization Method "iEL/SCF" – Extended
+        Lagrangian/self-consistent field scheme "FlucQ" – Fluctuating charge potential "Drude" – Drude method
+        Other user-specified value if none of the above apply.
+    - name: long-range-electrostatics
+      required: false
+      description: Method used to compute long-range electrostatic interactions.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing one of the following values: "None" – No electrostatic calculation performed "Direct"
+        – All Coulomb interactions computed directly "Ewald" – Ewald summation "PME" – Particle mesh Ewald
+        "PPPM" – Particle particle particle mesh "Reaction" – Reaction field Other user-specified value
+        if none of the above apply.
+    - name: electric-dipole
+      required: false
+      description: >-
+        Attribute specifying the type of interaction associated with the local electric dipoles associated
+        with particles.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing one of the following values: "Stockmayer" – Stockmayer potential "Screened" –
+        Screened dipoles "Long range" – Long-range dipoles Other user-specified value if none of the above
+        apply.
+    - name: electric-dipole-variability
+      required: false
+      description: >-
+        Attribute specifying the method for dynamically varying the local electric charge associated with
+        discrete entities.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing one of the following values: "Induced" – Induced point dipoles "Isotropic" – Isotropic
+        polarizability "Anisotropic" – Anisotropic polarizability Other user-specified value if none of
+        the above apply.
+  - name: magnetic-interactions
+    required: false
+    description: The model used to describe the interactions between magnetic spins.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    legacy_values: Contains SubProperties as listed below.
+    subproperties:
+    - name: spin-style
+      required: true
+      description: The nature of the magnetic spins associated with the particles.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing one of the following values: "Classical spin dynamics" – Spins modeled as classical
+        vectors evolved via Landau–Lifshitz–Gilbert (LLG) equation defined by a spin Hamiltonian. "Coupled
+        spin lattice dynamics" – Combines classical spin-dynamics with classical molecular dynamics"Ab initio
+        spin dynamics" – Magnetism treated via spin-polarized density functional theory (DFT) "Tight binding
+        spin dynamics" – Magnetism emerges from itinerant electrons rather than fixed local moments "Quantum
+        spin dynamics" – Magnetic moments treated as fully quantum mechanical operators evolving under the
+        time-dependent Schrödinger equation
+    - name: magnetic-dipole
+      required: false
+      description: >-
+        Attribute specifying the type of interaction (spin Hamiltonian) between the magnetic dipoles associated
+        with particles.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String containing a description of the approach used to model the magnetic dipoles (e.g. "Heisenberg",
+        "multi-spin", "Zeeman", or some other formulation for the spin Hamiltonian).

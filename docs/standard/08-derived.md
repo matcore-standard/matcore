@@ -1,4 +1,4 @@
-# 2.7 Derived Property Metadata
+# 2.8 Derived Property Metadata
 
 <p class="mc-version" data-version="0.6.0">Version 0.6.0</p>
 

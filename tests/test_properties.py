@@ -335,7 +335,7 @@ def test_every_typed_doi_uses_the_annex_i_pattern():
     copy drifts from the table (0014, settled 2026-11-04)."""
     pattern = yaml.safe_load((ROOT / 'schema/identifier-schemes.yaml').read_text())['schemes']['DOI']['pattern']
     dois = doi_properties()
-    assert len(dois) == 5 and {'minimal/publication/doi', 'minimal/dataset-location/doi'} <= {h for h, _ in dois}
+    assert len(dois) == 4 and {'minimal/publication/doi', 'minimal/dataset-location/doi'} <= {h for h, _ in dois}
     for here, p in dois:
         if p['type'] is not None:
             assert (p['type'], p['extent'], p['kind']) == ('string', [], 'inapplicable'), here

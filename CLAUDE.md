@@ -15,7 +15,7 @@ Other files link relative to the site or read it from mkdocs.yml (0004).
 The MatCore effort is funded by NSF DMR Award #2404283 and supported through the KIM Initiative (0004).
 
 - `schema/<section>.yaml` — the standard's property hierarchy, one file per section
-  (minimal, dft, md, mbpt, ml, pf, derived). THIS IS THE STANDARD.
+  (minimal, dft, pim, md, mbpt, ml, pf, derived; pim added by 0046). THIS IS THE STANDARD.
 - `schema/units.yaml` — Annex U, the normative unit table (kinds, symbols, QUDT/GNU mapping, SI factors).
   The single source of Annex U's Tables U.3 and U.4, which build_docs.py generates into
   annex-u-units.md; it prevails over the annex. Factors are exact decimal text, e.g. "1e3" (0009).
@@ -26,7 +26,8 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
   for units; it prevails over the annex (0014).
 - `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
 - `docs/standard/*.md` — prose chapters (index = title and 1. Preamble, annex-u-units,
-  annex-i-identifiers) plus GENERATED chapters (02–08, revision-history, and the marked regions in
+  annex-i-identifiers) plus GENERATED chapters (02–08 and pim.md, named in build_docs.PAGES;
+  revision-history; and the marked regions in
   index and the annexes: version line, Tables U.3/U.4, Table I.1).
   Never hand-edit generated parts; edit the YAML and run
   `scripts/build_docs.py --show-legacy`.
@@ -185,7 +186,7 @@ validates the examples in CI (status step 7).
   DECIDED.
 - Navigation follows docs/decisions/0008 (decided): left menu, collapsed to Home · About · Standard ·
   Contact; Standard ▸ Browse Standard (numbered as on matcore.org: 1. Preamble, 1.1–1.3; 2. Schema,
-  2.1–2.7; Annex U; Annex I (0014)) and Revision History; no tabs; no right-hand TOC (page
+  2.1–2.8 (pim inserted as 2.3 by 0046); Annex U; Annex I (0014)) and Revision History; no tabs; no right-hand TOC (page
   headings in the left menu, toc_depth 2); logo before "MatCore" in the menu title. Menu labels are set in mkdocs.yml `nav`.
   Browse Standard opens the Preamble (docs/standard/index.md), which overrides/partials/nav-item.html
   (a one-line change to the theme's template; re-apply on theme upgrades) also lists as "1. Preamble".
@@ -718,6 +719,17 @@ record or marked PROPOSED, NOT DECIDED.
    2.4–2.8 in titles and menu labels; existing page files keep their names and addresses; pim's
    page is docs/standard/pim.md); md's title is unchanged; a DFT relaxation stays one computation
    (DFT, task Optimization) with dft's relaxation tolerances, MS being for relaxations with a PIM.
+   [in progress, branch pim-section, committed; awaiting push and PR] the pim section and md reduced to dynamics by
+   0046 items 8 and 9, structure only (no typed field filled): schema/pim.yaml (2.3) with settings ›
+   computation, theory-level, model-type, particle-style (now repeatable), bonding-type,
+   charge-interactions, magnetic-interactions, legacy text moved with them; md (2.4) is settings ›
+   computation, algorithm, computation-parameter, initialization, thermodynamic-constraint; md
+   computation › mode and particle-interactions › source removed; mbpt, ml, pf, derived renumbered
+   2.5–2.8; build_docs.PAGES keeps page files (pim.md new); §1.2's list gains PIM;
+   examples/pim.json from md.json's model, md.json in settings.
+   PROPOSED, NOT DECIDED: pim's properties are taken up before md's in status step 5, in file order;
+   md's introduction says "classical molecular dynamics" though md now also serves AIMD and MS, and
+   §1.2's list says "MD: Classical molecular dynamics".
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.

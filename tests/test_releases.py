@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import build_docs  # noqa: E402
 
-SECTIONS = ['minimal', 'dft', 'md', 'mbpt', 'ml', 'pf', 'derived']
+SECTIONS = ['minimal', 'dft', 'pim', 'md', 'mbpt', 'ml', 'pf', 'derived']
 RELEASES = yaml.safe_load(open(ROOT / 'schema/releases.yaml'))['releases']
 FIELDS = {'version', 'date', 'change_type', 'sections', 'description', 'approved_by'}
 
@@ -66,5 +66,5 @@ def test_every_standard_page_states_its_version(tmp_path):
     """Readers can tell which version a standard page belongs to (0010 item 5)."""
     build_docs.main(['--out', str(tmp_path)])
     line = f'data-version="{build_docs.current_version()}"'
-    for page in [f'{i:02d}-{k}.md' for i, k in enumerate(SECTIONS, start=2)] + ['index.md', 'annex-u-units.md', 'revision-history.md']:
+    for page in list(build_docs.PAGES.values()) + ['index.md', 'annex-u-units.md', 'revision-history.md']:
         assert line in (tmp_path / page).read_text(), page

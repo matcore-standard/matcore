@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import build_docs  # noqa: E402
 
-SECTIONS = ['minimal', 'dft', 'md', 'mbpt', 'ml', 'pf', 'derived']
+SECTIONS = ['minimal', 'dft', 'pim', 'md', 'mbpt', 'ml', 'pf', 'derived']
 OPEN = re.compile(r'<details class="note mc-property" id="([^"]+)" markdown="1">')
 
 
@@ -234,7 +234,7 @@ def test_main_writes_every_page_and_honours_the_flag(tmp_path):
     """The command writes one page per section plus Annex U with its tables; --show-legacy controls legacy text."""
     build_docs.main(['--out', str(tmp_path)])
     names = sorted(p.name for p in tmp_path.iterdir())
-    assert names == sorted([f'{i:02d}-{k}.md' for i, k in enumerate(SECTIONS, start=2)] + ['annex-i-identifiers.md', 'annex-u-units.md', 'index.md', 'revision-history.md'])
+    assert names == sorted(list(build_docs.PAGES.values()) + ['annex-i-identifiers.md', 'annex-u-units.md', 'index.md', 'revision-history.md'])
     assert 'Legacy:' not in (tmp_path / '04-md.md').read_text()  # md still holds legacy text
     build_docs.main(['--out', str(tmp_path), '--show-legacy'])
     assert 'Legacy:' in (tmp_path / '04-md.md').read_text()

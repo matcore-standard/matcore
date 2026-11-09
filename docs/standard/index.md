@@ -18,6 +18,8 @@ The MatCore standard is focused on CMS methods aimed at computing material prope
 
 - DFT: Density functional theory
 
+- PIM: Particle interaction models
+
 - MD: Classical molecular dynamics
 
 - MBPT: Many-body perturbation theory (GW/BSE)
