@@ -39,6 +39,7 @@
     "description": "The original DFT training data for the general-purpose silicon interatomic potential described in the associated publication. The kinds of configuration that were included were selected based on intuition and past experience to obtain good coverage pertaining to a range of properties.",
     "structure": [
       {
+        "label": "si-bulk",
         "material-component": [
           {
             "formula": "Si",
@@ -51,6 +52,7 @@
         ]
       },
       {
+        "label": "si-slab",
         "material-component": [
           {
             "formula": "Si",
@@ -64,13 +66,14 @@
     ],
     "computation": [
       {
+        "label": "dft-single-points",
         "method-class": "Electronic",
         "method": "DFT",
-        "simulation-conditions": {
-          "type": {
-            "thermodynamic-state": "Equilibrium"
-          }
-        },
+        "task": "Single point",
+        "structure": [
+          "si-bulk",
+          "si-slab"
+        ],
         "software": [
           {
             "name": "CASTEP",

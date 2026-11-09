@@ -99,12 +99,20 @@ def test_less_familiar_acronyms_are_spelled_out_at_first_use(acronym, expansion)
     assert text.find(expansion) != -1 and text.find(expansion) <= first <= text.find(expansion) + len(expansion)
 
 
-def test_scope_distinguishes_methods_that_supply_energies_and_forces():
-    """§1.2's paragraph on combined methods opens by separating methods that supply energies and forces
-    from those that use them, before its AIMD example (0028)."""
+def test_scope_describes_computations_and_their_links():
+    """§1.2 separates methods that supply energies and forces from those that use them, describes a dataset as
+    computations that name what they use, and says MatCore does not record how to reproduce a dataset (0028;
+    0046 item 11)."""
     text = (ROOT / 'docs/standard/index.md').read_text()
-    assert ('Some methods supply energies and forces (e.g. DFT), others use them to sample or evolve a system '
-            '(e.g. MD). It is allowable to include multiple method-specific metadata') in text
+    assert ('Some methods supply energies and forces (e.g. DFT, or an interatomic potential), others use them to '
+            'sample or evolve a system (e.g. MD). A dataset is described as one or more computations, each a group '
+            'of calculations that share a method and its settings. A computation that uses the results of another '
+            'names it, with the role the other plays: an ab initio molecular dynamics (AIMD) computation names the '
+            'DFT computation that supplies its energies and forces. Each method-specific section describes the '
+            'computations of its method. MatCore describes a dataset; it does not record how to reproduce its '
+            'execution. The order of the calculations, their control flow and complete inputs belong to the '
+            'provenance record of a workflow manager, to which a MatCore record may point.') in text
+    assert 'It is allowable to include multiple method-specific metadata' not in text
 
 
 def test_extent_states_the_order_of_an_array():

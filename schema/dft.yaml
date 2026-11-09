@@ -11,10 +11,9 @@ examples:
     source: https://doi.org/10.60732/8e9bc5b0
 legacy_complete: true
 properties:
-- name: xc-functional
+- name: settings
   required: true
-  description: >-
-    Approximation used to describe the electron exchange and electron correlation energies
+  description: Settings shared by the computations named in it.
   type: null
   extent: null
   kind: null
@@ -22,170 +21,19 @@ properties:
   values: null
   repeatable: true
   subproperties:
-  - name: type
+  - name: computation
     required: true
-    description: The mathematical form of the exchange-correlation functional.
+    description: The label of a computation these settings apply to.
     type: string
     extent: []
     kind: inapplicable
-    recommended-unit: null
-    values:
-      terms: [LDA, GGA, Meta GGA, Hybrid, ML]
-      note: >-
-        "LDA" – Local Density Approximation. "GGA" – Generalized Gradient Approximation. "Meta GGA" –
-        Extension to GGA including dependence on Laplacian of electron density. "Hybrid" – An
-        approximation for the exchange-correlation (XC) functional that includes a portion of the exact
-        XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio
-        or empirical). "ML" – Machine learning based functional.
-    repeatable: false
-  - name: name
-    required: false
-    description: The exchange-correlation functional as the author names it.
-    type: string
-    extent: []
-    kind: inapplicable
-    recommended-unit: null
-    values:
-      note: >-
-        Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical
-        choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS,
-        SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA,
-        CIDER, etc. Others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. A
-        decomposition into the components of a community library such as LibXC is given in
-        normalization.
-    repeatable: false
-  - name: description
-    required: false
-    description: >-
-      Explanatory text providing more information about the type of the exchange-correlation method used
-      including any relevant identifying information.
-    type: string
-    extent: []
-    kind: inapplicable
-    recommended-unit: null
-    values:
-      note: >-
-        Free text on what `type` and `name` do not say, e.g. a modification of the functional or the reason
-        for choosing it.
-    repeatable: false
-  - name: normalization
-    required: false
-    description: >-
-      The functional decomposed into the components of a community library, which names the components.
-    type: null
-    extent: null
-    kind: null
-    recommended-unit: null
-    values: null
-    repeatable: false
-    subproperties:
-    - name: components
-      required: true
-      description: The components of the functional, in the identifiers of the source.
-      type: string
-      extent: [':']
-      kind: inapplicable
-      recommended-unit: null
-      values:
-        examples: [[GGA_X_PBE, GGA_C_PBE]]
-      repeatable: false
-    - name: source
-      required: true
-      description: The library whose identifiers the components use.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values:
-        terms: [LibXC]
-        note: >-
-          "LibXC" – the [Libxc library of exchange-correlation
-          functionals](https://libxc.gitlab.io/functionals/).
-      repeatable: false
-  - name: xc-parameter
-    required: false
-    description: >-
-      A fixed variable associated with the specified exchange-correlation functional method.
-    type: null
-    extent: null
-    kind: null
     recommended-unit: null
     values: null
     repeatable: true
-    notes:
-    - >-
-      Note: For example, the mixing parameter of a hybrid exchange-correlation functional, or another
-      method-specific parameter.
-    subproperties:
-    - name: name
-      required: true
-      description: The designation of the exchange-correlation parameter.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-    - name: value
-      required: true
-      description: The data associated with the exchange-correlation parameter.
-      type: any
-      extent: any
-      kind: any
-      recommended-unit: null
-      values: null
-      repeatable: false
-    - name: unit
-      required: true
-      description: The unit in which the associated value is expressed.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values:
-        note: >-
-          A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
-          only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
-          (accepted with a validation warning).
-      repeatable: false
-    - name: description
-      required: false
-      description: An explanation of the meaning, source, or purpose of the parameter.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-- name: core-electron-treatment
-  required: true
-  description: The treatment of the core electrons in the calculation.
-  type: null
-  extent: null
-  kind: null
-  recommended-unit: null
-  values: null
-  repeatable: false
-  subproperties:
-  - name: type
+  - name: xc-functional
     required: true
-    description: The method used to treat the core electrons.
-    type: string
-    extent: []
-    kind: inapplicable
-    recommended-unit: null
-    values:
-      terms: [All-electron, PAW, Pseudopotential]
-      note: >-
-        "All-electron" – All of the electrons in an atom are modeled explicitly. "PAW" – Projector
-        Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core
-        electrons are modeled by a simplified potential.
-    repeatable: false
-  - name: pseudopotential-or-paw
-    required: false
     description: >-
-      For type "Pseudopotential", or type "PAW", additional information about each pseudopotential or
-      PAW dataset.
+      Approximation used to describe the electron exchange and electron correlation energies
     type: null
     extent: null
     kind: null
@@ -193,573 +41,702 @@ properties:
     values: null
     repeatable: true
     subproperties:
-    - name: name
-      required: true
-      description: The name of the pseudopotential or PAW dataset.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
     - name: type
       required: true
-      description: The physical form of the pseudopotential or PAW dataset.
+      description: The mathematical form of the exchange-correlation functional.
       type: string
       extent: []
       kind: inapplicable
       recommended-unit: null
       values:
-        terms: [Norm conserving, PAW, Ultrasoft]
+        terms: [LDA, GGA, Meta GGA, Hybrid, ML]
+        note: >-
+          "LDA" – Local Density Approximation. "GGA" – Generalized Gradient Approximation. "Meta GGA" –
+          Extension to GGA including dependence on Laplacian of electron density. "Hybrid" – An
+          approximation for the exchange-correlation (XC) functional that includes a portion of the exact
+          XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio
+          or empirical). "ML" – Machine learning based functional.
+      repeatable: false
+    - name: name
+      required: false
+      description: The exchange-correlation functional as the author names it.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical
+          choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS,
+          SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA,
+          CIDER, etc. Others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. A
+          decomposition into the components of a community library such as LibXC is given in
+          normalization.
       repeatable: false
     - name: description
       required: false
       description: >-
-        Explanatory text about the pseudopotential or PAW dataset including any relevant identifying
-        information.
+        Explanatory text providing more information about the type of the exchange-correlation method used
+        including any relevant identifying information.
       type: string
       extent: []
       kind: inapplicable
       recommended-unit: null
+      values:
+        note: >-
+          Free text on what `type` and `name` do not say, e.g. a modification of the functional or the reason
+          for choosing it.
+      repeatable: false
+    - name: normalization
+      required: false
+      description: >-
+        The functional decomposed into the components of a community library, which names the components.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
       values: null
       repeatable: false
-    - name: number-of-valence-electrons
+      subproperties:
+      - name: components
+        required: true
+        description: The components of the functional, in the identifiers of the source.
+        type: string
+        extent: [':']
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          examples: [[GGA_X_PBE, GGA_C_PBE]]
+        repeatable: false
+      - name: source
+        required: true
+        description: The library whose identifiers the components use.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [LibXC]
+          note: >-
+            "LibXC" – the [Libxc library of exchange-correlation
+            functionals](https://libxc.gitlab.io/functionals/).
+        repeatable: false
+    - name: xc-parameter
+      required: false
+      description: >-
+        A fixed variable associated with the specified exchange-correlation functional method.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      notes:
+      - >-
+        Note: For example, the mixing parameter of a hybrid exchange-correlation functional, or another
+        method-specific parameter.
+      subproperties:
+      - name: name
+        required: true
+        description: The designation of the exchange-correlation parameter.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: value
+        required: true
+        description: The data associated with the exchange-correlation parameter.
+        type: any
+        extent: any
+        kind: any
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit in which the associated value is expressed.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+            only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+            (accepted with a validation warning).
+        repeatable: false
+      - name: description
+        required: false
+        description: An explanation of the meaning, source, or purpose of the parameter.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+  - name: core-electron-treatment
+    required: true
+    description: The treatment of the core electrons in the calculation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    subproperties:
+    - name: type
       required: true
-      description: The number of electrons treated explicitly.
-      type: int
+      description: The method used to treat the core electrons.
+      type: string
       extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [All-electron, PAW, Pseudopotential]
+        note: >-
+          "All-electron" – All of the electrons in an atom are modeled explicitly. "PAW" – Projector
+          Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core
+          electrons are modeled by a simplified potential.
+      repeatable: false
+    - name: pseudopotential-or-paw
+      required: false
+      description: >-
+        For type "Pseudopotential", or type "PAW", additional information about each pseudopotential or
+        PAW dataset.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: name
+        required: true
+        description: The name of the pseudopotential or PAW dataset.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: type
+        required: true
+        description: The physical form of the pseudopotential or PAW dataset.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Norm conserving, PAW, Ultrasoft]
+        repeatable: false
+      - name: description
+        required: false
+        description: >-
+          Explanatory text about the pseudopotential or PAW dataset including any relevant identifying
+          information.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: number-of-valence-electrons
+        required: true
+        description: The number of electrons treated explicitly.
+        type: int
+        extent: []
+        kind: dimensionless
+        recommended-unit: null
+        values:
+          minimum: 1
+        repeatable: false
+      - name: repository
+        required: false
+        description: The database from which the pseudopotential or PAW dataset was obtained.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: version
+        required: false
+        description: The version of the pseudopotential or PAW dataset.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          examples: ['6.3.1']
+        repeatable: false
+      - name: doi
+        required: false
+        description: The digital object identifier (DOI) for the pseudopotential or PAW dataset.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          pattern: 'https://doi\.org/10\.[^/]+/.+'
+        repeatable: false
+      - name: file
+        required: false
+        description: >-
+          The pseudopotential or PAW dataset file, with its checksums.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        notes:
+        - >-
+          Note: Use file when the pseudopotential or PAW dataset is identified by a checksum of its file (e.g.
+          the SHA256 hash of a VASP POTCAR file). For any other designation, use unique-identifier.
+        subproperties:
+        - name: name
+          required: true
+          description: The name of the file.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values: null
+          repeatable: false
+        - name: checksum
+          required: true
+          description: A digital fingerprint of the file, computed by a named algorithm.
+          type: null
+          extent: null
+          kind: null
+          recommended-unit: null
+          values: null
+          repeatable: true
+          subproperties:
+          - name: algorithm
+            required: true
+            description: The algorithm that computed the checksum.
+            type: string
+            extent: []
+            kind: inapplicable
+            recommended-unit: null
+            values:
+              terms: [SHA1, SHA224, SHA256, SHA384, SHA512, SHA3-256, SHA3-384, SHA3-512, BLAKE2b-256, BLAKE2b-384,
+                BLAKE2b-512, BLAKE3, MD2, MD4, MD5, MD6, ADLER32]
+              note: >-
+                The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/)
+                (File checksum field).
+            repeatable: false
+          - name: value
+            required: true
+            description: The checksum of the file, in lowercase hexadecimal digits.
+            type: string
+            extent: []
+            kind: inapplicable
+            recommended-unit: null
+            values:
+              pattern: '[0-9a-f]+'
+            repeatable: false
+      - name: unique-identifier
+        required: false
+        description: >-
+          A token other than a checksum that identifies the pseudopotential or PAW dataset, such as a label
+          or code assigned by the library that distributes it.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+        notes:
+        - >-
+          Note: For a checksum of the pseudopotential or PAW dataset file, use file instead.
+  - name: wavefunction-representation
+    required: true
+    description: The representation used to expand the electronic wave functions.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    subproperties:
+    - name: type
+      required: true
+      description: The method used to represent the electronic wave functions.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Gaussian basis sets, LAPW, Local atomic orbitals, Numerical atomic orbitals, Plane waves,
+          Real space grids]
+        note: >-
+          The terms fall into three groups. (1) Basis-function expansions: "Gaussian basis sets" –
+          Atom-centered Gaussian-type orbitals. "Local atomic orbitals" – Atom-centered orbitals of a
+          form not covered by the previous or the next term, e.g. Slater-type orbitals. "Numerical
+          atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius.
+          "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff. (2) Grid methods: "Real
+          space grids" – Values on a mesh of points in real space (finite differences or finite
+          elements). (3) Augmented methods: "LAPW" – Linearized Augmented Plane Wave: atomic-like
+          functions inside spheres around the atoms, plane waves between them.
+      repeatable: true
+    - name: localized-orbital-basis-set
+      required: false
+      description: >-
+        For type "Gaussian basis sets", "Local atomic orbitals" or "Numerical atomic orbitals",
+        additional information about the basis set.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: type
+        required: true
+        description: >-
+          The designation of the set of orbital functions used for expanding electronic wave functions.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          examples: [6-31G, DZP]
+        repeatable: false
+      - name: repository
+        required: false
+        description: The database from which the localized-orbital basis set was obtained.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: version
+        required: false
+        description: The version of the localized-orbital basis set.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: doi
+        required: false
+        description: The digital object identifier (DOI) for the localized-orbital basis set.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          pattern: 'https://doi\.org/10\.[^/]+/.+'
+        repeatable: false
+      - name: file
+        required: false
+        description: >-
+          The localized-orbital basis set file, with its checksums.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: false
+        notes:
+        - >-
+          Note: Use file when the basis set is identified by a checksum of its file. For any other designation,
+          use unique-identifier.
+        subproperties:
+        - name: name
+          required: true
+          description: The name of the file.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values: null
+          repeatable: false
+        - name: checksum
+          required: true
+          description: A digital fingerprint of the file, computed by a named algorithm.
+          type: null
+          extent: null
+          kind: null
+          recommended-unit: null
+          values: null
+          repeatable: true
+          subproperties:
+          - name: algorithm
+            required: true
+            description: The algorithm that computed the checksum.
+            type: string
+            extent: []
+            kind: inapplicable
+            recommended-unit: null
+            values:
+              terms: [SHA1, SHA224, SHA256, SHA384, SHA512, SHA3-256, SHA3-384, SHA3-512, BLAKE2b-256, BLAKE2b-384,
+                BLAKE2b-512, BLAKE3, MD2, MD4, MD5, MD6, ADLER32]
+              note: >-
+                The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/)
+                (File checksum field).
+            repeatable: false
+          - name: value
+            required: true
+            description: The checksum of the file, in lowercase hexadecimal digits.
+            type: string
+            extent: []
+            kind: inapplicable
+            recommended-unit: null
+            values:
+              pattern: '[0-9a-f]+'
+            repeatable: false
+      - name: unique-identifier
+        required: false
+        description: >-
+          A token other than a checksum that identifies the localized-orbital basis set, such as a label or
+          code assigned by the library that distributes it.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+        notes:
+        - >-
+          Note: For a checksum of the basis set file, use file instead.
+    - name: kinetic-energy-cutoff
+      required: false
+      description: >-
+        For type "LAPW" or "Plane waves", the maximum kinetic energy of the plane waves included in the
+        calculation of wave functions.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: Energy
+        recommended-unit: eV
+        values:
+          minimum: 0
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+    - name: charge-density-cutoff
+      required: false
+      description: >-
+        For type "LAPW" or "Plane waves", the energy value used to truncate the plane wave expansion of
+        the electron charge density.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: Energy
+        recommended-unit: eV
+        values:
+          minimum: 0
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+  - name: calculation-physics
+    required: false
+    description: Additional phenomena included beyond the standard DFT calculation.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      terms: [Collinear spin polarization, Noncollinear spin polarization, On-site correlation,
+        Orbital polarization, Spin-orbit coupling, Van der Waals]
+      note: >-
+        "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or
+        antiparallel to one axis. "Noncollinear spin polarization" – Spin-polarized, with magnetic
+        moments free to point in any direction. "On-site correlation" – e.g. DFT+U. "Orbital
+        polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks'
+        orbital-polarization term. "Spin-orbit coupling" – The coupling of the electron spin to its
+        orbital motion. "Van der Waals" – Dispersion interactions, by a correction or a nonlocal
+        functional. Give at most one of the two spin-polarization terms. List each phenomenon as a
+        separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries,
+        "Noncollinear spin polarization" and "Spin-orbit coupling".
+    repeatable: true
+  - name: k-point-mesh
+    required: false
+    description: >-
+      For periodic systems, a grid of points sampled within the Brillouin zone, used to approximate integrals
+      and calculate electronic properties by discretizing the wavefunction across reciprocal space.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    subproperties:
+    - name: type
+      required: true
+      description: The choice of how k-points are distributed on the mesh.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Regular gamma-centered, Regular shifted, Irregular]
+      repeatable: false
+    - name: number-of-points
+      required: false
+      description: The number of k-points included along each reciprocal lattice vector.
+      type: int
+      extent: [3]
       kind: dimensionless
       recommended-unit: null
       values:
         minimum: 1
+        note: >-
+          Ordered list of three integers, the number of k-points along the three reciprocal lattice
+          vector directions.
       repeatable: false
-    - name: repository
+    - name: shift
       required: false
-      description: The database from which the pseudopotential or PAW dataset was obtained.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-    - name: version
-      required: false
-      description: The version of the pseudopotential or PAW dataset.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values:
-        examples: ['6.3.1']
-      repeatable: false
-    - name: doi
-      required: false
-      description: The digital object identifier (DOI) for the pseudopotential or PAW dataset.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values:
-        pattern: 'https://doi\.org/10\.[^/]+/.+'
-      repeatable: false
-    - name: file
-      required: false
-      description: >-
-        The pseudopotential or PAW dataset file, with its checksums.
-      type: null
-      extent: null
-      kind: null
-      recommended-unit: null
-      values: null
-      repeatable: false
-      notes:
-      - >-
-        Note: Use file when the pseudopotential or PAW dataset is identified by a checksum of its file (e.g.
-        the SHA256 hash of a VASP POTCAR file). For any other designation, use unique-identifier.
-      subproperties:
-      - name: name
-        required: true
-        description: The name of the file.
-        type: string
-        extent: []
-        kind: inapplicable
-        recommended-unit: null
-        values: null
-        repeatable: false
-      - name: checksum
-        required: true
-        description: A digital fingerprint of the file, computed by a named algorithm.
-        type: null
-        extent: null
-        kind: null
-        recommended-unit: null
-        values: null
-        repeatable: true
-        subproperties:
-        - name: algorithm
-          required: true
-          description: The algorithm that computed the checksum.
-          type: string
-          extent: []
-          kind: inapplicable
-          recommended-unit: null
-          values:
-            terms: [SHA1, SHA224, SHA256, SHA384, SHA512, SHA3-256, SHA3-384, SHA3-512, BLAKE2b-256, BLAKE2b-384,
-              BLAKE2b-512, BLAKE3, MD2, MD4, MD5, MD6, ADLER32]
-            note: >-
-              The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/)
-              (File checksum field).
-          repeatable: false
-        - name: value
-          required: true
-          description: The checksum of the file, in lowercase hexadecimal digits.
-          type: string
-          extent: []
-          kind: inapplicable
-          recommended-unit: null
-          values:
-            pattern: '[0-9a-f]+'
-          repeatable: false
-    - name: unique-identifier
-      required: false
-      description: >-
-        A token other than a checksum that identifies the pseudopotential or PAW dataset, such as a label
-        or code assigned by the library that distributes it.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-      notes:
-      - >-
-        Note: For a checksum of the pseudopotential or PAW dataset file, use file instead.
-- name: wavefunction-representation
-  required: true
-  description: The representation used to expand the electronic wave functions.
-  type: null
-  extent: null
-  kind: null
-  recommended-unit: null
-  values: null
-  repeatable: false
-  subproperties:
-  - name: type
-    required: true
-    description: The method used to represent the electronic wave functions.
-    type: string
-    extent: []
-    kind: inapplicable
-    recommended-unit: null
-    values:
-      terms: [Gaussian basis sets, LAPW, Local atomic orbitals, Numerical atomic orbitals, Plane waves,
-        Real space grids]
-      note: >-
-        The terms fall into three groups. (1) Basis-function expansions: "Gaussian basis sets" –
-        Atom-centered Gaussian-type orbitals. "Local atomic orbitals" – Atom-centered orbitals of a
-        form not covered by the previous or the next term, e.g. Slater-type orbitals. "Numerical
-        atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius.
-        "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff. (2) Grid methods: "Real
-        space grids" – Values on a mesh of points in real space (finite differences or finite
-        elements). (3) Augmented methods: "LAPW" – Linearized Augmented Plane Wave: atomic-like
-        functions inside spheres around the atoms, plane waves between them.
-    repeatable: true
-  - name: localized-orbital-basis-set
-    required: false
-    description: >-
-      For type "Gaussian basis sets", "Local atomic orbitals" or "Numerical atomic orbitals",
-      additional information about the basis set.
-    type: null
-    extent: null
-    kind: null
-    recommended-unit: null
-    values: null
-    repeatable: true
-    subproperties:
-    - name: type
-      required: true
-      description: >-
-        The designation of the set of orbital functions used for expanding electronic wave functions.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values:
-        examples: [6-31G, DZP]
-      repeatable: false
-    - name: repository
-      required: false
-      description: The database from which the localized-orbital basis set was obtained.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-    - name: version
-      required: false
-      description: The version of the localized-orbital basis set.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-    - name: doi
-      required: false
-      description: The digital object identifier (DOI) for the localized-orbital basis set.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values:
-        pattern: 'https://doi\.org/10\.[^/]+/.+'
-      repeatable: false
-    - name: file
-      required: false
-      description: >-
-        The localized-orbital basis set file, with its checksums.
-      type: null
-      extent: null
-      kind: null
-      recommended-unit: null
-      values: null
-      repeatable: false
-      notes:
-      - >-
-        Note: Use file when the basis set is identified by a checksum of its file. For any other designation,
-        use unique-identifier.
-      subproperties:
-      - name: name
-        required: true
-        description: The name of the file.
-        type: string
-        extent: []
-        kind: inapplicable
-        recommended-unit: null
-        values: null
-        repeatable: false
-      - name: checksum
-        required: true
-        description: A digital fingerprint of the file, computed by a named algorithm.
-        type: null
-        extent: null
-        kind: null
-        recommended-unit: null
-        values: null
-        repeatable: true
-        subproperties:
-        - name: algorithm
-          required: true
-          description: The algorithm that computed the checksum.
-          type: string
-          extent: []
-          kind: inapplicable
-          recommended-unit: null
-          values:
-            terms: [SHA1, SHA224, SHA256, SHA384, SHA512, SHA3-256, SHA3-384, SHA3-512, BLAKE2b-256, BLAKE2b-384,
-              BLAKE2b-512, BLAKE3, MD2, MD4, MD5, MD6, ADLER32]
-            note: >-
-              The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/)
-              (File checksum field).
-          repeatable: false
-        - name: value
-          required: true
-          description: The checksum of the file, in lowercase hexadecimal digits.
-          type: string
-          extent: []
-          kind: inapplicable
-          recommended-unit: null
-          values:
-            pattern: '[0-9a-f]+'
-          repeatable: false
-    - name: unique-identifier
-      required: false
-      description: >-
-        A token other than a checksum that identifies the localized-orbital basis set, such as a label or
-        code assigned by the library that distributes it.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-      notes:
-      - >-
-        Note: For a checksum of the basis set file, use file instead.
-  - name: kinetic-energy-cutoff
-    required: false
-    description: >-
-      For type "LAPW" or "Plane waves", the maximum kinetic energy of the plane waves included in the
-      calculation of wave functions.
-    type: null
-    extent: null
-    kind: null
-    recommended-unit: null
-    values: null
-    repeatable: false
-    subproperties:
-    - name: value
-      required: true
-      description: The value of the property, in the unit given by `unit`.
+      description: Translation of the k-point mesh along the reciprocal lattice vector directions.
       type: float
-      extent: []
-      kind: Energy
-      recommended-unit: eV
-      values:
-        minimum: 0
-      repeatable: false
-    - name: unit
-      required: true
-      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-  - name: charge-density-cutoff
-    required: false
-    description: >-
-      For type "LAPW" or "Plane waves", the energy value used to truncate the plane wave expansion of
-      the electron charge density.
-    type: null
-    extent: null
-    kind: null
-    recommended-unit: null
-    values: null
-    repeatable: false
-    subproperties:
-    - name: value
-      required: true
-      description: The value of the property, in the unit given by `unit`.
-      type: float
-      extent: []
-      kind: Energy
-      recommended-unit: eV
-      values:
-        minimum: 0
-      repeatable: false
-    - name: unit
-      required: true
-      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-- name: calculation-physics
-  required: false
-  description: Additional phenomena included beyond the standard DFT calculation.
-  type: string
-  extent: []
-  kind: inapplicable
-  recommended-unit: null
-  values:
-    terms: [Collinear spin polarization, Noncollinear spin polarization, On-site correlation,
-      Orbital polarization, Spin-orbit coupling, Van der Waals]
-    note: >-
-      "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or
-      antiparallel to one axis. "Noncollinear spin polarization" – Spin-polarized, with magnetic
-      moments free to point in any direction. "On-site correlation" – e.g. DFT+U. "Orbital
-      polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks'
-      orbital-polarization term. "Spin-orbit coupling" – The coupling of the electron spin to its
-      orbital motion. "Van der Waals" – Dispersion interactions, by a correction or a nonlocal
-      functional. Give at most one of the two spin-polarization terms. List each phenomenon as a
-      separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries,
-      "Noncollinear spin polarization" and "Spin-orbit coupling".
-  repeatable: true
-- name: k-point-mesh
-  required: false
-  description: >-
-    For periodic systems, a grid of points sampled within the Brillouin zone, used to approximate integrals
-    and calculate electronic properties by discretizing the wavefunction across reciprocal space.
-  type: null
-  extent: null
-  kind: null
-  recommended-unit: null
-  values: null
-  repeatable: false
-  subproperties:
-  - name: type
-    required: true
-    description: The choice of how k-points are distributed on the mesh.
-    type: string
-    extent: []
-    kind: inapplicable
-    recommended-unit: null
-    values:
-      terms: [Regular gamma-centered, Regular shifted, Irregular]
-    repeatable: false
-  - name: number-of-points
-    required: false
-    description: The number of k-points included along each reciprocal lattice vector.
-    type: int
-    extent: [3]
-    kind: dimensionless
-    recommended-unit: null
-    values:
-      minimum: 1
-      note: >-
-        Ordered list of three integers, the number of k-points along the three reciprocal lattice
-        vector directions.
-    repeatable: false
-  - name: shift
-    required: false
-    description: Translation of the k-point mesh along the reciprocal lattice vector directions.
-    type: float
-    extent: [3]
-    kind: dimensionless
-    recommended-unit: null
-    values:
-      note: >-
-        Ordered list of three real numbers, the shifts along the three reciprocal lattice vector
-        directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice
-        vector.
-    repeatable: false
-  - name: smearing-type
-    required: false
-    description: >-
-      The choice of method for assigning fractional occupancies of electronic states and/or facilitating
-      reciprocal space integrations.
-    type: string
-    extent: []
-    kind: inapplicable
-    recommended-unit: null
-    values:
-      terms: [None, None - tetrahedron, None - Blöchl-corrected tetrahedron, Gaussian, Fermi-Dirac,
-        Methfessel-Paxton, Marzari-Vanderbilt]
-    repeatable: false
-  - name: smearing-width
-    required: false
-    description: >-
-      A parameter that controls the broadening of the electron energy levels near the Fermi level.
-    type: null
-    extent: null
-    kind: null
-    recommended-unit: null
-    values: null
-    repeatable: false
-    subproperties:
-    - name: value
-      required: true
-      description: The value of the property, in the unit given by `unit`.
-      type: float
-      extent: []
-      kind: Energy
-      recommended-unit: eV
-      values:
-        minimum: 0
-      repeatable: false
-    - name: unit
-      required: true
-      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-  - name: smearing-parameter
-    required: false
-    description: >-
-      A fixed variable associated with the specified smearing method (e.g. the order of the
-      Methfessel-Paxton method).
-    type: null
-    extent: null
-    kind: null
-    recommended-unit: null
-    values: null
-    repeatable: true
-    subproperties:
-    - name: name
-      required: true
-      description: The designation of the smearing parameter.
-      type: string
-      extent: []
-      kind: inapplicable
-      recommended-unit: null
-      values: null
-      repeatable: false
-    - name: value
-      required: true
-      description: The data associated with the smearing parameter.
-      type: any
-      extent: any
-      kind: any
-      recommended-unit: null
-      values: null
-      repeatable: false
-    - name: unit
-      required: true
-      description: The unit in which the associated value is expressed.
-      type: string
-      extent: []
-      kind: inapplicable
+      extent: [3]
+      kind: dimensionless
       recommended-unit: null
       values:
         note: >-
-          A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
-          only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
-          (accepted with a validation warning).
+          Ordered list of three real numbers, the shifts along the three reciprocal lattice vector
+          directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice
+          vector.
       repeatable: false
-    - name: description
+    - name: smearing-type
       required: false
-      description: An explanation of the meaning, source, or purpose of the parameter.
+      description: >-
+        The choice of method for assigning fractional occupancies of electronic states and/or facilitating
+        reciprocal space integrations.
       type: string
       extent: []
       kind: inapplicable
       recommended-unit: null
+      values:
+        terms: [None, None - tetrahedron, None - Blöchl-corrected tetrahedron, Gaussian, Fermi-Dirac,
+          Methfessel-Paxton, Marzari-Vanderbilt]
+      repeatable: false
+    - name: smearing-width
+      required: false
+      description: >-
+        A parameter that controls the broadening of the electron energy levels near the Fermi level.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
       values: null
       repeatable: false
-- name: self-consistent-field-convergence
-  required: false
-  description: >-
-    Method and termination criteria defining the precision of self-consistent solution of the Kohn-Sham
-    equations.
-  type: null
-  extent: null
-  kind: null
-  recommended-unit: null
-  values: null
-  repeatable: false
-  subproperties:
-  - name: method-density
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: Energy
+        recommended-unit: eV
+        values:
+          minimum: 0
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+    - name: smearing-parameter
+      required: false
+      description: >-
+        A fixed variable associated with the specified smearing method (e.g. the order of the
+        Methfessel-Paxton method).
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: name
+        required: true
+        description: The designation of the smearing parameter.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: value
+        required: true
+        description: The data associated with the smearing parameter.
+        type: any
+        extent: any
+        kind: any
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit in which the associated value is expressed.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+            only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+            (accepted with a validation warning).
+        repeatable: false
+      - name: description
+        required: false
+        description: An explanation of the meaning, source, or purpose of the parameter.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+  - name: self-consistent-field-convergence
     required: false
     description: >-
-      The self-consistent field mixing and/or extrapolation scheme for the iterative solution of the Kohn-Sham
+      Method and termination criteria defining the precision of self-consistent solution of the Kohn-Sham
       equations.
-    type: string
-    extent: []
-    kind: inapplicable
-    recommended-unit: null
-    values:
-      terms: [Simple mixing, Pulay mixing, DIIS, Broyden mixing]
-      note: >-
-        "DIIS" – Direct Inversion in the Iterative Subspace.
-    repeatable: false
-  - name: method-diagonalization
-    required: false
-    description: The method used to obtain the Kohn-Sham orbitals at each step of the self-consistent loop.
-    type: string
-    extent: []
-    kind: inapplicable
-    recommended-unit: null
-    values:
-      terms: [Car-Parrinello, Chebyshev filtering, Conjugate gradient, Davidson method, Direct diagonalization,
-        Lanczos, LOBPCG, RMM-DIIS]
-      note: >-
-        "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization.
-        "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters. "Davidson method" –
-        Including blocked variants. "Direct diagonalization" – A dense eigensolver applied to the full
-        Hamiltonian matrix (e.g. LAPACK, ScaLAPACK). "LOBPCG" – Locally Optimal Block Preconditioned
-        Conjugate Gradient. "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the
-        Iterative Subspace.
-    repeatable: true
-  - name: tolerance
-    required: true
-    description: Convergence criterion for the self-consistent loop.
     type: null
     extent: null
     kind: null
@@ -767,114 +744,156 @@ properties:
     values: null
     repeatable: false
     subproperties:
-    - name: criterion
-      required: true
-      description: The quantity whose convergence the tolerance measures.
+    - name: method-density
+      required: false
+      description: >-
+        The self-consistent field mixing and/or extrapolation scheme for the iterative solution of the Kohn-Sham
+        equations.
       type: string
       extent: []
       kind: inapplicable
       recommended-unit: null
       values:
-        terms: [Energy, Charge density, Potential]
+        terms: [Simple mixing, Pulay mixing, DIIS, Broyden mixing]
         note: >-
-          "Energy" – The change in the energy between successive iterations, defined as for
-          `relaxation-tolerance-energy`. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham
-          potential.
+          "DIIS" – Direct Inversion in the Iterative Subspace.
       repeatable: false
+    - name: method-diagonalization
+      required: false
+      description: The method used to obtain the Kohn-Sham orbitals at each step of the self-consistent loop.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Car-Parrinello, Chebyshev filtering, Conjugate gradient, Davidson method, Direct diagonalization,
+          Lanczos, LOBPCG, RMM-DIIS]
+        note: >-
+          "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization.
+          "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters. "Davidson method" –
+          Including blocked variants. "Direct diagonalization" – A dense eigensolver applied to the full
+          Hamiltonian matrix (e.g. LAPACK, ScaLAPACK). "LOBPCG" – Locally Optimal Block Preconditioned
+          Conjugate Gradient. "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the
+          Iterative Subspace.
+      repeatable: true
+    - name: tolerance
+      required: true
+      description: Convergence criterion for the self-consistent loop.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      subproperties:
+      - name: criterion
+        required: true
+        description: The quantity whose convergence the tolerance measures.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Energy, Charge density, Potential]
+          note: >-
+            "Energy" – The change in the energy between successive iterations, defined as for
+            `relaxation-tolerance-energy`. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham
+            potential.
+        repeatable: false
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: any
+        recommended-unit: null
+        values:
+          minimum: 0
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit in which the associated value is expressed.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only
+            if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted
+            with a validation warning).
+        repeatable: false
+  - name: relaxation-tolerance-energy
+    required: false
+    description: Energy convergence criterion for atomic relaxation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    notes:
+    - >-
+      Note: The energy is the Helmholtz free energy F = E − TS, including the entropy S of the smeared
+      electrons at the smearing temperature T, when occupations are smeared (e.g. a metal), and the total
+      energy E otherwise (e.g. an insulator). It is not the energy extrapolated to zero smearing.
+    subproperties:
     - name: value
       required: true
       description: The value of the property, in the unit given by `unit`.
       type: float
       extent: []
-      kind: any
-      recommended-unit: null
+      kind: Energy
+      recommended-unit: eV
       values:
         minimum: 0
       repeatable: false
     - name: unit
       required: true
-      description: The unit in which the associated value is expressed.
+      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
       type: string
       extent: []
       kind: inapplicable
       recommended-unit: null
-      values:
-        note: >-
-          A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only
-          if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted
-          with a validation warning).
+      values: null
       repeatable: false
-- name: relaxation-tolerance-energy
-  required: false
-  description: Energy convergence criterion for atomic relaxation.
-  type: null
-  extent: null
-  kind: null
-  recommended-unit: null
-  values: null
-  repeatable: false
-  notes:
-  - >-
-    Note: The energy is the Helmholtz free energy F = E − TS, including the entropy S of the smeared
-    electrons at the smearing temperature T, when occupations are smeared (e.g. a metal), and the total
-    energy E otherwise (e.g. an insulator). It is not the energy extrapolated to zero smearing.
-  subproperties:
-  - name: value
-    required: true
-    description: The value of the property, in the unit given by `unit`.
-    type: float
-    extent: []
-    kind: Energy
-    recommended-unit: eV
-    values:
-      minimum: 0
+  - name: relaxation-tolerance-forces
+    required: false
+    description: Maximum force convergence criterion for atomic relaxation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
     repeatable: false
-  - name: unit
-    required: true
-    description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+    subproperties:
+    - name: value
+      required: true
+      description: The value of the property, in the unit given by `unit`.
+      type: float
+      extent: []
+      kind: Force
+      recommended-unit: eV/angstrom
+      values:
+        minimum: 0
+      repeatable: false
+    - name: unit
+      required: true
+      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+  - name: comment
+    required: false
+    description: >-
+      Additional information on the DFT calculation. For example, non-self-consistent constraints, such
+      as details about imposed state occupation or moment freezing.
     type: string
     extent: []
     kind: inapplicable
     recommended-unit: null
     values: null
-    repeatable: false
-- name: relaxation-tolerance-forces
-  required: false
-  description: Maximum force convergence criterion for atomic relaxation.
-  type: null
-  extent: null
-  kind: null
-  recommended-unit: null
-  values: null
-  repeatable: false
-  subproperties:
-  - name: value
-    required: true
-    description: The value of the property, in the unit given by `unit`.
-    type: float
-    extent: []
-    kind: Force
-    recommended-unit: eV/angstrom
-    values:
-      minimum: 0
-    repeatable: false
-  - name: unit
-    required: true
-    description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
-    type: string
-    extent: []
-    kind: inapplicable
-    recommended-unit: null
-    values: null
-    repeatable: false
-- name: comment
-  required: false
-  description: >-
-    Additional information on the DFT calculation. For example, non-self-consistent constraints, such
-    as details about imposed state occupation or moment freezing.
-  type: string
-  extent: []
-  kind: inapplicable
-  recommended-unit: null
-  values: null
-  repeatable: true
+    repeatable: true

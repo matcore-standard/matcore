@@ -119,7 +119,7 @@ def test_validate_schema_applies_the_check(tmp_path):
     f = tmp_path / 'schema/minimal.yaml'
     doc = yaml.safe_load(f.read_text())
     comp = next(p for p in doc['properties'] if p['name'] == 'computation')
-    sc = next(s for s in comp['subproperties'] if s['name'] == 'simulation-conditions')
+    sc = next(s for s in comp['subproperties'] if s['name'] == 'conditions')
     t = next(s for s in sc['subproperties'] if s['name'] == 'temperature')
     value = t.pop('subproperties')[0]
     t.update({k: value[k] for k in ('type', 'extent', 'kind', 'recommended-unit', 'values')})

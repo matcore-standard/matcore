@@ -89,7 +89,7 @@ def test_validate_schema_applies_the_check(tmp_path):
         shutil.copytree(ROOT / d, tmp_path / d)
     f = tmp_path / 'schema/dft.yaml'
     doc = yaml.safe_load(f.read_text())
-    xc = next(p for p in doc['properties'] if p['name'] == 'xc-functional')
+    xc = next(p for p in doc['properties'][0]['subproperties'] if p['name'] == 'xc-functional')
     param = next(s for s in xc['subproperties'] if s['name'] == 'xc-parameter')
     next(s for s in param['subproperties'] if s['name'] == 'unit')['values'] = None
     f.write_text(yaml.safe_dump(doc, sort_keys=False, allow_unicode=True))

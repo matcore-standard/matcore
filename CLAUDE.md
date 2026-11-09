@@ -680,8 +680,8 @@ record or marked PROPOSED, NOT DECIDED.
    gives 0.6.0, the v0.6.0 tag address, id mc-ad83jsd3 and dataset-version 1.
    PROPOSED, NOT DECIDED: GitHub releases with Zenodo so each release gets a DOI (0010), the step it
    adds to the release procedure, and a .zenodo.json or CITATION.cff for the record's metadata (0045).
-   [todo] computations and links by 0046 (from the minimal–dft analysis of 2026-11-08; ruling
-   drafted 2026-11-09, awaiting approval): structure and computation get a required `label`;
+   [in progress, branch computations-linked, committed; awaiting push and PR] computations and links by 0046 (ruling
+   committed on main 278596e): structure and computation get a required `label`;
    computation gains `task`, `structure` (labels) and `input` (computation label + role:
    Interaction model, Initial configuration, Starting point, Training data, Parameters, Source
    data); simulation-conditions renamed `conditions`, optional; interaction-model removed (reverses
@@ -704,7 +704,7 @@ record or marked PROPOSED, NOT DECIDED.
    shapes of `file`, `comment` vs `description`, smearing under k-point-mesh, RKmax for LAPW, the
    LibXC version as a software dependency.
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
-   quantity that simulation-conditions holds is repeated; md adds only how a condition is enforced
+   quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
