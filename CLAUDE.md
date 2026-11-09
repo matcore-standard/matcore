@@ -708,6 +708,12 @@ record or marked PROPOSED, NOT DECIDED.
    condition); C the dft introduction's pre-0018 names, doi strings vs identifier containers, two
    shapes of `file`, `comment` vs `description`, smearing under k-point-mesh, RKmax for LAPW, the
    LibXC version as a software dependency.
+   0046 item 8 amended 2026-11-09: a PIM computation is the evaluation of energies and forces,
+   whatever code performs it, its software listing every layer (e.g. LAMMPS and a KIM model);
+   md charge-interactions and magnetic-interactions move whole to pim, describing the interaction
+   as evaluated (charge equilibration and long-range sums included), since they couple the model
+   and the code; degrees of freedom propagated in time (iEL, Drude, LLG spins) are named in pim,
+   their thermostats are md thermodynamic-constraint entries naming them in `system`.
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
