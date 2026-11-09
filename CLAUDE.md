@@ -83,6 +83,11 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
 - `legacy_*` fields hold the Google Doc prose from the baseline migration. Delete each one once its
   content is transferred to the typed fields; the original wording remains in the baseline .docx and
   in git history (tag v0.9-baseline). A section is complete when no legacy_* remain.
+- An `identifier` container (value and scheme, Annex I) is used where more than one identifier
+  scheme is in use for the thing identified; a `doi` string, in Annex I's DOI form, where DOI is the
+  scheme in use. Another address is given in a `link` (0055).
+- A file named so that a reader can verify it has `name` and `checksum` (0032). A file the record
+  carries or points to also has `description`, `contents`, `encoding` and `link` (0043; 0056).
 - Names match `^[a-z][a-z0-9]*(-[a-z0-9]+)*$` (enforced by meta-schema.yaml). A name is plural only when
   its value is a list (open extent); a repeatable property stays singular. `unit` is singular.
 
@@ -556,7 +561,7 @@ record or marked PROPOSED, NOT DECIDED.
    states its use; examples/dft.xml gives <name>PW91</name>.
    PROPOSED, NOT DECIDED: whether name's note says that a dispersion correction's name may form
    part of `name` (e.g. PBE-D3) and that the correction is also recorded as calculation-physics
-   "Van der Waals" (0022, 0024).
+   "Van der Waals" (0022, 0024). (Superseded: settled by 0051; name gives the functional alone.)
    [done, PR #54 merged 2026-11-07] §1.1 FAIR data and AI readiness (0004 item 50): one sentence
    at the end of the first paragraph, no link; the paragraph's double space removed.
    [done, PR #55 merged 2026-11-07] minimal structure by 0025: a required, repeatable top-level
@@ -702,15 +707,52 @@ record or marked PROPOSED, NOT DECIDED.
    number, a series of runs as one computation or several, a model's citation, QM/MM regions, an
    Electronic method with a learned ingredient, eFF's nuclei, KIM IDs in Annex I, whether a DFT
    relaxation is DFT/Optimization or MS + DFT, md's title).
+   [todo] species of a pseudopotential, PAW dataset or basis set by 0047 (A2 of the analysis,
+   ruling 2026-11-09): pseudopotential-or-paw gains required `species` after name;
+   localized-orbital-basis-set gains optional repeatable `species` after type (omitted when one basis
+   set serves every species); examples/dft.json gives Si.
+   [todo] relaxation stress tolerance by 0048 (A4 remainder, ruling 2026-11-09): dft gains
+   relaxation-tolerance-stress (value + unit, Pressure, GPa, minimum 0) after the force tolerance;
+   all three tolerances note "Give it when the computation's task is Optimization."
+   [todo] net charge by 0049 (B1, ruling 2026-11-09): Kind ElectricCharge with units e and C, one
+   PR each with every field traced (the first adds the Kind); then minimal conditions › net-charge
+   (value float, ElectricCharge, recommended e; unit; qualifier) after number-of-particles.
+   [todo] magnetic moments and order by 0050 (B2, ruling 2026-11-09): Kind MagneticMoment with units
+   mu_B and J/T, one PR each with every field traced; then dft initial-magnetic-moment (species*,
+   value* extent any in mu_B, unit*) after calculation-physics, and minimal material-component ›
+   magnetic-order (open terms Nonmagnetic, Ferromagnetic, Antiferromagnetic, Ferrimagnetic,
+   Paramagnetic, Noncollinear) after phase. PROPOSED, NOT DECIDED: a condition for a fixed total
+   magnetization or spin multiplicity.
+   [todo] dispersion correction by 0051 (B4, ruling 2026-11-09): dft dispersion-correction (open
+   terms D2, D3, D3(BJ), D4, TS, MBD) after calculation-physics; xc-functional › name names the
+   functional alone, its note saying so.
+   [todo] smearing-width note by 0052 (B5, ruling 2026-11-09): the width is an energy, k_B T for
+   Fermi-Dirac, and not a temperature imposed in `conditions`.
+   [todo] smearing container by 0053 (C5, ruling 2026-11-09): dft settings gains `smearing` after
+   k-point-mesh holding type, width and parameter (were k-point-mesh › smearing-type, smearing-width,
+   smearing-parameter); examples/dft.json moves its width; references (e.g. the generic-parameter
+   list above) updated in the same PR.
+   [todo] dft introduction by 0054 (C1, ruling 2026-11-09): the 0018 names, and a sentence that
+   the properties are given in settings blocks naming DFT computations (pim and md get the
+   sentence in their own PRs).
+   [todo] LAPW basis cutoff by 0057 (C6, ruling 2026-11-09): wavefunction-representation gains
+   lapw-basis-cutoff (dimensionless RKmax, minimum 0) after kinetic-energy-cutoff, whose description
+   narrows to plane waves and LAPW given as an energy.
+   [todo] LibXC version by 0058 (C7, ruling 2026-11-09): normalization › source notes that the
+   library's version is a software dependency.
+   [todo] k-point mesh note by 0059 (C8, ruling 2026-11-09): the mesh samples the cell of minimal
+   conditions › cell; a mesh that varies between configurations omits number-of-points and is
+   explained in comment. All findings of the 2026-11-08 analysis are now ruled on (0046–0059;
+   B3 and C4 declined); rulings 0047–0059 await commit on main, then one implementation PR each
+   (or batched as the human decides).
    PROPOSED, NOT DECIDED (rest of the 2026-11-08 analysis): A2 a required species on
-   pseudopotential-or-paw and localized-orbital-basis-set; A3 a thermodynamic-state term for static
+   pseudopotential-or-paw and localized-orbital-basis-set (Superseded: decided by 0047); A3 a thermodynamic-state term for static
    calculations (Superseded by 0046: task Single point, conditions optional); A4 a minimal task
-   (Superseded: 0046 adds `task`; still open: where the relaxation tolerances belong, and a stress
-   tolerance); B missing dft settings (total charge, initial magnetic moments, DFT+U values and
-   scheme, vdW correction method, a note that the smearing width is not the temperature
-   condition); C the dft introduction's pre-0018 names, doi strings vs identifier containers, two
-   shapes of `file`, `comment` vs `description`, smearing under k-point-mesh, RKmax for LAPW, the
-   LibXC version as a software dependency.
+   (Superseded: 0046 adds `task`, the tolerances stay in dft, and 0048 adds a stress tolerance); B missing dft settings (total charge (Superseded: a minimal condition by 0049), initial magnetic moments (Superseded: 0050), DFT+U values and
+   scheme (Declined by the human 2026-11-09 as too detailed; "On-site correlation" stays the only mark), vdW correction method (Superseded: 0051), a note that the smearing width is not the temperature (Superseded: 0052)
+   condition); C the dft introduction's pre-0018 names (Superseded: 0054), doi strings vs identifier containers (Superseded: both kept, rule stated by 0055), two
+   shapes of `file` (Superseded: both kept, rule stated by 0056), `comment` vs `description` (Declined by the human 2026-11-09: comment holds information not covered by the recorded settings, not a description, and repeats for unrelated points; left as is), smearing under k-point-mesh (Superseded: 0053), RKmax for LAPW (Superseded: 0057), the
+   LibXC version as a software dependency (Superseded: 0058).
    0046 item 8 amended 2026-11-09: a PIM computation is the evaluation of energies and forces,
    whatever code performs it, its software listing every layer (e.g. LAMMPS and a KIM model);
    md charge-interactions and magnetic-interactions move whole to pim, describing the interaction
