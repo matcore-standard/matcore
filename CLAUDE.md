@@ -276,7 +276,11 @@ record or marked PROPOSED, NOT DECIDED.
      examples are written in JSON, the first serialization, and §1.3 says so (0044); a required
      matcore container gives the standard version, an optional link to it, the dataset's id and
      version, the record's author and creation date, replacing matcore-id, matcore-author and
-     matcore-date (0045; breaks 0.6.0 instances).
+     matcore-date (0045; breaks 0.6.0 instances); structures and computations are labelled, a computation
+     gives its task, structures and inputs (other computations with a role), simulation-conditions is
+     renamed `conditions` and is optional, interaction-model is removed, method gains TB, MS and PIM,
+     and dft's properties sit in `settings` blocks naming their computations (0046; breaks 0.6.0
+     instances).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -580,7 +584,8 @@ record or marked PROPOSED, NOT DECIDED.
    methods that supply energies and forces from those that use them; `method` gets a note (give the method that produces the
    data; the force source goes in interaction-model); new optional repeatable
    `interaction-model` after method (open terms CC, DFT, Empirical potential, ML potential, QMC,
-   Tight binding).
+   Tight binding). (Superseded in part: interaction-model and the note are replaced by 0046's
+   input links, PR #83.)
    PROPOSED, NOT DECIDED: how md particle-interactions › model-type relates to
    interaction-model (md PR) (Superseded: 0046 removes interaction-model and moves the model to pim); whether 0028's rule matches MODA's classification principle
    (check the MODA source).
@@ -680,7 +685,7 @@ record or marked PROPOSED, NOT DECIDED.
    gives 0.6.0, the v0.6.0 tag address, id mc-ad83jsd3 and dataset-version 1.
    PROPOSED, NOT DECIDED: GitHub releases with Zenodo so each release gets a DOI (0010), the step it
    adds to the release procedure, and a .zenodo.json or CITATION.cff for the record's metadata (0045).
-   [in progress, branch computations-linked, committed; awaiting push and PR] computations and links by 0046 (ruling
+   [done, PR #83 merged 2026-11-09] computations and links by 0046 (ruling
    committed on main 278596e): structure and computation get a required `label`;
    computation gains `task`, `structure` (labels) and `input` (computation label + role:
    Interaction model, Initial configuration, Starting point, Training data, Parameters, Source
