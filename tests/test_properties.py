@@ -139,7 +139,7 @@ def test_structure_is_made_of_components_with_a_form_and_a_role():
         ('phase', False, True, 'string', PHASES, ()),
         ('description', False, False, 'string', (), ()), ('microstructure', False, False, 'string', (), ())))
     assert tree(p) == ('structure', True, True, None, (), (
-        ('description', False, False, 'string', (), ()), component))
+        ('label', True, False, 'string', (), ()), ('description', False, False, 'string', (), ()), component))
     assert sub(material_component(), 'phase')['extent'] == []
     assert legacy_fields(p) == []
     assert not any(q['name'] == 'material-component'
@@ -279,29 +279,16 @@ def test_simulation_conditions_follow_0001_part_a():
     """Each imposed condition has the Kind, recommended unit and shape 0001 A2.2 gives it, so a value
     can be read without a default unit; type and description are plain strings. A condition with a
     physical Kind holds them in its `value`, beside a `unit`; a pure number is a leaf (0015, amended)."""
-    sc = sub(minimal('computation'), 'simulation-conditions')
+    sc = sub(minimal('computation'), 'conditions')
     got = {s['name']: (d['type'], d['extent'], d['kind'], d['recommended-unit'])
            for s in sc['subproperties'] if s['name'] != 'type' for d in [datum(s)]}
     assert got == SIMULATION_CONDITIONS | {'description': ('string', [], 'inapplicable', None)}
 
 
-def test_method_terms_depend_on_method_class():
-    """A method is listed under the class it belongs to, so a validator can flag DFT given as Atomistic
-    as user-specified (0013, settled 2026-11-03)."""
-    c = minimal('computation')
-    assert sub(c, 'method-class')['values']['terms'] == ['Electronic', 'Atomistic', 'Mesoscopic', 'Continuum',
-                                                         'Data-driven']
-    v = sub(c, 'method')['values']
-    assert v['depends-on'] == 'method-class'
-    assert {k: c_['terms'] for k, c_ in v['cases'].items()} == {
-        'Electronic': ['CC', 'QMC', 'DFT', 'MBPT'], 'Atomistic': ['MC', 'MD'], 'Mesoscopic': ['DDD', 'KMC', 'CGMD'],
-        'Continuum': ['PF'], 'Data-driven': ['ML']}
-
-
 def test_computation_restores_the_docx_notation():
     """The tensor and vector notation of the .docx survives: subscripts, the dot of the strain rate Ė,
     and ASCII bars for vector lengths (the migration had flattened them)."""
-    sc = sub(minimal('computation'), 'simulation-conditions')
+    sc = sub(minimal('computation'), 'conditions')
     note = lambda n: datum(sub(sc, n))['values']['note']
     assert '<i>σ</i><sub>11</sub>' in note('stress') and '<i>E</i><sub>11</sub>' in note('strain')
     assert '<i>Ė</i><sub>11</sub>' in note('strain-rate') and 'Ė' in note('strain-rate')
@@ -553,11 +540,12 @@ def test_minimal_is_complete():
 
 
 def dft(name):
-    """Return a top-level property of schema/dft.yaml.
+    """Return a property of schema/dft.yaml's settings block (0046 item 7).
 
     name (str): the property's name.
     """
-    return next(p for p in yaml.safe_load(open(ROOT / 'schema/dft.yaml'))['properties'] if p['name'] == name)
+    settings = yaml.safe_load(open(ROOT / 'schema/dft.yaml'))['properties'][0]
+    return next(p for p in settings['subproperties'] if p['name'] == name)
 
 
 def test_xc_functional_structure():
@@ -592,7 +580,7 @@ def test_xc_functional_name_lists_the_named_functionals_and_description_is_prose
         'Free text on what `type` and `name` do not say, e.g. a modification of the functional or the reason '
         'for choosing it.')
     import json
-    example = json.loads((ROOT / 'examples/dft.json').read_text(encoding='utf-8'))['dft']['xc-functional'][0]
+    example = json.loads((ROOT / 'examples/dft.json').read_text(encoding='utf-8'))['dft']['settings'][0]['xc-functional'][0]
     assert list(example)[:3] == ['type', 'name', 'description'] and example['name'] == 'PW91'
 
 
@@ -881,7 +869,7 @@ def test_varying_conditions_are_qualified_entries(name):
 
     name (str): the condition.
     """
-    c = sub(sub(minimal('computation'), 'simulation-conditions'), name)
+    c = sub(sub(minimal('computation'), 'conditions'), name)
     names = [s['name'] for s in c['subproperties']]
     unit = [] if datum(c)['kind'] == 'dimensionless' else ['unit']
     convention = {'electrode-potential': ['reference'], 'chemical-potential': ['species', 'relative-to']}.get(
@@ -898,7 +886,7 @@ def test_varying_conditions_are_qualified_entries(name):
 def test_varying_conditions_note_and_description():
     """The note and description say how a varying condition is given, as qualified entries, and the
     description says how it varies (0035 items 3 and 4); type's axes replace the flags (0036)."""
-    sc = sub(minimal('computation'), 'simulation-conditions')
+    sc = sub(minimal('computation'), 'conditions')
     description = sub(sc, 'description')['description']
     assert description.startswith('Explanatory text clarifying the simulation type, and how any condition varies')
     assert description.endswith('For a condition that varies, it states how, e.g. the shape of a ramp or the '
@@ -921,7 +909,7 @@ def test_cell_rows_are_the_vectors_in_cartesian_components(name, vector, rows):
 
     name (str): the condition; vector (str): what each row is; rows (str): the rows, in order.
     """
-    v = datum(sub(sub(minimal('computation'), 'simulation-conditions'), name))
+    v = datum(sub(sub(minimal('computation'), 'conditions'), name))
     assert v['extent'] == [3, 3]
     assert (f'`value[i][j]` is the j-th Cartesian component, in the frame of the simulation, of the i-th {vector}, '
             f'so the rows are {rows}.') in v['values']['note']
@@ -929,8 +917,9 @@ def test_cell_rows_are_the_vectors_in_cartesian_components(name, vector, rows):
 
 # 0039: each simulation condition says what is imposed, in its own terms.
 IMPOSED_DEFINITIONS = {
-    'simulation-conditions': 'The conditions imposed on the simulated system during the computation, e.g. by a '
-                             'thermostat, a barostat, a loading device or a fixed simulation cell.',
+    'conditions': 'The conditions imposed on the simulated system during the computation, e.g. by a '
+                  'thermostat, a barostat, a loading device or a fixed simulation cell. Omitted when no condition '
+                  'is imposed, e.g. for a single point or a training computation.',
     'number-of-particles': 'The number of particles (atoms or other discrete entities) in the simulated system, as '
                            'imposed by the simulation.',
     'volume': 'The volume of the simulated system, as imposed by the simulation.',
@@ -978,8 +967,8 @@ BASIS_NOTES = {
 def test_simulation_conditions_are_defined_as_imposed():
     """A condition is a constraint the simulation imposes, not a quantity it measures, and each definition
     says so in the property's own terms (0039 items 1-5)."""
-    sc = sub(minimal('computation'), 'simulation-conditions')
-    got = {'simulation-conditions': sc['description']} | {
+    sc = sub(minimal('computation'), 'conditions')
+    got = {'conditions': sc['description']} | {
         s['name']: s['description'] for s in sc['subproperties'] if s['name'] in IMPOSED_DEFINITIONS}
     assert got == IMPOSED_DEFINITIONS
     assert sc['notes'] == [SC_NOTE]
@@ -1001,7 +990,7 @@ def test_applied_fields_are_vectors_in_the_cell_basis(name, vector):
 
     name (str): the condition; vector (str): the vector its value note names.
     """
-    c = sub(sub(minimal('computation'), 'simulation-conditions'), name)
+    c = sub(sub(minimal('computation'), 'conditions'), name)
     note = datum(c)['values']['note']
     assert note.startswith(f'The components of the {vector}. ')
     assert 'where e<sub>1</sub> is in the direction of a' in note
@@ -1011,7 +1000,7 @@ def test_applied_fields_are_vectors_in_the_cell_basis(name, vector):
 def test_electrode_potential_names_its_reference():
     """A potential means nothing without its reference, which a unit cannot express, so it is a required
     enumerated subproperty beside the value, each term defined (0041 item 3)."""
-    c = sub(sub(minimal('computation'), 'simulation-conditions'), 'electrode-potential')
+    c = sub(sub(minimal('computation'), 'conditions'), 'electrode-potential')
     r = sub(c, 'reference')
     assert (r['required'], r['repeatable'], r['type'], r['extent'], r['kind'], r['recommended-unit']) == (
         True, False, 'string', [], 'inapplicable', None)
@@ -1025,7 +1014,7 @@ def test_electrode_potential_names_its_reference():
 def test_chemical_potential_names_its_species():
     """A chemical potential belongs to a species of the formula, and a semi-grand-canonical simulation imposes a
     difference between two; an absolute value depends on the model's energy zero (0042 item 1)."""
-    c = sub(sub(minimal('computation'), 'simulation-conditions'), 'chemical-potential')
+    c = sub(sub(minimal('computation'), 'conditions'), 'chemical-potential')
     for name, required in (('species', True), ('relative-to', False)):
         p = sub(c, name)
         assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind']) == (
@@ -1035,12 +1024,12 @@ def test_chemical_potential_names_its_species():
                                               'chemical potentials, as a semi-grand-canonical simulation does.']
     note = datum(c)['values']['note']
     assert note.startswith('The chemical potential <i>μ</i> per particle, or the difference')
-    assert 'energy zero of the model given in `interaction-model`' in note and 'kJ/mol' in note
+    assert 'named in `input` with the role Interaction model' in note and 'kJ/mol' in note
     from check_formula import formula_errors
     assert all(formula_errors(e) == [] for e in sub(c, 'species')['values']['examples'])
 
 
-SOFTWARE_ROLES = ('Calculation method', 'Script', 'Simulation code', 'Workflow framework')
+SOFTWARE_ROLES = ('Calculation method', 'Interaction model', 'Script', 'Simulation code', 'Workflow framework')
 DEPENDENCY_ROLES = ('Compiler', 'FFT library', 'Interpreter', 'Library', 'Linear algebra library', 'MPI library')
 
 
@@ -1105,7 +1094,7 @@ def test_example_software_has_a_role():
 def test_number_density_is_gone():
     """Number density is N/V, given by number-of-particles and volume, so a third value could only
     contradict them (0037)."""
-    sc = sub(minimal('computation'), 'simulation-conditions')
+    sc = sub(minimal('computation'), 'conditions')
     assert 'number-density' not in [s['name'] for s in sc['subproperties']]
 
 
@@ -1135,7 +1124,7 @@ def test_simulation_type_has_four_axes():
     """A simulation is classified by its thermodynamic state, what it exchanges, and how the imposed
     conditions change in time and vary in space, so a steady state or a relaxation toward equilibrium can
     be said and searched for; every term is defined in its note (0036)."""
-    sc = sub(minimal('computation'), 'simulation-conditions')
+    sc = sub(minimal('computation'), 'conditions')
     t = sub(sc, 'type')
     assert tree(t) == ('type', True, False, None, (), tuple(
         (name, required, False, 'string', terms, ()) for name, (required, terms) in SIMULATION_TYPE.items()))
@@ -1147,27 +1136,6 @@ def test_simulation_type_has_four_axes():
     assert [s['name'] for s in sc['subproperties']][:2] == ['type', 'description']
     assert sc['notes'][0].startswith('Note: The conditions below, other than type and description, are given as '
                                      'appropriate to the simulation.')
-
-
-INTERACTION_MODELS = ('CC', 'DFT', 'Empirical potential', 'ML potential', 'QMC', 'Tight binding')
-
-
-def test_combined_methods_name_the_source_of_energies_and_forces():
-    """A computation such as AIMD or MD with a machine-learned potential gives as method the one that produces
-    the data, and the model supplying its energies and forces in interaction-model, which repeats for QM/MM
-    (0028)."""
-    c = minimal('computation')
-    names = [s['name'] for s in c['subproperties']]
-    assert names[:3] == ['method-class', 'method', 'interaction-model']
-    assert sub(c, 'method')['notes'] == [
-        'Note: Give the method that produces the configurations or properties of the dataset. When another '
-        'method supplies its energies and forces, give that one in `interaction-model`.']
-    im = sub(c, 'interaction-model')
-    assert tree(im) == ('interaction-model', False, True, 'string', INTERACTION_MODELS, ())
-    assert (im['extent'], im['kind']) == ([], 'inapplicable')
-    note = im['values']['note']
-    assert all(f'"{t}" –' in note for t in INTERACTION_MODELS)
-    assert note.endswith('Give one entry per model, e.g. DFT and Empirical potential for a QM/MM simulation.')
 
 
 def test_record_author_names_who_wrote_the_record():

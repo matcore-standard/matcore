@@ -283,6 +283,19 @@ properties:
   values: null
   repeatable: true
   subproperties:
+  - name: label
+    required: true
+    description: A name for this structure, by which computations in the record refer to it.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      pattern: ^[a-z][a-z0-9]*(-[a-z0-9]+)*$
+      examples: [si-bulk]
+    repeatable: false
+    notes:
+    - 'Note: A label is unique among all labels of structures and computations in the record.'
   - name: description
     required: false
     description: >-
@@ -563,7 +576,9 @@ properties:
       repeatable: false
 - name: computation
   required: true
-  description: A description of a computer simulation used to generate data in the dataset.
+  description: >-
+    A group of calculations in the dataset that share one method and one set of settings, e.g. the DFT single
+    points of a training set.
   type: null
   extent: null
   kind: null
@@ -571,6 +586,21 @@ properties:
   values: null
   repeatable: true
   subproperties:
+  - name: label
+    required: true
+    description: >-
+      A name for this computation, by which other computations and the method-specific sections refer to
+      it.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      pattern: ^[a-z][a-z0-9]*(-[a-z0-9]+)*$
+      examples: [dft-single-points]
+    repeatable: false
+    notes:
+    - 'Note: A label is unique among all labels of structures and computations in the record.'
   - name: method-class
     required: true
     description: The general category to which the computational technique belongs.
@@ -595,43 +625,108 @@ properties:
     values:
       depends-on: method-class
       cases:
-        Electronic: {terms: [CC, QMC, DFT, MBPT]}
-        Atomistic: {terms: [MC, MD]}
-        Mesoscopic: {terms: [DDD, KMC, CGMD]}
+        Electronic: {terms: [CC, QMC, DFT, MBPT, TB]}
+        Atomistic: {terms: [MC, MD, MS, PIM]}
+        Mesoscopic: {terms: [DDD, KMC, CGMD, PIM]}
         Continuum: {terms: [PF]}
         Data-driven: {terms: [ML]}
       note: >-
         "CC" – Coupled Cluster; "QMC" – Quantum Monte Carlo; "DFT" – Density Functional Theory; "MBPT" –
-        Many-Body Perturbation Theory methods (such as GW and BSE); "MC" – Monte Carlo; "MD" – Molecular
-        Dynamics; "DDD" – Discrete Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "CGMD" –
-        Coarse-grained MD; "PF" – Phase Field; "ML" – Machine Learning.
+        Many-Body Perturbation Theory methods (such as GW and BSE); "TB" – Tight Binding; "MC" – Monte Carlo;
+        "MD" – Molecular Dynamics; "MS" – Molecular Statics: configurations or cells of particles relaxed
+        toward a minimum of the energy, using the energies and forces of an interaction model; "PIM" –
+        Particle Interaction Model: energies and forces of a system of particles given as an explicit function
+        of the particles' coordinates, which may include electrons treated as particles, without solving for a
+        wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic
+        potential, a bonded force field, a coarse-grained model or the electron force field; "DDD" – Discrete
+        Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "CGMD" – Coarse-grained MD; "PF" – Phase Field;
+        "ML" – Machine Learning.
     repeatable: false
     notes:
     - >-
-      Note: Give the method that produces the configurations or properties of the dataset. When another
-      method supplies its energies and forces, give that one in `interaction-model`.
-  - name: interaction-model
-    required: false
-    description: >-
-      The model that supplies the energies and forces used by `method`, when it is a different method.
+      Note: Give the method of the calculations in this computation. When they use energies and forces from
+      another method, describe that method as a computation of its own and name it in `input` with the role
+      Interaction model.
+  - name: task
+    required: true
+    description: What the calculations of this computation do.
     type: string
     extent: []
     kind: inapplicable
     recommended-unit: null
     values:
-      terms: [CC, DFT, Empirical potential, ML potential, QMC, Tight binding]
+      terms: [Single point, Optimization, Dynamics, Sampling, Free energy calculation, Training, Property
+          calculation]
       note: >-
-        "CC" – Coupled Cluster; "DFT" – Density Functional Theory; "Empirical potential" – An interatomic
-        potential with a fixed functional form fitted to data, e.g. Lennard-Jones or EAM; "ML potential" – A
-        machine-learned interatomic potential, e.g. GAP or MACE; "QMC" – Quantum Monte Carlo; "Tight
-        binding" – A semi-empirical electronic-structure model, e.g. DFTB. Give one entry per model, e.g. DFT
-        and Empirical potential for a QM/MM simulation.
+        "Single point" – Energies, forces or other quantities evaluated for given configurations, without
+        moving them, including the evaluations another computation requests of an interaction model;
+        "Optimization" – Configurations or cells relaxed toward a minimum of the energy; "Dynamics" –
+        Configurations evolved in time; "Sampling" – Configurations sampled from a distribution without a time
+        evolution, e.g. Monte Carlo; "Free energy calculation" – A free energy, or a potential of mean force,
+        computed from sampled configurations; "Training" – The parameters of a model fitted to data; "Property
+        calculation" – A property obtained from given configurations or from the results of another
+        computation, e.g. phonons, spectra, or a prediction by a trained model.
+    repeatable: false
+  - name: structure
+    required: false
+    description: The label of a structure modeled by this computation.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values: null
     repeatable: true
-  - name: simulation-conditions
-    required: true
+    notes:
+    - >-
+      Note: Omit it for a computation that acts only on configurations supplied by a computation that uses
+      it, e.g. the DFT that supplies the energies and forces of an ab initio MD run.
+  - name: input
+    required: false
+    description: Another computation in the record whose results this computation uses.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    notes:
+    - >-
+      Note: Give an input only where the data of this computation cannot be understood without it. A record
+      describes the dataset; it does not record the order of the calculations or how to repeat them.
+    subproperties:
+    - name: computation
+      required: true
+      description: The label of that computation.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+    - name: role
+      required: true
+      description: What this computation takes from that computation.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Interaction model, Initial configuration, Starting point, Training data, Parameters, Source
+            data]
+        note: >-
+          "Interaction model" – The energies and forces of the configurations this computation evaluates;
+          "Initial configuration" – The configurations this computation starts from; "Starting point" – An
+          electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground
+          state of a GW calculation; "Training data" – Data a model is fitted to; "Parameters" – Values used
+          as parameters of this computation's model, e.g. a free energy or elastic constants in a phase field
+          model; "Source data" – Results from which this computation obtains a property.
+      repeatable: false
+  - name: conditions
+    required: false
     description: >-
       The conditions imposed on the simulated system during the computation, e.g. by a thermostat, a barostat,
-      a loading device or a fixed simulation cell.
+      a loading device or a fixed simulation cell. Omitted when no condition is imposed, e.g. for a single
+      point or a training computation.
     type: null
     extent: null
     kind: null
@@ -1535,8 +1630,9 @@ properties:
         values:
           note: >-
             The chemical potential <i>μ</i> per particle, or the difference <i>μ</i>(species) −
-            <i>μ</i>(relative-to). An absolute value is relative to the energy zero of the model given in
-            `interaction-model`, so absolute values from different models do not compare. A value in a molar
+            <i>μ</i>(relative-to). An absolute value is relative to the energy zero of the model that supplies
+            the energies: the computation's own, or the one named in `input` with the role Interaction model.
+            Absolute values from different models do not compare. A value in a molar
             unit (e.g. kJ/mol) is converted to an energy per particle before it is given.
         repeatable: false
       - name: unit
@@ -1624,10 +1720,11 @@ properties:
       kind: inapplicable
       recommended-unit: null
       values:
-        terms: [Calculation method, Script, Simulation code, Workflow framework]
+        terms: [Calculation method, Interaction model, Script, Simulation code, Workflow framework]
         note: >-
           One of: "Calculation method" – A packaged procedure that computes a defined property, e.g. an
-          OpenKIM test or an iprPy calculation. "Script" – Custom code written for the calculations, e.g. a
+          OpenKIM test or an iprPy calculation. "Interaction model" – The implementation of a particle
+          interaction model, e.g. a KIM model or a potential file; give its identifier and link. "Script" – Custom code written for the calculations, e.g. a
           Python script using ASE. "Simulation code" – A program that performs the simulation or calculation
           itself, e.g. LAMMPS or VASP. "Workflow framework" – A system that sets up, runs and manages
           calculations with other software, e.g. pyiron, AiiDA or MedeA.

@@ -295,6 +295,21 @@ A system modeled in the dataset, e.g. a bulk crystal or a thin film on a substra
 |---|---|
 | yes | yes |
 
+<details class="note mc-property" id="minimal.structure.label" markdown="1">
+<summary><span class="mc-name">label<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+A name for this structure, by which computations in the record refer to it.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+Pattern: `^[a-z][a-z0-9]*(-[a-z0-9]+)*$`. Examples: `si-bulk`.
+
+Note: A label is unique among all labels of structures and computations in the record.
+
+</details>
+
 <details class="note mc-property" id="minimal.structure.description" markdown="1">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
@@ -546,11 +561,26 @@ For a solid state phase, a description of the arrangement of phases, grains and 
 <details class="note mc-property" id="minimal.computation" markdown="1">
 <summary><span class="mc-name">computation<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-A description of a computer simulation used to generate data in the dataset.
+A group of calculations in the dataset that share one method and one set of settings, e.g. the DFT single points of a training set.
 
 | Required | Repeatable |
 |---|---|
 | yes | yes |
+
+<details class="note mc-property" id="minimal.computation.label" markdown="1">
+<summary><span class="mc-name">label<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+A name for this computation, by which other computations and the method-specific sections refer to it.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+Pattern: `^[a-z][a-z0-9]*(-[a-z0-9]+)*$`. Examples: `dft-single-points`.
+
+Note: A label is unique among all labels of structures and computations in the record.
+
+</details>
 
 <details class="note mc-property" id="minimal.computation.method-class" markdown="1">
 <summary><span class="mc-name">method-class<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -576,37 +606,87 @@ The computational materials science (CMS) approach used in the computation.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Depends on `method-class`. For `Electronic`: Recommended: `CC`, `QMC`, `DFT`, `MBPT`. Other values are allowed. For `Atomistic`: Recommended: `MC`, `MD`. Other values are allowed. For `Mesoscopic`: Recommended: `DDD`, `KMC`, `CGMD`. Other values are allowed. For `Continuum`: Recommended: `PF`. Other values are allowed. For `Data-driven`: Recommended: `ML`. Other values are allowed. "CC" – Coupled Cluster; "QMC" – Quantum Monte Carlo; "DFT" – Density Functional Theory; "MBPT" – Many-Body Perturbation Theory methods (such as GW and BSE); "MC" – Monte Carlo; "MD" – Molecular Dynamics; "DDD" – Discrete Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "CGMD" – Coarse-grained MD; "PF" – Phase Field; "ML" – Machine Learning.
+Depends on `method-class`. For `Electronic`: Recommended: `CC`, `QMC`, `DFT`, `MBPT`, `TB`. Other values are allowed. For `Atomistic`: Recommended: `MC`, `MD`, `MS`, `PIM`. Other values are allowed. For `Mesoscopic`: Recommended: `DDD`, `KMC`, `CGMD`, `PIM`. Other values are allowed. For `Continuum`: Recommended: `PF`. Other values are allowed. For `Data-driven`: Recommended: `ML`. Other values are allowed. "CC" – Coupled Cluster; "QMC" – Quantum Monte Carlo; "DFT" – Density Functional Theory; "MBPT" – Many-Body Perturbation Theory methods (such as GW and BSE); "TB" – Tight Binding; "MC" – Monte Carlo; "MD" – Molecular Dynamics; "MS" – Molecular Statics: configurations or cells of particles relaxed toward a minimum of the energy, using the energies and forces of an interaction model; "PIM" – Particle Interaction Model: energies and forces of a system of particles given as an explicit function of the particles' coordinates, which may include electrons treated as particles, without solving for a wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic potential, a bonded force field, a coarse-grained model or the electron force field; "DDD" – Discrete Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "CGMD" – Coarse-grained MD; "PF" – Phase Field; "ML" – Machine Learning.
 
-Note: Give the method that produces the configurations or properties of the dataset. When another method supplies its energies and forces, give that one in `interaction-model`.
+Note: Give the method of the calculations in this computation. When they use energies and forces from another method, describe that method as a computation of its own and name it in `input` with the role Interaction model.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.interaction-model" markdown="1">
-<summary><span class="mc-name">interaction-model</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<details class="note mc-property" id="minimal.computation.task" markdown="1">
+<summary><span class="mc-name">task<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The model that supplies the energies and forces used by `method`, when it is a different method.
+What the calculations of this computation do.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+Recommended: `Single point`, `Optimization`, `Dynamics`, `Sampling`, `Free energy calculation`, `Training`, `Property calculation`. Other values are allowed. "Single point" – Energies, forces or other quantities evaluated for given configurations, without moving them, including the evaluations another computation requests of an interaction model; "Optimization" – Configurations or cells relaxed toward a minimum of the energy; "Dynamics" – Configurations evolved in time; "Sampling" – Configurations sampled from a distribution without a time evolution, e.g. Monte Carlo; "Free energy calculation" – A free energy, or a potential of mean force, computed from sampled configurations; "Training" – The parameters of a model fitted to data; "Property calculation" – A property obtained from given configurations or from the results of another computation, e.g. phonons, spectra, or a prediction by a trained model.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.structure" markdown="1">
+<summary><span class="mc-name">structure</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+The label of a structure modeled by this computation.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
 | no | yes | string | [] | inapplicable | — |
 
-Recommended: `CC`, `DFT`, `Empirical potential`, `ML potential`, `QMC`, `Tight binding`. Other values are allowed. "CC" – Coupled Cluster; "DFT" – Density Functional Theory; "Empirical potential" – An interatomic potential with a fixed functional form fitted to data, e.g. Lennard-Jones or EAM; "ML potential" – A machine-learned interatomic potential, e.g. GAP or MACE; "QMC" – Quantum Monte Carlo; "Tight binding" – A semi-empirical electronic-structure model, e.g. DFTB. Give one entry per model, e.g. DFT and Empirical potential for a QM/MM simulation.
+Note: Omit it for a computation that acts only on configurations supplied by a computation that uses it, e.g. the DFT that supplies the energies and forces of an ab initio MD run.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions" markdown="1">
-<summary><span class="mc-name">simulation-conditions<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<details class="note mc-property" id="minimal.computation.input" markdown="1">
+<summary><span class="mc-name">input</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-The conditions imposed on the simulated system during the computation, e.g. by a thermostat, a barostat, a loading device or a fixed simulation cell.
+Another computation in the record whose results this computation uses.
 
 | Required | Repeatable |
 |---|---|
-| yes | no |
+| no | yes |
+
+Note: Give an input only where the data of this computation cannot be understood without it. A record describes the dataset; it does not record the order of the calculations or how to repeat them.
+
+<details class="note mc-property" id="minimal.computation.input.computation" markdown="1">
+<summary><span class="mc-name">computation<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The label of that computation.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.input.role" markdown="1">
+<summary><span class="mc-name">role<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+What this computation takes from that computation.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+Recommended: `Interaction model`, `Initial configuration`, `Starting point`, `Training data`, `Parameters`, `Source data`. Other values are allowed. "Interaction model" – The energies and forces of the configurations this computation evaluates; "Initial configuration" – The configurations this computation starts from; "Starting point" – An electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground state of a GW calculation; "Training data" – Data a model is fitted to; "Parameters" – Values used as parameters of this computation's model, e.g. a free energy or elastic constants in a phase field model; "Source data" – Results from which this computation obtains a property.
+
+</details>
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.conditions" markdown="1">
+<summary><span class="mc-name">conditions</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The conditions imposed on the simulated system during the computation, e.g. by a thermostat, a barostat, a loading device or a fixed simulation cell. Omitted when no condition is imposed, e.g. for a single point or a training computation.
+
+| Required | Repeatable |
+|---|---|
+| no | no |
 
 Note: The conditions below, other than type and description, are given as appropriate to the simulation. Each is imposed on the simulation as an external constraint. A quantity computed from the simulation, e.g. a heat flux measured under an imposed temperature gradient or the temperature of a microcanonical run, is a result, not a condition, and is not given here. A condition that varies is given as several entries, each with a qualifier; the description explains how it varies.
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.type" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.type" markdown="1">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The nature of the simulation being performed.
@@ -617,7 +697,7 @@ The nature of the simulation being performed.
 
 Note: Detailed explanations of the simulation conditions are given in `description`.
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.type.thermodynamic-state" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.type.thermodynamic-state" markdown="1">
 <summary><span class="mc-name">thermodynamic-state<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 Whether the simulated system is at equilibrium, in a steady state, or evolving in time.
@@ -630,7 +710,7 @@ Recommended: `Equilibrium`, `Steady state`, `Transient`. Other values are allowe
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.type.system-openness" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.type.system-openness" markdown="1">
 <summary><span class="mc-name">system-openness</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the system exchanges with its surroundings.
@@ -643,7 +723,7 @@ Recommended: `Isolated`, `Closed`, `Open`. Other values are allowed. One of: "Is
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.type.time-dependence" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.type.time-dependence" markdown="1">
 <summary><span class="mc-name">time-dependence</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 How the imposed conditions change during the simulation.
@@ -656,7 +736,7 @@ Recommended: `Constant`, `Varying`, `Cyclic`. Other values are allowed. One of: 
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.type.spatial-uniformity" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.type.spatial-uniformity" markdown="1">
 <summary><span class="mc-name">spatial-uniformity</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 How the imposed conditions vary across the system.
@@ -671,7 +751,7 @@ Recommended: `Uniform`, `Nonuniform`, `Periodic`. Other values are allowed. One 
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.description" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.description" markdown="1">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 Explanatory text clarifying the simulation type, and how any condition varies in space or time, e.g. a temperature ramp, a thermostat applied to part of the system, or a composition set by chemical potentials. For a condition that varies, it states how, e.g. the shape of a ramp or the region a value applies to.
@@ -682,7 +762,7 @@ Explanatory text clarifying the simulation type, and how any condition varies in
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.number-of-particles" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.number-of-particles" markdown="1">
 <summary><span class="mc-name">number-of-particles</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The number of particles (atoms or other discrete entities) in the simulated system, as imposed by the simulation.
@@ -691,7 +771,7 @@ The number of particles (atoms or other discrete entities) in the simulated syst
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.number-of-particles.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.number-of-particles.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property.
@@ -704,7 +784,7 @@ The number of particles <i>N</i>.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.number-of-particles.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.number-of-particles.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -719,7 +799,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.volume" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.volume" markdown="1">
 <summary><span class="mc-name">volume</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The volume of the simulated system, as imposed by the simulation.
@@ -728,7 +808,7 @@ The volume of the simulated system, as imposed by the simulation.
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.volume.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.volume.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -741,7 +821,7 @@ The volume <i>V</i>.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.volume.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.volume.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -752,7 +832,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.volume.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.volume.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -767,7 +847,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.mass-density" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.mass-density" markdown="1">
 <summary><span class="mc-name">mass-density</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The mass density of the simulated system, as imposed by the simulation.
@@ -776,7 +856,7 @@ The mass density of the simulated system, as imposed by the simulation.
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.mass-density.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.mass-density.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -789,7 +869,7 @@ The mass density <i>ρ</i>.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.mass-density.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.mass-density.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -800,7 +880,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.mass-density.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.mass-density.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -815,7 +895,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.cell" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.cell" markdown="1">
 <summary><span class="mc-name">cell</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The simulation cell, as imposed by the simulation.
@@ -824,7 +904,7 @@ The simulation cell, as imposed by the simulation.
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.cell.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.cell.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -837,7 +917,7 @@ Ordered list of three vectors (a, b, c), each with three components, that define
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.cell.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.cell.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -848,7 +928,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.cell.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.cell.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -863,7 +943,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.cell-reference" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.cell-reference" markdown="1">
 <summary><span class="mc-name">cell-reference</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The simulation cell in the reference configuration, relative to which strain and strain rate are defined.
@@ -872,7 +952,7 @@ The simulation cell in the reference configuration, relative to which strain and
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.cell-reference.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.cell-reference.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -885,7 +965,7 @@ Ordered list of three vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>), eac
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.cell-reference.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.cell-reference.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -896,7 +976,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.cell-reference.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.cell-reference.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -911,7 +991,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.cell-periodicity" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.cell-periodicity" markdown="1">
 <summary><span class="mc-name">cell-periodicity</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 Whether periodic boundary conditions are applied along each cell vector, for both cell and cell-reference.
@@ -924,7 +1004,7 @@ Ordered list of three booleans (<i>p</i><sub>a</sub>, <i>p</i><sub>b</sub>, <i>p
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.temperature" markdown="1">
 <summary><span class="mc-name">temperature</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The temperature imposed on the simulated system, e.g. by a thermostat or a heat bath in thermal contact with it.
@@ -933,7 +1013,7 @@ The temperature imposed on the simulated system, e.g. by a thermostat or a heat 
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.temperature.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -946,7 +1026,7 @@ The temperature <i>T</i>.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.temperature.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -957,7 +1037,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.temperature.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -972,7 +1052,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.stress" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.stress" markdown="1">
 <summary><span class="mc-name">stress</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The stress, normal and shear components, imposed on the simulated system, e.g. by a barostat or an external loading device.
@@ -985,7 +1065,7 @@ Note 1: Requires cell, which defines the basis of the tensor components.
 
 Note 2: The adopted sign convention is for tensile normal stresses to be positive, and compressive normal stresses to be negative. This implies that for a material subjected to a positive pressure <i>p</i>, the stress tensor components are [-<i>p</i>, -<i>p</i>, -<i>p</i>, 0, 0, 0].
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.stress.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.stress.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -998,7 +1078,7 @@ The components of the (symmetric) Cauchy stress tensor <i>σ</i> in the followin
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.stress.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.stress.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -1009,7 +1089,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.stress.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.stress.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -1024,7 +1104,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.strain" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.strain" markdown="1">
 <summary><span class="mc-name">strain</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The strain imposed on the simulation cell relative to cell-reference, as the Lagrangian strain tensor.
@@ -1035,7 +1115,7 @@ The strain imposed on the simulation cell relative to cell-reference, as the Lag
 
 Note: Requires cell-reference, which defines the basis of the tensor components.
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.strain.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.strain.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property.
@@ -1048,7 +1128,7 @@ The components of the (symmetric) Lagrangian strain tensor <i>E</i> in the follo
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.strain.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.strain.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -1063,7 +1143,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.strain-rate" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.strain-rate" markdown="1">
 <summary><span class="mc-name">strain-rate</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The strain rate imposed on the simulation cell relative to cell-reference, as the time derivative of the Lagrangian strain tensor.
@@ -1074,7 +1154,7 @@ The strain rate imposed on the simulation cell relative to cell-reference, as th
 
 Note: Requires cell-reference, which defines the basis of the tensor components.
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.strain-rate.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.strain-rate.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -1087,7 +1167,7 @@ The components of the (symmetric) Lagrangian strain rate tensor <i>Ė</i> in the
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.strain-rate.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.strain-rate.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -1098,7 +1178,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.strain-rate.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.strain-rate.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -1113,7 +1193,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.heat-flux" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.heat-flux" markdown="1">
 <summary><span class="mc-name">heat-flux</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The heat flux imposed on the simulated system, the thermal energy per unit area per unit time driven through it, e.g. by exchanging energy between a heat source and a heat sink.
@@ -1124,7 +1204,7 @@ The heat flux imposed on the simulated system, the thermal energy per unit area 
 
 Note: Give heat-flux or temperature-gradient, whichever the simulation imposes; the other is a result.
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.heat-flux.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.heat-flux.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -1137,7 +1217,7 @@ The components of the heat flux vector <i>q</i>. The heat flux components are ex
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.heat-flux.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.heat-flux.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -1148,7 +1228,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.heat-flux.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.heat-flux.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -1163,7 +1243,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature-gradient" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.temperature-gradient" markdown="1">
 <summary><span class="mc-name">temperature-gradient</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The temperature gradient imposed on the simulated system, e.g. by thermostatting two regions at different temperatures.
@@ -1174,7 +1254,7 @@ The temperature gradient imposed on the simulated system, e.g. by thermostatting
 
 Note: Give heat-flux or temperature-gradient, whichever the simulation imposes; the other is a result.
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature-gradient.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.temperature-gradient.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -1187,7 +1267,7 @@ The components of the temperature gradient vector ∇<i>T</i>. The temperature g
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature-gradient.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.temperature-gradient.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -1198,7 +1278,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.temperature-gradient.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.temperature-gradient.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -1213,7 +1293,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.electric-field" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.electric-field" markdown="1">
 <summary><span class="mc-name">electric-field</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The electric field imposed on the simulated system, e.g. a uniform applied field.
@@ -1224,7 +1304,7 @@ The electric field imposed on the simulated system, e.g. a uniform applied field
 
 Note: Requires cell, which defines the basis of the vector components.
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.electric-field.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.electric-field.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -1237,7 +1317,7 @@ The components of the electric field vector <i>E</i>. The electric field compone
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.electric-field.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.electric-field.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -1248,7 +1328,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.electric-field.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.electric-field.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -1263,7 +1343,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.magnetic-field" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.magnetic-field" markdown="1">
 <summary><span class="mc-name">magnetic-field</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The magnetic field imposed on the simulated system, given as the magnetic flux density <i>B</i>.
@@ -1274,7 +1354,7 @@ The magnetic field imposed on the simulated system, given as the magnetic flux d
 
 Note: Requires cell, which defines the basis of the vector components.
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.magnetic-field.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.magnetic-field.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -1287,7 +1367,7 @@ The components of the magnetic flux density vector <i>B</i>. The magnetic flux d
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.magnetic-field.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.magnetic-field.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -1298,7 +1378,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.magnetic-field.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.magnetic-field.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -1313,7 +1393,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.body-force" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.body-force" markdown="1">
 <summary><span class="mc-name">body-force</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The body force per unit mass imposed on the simulated system, e.g. gravity or a constant force driving a flow.
@@ -1324,7 +1404,7 @@ The body force per unit mass imposed on the simulated system, e.g. gravity or a 
 
 Note: Requires cell, which defines the basis of the vector components.
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.body-force.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.body-force.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -1337,7 +1417,7 @@ The components of the body force per unit mass <i>g</i>. The body force componen
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.body-force.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.body-force.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -1348,7 +1428,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.body-force.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.body-force.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -1363,7 +1443,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.electrode-potential" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.electrode-potential" markdown="1">
 <summary><span class="mc-name">electrode-potential</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The potential of the working electrode imposed on the simulated system, e.g. by a potentiostat in a constant-potential simulation, relative to the reference given in `reference`.
@@ -1372,7 +1452,7 @@ The potential of the working electrode imposed on the simulated system, e.g. by 
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.electrode-potential.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.electrode-potential.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -1385,7 +1465,7 @@ The potential of the working electrode relative to `reference`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.electrode-potential.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.electrode-potential.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -1396,7 +1476,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.electrode-potential.reference" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.electrode-potential.reference" markdown="1">
 <summary><span class="mc-name">reference<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The reference against which the potential is given.
@@ -1409,7 +1489,7 @@ Recommended: `SHE`, `RHE`, `Vacuum`. Other values are allowed. One of: "SHE" –
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.electrode-potential.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.electrode-potential.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -1424,7 +1504,7 @@ Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values a
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.chemical-potential" markdown="1">
 <summary><span class="mc-name">chemical-potential</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The chemical potential of a species imposed on the simulated system by a reservoir, e.g. in a grand-canonical or semi-grand-canonical simulation.
@@ -1433,7 +1513,7 @@ The chemical potential of a species imposed on the simulated system by a reservo
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential.value" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.chemical-potential.value" markdown="1">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The value of the property, in the unit given by `unit`.
@@ -1442,11 +1522,11 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [] | Energy | eV |
 
-The chemical potential <i>μ</i> per particle, or the difference <i>μ</i>(species) − <i>μ</i>(relative-to). An absolute value is relative to the energy zero of the model given in `interaction-model`, so absolute values from different models do not compare. A value in a molar unit (e.g. kJ/mol) is converted to an energy per particle before it is given.
+The chemical potential <i>μ</i> per particle, or the difference <i>μ</i>(species) − <i>μ</i>(relative-to). An absolute value is relative to the energy zero of the model that supplies the energies: the computation's own, or the one named in `input` with the role Interaction model. Absolute values from different models do not compare. A value in a molar unit (e.g. kJ/mol) is converted to an energy per particle before it is given.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential.unit" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.chemical-potential.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
@@ -1457,7 +1537,7 @@ The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential.species" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.chemical-potential.species" markdown="1">
 <summary><span class="mc-name">species<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The species whose chemical potential is given, as an element symbol, a user-defined species or a group of a material component's formula.
@@ -1470,7 +1550,7 @@ Examples: `Cu`, `H2O`, `Ja`.
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential.relative-to" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.chemical-potential.relative-to" markdown="1">
 <summary><span class="mc-name">relative-to</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 A second species, when the value is the difference between the chemical potentials of species and of this one.
@@ -1483,7 +1563,7 @@ Note: Give relative-to when the simulation imposes a difference of chemical pote
 
 </details>
 
-<details class="note mc-property" id="minimal.computation.simulation-conditions.chemical-potential.qualifier" markdown="1">
+<details class="note mc-property" id="minimal.computation.conditions.chemical-potential.qualifier" markdown="1">
 <summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 What the value represents.
@@ -1533,7 +1613,7 @@ The part this software played in the calculations.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Calculation method`, `Script`, `Simulation code`, `Workflow framework`. Other values are allowed. One of: "Calculation method" – A packaged procedure that computes a defined property, e.g. an OpenKIM test or an iprPy calculation. "Script" – Custom code written for the calculations, e.g. a Python script using ASE. "Simulation code" – A program that performs the simulation or calculation itself, e.g. LAMMPS or VASP. "Workflow framework" – A system that sets up, runs and manages calculations with other software, e.g. pyiron, AiiDA or MedeA.
+Recommended: `Calculation method`, `Interaction model`, `Script`, `Simulation code`, `Workflow framework`. Other values are allowed. One of: "Calculation method" – A packaged procedure that computes a defined property, e.g. an OpenKIM test or an iprPy calculation. "Interaction model" – The implementation of a particle interaction model, e.g. a KIM model or a potential file; give its identifier and link. "Script" – Custom code written for the calculations, e.g. a Python script using ASE. "Simulation code" – A program that performs the simulation or calculation itself, e.g. LAMMPS or VASP. "Workflow framework" – A system that sets up, runs and manages calculations with other software, e.g. pyiron, AiiDA or MedeA.
 
 </details>
 
@@ -2559,6 +2639,7 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
     "description": "The original DFT training data for the general-purpose silicon interatomic potential described in the associated publication. The kinds of configuration that were included were selected based on intuition and past experience to obtain good coverage pertaining to a range of properties.",
     "structure": [
       {
+        "label": "si-bulk",
         "material-component": [
           {
             "formula": "Si",
@@ -2571,6 +2652,7 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
         ]
       },
       {
+        "label": "si-slab",
         "material-component": [
           {
             "formula": "Si",
@@ -2584,13 +2666,14 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
     ],
     "computation": [
       {
+        "label": "dft-single-points",
         "method-class": "Electronic",
         "method": "DFT",
-        "simulation-conditions": {
-          "type": {
-            "thermodynamic-state": "Equilibrium"
-          }
-        },
+        "task": "Single point",
+        "structure": [
+          "si-bulk",
+          "si-slab"
+        ],
         "software": [
           {
             "name": "CASTEP",
