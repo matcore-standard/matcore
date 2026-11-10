@@ -299,7 +299,8 @@ record or marked PROPOSED, NOT DECIDED.
      condition net-charge (0049); the Kind MagneticMoment and the units mu_B
      and J/T are added, with dft initial-magnetic-moment and minimal material-component ›
      magnetic-order (0050); pim theory-level is filled, terms Physics-based and
-     Machine-learned, and model-type, the functional form (0046; step 5).
+     Machine-learned, model-type, the functional form, and particle-style, with the term
+     Nucleus (0046; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -809,11 +810,11 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #93 merged 2026-11-10] pim model-type: string with the baseline's examples
    (Lennard-Jones, EAM, MACE) and a note that the specific parameterization (OpenKIM model, NIST IPR
    record, published potential file) is the computation's software; legacy_* deleted.
-   [in progress, branch pim-particle-style] pim particle-style: string, open terms the baseline's
+   [done, PR #94 merged 2026-11-10] pim particle-style: string, open terms the baseline's
    seven plus Nucleus (0046, settled 2026-11-10), definitions and "one entry for each kind of
    particle" in the note; description "The nature of the discrete entities whose interactions the
    model describes."; legacy_* deleted; examples/pim.json writes Atom.
-   [todo] pim in file order: settings › theory-level (done, PR #92), model-type (done, PR #93), particle-style, bonding-type,
+   [todo] pim in file order: settings › theory-level (done, PR #92), model-type (done, PR #93), particle-style (done, PR #94), bonding-type,
    charge-interactions, magnetic-interactions (computation needs no fill).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
