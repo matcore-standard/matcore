@@ -86,3 +86,14 @@ def test_smearing_width_is_not_an_imposed_temperature():
     width = next(w for c in s['subproperties'] if c['name'] in ('k-point-mesh', 'smearing')
                  for w in c['subproperties'] if w['name'] in ('smearing-width', 'width'))
     assert width['notes'] == [WIDTH_NOTE]
+
+
+def test_smearing_leaves_the_k_point_mesh():
+    """Smearing assigns occupations and applies where there is no mesh, so it is its own container after the
+    mesh, holding the former smearing-type, smearing-width and smearing-parameter (0053)."""
+    s = settings()
+    names = [p['name'] for p in s['subproperties']]
+    assert names.index('smearing') == names.index('k-point-mesh') + 1
+    assert [p['name'] for p in sub(s, 'k-point-mesh')['subproperties']] == ['type', 'number-of-points', 'shift']
+    assert [p['name'] for p in sub(s, 'smearing')['subproperties']] == ['type', 'width', 'parameter']
+    assert 'smearing-' not in (ROOT / 'schema/dft.yaml').read_text()

@@ -680,7 +680,19 @@ properties:
           directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice
           vector.
       repeatable: false
-    - name: smearing-type
+  - name: smearing
+    required: false
+    description: >-
+      The method of assigning fractional occupations to electronic states near the Fermi level, and its
+      parameters.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    subproperties:
+    - name: type
       required: false
       description: >-
         The choice of method for assigning fractional occupancies of electronic states and/or facilitating
@@ -693,7 +705,7 @@ properties:
         terms: [None, None - tetrahedron, None - Blöchl-corrected tetrahedron, Gaussian, Fermi-Dirac,
           Methfessel-Paxton, Marzari-Vanderbilt]
       repeatable: false
-    - name: smearing-width
+    - name: width
       required: false
       description: >-
         A parameter that controls the broadening of the electron energy levels near the Fermi level.
@@ -728,7 +740,7 @@ properties:
         recommended-unit: null
         values: null
         repeatable: false
-    - name: smearing-parameter
+    - name: parameter
       required: false
       description: >-
         A fixed variable associated with the specified smearing method (e.g. the order of the

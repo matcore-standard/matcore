@@ -832,22 +832,24 @@ def test_calculation_physics_note_defines_every_term_and_the_spin_rule():
 
 def test_k_point_mesh_structure():
     """A k-point mesh is given by its kind and its explicit number of points, never also by a spacing that
-    could contradict them, with fractional shifts and the smearing and its parameters (0004 item 47)."""
+    could contradict them, with fractional shifts (0004 item 47); the smearing is given beside it, since it
+    concerns occupations, not the mesh (0053)."""
     from check_generic import generic_errors
     k = dft('k-point-mesh')
     number = lambda n, t: (n, False, False, None, (), (('value', True, False, t, (), ()),
                                                       ('unit', True, False, 'string', (), ())))
-    param = ('smearing-parameter', False, True, None, (), (
+    param = ('parameter', False, True, None, (), (
         ('name', True, False, 'string', (), ()), ('value', True, False, 'any', (), ()),
         ('unit', True, False, 'string', (), ()), ('description', False, False, 'string', (), ())))
     assert tree(k) == ('k-point-mesh', False, False, None, (), (
         ('type', True, False, 'string', ('Regular gamma-centered', 'Regular shifted', 'Irregular'), ()),
-        ('number-of-points', False, False, 'int', (), ()), ('shift', False, False, 'float', (), ()),
-        ('smearing-type', False, False, 'string', ('None', 'None - tetrahedron',
-                                                    'None - Blöchl-corrected tetrahedron', 'Gaussian', 'Fermi-Dirac',
-                                                    'Methfessel-Paxton', 'Marzari-Vanderbilt'), ()),
-        number('smearing-width', 'float'), param))
-    assert generic_errors(sub(k, 'smearing-parameter')) == []
+        ('number-of-points', False, False, 'int', (), ()), ('shift', False, False, 'float', (), ())))
+    smearing = dft('smearing')
+    assert tree(smearing) == ('smearing', False, False, None, (), (
+        ('type', False, False, 'string', ('None', 'None - tetrahedron', 'None - Blöchl-corrected tetrahedron',
+                                          'Gaussian', 'Fermi-Dirac', 'Methfessel-Paxton', 'Marzari-Vanderbilt'), ()),
+        number('width', 'float'), param))
+    assert generic_errors(sub(smearing, 'parameter')) == []
     assert legacy_fields(k) == []
 
 
@@ -861,7 +863,8 @@ def test_k_point_mesh_quantities():
     assert (v('shift')['extent'], v('shift')['kind'], v('shift')['recommended-unit']) == ([3], 'dimensionless', None)
     assert sub(k, 'number-of-points').get('subproperties') is None and sub(k, 'shift').get('subproperties') is None
     assert 'fractions of the mesh spacing' in v('shift')['values']['note']
-    assert (v('smearing-width')['kind'], v('smearing-width')['recommended-unit']) == ('Energy', 'eV')
+    width = datum(sub(dft('smearing'), 'width'))
+    assert (width['kind'], width['recommended-unit']) == ('Energy', 'eV')
 
 
 @pytest.mark.parametrize('name', [n for n in SIMULATION_CONDITIONS if n != 'cell-periodicity'])

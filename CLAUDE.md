@@ -121,7 +121,7 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
 
 ## Generic parameters and free-form units (decided; see docs/decisions/0001 and 0003)
 Three groups, not to be merged:
-1. Generic parameters: xc-parameter and smearing-parameter (dft; 0004 item 47), computation-parameter
+1. Generic parameters: xc-parameter and smearing › parameter (dft; 0004 item 47, moved by 0053), computation-parameter
    and td-parameter (md), model-parameter (pf), calculation-parameter (derived). Their `value` has
    type any, extent any, kind any; the instance supplies type, shape and unit. The generic-parameter
    rule applies to these only. The instance type is one of float, int, string, bool, and is stated
