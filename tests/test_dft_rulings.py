@@ -103,3 +103,16 @@ def test_dft_introduction_uses_current_names():
     """The introduction names the properties as 0018 renamed them and says how settings blocks work (0054)."""
     intro = yaml.safe_load(open(ROOT / 'schema/dft.yaml'))['introduction'].strip()
     assert intro == 'The metadata for density functional theory (DFT) data (MatCore-DFT) is tabulated below. This includes the level of theory (exchange-correlation functional, core-electron treatment and wavefunction representation) and associated parameters. The properties are given in settings blocks, each naming the DFT computations it describes. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)'
+
+
+def test_lapw_basis_cutoff_is_rkmax():
+    """LAPW codes set the basis by the dimensionless RKmax, which cannot be turned into an energy without the
+    muffin-tin radius; the energy cutoff serves plane waves, and LAPW only when given as an energy (0057)."""
+    w = sub(settings(), 'wavefunction-representation')
+    names = [p['name'] for p in w['subproperties']]
+    assert names.index('lapw-basis-cutoff') == names.index('kinetic-energy-cutoff') + 1
+    c = sub(w, 'lapw-basis-cutoff')
+    assert shape(c) == (False, False, 'float', [], 'dimensionless', None) and c['values'] == {'minimum': 0}
+    assert 'subproperties' not in c and 'RKmax' in c['description']
+    assert sub(w, 'kinetic-energy-cutoff')['description'].startswith(
+        'For type "Plane waves", or for "LAPW" when the code takes the cutoff as an energy,')

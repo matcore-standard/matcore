@@ -534,8 +534,8 @@ properties:
     - name: kinetic-energy-cutoff
       required: false
       description: >-
-        For type "LAPW" or "Plane waves", the maximum kinetic energy of the plane waves included in the
-        calculation of wave functions.
+        For type "Plane waves", or for "LAPW" when the code takes the cutoff as an energy, the maximum
+        kinetic energy of the plane waves included in the calculation of wave functions.
       type: null
       extent: null
       kind: null
@@ -562,6 +562,18 @@ properties:
         recommended-unit: null
         values: null
         repeatable: false
+    - name: lapw-basis-cutoff
+      required: false
+      description: >-
+        For type "LAPW", the cutoff of the basis, given as the product of the smallest muffin-tin radius
+        and the largest plane-wave wavevector, R<sub>MT</sub>K<sub>max</sub> (RKmax).
+      type: float
+      extent: []
+      kind: dimensionless
+      recommended-unit: null
+      values:
+        minimum: 0
+      repeatable: false
     - name: charge-density-cutoff
       required: false
       description: >-

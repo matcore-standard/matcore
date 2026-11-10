@@ -675,7 +675,8 @@ def test_wavefunction_representation_structure():
         ('type', True, True, 'string', (
             'Gaussian basis sets', 'LAPW', 'Local atomic orbitals', 'Numerical atomic orbitals', 'Plane waves',
             'Real space grids'), ()), basis,
-        cutoff('kinetic-energy-cutoff'), cutoff('charge-density-cutoff')))
+        cutoff('kinetic-energy-cutoff'), ('lapw-basis-cutoff', False, False, 'float', (), ()),
+        cutoff('charge-density-cutoff')))
     assert legacy_fields(v) == []
 
 
@@ -691,7 +692,8 @@ def test_representation_note_groups_every_term():
 
 @pytest.mark.parametrize('name, terms', [
     ('localized-orbital-basis-set', ['Gaussian basis sets', 'Local atomic orbitals', 'Numerical atomic orbitals']),
-    ('kinetic-energy-cutoff', ['LAPW', 'Plane waves']), ('charge-density-cutoff', ['LAPW', 'Plane waves'])])
+    ('kinetic-energy-cutoff', ['LAPW', 'Plane waves']), ('lapw-basis-cutoff', ['LAPW']),
+    ('charge-density-cutoff', ['LAPW', 'Plane waves'])])
 def test_conditional_subproperties_name_the_types_they_serve(name, terms):
     """A subproperty that applies to some representations names them, and each named one is a listed term.
 
