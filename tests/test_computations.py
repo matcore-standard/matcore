@@ -249,3 +249,24 @@ def test_pim_model_type_names_the_functional_form():
     assert t['values'] == {'examples': ['Lennard-Jones', 'EAM', 'MACE']}
     assert t['notes'] == [MODEL_TYPE_NOTE]
     assert not [k for k in t if k.startswith('legacy_')]
+
+
+PARTICLE_STYLES = ['Atom', 'Radical', 'United atom', 'Bead', 'Coarse grained', 'Mesoscale', 'Classical electron',
+                   'Nucleus']
+
+
+def test_pim_particle_style_names_each_kind_of_particle():
+    """The baseline's seven styles, plus Nucleus so that the electron force field is Nucleus and Classical electron
+    rather than Atom, which would count its electrons twice (0046, settled 2026-11-10). The property repeats, one
+    entry per kind of particle (0046 item 8)."""
+    t = sub(section('pim')['properties'][0], 'particle-style')
+    assert (t['required'], t['repeatable'], t['type'], t['extent'], t['kind'], t['recommended-unit']) == (
+        True, True, 'string', [], 'inapplicable', None)
+    assert t['description'] == 'The nature of the discrete entities whose interactions the model describes.'
+    assert t['values']['terms'] == PARTICLE_STYLES
+    note = ' '.join(t['values']['note'].split())
+    assert '"Atom" – Each particle represents an individual atom' in note
+    assert ('"Nucleus" – A nucleus or an ion core as a point charge, with its electrons represented by other '
+            'particles, e.g. in the electron force field.') in note
+    assert 'Give one entry for each kind of particle the model has' in note
+    assert not [k for k in t if k.startswith('legacy_')]

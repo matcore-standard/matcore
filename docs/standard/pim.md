@@ -57,13 +57,13 @@ Note: Give the functional form. The specific parameterization, e.g. an OpenKIM m
 <details class="note mc-property" id="pim.settings.particle-style" markdown="1">
 <summary><span class="mc-name">particle-style<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-The nature of the discrete entities used in the molecular dynamics simulation.
+The nature of the discrete entities whose interactions the model describes.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | yes | — | — | — | — |
+| yes | yes | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Atom" – Each particle represents an individual atom "Radical" – Each particle represents a free radical "United atom" – Each particle represents a fixed grouping of atoms "Bead" – Each particle represents a user-tuneable group of atoms "Coarse grained" – Each particle represents a higher scale particle obtained by scaling up the atomic representation "Mesoscale" – Granular particles used to simulate microstructure at the mesoscopic scale "Classical electron" – Antisymmetrized wave packet representation of valence electrons Other user-specified value if none of the above apply.</span>
+Recommended: `Atom`, `Radical`, `United atom`, `Bead`, `Coarse grained`, `Mesoscale`, `Classical electron`, `Nucleus`. Other values are allowed. "Atom" – Each particle represents an individual atom. "Radical" – Each particle represents a free radical. "United atom" – Each particle represents a fixed grouping of atoms. "Bead" – Each particle represents a user-tuneable group of atoms. "Coarse grained" – Each particle represents a higher scale particle obtained by scaling up the atomic representation. "Mesoscale" – Granular particles used to simulate microstructure at the mesoscopic scale. "Classical electron" – Antisymmetrized wave packet representation of valence electrons. "Nucleus" – A nucleus or an ion core as a point charge, with its electrons represented by other particles, e.g. in the electron force field. Give one entry for each kind of particle the model has, e.g. Nucleus and Classical electron for the electron force field.
 
 </details>
 
@@ -223,7 +223,7 @@ Dataset source: [https://doi.org/10.6084/m9.figshare.6273170](https://doi.org/10
         "theory-level": "Physics-based",
         "model-type": "Finnis-Sinclair potential",
         "particle-style": [
-          "atom"
+          "Atom"
         ],
         "bonding-type": "Reactive"
       }
