@@ -221,6 +221,18 @@ properties:
         recommended-unit: null
         values: null
         repeatable: false
+      - name: species
+        required: true
+        description: >-
+          The element or user-defined species this pseudopotential or PAW dataset is for, as written in a
+          material component's formula.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          examples: [Si, Ja]
+        repeatable: false
       - name: type
         required: true
         description: The physical form of the pseudopotential or PAW dataset.
@@ -406,6 +418,19 @@ properties:
         values:
           examples: [6-31G, DZP]
         repeatable: false
+      - name: species
+        required: false
+        description: >-
+          The element or user-defined species this basis set is for, as written in a material component's
+          formula.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: true
+        notes:
+        - 'Note: Give the species this basis set is used for. Omit it when one basis set is used for every species.'
       - name: repository
         required: false
         description: The database from which the localized-orbital basis set was obtained.

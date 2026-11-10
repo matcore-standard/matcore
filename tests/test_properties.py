@@ -603,7 +603,7 @@ def test_core_electron_treatment_structure():
     count = ('number-of-valence-electrons', True, False, 'int', (), ())
     file = ('file', False, False, None, (), tuple(tree(s) for s in sub(minimal('provenance'), 'file')['subproperties']))
     pseudopotential = ('pseudopotential-or-paw', False, True, None, (), (
-        ('name', True, False, 'string', (), ()),
+        ('name', True, False, 'string', (), ()), ('species', True, False, 'string', (), ()),
         ('type', True, False, 'string', ('Norm conserving', 'PAW', 'Ultrasoft'), ()),
         ('description', False, False, 'string', (), ()), count,
         ('repository', False, False, 'string', (), ()), ('version', False, False, 'string', (), ()),
@@ -665,7 +665,8 @@ def test_wavefunction_representation_structure():
     v = dft('wavefunction-representation')
     file = ('file', False, False, None, (), tuple(tree(s) for s in sub(minimal('provenance'), 'file')['subproperties']))
     basis = ('localized-orbital-basis-set', False, True, None, (), (
-        ('type', True, False, 'string', (), ()), ('repository', False, False, 'string', (), ()),
+        ('type', True, False, 'string', (), ()), ('species', False, True, 'string', (), ()),
+        ('repository', False, False, 'string', (), ()),
         ('version', False, False, 'string', (), ()), ('doi', False, False, 'string', (), ()), file,
         ('unique-identifier', False, False, 'string', (), ())))
     cutoff = lambda n: (n, False, False, None, (), (('value', True, False, 'float', (), ()),

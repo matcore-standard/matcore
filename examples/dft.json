@@ -17,6 +17,7 @@
           "pseudopotential-or-paw": [
             {
               "name": "Ultrasoft Pseudopotentials (USP)",
+              "species": "Si",
               "type": "Ultrasoft",
               "number-of-valence-electrons": 4
             }
