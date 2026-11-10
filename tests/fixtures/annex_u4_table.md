@@ -52,6 +52,7 @@
 | `V` | ElectricPotential | V | V | 1 | exact |
 | `e` | ElectricCharge | E | e | 1.602 176 634 × 10⁻¹⁹ C | exact |
 | `C` | ElectricCharge | C | C | 1 | exact |
+| `mu_B` | MagneticMoment | — | mu_B | 9.274 010 065 7 × 10⁻²⁴ A·m² | CODATA 2022 |
 | `rad` | Angle | RAD | radian | 1 | exact |
 | `degree` | Angle | DEG | degree | π/180 rad | exact |
 | `mol` | AmountOfSubstance | MOL | mol | 1 | exact |

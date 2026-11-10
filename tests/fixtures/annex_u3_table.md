@@ -20,6 +20,7 @@
 | Acceleration | Acceleration | A0E0L1I0M0H0T-2D0 | m·s⁻² |
 | ElectricPotential | ElectricPotential | A0E-1L2I0M1H0T-3D0 | kg·m²·s⁻³·A⁻¹ |
 | ElectricCharge | ElectricCharge | A0E1L0I0M0H0T1D0 | s·A |
+| MagneticMoment | MagneticMoment | A0E1L2I0M0H0T0D0 | m²·A |
 | Angle | PlaneAngle | A0E0L0I0M0H0T0D1 | 1 (rad) |
 | AmountOfSubstance | AmountOfSubstance | A1E0L0I0M0H0T0D0 | mol |
 | dimensionless | Dimensionless | A0E0L0I0M0H0T0D1 | 1 |
