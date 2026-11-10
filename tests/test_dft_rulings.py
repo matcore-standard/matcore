@@ -116,3 +116,8 @@ def test_lapw_basis_cutoff_is_rkmax():
     assert 'subproperties' not in c and 'RKmax' in c['description']
     assert sub(w, 'kinetic-energy-cutoff')['description'].startswith(
         'For type "Plane waves", or for "LAPW" when the code takes the cutoff as an energy,')
+
+
+def test_libxc_version_is_a_software_dependency():
+    """The library's release can change a functional, and minimal software's dependency holds versions (0058)."""
+    assert sub(settings(), 'xc-functional', 'normalization', 'source')['notes'] == ['Note: Give the version of the library as a `dependency` of the simulation code in minimal `software`.']

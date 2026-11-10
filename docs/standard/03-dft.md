@@ -107,6 +107,8 @@ The library whose identifiers the components use.
 
 Recommended: `LibXC`. Other values are allowed. "LibXC" – the [Libxc library of exchange-correlation functionals](https://libxc.gitlab.io/functionals/).
 
+Note: Give the version of the library as a `dependency` of the simulation code in minimal `software`.
+
 </details>
 
 </details>

@@ -121,6 +121,10 @@ properties:
             "LibXC" – the [Libxc library of exchange-correlation
             functionals](https://libxc.gitlab.io/functionals/).
         repeatable: false
+        notes:
+        - >-
+          Note: Give the version of the library as a `dependency` of the simulation code in minimal
+          `software`.
     - name: xc-parameter
       required: false
       description: >-
