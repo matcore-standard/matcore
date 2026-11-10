@@ -549,6 +549,22 @@ properties:
           state where molecules or atoms are far apart and only interact during collisions. "Plasma" – A
           gas comprised of ions and electrons. Omit for a component whose form is Molecule.
       repeatable: true
+    - name: magnetic-order
+      required: false
+      description: The arrangement of the magnetic moments in the material component as modeled.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Nonmagnetic, Ferromagnetic, Antiferromagnetic, Ferrimagnetic, Paramagnetic, Noncollinear]
+        note: >-
+          "Nonmagnetic" – No magnetic moments. "Ferromagnetic" – Moments aligned parallel.
+          "Antiferromagnetic" – Equal moments aligned antiparallel, with no net moment. "Ferrimagnetic" –
+          Unequal moments aligned antiparallel, with a net moment. "Paramagnetic" – Moments present but
+          disordered, e.g. modeled as disordered local moments. "Noncollinear" – Moments not along one axis,
+          e.g. a spin spiral.
+      repeatable: false
     - name: description
       required: false
       description: >-
