@@ -85,6 +85,7 @@ units:
   m/s^2:         {kind: Acceleration, qudt: M-PER-SEC2, gnu: m/s^2, si_factor: "1", source: exact}
   V:             {kind: ElectricPotential, qudt: V, gnu: V, si_factor: "1", source: exact}
   e:             {kind: ElectricCharge, qudt: E, gnu: e, si_factor: "1.602176634e-19", source: exact}
+  C:             {kind: ElectricCharge, qudt: C, gnu: C, si_factor: "1", source: exact}
   rad:           {kind: Angle, qudt: RAD, gnu: radian, si_factor: "1", source: exact}
   degree:        {kind: Angle, qudt: DEG, gnu: degree, exact: π/180, si_factor: "0.017453292519943295", source: exact}
   mol:           {kind: AmountOfSubstance, qudt: MOL, gnu: mol, si_factor: "1", source: exact}

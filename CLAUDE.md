@@ -726,6 +726,7 @@ record or marked PROPOSED, NOT DECIDED.
    (value float, ElectricCharge, recommended e; unit; qualifier) after number-of-particles.
    [done, PR #86 merged 2026-11-10] unit e with the Kind ElectricCharge (QUDT ElectricCharge,
    A0E1L0I0M0H0T1D0; unit QUDT E, GNU Units e, factor 1.602176634e-19 exact).
+   [in progress, branch unit-c, committed; awaiting push and PR] unit C (QUDT C, GNU Units C, factor 1, exact).
    [todo] magnetic moments and order by 0050 (B2, ruling 2026-11-09): Kind MagneticMoment with units
    mu_B and J/T, one PR each with every field traced; then dft initial-magnetic-moment (species*,
    value* extent any in mu_B, unit*) after calculation-physics, and minimal material-component ›
