@@ -809,6 +809,10 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #93 merged 2026-11-10] pim model-type: string with the baseline's examples
    (Lennard-Jones, EAM, MACE) and a note that the specific parameterization (OpenKIM model, NIST IPR
    record, published potential file) is the computation's software; legacy_* deleted.
+   [in progress, branch pim-particle-style] pim particle-style: string, open terms the baseline's
+   seven plus Nucleus (0046, settled 2026-11-10), definitions and "one entry for each kind of
+   particle" in the note; description "The nature of the discrete entities whose interactions the
+   model describes."; legacy_* deleted; examples/pim.json writes Atom.
    [todo] pim in file order: settings › theory-level (done, PR #92), model-type (done, PR #93), particle-style, bonding-type,
    charge-interactions, magnetic-interactions (computation needs no fill).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no

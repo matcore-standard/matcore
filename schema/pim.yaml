@@ -61,21 +61,23 @@ properties:
       or a published potential file, is identified in the computation's software (role Interaction model).
   - name: particle-style
     required: true
-    description: The nature of the discrete entities used in the molecular dynamics simulation.
-    type: null
-    extent: null
-    kind: null
+    description: The nature of the discrete entities whose interactions the model describes.
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      terms: [Atom, Radical, United atom, Bead, Coarse grained, Mesoscale, Classical electron, Nucleus]
+      note: >-
+        "Atom" – Each particle represents an individual atom. "Radical" – Each particle represents a free
+        radical. "United atom" – Each particle represents a fixed grouping of atoms. "Bead" – Each particle
+        represents a user-tuneable group of atoms. "Coarse grained" – Each particle represents a higher scale
+        particle obtained by scaling up the atomic representation. "Mesoscale" – Granular particles used to
+        simulate microstructure at the mesoscopic scale. "Classical electron" – Antisymmetrized wave packet
+        representation of valence electrons. "Nucleus" – A nucleus or an ion core as a point charge, with its
+        electrons represented by other particles, e.g. in the electron force field. Give one entry for each
+        kind of particle the model has, e.g. Nucleus and Classical electron for the electron force field.
     repeatable: true
-    legacy_values: >-
-      String containing one of the following values: "Atom" – Each particle represents an individual atom
-      "Radical" – Each particle represents a free radical "United atom" – Each particle represents a fixed
-      grouping of atoms "Bead" – Each particle represents a user-tuneable group of atoms "Coarse grained"
-      – Each particle represents a higher scale particle obtained by scaling up the atomic representation
-      "Mesoscale" – Granular particles used to simulate microstructure at the mesoscopic scale "Classical
-      electron" – Antisymmetrized wave packet representation of valence electrons Other user-specified value
-      if none of the above apply.
   - name: bonding-type
     required: true
     description: Specifies whether the bonds between particles are immutable or can be broken.

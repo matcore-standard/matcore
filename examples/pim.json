@@ -8,7 +8,7 @@
         "theory-level": "Physics-based",
         "model-type": "Finnis-Sinclair potential",
         "particle-style": [
-          "atom"
+          "Atom"
         ],
         "bonding-type": "Reactive"
       }
