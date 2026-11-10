@@ -131,8 +131,9 @@ def test_dft_properties_sit_in_settings_naming_computations():
     assert s['description'] == 'Settings shared by the computations named in it.'
     assert [c['name'] for c in s['subproperties']] == [
         'computation', 'xc-functional', 'core-electron-treatment', 'wavefunction-representation',
-        'calculation-physics', 'k-point-mesh', 'self-consistent-field-convergence', 'relaxation-tolerance-energy',
-        'relaxation-tolerance-forces', 'comment']
+        'calculation-physics', 'dispersion-correction', 'k-point-mesh', 'smearing',
+        'self-consistent-field-convergence', 'relaxation-tolerance-energy',
+        'relaxation-tolerance-forces', 'relaxation-tolerance-stress', 'comment']
     c = sub(s, 'computation')
     assert shape(c) == (True, True, 'string', [], 'inapplicable', None)
     assert c['description'] == 'The label of a computation these settings apply to.'

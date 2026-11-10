@@ -17,6 +17,7 @@
           "pseudopotential-or-paw": [
             {
               "name": "Ultrasoft Pseudopotentials (USP)",
+              "species": "Si",
               "type": "Ultrasoft",
               "number-of-valence-electrons": 4
             }
@@ -32,8 +33,10 @@
           }
         },
         "k-point-mesh": {
-          "type": "Regular shifted",
-          "smearing-width": {
+          "type": "Regular shifted"
+        },
+        "smearing": {
+          "width": {
             "value": 0.05,
             "unit": "eV"
           }

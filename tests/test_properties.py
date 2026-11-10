@@ -575,7 +575,7 @@ def test_xc_functional_name_lists_the_named_functionals_and_description_is_prose
     assert 'examples' not in name_values  # the note's list names PBE and HSE06; a second "Examples:" repeats it
     name_note = ' '.join(name_values['note'].split())
     assert name_note.startswith('Examples of possible content by type: LDA: Common parameterizations: VWN')
-    assert 'GGA: Typical choices are PW91, PBE' in name_note and name_note.endswith('is given in normalization.')
+    assert 'GGA: Typical choices are PW91, PBE' in name_note and 'is given in normalization.' in name_note
     assert sub(xc, 'description')['values']['note'] == (
         'Free text on what `type` and `name` do not say, e.g. a modification of the functional or the reason '
         'for choosing it.')
@@ -603,7 +603,7 @@ def test_core_electron_treatment_structure():
     count = ('number-of-valence-electrons', True, False, 'int', (), ())
     file = ('file', False, False, None, (), tuple(tree(s) for s in sub(minimal('provenance'), 'file')['subproperties']))
     pseudopotential = ('pseudopotential-or-paw', False, True, None, (), (
-        ('name', True, False, 'string', (), ()),
+        ('name', True, False, 'string', (), ()), ('species', True, False, 'string', (), ()),
         ('type', True, False, 'string', ('Norm conserving', 'PAW', 'Ultrasoft'), ()),
         ('description', False, False, 'string', (), ()), count,
         ('repository', False, False, 'string', (), ()), ('version', False, False, 'string', (), ()),
@@ -665,7 +665,8 @@ def test_wavefunction_representation_structure():
     v = dft('wavefunction-representation')
     file = ('file', False, False, None, (), tuple(tree(s) for s in sub(minimal('provenance'), 'file')['subproperties']))
     basis = ('localized-orbital-basis-set', False, True, None, (), (
-        ('type', True, False, 'string', (), ()), ('repository', False, False, 'string', (), ()),
+        ('type', True, False, 'string', (), ()), ('species', False, True, 'string', (), ()),
+        ('repository', False, False, 'string', (), ()),
         ('version', False, False, 'string', (), ()), ('doi', False, False, 'string', (), ()), file,
         ('unique-identifier', False, False, 'string', (), ())))
     cutoff = lambda n: (n, False, False, None, (), (('value', True, False, 'float', (), ()),
@@ -674,7 +675,8 @@ def test_wavefunction_representation_structure():
         ('type', True, True, 'string', (
             'Gaussian basis sets', 'LAPW', 'Local atomic orbitals', 'Numerical atomic orbitals', 'Plane waves',
             'Real space grids'), ()), basis,
-        cutoff('kinetic-energy-cutoff'), cutoff('charge-density-cutoff')))
+        cutoff('kinetic-energy-cutoff'), ('lapw-basis-cutoff', False, False, 'float', (), ()),
+        cutoff('charge-density-cutoff')))
     assert legacy_fields(v) == []
 
 
@@ -690,7 +692,8 @@ def test_representation_note_groups_every_term():
 
 @pytest.mark.parametrize('name, terms', [
     ('localized-orbital-basis-set', ['Gaussian basis sets', 'Local atomic orbitals', 'Numerical atomic orbitals']),
-    ('kinetic-energy-cutoff', ['LAPW', 'Plane waves']), ('charge-density-cutoff', ['LAPW', 'Plane waves'])])
+    ('kinetic-energy-cutoff', ['LAPW', 'Plane waves']), ('lapw-basis-cutoff', ['LAPW']),
+    ('charge-density-cutoff', ['LAPW', 'Plane waves'])])
 def test_conditional_subproperties_name_the_types_they_serve(name, terms):
     """A subproperty that applies to some representations names them, and each named one is a listed term.
 
@@ -772,7 +775,8 @@ def test_convergence_energy_is_the_free_energy_when_smeared():
     assert r['notes'] == ['Note: The energy is the Helmholtz free energy F = E − TS, including the entropy S of '
                           'the smeared electrons at the smearing temperature T, when occupations are smeared '
                           '(e.g. a metal), and the total energy E otherwise (e.g. an insulator). It is not the '
-                          'energy extrapolated to zero smearing.']
+                          'energy extrapolated to zero smearing.',
+                          "Note: Give it when the computation's task is Optimization."]
     criterion = sub(sub(dft('self-consistent-field-convergence'), 'tolerance'), 'criterion')
     assert ('"Energy" – The change in the energy between successive iterations, defined as for '
             '`relaxation-tolerance-energy`.') in ' '.join(criterion['values']['note'].split())
@@ -830,22 +834,24 @@ def test_calculation_physics_note_defines_every_term_and_the_spin_rule():
 
 def test_k_point_mesh_structure():
     """A k-point mesh is given by its kind and its explicit number of points, never also by a spacing that
-    could contradict them, with fractional shifts and the smearing and its parameters (0004 item 47)."""
+    could contradict them, with fractional shifts (0004 item 47); the smearing is given beside it, since it
+    concerns occupations, not the mesh (0053)."""
     from check_generic import generic_errors
     k = dft('k-point-mesh')
     number = lambda n, t: (n, False, False, None, (), (('value', True, False, t, (), ()),
                                                       ('unit', True, False, 'string', (), ())))
-    param = ('smearing-parameter', False, True, None, (), (
+    param = ('parameter', False, True, None, (), (
         ('name', True, False, 'string', (), ()), ('value', True, False, 'any', (), ()),
         ('unit', True, False, 'string', (), ()), ('description', False, False, 'string', (), ())))
     assert tree(k) == ('k-point-mesh', False, False, None, (), (
         ('type', True, False, 'string', ('Regular gamma-centered', 'Regular shifted', 'Irregular'), ()),
-        ('number-of-points', False, False, 'int', (), ()), ('shift', False, False, 'float', (), ()),
-        ('smearing-type', False, False, 'string', ('None', 'None - tetrahedron',
-                                                    'None - Blöchl-corrected tetrahedron', 'Gaussian', 'Fermi-Dirac',
-                                                    'Methfessel-Paxton', 'Marzari-Vanderbilt'), ()),
-        number('smearing-width', 'float'), param))
-    assert generic_errors(sub(k, 'smearing-parameter')) == []
+        ('number-of-points', False, False, 'int', (), ()), ('shift', False, False, 'float', (), ())))
+    smearing = dft('smearing')
+    assert tree(smearing) == ('smearing', False, False, None, (), (
+        ('type', False, False, 'string', ('None', 'None - tetrahedron', 'None - Blöchl-corrected tetrahedron',
+                                          'Gaussian', 'Fermi-Dirac', 'Methfessel-Paxton', 'Marzari-Vanderbilt'), ()),
+        number('width', 'float'), param))
+    assert generic_errors(sub(smearing, 'parameter')) == []
     assert legacy_fields(k) == []
 
 
@@ -859,7 +865,8 @@ def test_k_point_mesh_quantities():
     assert (v('shift')['extent'], v('shift')['kind'], v('shift')['recommended-unit']) == ([3], 'dimensionless', None)
     assert sub(k, 'number-of-points').get('subproperties') is None and sub(k, 'shift').get('subproperties') is None
     assert 'fractions of the mesh spacing' in v('shift')['values']['note']
-    assert (v('smearing-width')['kind'], v('smearing-width')['recommended-unit']) == ('Energy', 'eV')
+    width = datum(sub(dft('smearing'), 'width'))
+    assert (width['kind'], width['recommended-unit']) == ('Energy', 'eV')
 
 
 @pytest.mark.parametrize('name', [n for n in SIMULATION_CONDITIONS if n != 'cell-periodicity'])

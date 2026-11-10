@@ -4,7 +4,7 @@ source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.
 introduction: |
-  The metadata for density functional theory (DFT) data (MatCore-DFT) is tabulated below. This includes the level of theory (exchange-correlation functional, core-electron model, and valence-electron model) and associated parameters. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
+  The metadata for density functional theory (DFT) data (MatCore-DFT) is tabulated below. This includes the level of theory (exchange-correlation functional, core-electron treatment and wavefunction representation) and associated parameters. The properties are given in settings blocks, each naming the DFT computations it describes. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 examples:
   - caption: DFT Method-Specific Metadata
     file: dft.json
@@ -69,9 +69,9 @@ properties:
           Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical
           choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS,
           SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA,
-          CIDER, etc. Others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. A
-          decomposition into the components of a community library such as LibXC is given in
-          normalization.
+          CIDER, etc. Others: BEEF, etc. A decomposition into the components of a community library such
+          as LibXC is given in normalization. Give the functional alone, without a dispersion correction
+          (e.g. PBE, not PBE-D3); the correction is given in dispersion-correction.
       repeatable: false
     - name: description
       required: false
@@ -121,6 +121,10 @@ properties:
             "LibXC" – the [Libxc library of exchange-correlation
             functionals](https://libxc.gitlab.io/functionals/).
         repeatable: false
+        notes:
+        - >-
+          Note: Give the version of the library as a `dependency` of the simulation code in minimal
+          `software`.
     - name: xc-parameter
       required: false
       description: >-
@@ -220,6 +224,18 @@ properties:
         kind: inapplicable
         recommended-unit: null
         values: null
+        repeatable: false
+      - name: species
+        required: true
+        description: >-
+          The element or user-defined species this pseudopotential or PAW dataset is for, as written in a
+          material component's formula.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          examples: [Si, Ja]
         repeatable: false
       - name: type
         required: true
@@ -406,6 +422,19 @@ properties:
         values:
           examples: [6-31G, DZP]
         repeatable: false
+      - name: species
+        required: false
+        description: >-
+          The element or user-defined species this basis set is for, as written in a material component's
+          formula.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: true
+        notes:
+        - 'Note: Give the species this basis set is used for. Omit it when one basis set is used for every species.'
       - name: repository
         required: false
         description: The database from which the localized-orbital basis set was obtained.
@@ -509,8 +538,8 @@ properties:
     - name: kinetic-energy-cutoff
       required: false
       description: >-
-        For type "LAPW" or "Plane waves", the maximum kinetic energy of the plane waves included in the
-        calculation of wave functions.
+        For type "Plane waves", or for "LAPW" when the code takes the cutoff as an energy, the maximum
+        kinetic energy of the plane waves included in the calculation of wave functions.
       type: null
       extent: null
       kind: null
@@ -537,6 +566,18 @@ properties:
         recommended-unit: null
         values: null
         repeatable: false
+    - name: lapw-basis-cutoff
+      required: false
+      description: >-
+        For type "LAPW", the cutoff of the basis, given as the product of the smallest muffin-tin radius
+        and the largest plane-wave wavevector, R<sub>MT</sub>K<sub>max</sub> (RKmax).
+      type: float
+      extent: []
+      kind: dimensionless
+      recommended-unit: null
+      values:
+        minimum: 0
+      repeatable: false
     - name: charge-density-cutoff
       required: false
       description: >-
@@ -589,6 +630,24 @@ properties:
         separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries,
         "Noncollinear spin polarization" and "Spin-orbit coupling".
     repeatable: true
+  - name: dispersion-correction
+    required: false
+    description: The additive correction for van der Waals dispersion applied to the functional.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      terms: [D2, D3, D3(BJ), D4, TS, MBD]
+      note: >-
+        "D2", "D3", "D4" – Grimme's corrections of those generations. "D3(BJ)" – D3 with Becke–Johnson
+        damping. "TS" – Tkatchenko–Scheffler. "MBD" – Many-body dispersion.
+    repeatable: false
+    notes:
+    - >-
+      Note: Give it when `calculation-physics` lists Van der Waals and the dispersion is added to the
+      functional. A functional that includes dispersion itself (e.g. vdW-DF, rVV10) is named in
+      `xc-functional › name`.
   - name: k-point-mesh
     required: false
     description: >-
@@ -600,6 +659,12 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
+    notes:
+    - >-
+      Note: The mesh samples the Brillouin zone of the simulation cell (minimal `conditions › cell`),
+      periodic in the directions given by `cell-periodicity`. When the mesh differs between the
+      configurations of a computation, e.g. one chosen from a k-point spacing, omit `number-of-points` and
+      say in `comment` how the mesh was chosen.
     subproperties:
     - name: type
       required: true
@@ -637,7 +702,19 @@ properties:
           directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice
           vector.
       repeatable: false
-    - name: smearing-type
+  - name: smearing
+    required: false
+    description: >-
+      The method of assigning fractional occupations to electronic states near the Fermi level, and its
+      parameters.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    subproperties:
+    - name: type
       required: false
       description: >-
         The choice of method for assigning fractional occupancies of electronic states and/or facilitating
@@ -650,7 +727,7 @@ properties:
         terms: [None, None - tetrahedron, None - Blöchl-corrected tetrahedron, Gaussian, Fermi-Dirac,
           Methfessel-Paxton, Marzari-Vanderbilt]
       repeatable: false
-    - name: smearing-width
+    - name: width
       required: false
       description: >-
         A parameter that controls the broadening of the electron energy levels near the Fermi level.
@@ -660,6 +737,11 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
+      notes:
+      - >-
+        Note: Give the width as an energy; for Fermi-Dirac smearing it is k<sub>B</sub>T, where T is the
+        electronic temperature. It is not a temperature imposed on the simulated system, which is given in
+        `conditions`.
       subproperties:
       - name: value
         required: true
@@ -680,7 +762,7 @@ properties:
         recommended-unit: null
         values: null
         repeatable: false
-    - name: smearing-parameter
+    - name: parameter
       required: false
       description: >-
         A fixed variable associated with the specified smearing method (e.g. the order of the
@@ -837,6 +919,7 @@ properties:
       Note: The energy is the Helmholtz free energy F = E − TS, including the entropy S of the smeared
       electrons at the smearing temperature T, when occupations are smeared (e.g. a metal), and the total
       energy E otherwise (e.g. an insulator). It is not the energy extrapolated to zero smearing.
+    - "Note: Give it when the computation's task is Optimization."
     subproperties:
     - name: value
       required: true
@@ -866,6 +949,8 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
+    notes:
+    - "Note: Give it when the computation's task is Optimization."
     subproperties:
     - name: value
       required: true
@@ -874,6 +959,39 @@ properties:
       extent: []
       kind: Force
       recommended-unit: eV/angstrom
+      values:
+        minimum: 0
+      repeatable: false
+    - name: unit
+      required: true
+      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+  - name: relaxation-tolerance-stress
+    required: false
+    description: >-
+      Maximum stress convergence criterion for cell relaxation, relative to the stress imposed in
+      `conditions`.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    notes:
+    - "Note: Give it when the computation's task is Optimization."
+    subproperties:
+    - name: value
+      required: true
+      description: The value of the property, in the unit given by `unit`.
+      type: float
+      extent: []
+      kind: Pressure
+      recommended-unit: GPa
       values:
         minimum: 0
       repeatable: false
