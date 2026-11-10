@@ -74,9 +74,9 @@ Specifies whether the bonds between particles are immutable or can be broken.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Reactive" – Bonds formed or broken on-the-fly based on the particle environment "Bonded fixed" – Bonds defined *a priori *and cannot be broken during the simulation. "Bonded mutable" – Bonds defined *a priori *but can be broken and/or formed during the simulation. Other user-specified value if none of the above apply.</span>
+Recommended: `Reactive`, `Bonded fixed`, `Bonded mutable`. Other values are allowed. "Reactive" – A model without a predetermined bonding topology in which bonds are formed or broken on-the-fly based on the particle environment. "Bonded fixed" – Bonds defined <i>a priori</i> and cannot be broken during a simulation. "Bonded mutable" – Bonds defined <i>a priori</i> but can be broken and/or formed during a simulation.
 
 </details>
 

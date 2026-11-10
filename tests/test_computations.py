@@ -270,3 +270,21 @@ def test_pim_particle_style_names_each_kind_of_particle():
             'particles, e.g. in the electron force field.') in note
     assert 'Give one entry for each kind of particle the model has' in note
     assert not [k for k in t if k.startswith('legacy_')]
+
+
+BONDING_TYPE_NOTE = ('"Reactive" – A model without a predetermined bonding topology in which bonds are formed or '
+                     'broken on-the-fly based on the particle environment. "Bonded fixed" – Bonds defined '
+                     '<i>a priori</i> and cannot be broken during a simulation. "Bonded mutable" – Bonds defined '
+                     '<i>a priori</i> but can be broken and/or formed during a simulation.')
+
+
+def test_pim_bonding_type_says_whether_the_topology_is_given():
+    """Reactive covers every model with no predetermined bonding topology, so a pair potential, EAM or a
+    machine-learned potential is Reactive, as the example's Finnis-Sinclair model is."""
+    t = sub(section('pim')['properties'][0], 'bonding-type')
+    assert (t['required'], t['repeatable'], t['type'], t['extent'], t['kind'], t['recommended-unit']) == (
+        True, False, 'string', [], 'inapplicable', None)
+    assert t['description'] == 'Specifies whether the bonds between particles are immutable or can be broken.'
+    assert t['values']['terms'] == ['Reactive', 'Bonded fixed', 'Bonded mutable']
+    assert ' '.join(t['values']['note'].split()) == BONDING_TYPE_NOTE
+    assert not [k for k in t if k.startswith('legacy_')]

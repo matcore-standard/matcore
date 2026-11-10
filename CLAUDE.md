@@ -814,6 +814,10 @@ record or marked PROPOSED, NOT DECIDED.
    seven plus Nucleus (0046, settled 2026-11-10), definitions and "one entry for each kind of
    particle" in the note; description "The nature of the discrete entities whose interactions the
    model describes."; legacy_* deleted; examples/pim.json writes Atom.
+   [in progress, branch pim-bonding-type] pim bonding-type: string, open terms Reactive, Bonded
+   fixed, Bonded mutable; Reactive defined as a model without a predetermined bonding topology
+   (decided in review 2026-11-10), so pair, EAM and ML potentials are Reactive; "during a
+   simulation"; *a priori* italics restored; legacy_* deleted.
    [todo] pim in file order: settings › theory-level (done, PR #92), model-type (done, PR #93), particle-style (done, PR #94), bonding-type,
    charge-interactions, magnetic-interactions (computation needs no fill).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
