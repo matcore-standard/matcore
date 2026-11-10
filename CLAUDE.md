@@ -288,7 +288,14 @@ record or marked PROPOSED, NOT DECIDED.
      and dft's properties sit in `settings` blocks naming their computations (0046; breaks 0.6.0
      instances); a new section 2.3 Particle Interaction Model (pim) holds md's model properties, md
      keeps the dynamics in `settings`, and mbpt, ml, pf and derived become 2.5–2.8 (0046; breaks
-     0.6.0 md instances).
+     0.6.0 md instances); a pseudopotential or PAW dataset names its species (required) and a
+     basis set may (0047; breaks 0.6.0 dft instances); relaxation-tolerance-stress is added and the
+     tolerances apply to task Optimization (0048); dispersion-correction is added and
+     xc-functional › name gives the functional alone (0051); the smearing width is noted as not an
+     imposed temperature (0052); smearing moves out of k-point-mesh into `smearing` (0053; breaks
+     0.6.0 dft instances); the dft introduction is updated (0054); lapw-basis-cutoff is added (0057);
+     the LibXC version is a software dependency (0058); k-point-mesh names the cell it samples
+     (0059).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -707,11 +714,11 @@ record or marked PROPOSED, NOT DECIDED.
    number, a series of runs as one computation or several, a model's citation, QM/MM regions, an
    Electronic method with a learned ingredient, eFF's nuclei, KIM IDs in Annex I, whether a DFT
    relaxation is DFT/Optimization or MS + DFT, md's title).
-   [in progress, branch dft-rulings, committed; awaiting push and PR] species of a pseudopotential, PAW dataset or basis set by 0047 (A2 of the analysis,
+   [done, PR #85 merged 2026-11-10] species of a pseudopotential, PAW dataset or basis set by 0047 (A2 of the analysis,
    ruling 2026-11-09): pseudopotential-or-paw gains required `species` after name;
    localized-orbital-basis-set gains optional repeatable `species` after type (omitted when one basis
    set serves every species); examples/dft.json gives Si.
-   [in progress, branch dft-rulings, committed; awaiting push and PR] relaxation stress tolerance by 0048 (A4 remainder, ruling 2026-11-09): dft gains
+   [done, PR #85 merged 2026-11-10] relaxation stress tolerance by 0048 (A4 remainder, ruling 2026-11-09): dft gains
    relaxation-tolerance-stress (value + unit, Pressure, GPa, minimum 0) after the force tolerance;
    all three tolerances note "Give it when the computation's task is Optimization."
    [todo] net charge by 0049 (B1, ruling 2026-11-09): Kind ElectricCharge with units e and C, one
@@ -723,24 +730,24 @@ record or marked PROPOSED, NOT DECIDED.
    magnetic-order (open terms Nonmagnetic, Ferromagnetic, Antiferromagnetic, Ferrimagnetic,
    Paramagnetic, Noncollinear) after phase. PROPOSED, NOT DECIDED: a condition for a fixed total
    magnetization or spin multiplicity.
-   [in progress, branch dft-rulings, committed; awaiting push and PR] dispersion correction by 0051 (B4, ruling 2026-11-09): dft dispersion-correction (open
+   [done, PR #85 merged 2026-11-10] dispersion correction by 0051 (B4, ruling 2026-11-09): dft dispersion-correction (open
    terms D2, D3, D3(BJ), D4, TS, MBD) after calculation-physics; xc-functional › name names the
    functional alone, its note saying so.
-   [in progress, branch dft-rulings, committed; awaiting push and PR] smearing-width note by 0052 (B5, ruling 2026-11-09): the width is an energy, k_B T for
+   [done, PR #85 merged 2026-11-10] smearing-width note by 0052 (B5, ruling 2026-11-09): the width is an energy, k_B T for
    Fermi-Dirac, and not a temperature imposed in `conditions`.
-   [in progress, branch dft-rulings, committed; awaiting push and PR] smearing container by 0053 (C5, ruling 2026-11-09): dft settings gains `smearing` after
+   [done, PR #85 merged 2026-11-10] smearing container by 0053 (C5, ruling 2026-11-09): dft settings gains `smearing` after
    k-point-mesh holding type, width and parameter (were k-point-mesh › smearing-type, smearing-width,
    smearing-parameter); examples/dft.json moves its width; references (e.g. the generic-parameter
    list above) updated in the same PR.
-   [in progress, branch dft-rulings, committed; awaiting push and PR] dft introduction by 0054 (C1, ruling 2026-11-09): the 0018 names, and a sentence that
+   [done, PR #85 merged 2026-11-10] dft introduction by 0054 (C1, ruling 2026-11-09): the 0018 names, and a sentence that
    the properties are given in settings blocks naming DFT computations (pim and md get the
    sentence in their own PRs).
-   [in progress, branch dft-rulings, committed; awaiting push and PR] LAPW basis cutoff by 0057 (C6, ruling 2026-11-09): wavefunction-representation gains
+   [done, PR #85 merged 2026-11-10] LAPW basis cutoff by 0057 (C6, ruling 2026-11-09): wavefunction-representation gains
    lapw-basis-cutoff (dimensionless RKmax, minimum 0) after kinetic-energy-cutoff, whose description
    narrows to plane waves and LAPW given as an energy.
-   [in progress, branch dft-rulings, committed; awaiting push and PR] LibXC version by 0058 (C7, ruling 2026-11-09): normalization › source notes that the
+   [done, PR #85 merged 2026-11-10] LibXC version by 0058 (C7, ruling 2026-11-09): normalization › source notes that the
    library's version is a software dependency.
-   [in progress, branch dft-rulings, committed; awaiting push and PR] k-point mesh note by 0059 (C8, ruling 2026-11-09): the mesh samples the cell of minimal
+   [done, PR #85 merged 2026-11-10] k-point mesh note by 0059 (C8, ruling 2026-11-09): the mesh samples the cell of minimal
    conditions › cell; a mesh that varies between configurations omits number-of-points and is
    explained in comment. All findings of the 2026-11-08 analysis are now ruled on (0046–0059;
    B3 and C4 declined); rulings 0047–0059 committed on main (34b7740, pushed). 0055 and 0056
