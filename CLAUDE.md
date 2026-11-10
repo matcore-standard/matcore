@@ -297,7 +297,8 @@ record or marked PROPOSED, NOT DECIDED.
      the LibXC version is a software dependency (0058); k-point-mesh names the cell it samples
      (0059); the Kind ElectricCharge and the units e and C are added, and the
      condition net-charge (0049); the Kind MagneticMoment and the units mu_B
-     and J/T are added (0050).
+     and J/T are added, with dft initial-magnetic-moment and minimal material-component ›
+     magnetic-order (0050).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -723,14 +724,14 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #85 merged 2026-11-10] relaxation stress tolerance by 0048 (A4 remainder, ruling 2026-11-09): dft gains
    relaxation-tolerance-stress (value + unit, Pressure, GPa, minimum 0) after the force tolerance;
    all three tolerances note "Give it when the computation's task is Optimization."
-   [todo] net charge by 0049 (B1, ruling 2026-11-09): Kind ElectricCharge with units e and C, one
+   [done, PRs #86, #87, #90] net charge by 0049 (B1, ruling 2026-11-09): Kind ElectricCharge with units e and C, one
    PR each with every field traced (the first adds the Kind); then minimal conditions › net-charge
    (value float, ElectricCharge, recommended e; unit; qualifier) after number-of-particles.
    [done, PR #86 merged 2026-11-10] unit e with the Kind ElectricCharge (QUDT ElectricCharge,
    A0E1L0I0M0H0T1D0; unit QUDT E, GNU Units e, factor 1.602176634e-19 exact).
    [done, PR #87 merged 2026-11-10] unit C (QUDT C, GNU Units C, factor 1, exact).
    [done, PR #90 merged 2026-11-10] the condition net-charge after number-of-particles.
-   [todo] magnetic moments and order by 0050 (B2, ruling 2026-11-09): Kind MagneticMoment with units
+   [done, PRs #88, #89, #91] magnetic moments and order by 0050 (B2, ruling 2026-11-09): Kind MagneticMoment with units
    mu_B and J/T, one PR each with every field traced; then dft initial-magnetic-moment (species*,
    value* extent any in mu_B, unit*) after calculation-physics, and minimal material-component ›
    magnetic-order (open terms Nonmagnetic, Ferromagnetic, Antiferromagnetic, Ferrimagnetic,
@@ -740,7 +741,7 @@ record or marked PROPOSED, NOT DECIDED.
    A0E1L2I0M0H0T0D0; no QUDT unit, so Note 7 lists it; GNU Units mu_B; factor 9.2740100657e-24,
    CODATA 2022).
    [done, PR #89 merged 2026-11-10] unit J/T (QUDT J-PER-T, GNU Units J/T, factor 1, exact).
-   [in progress, branch magnetic-properties, committed; awaiting push and PR] dft initial-magnetic-moment after calculation-physics
+   [done, PR #91 merged 2026-11-10] dft initial-magnetic-moment after calculation-physics
    (before dispersion-correction) and minimal material-component › magnetic-order after phase.
    [done, PR #85 merged 2026-11-10] dispersion correction by 0051 (B4, ruling 2026-11-09): dft dispersion-correction (open
    terms D2, D3, D3(BJ), D4, TS, MBD) after calculation-physics; xc-functional › name names the
