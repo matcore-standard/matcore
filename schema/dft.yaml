@@ -69,9 +69,9 @@ properties:
           Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical
           choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS,
           SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA,
-          CIDER, etc. Others: BEEF, VdW-corrections (added on top of XC, e.g., D2, D3, D4), etc. A
-          decomposition into the components of a community library such as LibXC is given in
-          normalization.
+          CIDER, etc. Others: BEEF, etc. A decomposition into the components of a community library such
+          as LibXC is given in normalization. Give the functional alone, without a dispersion correction
+          (e.g. PBE, not PBE-D3); the correction is given in dispersion-correction.
       repeatable: false
     - name: description
       required: false
@@ -614,6 +614,24 @@ properties:
         separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries,
         "Noncollinear spin polarization" and "Spin-orbit coupling".
     repeatable: true
+  - name: dispersion-correction
+    required: false
+    description: The additive correction for van der Waals dispersion applied to the functional.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      terms: [D2, D3, D3(BJ), D4, TS, MBD]
+      note: >-
+        "D2", "D3", "D4" – Grimme's corrections of those generations. "D3(BJ)" – D3 with Becke–Johnson
+        damping. "TS" – Tkatchenko–Scheffler. "MBD" – Many-body dispersion.
+    repeatable: false
+    notes:
+    - >-
+      Note: Give it when `calculation-physics` lists Van der Waals and the dispersion is added to the
+      functional. A functional that includes dispersion itself (e.g. vdW-DF, rVV10) is named in
+      `xc-functional › name`.
   - name: k-point-mesh
     required: false
     description: >-

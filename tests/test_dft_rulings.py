@@ -57,3 +57,20 @@ def test_relaxation_has_a_stress_tolerance_and_the_tolerances_serve_optimization
         'float', [], 'Pressure', 'GPa', {'minimum': 0})
     for name in ('relaxation-tolerance-energy', 'relaxation-tolerance-forces', 'relaxation-tolerance-stress'):
         assert sub(s, name)['notes'][-1] == "Note: Give it when the computation's task is Optimization.", name
+
+
+def test_dispersion_correction_is_named_apart_from_the_functional():
+    """Corrections such as D2, D3 and D4 change results with the same functional, so the correction has its own
+    property and the functional's name gives the functional alone (0051)."""
+    s = settings()
+    names = [p['name'] for p in s['subproperties']]
+    assert names.index('dispersion-correction') == names.index('calculation-physics') + 1
+    d = sub(s, 'dispersion-correction')
+    assert shape(d) == (False, False, 'string', [], 'inapplicable', None)
+    assert d['values']['terms'] == ['D2', 'D3', 'D3(BJ)', 'D4', 'TS', 'MBD']
+    assert all(f'"{t}"' in d['values']['note'] for t in d['values']['terms'])
+    assert d['notes'][0].startswith('Note: Give it when `calculation-physics` lists Van der Waals')
+    name_note = ' '.join(sub(s, 'xc-functional', 'name')['values']['note'].split())
+    assert 'VdW-corrections' not in name_note
+    assert name_note.endswith('Give the functional alone, without a dispersion correction (e.g. PBE, not '
+                              'PBE-D3); the correction is given in dispersion-correction.')

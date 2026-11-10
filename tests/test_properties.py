@@ -575,7 +575,7 @@ def test_xc_functional_name_lists_the_named_functionals_and_description_is_prose
     assert 'examples' not in name_values  # the note's list names PBE and HSE06; a second "Examples:" repeats it
     name_note = ' '.join(name_values['note'].split())
     assert name_note.startswith('Examples of possible content by type: LDA: Common parameterizations: VWN')
-    assert 'GGA: Typical choices are PW91, PBE' in name_note and name_note.endswith('is given in normalization.')
+    assert 'GGA: Typical choices are PW91, PBE' in name_note and 'is given in normalization.' in name_note
     assert sub(xc, 'description')['values']['note'] == (
         'Free text on what `type` and `name` do not say, e.g. a modification of the functional or the reason '
         'for choosing it.')
