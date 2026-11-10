@@ -298,7 +298,8 @@ record or marked PROPOSED, NOT DECIDED.
      (0059); the Kind ElectricCharge and the units e and C are added, and the
      condition net-charge (0049); the Kind MagneticMoment and the units mu_B
      and J/T are added, with dft initial-magnetic-moment and minimal material-component ›
-     magnetic-order (0050).
+     magnetic-order (0050); pim theory-level is filled, terms Physics-based and
+     Machine-learned (0046; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -801,10 +802,10 @@ record or marked PROPOSED, NOT DECIDED.
    (Superseded: settled 2026-11-10, pim first);
    md's introduction says "classical molecular dynamics" though md now also serves AIMD and MS, and
    §1.2's list says "MD: Classical molecular dynamics".
-   [in progress, branch pim-theory-level, committed; awaiting push and PR] pim theory-level: string, open terms Physics-based,
+   [done, PR #92 merged 2026-11-10] pim theory-level: string, open terms Physics-based,
    Machine-learned (0046 item 8), defined in the note; description "How the functional form of the
    model was obtained."; legacy_* deleted; examples/pim.json writes Physics-based.
-   [todo] pim in file order: settings › theory-level (above), model-type, particle-style, bonding-type,
+   [todo] pim in file order: settings › theory-level (done, PR #92), model-type, particle-style, bonding-type,
    charge-interactions, magnetic-interactions (computation needs no fill).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
