@@ -2069,6 +2069,33 @@
 </table>
 <p>Recommended: <code>Amorphous</code>, <code>Single crystal</code>, <code>Polycrystal</code>, <code>Quasicrystal</code>, <code>Liquid</code>, <code>Gas</code>, <code>Plasma</code>. Other values are allowed. One of: "Amorphous" – A solid material without crystalline order. "Single crystal" – A solid material characterized by a repeating pattern of atoms that extends throughout it without interruption. "Polycrystal" – A solid material made of more than one crystalline grain of differing orientation. "Quasicrystal" – A solid material with long-range order but without translational periodicity, e.g. one whose diffraction pattern shows five-fold rotational symmetry. "Liquid" – A fluid structure (e.g. the molten state of a material). "Gas" – A state where molecules or atoms are far apart and only interact during collisions. "Plasma" – A gas comprised of ions and electrons. Omit for a component whose form is Molecule.</p>
 </details>
+<details class="note mc-property" id="minimal.structure.material-component.magnetic-order">
+<summary><span class="mc-name">magnetic-order</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The arrangement of the magnetic moments in the material component as modeled.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Nonmagnetic</code>, <code>Ferromagnetic</code>, <code>Antiferromagnetic</code>, <code>Ferrimagnetic</code>, <code>Paramagnetic</code>, <code>Noncollinear</code>. Other values are allowed. "Nonmagnetic" – No magnetic moments. "Ferromagnetic" – Moments aligned parallel. "Antiferromagnetic" – Equal moments aligned antiparallel, with no net moment. "Ferrimagnetic" – Unequal moments aligned antiparallel, with a net moment. "Paramagnetic" – Moments present but disordered, e.g. modeled as disordered local moments. "Noncollinear" – Moments not along one axis, e.g. a spin spiral.</p>
+</details>
 <details class="note mc-property" id="minimal.structure.material-component.description">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>An explanation of the nature of the material, e.g. a crystal structure designation, a chemical formula for a molecule, etc.</p>
