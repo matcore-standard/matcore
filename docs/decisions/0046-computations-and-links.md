@@ -69,7 +69,7 @@ Worked case: AIMD of liquid Si is a computation `aimd` (Atomistic, MD, Dynamics;
   - a citation for a model that comes from a paper (md `source › reference`), which software has no field for;
   - for QM/MM, which region each interaction model covers;
   - a minimal term for an Electronic method with a learned ingredient (e.g. a learned Hamiltonian);
-  - a particle-style term for eFF's nuclei (e.g. Nucleus), since "Atom" means an individual atom;
+  - a particle-style term for eFF's nuclei (e.g. Nucleus), since "Atom" means an individual atom. (Settled 2026-11-10: pim `particle-style` gains the open term "Nucleus" – A nucleus or an ion core as a point charge, with its electrons represented by other particles, e.g. in the electron force field; the note asks for one entry for each kind of particle the model has.)
   - KIM IDs as an Annex I scheme (already raised by 0043);
   - whether a DFT relaxation is one computation (DFT, task Optimization), as now, or an MS computation with the DFT computation as its Interaction model, as for AIMD; the second moves dft's relaxation tolerances to md (finding A4 of the minimal–dft analysis). (Settled 2026-11-09: one computation, method DFT and task Optimization; dft keeps its relaxation tolerances. MS is for relaxations driven with a particle interaction model.)
   - in which order status step 5 takes up pim's and md's properties. (Settled 2026-11-10: pim first, in file order, since md's computations name a PIM computation; then md.)

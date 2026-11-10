@@ -719,7 +719,8 @@ record or marked PROPOSED, NOT DECIDED.
    becomes an input in the mbpt PR. 0046's Consequences list its PROPOSED, NOT DECIDED points (pim's
    number, a series of runs as one computation or several, a model's citation, QM/MM regions, an
    Electronic method with a learned ingredient, eFF's nuclei, KIM IDs in Annex I, whether a DFT
-   relaxation is DFT/Optimization or MS + DFT, md's title).
+   relaxation is DFT/Optimization or MS + DFT, md's title). (eFF's nuclei settled 2026-11-10: a
+   particle-style term Nucleus, applied in the particle-style PR.)
    [done, PR #85 merged 2026-11-10] species of a pseudopotential, PAW dataset or basis set by 0047 (A2 of the analysis,
    ruling 2026-11-09): pseudopotential-or-paw gains required `species` after name;
    localized-orbital-basis-set gains optional repeatable `species` after type (omitted when one basis
