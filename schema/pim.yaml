@@ -48,13 +48,17 @@ properties:
   - name: model-type
     required: true
     description: The kind of potential used to compute the particle interactions.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      examples: [Lennard-Jones, EAM, MACE]
     repeatable: false
-    legacy_values: A string containing the model type (e.g. Lennard-Jones, EAM, MACE, etc.).
+    notes:
+    - >-
+      Note: Give the functional form. The specific parameterization, e.g. an OpenKIM model, NIST IPR record,
+      or a published potential file, is identified in the computation's software (role Interaction model).
   - name: particle-style
     required: true
     description: The nature of the discrete entities used in the molecular dynamics simulation.
