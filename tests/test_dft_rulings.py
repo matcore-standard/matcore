@@ -97,3 +97,9 @@ def test_smearing_leaves_the_k_point_mesh():
     assert [p['name'] for p in sub(s, 'k-point-mesh')['subproperties']] == ['type', 'number-of-points', 'shift']
     assert [p['name'] for p in sub(s, 'smearing')['subproperties']] == ['type', 'width', 'parameter']
     assert 'smearing-' not in (ROOT / 'schema/dft.yaml').read_text()
+
+
+def test_dft_introduction_uses_current_names():
+    """The introduction names the properties as 0018 renamed them and says how settings blocks work (0054)."""
+    intro = yaml.safe_load(open(ROOT / 'schema/dft.yaml'))['introduction'].strip()
+    assert intro == 'The metadata for density functional theory (DFT) data (MatCore-DFT) is tabulated below. This includes the level of theory (exchange-correlation functional, core-electron treatment and wavefunction representation) and associated parameters. The properties are given in settings blocks, each naming the DFT computations it describes. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)'
