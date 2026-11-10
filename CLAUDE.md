@@ -743,8 +743,12 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] k-point mesh note by 0059 (C8, ruling 2026-11-09): the mesh samples the cell of minimal
    conditions › cell; a mesh that varies between configurations omits number-of-points and is
    explained in comment. All findings of the 2026-11-08 analysis are now ruled on (0046–0059;
-   B3 and C4 declined); rulings 0047–0059 await commit on main, then one implementation PR each
-   (or batched as the human decides).
+   B3 and C4 declined); rulings 0047–0059 committed on main (34b7740, pushed). 0055 and 0056
+   need no PR. Implementation groups proposed: (1) units e (with Kind ElectricCharge), C, mu_B (with
+   Kind MagneticMoment), J/T, one PR each with traced fields; (2) net-charge (0049); (3) the
+   magnetic properties (0050); (4) the dft changes (0047, 0048, 0051–0054, 0057–0059), one PR or
+   several as the human decides. Awaiting the human's choice of which group to start (dft changes
+   first was suggested, as they need no new units).
    PROPOSED, NOT DECIDED (rest of the 2026-11-08 analysis): A2 a required species on
    pseudopotential-or-paw and localized-orbital-basis-set (Superseded: decided by 0047); A3 a thermodynamic-state term for static
    calculations (Superseded by 0046: task Single point, conditions optional); A4 a minimal task
