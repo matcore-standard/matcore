@@ -1117,7 +1117,7 @@
 </details>
 <details class="note mc-property" id="pim.settings.particle-style">
 <summary><span class="mc-name">particle-style<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
-<p>The nature of the discrete entities used in the molecular dynamics simulation.</p>
+<p>The nature of the discrete entities whose interactions the model describes.</p>
 <table>
 <thead>
 <tr>
@@ -1133,14 +1133,14 @@
 <tr>
 <td>yes</td>
 <td>yes</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: String containing one of the following values: "Atom" – Each particle represents an individual atom "Radical" – Each particle represents a free radical "United atom" – Each particle represents a fixed grouping of atoms "Bead" – Each particle represents a user-tuneable group of atoms "Coarse grained" – Each particle represents a higher scale particle obtained by scaling up the atomic representation "Mesoscale" – Granular particles used to simulate microstructure at the mesoscopic scale "Classical electron" – Antisymmetrized wave packet representation of valence electrons Other user-specified value if none of the above apply.</span></p>
+<p>Recommended: <code>Atom</code>, <code>Radical</code>, <code>United atom</code>, <code>Bead</code>, <code>Coarse grained</code>, <code>Mesoscale</code>, <code>Classical electron</code>, <code>Nucleus</code>. Other values are allowed. "Atom" – Each particle represents an individual atom. "Radical" – Each particle represents a free radical. "United atom" – Each particle represents a fixed grouping of atoms. "Bead" – Each particle represents a user-tuneable group of atoms. "Coarse grained" – Each particle represents a higher scale particle obtained by scaling up the atomic representation. "Mesoscale" – Granular particles used to simulate microstructure at the mesoscopic scale. "Classical electron" – Antisymmetrized wave packet representation of valence electrons. "Nucleus" – A nucleus or an ion core as a point charge, with its electrons represented by other particles, e.g. in the electron force field. Give one entry for each kind of particle the model has, e.g. Nucleus and Classical electron for the electron force field.</p>
 </details>
 <details class="note mc-property" id="pim.settings.bonding-type">
 <summary><span class="mc-name">bonding-type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1434,7 +1434,7 @@
 <span class="w">        </span><span class="nt">"theory-level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Physics-based"</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"model-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finnis-Sinclair potential"</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"particle-style"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="s2">"atom"</span>
+<span class="w">          </span><span class="s2">"Atom"</span>
 <span class="w">        </span><span class="p">],</span>
 <span class="w">        </span><span class="nt">"bonding-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reactive"</span>
 <span class="w">      </span><span class="p">}</span>
