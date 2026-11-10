@@ -121,3 +121,9 @@ def test_lapw_basis_cutoff_is_rkmax():
 def test_libxc_version_is_a_software_dependency():
     """The library's release can change a functional, and minimal software's dependency holds versions (0058)."""
     assert sub(settings(), 'xc-functional', 'normalization', 'source')['notes'] == ['Note: Give the version of the library as a `dependency` of the simulation code in minimal `software`.']
+
+
+def test_k_point_mesh_names_its_cell_and_a_varying_mesh():
+    """The reciprocal lattice is that of minimal's cell; a computation of many cells has no single mesh, and
+    the spacing that chose them goes in comment, since k-point-spacing was removed (0004 item 47; 0059)."""
+    assert sub(settings(), 'k-point-mesh')['notes'] == ['Note: The mesh samples the Brillouin zone of the simulation cell (minimal `conditions › cell`), periodic in the directions given by `cell-periodicity`. When the mesh differs between the configurations of a computation, e.g. one chosen from a k-point spacing, omit `number-of-points` and say in `comment` how the mesh was chosen.']

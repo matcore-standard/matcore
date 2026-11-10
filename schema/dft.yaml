@@ -659,6 +659,12 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
+    notes:
+    - >-
+      Note: The mesh samples the Brillouin zone of the simulation cell (minimal `conditions › cell`),
+      periodic in the directions given by `cell-periodicity`. When the mesh differs between the
+      configurations of a computation, e.g. one chosen from a k-point spacing, omit `number-of-points` and
+      say in `comment` how the mesh was chosen.
     subproperties:
     - name: type
       required: true
