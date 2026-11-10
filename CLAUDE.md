@@ -295,7 +295,7 @@ record or marked PROPOSED, NOT DECIDED.
      imposed temperature (0052); smearing moves out of k-point-mesh into `smearing` (0053; breaks
      0.6.0 dft instances); the dft introduction is updated (0054); lapw-basis-cutoff is added (0057);
      the LibXC version is a software dependency (0058); k-point-mesh names the cell it samples
-     (0059); the Kind ElectricCharge and the unit e are added (0049).
+     (0059); the Kind ElectricCharge and the units e and C are added (0049).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -726,7 +726,7 @@ record or marked PROPOSED, NOT DECIDED.
    (value float, ElectricCharge, recommended e; unit; qualifier) after number-of-particles.
    [done, PR #86 merged 2026-11-10] unit e with the Kind ElectricCharge (QUDT ElectricCharge,
    A0E1L0I0M0H0T1D0; unit QUDT E, GNU Units e, factor 1.602176634e-19 exact).
-   [in progress, branch unit-c, committed; awaiting push and PR] unit C (QUDT C, GNU Units C, factor 1, exact).
+   [done, PR #87 merged 2026-11-10] unit C (QUDT C, GNU Units C, factor 1, exact).
    [todo] magnetic moments and order by 0050 (B2, ruling 2026-11-09): Kind MagneticMoment with units
    mu_B and J/T, one PR each with every field traced; then dft initial-magnetic-moment (species*,
    value* extent any in mu_B, unit*) after calculation-physics, and minimal material-component ›
