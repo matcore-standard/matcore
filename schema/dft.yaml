@@ -703,6 +703,11 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
+      notes:
+      - >-
+        Note: Give the width as an energy; for Fermi-Dirac smearing it is k<sub>B</sub>T, where T is the
+        electronic temperature. It is not a temperature imposed on the simulated system, which is given in
+        `conditions`.
       subproperties:
       - name: value
         required: true

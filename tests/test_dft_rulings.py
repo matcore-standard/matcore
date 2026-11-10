@@ -74,3 +74,15 @@ def test_dispersion_correction_is_named_apart_from_the_functional():
     assert 'VdW-corrections' not in name_note
     assert name_note.endswith('Give the functional alone, without a dispersion correction (e.g. PBE, not '
                               'PBE-D3); the correction is given in dispersion-correction.')
+
+
+WIDTH_NOTE = 'Note: Give the width as an energy; for Fermi-Dirac smearing it is k<sub>B</sub>T, where T is the electronic temperature. It is not a temperature imposed on the simulated system, which is given in `conditions`.'
+
+
+def test_smearing_width_is_not_an_imposed_temperature():
+    """A Fermi-Dirac width is an electronic temperature, which a writer could mistake for a thermostat's
+    temperature in conditions (0052)."""
+    s = settings()
+    width = next(w for c in s['subproperties'] if c['name'] in ('k-point-mesh', 'smearing')
+                 for w in c['subproperties'] if w['name'] in ('smearing-width', 'width'))
+    assert width['notes'] == [WIDTH_NOTE]
