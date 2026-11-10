@@ -805,6 +805,9 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #92 merged 2026-11-10] pim theory-level: string, open terms Physics-based,
    Machine-learned (0046 item 8), defined in the note; description "How the functional form of the
    model was obtained."; legacy_* deleted; examples/pim.json writes Physics-based.
+   [in progress, branch pim-model-type, committed; awaiting push and PR] pim model-type: string with the baseline's examples
+   (Lennard-Jones, EAM, MACE) and a note that the specific parameterization (OpenKIM model, NIST IPR
+   record, published potential file) is the computation's software; legacy_* deleted.
    [todo] pim in file order: settings › theory-level (done, PR #92), model-type, particle-style, bonding-type,
    charge-interactions, magnetic-interactions (computation needs no fill).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no

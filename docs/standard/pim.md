@@ -46,9 +46,11 @@ The kind of potential used to compute the particle interactions.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the model type (e.g. Lennard-Jones, EAM, MACE, etc.).</span>
+Examples: `Lennard-Jones`, `EAM`, `MACE`.
+
+Note: Give the functional form. The specific parameterization, e.g. an OpenKIM model, NIST IPR record, or a published potential file, is identified in the computation's software (role Interaction model).
 
 </details>
 

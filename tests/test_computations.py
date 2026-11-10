@@ -232,3 +232,20 @@ def test_pim_theory_level_is_the_origin_of_the_functional_form():
     assert note.startswith('"Physics-based" – A functional form built from a physical model of the interactions')
     assert 'electron force field' in note and '"Machine-learned" – A machine learning model trained to take' in note
     assert not [k for k in t if k.startswith('legacy_')]
+
+
+MODEL_TYPE_NOTE = ("Note: Give the functional form. The specific parameterization, e.g. an OpenKIM model, NIST IPR "
+                   "record, or a published potential file, is identified in the computation's software (role "
+                   "Interaction model).")
+
+
+def test_pim_model_type_names_the_functional_form():
+    """model-type names the form (EAM, MACE); the specific potential is the PIM computation's software (0046 item
+    6), so writers do not put a potential's name here."""
+    t = sub(section('pim')['properties'][0], 'model-type')
+    assert (t['required'], t['repeatable'], t['type'], t['extent'], t['kind'], t['recommended-unit']) == (
+        True, False, 'string', [], 'inapplicable', None)
+    assert t['description'] == 'The kind of potential used to compute the particle interactions.'
+    assert t['values'] == {'examples': ['Lennard-Jones', 'EAM', 'MACE']}
+    assert t['notes'] == [MODEL_TYPE_NOTE]
+    assert not [k for k in t if k.startswith('legacy_')]
