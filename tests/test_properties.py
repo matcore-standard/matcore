@@ -773,7 +773,8 @@ def test_convergence_energy_is_the_free_energy_when_smeared():
     assert r['notes'] == ['Note: The energy is the Helmholtz free energy F = E − TS, including the entropy S of '
                           'the smeared electrons at the smearing temperature T, when occupations are smeared '
                           '(e.g. a metal), and the total energy E otherwise (e.g. an insulator). It is not the '
-                          'energy extrapolated to zero smearing.']
+                          'energy extrapolated to zero smearing.',
+                          "Note: Give it when the computation's task is Optimization."]
     criterion = sub(sub(dft('self-consistent-field-convergence'), 'tolerance'), 'criterion')
     assert ('"Energy" – The change in the energy between successive iterations, defined as for '
             '`relaxation-tolerance-energy`.') in ' '.join(criterion['values']['note'].split())

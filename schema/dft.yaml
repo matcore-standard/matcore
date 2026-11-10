@@ -862,6 +862,7 @@ properties:
       Note: The energy is the Helmholtz free energy F = E − TS, including the entropy S of the smeared
       electrons at the smearing temperature T, when occupations are smeared (e.g. a metal), and the total
       energy E otherwise (e.g. an insulator). It is not the energy extrapolated to zero smearing.
+    - "Note: Give it when the computation's task is Optimization."
     subproperties:
     - name: value
       required: true
@@ -891,6 +892,8 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
+    notes:
+    - "Note: Give it when the computation's task is Optimization."
     subproperties:
     - name: value
       required: true
@@ -899,6 +902,39 @@ properties:
       extent: []
       kind: Force
       recommended-unit: eV/angstrom
+      values:
+        minimum: 0
+      repeatable: false
+    - name: unit
+      required: true
+      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+  - name: relaxation-tolerance-stress
+    required: false
+    description: >-
+      Maximum stress convergence criterion for cell relaxation, relative to the stress imposed in
+      `conditions`.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    notes:
+    - "Note: Give it when the computation's task is Optimization."
+    subproperties:
+    - name: value
+      required: true
+      description: The value of the property, in the unit given by `unit`.
+      type: float
+      extent: []
+      kind: Pressure
+      recommended-unit: GPa
       values:
         minimum: 0
       repeatable: false

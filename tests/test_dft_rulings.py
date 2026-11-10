@@ -40,3 +40,20 @@ def test_pseudopotential_and_basis_set_name_their_species():
     assert shape(basis) == (False, True, 'string', [], 'inapplicable', None)
     assert basis['notes'] == ['Note: Give the species this basis set is used for. Omit it when one basis set is '
                               'used for every species.']
+
+
+def test_relaxation_has_a_stress_tolerance_and_the_tolerances_serve_optimization():
+    """A cell relaxation stops when the stress is near its target, the stress imposed in conditions; the
+    three tolerances mean something only for a computation whose task is Optimization (0048)."""
+    s = settings()
+    names = [p['name'] for p in s['subproperties']]
+    assert names.index('relaxation-tolerance-stress') == names.index('relaxation-tolerance-forces') + 1
+    stress = sub(s, 'relaxation-tolerance-stress')
+    assert (stress['required'], stress['repeatable']) == (False, False)
+    assert stress['description'] == ('Maximum stress convergence criterion for cell relaxation, relative to the '
+                                     'stress imposed in `conditions`.')
+    v = sub(stress, 'value')
+    assert (v['type'], v['extent'], v['kind'], v['recommended-unit'], v['values']) == (
+        'float', [], 'Pressure', 'GPa', {'minimum': 0})
+    for name in ('relaxation-tolerance-energy', 'relaxation-tolerance-forces', 'relaxation-tolerance-stress'):
+        assert sub(s, name)['notes'][-1] == "Note: Give it when the computation's task is Optimization.", name
