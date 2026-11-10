@@ -724,6 +724,8 @@ record or marked PROPOSED, NOT DECIDED.
    [todo] net charge by 0049 (B1, ruling 2026-11-09): Kind ElectricCharge with units e and C, one
    PR each with every field traced (the first adds the Kind); then minimal conditions › net-charge
    (value float, ElectricCharge, recommended e; unit; qualifier) after number-of-particles.
+   [in progress, branch unit-e, committed; awaiting push and PR] unit e with the Kind ElectricCharge (QUDT ElectricCharge,
+   A0E1L0I0M0H0T1D0; unit QUDT E, GNU Units e, factor 1.602176634e-19 exact).
    [todo] magnetic moments and order by 0050 (B2, ruling 2026-11-09): Kind MagneticMoment with units
    mu_B and J/T, one PR each with every field traced; then dft initial-magnetic-moment (species*,
    value* extent any in mu_B, unit*) after calculation-physics, and minimal material-component ›
