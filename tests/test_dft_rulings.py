@@ -64,7 +64,7 @@ def test_dispersion_correction_is_named_apart_from_the_functional():
     property and the functional's name gives the functional alone (0051)."""
     s = settings()
     names = [p['name'] for p in s['subproperties']]
-    assert names.index('dispersion-correction') == names.index('calculation-physics') + 1
+    assert names.index('calculation-physics') < names.index('dispersion-correction') < names.index('k-point-mesh')
     d = sub(s, 'dispersion-correction')
     assert shape(d) == (False, False, 'string', [], 'inapplicable', None)
     assert d['values']['terms'] == ['D2', 'D3', 'D3(BJ)', 'D4', 'TS', 'MBD']
@@ -127,3 +127,20 @@ def test_k_point_mesh_names_its_cell_and_a_varying_mesh():
     """The reciprocal lattice is that of minimal's cell; a computation of many cells has no single mesh, and
     the spacing that chose them goes in comment, since k-point-spacing was removed (0004 item 47; 0059)."""
     assert sub(settings(), 'k-point-mesh')['notes'] == ['Note: The mesh samples the Brillouin zone of the simulation cell (minimal `conditions › cell`), periodic in the directions given by `cell-periodicity`. When the mesh differs between the configurations of a computation, e.g. one chosen from a k-point spacing, omit `number-of-points` and say in `comment` how the mesh was chosen.']
+
+
+def test_initial_magnetic_moment_is_given_per_species():
+    """The starting moments decide which magnetic state the self-consistent cycle reaches; MatCore has no list of
+    atoms, so a moment is given per species, a signed number or a vector as the spin treatment requires (0050)."""
+    s = settings()
+    names = [p['name'] for p in s['subproperties']]
+    assert names.index('initial-magnetic-moment') == names.index('calculation-physics') + 1
+    m = sub(s, 'initial-magnetic-moment')
+    assert (m['required'], m['repeatable'], m['type']) == (False, True, None)
+    assert m['description'] == ('The magnetic moment per atom of a species at the start of the self-consistent '
+                                'cycle.')
+    assert [p['name'] for p in m['subproperties']] == ['species', 'value', 'unit']
+    v = sub(m, 'value')
+    assert (v['type'], v['extent'], v['kind'], v['recommended-unit']) == ('float', 'any', 'MagneticMoment', 'mu_B')
+    assert 'noncollinear' in v['notes'][0]
+    assert shape(sub(m, 'species')) == (True, False, 'string', [], 'inapplicable', None)

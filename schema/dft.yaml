@@ -630,6 +630,49 @@ properties:
         separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries,
         "Noncollinear spin polarization" and "Spin-orbit coupling".
     repeatable: true
+  - name: initial-magnetic-moment
+    required: false
+    description: The magnetic moment per atom of a species at the start of the self-consistent cycle.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    subproperties:
+    - name: species
+      required: true
+      description: >-
+        The element or user-defined species whose atoms start with this moment, as written in a material
+        component's formula.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+    - name: value
+      required: true
+      description: The value of the property, in the unit given by `unit`.
+      type: float
+      extent: any
+      kind: MagneticMoment
+      recommended-unit: mu_B
+      values: null
+      repeatable: false
+      notes:
+      - >-
+        Note: A signed number for collinear spin polarization; a vector of three Cartesian components for
+        noncollinear spin polarization, as `calculation-physics` states.
+    - name: unit
+      required: true
+      description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
   - name: dispersion-correction
     required: false
     description: The additive correction for van der Waals dispersion applied to the functional.

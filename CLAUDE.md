@@ -740,6 +740,8 @@ record or marked PROPOSED, NOT DECIDED.
    A0E1L2I0M0H0T0D0; no QUDT unit, so Note 7 lists it; GNU Units mu_B; factor 9.2740100657e-24,
    CODATA 2022).
    [done, PR #89 merged 2026-11-10] unit J/T (QUDT J-PER-T, GNU Units J/T, factor 1, exact).
+   [in progress, branch magnetic-properties, committed; awaiting push and PR] dft initial-magnetic-moment after calculation-physics
+   (before dispersion-correction) and minimal material-component › magnetic-order after phase.
    [done, PR #85 merged 2026-11-10] dispersion correction by 0051 (B4, ruling 2026-11-09): dft dispersion-correction (open
    terms D2, D3, D3(BJ), D4, TS, MBD) after calculation-physics; xc-functional › name names the
    functional alone, its note saying so.

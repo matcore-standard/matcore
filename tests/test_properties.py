@@ -106,6 +106,7 @@ FORMS = ('2D material', 'Bulk', 'Chain', 'Cluster', 'Molecule', 'Monolayer', 'Na
          'Nanotube', 'Nanowire', 'Slab', 'Thin film')
 ROLES = ('Adsorbate', 'Core', 'Film', 'Inclusion', 'Layer', 'Matrix', 'Shell', 'Solute', 'Solvent', 'Substrate')
 PHASES = ('Amorphous', 'Single crystal', 'Polycrystal', 'Quasicrystal', 'Liquid', 'Gas', 'Plasma')
+MAGNETIC_ORDERS = ('Nonmagnetic', 'Ferromagnetic', 'Antiferromagnetic', 'Ferrimagnetic', 'Paramagnetic', 'Noncollinear')
 
 
 def material_component():
@@ -136,7 +137,7 @@ def test_structure_is_made_of_components_with_a_form_and_a_role():
         *COMPOSITION, ('form', True, False, 'string', FORMS, ()), ('role', False, False, 'string', ROLES, ()),
         ('fraction', False, True, None, (), (
             ('value', True, False, 'float', (), ()), ('qualifier', False, False, 'string', QUALIFIERS, ()))),
-        ('phase', False, True, 'string', PHASES, ()),
+        ('phase', False, True, 'string', PHASES, ()), ('magnetic-order', False, False, 'string', MAGNETIC_ORDERS, ()),
         ('description', False, False, 'string', (), ()), ('microstructure', False, False, 'string', (), ())))
     assert tree(p) == ('structure', True, True, None, (), (
         ('label', True, False, 'string', (), ()), ('description', False, False, 'string', (), ()), component))
@@ -1174,3 +1175,12 @@ def test_net_charge_follows_the_number_of_particles():
     c = sub(sub(minimal('computation'), 'conditions'), 'net-charge')
     assert (c['required'], c['repeatable']) == (False, True)
     assert [s['name'] for s in c['subproperties']] == ['value', 'unit', 'qualifier']
+
+
+def test_magnetic_order_describes_the_material_as_modeled():
+    """The same material can be modeled ferromagnetic or antiferromagnetic by any method, and opposite moments on
+    one species cannot be written per species, so the order is part of the material component (0050 item 3)."""
+    m = sub(material_component(), 'magnetic-order')
+    assert (m['type'], m['extent'], m['kind'], m['recommended-unit']) == ('string', [], 'inapplicable', None)
+    assert m['description'] == 'The arrangement of the magnetic moments in the material component as modeled.'
+    assert all(f'"{t}" –' in m['values']['note'] for t in MAGNETIC_ORDERS)
