@@ -72,4 +72,5 @@ Worked case: AIMD of liquid Si is a computation `aimd` (Atomistic, MD, Dynamics;
   - a particle-style term for eFF's nuclei (e.g. Nucleus), since "Atom" means an individual atom;
   - KIM IDs as an Annex I scheme (already raised by 0043);
   - whether a DFT relaxation is one computation (DFT, task Optimization), as now, or an MS computation with the DFT computation as its Interaction model, as for AIMD; the second moves dft's relaxation tolerances to md (finding A4 of the minimal–dft analysis). (Settled 2026-11-09: one computation, method DFT and task Optimization; dft keeps its relaxation tolerances. MS is for relaxations driven with a particle interaction model.)
+  - in which order status step 5 takes up pim's and md's properties. (Settled 2026-11-10: pim first, in file order, since md's computations name a PIM computation; then md.)
   - whether md's title names molecular statics. (Settled 2026-11-09: it does not; the title stays "Molecular Dynamics (MD) Metadata", whose introduction already includes energy minimization, and the key stays md.)

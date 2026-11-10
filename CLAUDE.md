@@ -384,8 +384,10 @@ record or marked PROPOSED, NOT DECIDED.
    type/extent/kind/recommended-unit/values, applying 0001 Part A to the property, and delete its
    legacy_* fields; (c) list in the PR description every judgment call in the mapping, so the
    human can decide. A section is complete when no legacy_* fields remain in its file.
-   Sections go in the order minimal, dft, md, mbpt, ml, pf, derived, and properties in file order
-   within a section (0004 item 35).
+   Sections go in the order minimal, dft, pim, md, mbpt, ml, pf, derived, and properties in file order
+   within a section (0004 item 35; pim before md, settled 2026-11-10 in 0046). PROPOSED, NOT DECIDED:
+   since 0046 a method section's properties sit in one `settings` block, so its PRs go one per member
+   of `settings`.
    A complete section file declares `legacy_complete: true` at its top level; validate_schema.py
    fails if it does while legacy_* fields remain (0004 item 36).
    [done, PR #10 merged 2026-11-01] `legacy_complete` added to meta-schema.yaml and the check to
@@ -795,9 +797,12 @@ record or marked PROPOSED, NOT DECIDED.
    computation › mode and particle-interactions › source removed; mbpt, ml, pf, derived renumbered
    2.5–2.8; build_docs.PAGES keeps page files (pim.md new); §1.2's list gains PIM;
    examples/pim.json from md.json's model, md.json in settings.
-   PROPOSED, NOT DECIDED: pim's properties are taken up before md's in status step 5, in file order;
+   PROPOSED, NOT DECIDED: pim's properties are taken up before md's in status step 5, in file order
+   (Superseded: settled 2026-11-10, pim first);
    md's introduction says "classical molecular dynamics" though md now also serves AIMD and MS, and
    §1.2's list says "MD: Classical molecular dynamics".
+   [todo] pim in file order: settings › theory-level, model-type, particle-style, bonding-type,
+   charge-interactions, magnetic-interactions (computation needs no fill).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
