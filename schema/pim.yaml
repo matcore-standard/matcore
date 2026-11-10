@@ -32,21 +32,19 @@ properties:
     repeatable: true
   - name: theory-level
     required: true
-    description: The rigor with which the atomic interactions are modeled.
-    type: null
-    extent: null
-    kind: null
+    description: How the functional form of the model was obtained.
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      terms: [Physics-based, Machine-learned]
+      note: >-
+        "Physics-based" – A functional form built from a physical model of the interactions, with parameters
+        fitted to data, e.g. EAM, Tersoff, a bonded force field or the electron force field.
+        "Machine-learned" – A machine learning model trained to take particle positions as input, e.g. GAP or
+        MACE.
     repeatable: false
-    legacy_values: >-
-      String containing one of the following values: "Classical physics-based" – Electronic degrees of
-      freedom subsumed into a model of atomic bonding "Classical machine-learning" – Machine learning
-      model trained to take particle positions as input "Tight-binding" – Classical model of nuclear interactions
-      with approximate treatment of the electrons "Ab initio" – Some level of electronic structure determines
-      the particle interactions "Ab initio machine learning" – Machine learning model employing some level
-      of electronic structure in determining the particle interactions Other user-specified value if none
-      of the above apply.
   - name: model-type
     required: true
     description: The kind of potential used to compute the particle interactions.

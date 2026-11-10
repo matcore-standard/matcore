@@ -5,7 +5,7 @@
         "computation": [
           "finnis-sinclair"
         ],
-        "theory-level": "Classical physics-based",
+        "theory-level": "Physics-based",
         "model-type": "Finnis-Sinclair potential",
         "particle-style": [
           "atom"

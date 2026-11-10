@@ -214,3 +214,21 @@ def test_preamble_lists_pim_among_the_methods():
     """§1.2 lists each method that has a section, in the order of the sections."""
     text = (ROOT / 'docs/standard/index.md').read_text()
     assert '- DFT: Density functional theory\n\n- PIM: Particle interaction models\n\n- MD:' in text
+
+
+THEORY_LEVELS = ['Physics-based', 'Machine-learned']
+
+
+def test_pim_theory_level_is_the_origin_of_the_functional_form():
+    """Of the baseline's five theory levels, three name electronic methods, which are computations of their own
+    since 0046; what remains is whether the form is physical or learned, with eFF counted as physical (0046
+    item 8)."""
+    t = sub(section('pim')['properties'][0], 'theory-level')
+    assert (t['required'], t['repeatable'], t['type'], t['extent'], t['kind'], t['recommended-unit']) == (
+        True, False, 'string', [], 'inapplicable', None)
+    assert t['description'] == 'How the functional form of the model was obtained.'
+    assert t['values']['terms'] == THEORY_LEVELS
+    note = ' '.join(t['values']['note'].split())
+    assert note.startswith('"Physics-based" – A functional form built from a physical model of the interactions')
+    assert 'electron force field' in note and '"Machine-learned" – A machine learning model trained to take' in note
+    assert not [k for k in t if k.startswith('legacy_')]
