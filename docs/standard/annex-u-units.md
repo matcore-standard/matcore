@@ -52,6 +52,7 @@ QUDT namespace: `http://qudt.org/vocab/quantitykind/`. The dimension vector is Q
 | Acceleration | Acceleration | A0E0L1I0M0H0T-2D0 | m·s⁻² |
 | ElectricPotential | ElectricPotential | A0E-1L2I0M1H0T-3D0 | kg·m²·s⁻³·A⁻¹ |
 | ElectricCharge | ElectricCharge | A0E1L0I0M0H0T1D0 | s·A |
+| MagneticMoment | MagneticMoment | A0E1L2I0M0H0T0D0 | m²·A |
 | Angle | PlaneAngle | A0E0L0I0M0H0T0D1 | 1 (rad) |
 | AmountOfSubstance | AmountOfSubstance | A1E0L0I0M0H0T0D0 | mol |
 | dimensionless | Dimensionless | A0E0L0I0M0H0T0D1 | 1 |
@@ -120,6 +121,7 @@ QUDT namespace: `http://qudt.org/vocab/unit/`. "—" in the QUDT column means th
 | `V` | ElectricPotential | V | V | 1 | exact |
 | `e` | ElectricCharge | E | e | 1.602 176 634 × 10⁻¹⁹ C | exact |
 | `C` | ElectricCharge | C | C | 1 | exact |
+| `mu_B` | MagneticMoment | — | mu_B | 9.274 010 065 7 × 10⁻²⁴ A·m² | CODATA 2022 |
 | `rad` | Angle | RAD | radian | 1 | exact |
 | `degree` | Angle | DEG | degree | π/180 rad | exact |
 | `mol` | AmountOfSubstance | MOL | mol | 1 | exact |
@@ -138,7 +140,7 @@ QUDT namespace: `http://qudt.org/vocab/unit/`. "—" in the QUDT column means th
 
 **Note 6 (GNU spelling of bohr).** GNU Units does not define `bohr`; the GNU name is `bohrradius`. The MatCore symbol remains `bohr`; the mapping is given in the GNU column.
 
-**Note 7 (units absent from QUDT).** `Ry`, `bohr`, `meV`, `nm^3`, `1/ps`, `1/bohr`, `bohr^3`, `K/angstrom`, `eV/angstrom^3`, `hartree/bohr`, `1/angstrom^3` and `V/angstrom` have no unit IRI in QUDT Units v3.3.0. For these, the MatCore symbol is the identifier and the quantity-kind IRI in Table U.3 supplies the semantic anchor. QUDT accepts contributions through its public repository, and IRIs will be added to this table if and when they are published.
+**Note 7 (units absent from QUDT).** `Ry`, `bohr`, `meV`, `nm^3`, `1/ps`, `1/bohr`, `bohr^3`, `K/angstrom`, `eV/angstrom^3`, `hartree/bohr`, `1/angstrom^3`, `V/angstrom` and `mu_B` have no unit IRI in QUDT Units v3.3.0. For these, the MatCore symbol is the identifier and the quantity-kind IRI in Table U.3 supplies the semantic anchor. QUDT accepts contributions through its public repository, and IRIs will be added to this table if and when they are published.
 
 ## U.5 References
 

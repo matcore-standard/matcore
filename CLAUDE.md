@@ -733,6 +733,9 @@ record or marked PROPOSED, NOT DECIDED.
    magnetic-order (open terms Nonmagnetic, Ferromagnetic, Antiferromagnetic, Ferrimagnetic,
    Paramagnetic, Noncollinear) after phase. PROPOSED, NOT DECIDED: a condition for a fixed total
    magnetization or spin multiplicity.
+   [in progress, branch unit-mu-b, committed; awaiting push and PR] unit mu_B with the Kind MagneticMoment (QUDT MagneticMoment,
+   A0E1L2I0M0H0T0D0; no QUDT unit, so Note 7 lists it; GNU Units mu_B; factor 9.2740100657e-24,
+   CODATA 2022).
    [done, PR #85 merged 2026-11-10] dispersion correction by 0051 (B4, ruling 2026-11-09): dft dispersion-correction (open
    terms D2, D3, D3(BJ), D4, TS, MBD) after calculation-physics; xc-functional › name names the
    functional alone, its note saying so.
