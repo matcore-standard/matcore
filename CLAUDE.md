@@ -295,7 +295,8 @@ record or marked PROPOSED, NOT DECIDED.
      imposed temperature (0052); smearing moves out of k-point-mesh into `smearing` (0053; breaks
      0.6.0 dft instances); the dft introduction is updated (0054); lapw-basis-cutoff is added (0057);
      the LibXC version is a software dependency (0058); k-point-mesh names the cell it samples
-     (0059); the Kind ElectricCharge and the units e and C are added (0049).
+     (0059); the Kind ElectricCharge and the units e and C are added (0049); the Kind MagneticMoment and the unit mu_B
+     are added (0050).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -733,7 +734,7 @@ record or marked PROPOSED, NOT DECIDED.
    magnetic-order (open terms Nonmagnetic, Ferromagnetic, Antiferromagnetic, Ferrimagnetic,
    Paramagnetic, Noncollinear) after phase. PROPOSED, NOT DECIDED: a condition for a fixed total
    magnetization or spin multiplicity.
-   [in progress, branch unit-mu-b, committed; awaiting push and PR] unit mu_B with the Kind MagneticMoment (QUDT MagneticMoment,
+   [done, PR #88 merged 2026-11-10] unit mu_B with the Kind MagneticMoment (QUDT MagneticMoment,
    A0E1L2I0M0H0T0D0; no QUDT unit, so Note 7 lists it; GNU Units mu_B; factor 9.2740100657e-24,
    CODATA 2022).
    [done, PR #85 merged 2026-11-10] dispersion correction by 0051 (B4, ruling 2026-11-09): dft dispersion-correction (open
