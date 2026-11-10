@@ -248,6 +248,7 @@ QUALIFIER_NOTE = ('Without a qualifier, the value holds throughout the simulatio
 # baseline values text gives (three cell vectors of three components, six tensor components, ...).
 SIMULATION_CONDITIONS = {
     'number-of-particles': ('int', [], 'dimensionless', None),
+    'net-charge': ('float', [], 'ElectricCharge', 'e'),
     'volume': ('float', [], 'Volume', 'angstrom^3'),
     'mass-density': ('float', [], 'MassDensity', 'kg/m^3'),
     'cell': ('float', [3, 3], 'Length', 'angstrom'),
@@ -929,6 +930,8 @@ IMPOSED_DEFINITIONS = {
                   'is imposed, e.g. for a single point or a training computation.',
     'number-of-particles': 'The number of particles (atoms or other discrete entities) in the simulated system, as '
                            'imposed by the simulation.',
+    'net-charge': 'The net electric charge of the simulated system, as imposed by the simulation, e.g. by fixing the '
+                  'number of electrons of a charged defect or an ion, or the charge of an electrode.',
     'volume': 'The volume of the simulated system, as imposed by the simulation.',
     'mass-density': 'The mass density of the simulated system, as imposed by the simulation.',
     'cell': 'The simulation cell, as imposed by the simulation.',
@@ -1160,3 +1163,14 @@ def test_example_record_names_its_standard_and_version():
     assert {k: m[k] for k in ('standard-version', 'standard-link', 'id', 'dataset-version', 'creation-date')} == {
         'standard-version': '0.6.0', 'standard-link': 'https://github.com/matcore-standard/matcore/tree/v0.6.0/schema',
         'id': 'mc-ad83jsd3', 'dataset-version': 1, 'creation-date': '2026-02-14'}
+
+
+def test_net_charge_follows_the_number_of_particles():
+    """A charged defect, an ion or a constant-charge electrode fixes the number of electrons, imposed as the
+    number of particles is; a fractional charge may be imposed, so the value is a float in elementary charges
+    (0049 item 2)."""
+    names = [s['name'] for s in sub(minimal('computation'), 'conditions')['subproperties']]
+    assert names.index('net-charge') == names.index('number-of-particles') + 1
+    c = sub(sub(minimal('computation'), 'conditions'), 'net-charge')
+    assert (c['required'], c['repeatable']) == (False, True)
+    assert [s['name'] for s in c['subproperties']] == ['value', 'unit', 'qualifier']

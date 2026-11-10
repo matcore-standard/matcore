@@ -863,6 +863,53 @@ properties:
             Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
             Maximum are taken component by component.
         repeatable: false
+    - name: net-charge
+      required: false
+      description: >-
+        The net electric charge of the simulated system, as imposed by the simulation, e.g. by fixing the
+        number of electrons of a charged defect or an ion, or the charge of an electrode.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: ElectricCharge
+        recommended-unit: e
+        values:
+          note: >-
+            The net charge <i>Q</i>.
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: qualifier
+        required: false
+        description: What the value represents.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Average, Final, Initial, Maximum, Minimum]
+          note: >-
+            Without a qualifier, the value holds throughout the simulation and across the system, and the entry
+            is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g.
+            Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
+            Maximum are taken component by component.
+        repeatable: false
     - name: volume
       required: false
       description: The volume of the simulated system, as imposed by the simulation.
