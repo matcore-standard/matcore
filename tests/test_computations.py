@@ -288,3 +288,37 @@ def test_pim_bonding_type_says_whether_the_topology_is_given():
     assert t['values']['terms'] == ['Reactive', 'Bonded fixed', 'Bonded mutable']
     assert ' '.join(t['values']['note'].split()) == BONDING_TYPE_NOTE
     assert not [k for k in t if k.startswith('legacy_')]
+
+
+CHARGE_TERMS = {
+    'charge-origin': ['Semi empirical', 'Quantum', 'Electronic population', 'Electronegativity', 'Tabulated'],
+    'charge-style': ['Coulomb full', 'Coulomb screened'],
+    'charge-variability': ['Fixed', 'QEq', 'EEM', 'iEL/SCF', 'FlucQ', 'Drude'],
+    'long-range-electrostatics': ['None', 'Direct', 'Ewald', 'PME', 'PPPM', 'Reaction'],
+    'electric-dipole': ['Stockmayer', 'Screened', 'Long range'],
+    'electric-dipole-variability': ['Induced', 'Isotropic', 'Anisotropic'],
+}
+
+
+def test_pim_charge_interactions_keeps_the_baseline_vocabularies():
+    """charge-interactions moves whole from md (0046 item 8): a repeatable container of six string properties,
+    each with the baseline's open terms, defined in its note."""
+    c = sub(section('pim')['properties'][0], 'charge-interactions')
+    assert (c['required'], c['repeatable'], c['type'], c['values']) == (False, True, None, None)
+    assert [s['name'] for s in c['subproperties']] == list(CHARGE_TERMS)
+    for s in c['subproperties']:
+        assert (s['required'], s['repeatable'], s['type'], s['extent'], s['kind']) == (
+            s['name'] in ('charge-origin', 'charge-style', 'charge-variability'), False, 'string', [], 'inapplicable')
+        assert s['values']['terms'] == CHARGE_TERMS[s['name']]
+        note = ' '.join(s['values']['note'].split())
+        assert all(f'"{t}" – ' in note for t in CHARGE_TERMS[s['name']])
+    assert not [k for s in [c, *c['subproperties']] for k in s if k.startswith('legacy_')]
+
+
+def test_pim_dipole_variability_is_about_dipoles():
+    """The baseline copied charge-variability's description onto electric-dipole-variability; its values are
+    about dipoles, so the description says so (decided in review)."""
+    c = sub(section('pim')['properties'][0], 'charge-interactions')
+    assert 'local electric dipoles' in sub(c, 'electric-dipole-variability')['description']
+    note = ' '.join(sub(c, 'charge-variability')['values']['note'].split())
+    assert '"Fixed" – Charges cannot change during a simulation.' in note

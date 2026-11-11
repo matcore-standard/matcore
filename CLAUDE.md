@@ -818,6 +818,12 @@ record or marked PROPOSED, NOT DECIDED.
    fixed, Bonded mutable; Reactive defined as a model without a predetermined bonding topology
    (decided in review 2026-11-10), so pair, EAM and ML potentials are Reactive; "during a
    simulation"; *a priori* italics restored; legacy_* deleted.
+   [in progress, branch pim-charge-interactions] pim charge-interactions: the container and its
+   six string subproperties (charge-origin, charge-style, charge-variability,
+   long-range-electrostatics, electric-dipole, electric-dipole-variability) with the baseline's
+   open terms, defined in the notes; electric-dipole-variability's description, a copy of
+   charge-variability's, says "electric dipoles"; "Fixed" says "during a simulation"; legacy_*
+   deleted.
    [todo] pim in file order: settings › theory-level (done, PR #92), model-type (done, PR #93), particle-style (done, PR #94), bonding-type (done, PR #95),
    charge-interactions, magnetic-interactions (computation needs no fill).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
