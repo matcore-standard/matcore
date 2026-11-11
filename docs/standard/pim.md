@@ -96,9 +96,9 @@ Nature of the particle charges.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Semi empirical" – Charges obtained from semi-empirical quantum calculations "Quantum" – Charges obtained from quantum calculations "Electronic population" – Charges obtained from electronic population analysis, e.g. Mulliken "Electronegativity" – Charges obtained from electronegativity differences between atoms "Tabulated" – Charges obtained from an external source Other user-specified value if none of the above apply.</span>
+Recommended: `Semi empirical`, `Quantum`, `Electronic population`, `Electronegativity`, `Tabulated`. Other values are allowed. "Semi empirical" – Charges obtained from semi-empirical quantum calculations. "Quantum" – Charges obtained from quantum calculations. "Electronic population" – Charges obtained from electronic population analysis, e.g. Mulliken. "Electronegativity" – Charges obtained from electronegativity differences between atoms. "Tabulated" – Charges obtained from an external source.
 
 </details>
 
@@ -109,9 +109,9 @@ The nature of the charges associated with the particles, such as total or effect
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Coulomb full" – The particle charge accounting for all electrons "Coulomb screened" – Effective charge due to screening or shielding by other electrons (e.g. Slater) Other user-specified value if none of the above apply.</span>
+Recommended: `Coulomb full`, `Coulomb screened`. Other values are allowed. "Coulomb full" – The particle charge accounting for all electrons. "Coulomb screened" – Effective charge due to screening or shielding by other electrons (e.g. Slater).
 
 </details>
 
@@ -122,9 +122,9 @@ Attribute specifying the method for dynamically varying the local electric charg
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Fixed" – Charges cannot change during the simulation "QEq" – Charge equilibration method "EEM" – Electronegativity Equalization Method "iEL/SCF" – Extended Lagrangian/self-consistent field scheme "FlucQ" – Fluctuating charge potential "Drude" – Drude method Other user-specified value if none of the above apply.</span>
+Recommended: `Fixed`, `QEq`, `EEM`, `iEL/SCF`, `FlucQ`, `Drude`. Other values are allowed. "Fixed" – Charges cannot change during a simulation. "QEq" – Charge equilibration method. "EEM" – Electronegativity Equalization Method. "iEL/SCF" – Extended Lagrangian/self-consistent field scheme. "FlucQ" – Fluctuating charge potential. "Drude" – Drude method.
 
 </details>
 
@@ -135,9 +135,9 @@ Method used to compute long-range electrostatic interactions.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "None" – No electrostatic calculation performed "Direct" – All Coulomb interactions computed directly "Ewald" – Ewald summation "PME" – Particle mesh Ewald "PPPM" – Particle particle particle mesh "Reaction" – Reaction field Other user-specified value if none of the above apply.</span>
+Recommended: `None`, `Direct`, `Ewald`, `PME`, `PPPM`, `Reaction`. Other values are allowed. "None" – No electrostatic calculation performed. "Direct" – All Coulomb interactions computed directly. "Ewald" – Ewald summation. "PME" – Particle mesh Ewald. "PPPM" – Particle particle particle mesh. "Reaction" – Reaction field.
 
 </details>
 
@@ -148,22 +148,22 @@ Attribute specifying the type of interaction associated with the local electric 
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Stockmayer" – Stockmayer potential "Screened" – Screened dipoles "Long range" – Long-range dipoles Other user-specified value if none of the above apply.</span>
+Recommended: `Stockmayer`, `Screened`, `Long range`. Other values are allowed. "Stockmayer" – Stockmayer potential. "Screened" – Screened dipoles. "Long range" – Long-range dipoles.
 
 </details>
 
 <details class="note mc-property" id="pim.settings.charge-interactions.electric-dipole-variability" markdown="1">
 <summary><span class="mc-name">electric-dipole-variability</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-Attribute specifying the method for dynamically varying the local electric charge associated with discrete entities.
+Attribute specifying the method for dynamically varying the local electric dipoles associated with discrete entities.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Induced" – Induced point dipoles "Isotropic" – Isotropic polarizability "Anisotropic" – Anisotropic polarizability Other user-specified value if none of the above apply.</span>
+Recommended: `Induced`, `Isotropic`, `Anisotropic`. Other values are allowed. "Induced" – Induced point dipoles. "Isotropic" – Isotropic polarizability. "Anisotropic" – Anisotropic polarizability.
 
 </details>
 

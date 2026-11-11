@@ -102,97 +102,95 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
-    legacy_values: Contains SubProperties as listed below.
     subproperties:
     - name: charge-origin
       required: true
       description: Nature of the particle charges.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Semi empirical, Quantum, Electronic population, Electronegativity, Tabulated]
+        note: >-
+          "Semi empirical" – Charges obtained from semi-empirical quantum calculations. "Quantum" – Charges
+          obtained from quantum calculations. "Electronic population" – Charges obtained from electronic
+          population analysis, e.g. Mulliken. "Electronegativity" – Charges obtained from electronegativity
+          differences between atoms. "Tabulated" – Charges obtained from an external source.
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "Semi empirical" – Charges obtained from semi-empirical
-        quantum calculations "Quantum" – Charges obtained from quantum calculations "Electronic population"
-        – Charges obtained from electronic population analysis, e.g. Mulliken "Electronegativity" – Charges
-        obtained from electronegativity differences between atoms "Tabulated" – Charges obtained from an
-        external source Other user-specified value if none of the above apply.
     - name: charge-style
       required: true
       description: >-
         The nature of the charges associated with the particles, such as total or effective charges.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Coulomb full, Coulomb screened]
+        note: >-
+          "Coulomb full" – The particle charge accounting for all electrons. "Coulomb screened" – Effective
+          charge due to screening or shielding by other electrons (e.g. Slater).
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "Coulomb full" – The particle charge accounting for
-        all electrons "Coulomb screened" – Effective charge due to screening or shielding by other electrons
-        (e.g. Slater) Other user-specified value if none of the above apply.
     - name: charge-variability
       required: true
       description: >-
         Attribute specifying the method for dynamically varying the local electric charge associated with
         discrete entities.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Fixed, QEq, EEM, iEL/SCF, FlucQ, Drude]
+        note: >-
+          "Fixed" – Charges cannot change during a simulation. "QEq" – Charge equilibration method. "EEM" –
+          Electronegativity Equalization Method. "iEL/SCF" – Extended Lagrangian/self-consistent field scheme.
+          "FlucQ" – Fluctuating charge potential. "Drude" – Drude method.
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "Fixed" – Charges cannot change during the simulation
-        "QEq" – Charge equilibration method "EEM" – Electronegativity Equalization Method "iEL/SCF" – Extended
-        Lagrangian/self-consistent field scheme "FlucQ" – Fluctuating charge potential "Drude" – Drude method
-        Other user-specified value if none of the above apply.
     - name: long-range-electrostatics
       required: false
       description: Method used to compute long-range electrostatic interactions.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [None, Direct, Ewald, PME, PPPM, Reaction]
+        note: >-
+          "None" – No electrostatic calculation performed. "Direct" – All Coulomb interactions computed
+          directly. "Ewald" – Ewald summation. "PME" – Particle mesh Ewald. "PPPM" – Particle particle particle
+          mesh. "Reaction" – Reaction field.
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "None" – No electrostatic calculation performed "Direct"
-        – All Coulomb interactions computed directly "Ewald" – Ewald summation "PME" – Particle mesh Ewald
-        "PPPM" – Particle particle particle mesh "Reaction" – Reaction field Other user-specified value
-        if none of the above apply.
     - name: electric-dipole
       required: false
       description: >-
         Attribute specifying the type of interaction associated with the local electric dipoles associated
         with particles.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Stockmayer, Screened, Long range]
+        note: >-
+          "Stockmayer" – Stockmayer potential. "Screened" – Screened dipoles. "Long range" – Long-range dipoles.
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "Stockmayer" – Stockmayer potential "Screened" –
-        Screened dipoles "Long range" – Long-range dipoles Other user-specified value if none of the above
-        apply.
     - name: electric-dipole-variability
       required: false
       description: >-
-        Attribute specifying the method for dynamically varying the local electric charge associated with
+        Attribute specifying the method for dynamically varying the local electric dipoles associated with
         discrete entities.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Induced, Isotropic, Anisotropic]
+        note: >-
+          "Induced" – Induced point dipoles. "Isotropic" – Isotropic polarizability. "Anisotropic" –
+          Anisotropic polarizability.
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "Induced" – Induced point dipoles "Isotropic" – Isotropic
-        polarizability "Anisotropic" – Anisotropic polarizability Other user-specified value if none of
-        the above apply.
   - name: magnetic-interactions
     required: false
     description: The model used to describe the interactions between magnetic spins.
