@@ -300,7 +300,8 @@ record or marked PROPOSED, NOT DECIDED.
      and J/T are added, with dft initial-magnetic-moment and minimal material-component ›
      magnetic-order (0050); pim theory-level is filled, terms Physics-based and
      Machine-learned, model-type, the functional form, particle-style, with the term
-     Nucleus, and bonding-type, Reactive meaning no predetermined bonding topology (0046; step 5).
+     Nucleus, bonding-type, Reactive meaning no predetermined bonding topology, and
+     charge-interactions, electric-dipole-variability's description fixed (0046; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -818,14 +819,14 @@ record or marked PROPOSED, NOT DECIDED.
    fixed, Bonded mutable; Reactive defined as a model without a predetermined bonding topology
    (decided in review 2026-11-10), so pair, EAM and ML potentials are Reactive; "during a
    simulation"; *a priori* italics restored; legacy_* deleted.
-   [in progress, branch pim-charge-interactions] pim charge-interactions: the container and its
+   [done, PR #96 merged 2026-11-11] pim charge-interactions: the container and its
    six string subproperties (charge-origin, charge-style, charge-variability,
    long-range-electrostatics, electric-dipole, electric-dipole-variability) with the baseline's
    open terms, defined in the notes; electric-dipole-variability's description, a copy of
    charge-variability's, says "electric dipoles"; "Fixed" says "during a simulation"; legacy_*
    deleted.
    [todo] pim in file order: settings › theory-level (done, PR #92), model-type (done, PR #93), particle-style (done, PR #94), bonding-type (done, PR #95),
-   charge-interactions, magnetic-interactions (computation needs no fill).
+   charge-interactions (done, PR #96), magnetic-interactions (computation needs no fill).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
