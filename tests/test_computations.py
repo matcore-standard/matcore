@@ -63,7 +63,7 @@ def test_computation_members_and_order():
     they use; conditions are optional and interaction-model is gone (0046 items 2-4)."""
     c = top('minimal', 'computation')
     assert [s['name'] for s in c['subproperties']] == [
-        'label', 'method-class', 'method', 'task', 'structure', 'input', 'conditions', 'software']
+        'label', 'method-class', 'method', 'task', 'structure-label', 'input', 'conditions', 'software']
     assert c['description'] == ('A group of calculations in the dataset that share one method and one set of '
                                 'settings, e.g. the DFT single points of a training set.')
     assert not sub(c, 'conditions')['required']
@@ -84,8 +84,8 @@ def test_input_names_a_computation_and_its_role():
     model (0046 item 2)."""
     i = sub(top('minimal', 'computation'), 'input')
     assert (i['required'], i['repeatable'], i['type']) == (False, True, None)
-    assert [s['name'] for s in i['subproperties']] == ['computation', 'role']
-    assert shape(sub(i, 'computation')) == (True, False, 'string', [], 'inapplicable', None)
+    assert [s['name'] for s in i['subproperties']] == ['computation-label', 'role']
+    assert shape(sub(i, 'computation-label')) == (True, False, 'string', [], 'inapplicable', None)
     role = sub(i, 'role')
     assert shape(role) == (True, False, 'string', [], 'inapplicable', None)
     assert role['values']['terms'] == ROLES
@@ -93,7 +93,7 @@ def test_input_names_a_computation_and_its_role():
     assert i['notes'] == ['Note: Give an input only where the data of this computation cannot be understood '
                           'without it. A record describes the dataset; it does not record the order of the '
                           'calculations or how to repeat them.']
-    s = sub(top('minimal', 'computation'), 'structure')
+    s = sub(top('minimal', 'computation'), 'structure-label')
     assert shape(s) == (False, True, 'string', [], 'inapplicable', None)
 
 
@@ -131,13 +131,32 @@ def test_dft_properties_sit_in_settings_naming_computations():
     assert (s['required'], s['repeatable'], s['type']) == (True, True, None)
     assert s['description'] == 'Settings shared by the computations named in it.'
     assert [c['name'] for c in s['subproperties']] == [
-        'computation', 'xc-functional', 'core-electron-treatment', 'wavefunction-representation',
+        'computation-label', 'xc-functional', 'core-electron-treatment', 'wavefunction-representation',
         'calculation-physics', 'initial-magnetic-moment', 'dispersion-correction', 'k-point-mesh', 'smearing',
         'self-consistent-field-convergence', 'relaxation-tolerance-energy',
         'relaxation-tolerance-forces', 'relaxation-tolerance-stress', 'comment']
-    c = sub(s, 'computation')
+    c = sub(s, 'computation-label')
     assert shape(c) == (True, True, 'string', [], 'inapplicable', None)
     assert c['description'] == 'The label of a computation these settings apply to.'
+
+
+def test_a_property_holding_a_label_is_named_for_it():
+    """A property whose value is the label of a structure or computation is named for that label, so it is never
+    mistaken for the container it refers to (0062)."""
+    def walk(props):
+        """Yield every property entry below and including props.
+
+        props (list): property entries of a section file.
+        """
+        for p in props:
+            yield p
+            yield from walk(p.get('subproperties') or [])
+    found = {(k, p['name']) for k in ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
+             for p in walk(section(k)['properties'])
+             if p['description'].startswith(('The label of a structure', 'The label of a computation',
+                                             'The label of that computation'))}
+    assert found == {('minimal', 'structure-label'), ('minimal', 'computation-label'),
+                     ('dft', 'computation-label'), ('pim', 'computation-label'), ('ps', 'computation-label')}
 
 
 def test_example_labels_are_unique_and_every_reference_resolves():
@@ -150,9 +169,9 @@ def test_example_labels_are_unique_and_every_reference_resolves():
     every = structures + list(computations)
     assert len(every) == len(set(every))
     for c in computations.values():
-        assert set(c.get('structure', [])) <= set(structures)
-        assert {i['computation'] for i in c.get('input', [])} <= set(computations)
-    named = [label for block in dft['settings'] for label in block['computation']]
+        assert set(c.get('structure-label', [])) <= set(structures)
+        assert {i['computation-label'] for i in c.get('input', [])} <= set(computations)
+    named = [label for block in dft['settings'] for label in block['computation-label']]
     assert named and all(computations[n]['method'] == 'DFT' for n in named)
 
 
@@ -190,7 +209,7 @@ def test_pim_holds_the_model_properties_moved_from_md():
     s = props[0]
     assert (s['required'], s['repeatable']) == (True, True)
     assert [(c['name'], c['required'], c['repeatable']) for c in s['subproperties']] == [
-        ('computation', True, True), ('theory-level', True, False), ('model-type', True, False),
+        ('computation-label', True, True), ('theory-level', True, False), ('model-type', True, False),
         ('particle-style', True, True), ('bonding-type', True, False), ('charge-interactions', False, True),
         ('magnetic-interactions', False, True)]
     assert [c['name'] for c in sub(s, 'charge-interactions')['subproperties']] == [
@@ -205,7 +224,7 @@ def test_ps_keeps_only_the_dynamics():
     props = section('ps')['properties']
     assert [p['name'] for p in props] == ['settings']
     assert [c['name'] for c in props[0]['subproperties']] == [
-        'computation', 'algorithm', 'computation-parameter', 'initialization', 'thermodynamic-constraint']
+        'computation-label', 'algorithm', 'computation-parameter', 'initialization', 'thermodynamic-constraint']
     text = (ROOT / 'schema/ps.yaml').read_text()
     for gone in ('name: mode', 'particle-style', 'particle-interactions', 'charge-interactions',
                  'magnetic-interactions'):

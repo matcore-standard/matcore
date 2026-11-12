@@ -2,7 +2,7 @@
   "dft": {
     "settings": [
       {
-        "computation": [
+        "computation-label": [
           "dft-single-points"
         ],
         "xc-functional": [

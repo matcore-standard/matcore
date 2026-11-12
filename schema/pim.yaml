@@ -22,7 +22,7 @@ properties:
   values: null
   repeatable: true
   subproperties:
-  - name: computation
+  - name: computation-label
     required: true
     description: The label of a computation these settings apply to.
     type: string

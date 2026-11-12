@@ -70,7 +70,7 @@
         "method-class": "Electronic",
         "method": "DFT",
         "task": "Single point",
-        "structure": [
+        "structure-label": [
           "si-bulk",
           "si-slab"
         ],

@@ -683,7 +683,7 @@ properties:
         calculation" – A property obtained from given configurations or from the results of another
         computation, e.g. phonons, spectra, or a prediction by a trained model.
     repeatable: false
-  - name: structure
+  - name: structure-label
     required: false
     description: The label of a structure modeled by this computation.
     type: string
@@ -710,7 +710,7 @@ properties:
       Note: Give an input only where the data of this computation cannot be understood without it. A record
       describes the dataset; it does not record the order of the calculations or how to repeat them.
     subproperties:
-    - name: computation
+    - name: computation-label
       required: true
       description: The label of that computation.
       type: string
