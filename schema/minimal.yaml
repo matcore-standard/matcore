@@ -601,6 +601,16 @@ properties:
   recommended-unit: null
   values: null
   repeatable: true
+  notes:
+  - >-
+    Note: A simulation run in stages, e.g. heating, equilibration and a quench, is described as one computation
+    for each stage whose method, settings or conditions differ and whose data the dataset contains or depends
+    on. Each stage names the stage it continues from in `input` with the role Initial configuration, which
+    carries over the final state of that stage, e.g. positions, velocities and the cell. These links give the
+    order of the stages; the order of the entries in the record does not. A condition that changes within one
+    stage, e.g. a temperature ramp, is given in that stage's `conditions` as entries with a qualifier. The full
+    protocol, with its control flow and complete inputs, belongs to the provenance record of a workflow manager
+    (§1.2).
   subproperties:
   - name: label
     required: true
@@ -731,7 +741,8 @@ properties:
             data]
         note: >-
           "Interaction model" – The energies and forces of the configurations this computation evaluates;
-          "Initial configuration" – The configurations this computation starts from; "Starting point" – An
+          "Initial configuration" – The configurations this computation starts from, with the state carried
+          over from that computation, e.g. velocities; "Starting point" – An
           electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground
           state of a GW calculation; "Training data" – Data a model is fitted to; "Parameters" – Values used
           as parameters of this computation's model, e.g. a free energy or elastic constants in a phase field
