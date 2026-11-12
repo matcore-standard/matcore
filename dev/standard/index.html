@@ -752,14 +752,14 @@
   
   
     <li class="md-nav__item">
-      <a href="04-md/" class="md-nav__link">
+      <a href="ps/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    2.4 Molecular Dynamics (MD) Metadata
+    2.4 Particle Simulation (PS) Metadata
   
 
     
@@ -1052,7 +1052,7 @@
 <p>PIM: Particle interaction models</p>
 </li>
 <li>
-<p>MD: Classical molecular dynamics</p>
+<p>PS: Particle simulation (molecular dynamics, molecular statics and related methods)</p>
 </li>
 <li>
 <p>MBPT: Many-body perturbation theory (GW/BSE)</p>
@@ -1067,7 +1067,7 @@
 <p>DER: Derived properties from CMS calculations</p>
 </li>
 </ul>
-<p>All methods share a common minimal set of metadata defined by the MatCore standard. In addition, each method has its own MatCore extension, e.g. MatCore-DFT, MatCore-MD, etc., that inherits from the minimal MatCore metadata and adds additional method-specific metadata. </p>
+<p>All methods share a common minimal set of metadata defined by the MatCore standard. In addition, each method has its own MatCore extension, e.g. MatCore-DFT, MatCore-PS, etc., that inherits from the minimal MatCore metadata and adds additional method-specific metadata. </p>
 <p>Some methods supply energies and forces (e.g. DFT, or an interatomic potential), others use them to sample or evolve a system (e.g. MD). A dataset is described as one or more computations, each a group of calculations that share a method and its settings. A computation that uses the results of another names it, with the role the other plays: an ab initio molecular dynamics (AIMD) computation names the DFT computation that supplies its energies and forces. Each method-specific section describes the computations of its method. MatCore describes a dataset; it does not record how to reproduce its execution. The order of the calculations, their control flow and complete inputs belong to the provenance record of a workflow manager, to which a MatCore record may point.</p>
 <h2 id="13-format">1.3 Format</h2>
 <p>Each standard consists of a set of Properties with possible SubProperties, SubSubProperties, etc. The term “Property” will be used in the rest of this section to refer collectively to Property, SubProperty, etc. Properties have the following characteristics:</p>

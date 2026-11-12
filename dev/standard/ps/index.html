@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://matcore-standard.github.io/matcore/dev/standard/04-md/">
+        <link rel="canonical" href="https://matcore-standard.github.io/matcore/dev/standard/ps/">
       
       
         <link rel="prev" href="../pim/">
@@ -25,7 +25,7 @@
     
     
       
-        <title>2.4 Molecular Dynamics (MD) Metadata - MatCore</title>
+        <title>2.4 Particle Simulation (PS) Metadata - MatCore</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#24-molecular-dynamics-md-metadata" class="md-skip">
+        <a href="#24-particle-simulation-ps-metadata" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.4 Molecular Dynamics (MD) Metadata
+              2.4 Particle Simulation (PS) Metadata
             
           </span>
         </div>
@@ -690,7 +690,7 @@
   <span class="md-ellipsis">
     
   
-    2.4 Molecular Dynamics (MD) Metadata
+    2.4 Particle Simulation (PS) Metadata
   
 
     
@@ -708,7 +708,7 @@
   <span class="md-ellipsis">
     
   
-    2.4 Molecular Dynamics (MD) Metadata
+    2.4 Particle Simulation (PS) Metadata
   
 
     
@@ -734,10 +734,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example-md-method-specific-metadata" class="md-nav__link">
+  <a href="#example-ps-method-specific-metadata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example: MD Method-Specific Metadata
+        Example: PS Method-Specific Metadata
       
     </span>
   </a>
@@ -1012,12 +1012,12 @@
   
 
 
-<h1 id="24-molecular-dynamics-md-metadata">2.4 Molecular Dynamics (MD) Metadata</h1>
+<h1 id="24-particle-simulation-ps-metadata">2.4 Particle Simulation (PS) Metadata</h1>
 <p class="mc-version" data-version="0.6.0">Version 0.6.0</p>
 
-<p>The metadata for classical molecular dynamics (MD) data (MatCore-MD) is tabulated below. This category includes energy and free energy minimization, equilibrium and nonequilibrium MD, and related approaches.  (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)</p>
+<p>The metadata for particle simulations (MatCore-PS) is tabulated below. A particle simulation moves or samples a system of particles using the energies and forces supplied by an interaction model, a particle interaction model or, as in ab initio molecular dynamics, an electronic structure computation. This category includes molecular dynamics (MD), molecular statics (MS) and coarse-grained MD (CGMD): energy and free energy minimization, equilibrium and nonequilibrium MD, and related approaches. The properties are given in settings blocks, each naming the PS computations it describes. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)</p>
 <p><span class="mc-legend"><span class="mc-key"><span class="mc-star">*</span> required</span><span class="mc-key"><span class="mc-icon mc-i-once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span> appears at most once</span><span class="mc-key"><span class="mc-icon mc-i-rep"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span> repeatable</span></span></p>
-<details class="note mc-property" id="md.settings">
+<details class="note mc-property" id="ps.settings">
 <summary><span class="mc-name">settings<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 <p>Settings shared by the computations named in it.</p>
 <table>
@@ -1034,7 +1034,7 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="md.settings.computation">
+<details class="note mc-property" id="ps.settings.computation">
 <summary><span class="mc-name">computation<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 <p>The label of a computation these settings apply to.</p>
 <table>
@@ -1060,7 +1060,7 @@
 </tbody>
 </table>
 </details>
-<details class="note mc-property" id="md.settings.algorithm">
+<details class="note mc-property" id="ps.settings.algorithm">
 <summary><span class="mc-name">algorithm</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The computational method used to perform the computation.</p>
 <table>
@@ -1087,7 +1087,7 @@
 </table>
 <p><span class='legacy'>Legacy: String containing one of the following values based on the specified calculation type:: For "Minimization": "Simplex" "Damped dynamics" "FIRE" "Steepest descent" "Conjugate gradients" "BFGS" "Simulated annealing" "SGLD" – Stochastic Gradient Langevin Dynamics Other user-specified value if none of the above apply. For "Equilibrium dynamics" or "nonequilibrium-dynamics": "Leap frog" "Runge-Kutta" "Velocity Verlet" "Verlet" Other user-specified value if none of the above apply. For "Free energy": "Harmonic" "Metadynamics" "PMF" – Potential of Mean Force "Thermodynamic integration" "Umbrella sampling" Other user-specified value if none of the above apply.</span></p>
 </details>
-<details class="note mc-property" id="md.settings.computation-parameter">
+<details class="note mc-property" id="ps.settings.computation-parameter">
 <summary><span class="mc-name">computation-parameter</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 <p>A fixed variable associated with the specified computation algorithm.</p>
 <table>
@@ -1104,7 +1104,7 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="md.settings.computation-parameter.name">
+<details class="note mc-property" id="ps.settings.computation-parameter.name">
 <summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The designation of the parameter associated with the specified computation algorithm.</p>
 <table>
@@ -1131,7 +1131,7 @@
 </table>
 <p><span class='legacy'>Legacy: A string containing the name of the computation parameter.</span></p>
 </details>
-<details class="note mc-property" id="md.settings.computation-parameter.value">
+<details class="note mc-property" id="ps.settings.computation-parameter.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The data associated with the computation parameter.</p>
 <table>
@@ -1158,7 +1158,7 @@
 </table>
 <p><span class='legacy'>Legacy: An integer, real, boolean, or string containing the computation parameter value.</span></p>
 </details>
-<details class="note mc-property" id="md.settings.computation-parameter.unit">
+<details class="note mc-property" id="ps.settings.computation-parameter.unit">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>A standardized string or identifier that defines the dimension or measurement system of the associated value.</p>
 <table>
@@ -1185,7 +1185,7 @@
 </table>
 <p><span class='legacy'>Legacy: A string containing the units of the value in the <a href="https://www.gnu.org/software/units/">GNU unit convention</a> (or the text "dimensionless").</span></p>
 </details>
-<details class="note mc-property" id="md.settings.computation-parameter.description">
+<details class="note mc-property" id="ps.settings.computation-parameter.description">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>An explanation of the meaning, source, or purpose of the computation parameter.</p>
 <table>
@@ -1213,7 +1213,7 @@
 <p><span class='legacy'>Legacy: A string explaining the computation parameter (e.g. "The convergence tolerance for energy minimization", "The simulation time for the dynamical simulation").</span></p>
 </details>
 </details>
-<details class="note mc-property" id="md.settings.initialization">
+<details class="note mc-property" id="ps.settings.initialization">
 <summary><span class="mc-name">initialization</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>Information on the conditions set at the start of the simulation.</p>
 <table>
@@ -1240,7 +1240,7 @@
 </table>
 <p><span class='legacy'>Legacy: String containing a description of the simulation initial conditions (such as the nature and source of an initial structure, initialization of velocities or spins, etc.).</span></p>
 </details>
-<details class="note mc-property" id="md.settings.thermodynamic-constraint">
+<details class="note mc-property" id="ps.settings.thermodynamic-constraint">
 <summary><span class="mc-name">thermodynamic-constraint</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 <p>Macroscopic physical restriction imposed on the simulation, such as a statistical mechanics ensemble.</p>
 <table>
@@ -1257,7 +1257,7 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="md.settings.thermodynamic-constraint.system">
+<details class="note mc-property" id="ps.settings.thermodynamic-constraint.system">
 <summary><span class="mc-name">system<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The collection of particles to which the constraint is applied.</p>
 <table>
@@ -1284,7 +1284,7 @@
 </table>
 <p><span class='legacy'>Legacy: String describing the constrained system (e.g. entire system, or a subset of atoms that are constrained.)</span></p>
 </details>
-<details class="note mc-property" id="md.settings.thermodynamic-constraint.type">
+<details class="note mc-property" id="ps.settings.thermodynamic-constraint.type">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The nature of the imposed thermodynamic constraint.</p>
 <table>
@@ -1311,7 +1311,7 @@
 </table>
 <p><span class='legacy'>Legacy: String containing one of the following values: "NVE" – Microcanonical "NVT" – Canonical "μVT" – Grand canonical "NPT" – Isothermal-isobaric "NσT" – Isothermal-isostress "μPT" – Grand isothermal-isobaric "μσT" – Grand isothermal-isostress "NPH" – Isoenthalpic-isobaric "NσH" – Isoenthalpic-isostress Other user-specified value if none of the above apply.</span></p>
 </details>
-<details class="note mc-property" id="md.settings.thermodynamic-constraint.method">
+<details class="note mc-property" id="ps.settings.thermodynamic-constraint.method">
 <summary><span class="mc-name">method</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The name of the approach used to impose the constraint.</p>
 <table>
@@ -1338,7 +1338,7 @@
 </table>
 <p><span class='legacy'>Legacy: String containing one of the following values based on the specified constraint:: For "NVT": "Andersen" "Berendsen" "CSVR" Langevin "Nosé-Hoover" "Nosé-Hoover chain" "Velocity rescaling" Other user-specified value if none of the above apply. For "μVT": "GCMC" – Grand Canonical Monte Carlo Other user-specified value if none of the above apply. For "NPT": "Andersen" "Berendsen" "CauchyStat" "Nosé-Hoover style" "Parrinello-Rahman" Other user-specified value if none of the above apply. For "NσT": "CauchyStat" "Parrinello-Rahman" Other user-specified value if none of the above apply. For "μPT": User-specified value. For "μσT": User-specified value. For "NPH": "Nosé-Hoover style" Other user-specified value if none of the above apply. For "NσH": User-specified value. Otherwise: User-specified value.</span></p>
 </details>
-<details class="note mc-property" id="md.settings.thermodynamic-constraint.description">
+<details class="note mc-property" id="ps.settings.thermodynamic-constraint.description">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>Explanatory text about the constraint and method used to impose it.</p>
 <table>
@@ -1365,7 +1365,7 @@
 </table>
 <p><span class='legacy'>Legacy: A string containing the constraint description.</span></p>
 </details>
-<details class="note mc-property" id="md.settings.thermodynamic-constraint.td-parameter">
+<details class="note mc-property" id="ps.settings.thermodynamic-constraint.td-parameter">
 <summary><span class="mc-name">td-parameter</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 <p>A fixed variable associated with the specified thermodynamic constraint.</p>
 <table>
@@ -1382,7 +1382,7 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="md.settings.thermodynamic-constraint.td-parameter.name">
+<details class="note mc-property" id="ps.settings.thermodynamic-constraint.td-parameter.name">
 <summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The designation of the parameter associated with the specified thermodynamic constraint.</p>
 <table>
@@ -1409,7 +1409,7 @@
 </table>
 <p><span class='legacy'>Legacy: A string containing the name of the thermodynamic constraint parameter.</span></p>
 </details>
-<details class="note mc-property" id="md.settings.thermodynamic-constraint.td-parameter.value">
+<details class="note mc-property" id="ps.settings.thermodynamic-constraint.td-parameter.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The data associated with the thermodynamic constraint parameter.</p>
 <table>
@@ -1436,7 +1436,7 @@
 </table>
 <p><span class='legacy'>Legacy: An integer, real, boolean, or string containing the thermodynamic constraint parameter value.</span></p>
 </details>
-<details class="note mc-property" id="md.settings.thermodynamic-constraint.td-parameter.unit">
+<details class="note mc-property" id="ps.settings.thermodynamic-constraint.td-parameter.unit">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>A standardized string or identifier that defines the dimension or measurement system of the associated value.</p>
 <table>
@@ -1463,7 +1463,7 @@
 </table>
 <p><span class='legacy'>Legacy: A string containing the units of the value in the <a href="https://www.gnu.org/software/units/">GNU unit convention</a> (or the text "dimensionless").</span></p>
 </details>
-<details class="note mc-property" id="md.settings.thermodynamic-constraint.td-parameter.description">
+<details class="note mc-property" id="ps.settings.thermodynamic-constraint.td-parameter.description">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>An explanation of the meaning, source, or purpose of the thermodynamic constraint parameter.</p>
 <table>
@@ -1493,10 +1493,10 @@
 </details>
 </details>
 </details>
-<h2 id="example-md-method-specific-metadata">Example: MD Method-Specific Metadata</h2>
+<h2 id="example-ps-method-specific-metadata">Example: PS Method-Specific Metadata</h2>
 <p>Dataset source: <a href="https://doi.org/10.6084/m9.figshare.6273170">https://doi.org/10.6084/m9.figshare.6273170</a></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"md"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"ps"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">      </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"computation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
