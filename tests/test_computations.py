@@ -322,3 +322,37 @@ def test_pim_dipole_variability_is_about_dipoles():
     assert 'local electric dipoles' in sub(c, 'electric-dipole-variability')['description']
     note = ' '.join(sub(c, 'charge-variability')['values']['note'].split())
     assert '"Fixed" – Charges cannot change during a simulation.' in note
+
+
+def test_pim_spin_style_keeps_only_particle_models():
+    """Spin dynamics driven by spin-polarized DFT, tight binding or a wavefunction is not a particle interaction
+    model (0046); such a computation is named as an input instead, so only the classical spin styles remain
+    (0060)."""
+    m = sub(section('pim')['properties'][0], 'magnetic-interactions')
+    assert (m['required'], m['repeatable'], m['type'], m['values']) == (False, True, None, None)
+    assert [s['name'] for s in m['subproperties']] == ['spin-style', 'magnetic-dipole']
+    s = sub(m, 'spin-style')
+    assert (s['required'], s['repeatable'], s['type'], s['extent'], s['kind']) == (
+        True, False, 'string', [], 'inapplicable')
+    assert s['values']['terms'] == ['Classical spin', 'Coupled spin lattice']
+    note = ' '.join(s['values']['note'].split())
+    assert 'Landau–Lifshitz–Gilbert (LLG)' in note
+    assert 'names as an `input` with the role Interaction model' in note
+    d = sub(m, 'magnetic-dipole')
+    assert (d['required'], d['repeatable'], d['type'], d['extent'], d['kind']) == (
+        False, False, 'string', [], 'inapplicable')
+    assert d['values'] == {'examples': ['Heisenberg', 'Multi-spin', 'Zeeman']}
+    assert d['notes'] == ['Note: The strength of an applied field is the condition `magnetic-field` in minimal '
+                          '`conditions`; a Zeeman term names its coupling to the spins.']
+    assert not [k for p in [m, s, d] for k in p if k.startswith('legacy_')]
+
+
+def test_pim_is_complete():
+    """Every pim property is filled, so the section declares legacy_complete (0004 item 36)."""
+    assert section('pim').get('legacy_complete') is True
+
+
+def test_pim_introduction_names_settings_blocks():
+    """pim's introduction says where its properties sit, as dft's does (0054)."""
+    assert ('The properties are given in settings blocks, each naming the PIM computations it describes.'
+            in section('pim')['introduction'])

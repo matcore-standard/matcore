@@ -832,6 +832,10 @@ record or marked PROPOSED, NOT DECIDED.
    magnetic-dipole a string with examples Heisenberg, Multi-spin, Zeeman and a note pointing to the
    magnetic-field condition. PROPOSED, NOT DECIDED (0060): a TB section; where quantum spin dynamics
    is described; a method term for spin dynamics on a fixed lattice (with md algorithm).
+   [in progress, branch pim-magnetic-interactions] pim magnetic-interactions by 0060: spin-style
+   and magnetic-dipole filled, legacy_* deleted; pim is complete and declares
+   `legacy_complete: true` (0004 item 36). pim's introduction gains 0054's sentence on settings
+   blocks.
    [todo] pim in file order: settings › theory-level (done, PR #92), model-type (done, PR #93), particle-style (done, PR #94), bonding-type (done, PR #95),
    charge-interactions (done, PR #96), magnetic-interactions (computation needs no fill).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no

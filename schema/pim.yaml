@@ -5,11 +5,12 @@ source: >-
   magnetic-interactions). legacy_* fields hold the baseline prose and are to be replaced by typed fields in
   subsequent PRs.
 introduction: |
-  The metadata for particle interaction models (MatCore-PIM) is tabulated below. A particle interaction model gives the energy and forces of a system of particles as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic potential, a bonded force field, a coarse-grained model or the electron force field. These properties describe a computation whose method is PIM, the evaluation of energies and forces used by another computation, e.g. molecular dynamics. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
+  The metadata for particle interaction models (MatCore-PIM) is tabulated below. A particle interaction model gives the energy and forces of a system of particles as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic potential, a bonded force field, a coarse-grained model or the electron force field. These properties describe a computation whose method is PIM, the evaluation of energies and forces used by another computation, e.g. molecular dynamics. The properties are given in settings blocks, each naming the PIM computations it describes. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 examples:
   - caption: PIM Method-Specific Metadata
     file: pim.json
     source: https://doi.org/10.6084/m9.figshare.6273170
+legacy_complete: true
 properties:
 - name: settings
   required: true
@@ -200,36 +201,37 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
-    legacy_values: Contains SubProperties as listed below.
     subproperties:
     - name: spin-style
       required: true
       description: The nature of the magnetic spins associated with the particles.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Classical spin, Coupled spin lattice]
+        note: >-
+          "Classical spin" – Spins modeled as classical vectors evolved via the Landau–Lifshitz–Gilbert (LLG)
+          equation defined by a spin Hamiltonian. "Coupled spin lattice" – Classical spins whose spin
+          Hamiltonian depends on the particle positions, so that the spins and the particles evolve together.
+          Magnetism obtained from the electrons, e.g. by spin-polarized DFT or tight binding, is a computation
+          of its own (method DFT or TB), which the computation that uses it names as an `input` with the role
+          Interaction model.
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "Classical spin dynamics" – Spins modeled as classical
-        vectors evolved via Landau–Lifshitz–Gilbert (LLG) equation defined by a spin Hamiltonian. "Coupled
-        spin lattice dynamics" – Combines classical spin-dynamics with classical molecular dynamics"Ab initio
-        spin dynamics" – Magnetism treated via spin-polarized density functional theory (DFT) "Tight binding
-        spin dynamics" – Magnetism emerges from itinerant electrons rather than fixed local moments "Quantum
-        spin dynamics" – Magnetic moments treated as fully quantum mechanical operators evolving under the
-        time-dependent Schrödinger equation
     - name: magnetic-dipole
       required: false
       description: >-
         Attribute specifying the type of interaction (spin Hamiltonian) between the magnetic dipoles associated
         with particles.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        examples: [Heisenberg, Multi-spin, Zeeman]
       repeatable: false
-      legacy_values: >-
-        String containing a description of the approach used to model the magnetic dipoles (e.g. "Heisenberg",
-        "multi-spin", "Zeeman", or some other formulation for the spin Hamiltonian).
+      notes:
+      - >-
+        Note: The strength of an applied field is the condition `magnetic-field` in minimal `conditions`; a
+        Zeeman term names its coupling to the spins.
