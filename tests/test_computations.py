@@ -1,5 +1,6 @@
 """Computations and structures carry labels, and computations name what they use (decision record 0046)."""
 import json
+import re
 from pathlib import Path
 
 import pytest
@@ -156,21 +157,22 @@ def test_example_labels_are_unique_and_every_reference_resolves():
 
 
 TITLES = {'minimal': '2.1 Minimal MatCore Metadata', 'dft': '2.2 Density Functional Theory (DFT) Metadata',
-          'pim': '2.3 Particle Interaction Model (PIM) Metadata', 'md': '2.4 Molecular Dynamics (MD) Metadata',
+          'pim': '2.3 Particle Interaction Model (PIM) Metadata', 'ps': '2.4 Particle Simulation (PS) Metadata',
           'mbpt': '2.5 Many-Body Perturbation Theory (MBPT) Metadata', 'ml': '2.6 Machine Learning (ML) Metadata',
           'pf': '2.7 Phase Field (PF) Metadata', 'derived': '2.8 Derived Property Metadata'}
-PAGES = {'minimal': '02-minimal.md', 'dft': '03-dft.md', 'pim': 'pim.md', 'md': '04-md.md', 'mbpt': '05-mbpt.md',
+PAGES = {'minimal': '02-minimal.md', 'dft': '03-dft.md', 'pim': 'pim.md', 'ps': 'ps.md', 'mbpt': '05-mbpt.md',
          'ml': '06-ml.md', 'pf': '07-pf.md', 'derived': '08-derived.md'}
 
 
-def test_sections_are_numbered_with_pim_before_md():
-    """pim serves md, so it comes first; the other sections move down one (0046, settled 2026-11-09)."""
+def test_sections_are_numbered_with_pim_before_ps():
+    """pim serves ps, so it comes first; the other sections move down one (0046, settled 2026-11-09); 2.4 is
+    Particle Simulation (0061)."""
     assert {k: section(k)['title'] for k in TITLES} == TITLES
 
 
 def test_pages_keep_their_addresses():
-    """Existing pages keep their file names, so links to them still work; pim's page is pim.md, and the menu
-    lists the sections in their numbered order (0046, settled 2026-11-09)."""
+    """Renumbered pages keep their file names, so links to them still work; pim's page is pim.md, ps's ps.md
+    (0061), and the menu lists the sections in their numbered order (0046, settled 2026-11-09)."""
     import sys
     sys.path.insert(0, str(ROOT / 'scripts'))
     import build_docs
@@ -197,14 +199,14 @@ def test_pim_holds_the_model_properties_moved_from_md():
     assert [c['name'] for c in sub(s, 'magnetic-interactions')['subproperties']] == ['spin-style', 'magnetic-dipole']
 
 
-def test_md_keeps_only_the_dynamics():
+def test_ps_keeps_only_the_dynamics():
     """md describes how particles are moved: its algorithm, parameters, initialization and constraints; mode is
     minimal's task, and the model is in pim (0046 item 9)."""
-    props = section('md')['properties']
+    props = section('ps')['properties']
     assert [p['name'] for p in props] == ['settings']
     assert [c['name'] for c in props[0]['subproperties']] == [
         'computation', 'algorithm', 'computation-parameter', 'initialization', 'thermodynamic-constraint']
-    text = (ROOT / 'schema/md.yaml').read_text()
+    text = (ROOT / 'schema/ps.yaml').read_text()
     for gone in ('name: mode', 'particle-style', 'particle-interactions', 'charge-interactions',
                  'magnetic-interactions'):
         assert gone not in text, gone
@@ -213,7 +215,42 @@ def test_md_keeps_only_the_dynamics():
 def test_preamble_lists_pim_among_the_methods():
     """§1.2 lists each method that has a section, in the order of the sections."""
     text = (ROOT / 'docs/standard/index.md').read_text()
-    assert '- DFT: Density functional theory\n\n- PIM: Particle interaction models\n\n- MD:' in text
+    assert '- DFT: Density functional theory\n\n- PIM: Particle interaction models\n\n- PS:' in text
+
+
+PS_INTRODUCTION = (
+    'The metadata for particle simulations (MatCore-PS) is tabulated below. A particle simulation moves or samples '
+    'a system of particles using the energies and forces supplied by an interaction model, a particle interaction '
+    'model or, as in ab initio molecular dynamics, an electronic structure computation. This category includes '
+    'molecular dynamics (MD), molecular statics (MS) and coarse-grained MD (CGMD): energy and free energy '
+    'minimization, equilibrium and nonequilibrium MD, and related approaches. The properties are given in settings '
+    'blocks, each naming the PS computations it describes. (Note: This standard inherits the metadata in the '
+    'minimal MatCore standard, adding the properties below.)')
+
+
+def test_ps_is_named_for_every_method_it_describes():
+    """Section 2.4 serves MD, MS, CGMD and ab initio MD, so it is named Particle Simulation, not after one method,
+    and the site names it so wherever it named MatCore-MD (0061)."""
+    assert section('ps')['introduction'].strip() == PS_INTRODUCTION
+    assert json.loads((ROOT / 'examples/ps.json').read_text()).keys() == {'ps'}
+    preamble = (ROOT / 'docs/standard/index.md').read_text()
+    assert '- PS: Particle simulation (molecular dynamics, molecular statics and related methods)\n' in preamble
+    for page in (preamble, (ROOT / 'docs/about.md').read_text()):
+        assert 'MatCore-PS' in page and 'MatCore-MD' not in page
+
+
+def test_leadership_lists_a_committee_per_method_section():
+    """Each method section has a committee heading, in alphabetical order with Derived Properties last; the PIM
+    committee is still to be named (0061)."""
+    text = (ROOT / 'docs/leadership.md').read_text()
+    methods = re.findall(r'^### Method: (.+)$', text, re.M)
+    assert methods == ['Density Functional Theory', 'Machine Learning for Materials',
+                       'Many-Body Perturbation Theory', 'Particle Interaction Model', 'Particle Simulation',
+                       'Phase Field', 'Derived Properties']
+    pim = text.split('### Method: Particle Interaction Model\n\n')[1].split('\n\n')[0]
+    assert pim == '- TBD'
+    ps = text.split('### Method: Particle Simulation\n\n')[1].split('\n\n')[0]
+    assert ps.count('\n- ') == 3 and 'Aidan Thompson' in ps
 
 
 THEORY_LEVELS = ['Physics-based', 'Machine-learned']

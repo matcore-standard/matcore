@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import build_docs  # noqa: E402
 
-SECTIONS = ['minimal', 'dft', 'pim', 'md', 'mbpt', 'ml', 'pf', 'derived']
+SECTIONS = ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
 OPEN = re.compile(r'<details class="note mc-property" id="([^"]+)" markdown="1">')
 
 
@@ -235,9 +235,9 @@ def test_main_writes_every_page_and_honours_the_flag(tmp_path):
     build_docs.main(['--out', str(tmp_path)])
     names = sorted(p.name for p in tmp_path.iterdir())
     assert names == sorted(list(build_docs.PAGES.values()) + ['annex-i-identifiers.md', 'annex-u-units.md', 'index.md', 'revision-history.md'])
-    assert 'Legacy:' not in (tmp_path / '04-md.md').read_text()  # md still holds legacy text
+    assert 'Legacy:' not in (tmp_path / 'ps.md').read_text()  # ps still holds legacy text
     build_docs.main(['--out', str(tmp_path), '--show-legacy'])
-    assert 'Legacy:' in (tmp_path / '04-md.md').read_text()
+    assert 'Legacy:' in (tmp_path / 'ps.md').read_text()
 
 
 def test_every_section_has_a_well_formed_example():

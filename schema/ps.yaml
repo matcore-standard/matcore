@@ -1,13 +1,13 @@
-section: md
-title: 2.4 Molecular Dynamics (MD) Metadata
+section: ps
+title: 2.4 Particle Simulation (PS) Metadata
 source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.
 introduction: |
-  The metadata for classical molecular dynamics (MD) data (MatCore-MD) is tabulated below. This category includes energy and free energy minimization, equilibrium and nonequilibrium MD, and related approaches.  (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
+  The metadata for particle simulations (MatCore-PS) is tabulated below. A particle simulation moves or samples a system of particles using the energies and forces supplied by an interaction model, a particle interaction model or, as in ab initio molecular dynamics, an electronic structure computation. This category includes molecular dynamics (MD), molecular statics (MS) and coarse-grained MD (CGMD): energy and free energy minimization, equilibrium and nonequilibrium MD, and related approaches. The properties are given in settings blocks, each naming the PS computations it describes. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 examples:
-  - caption: MD Method-Specific Metadata
-    file: md.json
+  - caption: PS Method-Specific Metadata
+    file: ps.json
     source: https://doi.org/10.6084/m9.figshare.6273170
 properties:
 - name: settings

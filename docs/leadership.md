@@ -36,7 +36,11 @@ The MatCore standard has been developed as a grassroots effort through the conce
 - Giulia Galli, *University of Chicago, USA*
 - Feliciano Giustino, *University of Texas, Austin, USA*
 
-### Method: Molecular Dynamics
+### Method: Particle Interaction Model
+
+- TBD
+
+### Method: Particle Simulation
 
 - Pietro Asinari, *Italian National Metrology Institute, Italy*
 - Elif Ertekin, *University of Illinois, Urbana-Champaign, USA*
