@@ -308,7 +308,8 @@ record or marked PROPOSED, NOT DECIDED.
      spin-style keeps Classical spin and Coupled spin lattice, three electronic or quantum terms
      removed, and magnetic-dipole is filled; pim is complete (0060; step 5); section 2.4 is renamed
      Particle Simulation (PS), key ps, with a new introduction, and Leadership adds a PIM committee
-     (0061; breaks 0.6.0 md instances).
+     (0061; breaks 0.6.0 md instances); a property holding the label of a structure or computation
+     is named for it: computation-label in settings and input, structure-label in computation (0062).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -860,7 +861,7 @@ record or marked PROPOSED, NOT DECIDED.
    computation is named for it: settings › computation (dft, pim, ps) and minimal computation › input ›
    computation become `computation-label`, minimal computation › structure becomes `structure-label`
    (all added after 0.6.0, so no released instance breaks).
-   [in progress, branch label-references, committed, awaiting push and PR] the 0062 rename: schema minimal, dft, pim, ps;
+   [done, PR #99 merged 2026-11-12] the 0062 rename: schema minimal, dft, pim, ps;
    the four examples (keys only); tests/test_computations.py updated, with a test that every
    label-holding property is named *-label; pages regenerated.
    [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill). Each
