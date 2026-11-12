@@ -2279,8 +2279,8 @@
 </table>
 <p>Recommended: <code>Single point</code>, <code>Optimization</code>, <code>Dynamics</code>, <code>Sampling</code>, <code>Free energy calculation</code>, <code>Training</code>, <code>Property calculation</code>. Other values are allowed. "Single point" – Energies, forces or other quantities evaluated for given configurations, without moving them, including the evaluations another computation requests of an interaction model; "Optimization" – Configurations or cells relaxed toward a minimum of the energy; "Dynamics" – Configurations evolved in time; "Sampling" – Configurations sampled from a distribution without a time evolution, e.g. Monte Carlo; "Free energy calculation" – A free energy, or a potential of mean force, computed from sampled configurations; "Training" – The parameters of a model fitted to data; "Property calculation" – A property obtained from given configurations or from the results of another computation, e.g. phonons, spectra, or a prediction by a trained model.</p>
 </details>
-<details class="note mc-property" id="minimal.computation.structure">
-<summary><span class="mc-name">structure</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<details class="note mc-property" id="minimal.computation.structure-label">
+<summary><span class="mc-name">structure-label</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 <p>The label of a structure modeled by this computation.</p>
 <table>
 <thead>
@@ -2324,8 +2324,8 @@
 </tbody>
 </table>
 <p>Note: Give an input only where the data of this computation cannot be understood without it. A record describes the dataset; it does not record the order of the calculations or how to repeat them.</p>
-<details class="note mc-property" id="minimal.computation.input.computation">
-<summary><span class="mc-name">computation<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<details class="note mc-property" id="minimal.computation.input.computation-label">
+<summary><span class="mc-name">computation-label<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The label of that computation.</p>
 <table>
 <thead>
@@ -6371,7 +6371,7 @@
 <span class="w">        </span><span class="nt">"method-class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronic"</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DFT"</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">"task"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Single point"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"structure"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nt">"structure-label"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">          </span><span class="s2">"si-bulk"</span><span class="p">,</span>
 <span class="w">          </span><span class="s2">"si-slab"</span>
 <span class="w">        </span><span class="p">],</span>
