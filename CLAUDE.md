@@ -91,6 +91,8 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   carries or points to also has `description`, `contents`, `encoding` and `link` (0043; 0056).
 - Names match `^[a-z][a-z0-9]*(-[a-z0-9]+)*$` (enforced by meta-schema.yaml). A name is plural only when
   its value is a list (open extent); a repeatable property stays singular. `unit` is singular.
+  A property whose value is the label of a structure or computation is named for the referent followed
+  by `-label`, e.g. `computation-label` (0062).
 
 ## Units model (decided; see docs/decisions/0001 Part A and docs/standard/annex-u-units.md)
 - Every dimensioned value in an instance file carries a `unit`; no default unit is ever implied.
@@ -854,7 +856,12 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #98 merged 2026-11-12] the 0061 rename: schema/ps.yaml, examples/ps.json,
    docs/standard/ps.md (04-md.md removed), build_docs.PAGES, check_examples.SECTIONS, mkdocs.yml nav,
    §1.2, About and Leadership; tests updated, two new tests in tests/test_computations.py.
-   [todo] md (ps after 0061) in file order, starting with algorithm (computation needs no fill). Each
+   Label references by 0062 (ruling 2026-11-12): a property whose value is the label of a structure or
+   computation is named for it: settings › computation (dft, pim, ps) and minimal computation › input ›
+   computation become `computation-label`, minimal computation › structure becomes `structure-label`
+   (all added after 0.6.0, so no released instance breaks).
+   [todo] the 0062 rename, one PR.
+   [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill). Each
    property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
