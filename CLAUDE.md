@@ -864,6 +864,14 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #99 merged 2026-11-12] the 0062 rename: schema minimal, dft, pim, ps;
    the four examples (keys only); tests/test_computations.py updated, with a test that every
    label-holding property is named *-label; pages regenerated.
+   Staged simulations by 0063 (ruling 2026-11-12, from reviewer feedback): minimal computation gains a
+   note: a simulation run in stages is one computation per stage whose method, settings or conditions
+   differ and whose data matter; each names the stage it continues from as input role Initial
+   configuration, which carries over the final state; the links give the order; a ramp within a stage
+   is qualified condition entries; the full protocol is workflow provenance (§1.2). Initial
+   configuration's definition adds the carried-over state, e.g. velocities. A protocol object and an
+   order field are declined.
+   [todo] the 0063 note, one PR.
    [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill). Each
    property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
