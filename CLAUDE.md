@@ -301,7 +301,9 @@ record or marked PROPOSED, NOT DECIDED.
      magnetic-order (0050); pim theory-level is filled, terms Physics-based and
      Machine-learned, model-type, the functional form, particle-style, with the term
      Nucleus, bonding-type, Reactive meaning no predetermined bonding topology, and
-     charge-interactions, electric-dipole-variability's description fixed (0046; step 5).
+     charge-interactions, electric-dipole-variability's description fixed (0046; step 5);
+     spin-style keeps Classical spin and Coupled spin lattice, three electronic or quantum terms
+     removed, and magnetic-dipole is filled; pim is complete (0060; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -832,12 +834,12 @@ record or marked PROPOSED, NOT DECIDED.
    magnetic-dipole a string with examples Heisenberg, Multi-spin, Zeeman and a note pointing to the
    magnetic-field condition. PROPOSED, NOT DECIDED (0060): a TB section; where quantum spin dynamics
    is described; a method term for spin dynamics on a fixed lattice (with md algorithm).
-   [in progress, branch pim-magnetic-interactions] pim magnetic-interactions by 0060: spin-style
+   [done, PR #97 merged 2026-11-12] pim magnetic-interactions by 0060: spin-style
    and magnetic-dipole filled, legacy_* deleted; pim is complete and declares
    `legacy_complete: true` (0004 item 36). pim's introduction gains 0054's sentence on settings
    blocks.
-   [todo] pim in file order: settings › theory-level (done, PR #92), model-type (done, PR #93), particle-style (done, PR #94), bonding-type (done, PR #95),
-   charge-interactions (done, PR #96), magnetic-interactions (computation needs no fill).
+   [done, PR #97] pim in file order: settings › theory-level (done, PR #92), model-type (done, PR #93), particle-style (done, PR #94), bonding-type (done, PR #95),
+   charge-interactions (done, PR #96), magnetic-interactions (done, PR #97) (computation needs no fill).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
