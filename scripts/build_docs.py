@@ -18,7 +18,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 # Each section's page file. Files keep their names when sections are renumbered, so their addresses do not
 # change; the order is the order of the sections (0046, settled 2026-11-09).
-PAGES = {'minimal': '02-minimal.md', 'dft': '03-dft.md', 'pim': 'pim.md', 'md': '04-md.md', 'mbpt': '05-mbpt.md',
+PAGES = {'minimal': '02-minimal.md', 'dft': '03-dft.md', 'pim': 'pim.md', 'ps': 'ps.md', 'mbpt': '05-mbpt.md',
          'ml': '06-ml.md', 'pf': '07-pf.md', 'derived': '08-derived.md'}
 ICON_DIR = Path(material.__file__).parent / 'templates/.icons/material'
 

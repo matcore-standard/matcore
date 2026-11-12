@@ -20,7 +20,7 @@ The MatCore standard is focused on CMS methods aimed at computing material prope
 
 - PIM: Particle interaction models
 
-- MD: Classical molecular dynamics
+- PS: Particle simulation (molecular dynamics, molecular statics and related methods)
 
 - MBPT: Many-body perturbation theory (GW/BSE)
 
@@ -30,7 +30,7 @@ The MatCore standard is focused on CMS methods aimed at computing material prope
 
 - DER: Derived properties from CMS calculations
 
-All methods share a common minimal set of metadata defined by the MatCore standard. In addition, each method has its own MatCore extension, e.g. MatCore-DFT, MatCore-MD, etc., that inherits from the minimal MatCore metadata and adds additional method-specific metadata. 
+All methods share a common minimal set of metadata defined by the MatCore standard. In addition, each method has its own MatCore extension, e.g. MatCore-DFT, MatCore-PS, etc., that inherits from the minimal MatCore metadata and adds additional method-specific metadata. 
 
 Some methods supply energies and forces (e.g. DFT, or an interatomic potential), others use them to sample or evolve a system (e.g. MD). A dataset is described as one or more computations, each a group of calculations that share a method and its settings. A computation that uses the results of another names it, with the role the other plays: an ab initio molecular dynamics (AIMD) computation names the DFT computation that supplies its energies and forces. Each method-specific section describes the computations of its method. MatCore describes a dataset; it does not record how to reproduce its execution. The order of the calculations, their control flow and complete inputs belong to the provenance record of a workflow manager, to which a MatCore record may point.
 

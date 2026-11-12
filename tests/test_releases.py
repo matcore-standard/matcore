@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import build_docs  # noqa: E402
 
-SECTIONS = ['minimal', 'dft', 'pim', 'md', 'mbpt', 'ml', 'pf', 'derived']
+SECTIONS = ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
 RELEASES = yaml.safe_load(open(ROOT / 'schema/releases.yaml'))['releases']
 FIELDS = {'version', 'date', 'change_type', 'sections', 'description', 'approved_by'}
 

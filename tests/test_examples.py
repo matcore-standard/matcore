@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import check_examples  # noqa: E402
 
-SECTIONS = ['minimal', 'dft', 'pim', 'md', 'mbpt', 'ml', 'pf', 'derived']
+SECTIONS = ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
 SCHEMA = [
     {'name': 'person', 'required': True, 'repeatable': True, 'type': None, 'extent': None, 'subproperties': [
         {'name': 'name', 'required': True, 'repeatable': False, 'type': 'string', 'extent': []},

@@ -16,7 +16,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-SECTIONS = ['minimal', 'dft', 'pim', 'md', 'mbpt', 'ml', 'pf', 'derived']
+SECTIONS = ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
 SCALARS = {
     'string': (lambda v: isinstance(v, str), 'a string'),
     'bool': (lambda v: isinstance(v, bool), 'true or false'),

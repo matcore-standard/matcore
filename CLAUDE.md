@@ -15,7 +15,8 @@ Other files link relative to the site or read it from mkdocs.yml (0004).
 The MatCore effort is funded by NSF DMR Award #2404283 and supported through the KIM Initiative (0004).
 
 - `schema/<section>.yaml` — the standard's property hierarchy, one file per section
-  (minimal, dft, pim, md, mbpt, ml, pf, derived; pim added by 0046). THIS IS THE STANDARD.
+  (minimal, dft, pim, ps, mbpt, ml, pf, derived; pim added by 0046, md renamed ps by 0061). THIS IS
+  THE STANDARD.
 - `schema/units.yaml` — Annex U, the normative unit table (kinds, symbols, QUDT/GNU mapping, SI factors).
   The single source of Annex U's Tables U.3 and U.4, which build_docs.py generates into
   annex-u-units.md; it prevails over the annex. Factors are exact decimal text, e.g. "1e3" (0009).
@@ -26,7 +27,7 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
   for units; it prevails over the annex (0014).
 - `schema/meta-schema.yaml` — JSON Schema (written in YAML) that section files must satisfy.
 - `docs/standard/*.md` — prose chapters (index = title and 1. Preamble, annex-u-units,
-  annex-i-identifiers) plus GENERATED chapters (02–08 and pim.md, named in build_docs.PAGES;
+  annex-i-identifiers) plus GENERATED chapters (02, 03, 05–08, pim.md and ps.md, named in build_docs.PAGES;
   revision-history; and the marked regions in
   index and the annexes: version line, Tables U.3/U.4, Table I.1).
   Never hand-edit generated parts; edit the YAML and run
@@ -122,7 +123,7 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
 ## Generic parameters and free-form units (decided; see docs/decisions/0001 and 0003)
 Three groups, not to be merged:
 1. Generic parameters: xc-parameter and smearing › parameter (dft; 0004 item 47, moved by 0053), computation-parameter
-   and td-parameter (md), model-parameter (pf), calculation-parameter (derived). Their `value` has
+   and td-parameter (ps), model-parameter (pf), calculation-parameter (derived). Their `value` has
    type any, extent any, kind any; the instance supplies type, shape and unit. The generic-parameter
    rule applies to these only. The instance type is one of float, int, string, bool, and is stated
    in the instance, not inferred from how the value is written; each serialization (defined in
@@ -389,7 +390,7 @@ record or marked PROPOSED, NOT DECIDED.
    type/extent/kind/recommended-unit/values, applying 0001 Part A to the property, and delete its
    legacy_* fields; (c) list in the PR description every judgment call in the mapping, so the
    human can decide. A section is complete when no legacy_* fields remain in its file.
-   Sections go in the order minimal, dft, pim, md, mbpt, ml, pf, derived, and properties in file order
+   Sections go in the order minimal, dft, pim, ps (md before 0061), mbpt, ml, pf, derived, and properties in file order
    within a section (0004 item 35; pim before md, settled 2026-11-10 in 0046). PROPOSED, NOT DECIDED:
    since 0046 a method section's properties sit in one `settings` block, so its PRs go one per member
    of `settings`.
@@ -848,7 +849,9 @@ record or marked PROPOSED, NOT DECIDED.
    MatCore-PS in §1.2 and About; Leadership renames "Method: Molecular Dynamics" to "Method: Particle
    Simulation" and adds "Method: Particle Interaction Model" with "TBD". PROPOSED, NOT DECIDED
    (0061): whether PS describes Monte Carlo (method MC); the PIM committee's members.
-   [todo] the 0061 rename, one PR.
+   [in progress, branch ps-rename, committed, awaiting push and PR] the 0061 rename: schema/ps.yaml, examples/ps.json,
+   docs/standard/ps.md (04-md.md removed), build_docs.PAGES, check_examples.SECTIONS, mkdocs.yml nav,
+   §1.2, About and Leadership; tests updated, two new tests in tests/test_computations.py.
    [todo] md (ps after 0061) in file order, starting with algorithm (computation needs no fill). Each
    property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
@@ -924,7 +927,7 @@ record or marked PROPOSED, NOT DECIDED.
   `uv run python scripts/build_docs.py --show-legacy` (the flag until status step 5 is complete),
   `uv run mkdocs build --strict`. Commit any files
   build_docs.py regenerates with the change; CI fails if the committed copies are stale. Never
-  hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, revision-history.md, the
+  hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, pim.md, ps.md, revision-history.md, the
   marked regions in index.md, annex-u-units.md and annex-i-identifiers.md) (0004, 0009, 0010, 0014).
 - Examples follow the standard (0012): every change to schema/*.yaml includes reviewing every
   example in examples/ and updating any that no longer conform, in the same change.

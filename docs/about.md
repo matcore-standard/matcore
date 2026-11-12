@@ -24,7 +24,7 @@ The MatCore standard is focused on CMS methods aimed at computing material prope
 
 ## Standard
 
-All methods share a common minimal set of metadata defined by the MatCore standard. The minimal MatCore metadata includes aspects of a dataset deemed important to report for data findability and reuse and are *universal* across all computational methods. In addition, each method has its own MatCore extension, e.g. MatCore-MD, MatCore-DFT, etc., that inherits from the minimal MatCore metadata and adds additional method-specific metadata.
+All methods share a common minimal set of metadata defined by the MatCore standard. The minimal MatCore metadata includes aspects of a dataset deemed important to report for data findability and reuse and are *universal* across all computational methods. In addition, each method has its own MatCore extension, e.g. MatCore-PS, MatCore-DFT, etc., that inherits from the minimal MatCore metadata and adds additional method-specific metadata.
 
 ## More Information and Citing
 
