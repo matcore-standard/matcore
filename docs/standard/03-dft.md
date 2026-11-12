@@ -15,8 +15,8 @@ Settings shared by the computations named in it.
 |---|---|
 | yes | yes |
 
-<details class="note mc-property" id="dft.settings.computation" markdown="1">
-<summary><span class="mc-name">computation<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<details class="note mc-property" id="dft.settings.computation-label" markdown="1">
+<summary><span class="mc-name">computation-label<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The label of a computation these settings apply to.
 
@@ -1100,7 +1100,7 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
   "dft": {
     "settings": [
       {
-        "computation": [
+        "computation-label": [
           "dft-single-points"
         ],
         "xc-functional": [

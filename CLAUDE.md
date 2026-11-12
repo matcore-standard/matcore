@@ -860,7 +860,9 @@ record or marked PROPOSED, NOT DECIDED.
    computation is named for it: settings › computation (dft, pim, ps) and minimal computation › input ›
    computation become `computation-label`, minimal computation › structure becomes `structure-label`
    (all added after 0.6.0, so no released instance breaks).
-   [todo] the 0062 rename, one PR.
+   [in progress, branch label-references, committed, awaiting push and PR] the 0062 rename: schema minimal, dft, pim, ps;
+   the four examples (keys only); tests/test_computations.py updated, with a test that every
+   label-holding property is named *-label; pages regenerated.
    [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill). Each
    property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced

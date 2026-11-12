@@ -2,7 +2,7 @@
   "ps": {
     "settings": [
       {
-        "computation": [
+        "computation-label": [
           "md-quench"
         ],
         "thermodynamic-constraint": [

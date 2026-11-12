@@ -2,7 +2,7 @@
   "pim": {
     "settings": [
       {
-        "computation": [
+        "computation-label": [
           "finnis-sinclair"
         ],
         "theory-level": "Physics-based",
