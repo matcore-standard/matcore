@@ -806,7 +806,7 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED: pim's properties are taken up before md's in status step 5, in file order
    (Superseded: settled 2026-11-10, pim first);
    md's introduction says "classical molecular dynamics" though md now also serves AIMD and MS, and
-   §1.2's list says "MD: Classical molecular dynamics".
+   §1.2's list says "MD: Classical molecular dynamics". (Superseded: settled by 0061.)
    [done, PR #92 merged 2026-11-10] pim theory-level: string, open terms Physics-based,
    Machine-learned (0046 item 8), defined in the note; description "How the functional form of the
    model was obtained."; legacy_* deleted; examples/pim.json writes Physics-based.
@@ -840,7 +840,17 @@ record or marked PROPOSED, NOT DECIDED.
    blocks.
    [done, PR #97] pim in file order: settings › theory-level (done, PR #92), model-type (done, PR #93), particle-style (done, PR #94), bonding-type (done, PR #95),
    charge-interactions (done, PR #96), magnetic-interactions (done, PR #97) (computation needs no fill).
-   [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
+   Particle Simulation by 0061 (ruling 2026-11-12): section 2.4 is retitled "2.4 Particle Simulation
+   (PS) Metadata" (MatCore-PS), key `ps` (schema/ps.yaml, examples/ps.json, docs/standard/ps.md,
+   addresses `#ps.…`; breaks 0.6.0 md instances); method terms MD and MS unchanged; a new
+   introduction without "classical", with 0054's settings sentence; §1.2 lists "PS: Particle
+   simulation (molecular dynamics, molecular statics and related methods)"; MatCore-MD becomes
+   MatCore-PS in §1.2 and About; Leadership renames "Method: Molecular Dynamics" to "Method: Particle
+   Simulation" and adds "Method: Particle Interaction Model" with "TBD". PROPOSED, NOT DECIDED
+   (0061): whether PS describes Monte Carlo (method MC); the PIM committee's members.
+   [todo] the 0061 rename, one PR.
+   [todo] md (ps after 0061) in file order, starting with algorithm (computation needs no fill). Each
+   property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
