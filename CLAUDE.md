@@ -825,6 +825,13 @@ record or marked PROPOSED, NOT DECIDED.
    open terms, defined in the notes; electric-dipole-variability's description, a copy of
    charge-variability's, says "electric dipoles"; "Fixed" says "during a simulation"; legacy_*
    deleted.
+   Spin styles by 0060 (ruling 2026-11-12): pim magnetic-interactions › spin-style keeps open terms
+   Classical spin and Coupled spin lattice; Ab initio, Tight binding and Quantum spin dynamics are
+   removed, since 0046 does not count them as particle interaction models (spin-polarized DFT or TB
+   is a computation of its own, named as an input with the role Interaction model);
+   magnetic-dipole a string with examples Heisenberg, Multi-spin, Zeeman and a note pointing to the
+   magnetic-field condition. PROPOSED, NOT DECIDED (0060): a TB section; where quantum spin dynamics
+   is described; a method term for spin dynamics on a fixed lattice (with md algorithm).
    [todo] pim in file order: settings › theory-level (done, PR #92), model-type (done, PR #93), particle-style (done, PR #94), bonding-type (done, PR #95),
    charge-interactions (done, PR #96), magnetic-interactions (computation needs no fill).
    [todo] md in file order, starting with computation. Each md property follows 0042 item 3: no
