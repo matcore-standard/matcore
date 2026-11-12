@@ -304,7 +304,9 @@ record or marked PROPOSED, NOT DECIDED.
      Nucleus, bonding-type, Reactive meaning no predetermined bonding topology, and
      charge-interactions, electric-dipole-variability's description fixed (0046; step 5);
      spin-style keeps Classical spin and Coupled spin lattice, three electronic or quantum terms
-     removed, and magnetic-dipole is filled; pim is complete (0060; step 5).
+     removed, and magnetic-dipole is filled; pim is complete (0060; step 5); section 2.4 is renamed
+     Particle Simulation (PS), key ps, with a new introduction, and Leadership adds a PIM committee
+     (0061; breaks 0.6.0 md instances).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -849,7 +851,7 @@ record or marked PROPOSED, NOT DECIDED.
    MatCore-PS in §1.2 and About; Leadership renames "Method: Molecular Dynamics" to "Method: Particle
    Simulation" and adds "Method: Particle Interaction Model" with "TBD". PROPOSED, NOT DECIDED
    (0061): whether PS describes Monte Carlo (method MC); the PIM committee's members.
-   [in progress, branch ps-rename, committed, awaiting push and PR] the 0061 rename: schema/ps.yaml, examples/ps.json,
+   [done, PR #98 merged 2026-11-12] the 0061 rename: schema/ps.yaml, examples/ps.json,
    docs/standard/ps.md (04-md.md removed), build_docs.PAGES, check_examples.SECTIONS, mkdocs.yml nav,
    §1.2, About and Leadership; tests updated, two new tests in tests/test_computations.py.
    [todo] md (ps after 0061) in file order, starting with algorithm (computation needs no fill). Each
