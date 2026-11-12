@@ -71,6 +71,26 @@ def test_computation_members_and_order():
         'Omitted when no condition is imposed, e.g. for a single point or a training computation.')
 
 
+STAGES_NOTE = (
+    'Note: A simulation run in stages, e.g. heating, equilibration and a quench, is described as one computation '
+    'for each stage whose method, settings or conditions differ and whose data the dataset contains or depends on. '
+    'Each stage names the stage it continues from in `input` with the role Initial configuration, which carries '
+    'over the final state of that stage, e.g. positions, velocities and the cell. These links give the order of '
+    'the stages; the order of the entries in the record does not. A condition that changes within one stage, e.g. '
+    "a temperature ramp, is given in that stage's `conditions` as entries with a qualifier. The full protocol, "
+    'with its control flow and complete inputs, belongs to the provenance record of a workflow manager (§1.2).')
+
+
+def test_a_staged_simulation_is_a_chain_of_computations():
+    """A reader of a repeatable computation asks how stages are ordered and what carries over between them; the
+    answer is the input links, not a protocol object, and the role says the state carries over (0063)."""
+    c = top('minimal', 'computation')
+    assert c['notes'] == [STAGES_NOTE]
+    role = sub(sub(c, 'input'), 'role')['values']['note']
+    assert ('"Initial configuration" – The configurations this computation starts from, with the state carried '
+            'over from that computation, e.g. velocities;') in role
+
+
 def test_task_terms_are_defined():
     """What a computation does is a required open term, each defined in the note (0046 item 2)."""
     t = sub(top('minimal', 'computation'), 'task')

@@ -871,7 +871,8 @@ record or marked PROPOSED, NOT DECIDED.
    is qualified condition entries; the full protocol is workflow provenance (§1.2). Initial
    configuration's definition adds the carried-over state, e.g. velocities. A protocol object and an
    order field are declined.
-   [todo] the 0063 note, one PR.
+   [in progress, branch staged-simulations, committed, awaiting push and PR] the 0063 note: schema/minimal.yaml (computation note,
+   Initial configuration definition), tests/test_computations.py, 02-minimal.md regenerated.
    [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill). Each
    property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
