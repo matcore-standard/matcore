@@ -2,7 +2,7 @@
 
 <p class="mc-version" data-version="0.6.0">Version 0.6.0</p>
 
-The metadata for particle interaction models (MatCore-PIM) is tabulated below. A particle interaction model gives the energy and forces of a system of particles as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic potential, a bonded force field, a coarse-grained model or the electron force field. These properties describe a computation whose method is PIM, the evaluation of energies and forces used by another computation, e.g. molecular dynamics. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
+The metadata for particle interaction models (MatCore-PIM) is tabulated below. A particle interaction model gives the energy and forces of a system of particles as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic potential, a bonded force field, a coarse-grained model or the electron force field. These properties describe a computation whose method is PIM, the evaluation of energies and forces used by another computation, e.g. molecular dynamics. The properties are given in settings blocks, each naming the PIM computations it describes. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 
 <span class="mc-legend"><span class="mc-key"><span class="mc-star">*</span> required</span><span class="mc-key"><span class="mc-icon mc-i-once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span> appears at most once</span><span class="mc-key"><span class="mc-icon mc-i-rep"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span> repeatable</span></span>
 
@@ -185,9 +185,9 @@ The nature of the magnetic spins associated with the particles.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Classical spin dynamics" – Spins modeled as classical vectors evolved via Landau–Lifshitz–Gilbert (LLG) equation defined by a spin Hamiltonian. "Coupled spin lattice dynamics" – Combines classical spin-dynamics with classical molecular dynamics"Ab initio spin dynamics" – Magnetism treated via spin-polarized density functional theory (DFT) "Tight binding spin dynamics" – Magnetism emerges from itinerant electrons rather than fixed local moments "Quantum spin dynamics" – Magnetic moments treated as fully quantum mechanical operators evolving under the time-dependent Schrödinger equation</span>
+Recommended: `Classical spin`, `Coupled spin lattice`. Other values are allowed. "Classical spin" – Spins modeled as classical vectors evolved via the Landau–Lifshitz–Gilbert (LLG) equation defined by a spin Hamiltonian. "Coupled spin lattice" – Classical spins whose spin Hamiltonian depends on the particle positions, so that the spins and the particles evolve together. Magnetism obtained from the electrons, e.g. by spin-polarized DFT or tight binding, is a computation of its own (method DFT or TB), which the computation that uses it names as an `input` with the role Interaction model.
 
 </details>
 
@@ -198,9 +198,11 @@ Attribute specifying the type of interaction (spin Hamiltonian) between the magn
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing a description of the approach used to model the magnetic dipoles (e.g. "Heisenberg", "multi-spin", "Zeeman", or some other formulation for the spin Hamiltonian).</span>
+Examples: `Heisenberg`, `Multi-spin`, `Zeeman`.
+
+Note: The strength of an applied field is the condition `magnetic-field` in minimal `conditions`; a Zeeman term names its coupling to the spins.
 
 </details>
 
