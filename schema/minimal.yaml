@@ -627,6 +627,16 @@ properties:
     repeatable: false
     notes:
     - 'Note: A label is unique among all labels of structures and computations in the record.'
+  - name: description
+    required: false
+    description: An explanation of the computation that its other properties do not capture, e.g. the protocol
+      of a search.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values: null
+    repeatable: false
   - name: method-class
     required: true
     description: The general category to which the computational technique belongs.
