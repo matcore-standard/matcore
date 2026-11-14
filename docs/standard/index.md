@@ -20,7 +20,7 @@ The MatCore standard is focused on CMS methods aimed at computing material prope
 
 - PIM: Particle interaction models
 
-- PS: Particle simulation (molecular dynamics, molecular statics and related methods)
+- PS: Particle simulation (molecular dynamics, molecular statics, Monte Carlo and related methods)
 
 - MBPT: Many-body perturbation theory (GW/BSE)
 

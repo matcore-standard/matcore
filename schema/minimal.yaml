@@ -641,9 +641,13 @@ properties:
     - >-
       Note: The categories listed above are based on the [MODA
       standard](https://data.europa.eu/doi/10.2777/404734).
+    - >-
+      Note: For a PS computation, give the entity of its particles: Atomistic for atoms, Mesoscopic for
+      coarse-grained particles such as beads.
   - name: method
     required: true
-    description: The computational materials science (CMS) approach used in the computation.
+    description: The method of the calculations in this computation, which names the section of this standard
+      that describes their settings, where one exists.
     type: string
     extent: []
     kind: inapplicable
@@ -652,21 +656,21 @@ properties:
       depends-on: method-class
       cases:
         Electronic: {terms: [CC, QMC, DFT, MBPT, TB]}
-        Atomistic: {terms: [MC, MD, MS, PIM]}
-        Mesoscopic: {terms: [DDD, KMC, CGMD, PIM]}
+        Atomistic: {terms: [PIM, PS]}
+        Mesoscopic: {terms: [DDD, KMC, PIM, PS]}
         Continuum: {terms: [PF]}
         Data-driven: {terms: [ML]}
       note: >-
         "CC" – Coupled Cluster; "QMC" – Quantum Monte Carlo; "DFT" – Density Functional Theory; "MBPT" –
-        Many-Body Perturbation Theory methods (such as GW and BSE); "TB" – Tight Binding; "MC" – Monte Carlo;
-        "MD" – Molecular Dynamics; "MS" – Molecular Statics: configurations or cells of particles relaxed
-        toward a minimum of the energy, using the energies and forces of an interaction model; "PIM" –
-        Particle Interaction Model: energies and forces of a system of particles given as an explicit function
-        of the particles' coordinates, which may include electrons treated as particles, without solving for a
+        Many-Body Perturbation Theory methods (such as GW and BSE); "TB" – Tight Binding; "PIM" – Particle
+        Interaction Model: energies and forces of a system of particles given as an explicit function of the
+        particles' coordinates, which may include electrons treated as particles, without solving for a
         wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic
-        potential, a bonded force field, a coarse-grained model or the electron force field; "DDD" – Discrete
-        Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "CGMD" – Coarse-grained MD; "PF" – Phase Field;
-        "ML" – Machine Learning.
+        potential, a bonded force field, a coarse-grained model or the electron force field; "PS" – Particle
+        Simulation: a system of particles moved or sampled using the energies and forces of another
+        computation, by molecular dynamics, molecular statics, Monte Carlo or related methods; described in
+        the PS section; "DDD" – Discrete Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "PF" – Phase
+        Field; "ML" – Machine Learning.
     repeatable: false
     notes:
     - >-
@@ -681,18 +685,26 @@ properties:
     kind: inapplicable
     recommended-unit: null
     values:
-      terms: [Single point, Optimization, Dynamics, Sampling, Free energy calculation, Training, Property
-          calculation]
+      terms: [Single point, Optimization, Transition state search, Dynamics, Sampling, Free energy calculation,
+        Training, Property calculation]
       note: >-
         "Single point" – Energies, forces or other quantities evaluated for given configurations, without
         moving them, including the evaluations another computation requests of an interaction model;
-        "Optimization" – Configurations or cells relaxed toward a minimum of the energy; "Dynamics" –
-        Configurations evolved in time; "Sampling" – Configurations sampled from a distribution without a time
-        evolution, e.g. Monte Carlo; "Free energy calculation" – A free energy, or a potential of mean force,
-        computed from sampled configurations; "Training" – The parameters of a model fitted to data; "Property
-        calculation" – A property obtained from given configurations or from the results of another
-        computation, e.g. phonons, spectra, or a prediction by a trained model.
+        "Optimization" – Configurations or cells taken to a minimum of the energy, local or global, e.g. a
+        relaxation or a search for the lowest-energy structure; "Transition state search" – Saddle points of
+        the energy, or minimum energy paths between given configurations, e.g. by the nudged elastic band or
+        dimer method; "Dynamics" – Configurations evolved in time where the evolution or the kinetics is the
+        result, e.g. trajectories, transport coefficients or rates, including accelerated dynamics and path
+        sampling; "Sampling" – Averages over a distribution of configurations, by Monte Carlo or by dynamics,
+        where the time evolution is not itself the result; "Free energy calculation" – A free energy, or a
+        potential of mean force, computed from sampled configurations; "Training" – The parameters of a model
+        fitted to data; "Property calculation" – A property obtained from given configurations or from the
+        results of another computation, e.g. phonons, spectra, or a prediction by a trained model.
     repeatable: false
+    notes:
+    - >-
+      Note: Give the term for the results the computation is meant to provide; the procedure is given in the
+      method's section, e.g. ps `algorithm`.
   - name: structure-label
     required: false
     description: The label of a structure modeled by this computation.
