@@ -320,7 +320,8 @@ record or marked PROPOSED, NOT DECIDED.
      computation gains an optional description, for a protocol such as a structure search's (0066);
      ps algorithm is a required, repeatable term naming a major class of procedure, 39 terms in eight
      groups, with an optional settings description for variants and parameters (0064, 0066, 0067);
-     ps computation-parameter is a generic parameter with an Annex U unit (0016).
+     ps computation-parameter is a generic parameter with an Annex U unit (0016); pim long-range-electrostatics is renamed electrostatic-summation, gains
+     Short-range and redefines None (0068).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -866,7 +867,7 @@ record or marked PROPOSED, NOT DECIDED.
    redefined as no electrostatic interactions computed from the charges, a model without charges
    omitting charge-interactions. The reviewer's point that the code, not the model, does the
    long-range sum was already settled by 0046 item 8 (amended 2026-11-09). No released instance
-   breaks. [in progress, branch pim-electrostatic-summation, committed, awaiting push and PR] One PR:
+   breaks. [done, PR #108 merged 2026-11-14]
    pim.yaml (rename, Short-range, None with the sentence on models without charges in its note),
    tests/test_computations.py (vocabulary, names, a test of 0068's wording), pim page regenerated.
    Spin styles by 0060 (ruling 2026-11-12): pim magnetic-interactions › spin-style keeps open terms
