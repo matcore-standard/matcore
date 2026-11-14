@@ -313,9 +313,10 @@ record or marked PROPOSED, NOT DECIDED.
      computation explains a simulation run in stages as computations linked by input role Initial
      configuration, which carries over the state (0063); method names the method section, PS replacing
      MD, MS, MC and CGMD, method-class gives a PS computation's particle entity, task names the goal
-     with a new Transition state search, and the PS introduction and §1.2 name Monte Carlo (0064;
+     with a new Transition state search (Superseded: renamed Transition path by 0065), and the PS introduction and §1.2 name Monte Carlo (0064;
      breaks 0.6.0 instances with method MD, MC or CGMD); each method term is defined by the kind of
-     methods it covers (0064, amended 2026-11-14).
+     methods it covers (0064, amended 2026-11-14); task gains Structure generation and Equilibration,
+     Transition path covers path sampling, and Training covers any model fitted to data (0065).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -923,7 +924,7 @@ record or marked PROPOSED, NOT DECIDED.
    DECIDED (0065): whether Structure generation is a computation only when its configurations are in
    the dataset or another's input; the `method` of a computation with no method term (generation
    without a model, a non-ML fit such as force matching, featurization).
-   [in progress, branch task-terms-0065, committed, awaiting push and PR] 0065 applied: minimal task terms and note,
+   [done, PR #104 merged 2026-11-14] 0065 applied: minimal task terms and note,
    tests/test_computations.py, 02-minimal regenerated; before 0064 PR (b).
    The notes below are its background.
    PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
