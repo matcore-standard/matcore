@@ -661,16 +661,19 @@ properties:
         Continuum: {terms: [PF]}
         Data-driven: {terms: [ML]}
       note: >-
-        "CC" – Coupled Cluster; "QMC" – Quantum Monte Carlo; "DFT" – Density Functional Theory; "MBPT" –
-        Many-Body Perturbation Theory methods (such as GW and BSE); "TB" – Tight Binding; "PIM" – Particle
-        Interaction Model: energies and forces of a system of particles given as an explicit function of the
-        particles' coordinates, which may include electrons treated as particles, without solving for a
-        wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic
-        potential, a bonded force field, a coarse-grained model or the electron force field; "PS" – Particle
-        Simulation: a system of particles moved or sampled using the energies and forces of another
-        computation, by molecular dynamics, molecular statics, Monte Carlo or related methods; described in
-        the PS section; "DDD" – Discrete Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "PF" – Phase
-        Field; "ML" – Machine Learning.
+        "CC" – Coupled Cluster: wavefunction methods that build electron correlation from excitations of a
+        reference state; "QMC" – Quantum Monte Carlo: stochastic solutions of the many-electron Schrödinger
+        equation; "DFT" – Density Functional Theory: electronic structure obtained from the electron density;
+        "MBPT" – Many-Body Perturbation Theory: excited states obtained from many-body Green's functions; "TB"
+        – Tight Binding: electronic structure in a basis of localized orbitals with parameterized matrix
+        elements; "PIM" – Particle Interaction Model: energies and forces given as an explicit function of the
+        particles' coordinates, without solving for a wavefunction or an electron density; "PS" – Particle
+        Simulation: particles moved or sampled using the energies and forces of another computation; "DDD" –
+        Discrete Dislocation Dynamics: plastic deformation from the motion and interaction of dislocation
+        lines; "KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events
+        chosen by their rates; "PF" – Phase Field: microstructure evolution described by continuous fields
+        with diffuse interfaces; "ML" – Machine Learning: models trained on data to predict materials
+        properties or behavior.
     repeatable: false
     notes:
     - >-
