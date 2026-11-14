@@ -894,7 +894,7 @@ record or marked PROPOSED, NOT DECIDED.
    Method, task and algorithm by 0064 (ruling 2026-11-14): minimal `method` names the method section,
    PS replacing MD, MS, MC and CGMD (cases Atomistic PIM, PS; Mesoscopic DDD, KMC, PIM, PS);
    method-class notes that a PS computation takes its particles' entity; `task` names the goal, with
-   Optimization local or global, a new Transition state search, and Dynamics and Sampling told apart
+   Optimization local or global, a new Transition state search (Superseded: renamed Transition path by 0065), and Dynamics and Sampling told apart
    by whether the time evolution is the result; ps `algorithm` a required, repeatable string with
    open terms in eight groups (the baseline's, less PMF, plus the reviewer's, NEB, Metropolis and
    Hybrid Monte Carlo; aMD and GaMD under enhanced sampling); the PS introduction and §1.2 name Monte
@@ -911,6 +911,19 @@ record or marked PROPOSED, NOT DECIDED.
    stating the kind of methods the term covers, naming no methods outside the terms (wording in 0064).
    [done, PR #103 merged 2026-11-14] Applied to schema/minimal.yaml, with
    tests/test_computations.py matching the note exactly and 02-minimal regenerated; before PR (b).
+   Task terms by 0065 (ruling 2026-11-14, from the human's feedback on task): Transition state search
+   renamed "Transition path" (saddle points, minimum energy paths, reactive trajectory ensembles and
+   their rates; Dynamics drops path sampling); "Structure generation" added, in the human's wording
+   (creation, modification or enumeration of configurations before energy or force evaluations;
+   generative models do not optimize; rattled or strained configurations are generated); "Equilibration"
+   added (a state prepared as another computation's Initial configuration, its data not for analysis);
+   Training reworded to cover any model fitted to data (force matching, Boltzmann inversion, cluster
+   expansions); Active learning and Post-processing declined (a workflow of computations; provenance
+   events or Property calculation). Amends 0064 item 3; breaks no released instance. PROPOSED, NOT
+   DECIDED (0065): whether Structure generation is a computation only when its configurations are in
+   the dataset or another's input; the `method` of a computation with no method term (generation
+   without a model, a non-ML fit such as force matching, featurization).
+   [todo] Apply 0065 in its own PR (minimal task, tests, 02-minimal), before 0064 PR (b).
    The notes below are its background.
    PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
    ps algorithm repeatable, with open terms grouped in its note by function (time integration, local
