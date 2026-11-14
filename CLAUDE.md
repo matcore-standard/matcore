@@ -377,6 +377,9 @@ record or marked PROPOSED, NOT DECIDED.
    - [done, PR #31 merged 2026-11-04] A "Collapse all" button at the end of each schema
      page's key line closes every open property block (0007, resolved 2026-11-04); added by
      layout.js.
+   - [todo] Values text in paragraphs (0007 item 5, amended 2026-11-14): allowed values first; depends-on cases as a list, one item per case; values.note
+     as its own paragraph headed **Clarifications:**. build_docs.py only, test first; all pages
+     regenerated.
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
 3. [done, PR #9 merged 2026-11-01] Apply 0001 Part A (kind/recommended-unit/convention): merged
    into step 5, property by property (0004). What remained of this step did not belong to any one
