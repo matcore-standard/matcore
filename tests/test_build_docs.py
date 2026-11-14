@@ -173,6 +173,16 @@ def test_definitions_are_set_apart_from_the_values_they_define():
         {'type': 'string', 'values': {'terms': ['A']}}, show_legacy=False)
 
 
+def test_a_note_of_many_definitions_keeps_its_groups_and_lists():
+    """Dozens of definitions in one paragraph cannot be read, so a multi-line note is rendered as written,
+    groups and lists intact, under a Clarifications paragraph of its own (0007 item 5, amended again
+    2026-11-14)."""
+    note = '**Group A**\n\n- "X" – An x\n- "Y" – A y\n\n**Group B**\n\n- "Z" – A z'
+    text = build_docs.values_text({'type': 'string', 'values': {'terms': ['X', 'Y', 'Z'], 'note': note}},
+                                  show_legacy=False)
+    assert text.endswith('\n\n**Clarifications:**\n\n' + note)
+
+
 
 def test_bounds_on_an_array_apply_to_each_component():
     """A bound on a list of numbers holds for each number, so the page says so instead of reading as one

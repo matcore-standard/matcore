@@ -960,6 +960,15 @@ record or marked PROPOSED, NOT DECIDED.
    matrix) is task Property calculation naming the PIM or electronic computation as input role
    Interaction model, no schema change. A suggestion to add four metadynamics variant terms was
    declined. Applied in the ps algorithm PR (branch ps-algorithm-0064).
+   [in progress, branch ps-algorithm-0064, committed, awaiting push and PR] 0064 PR (b), with 0066
+   item 3 and 0067: ps algorithm required, repeatable, 39 open terms in eight groups, each defined in
+   values.note as grouped lists (0007 item 5, amended again; build_docs.py renders a multi-line note
+   under its own Clarifications paragraph, tested in tests/test_build_docs.py); definitions other than
+   0064's Harmonic and 0066's four drafted in this PR, listed as judgment calls; a note asks for one
+   entry per procedure and points thermostats to thermodynamic-constraint; a second note, decided in
+   review, puts numerical parameters in computation-parameter and the variant in description; ps
+   settings › description added (0067); legacy_* deleted; examples/ps.json gives Velocity Verlet (the
+   baseline example has no algorithm); tests; ps page regenerated.
    The notes below are its background.
    PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
    ps algorithm repeatable, with open terms grouped in its note by function (time integration, local
