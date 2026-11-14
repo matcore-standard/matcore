@@ -858,6 +858,15 @@ record or marked PROPOSED, NOT DECIDED.
    open terms, defined in the notes; electric-dipole-variability's description, a copy of
    charge-variability's, says "electric dipoles"; "Fixed" says "during a simulation"; legacy_*
    deleted.
+   Electrostatic summation by 0068 (ruling 2026-11-14, from reviewer feedback): pim
+   charge-interactions › long-range-electrostatics is renamed `electrostatic-summation` (description
+   "Method used to compute the electrostatic interactions between the charges."; the name
+   electrostatic-interactions declined, as it parallels the container charge-interactions); a term
+   "Short-range" after Direct (within a cutoff, possibly shifted or damped, e.g. Wolf, DSF); "None"
+   redefined as no electrostatic interactions computed from the charges, a model without charges
+   omitting charge-interactions. The reviewer's point that the code, not the model, does the
+   long-range sum was already settled by 0046 item 8 (amended 2026-11-09). No released instance
+   breaks. [todo] One PR: pim.yaml, tests/test_computations.py, pim page.
    Spin styles by 0060 (ruling 2026-11-12): pim magnetic-interactions › spin-style keeps open terms
    Classical spin and Coupled spin lattice; Ab initio, Tight binding and Quantum spin dynamics are
    removed, since 0046 does not count them as particle interaction models (spin-polarized DFT or TB
