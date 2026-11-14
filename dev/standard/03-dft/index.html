@@ -1102,7 +1102,8 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>LDA</code>, <code>GGA</code>, <code>Meta GGA</code>, <code>Hybrid</code>, <code>ML</code>. Other values are allowed. "LDA" – Local Density Approximation. "GGA" – Generalized Gradient Approximation. "Meta GGA" – Extension to GGA including dependence on Laplacian of electron density. "Hybrid" – An approximation for the exchange-correlation (XC) functional that includes a portion of the exact XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio or empirical). "ML" – Machine learning based functional.</p>
+<p>Recommended: <code>LDA</code>, <code>GGA</code>, <code>Meta GGA</code>, <code>Hybrid</code>, <code>ML</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "LDA" – Local Density Approximation. "GGA" – Generalized Gradient Approximation. "Meta GGA" – Extension to GGA including dependence on Laplacian of electron density. "Hybrid" – An approximation for the exchange-correlation (XC) functional that includes a portion of the exact XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio or empirical). "ML" – Machine learning based functional.</p>
 </details>
 <details class="note mc-property" id="dft.settings.xc-functional.name">
 <summary><span class="mc-name">name</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1129,7 +1130,7 @@
 </tr>
 </tbody>
 </table>
-<p>Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. Others: BEEF, etc. A decomposition into the components of a community library such as LibXC is given in normalization. Give the functional alone, without a dispersion correction (e.g. PBE, not PBE-D3); the correction is given in dispersion-correction.</p>
+<p><strong>Clarifications:</strong> Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. Others: BEEF, etc. A decomposition into the components of a community library such as LibXC is given in normalization. Give the functional alone, without a dispersion correction (e.g. PBE, not PBE-D3); the correction is given in dispersion-correction.</p>
 </details>
 <details class="note mc-property" id="dft.settings.xc-functional.description">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1156,7 +1157,7 @@
 </tr>
 </tbody>
 </table>
-<p>Free text on what <code>type</code> and <code>name</code> do not say, e.g. a modification of the functional or the reason for choosing it.</p>
+<p><strong>Clarifications:</strong> Free text on what <code>type</code> and <code>name</code> do not say, e.g. a modification of the functional or the reason for choosing it.</p>
 </details>
 <details class="note mc-property" id="dft.settings.xc-functional.normalization">
 <summary><span class="mc-name">normalization</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1227,7 +1228,8 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>LibXC</code>. Other values are allowed. "LibXC" – the <a href="https://libxc.gitlab.io/functionals/">Libxc library of exchange-correlation functionals</a>.</p>
+<p>Recommended: <code>LibXC</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "LibXC" – the <a href="https://libxc.gitlab.io/functionals/">Libxc library of exchange-correlation functionals</a>.</p>
 <p>Note: Give the version of the library as a <code>dependency</code> of the simulation code in minimal <code>software</code>.</p>
 </details>
 </details>
@@ -1326,7 +1328,7 @@
 </tr>
 </tbody>
 </table>
-<p>A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning).</p>
+<p><strong>Clarifications:</strong> A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning).</p>
 </details>
 <details class="note mc-property" id="dft.settings.xc-functional.xc-parameter.description">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1398,7 +1400,8 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>All-electron</code>, <code>PAW</code>, <code>Pseudopotential</code>. Other values are allowed. "All-electron" – All of the electrons in an atom are modeled explicitly. "PAW" – Projector Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential.</p>
+<p>Recommended: <code>All-electron</code>, <code>PAW</code>, <code>Pseudopotential</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "All-electron" – All of the electrons in an atom are modeled explicitly. "PAW" – Projector Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential.</p>
 </details>
 <details class="note mc-property" id="dft.settings.core-electron-treatment.pseudopotential-or-paw">
 <summary><span class="mc-name">pseudopotential-or-paw</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
@@ -1716,7 +1719,8 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>SHA1</code>, <code>SHA224</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>SHA3-256</code>, <code>SHA3-384</code>, <code>SHA3-512</code>, <code>BLAKE2b-256</code>, <code>BLAKE2b-384</code>, <code>BLAKE2b-512</code>, <code>BLAKE3</code>, <code>MD2</code>, <code>MD4</code>, <code>MD5</code>, <code>MD6</code>, <code>ADLER32</code>. Other values are allowed. The algorithm names of <a href="https://spdx.github.io/spdx-spec/v2.3.1/file-information/">SPDX 2.3.1 §8.4</a> (File checksum field).</p>
+<p>Recommended: <code>SHA1</code>, <code>SHA224</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>SHA3-256</code>, <code>SHA3-384</code>, <code>SHA3-512</code>, <code>BLAKE2b-256</code>, <code>BLAKE2b-384</code>, <code>BLAKE2b-512</code>, <code>BLAKE3</code>, <code>MD2</code>, <code>MD4</code>, <code>MD5</code>, <code>MD6</code>, <code>ADLER32</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> The algorithm names of <a href="https://spdx.github.io/spdx-spec/v2.3.1/file-information/">SPDX 2.3.1 §8.4</a> (File checksum field).</p>
 </details>
 <details class="note mc-property" id="dft.settings.core-electron-treatment.pseudopotential-or-paw.file.checksum.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1818,7 +1822,8 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>Gaussian basis sets</code>, <code>LAPW</code>, <code>Local atomic orbitals</code>, <code>Numerical atomic orbitals</code>, <code>Plane waves</code>, <code>Real space grids</code>. Other values are allowed. The terms fall into three groups. (1) Basis-function expansions: "Gaussian basis sets" – Atom-centered Gaussian-type orbitals. "Local atomic orbitals" – Atom-centered orbitals of a form not covered by the previous or the next term, e.g. Slater-type orbitals. "Numerical atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius. "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff. (2) Grid methods: "Real space grids" – Values on a mesh of points in real space (finite differences or finite elements). (3) Augmented methods: "LAPW" – Linearized Augmented Plane Wave: atomic-like functions inside spheres around the atoms, plane waves between them.</p>
+<p>Recommended: <code>Gaussian basis sets</code>, <code>LAPW</code>, <code>Local atomic orbitals</code>, <code>Numerical atomic orbitals</code>, <code>Plane waves</code>, <code>Real space grids</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> The terms fall into three groups. (1) Basis-function expansions: "Gaussian basis sets" – Atom-centered Gaussian-type orbitals. "Local atomic orbitals" – Atom-centered orbitals of a form not covered by the previous or the next term, e.g. Slater-type orbitals. "Numerical atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius. "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff. (2) Grid methods: "Real space grids" – Values on a mesh of points in real space (finite differences or finite elements). (3) Augmented methods: "LAPW" – Linearized Augmented Plane Wave: atomic-like functions inside spheres around the atoms, plane waves between them.</p>
 </details>
 <details class="note mc-property" id="dft.settings.wavefunction-representation.localized-orbital-basis-set">
 <summary><span class="mc-name">localized-orbital-basis-set</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
@@ -2056,7 +2061,8 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>SHA1</code>, <code>SHA224</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>SHA3-256</code>, <code>SHA3-384</code>, <code>SHA3-512</code>, <code>BLAKE2b-256</code>, <code>BLAKE2b-384</code>, <code>BLAKE2b-512</code>, <code>BLAKE3</code>, <code>MD2</code>, <code>MD4</code>, <code>MD5</code>, <code>MD6</code>, <code>ADLER32</code>. Other values are allowed. The algorithm names of <a href="https://spdx.github.io/spdx-spec/v2.3.1/file-information/">SPDX 2.3.1 §8.4</a> (File checksum field).</p>
+<p>Recommended: <code>SHA1</code>, <code>SHA224</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>SHA3-256</code>, <code>SHA3-384</code>, <code>SHA3-512</code>, <code>BLAKE2b-256</code>, <code>BLAKE2b-384</code>, <code>BLAKE2b-512</code>, <code>BLAKE3</code>, <code>MD2</code>, <code>MD4</code>, <code>MD5</code>, <code>MD6</code>, <code>ADLER32</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> The algorithm names of <a href="https://spdx.github.io/spdx-spec/v2.3.1/file-information/">SPDX 2.3.1 §8.4</a> (File checksum field).</p>
 </details>
 <details class="note mc-property" id="dft.settings.wavefunction-representation.localized-orbital-basis-set.file.checksum.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -2310,7 +2316,8 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>Collinear spin polarization</code>, <code>Noncollinear spin polarization</code>, <code>On-site correlation</code>, <code>Orbital polarization</code>, <code>Spin-orbit coupling</code>, <code>Van der Waals</code>. Other values are allowed. "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or antiparallel to one axis. "Noncollinear spin polarization" – Spin-polarized, with magnetic moments free to point in any direction. "On-site correlation" – e.g. DFT+U. "Orbital polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks' orbital-polarization term. "Spin-orbit coupling" – The coupling of the electron spin to its orbital motion. "Van der Waals" – Dispersion interactions, by a correction or a nonlocal functional. Give at most one of the two spin-polarization terms. List each phenomenon as a separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries, "Noncollinear spin polarization" and "Spin-orbit coupling".</p>
+<p>Recommended: <code>Collinear spin polarization</code>, <code>Noncollinear spin polarization</code>, <code>On-site correlation</code>, <code>Orbital polarization</code>, <code>Spin-orbit coupling</code>, <code>Van der Waals</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or antiparallel to one axis. "Noncollinear spin polarization" – Spin-polarized, with magnetic moments free to point in any direction. "On-site correlation" – e.g. DFT+U. "Orbital polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks' orbital-polarization term. "Spin-orbit coupling" – The coupling of the electron spin to its orbital motion. "Van der Waals" – Dispersion interactions, by a correction or a nonlocal functional. Give at most one of the two spin-polarization terms. List each phenomenon as a separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries, "Noncollinear spin polarization" and "Spin-orbit coupling".</p>
 </details>
 <details class="note mc-property" id="dft.settings.initial-magnetic-moment">
 <summary><span class="mc-name">initial-magnetic-moment</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
@@ -2434,7 +2441,8 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>D2</code>, <code>D3</code>, <code>D3(BJ)</code>, <code>D4</code>, <code>TS</code>, <code>MBD</code>. Other values are allowed. "D2", "D3", "D4" – Grimme's corrections of those generations. "D3(BJ)" – D3 with Becke–Johnson damping. "TS" – Tkatchenko–Scheffler. "MBD" – Many-body dispersion.</p>
+<p>Recommended: <code>D2</code>, <code>D3</code>, <code>D3(BJ)</code>, <code>D4</code>, <code>TS</code>, <code>MBD</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "D2", "D3", "D4" – Grimme's corrections of those generations. "D3(BJ)" – D3 with Becke–Johnson damping. "TS" – Tkatchenko–Scheffler. "MBD" – Many-body dispersion.</p>
 <p>Note: Give it when <code>calculation-physics</code> lists Van der Waals and the dispersion is added to the functional. A functional that includes dispersion itself (e.g. vdW-DF, rVV10) is named in <code>xc-functional › name</code>.</p>
 </details>
 <details class="note mc-property" id="dft.settings.k-point-mesh">
@@ -2507,7 +2515,8 @@
 </tr>
 </tbody>
 </table>
-<p>Minimum: 1, for each component. Ordered list of three integers, the number of k-points along the three reciprocal lattice vector directions.</p>
+<p>Minimum: 1, for each component.</p>
+<p><strong>Clarifications:</strong> Ordered list of three integers, the number of k-points along the three reciprocal lattice vector directions.</p>
 </details>
 <details class="note mc-property" id="dft.settings.k-point-mesh.shift">
 <summary><span class="mc-name">shift</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -2534,7 +2543,7 @@
 </tr>
 </tbody>
 </table>
-<p>Ordered list of three real numbers, the shifts along the three reciprocal lattice vector directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice vector.</p>
+<p><strong>Clarifications:</strong> Ordered list of three real numbers, the shifts along the three reciprocal lattice vector directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice vector.</p>
 </details>
 </details>
 <details class="note mc-property" id="dft.settings.smearing">
@@ -2747,7 +2756,7 @@
 </tr>
 </tbody>
 </table>
-<p>A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning).</p>
+<p><strong>Clarifications:</strong> A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning).</p>
 </details>
 <details class="note mc-property" id="dft.settings.smearing.parameter.description">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -2819,7 +2828,8 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>Simple mixing</code>, <code>Pulay mixing</code>, <code>DIIS</code>, <code>Broyden mixing</code>. Other values are allowed. "DIIS" – Direct Inversion in the Iterative Subspace.</p>
+<p>Recommended: <code>Simple mixing</code>, <code>Pulay mixing</code>, <code>DIIS</code>, <code>Broyden mixing</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "DIIS" – Direct Inversion in the Iterative Subspace.</p>
 </details>
 <details class="note mc-property" id="dft.settings.self-consistent-field-convergence.method-diagonalization">
 <summary><span class="mc-name">method-diagonalization</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
@@ -2846,7 +2856,8 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>Car-Parrinello</code>, <code>Chebyshev filtering</code>, <code>Conjugate gradient</code>, <code>Davidson method</code>, <code>Direct diagonalization</code>, <code>Lanczos</code>, <code>LOBPCG</code>, <code>RMM-DIIS</code>. Other values are allowed. "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization. "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters. "Davidson method" – Including blocked variants. "Direct diagonalization" – A dense eigensolver applied to the full Hamiltonian matrix (e.g. LAPACK, ScaLAPACK). "LOBPCG" – Locally Optimal Block Preconditioned Conjugate Gradient. "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the Iterative Subspace.</p>
+<p>Recommended: <code>Car-Parrinello</code>, <code>Chebyshev filtering</code>, <code>Conjugate gradient</code>, <code>Davidson method</code>, <code>Direct diagonalization</code>, <code>Lanczos</code>, <code>LOBPCG</code>, <code>RMM-DIIS</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization. "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters. "Davidson method" – Including blocked variants. "Direct diagonalization" – A dense eigensolver applied to the full Hamiltonian matrix (e.g. LAPACK, ScaLAPACK). "LOBPCG" – Locally Optimal Block Preconditioned Conjugate Gradient. "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the Iterative Subspace.</p>
 </details>
 <details class="note mc-property" id="dft.settings.self-consistent-field-convergence.tolerance">
 <summary><span class="mc-name">tolerance<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -2890,7 +2901,8 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>Energy</code>, <code>Charge density</code>, <code>Potential</code>. Other values are allowed. "Energy" – The change in the energy between successive iterations, defined as for <code>relaxation-tolerance-energy</code>. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham potential.</p>
+<p>Recommended: <code>Energy</code>, <code>Charge density</code>, <code>Potential</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "Energy" – The change in the energy between successive iterations, defined as for <code>relaxation-tolerance-energy</code>. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham potential.</p>
 </details>
 <details class="note mc-property" id="dft.settings.self-consistent-field-convergence.tolerance.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -2944,7 +2956,7 @@
 </tr>
 </tbody>
 </table>
-<p>A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning).</p>
+<p><strong>Clarifications:</strong> A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning).</p>
 </details>
 </details>
 </details>
