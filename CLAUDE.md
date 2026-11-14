@@ -314,7 +314,8 @@ record or marked PROPOSED, NOT DECIDED.
      configuration, which carries over the state (0063); method names the method section, PS replacing
      MD, MS, MC and CGMD, method-class gives a PS computation's particle entity, task names the goal
      with a new Transition state search, and the PS introduction and §1.2 name Monte Carlo (0064;
-     breaks 0.6.0 instances with method MD, MC or CGMD).
+     breaks 0.6.0 instances with method MD, MC or CGMD); each method term is defined by the kind of
+     methods it covers (0064, amended 2026-11-14).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -908,7 +909,7 @@ record or marked PROPOSED, NOT DECIDED.
    tests/test_computations.py; 02-minimal, ps and index pages regenerated.
    0064 amended 2026-11-14: each definition in method's note is the expansion plus a short phrase
    stating the kind of methods the term covers, naming no methods outside the terms (wording in 0064).
-   [in progress, branch method-definitions-0064, committed, awaiting push and PR] Applied to schema/minimal.yaml, with
+   [done, PR #103 merged 2026-11-14] Applied to schema/minimal.yaml, with
    tests/test_computations.py matching the note exactly and 02-minimal regenerated; before PR (b).
    The notes below are its background.
    PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
