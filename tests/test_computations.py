@@ -291,7 +291,7 @@ def test_pim_holds_the_model_properties_moved_from_md():
         ('particle-style', True, True), ('bonding-type', True, False), ('charge-interactions', False, True),
         ('magnetic-interactions', False, True)]
     assert [c['name'] for c in sub(s, 'charge-interactions')['subproperties']] == [
-        'charge-origin', 'charge-style', 'charge-variability', 'long-range-electrostatics', 'electric-dipole',
+        'charge-origin', 'charge-style', 'charge-variability', 'electrostatic-summation', 'electric-dipole',
         'electric-dipole-variability']
     assert [c['name'] for c in sub(s, 'magnetic-interactions')['subproperties']] == ['spin-style', 'magnetic-dipole']
 
@@ -431,7 +431,7 @@ CHARGE_TERMS = {
     'charge-origin': ['Semi empirical', 'Quantum', 'Electronic population', 'Electronegativity', 'Tabulated'],
     'charge-style': ['Coulomb full', 'Coulomb screened'],
     'charge-variability': ['Fixed', 'QEq', 'EEM', 'iEL/SCF', 'FlucQ', 'Drude'],
-    'long-range-electrostatics': ['None', 'Direct', 'Ewald', 'PME', 'PPPM', 'Reaction'],
+    'electrostatic-summation': ['None', 'Direct', 'Short-range', 'Ewald', 'PME', 'PPPM', 'Reaction'],
     'electric-dipole': ['Stockmayer', 'Screened', 'Long range'],
     'electric-dipole-variability': ['Induced', 'Isotropic', 'Anisotropic'],
 }
@@ -459,6 +459,17 @@ def test_pim_dipole_variability_is_about_dipoles():
     assert 'local electric dipoles' in sub(c, 'electric-dipole-variability')['description']
     note = ' '.join(sub(c, 'charge-variability')['values']['note'].split())
     assert '"Fixed" – Charges cannot change during a simulation.' in note
+
+
+def test_pim_electrostatic_summation_covers_short_range_sums():
+    """A sum truncated at a cutoff is neither the absence of electrostatics nor a long-range method, and a
+    model without charges has no charge-interactions at all (0068)."""
+    e = sub(sub(section('pim')['properties'][0], 'charge-interactions'), 'electrostatic-summation')
+    assert e['description'] == 'Method used to compute the electrostatic interactions between the charges.'
+    note = ' '.join(e['values']['note'].split())
+    assert ('"Short-range" – Electrostatic interactions computed only within a cutoff distance, possibly shifted '
+            'or damped, e.g. Wolf summation or damped shifted force (DSF).') in note
+    assert '"None" – No electrostatic interactions are computed from the charges.' in note
 
 
 def test_pim_spin_style_keeps_only_particle_models():
