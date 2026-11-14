@@ -311,7 +311,10 @@ record or marked PROPOSED, NOT DECIDED.
      (0061; breaks 0.6.0 md instances); a property holding the label of a structure or computation
      is named for it: computation-label in settings and input, structure-label in computation (0062);
      computation explains a simulation run in stages as computations linked by input role Initial
-     configuration, which carries over the state (0063).
+     configuration, which carries over the state (0063); method names the method section, PS replacing
+     MD, MS, MC and CGMD, method-class gives a PS computation's particle entity, task names the goal
+     with a new Transition state search, and the PS introduction and §1.2 name Monte Carlo (0064;
+     breaks 0.6.0 instances with method MD, MC or CGMD).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -899,10 +902,10 @@ record or marked PROPOSED, NOT DECIDED.
    ps introduction, §1.2, tests; (b) ps algorithm (step 5). PROPOSED, NOT DECIDED (0064): a DFT
    relaxation also described as PS + DFT single point to record its minimizer; KMC and Multiscale
    sections; property layers, term identifiers, what a computation computes.
-   [in progress, branch method-task-0064, committed, awaiting push and PR] 0064 PR (a): minimal method (PS replaces MD,
+   [done, PR #102 merged 2026-11-14] 0064 PR (a): minimal method (PS replaces MD,
    MS, MC, CGMD; new description and PS definition), method-class note, task terms by goal with
    Transition state search and a note; ps introduction and §1.2 name Monte Carlo;
-   tests/test_computations.py; 02-minimal, ps and index pages regenerated. Awaits the human's push.
+   tests/test_computations.py; 02-minimal, ps and index pages regenerated.
    The notes below are its background.
    PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
    ps algorithm repeatable, with open terms grouped in its note by function (time integration, local
