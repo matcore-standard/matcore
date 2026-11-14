@@ -317,7 +317,9 @@ record or marked PROPOSED, NOT DECIDED.
      breaks 0.6.0 instances with method MD, MC or CGMD); each method term is defined by the kind of
      methods it covers (0064, amended 2026-11-14); task gains Structure generation and Equilibration,
      Transition path covers path sampling, and Training covers any model fitted to data (0065);
-     computation gains an optional description, for a protocol such as a structure search's (0066).
+     computation gains an optional description, for a protocol such as a structure search's (0066);
+     ps algorithm is a required, repeatable term naming a major class of procedure, 39 terms in eight
+     groups, with an optional settings description for variants and parameters (0064, 0066, 0067).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -896,7 +898,8 @@ record or marked PROPOSED, NOT DECIDED.
    order field are declined.
    [done, PR #100 merged 2026-11-12] the 0063 note: schema/minimal.yaml (computation note,
    Initial configuration definition), tests/test_computations.py, 02-minimal.md regenerated.
-   [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill). Each
+   [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
+   algorithm done, PR #106; next computation-parameter). Each
    property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
@@ -960,7 +963,7 @@ record or marked PROPOSED, NOT DECIDED.
    matrix) is task Property calculation naming the PIM or electronic computation as input role
    Interaction model, no schema change. A suggestion to add four metadynamics variant terms was
    declined. Applied in the ps algorithm PR (branch ps-algorithm-0064).
-   [in progress, branch ps-algorithm-0064, committed, awaiting push and PR] 0064 PR (b), with 0066
+   [done, PR #106 merged 2026-11-14] 0064 PR (b), with 0066
    item 3 and 0067: ps algorithm required, repeatable, 39 open terms in eight groups, each defined in
    values.note as grouped lists (0007 item 5, amended again; build_docs.py renders a multi-line note
    under its own Clarifications paragraph, tested in tests/test_build_docs.py); definitions other than
