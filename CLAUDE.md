@@ -939,8 +939,10 @@ record or marked PROPOSED, NOT DECIDED.
    optional `description` after label; the ranking, energies found and how often the lowest recurred
    are results, left to 0039's open question. Amends 0064 item 4 and 0065 item 2; breaks no released
    instance. PROPOSED, NOT DECIDED (0066): whether a single DFT relaxation may also be PS with a DFT
-   Single point. [todo] the minimal `description` PR; the rest rides on the ps algorithm and
-   computation-parameter PRs.
+   Single point. The rest rides on the ps algorithm and computation-parameter PRs.
+   [in progress, branch computation-description-0066, committed, awaiting push and PR] 0066 item 5:
+   minimal computation › description (optional scalar string) after label;
+   tests/test_computations.py; 02-minimal regenerated.
    The notes below are its background.
    PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
    ps algorithm repeatable, with open terms grouped in its note by function (time integration, local

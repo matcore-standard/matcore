@@ -63,12 +63,23 @@ def test_computation_members_and_order():
     they use; conditions are optional and interaction-model is gone (0046 items 2-4)."""
     c = top('minimal', 'computation')
     assert [s['name'] for s in c['subproperties']] == [
-        'label', 'method-class', 'method', 'task', 'structure-label', 'input', 'conditions', 'software']
+        'label', 'description', 'method-class', 'method', 'task', 'structure-label', 'input', 'conditions',
+        'software']
     assert c['description'] == ('A group of calculations in the dataset that share one method and one set of '
                                 'settings, e.g. the DFT single points of a training set.')
     assert not sub(c, 'conditions')['required']
     assert sub(c, 'conditions')['description'].endswith(
         'Omitted when no condition is imposed, e.g. for a single point or a training computation.')
+
+
+def test_a_computation_can_explain_what_its_properties_do_not_capture():
+    """A protocol such as a structure search's has parts no property records, so a computation has an optional
+    free-text description, a scalar like structure's (0066 item 5)."""
+    d = sub(top('minimal', 'computation'), 'description')
+    assert shape(d) == (False, False, 'string', [], 'inapplicable', None)
+    assert d['values'] is None
+    assert d['description'] == ('An explanation of the computation that its other properties do not capture, '
+                                'e.g. the protocol of a search.')
 
 
 STAGES_NOTE = (
