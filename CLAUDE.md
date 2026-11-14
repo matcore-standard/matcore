@@ -389,6 +389,13 @@ record or marked PROPOSED, NOT DECIDED.
      own paragraph. build_docs.py splits values_text() into allowed_values() and the paragraphs;
      tests/test_build_docs.py gains test_definitions_are_set_apart_from_the_values_they_define;
      02-minimal, 03-dft, 05-mbpt, 07-pf and pim pages regenerated.
+   - Long definition notes by 0007 item 5, amended again 2026-11-14: a values.note defining many terms
+     is Markdown of several lines in the YAML, a bold label per group of terms and a list with one item
+     per term; a multi-line note renders under **Clarifications:** as its own paragraph, a one-line
+     note inline as before; bold labels, not headings, so the menu and TOC are unchanged; 0013's
+     definitions stay prose. ps algorithm is the first; another long note (e.g. minimal task, method)
+     is converted when its property next changes or by a change of its own. Implemented in the ps
+     algorithm PR (branch ps-algorithm-0064).
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
 3. [done, PR #9 merged 2026-11-01] Apply 0001 Part A (kind/recommended-unit/convention): merged
    into step 5, property by property (0004). What remained of this step did not belong to any one
