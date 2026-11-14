@@ -866,7 +866,9 @@ record or marked PROPOSED, NOT DECIDED.
    redefined as no electrostatic interactions computed from the charges, a model without charges
    omitting charge-interactions. The reviewer's point that the code, not the model, does the
    long-range sum was already settled by 0046 item 8 (amended 2026-11-09). No released instance
-   breaks. [todo] One PR: pim.yaml, tests/test_computations.py, pim page.
+   breaks. [in progress, branch pim-electrostatic-summation, committed, awaiting push and PR] One PR:
+   pim.yaml (rename, Short-range, None with the sentence on models without charges in its note),
+   tests/test_computations.py (vocabulary, names, a test of 0068's wording), pim page regenerated.
    Spin styles by 0060 (ruling 2026-11-12): pim magnetic-interactions › spin-style keeps open terms
    Classical spin and Coupled spin lattice; Ab initio, Tight binding and Quantum spin dynamics are
    removed, since 0046 does not count them as particle interaction models (spin-polarized DFT or TB

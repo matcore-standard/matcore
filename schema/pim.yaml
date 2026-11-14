@@ -149,18 +149,21 @@ properties:
           Electronegativity Equalization Method. "iEL/SCF" – Extended Lagrangian/self-consistent field scheme.
           "FlucQ" – Fluctuating charge potential. "Drude" – Drude method.
       repeatable: false
-    - name: long-range-electrostatics
+    - name: electrostatic-summation
       required: false
-      description: Method used to compute long-range electrostatic interactions.
+      description: Method used to compute the electrostatic interactions between the charges.
       type: string
       extent: []
       kind: inapplicable
       recommended-unit: null
       values:
-        terms: [None, Direct, Ewald, PME, PPPM, Reaction]
+        terms: [None, Direct, Short-range, Ewald, PME, PPPM, Reaction]
         note: >-
-          "None" – No electrostatic calculation performed. "Direct" – All Coulomb interactions computed
-          directly. "Ewald" – Ewald summation. "PME" – Particle mesh Ewald. "PPPM" – Particle particle particle
+          "None" – No electrostatic interactions are computed from the charges. A model whose particles
+          carry no charges omits charge-interactions. "Direct" – All Coulomb interactions computed
+          directly. "Short-range" – Electrostatic interactions computed only within a cutoff distance,
+          possibly shifted or damped, e.g. Wolf summation or damped shifted force (DSF). "Ewald" – Ewald
+          summation. "PME" – Particle mesh Ewald. "PPPM" – Particle particle particle
           mesh. "Reaction" – Reaction field.
       repeatable: false
     - name: electric-dipole
