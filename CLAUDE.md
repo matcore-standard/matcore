@@ -1020,6 +1020,17 @@ record or marked PROPOSED, NOT DECIDED.
    split and FAIRmat Area C items 2–3 suggest; mapping terms to external identifiers (ASMO, EMMO);
    what a computation computes (QCSchema's driver), which overlaps 0039's open question. Also found: minimal method-class's note calls RoMM (DOI
    10.2777/404734) "the MODA standard", and Data-driven comes from RoMM, not the CWA.
+   Reviewer feedback on three levels, checked against 0046 and 0064 on 2026-11-14: (1) energies and
+   forces (and charges, spins, electronic properties) of a configuration, (2) an ensemble average or
+   optimization using them (MD, MC, minimization), (3) a property combined from several level-2
+   results (e.g. stress vs strain giving an elastic constant). 0046 makes them computations linked by
+   input roles: level 1 is task Single point in pim or an electronic section, level 2 a PS computation
+   naming it as Interaction model, level 3 task Property calculation naming its sources as Source
+   data. PROPOSED, NOT DECIDED: the derived introduction still says a derived property rests on a
+   single method and combinations of methods (e.g. MD and ML) are not supported, which 0046's input
+   links contradict; settled in the derived PR, which 0046 already leaves to decide how a derived
+   property names its source. The DFT relaxation (DFT, task Optimization; 0046 settlement, 0066's open
+   point) is where levels 1 and 2 still meet in one computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
