@@ -564,3 +564,22 @@ def test_ps_example_names_its_algorithm():
     """algorithm is required, so every settings block of the example gives it (0012)."""
     example = json.loads((ROOT / 'examples/ps.json').read_text())
     assert all(s['algorithm'] for s in example['ps']['settings'])
+
+
+def test_ps_computation_parameter_is_a_generic_parameter():
+    """An algorithm's numerical parameters vary with the algorithm, so the instance names each one and gives
+    its type and unit: the generic-parameter form (0016), with the baseline's examples and a structure search's
+    settings in its note (0066 item 4)."""
+    import sys
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import check_generic
+    p = sub(top('ps', 'settings'), 'computation-parameter')
+    assert (p['required'], p['repeatable'], p['type']) == (False, True, None)
+    assert check_generic.generic_errors(p) == []
+    assert [s['name'] for s in p['subproperties']] == list(check_generic.FORM)
+    assert p['notes'] == [
+        'Note: For example, the time step of Velocity Verlet, the simulation time of a dynamics run, the '
+        'convergence tolerance of an energy minimization, the number of images of NEB, or, for a structure '
+        'search, the number of candidates, the number of atoms per cell, the allowed space groups, the volume '
+        'range and the force and energy tolerances of the local relaxations.']
+    assert not any(k.startswith('legacy_') for s in [p] + p['subproperties'] for k in s)

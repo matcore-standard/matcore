@@ -137,55 +137,53 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
-    legacy_values: Contains SubSubProperties as defined in the table below.
+    notes:
+    - >-
+      Note: For example, the time step of Velocity Verlet, the simulation time of a dynamics run, the convergence
+      tolerance of an energy minimization, the number of images of NEB, or, for a structure search, the number of
+      candidates, the number of atoms per cell, the allowed space groups, the volume range and the force and
+      energy tolerances of the local relaxations.
     subproperties:
     - name: name
       required: true
-      description: >-
-        The designation of the parameter associated with the specified computation algorithm.
-      type: null
-      extent: null
-      kind: null
+      description: The designation of the parameter associated with the specified computation algorithm.
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: A string containing the name of the computation parameter.
     - name: value
       required: true
       description: The data associated with the computation parameter.
-      type: null
-      extent: null
-      kind: null
+      type: any
+      extent: any
+      kind: any
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: An integer, real, boolean, or string containing the computation parameter value.
     - name: unit
       required: true
-      description: >-
-        A standardized string or identifier that defines the dimension or measurement system of the associated
-        value.
-      type: null
-      extent: null
-      kind: null
+      description: The unit in which the associated value is expressed.
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        note: >-
+          A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+          only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+          (accepted with a validation warning).
       repeatable: false
-      legacy_values: >-
-        A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
-        (or the text "dimensionless").
     - name: description
       required: false
       description: An explanation of the meaning, source, or purpose of the computation parameter.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: >-
-        A string explaining the computation parameter (e.g. "The convergence tolerance for energy minimization",
-        "The simulation time for the dynamical simulation").
   - name: initialization
     required: false
     description: Information on the conditions set at the start of the simulation.
