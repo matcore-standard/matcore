@@ -57,7 +57,9 @@ The identifier scheme that the value belongs to.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `ORCID`, `ROR`, `DOI`, `SWHID`, `ISNI`. Other values are allowed. For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state. An ISNI may identify either individuals or organizations.
+Recommended: `ORCID`, `ROR`, `DOI`, `SWHID`, `ISNI`. Other values are allowed.
+
+**Clarifications:** For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state. An ISNI may identify either individuals or organizations.
 
 </details>
 
@@ -173,7 +175,9 @@ The identifier scheme that the value belongs to.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `ORCID`, `ROR`, `DOI`, `SWHID`, `ISNI`. Other values are allowed. For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state. An ISNI may identify either individuals or organizations.
+Recommended: `ORCID`, `ROR`, `DOI`, `SWHID`, `ISNI`. Other values are allowed.
+
+**Clarifications:** For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state. An ISNI may identify either individuals or organizations.
 
 </details>
 
@@ -258,7 +262,9 @@ The calendar date and time when the dataset was created.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Pattern: `\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?`. Examples: `2021-02-22`, `2021-02-22T14:30:00Z`. A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
+Pattern: `\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?`. Examples: `2021-02-22`, `2021-02-22T14:30:00Z`.
+
+**Clarifications:** A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
 
 </details>
 
@@ -271,7 +277,7 @@ A synopsis of the dataset, its contents, and purpose.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-This can optionally include information on the format in which the dataset is stored (e.g. pointer to a relevant schema).
+**Clarifications:** This can optionally include information on the format in which the dataset is stored (e.g. pointer to a relevant schema).
 
 </details>
 
@@ -339,7 +345,9 @@ The chemical formula of the material component.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Pattern: `[A-Za-z0-9.(){}+-]+`. Examples: `Si`, `SiO2`, `H2O2`, `Si0.7Ge0.3`, `Si{x}Ge{1-x}`, `(H2O)0.9(C2H6O)0.1`, `Ja0.8Jb0.2`. A formula is a sequence of terms. A term is an element symbol, a user-defined species or a group in parentheses, each followed by an optional count. An element symbol is one of the 118 symbols of the IUPAC Periodic Table of the Elements (listed with atomic numbers 1 to 118 in the [Standard Atomic Weights](https://www.ciaaw.org/atomic-weights.htm) table of the IUPAC Commission on Isotopic Abundances and Atomic Weights). A user-defined species, for particles that are not chemical elements (e.g. in a Lennard-Jones model), is `J` followed by lowercase letters (e.g. `Ja`, `Jlj`); no element symbol begins with J. A count is a positive number, whole or decimal (e.g. `H2O`, `Si0.7Ge0.3`), or an expression in braces (e.g. `Si{x}Ge{1-x}`). A count of 1 is omitted. An expression contains at least one variable, given in `variable`, and is linear in its variables; it is built from numbers, one-letter variables, `+`, `-`, implied multiplication and parentheses (e.g. `1-x`, `3x`, `2(1-x)`). A variable is used only when the composition varies, so a fixed composition is written with its numbers (e.g. `Si0.3Ge0.7`). A formula that is a sequence of two or more groups is a mixture of substances: the groups' counts are their mole fractions and sum to 1 (e.g. `(H2O)0.9(C2H6O)0.1`). Elements may appear in any order. A molecule is written with its molecular formula (e.g. `H2O2`, not `HO`). Separate phases, e.g. a film on a substrate, are separate material components.
+Pattern: `[A-Za-z0-9.(){}+-]+`. Examples: `Si`, `SiO2`, `H2O2`, `Si0.7Ge0.3`, `Si{x}Ge{1-x}`, `(H2O)0.9(C2H6O)0.1`, `Ja0.8Jb0.2`.
+
+**Clarifications:** A formula is a sequence of terms. A term is an element symbol, a user-defined species or a group in parentheses, each followed by an optional count. An element symbol is one of the 118 symbols of the IUPAC Periodic Table of the Elements (listed with atomic numbers 1 to 118 in the [Standard Atomic Weights](https://www.ciaaw.org/atomic-weights.htm) table of the IUPAC Commission on Isotopic Abundances and Atomic Weights). A user-defined species, for particles that are not chemical elements (e.g. in a Lennard-Jones model), is `J` followed by lowercase letters (e.g. `Ja`, `Jlj`); no element symbol begins with J. A count is a positive number, whole or decimal (e.g. `H2O`, `Si0.7Ge0.3`), or an expression in braces (e.g. `Si{x}Ge{1-x}`). A count of 1 is omitted. An expression contains at least one variable, given in `variable`, and is linear in its variables; it is built from numbers, one-letter variables, `+`, `-`, implied multiplication and parentheses (e.g. `1-x`, `3x`, `2(1-x)`). A variable is used only when the composition varies, so a fixed composition is written with its numbers (e.g. `Si0.3Ge0.7`). A formula that is a sequence of two or more groups is a mixture of substances: the groups' counts are their mole fractions and sum to 1 (e.g. `(H2O)0.9(C2H6O)0.1`). Elements may appear in any order. A molecule is written with its molecular formula (e.g. `H2O2`, not `HO`). Separate phases, e.g. a film on a substrate, are separate material components.
 
 </details>
 
@@ -385,7 +393,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. The entries of one variable share its name, with at most one entry per qualifier.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** The entries of one variable share its name, with at most one entry per qualifier.
 
 </details>
 
@@ -446,7 +456,9 @@ The identifier scheme that the value belongs to.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `AFLOW`, `InChI`, `SMILES`. Other values are allowed. For a molecule, InChI is preferred where it can represent it; SMILES otherwise or in addition. For a crystal, the AFLOW prototype label.
+Recommended: `AFLOW`, `InChI`, `SMILES`. Other values are allowed.
+
+**Clarifications:** For a molecule, InChI is preferred where it can represent it; SMILES otherwise or in addition. For a crystal, the AFLOW prototype label.
 
 </details>
 
@@ -463,7 +475,9 @@ The geometric form of the component as modeled.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `2D material`, `Bulk`, `Chain`, `Cluster`, `Molecule`, `Monolayer`, `Nanoparticle`, `Nanoribbon`, `Nanotube`, `Nanowire`, `Slab`, `Thin film`. Other values are allowed. One of: "2D material" – A crystalline solid that is a single unit cell thick (typically a few nanometers or less), while extending infinitely or to large dimensions in the lateral plane, e.g. graphene. "Bulk" – A material extending without bound in all three directions, e.g. a periodic crystal or a liquid. "Chain" – A one-dimensional sequence of atoms or monomers, e.g. an isolated polymer chain or a monatomic chain. "Cluster" – A finite aggregate of atoms or molecules, smaller than a nanoparticle. "Molecule" – A single molecule. "Monolayer" – A single layer of atoms or molecules deposited on another material. "Nanoparticle" – A solid particle of nanometer size in all three directions. "Nanoribbon" – A strip of a 2D material of nanometer width. "Nanotube" – A hollow cylinder of nanometer diameter, e.g. a carbon nanotube. "Nanowire" – A solid wire of nanometer diameter, extending without bound along its axis. "Slab" – A truncated bulk structure that can be used, for example, to model surfaces. "Thin film" – A layer of finite thickness, free-standing or on a substrate. The form is that of the component as modeled, e.g. a substrate modeled as a slab is a Slab.
+Recommended: `2D material`, `Bulk`, `Chain`, `Cluster`, `Molecule`, `Monolayer`, `Nanoparticle`, `Nanoribbon`, `Nanotube`, `Nanowire`, `Slab`, `Thin film`. Other values are allowed.
+
+**Clarifications:** One of: "2D material" – A crystalline solid that is a single unit cell thick (typically a few nanometers or less), while extending infinitely or to large dimensions in the lateral plane, e.g. graphene. "Bulk" – A material extending without bound in all three directions, e.g. a periodic crystal or a liquid. "Chain" – A one-dimensional sequence of atoms or monomers, e.g. an isolated polymer chain or a monatomic chain. "Cluster" – A finite aggregate of atoms or molecules, smaller than a nanoparticle. "Molecule" – A single molecule. "Monolayer" – A single layer of atoms or molecules deposited on another material. "Nanoparticle" – A solid particle of nanometer size in all three directions. "Nanoribbon" – A strip of a 2D material of nanometer width. "Nanotube" – A hollow cylinder of nanometer diameter, e.g. a carbon nanotube. "Nanowire" – A solid wire of nanometer diameter, extending without bound along its axis. "Slab" – A truncated bulk structure that can be used, for example, to model surfaces. "Thin film" – A layer of finite thickness, free-standing or on a substrate. The form is that of the component as modeled, e.g. a substrate modeled as a slab is a Slab.
 
 </details>
 
@@ -476,7 +490,9 @@ The part the component plays in the structure.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Adsorbate`, `Core`, `Film`, `Inclusion`, `Layer`, `Matrix`, `Shell`, `Solute`, `Solvent`, `Substrate`. Other values are allowed. One of: "Adsorbate" – A molecule, cluster or particle on the surface of a substrate. "Core" – The inner part of a particle, enclosed by a shell. "Film" – A layer of finite thickness on a substrate. "Inclusion" – A material enclosed in a matrix, e.g. a precipitate or an embedded nanotube. "Layer" – One of the layers of a layered structure, e.g. a heterostructure, a superlattice or a stack of 2D materials. "Matrix" – A material that encloses one or more inclusions. "Shell" – A layer enclosing a core. "Solute" – A material dissolved in a solvent. "Solvent" – A liquid in which a solute is dissolved. "Substrate" – A material on which a film, layer or adsorbate lies. Give a role for each component when the structure has more than one.
+Recommended: `Adsorbate`, `Core`, `Film`, `Inclusion`, `Layer`, `Matrix`, `Shell`, `Solute`, `Solvent`, `Substrate`. Other values are allowed.
+
+**Clarifications:** One of: "Adsorbate" – A molecule, cluster or particle on the surface of a substrate. "Core" – The inner part of a particle, enclosed by a shell. "Film" – A layer of finite thickness on a substrate. "Inclusion" – A material enclosed in a matrix, e.g. a precipitate or an embedded nanotube. "Layer" – One of the layers of a layered structure, e.g. a heterostructure, a superlattice or a stack of 2D materials. "Matrix" – A material that encloses one or more inclusions. "Shell" – A layer enclosing a core. "Solute" – A material dissolved in a solvent. "Solvent" – A liquid in which a solute is dissolved. "Substrate" – A material on which a film, layer or adsorbate lies. Give a role for each component when the structure has more than one.
 
 </details>
 
@@ -498,7 +514,9 @@ The value of the property.
 |---|---|---|---|---|---|
 | yes | no | float | [] | dimensionless | — |
 
-From 0 to 1. The fractions of a structure's components sum to 1, for the entries without a qualifier and for each of Initial, Final and Average.
+From 0 to 1.
+
+**Clarifications:** The fractions of a structure's components sum to 1, for the entries without a qualifier and for each of Initial, Final and Average.
 
 </details>
 
@@ -511,7 +529,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -526,7 +546,9 @@ A phase of the material.
 |---|---|---|---|---|---|
 | no | yes | string | [] | inapplicable | — |
 
-Recommended: `Amorphous`, `Single crystal`, `Polycrystal`, `Quasicrystal`, `Liquid`, `Gas`, `Plasma`. Other values are allowed. One of: "Amorphous" – A solid material without crystalline order. "Single crystal" – A solid material characterized by a repeating pattern of atoms that extends throughout it without interruption. "Polycrystal" – A solid material made of more than one crystalline grain of differing orientation. "Quasicrystal" – A solid material with long-range order but without translational periodicity, e.g. one whose diffraction pattern shows five-fold rotational symmetry. "Liquid" – A fluid structure (e.g. the molten state of a material). "Gas" – A state where molecules or atoms are far apart and only interact during collisions. "Plasma" – A gas comprised of ions and electrons. Omit for a component whose form is Molecule.
+Recommended: `Amorphous`, `Single crystal`, `Polycrystal`, `Quasicrystal`, `Liquid`, `Gas`, `Plasma`. Other values are allowed.
+
+**Clarifications:** One of: "Amorphous" – A solid material without crystalline order. "Single crystal" – A solid material characterized by a repeating pattern of atoms that extends throughout it without interruption. "Polycrystal" – A solid material made of more than one crystalline grain of differing orientation. "Quasicrystal" – A solid material with long-range order but without translational periodicity, e.g. one whose diffraction pattern shows five-fold rotational symmetry. "Liquid" – A fluid structure (e.g. the molten state of a material). "Gas" – A state where molecules or atoms are far apart and only interact during collisions. "Plasma" – A gas comprised of ions and electrons. Omit for a component whose form is Molecule.
 
 </details>
 
@@ -539,7 +561,9 @@ The arrangement of the magnetic moments in the material component as modeled.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Nonmagnetic`, `Ferromagnetic`, `Antiferromagnetic`, `Ferrimagnetic`, `Paramagnetic`, `Noncollinear`. Other values are allowed. "Nonmagnetic" – No magnetic moments. "Ferromagnetic" – Moments aligned parallel. "Antiferromagnetic" – Equal moments aligned antiparallel, with no net moment. "Ferrimagnetic" – Unequal moments aligned antiparallel, with a net moment. "Paramagnetic" – Moments present but disordered, e.g. modeled as disordered local moments. "Noncollinear" – Moments not along one axis, e.g. a spin spiral.
+Recommended: `Nonmagnetic`, `Ferromagnetic`, `Antiferromagnetic`, `Ferrimagnetic`, `Paramagnetic`, `Noncollinear`. Other values are allowed.
+
+**Clarifications:** "Nonmagnetic" – No magnetic moments. "Ferromagnetic" – Moments aligned parallel. "Antiferromagnetic" – Equal moments aligned antiparallel, with no net moment. "Ferrimagnetic" – Unequal moments aligned antiparallel, with a net moment. "Paramagnetic" – Moments present but disordered, e.g. modeled as disordered local moments. "Noncollinear" – Moments not along one axis, e.g. a spin spiral.
 
 </details>
 
@@ -552,7 +576,7 @@ An explanation of the nature of the material, e.g. a crystal structure designati
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-e.g. a surface facet such as Pt(111), an orientation relationship such as (111)Pt ∥ (001)CeO₂, or the chirality of a nanotube.
+**Clarifications:** e.g. a surface facet such as Pt(111), an orientation relationship such as (111)Pt ∥ (001)CeO₂, or the chirality of a nanotube.
 
 </details>
 
@@ -621,7 +645,15 @@ The computational materials science (CMS) approach used in the computation.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Depends on `method-class`. For `Electronic`: Recommended: `CC`, `QMC`, `DFT`, `MBPT`, `TB`. Other values are allowed. For `Atomistic`: Recommended: `MC`, `MD`, `MS`, `PIM`. Other values are allowed. For `Mesoscopic`: Recommended: `DDD`, `KMC`, `CGMD`, `PIM`. Other values are allowed. For `Continuum`: Recommended: `PF`. Other values are allowed. For `Data-driven`: Recommended: `ML`. Other values are allowed. "CC" – Coupled Cluster; "QMC" – Quantum Monte Carlo; "DFT" – Density Functional Theory; "MBPT" – Many-Body Perturbation Theory methods (such as GW and BSE); "TB" – Tight Binding; "MC" – Monte Carlo; "MD" – Molecular Dynamics; "MS" – Molecular Statics: configurations or cells of particles relaxed toward a minimum of the energy, using the energies and forces of an interaction model; "PIM" – Particle Interaction Model: energies and forces of a system of particles given as an explicit function of the particles' coordinates, which may include electrons treated as particles, without solving for a wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic potential, a bonded force field, a coarse-grained model or the electron force field; "DDD" – Discrete Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "CGMD" – Coarse-grained MD; "PF" – Phase Field; "ML" – Machine Learning.
+Depends on `method-class`.
+
+- For `Electronic`: Recommended: `CC`, `QMC`, `DFT`, `MBPT`, `TB`. Other values are allowed.
+- For `Atomistic`: Recommended: `MC`, `MD`, `MS`, `PIM`. Other values are allowed.
+- For `Mesoscopic`: Recommended: `DDD`, `KMC`, `CGMD`, `PIM`. Other values are allowed.
+- For `Continuum`: Recommended: `PF`. Other values are allowed.
+- For `Data-driven`: Recommended: `ML`. Other values are allowed.
+
+**Clarifications:** "CC" – Coupled Cluster; "QMC" – Quantum Monte Carlo; "DFT" – Density Functional Theory; "MBPT" – Many-Body Perturbation Theory methods (such as GW and BSE); "TB" – Tight Binding; "MC" – Monte Carlo; "MD" – Molecular Dynamics; "MS" – Molecular Statics: configurations or cells of particles relaxed toward a minimum of the energy, using the energies and forces of an interaction model; "PIM" – Particle Interaction Model: energies and forces of a system of particles given as an explicit function of the particles' coordinates, which may include electrons treated as particles, without solving for a wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic potential, a bonded force field, a coarse-grained model or the electron force field; "DDD" – Discrete Dislocation Dynamics; "KMC" – Kinetic Monte Carlo; "CGMD" – Coarse-grained MD; "PF" – Phase Field; "ML" – Machine Learning.
 
 Note: Give the method of the calculations in this computation. When they use energies and forces from another method, describe that method as a computation of its own and name it in `input` with the role Interaction model.
 
@@ -636,7 +668,9 @@ What the calculations of this computation do.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Single point`, `Optimization`, `Dynamics`, `Sampling`, `Free energy calculation`, `Training`, `Property calculation`. Other values are allowed. "Single point" – Energies, forces or other quantities evaluated for given configurations, without moving them, including the evaluations another computation requests of an interaction model; "Optimization" – Configurations or cells relaxed toward a minimum of the energy; "Dynamics" – Configurations evolved in time; "Sampling" – Configurations sampled from a distribution without a time evolution, e.g. Monte Carlo; "Free energy calculation" – A free energy, or a potential of mean force, computed from sampled configurations; "Training" – The parameters of a model fitted to data; "Property calculation" – A property obtained from given configurations or from the results of another computation, e.g. phonons, spectra, or a prediction by a trained model.
+Recommended: `Single point`, `Optimization`, `Dynamics`, `Sampling`, `Free energy calculation`, `Training`, `Property calculation`. Other values are allowed.
+
+**Clarifications:** "Single point" – Energies, forces or other quantities evaluated for given configurations, without moving them, including the evaluations another computation requests of an interaction model; "Optimization" – Configurations or cells relaxed toward a minimum of the energy; "Dynamics" – Configurations evolved in time; "Sampling" – Configurations sampled from a distribution without a time evolution, e.g. Monte Carlo; "Free energy calculation" – A free energy, or a potential of mean force, computed from sampled configurations; "Training" – The parameters of a model fitted to data; "Property calculation" – A property obtained from given configurations or from the results of another computation, e.g. phonons, spectra, or a prediction by a trained model.
 
 </details>
 
@@ -684,7 +718,9 @@ What this computation takes from that computation.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Interaction model`, `Initial configuration`, `Starting point`, `Training data`, `Parameters`, `Source data`. Other values are allowed. "Interaction model" – The energies and forces of the configurations this computation evaluates; "Initial configuration" – The configurations this computation starts from, with the state carried over from that computation, e.g. velocities; "Starting point" – An electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground state of a GW calculation; "Training data" – Data a model is fitted to; "Parameters" – Values used as parameters of this computation's model, e.g. a free energy or elastic constants in a phase field model; "Source data" – Results from which this computation obtains a property.
+Recommended: `Interaction model`, `Initial configuration`, `Starting point`, `Training data`, `Parameters`, `Source data`. Other values are allowed.
+
+**Clarifications:** "Interaction model" – The energies and forces of the configurations this computation evaluates; "Initial configuration" – The configurations this computation starts from, with the state carried over from that computation, e.g. velocities; "Starting point" – An electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground state of a GW calculation; "Training data" – Data a model is fitted to; "Parameters" – Values used as parameters of this computation's model, e.g. a free energy or elastic constants in a phase field model; "Source data" – Results from which this computation obtains a property.
 
 </details>
 
@@ -721,7 +757,9 @@ Whether the simulated system is at equilibrium, in a steady state, or evolving i
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Equilibrium`, `Steady state`, `Transient`. Other values are allowed. One of: "Equilibrium" – The system samples thermodynamic equilibrium. "Steady state" – A nonequilibrium state whose averages do not change in time, maintained by a driving such as a strain rate or a heat flux. "Transient" – A state whose averages change in time, e.g. relaxation toward equilibrium or a steady state, or a quench.
+Recommended: `Equilibrium`, `Steady state`, `Transient`. Other values are allowed.
+
+**Clarifications:** One of: "Equilibrium" – The system samples thermodynamic equilibrium. "Steady state" – A nonequilibrium state whose averages do not change in time, maintained by a driving such as a strain rate or a heat flux. "Transient" – A state whose averages change in time, e.g. relaxation toward equilibrium or a steady state, or a quench.
 
 </details>
 
@@ -734,7 +772,9 @@ What the system exchanges with its surroundings.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Isolated`, `Closed`, `Open`. Other values are allowed. One of: "Isolated" – Exchanges neither energy nor particles, e.g. the microcanonical ensemble. "Closed" – Exchanges energy but not particles, e.g. the canonical or isothermal-isobaric ensemble. "Open" – Exchanges particles, or their species, with a reservoir, e.g. the grand-canonical or semi-grand-canonical ensemble.
+Recommended: `Isolated`, `Closed`, `Open`. Other values are allowed.
+
+**Clarifications:** One of: "Isolated" – Exchanges neither energy nor particles, e.g. the microcanonical ensemble. "Closed" – Exchanges energy but not particles, e.g. the canonical or isothermal-isobaric ensemble. "Open" – Exchanges particles, or their species, with a reservoir, e.g. the grand-canonical or semi-grand-canonical ensemble.
 
 </details>
 
@@ -747,7 +787,9 @@ How the imposed conditions change during the simulation.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Constant`, `Varying`, `Cyclic`. Other values are allowed. One of: "Constant" – No imposed condition changes. "Varying" – An imposed condition changes, e.g. a temperature ramp or a change of ensemble. "Cyclic" – An imposed condition changes periodically, e.g. cyclic loading.
+Recommended: `Constant`, `Varying`, `Cyclic`. Other values are allowed.
+
+**Clarifications:** One of: "Constant" – No imposed condition changes. "Varying" – An imposed condition changes, e.g. a temperature ramp or a change of ensemble. "Cyclic" – An imposed condition changes periodically, e.g. cyclic loading.
 
 </details>
 
@@ -760,7 +802,9 @@ How the imposed conditions vary across the system.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Uniform`, `Nonuniform`, `Periodic`. Other values are allowed. One of: "Uniform" – Every imposed condition is the same throughout the system. "Nonuniform" – An imposed condition differs between parts of the system, e.g. a thermostat applied to part of it. "Periodic" – An imposed condition varies periodically across the system, e.g. sinusoidal heating. Not to be confused with `cell-periodicity`.
+Recommended: `Uniform`, `Nonuniform`, `Periodic`. Other values are allowed.
+
+**Clarifications:** One of: "Uniform" – Every imposed condition is the same throughout the system. "Nonuniform" – An imposed condition differs between parts of the system, e.g. a thermostat applied to part of it. "Periodic" – An imposed condition varies periodically across the system, e.g. sinusoidal heating. Not to be confused with `cell-periodicity`.
 
 </details>
 
@@ -795,7 +839,7 @@ The value of the property.
 |---|---|---|---|---|---|
 | yes | no | int | [] | dimensionless | — |
 
-The number of particles <i>N</i>.
+**Clarifications:** The number of particles <i>N</i>.
 
 </details>
 
@@ -808,7 +852,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -832,7 +878,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [] | ElectricCharge | e |
 
-The net charge <i>Q</i>.
+**Clarifications:** The net charge <i>Q</i>.
 
 </details>
 
@@ -856,7 +902,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -880,7 +928,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [] | Volume | angstrom^3 |
 
-The volume <i>V</i>.
+**Clarifications:** The volume <i>V</i>.
 
 </details>
 
@@ -904,7 +952,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -928,7 +978,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [] | MassDensity | kg/m^3 |
 
-The mass density <i>ρ</i>.
+**Clarifications:** The mass density <i>ρ</i>.
 
 </details>
 
@@ -952,7 +1002,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -976,7 +1028,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [3,3] | Length | angstrom |
 
-Ordered list of three vectors (a, b, c), each with three components, that define the simulation cell. `value[i][j]` is the j-th Cartesian component, in the frame of the simulation, of the i-th cell vector, so the rows are a, b and c. The vectors (a, b, c) need not be orthogonal, and the magnitudes (|a|, |b|, |c|) are the cell vector lengths. The unit applies to all nine components.
+**Clarifications:** Ordered list of three vectors (a, b, c), each with three components, that define the simulation cell. `value[i][j]` is the j-th Cartesian component, in the frame of the simulation, of the i-th cell vector, so the rows are a, b and c. The vectors (a, b, c) need not be orthogonal, and the magnitudes (|a|, |b|, |c|) are the cell vector lengths. The unit applies to all nine components.
 
 </details>
 
@@ -1000,7 +1052,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1024,7 +1078,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [3,3] | Length | angstrom |
 
-Ordered list of three vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>), each with three components, that define the cell used in the simulation in its reference configuration. `value[i][j]` is the j-th Cartesian component, in the frame of the simulation, of the i-th reference cell vector, so the rows are a<sub>0</sub>, b<sub>0</sub> and c<sub>0</sub>. The vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) need not be orthogonal, and the magnitudes (|a<sub>0</sub>|, |b<sub>0</sub>|, |c<sub>0</sub>|) are the reference cell vector lengths. The unit applies to all nine components.
+**Clarifications:** Ordered list of three vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>), each with three components, that define the cell used in the simulation in its reference configuration. `value[i][j]` is the j-th Cartesian component, in the frame of the simulation, of the i-th reference cell vector, so the rows are a<sub>0</sub>, b<sub>0</sub> and c<sub>0</sub>. The vectors (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) need not be orthogonal, and the magnitudes (|a<sub>0</sub>|, |b<sub>0</sub>|, |c<sub>0</sub>|) are the reference cell vector lengths. The unit applies to all nine components.
 
 </details>
 
@@ -1048,7 +1102,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1063,7 +1119,7 @@ Whether periodic boundary conditions are applied along each cell vector, for bot
 |---|---|---|---|---|---|
 | no | no | bool | [3] | inapplicable | — |
 
-Ordered list of three booleans (<i>p</i><sub>a</sub>, <i>p</i><sub>b</sub>, <i>p</i><sub>c</sub>), which are set to true if periodic boundary conditions are applied along the corresponding cell vectors (a, b, c).
+**Clarifications:** Ordered list of three booleans (<i>p</i><sub>a</sub>, <i>p</i><sub>b</sub>, <i>p</i><sub>c</sub>), which are set to true if periodic boundary conditions are applied along the corresponding cell vectors (a, b, c).
 
 </details>
 
@@ -1085,7 +1141,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [] | Temperature | K |
 
-The temperature <i>T</i>.
+**Clarifications:** The temperature <i>T</i>.
 
 </details>
 
@@ -1109,7 +1165,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1137,7 +1195,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [6] | Pressure | GPa |
 
-The components of the (symmetric) Cauchy stress tensor <i>σ</i> in the following order: [<i>σ</i><sub>11</sub>, <i>σ</i><sub>22</sub>, <i>σ</i><sub>33</sub>, <i>σ</i><sub>23</sub>, <i>σ</i><sub>13</sub>, <i>σ</i><sub>12</sub>]. The stress components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal. The unit applies to all six components.
+**Clarifications:** The components of the (symmetric) Cauchy stress tensor <i>σ</i> in the following order: [<i>σ</i><sub>11</sub>, <i>σ</i><sub>22</sub>, <i>σ</i><sub>33</sub>, <i>σ</i><sub>23</sub>, <i>σ</i><sub>13</sub>, <i>σ</i><sub>12</sub>]. The stress components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal. The unit applies to all six components.
 
 </details>
 
@@ -1161,7 +1219,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1187,7 +1247,7 @@ The value of the property.
 |---|---|---|---|---|---|
 | yes | no | float | [6] | dimensionless | — |
 
-The components of the (symmetric) Lagrangian strain tensor <i>E</i> in the following order: [<i>E</i><sub>11</sub>, <i>E</i><sub>22</sub>, <i>E</i><sub>33</sub>, <i>E</i><sub>23</sub>, <i>E</i><sub>13</sub>, <i>E</i><sub>12</sub>]. The strain components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a<sub>0</sub>, e<sub>2</sub> is in the direction of c<sub>0</sub>╳a<sub>0</sub>, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) are the vectors defining the cell in the reference configuration, which may not be orthogonal.
+**Clarifications:** The components of the (symmetric) Lagrangian strain tensor <i>E</i> in the following order: [<i>E</i><sub>11</sub>, <i>E</i><sub>22</sub>, <i>E</i><sub>33</sub>, <i>E</i><sub>23</sub>, <i>E</i><sub>13</sub>, <i>E</i><sub>12</sub>]. The strain components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a<sub>0</sub>, e<sub>2</sub> is in the direction of c<sub>0</sub>╳a<sub>0</sub>, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) are the vectors defining the cell in the reference configuration, which may not be orthogonal.
 
 </details>
 
@@ -1200,7 +1260,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1226,7 +1288,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [6] | InverseTime | 1/s |
 
-The components of the (symmetric) Lagrangian strain rate tensor <i>Ė</i> in the following order: [<i>Ė</i><sub>11</sub>, <i>Ė</i><sub>22</sub>, <i>Ė</i><sub>33</sub>, <i>Ė</i><sub>23</sub>, <i>Ė</i><sub>13</sub>, <i>Ė</i><sub>12</sub>]. The strain rate components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a<sub>0</sub>, e<sub>2</sub> is in the direction of c<sub>0</sub>╳a<sub>0</sub>, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) are the vectors defining the cell in the reference configuration, which may not be orthogonal.
+**Clarifications:** The components of the (symmetric) Lagrangian strain rate tensor <i>Ė</i> in the following order: [<i>Ė</i><sub>11</sub>, <i>Ė</i><sub>22</sub>, <i>Ė</i><sub>33</sub>, <i>Ė</i><sub>23</sub>, <i>Ė</i><sub>13</sub>, <i>Ė</i><sub>12</sub>]. The strain rate components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a<sub>0</sub>, e<sub>2</sub> is in the direction of c<sub>0</sub>╳a<sub>0</sub>, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a<sub>0</sub>, b<sub>0</sub>, c<sub>0</sub>) are the vectors defining the cell in the reference configuration, which may not be orthogonal.
 
 </details>
 
@@ -1250,7 +1312,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1276,7 +1340,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [3] | HeatFluxDensity | W/m^2 |
 
-The components of the heat flux vector <i>q</i>. The heat flux components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
+**Clarifications:** The components of the heat flux vector <i>q</i>. The heat flux components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
 
 </details>
 
@@ -1300,7 +1364,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1326,7 +1392,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [3] | TemperatureGradient | K/m |
 
-The components of the temperature gradient vector ∇<i>T</i>. The temperature gradient components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
+**Clarifications:** The components of the temperature gradient vector ∇<i>T</i>. The temperature gradient components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
 
 </details>
 
@@ -1350,7 +1416,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1376,7 +1444,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [3] | ElectricFieldStrength | V/m |
 
-The components of the electric field vector <i>E</i>. The electric field components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
+**Clarifications:** The components of the electric field vector <i>E</i>. The electric field components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
 
 </details>
 
@@ -1400,7 +1468,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1426,7 +1496,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [3] | MagneticFluxDensity | T |
 
-The components of the magnetic flux density vector <i>B</i>. The magnetic flux density components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
+**Clarifications:** The components of the magnetic flux density vector <i>B</i>. The magnetic flux density components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
 
 </details>
 
@@ -1450,7 +1520,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1476,7 +1548,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [3] | Acceleration | m/s^2 |
 
-The components of the body force per unit mass <i>g</i>. The body force components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
+**Clarifications:** The components of the body force per unit mass <i>g</i>. The body force components are expressed relative to an orthonormal basis (e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>), where e<sub>1</sub> is in the direction of a, e<sub>2</sub> is in the direction of c╳a, and e<sub>3</sub> = e<sub>1</sub>╳e<sub>2</sub>, where (a, b, c) are the vectors defining the cell, which may not be orthogonal.
 
 </details>
 
@@ -1500,7 +1572,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1524,7 +1598,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [] | ElectricPotential | V |
 
-The potential of the working electrode relative to `reference`.
+**Clarifications:** The potential of the working electrode relative to `reference`.
 
 </details>
 
@@ -1548,7 +1622,9 @@ The reference against which the potential is given.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `SHE`, `RHE`, `Vacuum`. Other values are allowed. One of: "SHE" – The standard hydrogen electrode. "RHE" – The reversible hydrogen electrode, at the pH of the simulation. "Vacuum" – The vacuum level, giving an absolute potential.
+Recommended: `SHE`, `RHE`, `Vacuum`. Other values are allowed.
+
+**Clarifications:** One of: "SHE" – The standard hydrogen electrode. "RHE" – The reversible hydrogen electrode, at the pH of the simulation. "Vacuum" – The vacuum level, giving an absolute potential.
 
 </details>
 
@@ -1561,7 +1637,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1585,7 +1663,7 @@ The value of the property, in the unit given by `unit`.
 |---|---|---|---|---|---|
 | yes | no | float | [] | Energy | eV |
 
-The chemical potential <i>μ</i> per particle, or the difference <i>μ</i>(species) − <i>μ</i>(relative-to). An absolute value is relative to the energy zero of the model that supplies the energies: the computation's own, or the one named in `input` with the role Interaction model. Absolute values from different models do not compare. A value in a molar unit (e.g. kJ/mol) is converted to an energy per particle before it is given.
+**Clarifications:** The chemical potential <i>μ</i> per particle, or the difference <i>μ</i>(species) − <i>μ</i>(relative-to). An absolute value is relative to the energy zero of the model that supplies the energies: the computation's own, or the one named in `input` with the role Interaction model. Absolute values from different models do not compare. A value in a molar unit (e.g. kJ/mol) is converted to an energy per particle before it is given.
 
 </details>
 
@@ -1635,7 +1713,9 @@ What the value represents.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed. Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the species. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the species. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
 
 </details>
 
@@ -1676,7 +1756,9 @@ The part this software played in the calculations.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Calculation method`, `Interaction model`, `Script`, `Simulation code`, `Workflow framework`. Other values are allowed. One of: "Calculation method" – A packaged procedure that computes a defined property, e.g. an OpenKIM test or an iprPy calculation. "Interaction model" – The implementation of a particle interaction model, e.g. a KIM model or a potential file; give its identifier and link. "Script" – Custom code written for the calculations, e.g. a Python script using ASE. "Simulation code" – A program that performs the simulation or calculation itself, e.g. LAMMPS or VASP. "Workflow framework" – A system that sets up, runs and manages calculations with other software, e.g. pyiron, AiiDA or MedeA.
+Recommended: `Calculation method`, `Interaction model`, `Script`, `Simulation code`, `Workflow framework`. Other values are allowed.
+
+**Clarifications:** One of: "Calculation method" – A packaged procedure that computes a defined property, e.g. an OpenKIM test or an iprPy calculation. "Interaction model" – The implementation of a particle interaction model, e.g. a KIM model or a potential file; give its identifier and link. "Script" – Custom code written for the calculations, e.g. a Python script using ASE. "Simulation code" – A program that performs the simulation or calculation itself, e.g. LAMMPS or VASP. "Workflow framework" – A system that sets up, runs and manages calculations with other software, e.g. pyiron, AiiDA or MedeA.
 
 </details>
 
@@ -1761,7 +1843,9 @@ The identifier scheme that the value belongs to.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `DOI`, `SWHID`. Other values are allowed. A Digital Object Identifier (DOI) for the software or a version of it (e.g. a Zenodo software DOI), or a Software Heritage ID (SWHID) for the exact state of its code, released or not.
+Recommended: `DOI`, `SWHID`. Other values are allowed.
+
+**Clarifications:** A Digital Object Identifier (DOI) for the software or a version of it (e.g. a Zenodo software DOI), or a Software Heritage ID (SWHID) for the exact state of its code, released or not.
 
 </details>
 
@@ -1809,7 +1893,9 @@ The kind of component.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Compiler`, `FFT library`, `Interpreter`, `Library`, `Linear algebra library`, `MPI library`. Other values are allowed. One of: "Compiler" – Translates source code into an executable, e.g. GCC or the Intel oneAPI compilers. "FFT library" – Computes fast Fourier transforms, e.g. FFTW. "Interpreter" – Runs a script, e.g. Python. "Library" – Any other library the software calls, e.g. LibXC or ASE. "Linear algebra library" – Provides BLAS, LAPACK or ScaLAPACK routines, e.g. OpenBLAS or Intel MKL. "MPI library" – Implements the Message Passing Interface (MPI), e.g. Open MPI or MPICH.
+Recommended: `Compiler`, `FFT library`, `Interpreter`, `Library`, `Linear algebra library`, `MPI library`. Other values are allowed.
+
+**Clarifications:** One of: "Compiler" – Translates source code into an executable, e.g. GCC or the Intel oneAPI compilers. "FFT library" – Computes fast Fourier transforms, e.g. FFTW. "Interpreter" – Runs a script, e.g. Python. "Library" – Any other library the software calls, e.g. LibXC or ASE. "Linear algebra library" – Provides BLAS, LAPACK or ScaLAPACK routines, e.g. OpenBLAS or Intel MKL. "MPI library" – Implements the Message Passing Interface (MPI), e.g. Open MPI or MPICH.
 
 </details>
 
@@ -1914,7 +2000,9 @@ The algorithm that computed the checksum.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `SHA1`, `SHA224`, `SHA256`, `SHA384`, `SHA512`, `SHA3-256`, `SHA3-384`, `SHA3-512`, `BLAKE2b-256`, `BLAKE2b-384`, `BLAKE2b-512`, `BLAKE3`, `MD2`, `MD4`, `MD5`, `MD6`, `ADLER32`. Other values are allowed. The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/) (File checksum field).
+Recommended: `SHA1`, `SHA224`, `SHA256`, `SHA384`, `SHA512`, `SHA3-256`, `SHA3-384`, `SHA3-512`, `BLAKE2b-256`, `BLAKE2b-384`, `BLAKE2b-512`, `BLAKE3`, `MD2`, `MD4`, `MD5`, `MD6`, `ADLER32`. Other values are allowed.
+
+**Clarifications:** The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/) (File checksum field).
 
 </details>
 
@@ -2192,7 +2280,9 @@ Description of change made to the dataset.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Initial creation`, `Admin update`, `Version update`, `Metadata update`. Other values are allowed. "Initial creation" – Initial creation of the dataset. "Admin update" – Editorial update to the dataset not requiring a version update (e.g. spelling correction). "Version update" – Change to the dataset or associated files requiring a new version. "Metadata update" – Change to the metadata, but not the dataset itself.
+Recommended: `Initial creation`, `Admin update`, `Version update`, `Metadata update`. Other values are allowed.
+
+**Clarifications:** "Initial creation" – Initial creation of the dataset. "Admin update" – Editorial update to the dataset not requiring a version update (e.g. spelling correction). "Version update" – Change to the dataset or associated files requiring a new version. "Metadata update" – Change to the metadata, but not the dataset itself.
 
 </details>
 
@@ -2205,7 +2295,9 @@ The date and time when the change was made.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Pattern: `\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?`. Examples: `2021-02-22`, `2021-02-22T14:30:00Z`. A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
+Pattern: `\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?`. Examples: `2021-02-22`, `2021-02-22T14:30:00Z`.
+
+**Clarifications:** A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
 
 </details>
 
@@ -2260,7 +2352,9 @@ The identifier scheme that the value belongs to.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `ORCID`, `ROR`, `DOI`, `SWHID`, `ISNI`. Other values are allowed. For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state. An ISNI may identify either individuals or organizations.
+Recommended: `ORCID`, `ROR`, `DOI`, `SWHID`, `ISNI`. Other values are allowed.
+
+**Clarifications:** For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state. An ISNI may identify either individuals or organizations.
 
 </details>
 
@@ -2374,7 +2468,9 @@ The algorithm that computed the checksum.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `SHA1`, `SHA224`, `SHA256`, `SHA384`, `SHA512`, `SHA3-256`, `SHA3-384`, `SHA3-512`, `BLAKE2b-256`, `BLAKE2b-384`, `BLAKE2b-512`, `BLAKE3`, `MD2`, `MD4`, `MD5`, `MD6`, `ADLER32`. Other values are allowed. The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/) (File checksum field).
+Recommended: `SHA1`, `SHA224`, `SHA256`, `SHA384`, `SHA512`, `SHA3-256`, `SHA3-384`, `SHA3-512`, `BLAKE2b-256`, `BLAKE2b-384`, `BLAKE2b-512`, `BLAKE3`, `MD2`, `MD4`, `MD5`, `MD6`, `ADLER32`. Other values are allowed.
+
+**Clarifications:** The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/) (File checksum field).
 
 </details>
 
@@ -2513,7 +2609,9 @@ The identifier scheme that the value belongs to.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `ORCID`, `ROR`, `DOI`, `SWHID`, `ISNI`. Other values are allowed. For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state. An ISNI may identify either individuals or organizations.
+Recommended: `ORCID`, `ROR`, `DOI`, `SWHID`, `ISNI`. Other values are allowed.
+
+**Clarifications:** For individuals, an ORCID ID; for organizations, an ROR ID; for software or AI agents, a Digital Object Identifier (DOI) generated specifically for the software code or version (e.g., a Zenodo software DOI) or a Software Heritage ID (SWHID) pointing to the exact software release or state. An ISNI may identify either individuals or organizations.
 
 </details>
 
@@ -2587,7 +2685,9 @@ The date, or date and time, when this metadata record was created.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Pattern: `\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?`. Examples: `2021-02-22`, `2021-02-22T14:30:00Z`. A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
+Pattern: `\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ)?`. Examples: `2021-02-22`, `2021-02-22T14:30:00Z`.
+
+**Clarifications:** A date (YYYY-MM-DD), or a date and time in UTC (YYYY-MM-DDTHH:mm:ssZ), following the [ISO 8601 Date and Time Format Standard](https://www.iso.org/iso-8601-date-and-time-format.html).
 
 </details>
 

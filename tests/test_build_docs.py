@@ -148,12 +148,29 @@ def test_values_text_states_every_values_key():
     assert text({'maximum': 1}) == 'Maximum: 1.'
     assert text({'depends-on': 'method-class',
                  'cases': {'Electronic': {'terms': ['DFT']}, 'Atomistic': {'terms': ['MD']}}}) == (
-        'Depends on `method-class`. For `Electronic`: Recommended: `DFT`. Other values are allowed. '
-        'For `Atomistic`: Recommended: `MD`. Other values are allowed.')
+        'Depends on `method-class`.\n\n'
+        '- For `Electronic`: Recommended: `DFT`. Other values are allowed.\n'
+        '- For `Atomistic`: Recommended: `MD`. Other values are allowed.')
     assert text({'format': 'date'}) == 'Format: `date` (JSON Schema 2020-12).'
     assert text({'pattern': 'MC-[0-9]{4}'}) == 'Pattern: `MC-[0-9]{4}`.'
     assert text({'format': 'uri', 'examples': ['https://ror.org/x'], 'note': 'An ROR ID.'}) == \
-        'Format: `uri` (JSON Schema 2020-12). Examples: `https://ror.org/x`. An ROR ID.'
+        'Format: `uri` (JSON Schema 2020-12). Examples: `https://ror.org/x`.\n\n**Clarifications:** An ROR ID.'
+
+
+def test_definitions_are_set_apart_from_the_values_they_define():
+    """A list of values and the definitions that follow it read as one block unless separated, so the
+    note is a paragraph of its own under a heading, and each case of a dependent list is a list item
+    (0007 item 5, amended 2026-11-14)."""
+    v = load('minimal')
+    method = next(p for p in next(p for p in v['properties'] if p['name'] == 'computation')['subproperties']
+                  if p['name'] == 'method')
+    paragraphs = build_docs.values_text(method, show_legacy=False).split('\n\n')
+    assert paragraphs[0] == 'Depends on `method-class`.'
+    assert all(line.startswith('- For `') for line in paragraphs[1].split('\n'))
+    assert len(paragraphs[1].split('\n')) == len(method['values']['cases'])
+    assert paragraphs[2].startswith('**Clarifications:** "CC" – Coupled Cluster')
+    assert '**Clarifications:**' not in build_docs.values_text(
+        {'type': 'string', 'values': {'terms': ['A']}}, show_legacy=False)
 
 
 

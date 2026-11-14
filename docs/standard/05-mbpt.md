@@ -74,7 +74,9 @@ For a planewave code, the basis set cutoff employed for the dielectric matrix. T
 |---|---|---|---|---|---|
 | no | no | — | — | — | — |
 
-<span class='legacy'>Legacy: A real number containing the cutoff.</span> <span class='legacy'>Legacy unit: Rydberg (Ry)</span>
+<span class='legacy'>Legacy: A real number containing the cutoff.</span>
+
+<span class='legacy'>Legacy unit: Rydberg (Ry)</span>
 
 Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
 
@@ -117,7 +119,9 @@ For sum-over-states methods, the number of bands used in the sum. For linear-res
 |---|---|---|---|---|---|
 | no | no | — | — | — | — |
 
-<span class='legacy'>Legacy: One integer containing the number of bands or eigenvalues.</span> <span class='legacy'>Legacy unit: dimensionless</span>
+<span class='legacy'>Legacy: One integer containing the number of bands or eigenvalues.</span>
+
+<span class='legacy'>Legacy unit: dimensionless</span>
 
 </details>
 
@@ -130,7 +134,9 @@ Brillouin zone grid used for sampling the dielectric matrix.
 |---|---|---|---|---|---|
 | yes | no | — | — | — | — |
 
-<span class='legacy'>Legacy: Ordered list of 3 integer numbers containing the number points along the three reciprocal lattice vector directions.</span> <span class='legacy'>Legacy unit: dimensionless</span>
+<span class='legacy'>Legacy: Ordered list of 3 integer numbers containing the number points along the three reciprocal lattice vector directions.</span>
+
+<span class='legacy'>Legacy unit: dimensionless</span>
 
 </details>
 
@@ -158,7 +164,9 @@ Number of bands for which the GW correction is evaluated.
 |---|---|---|---|---|---|
 | no | no | — | — | — | — |
 
-<span class='legacy'>Legacy: One integer specifying how many bands are corrected, counting from the bottom of the valence bands.</span> <span class='legacy'>Legacy unit: dimensionless</span>
+<span class='legacy'>Legacy: One integer specifying how many bands are corrected, counting from the bottom of the valence bands.</span>
+
+<span class='legacy'>Legacy unit: dimensionless</span>
 
 </details>
 
@@ -180,7 +188,9 @@ Number of valence bands included in the BSE Hamiltonian.
 |---|---|---|---|---|---|
 | no | no | — | — | — | — |
 
-<span class='legacy'>Legacy: One integer specifying how many valence bands are corrected, counting from the valence band top.</span> <span class='legacy'>Legacy unit: dimensionless</span>
+<span class='legacy'>Legacy: One integer specifying how many valence bands are corrected, counting from the valence band top.</span>
+
+<span class='legacy'>Legacy unit: dimensionless</span>
 
 </details>
 
@@ -193,7 +203,9 @@ Number of conduction bands included in the BSE Hamiltonian.
 |---|---|---|---|---|---|
 | no | no | — | — | — | — |
 
-<span class='legacy'>Legacy: One integer specifying how many bands are corrected, counting from the conduction band bottom.</span> <span class='legacy'>Legacy unit: dimensionless</span>
+<span class='legacy'>Legacy: One integer specifying how many bands are corrected, counting from the conduction band bottom.</span>
+
+<span class='legacy'>Legacy unit: dimensionless</span>
 
 </details>
 
@@ -206,7 +218,9 @@ Brillouin zone grid used for building the BSE Hamiltonian.
 |---|---|---|---|---|---|
 | no | no | — | — | — | — |
 
-<span class='legacy'>Legacy: Ordered list of 3 integer numbers containing the number points along the reciprocal lattice vector directions.</span> <span class='legacy'>Legacy unit: dimensionless</span>
+<span class='legacy'>Legacy: Ordered list of 3 integer numbers containing the number points along the reciprocal lattice vector directions.</span>
+
+<span class='legacy'>Legacy unit: dimensionless</span>
 
 </details>
 
@@ -219,7 +233,9 @@ Crystal momentum of the exciton in the BSE calculation.
 |---|---|---|---|---|---|
 | no | no | — | — | — | — |
 
-<span class='legacy'>Legacy: Ordered list of 3 real values containing the crystal momentum in fractions of the reciprocal lattice vectors (dimensionless), e.g. [0.5,0.5,1.0].</span> <span class='legacy'>Legacy unit: dimensionless</span>
+<span class='legacy'>Legacy: Ordered list of 3 real values containing the crystal momentum in fractions of the reciprocal lattice vectors (dimensionless), e.g. [0.5,0.5,1.0].</span>
+
+<span class='legacy'>Legacy unit: dimensionless</span>
 
 </details>
 
@@ -258,7 +274,9 @@ Number of lowest eigenvalues computed by solving the BSE Hamiltonian.
 |---|---|---|---|---|---|
 | no | no | — | — | — | — |
 
-<span class='legacy'>Legacy: One integer containing the number of BSE eigenvalues.</span> <span class='legacy'>Legacy unit: dimensionless</span>
+<span class='legacy'>Legacy: One integer containing the number of BSE eigenvalues.</span>
+
+<span class='legacy'>Legacy unit: dimensionless</span>
 
 </details>
 
