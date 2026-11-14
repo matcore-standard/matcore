@@ -803,6 +803,7 @@ record or marked PROPOSED, NOT DECIDED.
    2.4–2.8 in titles and menu labels; existing page files keep their names and addresses; pim's
    page is docs/standard/pim.md); md's title is unchanged; a DFT relaxation stays one computation
    (DFT, task Optimization) with dft's relaxation tolerances, MS being for relaxations with a PIM.
+   (Superseded in part: such a relaxation is PS with task Optimization, by 0064.)
    [done, PR #84 merged 2026-11-09] the pim section and md reduced to dynamics by
    0046 items 8 and 9, structure only (no typed field filled): schema/pim.yaml (2.3) with settings ›
    computation, theory-level, model-type, particle-style (now repeatable), bonding-type,
@@ -855,7 +856,8 @@ record or marked PROPOSED, NOT DECIDED.
    simulation (molecular dynamics, molecular statics and related methods)"; MatCore-MD becomes
    MatCore-PS in §1.2 and About; Leadership renames "Method: Molecular Dynamics" to "Method: Particle
    Simulation" and adds "Method: Particle Interaction Model" with "TBD". PROPOSED, NOT DECIDED
-   (0061): whether PS describes Monte Carlo (method MC); the PIM committee's members.
+   (0061): whether PS describes Monte Carlo (method MC); the PIM committee's members. (Superseded in
+   part: PS describes Monte Carlo, and MC is a group of ps algorithm terms, by 0064.)
    [done, PR #98 merged 2026-11-12] the 0061 rename: schema/ps.yaml, examples/ps.json,
    docs/standard/ps.md (04-md.md removed), build_docs.PAGES, check_examples.SECTIONS, mkdocs.yml nav,
    §1.2, About and Leadership; tests updated, two new tests in tests/test_computations.py.
@@ -879,6 +881,58 @@ record or marked PROPOSED, NOT DECIDED.
    property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
+   Method, task and algorithm by 0064 (ruling 2026-11-14): minimal `method` names the method section,
+   PS replacing MD, MS, MC and CGMD (cases Atomistic PIM, PS; Mesoscopic DDD, KMC, PIM, PS);
+   method-class notes that a PS computation takes its particles' entity; `task` names the goal, with
+   Optimization local or global, a new Transition state search, and Dynamics and Sampling told apart
+   by whether the time evolution is the result; ps `algorithm` a required, repeatable string with
+   open terms in eight groups (the baseline's, less PMF, plus the reviewer's, NEB, Metropolis and
+   Hybrid Monte Carlo; aMD and GaMD under enhanced sampling); the PS introduction and §1.2 name Monte
+   Carlo; a relaxation using another computation's forces is PS with task Optimization (was MS).
+   Reverses 0061 item 2; breaks 0.6.0 instances with method MD, MC or CGMD. Two PRs: (a) minimal,
+   ps introduction, §1.2, tests; (b) ps algorithm (step 5). PROPOSED, NOT DECIDED (0064): a DFT
+   relaxation also described as PS + DFT single point to record its minimizer; KMC and Multiscale
+   sections; property layers, term identifiers, what a computation computes.
+   The notes below are its background.
+   PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
+   ps algorithm repeatable, with open terms grouped in its note by function (time integration, local
+   minimization, global optimization, saddle points and paths, accelerated dynamics, enhanced
+   sampling and free energy, path sampling); KMC variants left to a future KMC section. Declined by
+   the human 2026-11-13: separate `time-scale` and `sampling-bias` properties, since the algorithm
+   terms imply them. Open, from the analysis of minimal method-class, method and task against the
+   groups: task mixes mechanism (Dynamics, Sampling) with goal (Optimization, Free energy
+   calculation, ...), and has no term for saddle-point and path searches; method's MD, MS and CGMD
+   repeat what task and method-class say (one term PS was suggested); whether PS describes MC
+   (0061); a DFT relaxation's minimizer cannot be recorded (0046 settlement).
+   Raised by the human 2026-11-14, PROPOSED, NOT DECIDED: a method section "Multiscale" for spatial
+   (QC, hot-QC, bridging scales), temporal (accelerated MD, KMC) and coupled (hyper-QC) methods. Points
+   raised in reply: the abbreviation MS is taken by molecular statics; Voter's accelerated MD
+   (hyperdynamics, ParRep, TAD) and Hamelberg's aMD share the name; whether accelerated MD stays a ps
+   algorithm and KMC gets its own section or both go to Multiscale; QM/MM regions (0046) belong to
+   the same question. Also suggested: `method` gets one term per method section, the section then
+   describing the specific approach.
+   Survey of other standards, 2026-11-14 (for 0064; PROPOSED, NOT DECIDED): MODA (CWA 17284:2018
+   §3.10) strictly separates model and solver, and RoMM (2017) files MC and accelerated MD as
+   solvers; ASMO (OCDO) keeps ComputationalMethod (MD, MS, MC, KMC, DFT), SimulationAlgorithm and
+   the activity apart; QCSchema separates model, driver and procedure (QCPortal has `neb`); NOMAD's
+   workflow classes, CML CompChem's task and FAIRmat Area C's feedback (item 4) mix goal and
+   procedure or call MD a method. Revised suggestion: keep MD, MS and MC as method terms (solver
+   families, all described by ps; withdraws the single term PS); task by goal only, with Transition
+   state search; ps algorithm the specific solver; a Multiscale section for coupled models in
+   MODA's terms (iterative or tight coupling; one-way linking stays `input`), accelerated MD staying
+   a ps algorithm and KMC its own section. (Superseded in part, human's direction 2026-11-14:
+   `method` names the method sections: PS replaces MD, MS, MC and CGMD, method-class giving
+   Atomistic or Mesoscopic; MD, MS and MC become groups of ps algorithm terms, with a Monte Carlo
+   group added; terms without a section (CC, QMC, TB, DDD, KMC) stay. To be drafted as 0064,
+   reversing 0061 item 2; breaks 0.6.0 instances.) Departures from the surveyed standards, to state
+   in 0064: method-class is given for every computation, a PS computation taking its particles'
+   entity (MODA classifies models, not solvers, and would class AIMD by DFT); MD, MS and MC are not
+   method terms (ASMO's ComputationalMethod has them); thermostats stay ps settings (RoMM counts them
+   as materials relations). PROPOSED, NOT DECIDED, beyond 0064: marking each property's layer (model,
+   numerical setting, dataset, provenance, ...), as nomad-simulations' ModelMethod/NumericalSettings
+   split and FAIRmat Area C items 2–3 suggest; mapping terms to external identifiers (ASMO, EMMO);
+   what a computation computes (QCSchema's driver), which overlaps 0039's open question. Also found: minimal method-class's note calls RoMM (DOI
+   10.2777/404734) "the MODA standard", and Data-driven comes from RoMM, not the CWA.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
 7. [todo] Define, as a section of the standard, the serialization requirements that any format must
