@@ -62,8 +62,8 @@ def values_text(p, show_legacy):
         out.append('\n'.join(f'- For `{k}`: ' + ' '.join(allowed_values({'extent': p.get('extent'), 'values': case})
                                                          + ([case['note']] if 'note' in case else []))
                              for k, case in v['cases'].items()))
-    if 'note' in v:
-        out.append(f"**Clarifications:** {v['note']}")
+    if 'note' in v:  # a multi-line note keeps its groups and lists (0007 item 5, amended again 2026-11-14)
+        out += ['**Clarifications:**', v['note']] if '\n' in v['note'] else [f"**Clarifications:** {v['note']}"]
     if show_legacy:
         legacy = ' '.join((p.get('legacy_values') or '').split())
         if legacy and not legacy.startswith('Contains Sub'):  # the nesting shows subproperties

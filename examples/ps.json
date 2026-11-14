@@ -5,6 +5,9 @@
         "computation-label": [
           "md-quench"
         ],
+        "algorithm": [
+          "Velocity Verlet"
+        ],
         "thermodynamic-constraint": [
           {
             "system": "Entire system",

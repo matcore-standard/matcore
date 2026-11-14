@@ -302,7 +302,8 @@ def test_ps_keeps_only_the_dynamics():
     props = section('ps')['properties']
     assert [p['name'] for p in props] == ['settings']
     assert [c['name'] for c in props[0]['subproperties']] == [
-        'computation-label', 'algorithm', 'computation-parameter', 'initialization', 'thermodynamic-constraint']
+        'computation-label', 'algorithm', 'description', 'computation-parameter', 'initialization',
+        'thermodynamic-constraint']
     text = (ROOT / 'schema/ps.yaml').read_text()
     for gone in ('name: mode', 'particle-style', 'particle-interactions', 'charge-interactions',
                  'magnetic-interactions'):
@@ -492,3 +493,74 @@ def test_pim_introduction_names_settings_blocks():
     """pim's introduction says where its properties sit, as dft's does (0054)."""
     assert ('The properties are given in settings blocks, each naming the PIM computations it describes.'
             in section('pim')['introduction'])
+
+
+ALGORITHM_GROUPS = {
+    'Molecular dynamics, time integration': ['Leap frog', 'Runge-Kutta', 'Velocity Verlet', 'Verlet'],
+    'Molecular dynamics, accelerated': ['Hyperdynamics', 'Parallel replica dynamics', 'TAD'],
+    'Molecular statics, local minimization': ['Simplex', 'Damped dynamics', 'FIRE', 'Steepest descent',
+                                              'Conjugate gradients', 'BFGS'],
+    'Molecular statics, saddle points and paths': ['NEB', 'String method', 'Dimer method', 'ART',
+                                                   'Eigenvector following'],
+    'Global optimization': ['Simulated annealing', 'SGLD', 'Basin hopping', 'Basin filling',
+                            'Random structure search', 'Evolutionary algorithm', 'Particle swarm optimization',
+                            'Minima hopping'],
+    'Monte Carlo': ['Metropolis Monte Carlo', 'Hybrid Monte Carlo'],
+    'Enhanced sampling and free energy': ['Harmonic', 'Metadynamics', 'Thermodynamic integration',
+                                          'Umbrella sampling', 'Replica exchange', 'Steered MD', 'Targeted MD',
+                                          'aMD'],
+    'Path sampling': ['Forward flux sampling', 'Transition path sampling', 'Milestoning'],
+}
+
+
+def test_ps_algorithm_names_every_procedure_by_group():
+    """With MD, MS and MC gone from method, algorithm alone says how the particles were moved or sampled, so it
+    is required, repeats for combined procedures, and defines every term, grouped as a reading aid (0064 item 4;
+    0066 items 1, 3)."""
+    a = sub(top('ps', 'settings'), 'algorithm')
+    assert shape(a) == (True, True, 'string', [], 'inapplicable', None)
+    assert a['description'] == 'A procedure by which the computation moves or samples the particles.'
+    assert a['values']['terms'] == [t for terms in ALGORITHM_GROUPS.values() for t in terms]
+    note = a['values']['note']
+    blocks = note.split('\n\n')  # a bold group label, then its list, one item per term (0007 item 5, amended)
+    assert blocks[0::2] == [f'**{group}**' for group in ALGORITHM_GROUPS]
+    for terms, block in zip(ALGORITHM_GROUPS.values(), blocks[1::2]):
+        assert [line.split(' – ')[0] for line in block.split('\n')] == [f'- "{t}"' for t in terms]
+    for definition in (
+            '"Harmonic" – A free energy from the harmonic or quasi-harmonic approximation',
+            '"Random structure search" – Candidates generated at random within given constraints, each relaxed to '
+            'a local minimum',
+            '"Evolutionary algorithm" – Candidates produced from earlier ones by heredity and mutation and selected '
+            'by their energies, each relaxed to a local minimum',
+            '"Particle swarm optimization" – Candidates moved through configuration space toward the best '
+            'structures found by each candidate and by the swarm, each relaxed to a local minimum',
+            '"Minima hopping" – A walk from one local minimum to the next by short molecular dynamics escapes, with '
+            'an energy threshold for accepting a new minimum and a record of the minima already visited'):
+        assert definition in note
+    assert 'PMF' not in note
+    assert a['notes'] == [
+        'Note: Give one entry for each procedure used, e.g. Velocity Verlet and Hyperdynamics, or Random structure '
+        'search and BFGS for a search that relaxes its candidates. How a thermodynamic constraint is enforced, e.g. '
+        'a thermostat, a barostat or grand canonical Monte Carlo moves, is given in `thermodynamic-constraint`, not '
+        'here.',
+        'Note: Numerical parameters of a procedure, e.g. the time step of Velocity Verlet or the number of images '
+        'of NEB, are given as `computation-parameter` entries; its variant, e.g. well-tempered metadynamics, and '
+        'other specifics are given in `description`.']
+    assert not any(k.startswith('legacy_') for k in a)
+    assert len(a['values']['terms']) == 39  # major classes only; variants go in description (0067 item 1)
+
+
+def test_ps_settings_describe_algorithm_specifics():
+    """The terms name only major classes, so a variant and the meaning of the parameters need free text beside
+    them (0067 item 2)."""
+    d = sub(top('ps', 'settings'), 'description')
+    assert shape(d) == (False, False, 'string', [], 'inapplicable', None)
+    assert d['values'] is None
+    assert d['description'] == ('Further information on the algorithms of these settings, e.g. the variant used, '
+                                'and an explanation of their computation-parameter entries.')
+
+
+def test_ps_example_names_its_algorithm():
+    """algorithm is required, so every settings block of the example gives it (0012)."""
+    example = json.loads((ROOT / 'examples/ps.json').read_text())
+    assert all(s['algorithm'] for s in example['ps']['settings'])
