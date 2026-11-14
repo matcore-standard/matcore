@@ -899,7 +899,14 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #100 merged 2026-11-12] the 0063 note: schema/minimal.yaml (computation note,
    Initial configuration definition), tests/test_computations.py, 02-minimal.md regenerated.
    [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
-   algorithm done, PR #106; next computation-parameter). Each
+   algorithm done, PR #106; next computation-parameter).
+   [in progress, branch ps-computation-parameter, committed, awaiting push and PR] ps
+   computation-parameter: the
+   generic-parameter form of 0016 (name, value of type/extent/kind any, unit with 0001 B9's
+   description and A3.2's note, description), checked by check_generic.py; a note gives the
+   baseline's two examples (moved from description's legacy values) with the time step, NEB images
+   and 0066 item 4's search settings; legacy_* deleted; test in tests/test_computations.py; ps page
+   regenerated; examples/ps.json unchanged. Each
    property follows 0042 item 3: no
    quantity that minimal `conditions` (simulation-conditions before 0046) holds is repeated; md adds only how a condition is enforced
    (thermostat, barostat and their parameters) and the ensemble.
