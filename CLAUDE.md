@@ -912,7 +912,13 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #100 merged 2026-11-12] the 0063 note: schema/minimal.yaml (computation note,
    Initial configuration definition), tests/test_computations.py, 02-minimal.md regenerated.
    [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
-   algorithm done, PR #106; computation-parameter done, PR #107; next initialization).
+   algorithm done, PR #106; computation-parameter done, PR #107; initialization in progress; next thermodynamic-constraint).
+   [in progress, branch ps-initialization, committed, awaiting push and PR] ps initialization: a
+   scalar string, values null, the baseline description kept; a note gives what the computation sets
+   up itself (velocities from a distribution with a random seed, spins) and points a carried-over
+   configuration to input role Initial configuration (0063) and imposed values to conditions (0042
+   item 3); legacy_* deleted; test in tests/test_computations.py; ps page regenerated; examples/ps.json
+   unchanged.
    Reviewer feedback 2026-11-14 (written before 0046 and 0061; "thermodynamic-integration" read as
    thermodynamic-constraint): one script runs several MD stages with different ensembles, e.g. a
    two-phase melting point (two NPT regions at different temperatures, then NPH for all atoms), so

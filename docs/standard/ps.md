@@ -185,9 +185,9 @@ Information on the conditions set at the start of the simulation.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing a description of the simulation initial conditions (such as the nature and source of an initial structure, initialization of velocities or spins, etc.).</span>
+Note: Give what the computation sets up itself, e.g. velocities drawn from a Maxwell-Boltzmann distribution at 300 K with a stated random seed, or randomly oriented spins. A configuration carried over from another computation is named in minimal `computation › input` with the role Initial configuration, and the imposed conditions, e.g. the temperature, are given in minimal `conditions`.
 
 </details>
 

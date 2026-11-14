@@ -594,3 +594,21 @@ def test_ps_computation_parameter_is_a_generic_parameter():
         'search, the number of candidates, the number of atoms per cell, the allowed space groups, the volume '
         'range and the force and energy tolerances of the local relaxations.']
     assert not any(k.startswith('legacy_') for s in [p] + p['subproperties'] for k in s)
+
+
+INITIALIZATION_NOTE = (
+    'Note: Give what the computation sets up itself, e.g. velocities drawn from a Maxwell-Boltzmann distribution '
+    'at 300 K with a stated random seed, or randomly oriented spins. A configuration carried over from another '
+    'computation is named in minimal `computation › input` with the role Initial configuration, and the imposed '
+    'conditions, e.g. the temperature, are given in minimal `conditions`.')
+
+
+def test_ps_initialization_gives_only_what_the_computation_sets_up():
+    """A carried-over state is an input link (0063) and an imposed value a condition (0042 item 3), so
+    initialization holds the rest, as free text."""
+    p = sub(top('ps', 'settings'), 'initialization')
+    assert (p['required'], p['repeatable'], p['type'], p['extent'], p['kind'], p['values']) == (
+        False, False, 'string', [], 'inapplicable', None)
+    assert p['description'] == 'Information on the conditions set at the start of the simulation.'
+    assert p['notes'] == [INITIALIZATION_NOTE]
+    assert not any(k.startswith('legacy_') for k in p)
