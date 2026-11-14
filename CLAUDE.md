@@ -321,7 +321,8 @@ record or marked PROPOSED, NOT DECIDED.
      ps algorithm is a required, repeatable term naming a major class of procedure, 39 terms in eight
      groups, with an optional settings description for variants and parameters (0064, 0066, 0067);
      ps computation-parameter is a generic parameter with an Annex U unit (0016); pim long-range-electrostatics is renamed electrostatic-summation, gains
-     Short-range and redefines None (0068).
+     Short-range and redefines None (0068); ps initialization is a string for what the computation sets
+     up itself (step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -912,8 +913,8 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #100 merged 2026-11-12] the 0063 note: schema/minimal.yaml (computation note,
    Initial configuration definition), tests/test_computations.py, 02-minimal.md regenerated.
    [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
-   algorithm done, PR #106; computation-parameter done, PR #107; initialization in progress; next thermodynamic-constraint).
-   [in progress, branch ps-initialization, committed, awaiting push and PR] ps initialization: a
+   algorithm done, PR #106; computation-parameter done, PR #107; initialization done, PR #109; next thermodynamic-constraint).
+   [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
    configuration to input role Initial configuration (0063) and imposed values to conditions (0042
