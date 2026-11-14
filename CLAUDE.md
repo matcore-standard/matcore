@@ -899,6 +899,10 @@ record or marked PROPOSED, NOT DECIDED.
    ps introduction, §1.2, tests; (b) ps algorithm (step 5). PROPOSED, NOT DECIDED (0064): a DFT
    relaxation also described as PS + DFT single point to record its minimizer; KMC and Multiscale
    sections; property layers, term identifiers, what a computation computes.
+   [in progress, branch method-task-0064, committed, awaiting push and PR] 0064 PR (a): minimal method (PS replaces MD,
+   MS, MC, CGMD; new description and PS definition), method-class note, task terms by goal with
+   Transition state search and a note; ps introduction and §1.2 name Monte Carlo;
+   tests/test_computations.py; 02-minimal, ps and index pages regenerated. Awaits the human's push.
    The notes below are its background.
    PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
    ps algorithm repeatable, with open terms grouped in its note by function (time integration, local

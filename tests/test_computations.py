@@ -8,8 +8,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 NAME_PATTERN = '^[a-z][a-z0-9]*(-[a-z0-9]+)*$'
-TASKS = ['Single point', 'Optimization', 'Dynamics', 'Sampling', 'Free energy calculation', 'Training',
-         'Property calculation']
+TASKS = ['Single point', 'Optimization', 'Transition state search', 'Dynamics', 'Sampling',
+         'Free energy calculation', 'Training', 'Property calculation']
 ROLES = ['Interaction model', 'Initial configuration', 'Starting point', 'Training data', 'Parameters',
          'Source data']
 UNIQUE = 'Note: A label is unique among all labels of structures and computations in the record.'
@@ -99,6 +99,25 @@ def test_task_terms_are_defined():
     assert all(f'"{term}" –' in t['values']['note'] for term in TASKS)
 
 
+def test_task_names_the_goal_not_the_mechanism():
+    """An umbrella-sampling MD run must fit one task, so each task is a goal and the procedure is left to the
+    method's section; saddle-point searches get a goal of their own (0064 item 3)."""
+    t = sub(top('minimal', 'computation'), 'task')
+    note = t['values']['note']
+    for definition in (
+            '"Optimization" – Configurations or cells taken to a minimum of the energy, local or global, e.g. a '
+            'relaxation or a search for the lowest-energy structure;',
+            '"Transition state search" – Saddle points of the energy, or minimum energy paths between given '
+            'configurations, e.g. by the nudged elastic band or dimer method;',
+            '"Dynamics" – Configurations evolved in time where the evolution or the kinetics is the result, e.g. '
+            'trajectories, transport coefficients or rates, including accelerated dynamics and path sampling;',
+            '"Sampling" – Averages over a distribution of configurations, by Monte Carlo or by dynamics, where the '
+            'time evolution is not itself the result;'):
+        assert definition in note
+    assert t['notes'] == ['Note: Give the term for the results the computation is meant to provide; the procedure '
+                          'is given in the method\'s section, e.g. ps `algorithm`.']
+
+
 def test_input_names_a_computation_and_its_role():
     """The role sits on the link, since one computation can be both published data and another's interaction
     model (0046 item 2)."""
@@ -117,17 +136,27 @@ def test_input_names_a_computation_and_its_role():
     assert shape(s) == (False, True, 'string', [], 'inapplicable', None)
 
 
-def test_method_terms_include_tb_ms_and_pim():
-    """Tight binding solves for electrons; molecular statics relaxes particles with another computation's
-    forces; a particle interaction model supplies energies and forces without solving for a wavefunction or
-    density (0046 items 4, 5)."""
-    m = sub(top('minimal', 'computation'), 'method')
+def test_method_names_the_section_that_describes_the_computation():
+    """MD, MS, MC and CGMD repeat what task, algorithm and method-class say, so one term PS names the section
+    that describes them all; tight binding and a particle interaction model keep their terms (0046 items 4, 5;
+    0064 items 1, 2)."""
+    computation = top('minimal', 'computation')
+    m = sub(computation, 'method')
+    assert m['description'] == ('The method of the calculations in this computation, which names the section of '
+                                'this standard that describes their settings, where one exists.')
     assert {k: c['terms'] for k, c in m['values']['cases'].items()} == {
-        'Electronic': ['CC', 'QMC', 'DFT', 'MBPT', 'TB'], 'Atomistic': ['MC', 'MD', 'MS', 'PIM'],
-        'Mesoscopic': ['DDD', 'KMC', 'CGMD', 'PIM'], 'Continuum': ['PF'], 'Data-driven': ['ML']}
+        'Electronic': ['CC', 'QMC', 'DFT', 'MBPT', 'TB'], 'Atomistic': ['PIM', 'PS'],
+        'Mesoscopic': ['DDD', 'KMC', 'PIM', 'PS'], 'Continuum': ['PF'], 'Data-driven': ['ML']}
     note = m['values']['note']
-    assert '"TB" – Tight Binding' in note and '"MS" – Molecular Statics' in note
+    assert '"TB" – Tight Binding' in note
+    assert ('"PS" – Particle Simulation: a system of particles moved or sampled using the energies and forces of '
+            'another computation, by molecular dynamics, molecular statics, Monte Carlo or related methods; '
+            'described in the PS section;') in note
+    assert not any(f'"{term}" –' in note for term in ('MD', 'MS', 'MC', 'CGMD'))
     assert 'without solving for a wavefunction or an electron density' in note
+    assert sub(computation, 'method-class')['notes'][-1] == (
+        'Note: For a PS computation, give the entity of its particles: Atomistic for atoms, Mesoscopic for '
+        'coarse-grained particles such as beads.')
     assert m['notes'] == ['Note: Give the method of the calculations in this computation. When they use energies '
                           'and forces from another method, describe that method as a computation of its own and '
                           'name it in `input` with the role Interaction model.']
@@ -261,19 +290,21 @@ PS_INTRODUCTION = (
     'The metadata for particle simulations (MatCore-PS) is tabulated below. A particle simulation moves or samples '
     'a system of particles using the energies and forces supplied by an interaction model, a particle interaction '
     'model or, as in ab initio molecular dynamics, an electronic structure computation. This category includes '
-    'molecular dynamics (MD), molecular statics (MS) and coarse-grained MD (CGMD): energy and free energy '
-    'minimization, equilibrium and nonequilibrium MD, and related approaches. The properties are given in settings '
+    'molecular dynamics (MD), molecular statics (MS), Monte Carlo (MC) and their coarse-grained forms: energy and '
+    'free energy minimization, equilibrium and nonequilibrium MD, accelerated dynamics, enhanced sampling, '
+    'saddle-point searches and related approaches. The properties are given in settings '
     'blocks, each naming the PS computations it describes. (Note: This standard inherits the metadata in the '
     'minimal MatCore standard, adding the properties below.)')
 
 
 def test_ps_is_named_for_every_method_it_describes():
-    """Section 2.4 serves MD, MS, CGMD and ab initio MD, so it is named Particle Simulation, not after one method,
-    and the site names it so wherever it named MatCore-MD (0061)."""
+    """Section 2.4 serves MD, MS, MC, their coarse-grained forms and ab initio MD, so it is named Particle
+    Simulation, not after one method, and the site names it so wherever it named MatCore-MD (0061; 0064 item 5)."""
     assert section('ps')['introduction'].strip() == PS_INTRODUCTION
     assert json.loads((ROOT / 'examples/ps.json').read_text()).keys() == {'ps'}
     preamble = (ROOT / 'docs/standard/index.md').read_text()
-    assert '- PS: Particle simulation (molecular dynamics, molecular statics and related methods)\n' in preamble
+    assert ('- PS: Particle simulation (molecular dynamics, molecular statics, Monte Carlo and related methods)\n'
+            in preamble)
     for page in (preamble, (ROOT / 'docs/about.md').read_text()):
         assert 'MatCore-PS' in page and 'MatCore-MD' not in page
 
