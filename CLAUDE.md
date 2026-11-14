@@ -316,7 +316,8 @@ record or marked PROPOSED, NOT DECIDED.
      with a new Transition state search (Superseded: renamed Transition path by 0065), and the PS introduction and §1.2 name Monte Carlo (0064;
      breaks 0.6.0 instances with method MD, MC or CGMD); each method term is defined by the kind of
      methods it covers (0064, amended 2026-11-14); task gains Structure generation and Equilibration,
-     Transition path covers path sampling, and Training covers any model fitted to data (0065).
+     Transition path covers path sampling, and Training covers any model fitted to data (0065);
+     computation gains an optional description, for a protocol such as a structure search's (0066).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -940,7 +941,7 @@ record or marked PROPOSED, NOT DECIDED.
    are results, left to 0039's open question. Amends 0064 item 4 and 0065 item 2; breaks no released
    instance. PROPOSED, NOT DECIDED (0066): whether a single DFT relaxation may also be PS with a DFT
    Single point. The rest rides on the ps algorithm and computation-parameter PRs.
-   [in progress, branch computation-description-0066, committed, awaiting push and PR] 0066 item 5:
+   [done, PR #105 merged 2026-11-14] 0066 item 5:
    minimal computation › description (optional scalar string) after label;
    tests/test_computations.py; 02-minimal regenerated.
    The notes below are its background.
