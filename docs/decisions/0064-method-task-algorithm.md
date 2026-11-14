@@ -60,4 +60,17 @@ Each property of a computation answers one question, and none can be derived fro
 - NEB, Metropolis Monte Carlo and Hybrid Monte Carlo are added beyond the baseline and the reviewer's list.
 - aMD and GaMD sit under enhanced sampling, not accelerated dynamics: they bias the potential and reweight, rather than preserve state-to-state dynamics.
 
+*Amended 2026-11-14 (decided by Ellad Tadmor): item 1, the definitions in method's note. They mixed bare expansions with long descriptions that named methods not among the terms (GW, BSE, interatomic potentials, the electron force field, molecular dynamics). Each term is now its expansion followed by a short phrase stating the kind of methods it covers, with no named examples:*
+- *"CC" – Coupled Cluster: wavefunction methods that build electron correlation from excitations of a reference state;*
+- *"QMC" – Quantum Monte Carlo: stochastic solutions of the many-electron Schrödinger equation;*
+- *"DFT" – Density Functional Theory: electronic structure obtained from the electron density;*
+- *"MBPT" – Many-Body Perturbation Theory: excited states obtained from many-body Green's functions;*
+- *"TB" – Tight Binding: electronic structure in a basis of localized orbitals with parameterized matrix elements;*
+- *"PIM" – Particle Interaction Model: energies and forces given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density;*
+- *"PS" – Particle Simulation: particles moved or sampled using the energies and forces of another computation;*
+- *"DDD" – Discrete Dislocation Dynamics: plastic deformation from the motion and interaction of dislocation lines;*
+- *"KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events chosen by their rates;*
+- *"PF" – Phase Field: microstructure evolution described by continuous fields with diffuse interfaces;*
+- *"ML" – Machine Learning: models trained on data to predict materials properties or behavior.*
+
 Still PROPOSED, NOT DECIDED: whether a DFT relaxation may also be described as PS (Optimization) with a DFT computation (Single point) as its interaction model, so that its minimizer can be recorded.
