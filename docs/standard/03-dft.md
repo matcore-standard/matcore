@@ -44,7 +44,9 @@ The mathematical form of the exchange-correlation functional.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `LDA`, `GGA`, `Meta GGA`, `Hybrid`, `ML`. Other values are allowed. "LDA" – Local Density Approximation. "GGA" – Generalized Gradient Approximation. "Meta GGA" – Extension to GGA including dependence on Laplacian of electron density. "Hybrid" – An approximation for the exchange-correlation (XC) functional that includes a portion of the exact XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio or empirical). "ML" – Machine learning based functional.
+Recommended: `LDA`, `GGA`, `Meta GGA`, `Hybrid`, `ML`. Other values are allowed.
+
+**Clarifications:** "LDA" – Local Density Approximation. "GGA" – Generalized Gradient Approximation. "Meta GGA" – Extension to GGA including dependence on Laplacian of electron density. "Hybrid" – An approximation for the exchange-correlation (XC) functional that includes a portion of the exact XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio or empirical). "ML" – Machine learning based functional.
 
 </details>
 
@@ -57,7 +59,7 @@ The exchange-correlation functional as the author names it.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. Others: BEEF, etc. A decomposition into the components of a community library such as LibXC is given in normalization. Give the functional alone, without a dispersion correction (e.g. PBE, not PBE-D3); the correction is given in dispersion-correction.
+**Clarifications:** Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. Others: BEEF, etc. A decomposition into the components of a community library such as LibXC is given in normalization. Give the functional alone, without a dispersion correction (e.g. PBE, not PBE-D3); the correction is given in dispersion-correction.
 
 </details>
 
@@ -70,7 +72,7 @@ Explanatory text providing more information about the type of the exchange-corre
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Free text on what `type` and `name` do not say, e.g. a modification of the functional or the reason for choosing it.
+**Clarifications:** Free text on what `type` and `name` do not say, e.g. a modification of the functional or the reason for choosing it.
 
 </details>
 
@@ -105,7 +107,9 @@ The library whose identifiers the components use.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `LibXC`. Other values are allowed. "LibXC" – the [Libxc library of exchange-correlation functionals](https://libxc.gitlab.io/functionals/).
+Recommended: `LibXC`. Other values are allowed.
+
+**Clarifications:** "LibXC" – the [Libxc library of exchange-correlation functionals](https://libxc.gitlab.io/functionals/).
 
 Note: Give the version of the library as a `dependency` of the simulation code in minimal `software`.
 
@@ -155,7 +159,7 @@ The unit in which the associated value is expressed.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted with a validation warning).
+**Clarifications:** A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted with a validation warning).
 
 </details>
 
@@ -192,7 +196,9 @@ The method used to treat the core electrons.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `All-electron`, `PAW`, `Pseudopotential`. Other values are allowed. "All-electron" – All of the electrons in an atom are modeled explicitly. "PAW" – Projector Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential.
+Recommended: `All-electron`, `PAW`, `Pseudopotential`. Other values are allowed.
+
+**Clarifications:** "All-electron" – All of the electrons in an atom are modeled explicitly. "PAW" – Projector Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential.
 
 </details>
 
@@ -343,7 +349,9 @@ The algorithm that computed the checksum.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `SHA1`, `SHA224`, `SHA256`, `SHA384`, `SHA512`, `SHA3-256`, `SHA3-384`, `SHA3-512`, `BLAKE2b-256`, `BLAKE2b-384`, `BLAKE2b-512`, `BLAKE3`, `MD2`, `MD4`, `MD5`, `MD6`, `ADLER32`. Other values are allowed. The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/) (File checksum field).
+Recommended: `SHA1`, `SHA224`, `SHA256`, `SHA384`, `SHA512`, `SHA3-256`, `SHA3-384`, `SHA3-512`, `BLAKE2b-256`, `BLAKE2b-384`, `BLAKE2b-512`, `BLAKE3`, `MD2`, `MD4`, `MD5`, `MD6`, `ADLER32`. Other values are allowed.
+
+**Clarifications:** The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/) (File checksum field).
 
 </details>
 
@@ -399,7 +407,9 @@ The method used to represent the electronic wave functions.
 |---|---|---|---|---|---|
 | yes | yes | string | [] | inapplicable | — |
 
-Recommended: `Gaussian basis sets`, `LAPW`, `Local atomic orbitals`, `Numerical atomic orbitals`, `Plane waves`, `Real space grids`. Other values are allowed. The terms fall into three groups. (1) Basis-function expansions: "Gaussian basis sets" – Atom-centered Gaussian-type orbitals. "Local atomic orbitals" – Atom-centered orbitals of a form not covered by the previous or the next term, e.g. Slater-type orbitals. "Numerical atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius. "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff. (2) Grid methods: "Real space grids" – Values on a mesh of points in real space (finite differences or finite elements). (3) Augmented methods: "LAPW" – Linearized Augmented Plane Wave: atomic-like functions inside spheres around the atoms, plane waves between them.
+Recommended: `Gaussian basis sets`, `LAPW`, `Local atomic orbitals`, `Numerical atomic orbitals`, `Plane waves`, `Real space grids`. Other values are allowed.
+
+**Clarifications:** The terms fall into three groups. (1) Basis-function expansions: "Gaussian basis sets" – Atom-centered Gaussian-type orbitals. "Local atomic orbitals" – Atom-centered orbitals of a form not covered by the previous or the next term, e.g. Slater-type orbitals. "Numerical atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius. "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff. (2) Grid methods: "Real space grids" – Values on a mesh of points in real space (finite differences or finite elements). (3) Augmented methods: "LAPW" – Linearized Augmented Plane Wave: atomic-like functions inside spheres around the atoms, plane waves between them.
 
 </details>
 
@@ -513,7 +523,9 @@ The algorithm that computed the checksum.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `SHA1`, `SHA224`, `SHA256`, `SHA384`, `SHA512`, `SHA3-256`, `SHA3-384`, `SHA3-512`, `BLAKE2b-256`, `BLAKE2b-384`, `BLAKE2b-512`, `BLAKE3`, `MD2`, `MD4`, `MD5`, `MD6`, `ADLER32`. Other values are allowed. The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/) (File checksum field).
+Recommended: `SHA1`, `SHA224`, `SHA256`, `SHA384`, `SHA512`, `SHA3-256`, `SHA3-384`, `SHA3-512`, `BLAKE2b-256`, `BLAKE2b-384`, `BLAKE2b-512`, `BLAKE3`, `MD2`, `MD4`, `MD5`, `MD6`, `ADLER32`. Other values are allowed.
+
+**Clarifications:** The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/) (File checksum field).
 
 </details>
 
@@ -643,7 +655,9 @@ Additional phenomena included beyond the standard DFT calculation.
 |---|---|---|---|---|---|
 | no | yes | string | [] | inapplicable | — |
 
-Recommended: `Collinear spin polarization`, `Noncollinear spin polarization`, `On-site correlation`, `Orbital polarization`, `Spin-orbit coupling`, `Van der Waals`. Other values are allowed. "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or antiparallel to one axis. "Noncollinear spin polarization" – Spin-polarized, with magnetic moments free to point in any direction. "On-site correlation" – e.g. DFT+U. "Orbital polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks' orbital-polarization term. "Spin-orbit coupling" – The coupling of the electron spin to its orbital motion. "Van der Waals" – Dispersion interactions, by a correction or a nonlocal functional. Give at most one of the two spin-polarization terms. List each phenomenon as a separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries, "Noncollinear spin polarization" and "Spin-orbit coupling".
+Recommended: `Collinear spin polarization`, `Noncollinear spin polarization`, `On-site correlation`, `Orbital polarization`, `Spin-orbit coupling`, `Van der Waals`. Other values are allowed.
+
+**Clarifications:** "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or antiparallel to one axis. "Noncollinear spin polarization" – Spin-polarized, with magnetic moments free to point in any direction. "On-site correlation" – e.g. DFT+U. "Orbital polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks' orbital-polarization term. "Spin-orbit coupling" – The coupling of the electron spin to its orbital motion. "Van der Waals" – Dispersion interactions, by a correction or a nonlocal functional. Give at most one of the two spin-polarization terms. List each phenomenon as a separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries, "Noncollinear spin polarization" and "Spin-orbit coupling".
 
 </details>
 
@@ -702,7 +716,9 @@ The additive correction for van der Waals dispersion applied to the functional.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `D2`, `D3`, `D3(BJ)`, `D4`, `TS`, `MBD`. Other values are allowed. "D2", "D3", "D4" – Grimme's corrections of those generations. "D3(BJ)" – D3 with Becke–Johnson damping. "TS" – Tkatchenko–Scheffler. "MBD" – Many-body dispersion.
+Recommended: `D2`, `D3`, `D3(BJ)`, `D4`, `TS`, `MBD`. Other values are allowed.
+
+**Clarifications:** "D2", "D3", "D4" – Grimme's corrections of those generations. "D3(BJ)" – D3 with Becke–Johnson damping. "TS" – Tkatchenko–Scheffler. "MBD" – Many-body dispersion.
 
 Note: Give it when `calculation-physics` lists Van der Waals and the dispersion is added to the functional. A functional that includes dispersion itself (e.g. vdW-DF, rVV10) is named in `xc-functional › name`.
 
@@ -741,7 +757,9 @@ The number of k-points included along each reciprocal lattice vector.
 |---|---|---|---|---|---|
 | no | no | int | [3] | dimensionless | — |
 
-Minimum: 1, for each component. Ordered list of three integers, the number of k-points along the three reciprocal lattice vector directions.
+Minimum: 1, for each component.
+
+**Clarifications:** Ordered list of three integers, the number of k-points along the three reciprocal lattice vector directions.
 
 </details>
 
@@ -754,7 +772,7 @@ Translation of the k-point mesh along the reciprocal lattice vector directions.
 |---|---|---|---|---|---|
 | no | no | float | [3] | dimensionless | — |
 
-Ordered list of three real numbers, the shifts along the three reciprocal lattice vector directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice vector.
+**Clarifications:** Ordered list of three real numbers, the shifts along the three reciprocal lattice vector directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice vector.
 
 </details>
 
@@ -859,7 +877,7 @@ The unit in which the associated value is expressed.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted with a validation warning).
+**Clarifications:** A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted with a validation warning).
 
 </details>
 
@@ -896,7 +914,9 @@ The self-consistent field mixing and/or extrapolation scheme for the iterative s
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Simple mixing`, `Pulay mixing`, `DIIS`, `Broyden mixing`. Other values are allowed. "DIIS" – Direct Inversion in the Iterative Subspace.
+Recommended: `Simple mixing`, `Pulay mixing`, `DIIS`, `Broyden mixing`. Other values are allowed.
+
+**Clarifications:** "DIIS" – Direct Inversion in the Iterative Subspace.
 
 </details>
 
@@ -909,7 +929,9 @@ The method used to obtain the Kohn-Sham orbitals at each step of the self-consis
 |---|---|---|---|---|---|
 | no | yes | string | [] | inapplicable | — |
 
-Recommended: `Car-Parrinello`, `Chebyshev filtering`, `Conjugate gradient`, `Davidson method`, `Direct diagonalization`, `Lanczos`, `LOBPCG`, `RMM-DIIS`. Other values are allowed. "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization. "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters. "Davidson method" – Including blocked variants. "Direct diagonalization" – A dense eigensolver applied to the full Hamiltonian matrix (e.g. LAPACK, ScaLAPACK). "LOBPCG" – Locally Optimal Block Preconditioned Conjugate Gradient. "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the Iterative Subspace.
+Recommended: `Car-Parrinello`, `Chebyshev filtering`, `Conjugate gradient`, `Davidson method`, `Direct diagonalization`, `Lanczos`, `LOBPCG`, `RMM-DIIS`. Other values are allowed.
+
+**Clarifications:** "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization. "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters. "Davidson method" – Including blocked variants. "Direct diagonalization" – A dense eigensolver applied to the full Hamiltonian matrix (e.g. LAPACK, ScaLAPACK). "LOBPCG" – Locally Optimal Block Preconditioned Conjugate Gradient. "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the Iterative Subspace.
 
 </details>
 
@@ -931,7 +953,9 @@ The quantity whose convergence the tolerance measures.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Energy`, `Charge density`, `Potential`. Other values are allowed. "Energy" – The change in the energy between successive iterations, defined as for `relaxation-tolerance-energy`. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham potential.
+Recommended: `Energy`, `Charge density`, `Potential`. Other values are allowed.
+
+**Clarifications:** "Energy" – The change in the energy between successive iterations, defined as for `relaxation-tolerance-energy`. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham potential.
 
 </details>
 
@@ -957,7 +981,7 @@ The unit in which the associated value is expressed.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted with a validation warning).
+**Clarifications:** A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted with a validation warning).
 
 </details>
 

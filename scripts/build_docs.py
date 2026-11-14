@@ -49,9 +49,35 @@ def extent(e):
 
 
 def values_text(p, show_legacy):
-    """Text below a property's attribute table: structured values, then legacy prose if shown.
+    """Text below a property's attribute table, in Markdown paragraphs: the allowed values; for values
+    that depend on a sibling, one list item per case; the note under "Clarifications:"; then legacy prose
+    if shown (0007 item 5, amended 2026-11-14).
 
     p (dict): property entry; show_legacy (bool): whether to include legacy_* text.
+    """
+    v = p.get('values') or {}
+    out = [' '.join(allowed_values(p))]
+    if 'depends-on' in v:  # values that depend on a sibling (0013, settled 2026-11-03)
+        out.append(f"Depends on `{v['depends-on']}`.")
+        out.append('\n'.join(f'- For `{k}`: ' + ' '.join(allowed_values({'extent': p.get('extent'), 'values': case})
+                                                         + ([case['note']] if 'note' in case else []))
+                             for k, case in v['cases'].items()))
+    if 'note' in v:
+        out.append(f"**Clarifications:** {v['note']}")
+    if show_legacy:
+        legacy = ' '.join((p.get('legacy_values') or '').split())
+        if legacy and not legacy.startswith('Contains Sub'):  # the nesting shows subproperties
+            out.append(f"<span class='legacy'>Legacy: {legacy}</span>")
+        if p.get('legacy_unit'):
+            out.append(f"<span class='legacy'>Legacy unit: {p['legacy_unit']}</span>")
+    return '\n\n'.join(x for x in out if x)
+
+
+def allowed_values(p):
+    """Sentences stating the values a property allows: terms, enum, bounds, format, pattern, examples,
+    convention.
+
+    p (dict): property entry, or a depends-on case as {'extent': ..., 'values': case}.
     """
     out = []
     v = p.get('values') or {}
@@ -69,25 +95,13 @@ def values_text(p, show_legacy):
         out.append(f"Format: `{v['format']}` (JSON Schema 2020-12).")
     if 'pattern' in v:
         out.append(f"Pattern: `{v['pattern']}`.")
-    if 'depends-on' in v:  # values that depend on a sibling (0013, settled 2026-11-03)
-        out.append(f"Depends on `{v['depends-on']}`.")
-        out += [f'For `{k}`: ' + values_text({'extent': p.get('extent'), 'values': case}, False)
-                for k, case in v['cases'].items()]
     if 'examples' in v:  # a list-valued example is written as a bracketed list of its items
         show = lambda x: '[' + ', '.join(show(i) for i in x) + ']' if isinstance(x, list) else str(x)
         out.append('Examples: ' + ', '.join(f'`{show(x)}`' for x in v['examples']) + '.')
-    if 'note' in v:
-        out.append(v['note'])
     if p.get('convention'):
         c = p['convention']
         out.append(f"Required `{c['name']}`: " + ' or '.join(f'`{x}`' for x in c['enum']) + '.')
-    if show_legacy:
-        legacy = ' '.join((p.get('legacy_values') or '').split())
-        if legacy and not legacy.startswith('Contains Sub'):  # the nesting shows subproperties
-            out.append(f"<span class='legacy'>Legacy: {legacy}</span>")
-        if p.get('legacy_unit'):
-            out.append(f"<span class='legacy'>Legacy unit: {p['legacy_unit']}</span>")
-    return ' '.join(out)
+    return out
 
 
 def title_bar(p):

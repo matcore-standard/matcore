@@ -35,7 +35,9 @@ How the functional form of the model was obtained.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Physics-based`, `Machine-learned`. Other values are allowed. "Physics-based" – A functional form built from a physical model of the interactions, with parameters fitted to data, e.g. EAM, Tersoff, a bonded force field or the electron force field. "Machine-learned" – A machine learning model trained to take particle positions as input, e.g. GAP or MACE.
+Recommended: `Physics-based`, `Machine-learned`. Other values are allowed.
+
+**Clarifications:** "Physics-based" – A functional form built from a physical model of the interactions, with parameters fitted to data, e.g. EAM, Tersoff, a bonded force field or the electron force field. "Machine-learned" – A machine learning model trained to take particle positions as input, e.g. GAP or MACE.
 
 </details>
 
@@ -63,7 +65,9 @@ The nature of the discrete entities whose interactions the model describes.
 |---|---|---|---|---|---|
 | yes | yes | string | [] | inapplicable | — |
 
-Recommended: `Atom`, `Radical`, `United atom`, `Bead`, `Coarse grained`, `Mesoscale`, `Classical electron`, `Nucleus`. Other values are allowed. "Atom" – Each particle represents an individual atom. "Radical" – Each particle represents a free radical. "United atom" – Each particle represents a fixed grouping of atoms. "Bead" – Each particle represents a user-tuneable group of atoms. "Coarse grained" – Each particle represents a higher scale particle obtained by scaling up the atomic representation. "Mesoscale" – Granular particles used to simulate microstructure at the mesoscopic scale. "Classical electron" – Antisymmetrized wave packet representation of valence electrons. "Nucleus" – A nucleus or an ion core as a point charge, with its electrons represented by other particles, e.g. in the electron force field. Give one entry for each kind of particle the model has, e.g. Nucleus and Classical electron for the electron force field.
+Recommended: `Atom`, `Radical`, `United atom`, `Bead`, `Coarse grained`, `Mesoscale`, `Classical electron`, `Nucleus`. Other values are allowed.
+
+**Clarifications:** "Atom" – Each particle represents an individual atom. "Radical" – Each particle represents a free radical. "United atom" – Each particle represents a fixed grouping of atoms. "Bead" – Each particle represents a user-tuneable group of atoms. "Coarse grained" – Each particle represents a higher scale particle obtained by scaling up the atomic representation. "Mesoscale" – Granular particles used to simulate microstructure at the mesoscopic scale. "Classical electron" – Antisymmetrized wave packet representation of valence electrons. "Nucleus" – A nucleus or an ion core as a point charge, with its electrons represented by other particles, e.g. in the electron force field. Give one entry for each kind of particle the model has, e.g. Nucleus and Classical electron for the electron force field.
 
 </details>
 
@@ -76,7 +80,9 @@ Specifies whether the bonds between particles are immutable or can be broken.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Reactive`, `Bonded fixed`, `Bonded mutable`. Other values are allowed. "Reactive" – A model without a predetermined bonding topology in which bonds are formed or broken on-the-fly based on the particle environment. "Bonded fixed" – Bonds defined <i>a priori</i> and cannot be broken during a simulation. "Bonded mutable" – Bonds defined <i>a priori</i> but can be broken and/or formed during a simulation.
+Recommended: `Reactive`, `Bonded fixed`, `Bonded mutable`. Other values are allowed.
+
+**Clarifications:** "Reactive" – A model without a predetermined bonding topology in which bonds are formed or broken on-the-fly based on the particle environment. "Bonded fixed" – Bonds defined <i>a priori</i> and cannot be broken during a simulation. "Bonded mutable" – Bonds defined <i>a priori</i> but can be broken and/or formed during a simulation.
 
 </details>
 
@@ -98,7 +104,9 @@ Nature of the particle charges.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Semi empirical`, `Quantum`, `Electronic population`, `Electronegativity`, `Tabulated`. Other values are allowed. "Semi empirical" – Charges obtained from semi-empirical quantum calculations. "Quantum" – Charges obtained from quantum calculations. "Electronic population" – Charges obtained from electronic population analysis, e.g. Mulliken. "Electronegativity" – Charges obtained from electronegativity differences between atoms. "Tabulated" – Charges obtained from an external source.
+Recommended: `Semi empirical`, `Quantum`, `Electronic population`, `Electronegativity`, `Tabulated`. Other values are allowed.
+
+**Clarifications:** "Semi empirical" – Charges obtained from semi-empirical quantum calculations. "Quantum" – Charges obtained from quantum calculations. "Electronic population" – Charges obtained from electronic population analysis, e.g. Mulliken. "Electronegativity" – Charges obtained from electronegativity differences between atoms. "Tabulated" – Charges obtained from an external source.
 
 </details>
 
@@ -111,7 +119,9 @@ The nature of the charges associated with the particles, such as total or effect
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Coulomb full`, `Coulomb screened`. Other values are allowed. "Coulomb full" – The particle charge accounting for all electrons. "Coulomb screened" – Effective charge due to screening or shielding by other electrons (e.g. Slater).
+Recommended: `Coulomb full`, `Coulomb screened`. Other values are allowed.
+
+**Clarifications:** "Coulomb full" – The particle charge accounting for all electrons. "Coulomb screened" – Effective charge due to screening or shielding by other electrons (e.g. Slater).
 
 </details>
 
@@ -124,7 +134,9 @@ Attribute specifying the method for dynamically varying the local electric charg
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Fixed`, `QEq`, `EEM`, `iEL/SCF`, `FlucQ`, `Drude`. Other values are allowed. "Fixed" – Charges cannot change during a simulation. "QEq" – Charge equilibration method. "EEM" – Electronegativity Equalization Method. "iEL/SCF" – Extended Lagrangian/self-consistent field scheme. "FlucQ" – Fluctuating charge potential. "Drude" – Drude method.
+Recommended: `Fixed`, `QEq`, `EEM`, `iEL/SCF`, `FlucQ`, `Drude`. Other values are allowed.
+
+**Clarifications:** "Fixed" – Charges cannot change during a simulation. "QEq" – Charge equilibration method. "EEM" – Electronegativity Equalization Method. "iEL/SCF" – Extended Lagrangian/self-consistent field scheme. "FlucQ" – Fluctuating charge potential. "Drude" – Drude method.
 
 </details>
 
@@ -137,7 +149,9 @@ Method used to compute long-range electrostatic interactions.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `None`, `Direct`, `Ewald`, `PME`, `PPPM`, `Reaction`. Other values are allowed. "None" – No electrostatic calculation performed. "Direct" – All Coulomb interactions computed directly. "Ewald" – Ewald summation. "PME" – Particle mesh Ewald. "PPPM" – Particle particle particle mesh. "Reaction" – Reaction field.
+Recommended: `None`, `Direct`, `Ewald`, `PME`, `PPPM`, `Reaction`. Other values are allowed.
+
+**Clarifications:** "None" – No electrostatic calculation performed. "Direct" – All Coulomb interactions computed directly. "Ewald" – Ewald summation. "PME" – Particle mesh Ewald. "PPPM" – Particle particle particle mesh. "Reaction" – Reaction field.
 
 </details>
 
@@ -150,7 +164,9 @@ Attribute specifying the type of interaction associated with the local electric 
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Stockmayer`, `Screened`, `Long range`. Other values are allowed. "Stockmayer" – Stockmayer potential. "Screened" – Screened dipoles. "Long range" – Long-range dipoles.
+Recommended: `Stockmayer`, `Screened`, `Long range`. Other values are allowed.
+
+**Clarifications:** "Stockmayer" – Stockmayer potential. "Screened" – Screened dipoles. "Long range" – Long-range dipoles.
 
 </details>
 
@@ -163,7 +179,9 @@ Attribute specifying the method for dynamically varying the local electric dipol
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Induced`, `Isotropic`, `Anisotropic`. Other values are allowed. "Induced" – Induced point dipoles. "Isotropic" – Isotropic polarizability. "Anisotropic" – Anisotropic polarizability.
+Recommended: `Induced`, `Isotropic`, `Anisotropic`. Other values are allowed.
+
+**Clarifications:** "Induced" – Induced point dipoles. "Isotropic" – Isotropic polarizability. "Anisotropic" – Anisotropic polarizability.
 
 </details>
 
@@ -187,7 +205,9 @@ The nature of the magnetic spins associated with the particles.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Classical spin`, `Coupled spin lattice`. Other values are allowed. "Classical spin" – Spins modeled as classical vectors evolved via the Landau–Lifshitz–Gilbert (LLG) equation defined by a spin Hamiltonian. "Coupled spin lattice" – Classical spins whose spin Hamiltonian depends on the particle positions, so that the spins and the particles evolve together. Magnetism obtained from the electrons, e.g. by spin-polarized DFT or tight binding, is a computation of its own (method DFT or TB), which the computation that uses it names as an `input` with the role Interaction model.
+Recommended: `Classical spin`, `Coupled spin lattice`. Other values are allowed.
+
+**Clarifications:** "Classical spin" – Spins modeled as classical vectors evolved via the Landau–Lifshitz–Gilbert (LLG) equation defined by a spin Hamiltonian. "Coupled spin lattice" – Classical spins whose spin Hamiltonian depends on the particle positions, so that the spins and the particles evolve together. Magnetism obtained from the electrons, e.g. by spin-polarized DFT or tight binding, is a computation of its own (method DFT or TB), which the computation that uses it names as an `input` with the role Interaction model.
 
 </details>
 
