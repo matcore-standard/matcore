@@ -913,6 +913,15 @@ record or marked PROPOSED, NOT DECIDED.
    Initial configuration definition), tests/test_computations.py, 02-minimal.md regenerated.
    [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
    algorithm done, PR #106; computation-parameter done, PR #107; next initialization).
+   Reviewer feedback 2026-11-14 (written before 0046 and 0061; "thermodynamic-integration" read as
+   thermodynamic-constraint): one script runs several MD stages with different ensembles, e.g. a
+   two-phase melting point (two NPT regions at different temperatures, then NPH for all atoms), so
+   the constraint belongs to each computation. Already met by 0046 and 0063: one computation per stage,
+   linked by input role Initial configuration, each with its own ps settings block naming it by
+   computation-label; thermodynamic-constraint repeats, its `system` naming the region.
+   PROPOSED, NOT DECIDED (for the thermodynamic-constraint PR): where each region's temperature goes,
+   since 0042 item 3 keeps temperature in minimal `conditions`, which has no field naming a region
+   (only conditions › description and spatial-uniformity Nonuniform).
    [done, PR #107 merged 2026-11-14] ps
    computation-parameter: the
    generic-parameter form of 0016 (name, value of type/extent/kind any, unit with 0001 B9's
