@@ -926,6 +926,21 @@ record or marked PROPOSED, NOT DECIDED.
    without a model, a non-ML fit such as force matching, featurization).
    [done, PR #104 merged 2026-11-14] 0065 applied: minimal task terms and note,
    tests/test_computations.py, 02-minimal regenerated; before 0064 PR (b).
+   Structure searches by 0066 (ruling 2026-11-14, from reviewer feedback: a global minimum found by
+   sampling inputs and minimizing thousands of structures, with no place for how phase space was
+   sampled): a search run by its own driver is one PS computation, task Optimization, naming the
+   energy computation (task Single point) as input role Interaction model; the driver's candidates and
+   their local relaxations are part of it, the minimizer a second algorithm entry; 0065 item 2's split
+   into Structure generation + Optimization applies only when candidates are created apart (a
+   generative model, an enumeration), named as Initial configuration; ps algorithm's Global
+   optimization group gains Random structure search, Evolutionary algorithm, Particle swarm
+   optimization and Minima hopping (amends 0064 item 4, in PR (b)); the search's settings, including
+   the local relaxation tolerances, are ps computation-parameter entries; minimal computation gains an
+   optional `description` after label; the ranking, energies found and how often the lowest recurred
+   are results, left to 0039's open question. Amends 0064 item 4 and 0065 item 2; breaks no released
+   instance. PROPOSED, NOT DECIDED (0066): whether a single DFT relaxation may also be PS with a DFT
+   Single point. [todo] the minimal `description` PR; the rest rides on the ps algorithm and
+   computation-parameter PRs.
    The notes below are its background.
    PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
    ps algorithm repeatable, with open terms grouped in its note by function (time integration, local
