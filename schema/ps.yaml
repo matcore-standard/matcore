@@ -187,15 +187,18 @@ properties:
   - name: initialization
     required: false
     description: Information on the conditions set at the start of the simulation.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: >-
-      String containing a description of the simulation initial conditions (such as the nature and source
-      of an initial structure, initialization of velocities or spins, etc.).
+    notes:
+    - >-
+      Note: Give what the computation sets up itself, e.g. velocities drawn from a Maxwell-Boltzmann
+      distribution at 300 K with a stated random seed, or randomly oriented spins. A configuration carried
+      over from another computation is named in minimal `computation › input` with the role Initial
+      configuration, and the imposed conditions, e.g. the temperature, are given in minimal `conditions`.
   - name: thermodynamic-constraint
     required: false
     description: >-
