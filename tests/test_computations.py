@@ -136,6 +136,21 @@ def test_input_names_a_computation_and_its_role():
     assert shape(s) == (False, True, 'string', [], 'inapplicable', None)
 
 
+METHOD_DEFINITIONS = (
+    '"CC" – Coupled Cluster: wavefunction methods that build electron correlation from excitations of a reference '
+    'state; "QMC" – Quantum Monte Carlo: stochastic solutions of the many-electron Schrödinger equation; "DFT" – '
+    'Density Functional Theory: electronic structure obtained from the electron density; "MBPT" – Many-Body '
+    'Perturbation Theory: excited states obtained from many-body Green\'s functions; "TB" – Tight Binding: '
+    'electronic structure in a basis of localized orbitals with parameterized matrix elements; "PIM" – Particle '
+    'Interaction Model: energies and forces given as an explicit function of the particles\' coordinates, without '
+    'solving for a wavefunction or an electron density; "PS" – Particle Simulation: particles moved or sampled '
+    'using the energies and forces of another computation; "DDD" – Discrete Dislocation Dynamics: plastic '
+    'deformation from the motion and interaction of dislocation lines; "KMC" – Kinetic Monte Carlo: evolution of a '
+    'system as a sequence of thermally activated events chosen by their rates; "PF" – Phase Field: microstructure '
+    'evolution described by continuous fields with diffuse interfaces; "ML" – Machine Learning: models trained on '
+    'data to predict materials properties or behavior.')
+
+
 def test_method_names_the_section_that_describes_the_computation():
     """MD, MS, MC and CGMD repeat what task, algorithm and method-class say, so one term PS names the section
     that describes them all; tight binding and a particle interaction model keep their terms (0046 items 4, 5;
@@ -147,13 +162,7 @@ def test_method_names_the_section_that_describes_the_computation():
     assert {k: c['terms'] for k, c in m['values']['cases'].items()} == {
         'Electronic': ['CC', 'QMC', 'DFT', 'MBPT', 'TB'], 'Atomistic': ['PIM', 'PS'],
         'Mesoscopic': ['DDD', 'KMC', 'PIM', 'PS'], 'Continuum': ['PF'], 'Data-driven': ['ML']}
-    note = m['values']['note']
-    assert '"TB" – Tight Binding' in note
-    assert ('"PS" – Particle Simulation: a system of particles moved or sampled using the energies and forces of '
-            'another computation, by molecular dynamics, molecular statics, Monte Carlo or related methods; '
-            'described in the PS section;') in note
-    assert not any(f'"{term}" –' in note for term in ('MD', 'MS', 'MC', 'CGMD'))
-    assert 'without solving for a wavefunction or an electron density' in note
+    assert m['values']['note'] == METHOD_DEFINITIONS
     assert sub(computation, 'method-class')['notes'][-1] == (
         'Note: For a PS computation, give the entity of its particles: Atomistic for atoms, Mesoscopic for '
         'coarse-grained particles such as beads.')

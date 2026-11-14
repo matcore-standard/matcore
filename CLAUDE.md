@@ -908,7 +908,8 @@ record or marked PROPOSED, NOT DECIDED.
    tests/test_computations.py; 02-minimal, ps and index pages regenerated.
    0064 amended 2026-11-14: each definition in method's note is the expansion plus a short phrase
    stating the kind of methods the term covers, naming no methods outside the terms (wording in 0064).
-   [todo] Apply it in its own PR, before PR (b).
+   [in progress, branch method-definitions-0064, committed, awaiting push and PR] Applied to schema/minimal.yaml, with
+   tests/test_computations.py matching the note exactly and 02-minimal regenerated; before PR (b).
    The notes below are its background.
    PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
    ps algorithm repeatable, with open terms grouped in its note by function (time integration, local
