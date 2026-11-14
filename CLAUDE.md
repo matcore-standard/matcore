@@ -922,6 +922,15 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED (for the thermodynamic-constraint PR): where each region's temperature goes,
    since 0042 item 3 keeps temperature in minimal `conditions`, which has no field naming a region
    (only conditions › description and spatial-uniformity Nonuniform).
+   Raised by the human 2026-11-14: the algorithm enforcing a constraint (thermostat, barostat, GCMC)
+   and the grouping of individual conditions into an ensemble. In reply: both are still in ps
+   thermodynamic-constraint (`type` the ensemble, `method` the algorithm, `td-parameter` its
+   parameters), legacy until its PR; 0042 item 3 splits the roles: conditions hold the values, ps the
+   ensemble and how it is enforced. PROPOSED, NOT DECIDED (for that PR): `method` repeatable, one entry
+   per algorithm (e.g. Nosé-Hoover thermostat with Parrinello-Rahman barostat), its terms depending on
+   `type` by 0013 depends-on/cases as in the baseline; the instance validator (step 9) checking that
+   the ensemble's fixed quantities are given in conditions (e.g. NVT a temperature, μVT a
+   chemical-potential and system-openness Open).
    [done, PR #107 merged 2026-11-14] ps
    computation-parameter: the
    generic-parameter form of 0016 (name, value of type/extent/kind any, unit with 0001 B9's
