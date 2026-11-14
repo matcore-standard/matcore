@@ -951,6 +951,15 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #105 merged 2026-11-14] 0066 item 5:
    minimal computation › description (optional scalar string) after label;
    tests/test_computations.py; 02-minimal regenerated.
+   Algorithm classes by 0067 (ruling 2026-11-14, from reviewer feedback: metadynamics variants,
+   Born-matrix elastic constants): ps algorithm terms name major classes only, so Bond-boost and
+   Strain-boost hyperdynamics, ART nouveau, GaMD and Transition interface sampling are removed (39
+   terms; amends 0064 item 4); ps settings gains an optional `description` after algorithm for the
+   variant and other specifics and to explain computation-parameter entries; algorithm's second note
+   points to it; a property from derivatives of an interaction model (elastic constants from the Born
+   matrix) is task Property calculation naming the PIM or electronic computation as input role
+   Interaction model, no schema change. A suggestion to add four metadynamics variant terms was
+   declined. Applied in the ps algorithm PR (branch ps-algorithm-0064).
    The notes below are its background.
    PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
    ps algorithm repeatable, with open terms grouped in its note by function (time integration, local
