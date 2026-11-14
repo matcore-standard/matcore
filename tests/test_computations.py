@@ -8,8 +8,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 NAME_PATTERN = '^[a-z][a-z0-9]*(-[a-z0-9]+)*$'
-TASKS = ['Single point', 'Optimization', 'Transition state search', 'Dynamics', 'Sampling',
-         'Free energy calculation', 'Training', 'Property calculation']
+TASKS = ['Structure generation', 'Single point', 'Optimization', 'Transition path', 'Equilibration', 'Dynamics',
+         'Sampling', 'Free energy calculation', 'Training', 'Property calculation']
 ROLES = ['Interaction model', 'Initial configuration', 'Starting point', 'Training data', 'Parameters',
          'Source data']
 UNIQUE = 'Note: A label is unique among all labels of structures and computations in the record.'
@@ -101,18 +101,27 @@ def test_task_terms_are_defined():
 
 def test_task_names_the_goal_not_the_mechanism():
     """An umbrella-sampling MD run must fit one task, so each task is a goal and the procedure is left to the
-    method's section; saddle-point searches get a goal of their own (0064 item 3)."""
+    method's section; transitions, generated structures, equilibration and fitted models each get one goal
+    (0064 item 3; 0065)."""
     t = sub(top('minimal', 'computation'), 'task')
     note = t['values']['note']
     for definition in (
+            '"Structure generation" – The computational creation, modification, or systematic enumeration of '
+            'initial atomic, molecular, or crystalline configurations before running physics-based energy or force '
+            'evaluations;',
             '"Optimization" – Configurations or cells taken to a minimum of the energy, local or global, e.g. a '
             'relaxation or a search for the lowest-energy structure;',
-            '"Transition state search" – Saddle points of the energy, or minimum energy paths between given '
-            'configurations, e.g. by the nudged elastic band or dimer method;',
+            '"Transition path" – Transitions between stable states: saddle points of the energy, minimum energy '
+            'paths, or ensembles of reactive trajectories and the rates they give, e.g. by the nudged elastic band, '
+            'dimer method or transition path sampling;',
+            '"Equilibration" – Configurations brought to the conditions of another computation, which takes them '
+            'as its Initial configuration; its results are not meant for analysis;',
             '"Dynamics" – Configurations evolved in time where the evolution or the kinetics is the result, e.g. '
-            'trajectories, transport coefficients or rates, including accelerated dynamics and path sampling;',
+            'trajectories, transport coefficients or rates, including accelerated dynamics;',
             '"Sampling" – Averages over a distribution of configurations, by Monte Carlo or by dynamics, where the '
-            'time evolution is not itself the result;'):
+            'time evolution is not itself the result;',
+            '"Training" – The parameters of a model fitted to data, e.g. a machine-learned model, a potential fitted '
+            'by force matching or Boltzmann inversion, or a cluster expansion;'):
         assert definition in note
     assert t['notes'] == ['Note: Give the term for the results the computation is meant to provide; the procedure '
                           'is given in the method\'s section, e.g. ps `algorithm`.']

@@ -923,7 +923,8 @@ record or marked PROPOSED, NOT DECIDED.
    DECIDED (0065): whether Structure generation is a computation only when its configurations are in
    the dataset or another's input; the `method` of a computation with no method term (generation
    without a model, a non-ML fit such as force matching, featurization).
-   [todo] Apply 0065 in its own PR (minimal task, tests, 02-minimal), before 0064 PR (b).
+   [in progress, branch task-terms-0065, committed, awaiting push and PR] 0065 applied: minimal task terms and note,
+   tests/test_computations.py, 02-minimal regenerated; before 0064 PR (b).
    The notes below are its background.
    PROPOSED, NOT DECIDED (ruling 0064, from reviewer feedback on rare-event methods, 2026-11-13):
    ps algorithm repeatable, with open terms grouped in its note by function (time integration, local
