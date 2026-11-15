@@ -917,6 +917,21 @@ record or marked PROPOSED, NOT DECIDED.
    Initial configuration definition), tests/test_computations.py, 02-minimal.md regenerated.
    [done, PR #110] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
    algorithm done, PR #106; computation-parameter done, PR #107; initialization done, PR #109; thermodynamic-constraint done, PR #110; ps is complete; next mbpt).
+   [in progress, branch mbpt-settings, committed, awaiting push and PR] mbpt structure by 0046 items 7
+   and 10, no typed field filled: mbpt's properties move unchanged into a required, repeatable
+   `settings` whose first member is computation-label; starting-point is removed (an MBPT computation
+   names its DFT computation as input role Starting point); the introduction drops "starting point",
+   gains 0054's settings sentence and says the DFT computation is named as that input;
+   examples/mbpt.json in settings, with label g0w0 and without starting-point; tests in
+   tests/test_computations.py; 05-mbpt regenerated (property addresses gain `settings.`). Then mbpt's
+   properties in file order: mbpt-method, dielectric-matrix, gw-bands, bse-hamiltonian,
+   bse-kernel-truncation.
+   The DFT-to-MBPT link is one-way (checked 2026-11-15): every self-consistency variant, QSGW
+   included, iterates within the MBPT computation and does not re-run the DFT one, so input role
+   Starting point fits; a DFT stage chain (SCF, then non-SCF with many bands) is one computation per
+   stage (0063). PROPOSED, NOT DECIDED (for the mbpt-method PR): whether GW followed by BSE
+   ("GW/BSE", "evGW+BSE") is one MBPT computation, as in the baseline, or two, the BSE naming the GW
+   as input role Starting point (0046).
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over

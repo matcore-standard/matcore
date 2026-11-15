@@ -234,7 +234,8 @@ def test_a_property_holding_a_label_is_named_for_it():
              if p['description'].startswith(('The label of a structure', 'The label of a computation',
                                              'The label of that computation'))}
     assert found == {('minimal', 'structure-label'), ('minimal', 'computation-label'),
-                     ('dft', 'computation-label'), ('pim', 'computation-label'), ('ps', 'computation-label')}
+                     ('dft', 'computation-label'), ('pim', 'computation-label'), ('ps', 'computation-label'),
+                     ('mbpt', 'computation-label')}
 
 
 def test_example_labels_are_unique_and_every_reference_resolves():
@@ -657,3 +658,26 @@ def test_ps_thermodynamic_constraint_names_the_ensemble_and_its_enforcement():
 def test_ps_is_complete():
     """Every ps property is filled, so the section declares it (0004 item 36)."""
     assert section('ps')['legacy_complete'] is True
+
+
+def test_mbpt_properties_sit_in_settings_naming_computations():
+    """An mbpt block names the MBPT computations it describes, and the DFT ground state a GW or BSE calculation
+    starts from is that computation's input with the role Starting point, not an mbpt property (0046 items 7,
+    10)."""
+    props = section('mbpt')['properties']
+    assert [p['name'] for p in props] == ['settings']
+    s = props[0]
+    assert (s['required'], s['repeatable'], s['type']) == (True, True, None)
+    assert s['description'] == 'Settings shared by the computations named in it.'
+    assert [c['name'] for c in s['subproperties']] == [
+        'computation-label', 'mbpt-method', 'dielectric-matrix', 'gw-bands', 'bse-hamiltonian',
+        'bse-kernel-truncation']
+    c = sub(s, 'computation-label')
+    assert shape(c) == (True, True, 'string', [], 'inapplicable', None)
+    assert c['description'] == 'The label of a computation these settings apply to.'
+    intro = section('mbpt')['introduction']
+    assert 'starting point,' not in intro
+    assert 'The properties are given in settings blocks, each naming the MBPT computations it describes.' in intro
+    assert 'role Starting point' in intro
+    example = json.loads((ROOT / 'examples/mbpt.json').read_text(encoding='utf-8'))['mbpt']
+    assert [list(b)[0] for b in example['settings']] == ['computation-label']
