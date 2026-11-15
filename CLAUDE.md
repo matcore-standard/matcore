@@ -633,7 +633,8 @@ record or marked PROPOSED, NOT DECIDED.
    time-varying, follow description. (Superseded: the "as set up" notes by 0035; the flags by
    0036's spatial-uniformity and time-dependence.)
    PROPOSED, NOT DECIDED (md): a semi-grand-canonical term for thermodynamic-constraint › type,
-   and whether its `system` states the region as 0026's description does.
+   and whether its `system` states the region as 0026's description does. (Superseded: decided by
+   0069, term ΔμNPT; the region a value applies to stays in conditions › description, 0035 item 4.)
    [done, PR #57 merged 2026-11-07] minimal phase › Quasicrystal by 0027: "A solid material
    with long-range order but without translational periodicity, e.g. one whose diffraction
    pattern shows five-fold rotational symmetry." (the baseline's said short-range order only).
@@ -928,7 +929,8 @@ record or marked PROPOSED, NOT DECIDED.
    computation-label; thermodynamic-constraint repeats, its `system` naming the region.
    PROPOSED, NOT DECIDED (for the thermodynamic-constraint PR): where each region's temperature goes,
    since 0042 item 3 keeps temperature in minimal `conditions`, which has no field naming a region
-   (only conditions › description and spatial-uniformity Nonuniform).
+   (only conditions › description and spatial-uniformity Nonuniform). (Superseded: decided by 0069:
+   conditions › description states it (0035 item 4); no region field, as 0026 declined one.)
    Raised by the human 2026-11-14: the algorithm enforcing a constraint (thermostat, barostat, GCMC)
    and the grouping of individual conditions into an ensemble. In reply: both are still in ps
    thermodynamic-constraint (`type` the ensemble, `method` the algorithm, `td-parameter` its
@@ -937,7 +939,23 @@ record or marked PROPOSED, NOT DECIDED.
    per algorithm (e.g. Nosé-Hoover thermostat with Parrinello-Rahman barostat), its terms depending on
    `type` by 0013 depends-on/cases as in the baseline; the instance validator (step 9) checking that
    the ensemble's fixed quantities are given in conditions (e.g. NVT a temperature, μVT a
-   chemical-potential and system-openness Open).
+   chemical-potential and system-openness Open). (Superseded in part: 0069 makes `method` repeatable
+   with one grouped list, Thermostats, Barostats and Particle exchange, without depends-on, since
+   Andersen and Berendsen name both a thermostat and a barostat; the validator check stays for step 9.)
+   Thermodynamic constraints by 0069 (ruling 2026-11-15): ps thermodynamic-constraint › method
+   repeatable, one entry per thermostat, barostat or particle-exchange scheme (not tied to ps
+   algorithm), open terms grouped as Thermostats (Andersen thermostat,
+   Berendsen thermostat, CSVR, Langevin, Nosé-Hoover, Nosé-Hoover chain, Velocity rescaling), Barostats
+   (Andersen barostat, Berendsen barostat, CauchyStat, Nosé-Hoover barostat, Parrinello-Rahman) and
+   Particle exchange (GCMC, SGCMC), each defined in a phrase; Monte Carlo acceptance rules stay in
+   algorithm; type gains ΔμNPT (semi-grand canonical); a note on type says the ensemble names the
+   fixed quantities, whose values are in minimal conditions and not repeated in ps; system a required
+   string ("Entire system", a group of atoms, or degrees of freedom such as Drude particles or spins),
+   different values on different parts stated in conditions › description (0035 item 4); a region
+   field on conditions declined (too detailed; 0026); td-parameter a generic parameter (0016) of
+   enforcement parameters only. No released instance breaks. PROPOSED, NOT DECIDED (0069): whether
+   the step 9 validator checks type against conditions (fixed quantities present; μ ensembles with
+   system-openness Open, 0036). [todo] One PR: ps thermodynamic-constraint (step 5).
    [done, PR #107 merged 2026-11-14] ps
    computation-parameter: the
    generic-parameter form of 0016 (name, value of type/extent/kind any, unit with 0001 B9's
