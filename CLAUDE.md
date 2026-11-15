@@ -914,7 +914,7 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #100 merged 2026-11-12] the 0063 note: schema/minimal.yaml (computation note,
    Initial configuration definition), tests/test_computations.py, 02-minimal.md regenerated.
    [todo] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
-   algorithm done, PR #106; computation-parameter done, PR #107; initialization done, PR #109; next thermodynamic-constraint).
+   algorithm done, PR #106; computation-parameter done, PR #107; initialization done, PR #109; thermodynamic-constraint in progress, the last; then mbpt).
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
@@ -955,7 +955,13 @@ record or marked PROPOSED, NOT DECIDED.
    field on conditions declined (too detailed; 0026); td-parameter a generic parameter (0016) of
    enforcement parameters only. No released instance breaks. PROPOSED, NOT DECIDED (0069): whether
    the step 9 validator checks type against conditions (fixed quantities present; μ ensembles with
-   system-openness Open, 0036). [todo] One PR: ps thermodynamic-constraint (step 5).
+   system-openness Open, 0036). [in progress, branch ps-thermodynamic-constraint, committed,
+   awaiting push and PR] ps thermodynamic-constraint by 0069: system, type, method, description and
+   td-parameter filled as the ruling states, method's 14 definitions drafted in this PR (judgment
+   calls), type's and td-parameter's notes point to minimal conditions; legacy_* deleted; ps is complete
+   and declares `legacy_complete: true`; tests/test_computations.py gains two tests;
+   tests/test_build_docs.py's --show-legacy check moves from ps to mbpt, which still holds legacy text;
+   ps page regenerated; examples/ps.json unchanged (its source names no thermostat).
    [done, PR #107 merged 2026-11-14] ps
    computation-parameter: the
    generic-parameter form of 0016 (name, value of type/extent/kind any, unit with 0001 B9's
