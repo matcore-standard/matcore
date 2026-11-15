@@ -324,7 +324,9 @@ record or marked PROPOSED, NOT DECIDED.
      Short-range and redefines None (0068); ps initialization is a string for what the computation sets
      up itself (step 5); ps thermodynamic-constraint's
      method is repeatable with grouped thermostat, barostat and particle-exchange terms, type gains
-     ΔμNPT and points to conditions, and td-parameter is a generic parameter; ps is complete (0069).
+     ΔμNPT and points to conditions, and td-parameter is a generic parameter; ps is complete (0069);
+     mbpt's properties sit in `settings` blocks naming their computations, and starting-point is
+     removed, the DFT computation named as input role Starting point (0046).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -917,7 +919,7 @@ record or marked PROPOSED, NOT DECIDED.
    Initial configuration definition), tests/test_computations.py, 02-minimal.md regenerated.
    [done, PR #110] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
    algorithm done, PR #106; computation-parameter done, PR #107; initialization done, PR #109; thermodynamic-constraint done, PR #110; ps is complete; next mbpt).
-   [in progress, branch mbpt-settings, committed, awaiting push and PR] mbpt structure by 0046 items 7
+   [done, PR #111 merged 2026-11-15] mbpt structure by 0046 items 7
    and 10, no typed field filled: mbpt's properties move unchanged into a required, repeatable
    `settings` whose first member is computation-label; starting-point is removed (an MBPT computation
    names its DFT computation as input role Starting point); the introduction drops "starting point",
