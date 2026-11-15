@@ -612,3 +612,48 @@ def test_ps_initialization_gives_only_what_the_computation_sets_up():
     assert p['description'] == 'Information on the conditions set at the start of the simulation.'
     assert p['notes'] == [INITIALIZATION_NOTE]
     assert not any(k.startswith('legacy_') for k in p)
+
+
+CONSTRAINT_METHODS = {
+    'Thermostats': ['Andersen thermostat', 'Berendsen thermostat', 'CSVR', 'Langevin', 'Nosé-Hoover',
+                    'Nosé-Hoover chain', 'Velocity rescaling'],
+    'Barostats': ['Andersen barostat', 'Berendsen barostat', 'CauchyStat', 'Nosé-Hoover barostat',
+                  'Parrinello-Rahman'],
+    'Particle exchange': ['GCMC', 'SGCMC'],
+}
+ENSEMBLES = ['NVE', 'NVT', 'μVT', 'NPT', 'NσT', 'μPT', 'μσT', 'ΔμNPT', 'NPH', 'NσH']
+
+
+def test_ps_thermodynamic_constraint_names_the_ensemble_and_its_enforcement():
+    """The ensemble and how it is enforced are ps's; the values held fixed are minimal conditions' (0042 item 3).
+    One ensemble may be enforced by a thermostat and a barostat together, so method repeats, and Andersen and
+    Berendsen say which of the two they are (0069)."""
+    import sys
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import check_generic
+    c = sub(top('ps', 'settings'), 'thermodynamic-constraint')
+    assert [(s['name'], s['required'], s['repeatable']) for s in c['subproperties']] == [
+        ('system', True, False), ('type', True, False), ('method', False, True), ('description', False, False),
+        ('td-parameter', False, True)]
+    t = sub(c, 'type')
+    assert t['values']['terms'] == ENSEMBLES
+    assert '"ΔμNPT" – Semi-grand canonical' in ' '.join(t['values']['note'].split())
+    assert 'minimal `conditions`' in t['notes'][0]
+    m = sub(c, 'method')
+    assert m['values']['terms'] == [x for g in CONSTRAINT_METHODS.values() for x in g]
+    assert 'depends-on' not in m['values']
+    blocks = m['values']['note'].split('\n\n')  # a bold label, a blank line, then the list (0007 item 5)
+    assert blocks[0::2] == [f'**{k}**' for k in CONSTRAINT_METHODS]
+    assert [[line.split(' – ')[0] for line in b.split('\n')] for b in blocks[1::2]] == [
+        [f'- "{t}"' for t in g] for g in CONSTRAINT_METHODS.values()]
+    assert '`algorithm`' in m['notes'][0]
+    p = sub(c, 'td-parameter')
+    assert check_generic.generic_errors(p) == []
+    assert 'minimal `conditions`' in p['notes'][0]
+    assert 'conditions › description' in sub(c, 'system')['notes'][0]
+    assert not any(k.startswith('legacy_') for s in [c, *c['subproperties'], *p['subproperties']] for k in s)
+
+
+def test_ps_is_complete():
+    """Every ps property is filled, so the section declares it (0004 item 36)."""
+    assert section('ps')['legacy_complete'] is True

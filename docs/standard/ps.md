@@ -207,9 +207,11 @@ The collection of particles to which the constraint is applied.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String describing the constrained system (e.g. entire system, or a subset of atoms that are constrained.)</span>
+Examples: `Entire system`.
+
+Note: Give "Entire system" when the constraint acts on all particles; otherwise name the subset of atoms or the degrees of freedom it acts on, e.g. Drude particles or spins. When constraints on different parts hold different values, the values and the parts they apply to are stated in minimal `conditions › description`.
 
 </details>
 
@@ -220,22 +222,53 @@ The nature of the imposed thermodynamic constraint.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "NVE" – Microcanonical "NVT" – Canonical "μVT" – Grand canonical "NPT" – Isothermal-isobaric "NσT" – Isothermal-isostress "μPT" – Grand isothermal-isobaric "μσT" – Grand isothermal-isostress "NPH" – Isoenthalpic-isobaric "NσH" – Isoenthalpic-isostress Other user-specified value if none of the above apply.</span>
+Recommended: `NVE`, `NVT`, `μVT`, `NPT`, `NσT`, `μPT`, `μσT`, `ΔμNPT`, `NPH`, `NσH`. Other values are allowed.
+
+**Clarifications:** "NVE" – Microcanonical. "NVT" – Canonical. "μVT" – Grand canonical. "NPT" – Isothermal-isobaric. "NσT" – Isothermal-isostress. "μPT" – Grand isothermal-isobaric. "μσT" – Grand isothermal-isostress. "ΔμNPT" – Semi-grand canonical. "NPH" – Isoenthalpic-isobaric. "NσH" – Isoenthalpic-isostress.
+
+Note: The ensemble names the quantities held fixed. Their values are given in minimal `conditions`, e.g. the temperature for NVT, the chemical potential for μVT, or a difference of chemical potentials with `relative-to` for ΔμNPT, and are not repeated here.
 
 </details>
 
 <details class="note mc-property" id="ps.settings.thermodynamic-constraint.method" markdown="1">
-<summary><span class="mc-name">method</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<summary><span class="mc-name">method</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The name of the approach used to impose the constraint.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | yes | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values based on the specified constraint:: For "NVT": "Andersen" "Berendsen" "CSVR" Langevin "Nosé-Hoover" "Nosé-Hoover chain" "Velocity rescaling" Other user-specified value if none of the above apply. For "μVT": "GCMC" – Grand Canonical Monte Carlo Other user-specified value if none of the above apply. For "NPT": "Andersen" "Berendsen" "CauchyStat" "Nosé-Hoover style" "Parrinello-Rahman" Other user-specified value if none of the above apply. For "NσT": "CauchyStat" "Parrinello-Rahman" Other user-specified value if none of the above apply. For "μPT": User-specified value. For "μσT": User-specified value. For "NPH": "Nosé-Hoover style" Other user-specified value if none of the above apply. For "NσH": User-specified value. Otherwise: User-specified value.</span>
+Recommended: `Andersen thermostat`, `Berendsen thermostat`, `CSVR`, `Langevin`, `Nosé-Hoover`, `Nosé-Hoover chain`, `Velocity rescaling`, `Andersen barostat`, `Berendsen barostat`, `CauchyStat`, `Nosé-Hoover barostat`, `Parrinello-Rahman`, `GCMC`, `SGCMC`. Other values are allowed.
+
+**Clarifications:**
+
+**Thermostats**
+
+- "Andersen thermostat" – Stochastic collisions that redraw particle velocities from the Maxwell-Boltzmann distribution
+- "Berendsen thermostat" – Velocities scaled so that the temperature relaxes exponentially toward its target
+- "CSVR" – Canonical sampling through velocity rescaling: velocity scaling with a stochastic term that samples the canonical ensemble
+- "Langevin" – A friction force and a random force on each particle
+- "Nosé-Hoover" – Deterministic coupling of the particles to an extended-system thermostat variable
+- "Nosé-Hoover chain" – A Nosé-Hoover thermostat coupled in turn to a chain of further thermostat variables
+- "Velocity rescaling" – Velocities scaled to give the target temperature exactly
+
+**Barostats**
+
+- "Andersen barostat" – Extended-system barostat with the volume as a dynamical variable, for isotropic pressure
+- "Berendsen barostat" – Coordinates and cell scaled so that the pressure relaxes exponentially toward its target
+- "CauchyStat" – Extended-system barostat that imposes the Cauchy (true) stress, for large deformations of the cell
+- "Nosé-Hoover barostat" – Extended-system barostat in the Nosé-Hoover form, e.g. the Martyna-Tobias-Klein equations
+- "Parrinello-Rahman" – Extended-system barostat with the cell vectors as dynamical variables, so the cell can change shape
+
+**Particle exchange**
+
+- "GCMC" – Grand canonical Monte Carlo: insertions and deletions of particles accepted according to the chemical potential
+- "SGCMC" – Semi-grand canonical Monte Carlo: changes of species accepted according to differences of chemical potential
+
+Note: Give one entry for each thermostat, barostat or particle-exchange scheme used, e.g. Nosé-Hoover and Parrinello-Rahman for NPT. An acceptance rule of Monte Carlo, e.g. Metropolis, is given in `algorithm`, not here.
 
 </details>
 
@@ -246,9 +279,7 @@ Explanatory text about the constraint and method used to impose it.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the constraint description.</span>
+| no | no | string | [] | inapplicable | — |
 
 </details>
 
@@ -261,6 +292,8 @@ A fixed variable associated with the specified thermodynamic constraint.
 |---|---|
 | no | yes |
 
+Note: Parameters of the method only, e.g. the damping time of a Langevin thermostat, the length of a Nosé-Hoover chain or the relaxation time of a barostat. The values held fixed, e.g. the temperature, are given in minimal `conditions`.
+
 <details class="note mc-property" id="ps.settings.thermodynamic-constraint.td-parameter.name" markdown="1">
 <summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
@@ -268,9 +301,7 @@ The designation of the parameter associated with the specified thermodynamic con
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the name of the thermodynamic constraint parameter.</span>
+| yes | no | string | [] | inapplicable | — |
 
 </details>
 
@@ -281,22 +312,20 @@ The data associated with the thermodynamic constraint parameter.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
-
-<span class='legacy'>Legacy: An integer, real, boolean, or string containing the thermodynamic constraint parameter value.</span>
+| yes | no | any | any | any | — |
 
 </details>
 
 <details class="note mc-property" id="ps.settings.thermodynamic-constraint.td-parameter.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-A standardized string or identifier that defines the dimension or measurement system of the associated value.
+The unit in which the associated value is expressed.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/) (or the text "dimensionless").</span>
+**Clarifications:** A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted with a validation warning).
 
 </details>
 
@@ -307,9 +336,7 @@ An explanation of the meaning, source, or purpose of the thermodynamic constrain
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string explaining the thermodynamic constraint parameter (e.g. "The damping parameter for the Langevin thermostat").</span>
+| no | no | string | [] | inapplicable | — |
 
 </details>
 
