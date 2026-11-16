@@ -933,7 +933,21 @@ record or marked PROPOSED, NOT DECIDED.
    Starting point fits; a DFT stage chain (SCF, then non-SCF with many bands) is one computation per
    stage (0063). PROPOSED, NOT DECIDED (for the mbpt-method PR): whether GW followed by BSE
    ("GW/BSE", "evGW+BSE") is one MBPT computation, as in the baseline, or two, the BSE naming the GW
-   as input role Starting point (0046).
+   as input role Starting point (0046). (Superseded: decided by 0070, one computation of type GW/BSE.)
+   GW and BSE by 0070 (ruling 2026-11-16, from review of mbpt-method): mbpt-method › self-consistency is
+   replaced by two optional properties, gw-self-consistency (open terms G0W0, GW0, G0W, evGW, scGW, QSGW)
+   and bse-self-consistency (BSE0, scBSE); the combined terms evGW+BSE and scGW+BSE are removed; "evGW" –
+   Eigenvalue-only self-consistent GW is added; type keeps GW, BSE and GW/BSE, GW followed by BSE being
+   one computation of type GW/BSE (qualifies 0063 for MBPT); a note says which property follows type;
+   the terms stay ASCII and the definitions write subscript zero (G₀W₀), since the digit zero looks
+   like the letter O in the site's fonts. Two structures were declined: the baseline's combined terms,
+   and GW and BSE as two computations linked by input role Starting point. No released instance breaks.
+   PROPOSED, NOT DECIDED (0070): whether the step 9 validator checks which property follows type.
+   [in progress, not yet branched] mbpt mbpt-method (step 5), applying 0070.
+   Raised by the human 2026-11-16, PROPOSED, NOT DECIDED: where TDDFT, EOM-CC, ADC
+   and QMC belong. By 0064's method definitions, TDDFT is DFT (a dft extension or its own section),
+   EOM-CC is CC and QMC is QMC (future sections), and ADC, a propagator method from diagrammatic
+   perturbation theory, fits MBPT's definition, though quantum chemistry groups it with CC.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
