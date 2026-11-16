@@ -38,47 +38,66 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: Contains SubProperties as listed below.
     subproperties:
     - name: type
       required: true
       description: The nature of the MBPT calculation performed.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [GW, BSE, GW/BSE]
+        note: >-
+          "GW" – A GW calculation of quasiparticle energies. "BSE" – A BSE calculation of neutral excitations
+          from given quasiparticle energies, e.g. DFT energies with a scissor shift, the computation they come
+          from named in minimal `computation › input` with the role Starting point. "GW/BSE" – A GW calculation
+          followed by a BSE calculation using its results, described as one computation.
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "GW" "BSE" "GW/BSE" Other user-specified value if
-        none of the above apply.
-    - name: self-consistency
-      required: true
+    - name: gw-self-consistency
+      required: false
       description: >-
-        Specifies the level of iterative updating applied to the Green's function (*G*), the screened Coulomb
-        interaction (*W*), or the excitonic Hamiltonian during the calculation. This property identifies
-        whether the MBPT equations are solved in a 'one-shot' perturbative manner or through an iterative
-        cycle where the electronic or excitonic quasiparticle states are updated to reach a self-consistent
-        solution.
-      type: null
-      extent: null
-      kind: null
+        Specifies the level of iterative updating applied to the Green's function (*G*) and the screened Coulomb
+        interaction (*W*) in the GW calculation. This property identifies whether the GW equations are solved in
+        a 'one-shot' perturbative manner or through an iterative cycle where the quasiparticle states are updated
+        to reach a self-consistent solution.
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [G0W0, GW0, G0W, evGW, scGW, QSGW]
+        note: >-
+          "G0W0" – One-shot calculation; *G*₀ and *W*₀ are constructed using the starting eigenvalues and
+          wavefunctions. "GW0" – Only the Green's function *G* is updated iteratively, while *W* remains fixed at
+          *W*₀. "G0W" – Only the screened interaction *W* is updated iteratively, while *G* remains fixed at
+          *G*₀. "evGW" – Eigenvalue-only self-consistent GW; the quasiparticle energies are updated iteratively
+          in both *G* and *W*, while the wavefunctions are kept from the starting point. "scGW" – Fully
+          self-consistent GW; both *G* and *W* are updated iteratively until the quasiparticle energies and
+          wavefunctions converge. "QSGW" – Quasiparticle self-consistent GW; the starting potential is updated to
+          provide the optimal independent particle basis for the GW expansion.
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values depending on the variant of the GW, BSE, or GW/BSE
-        approach used: "G0W0" – One-shot calculation; the *G* and *W *are constructed using the starting
-        eigenvalues and wavefunctions. "GW0" – Only the Green's function *G* is updated iteratively, while
-        *W *remains fixed at the *W0 *level "G0W" – Only the screened interaction *W *is updated iteratively,
-        while *G *remains fixed at *G0* "scGW" – Fully self-consistent GW; both*G* and *W* are updated iteratively
-        until the quasiparticle energies and/or wavefunctions converge "QSGW" – Quasiparticle self-consistent
-        GW; the starting potential is updated to provide the optimal independent particle basis for the
-        GW expansion "BSE0" – One-shot BSE; the excitonic Hamiltonian is built once using fixed GW quasiparticle
-        energies and screening (*W*) "scBSE" – Self-consistent BSE; internal refinement of the kernel or
-        energies within the BSE process "evGW+BSE" – Eigenvalue-only self-consistent GW (evGW) used as the
-        starting point for a subsequent BSE calculation "scGW+BSE" – The BSE is solved using the results
-        of a fully self-consistent GW calculation Other user-specified value if none of the above apply.
+      notes:
+      - 'Note: Give it when `type` is GW or GW/BSE.'
+    - name: bse-self-consistency
+      required: false
+      description: >-
+        Specifies the level of iterative updating applied to the excitonic Hamiltonian in the BSE calculation.
+        This property identifies whether the BSE is solved in a 'one-shot' manner or through an iterative cycle
+        where the excitonic states are updated to reach a self-consistent solution.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [BSE0, scBSE]
+        note: >-
+          "BSE0" – One-shot BSE (BSE₀); the excitonic Hamiltonian is built once using fixed quasiparticle
+          energies and screening (*W*). "scBSE" – Self-consistent BSE; internal refinement of the kernel or
+          energies within the BSE process.
+      repeatable: false
+      notes:
+      - 'Note: Give it when `type` is BSE or GW/BSE.'
   - name: dielectric-matrix
     required: true
     description: >-

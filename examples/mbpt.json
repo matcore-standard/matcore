@@ -7,7 +7,7 @@
         ],
         "mbpt-method": {
           "type": "GW",
-          "self-consistency": "G0W0"
+          "gw-self-consistency": "G0W0"
         },
         "dielectric-matrix": {
           "planewave-basis-cutoff": "60.0",

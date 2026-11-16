@@ -943,7 +943,14 @@ record or marked PROPOSED, NOT DECIDED.
    like the letter O in the site's fonts. Two structures were declined: the baseline's combined terms,
    and GW and BSE as two computations linked by input role Starting point. No released instance breaks.
    PROPOSED, NOT DECIDED (0070): whether the step 9 validator checks which property follows type.
-   [in progress, not yet branched] mbpt mbpt-method (step 5), applying 0070.
+   [in progress, branch mbpt-method, committed, awaiting push and PR] mbpt mbpt-method (step 5),
+   applying 0070: type string with terms GW, BSE, GW/BSE, defined in a new note (GW/BSE one
+   computation; BSE alone names its quasiparticle energies' computation as input role Starting point);
+   gw-self-consistency and bse-self-consistency optional strings, the baseline's definitions with
+   subscript zero, evGW defined, scGW narrowed to energies and wavefunctions, BSE0's definition no
+   longer saying GW energies; each with a note "Give it when `type` is …"; legacy_* deleted;
+   examples/mbpt.json writes gw-self-consistency; test in tests/test_computations.py; 05-mbpt
+   regenerated.
    Raised by the human 2026-11-16, PROPOSED, NOT DECIDED: where TDDFT, EOM-CC, ADC
    and QMC belong. By 0064's method definitions, TDDFT is DFT (a dft extension or its own section),
    EOM-CC is CC and QMC is QMC (future sections), and ADC, a propagator method from diagrammatic
