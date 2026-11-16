@@ -42,22 +42,45 @@ The nature of the MBPT calculation performed.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "GW" "BSE" "GW/BSE" Other user-specified value if none of the above apply.</span>
+Recommended: `GW`, `BSE`, `GW/BSE`. Other values are allowed.
+
+**Clarifications:** "GW" – A GW calculation of quasiparticle energies. "BSE" – A BSE calculation of neutral excitations from given quasiparticle energies, e.g. DFT energies with a scissor shift, the computation they come from named in minimal `computation › input` with the role Starting point. "GW/BSE" – A GW calculation followed by a BSE calculation using its results, described as one computation.
 
 </details>
 
-<details class="note mc-property" id="mbpt.settings.mbpt-method.self-consistency" markdown="1">
-<summary><span class="mc-name">self-consistency<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<details class="note mc-property" id="mbpt.settings.mbpt-method.gw-self-consistency" markdown="1">
+<summary><span class="mc-name">gw-self-consistency</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-Specifies the level of iterative updating applied to the Green's function (*G*), the screened Coulomb interaction (*W*), or the excitonic Hamiltonian during the calculation. This property identifies whether the MBPT equations are solved in a 'one-shot' perturbative manner or through an iterative cycle where the electronic or excitonic quasiparticle states are updated to reach a self-consistent solution.
+Specifies the level of iterative updating applied to the Green's function (*G*) and the screened Coulomb interaction (*W*) in the GW calculation. This property identifies whether the GW equations are solved in a 'one-shot' perturbative manner or through an iterative cycle where the quasiparticle states are updated to reach a self-consistent solution.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values depending on the variant of the GW, BSE, or GW/BSE approach used: "G0W0" – One-shot calculation; the *G* and *W *are constructed using the starting eigenvalues and wavefunctions. "GW0" – Only the Green's function *G* is updated iteratively, while *W *remains fixed at the *W0 *level "G0W" – Only the screened interaction *W *is updated iteratively, while *G *remains fixed at *G0* "scGW" – Fully self-consistent GW; both*G* and *W* are updated iteratively until the quasiparticle energies and/or wavefunctions converge "QSGW" – Quasiparticle self-consistent GW; the starting potential is updated to provide the optimal independent particle basis for the GW expansion "BSE0" – One-shot BSE; the excitonic Hamiltonian is built once using fixed GW quasiparticle energies and screening (*W*) "scBSE" – Self-consistent BSE; internal refinement of the kernel or energies within the BSE process "evGW+BSE" – Eigenvalue-only self-consistent GW (evGW) used as the starting point for a subsequent BSE calculation "scGW+BSE" – The BSE is solved using the results of a fully self-consistent GW calculation Other user-specified value if none of the above apply.</span>
+Recommended: `G0W0`, `GW0`, `G0W`, `evGW`, `scGW`, `QSGW`. Other values are allowed.
+
+**Clarifications:** "G0W0" – One-shot calculation; *G*₀ and *W*₀ are constructed using the starting eigenvalues and wavefunctions. "GW0" – Only the Green's function *G* is updated iteratively, while *W* remains fixed at *W*₀. "G0W" – Only the screened interaction *W* is updated iteratively, while *G* remains fixed at *G*₀. "evGW" – Eigenvalue-only self-consistent GW; the quasiparticle energies are updated iteratively in both *G* and *W*, while the wavefunctions are kept from the starting point. "scGW" – Fully self-consistent GW; both *G* and *W* are updated iteratively until the quasiparticle energies and wavefunctions converge. "QSGW" – Quasiparticle self-consistent GW; the starting potential is updated to provide the optimal independent particle basis for the GW expansion.
+
+Note: Give it when `type` is GW or GW/BSE.
+
+</details>
+
+<details class="note mc-property" id="mbpt.settings.mbpt-method.bse-self-consistency" markdown="1">
+<summary><span class="mc-name">bse-self-consistency</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+Specifies the level of iterative updating applied to the excitonic Hamiltonian in the BSE calculation. This property identifies whether the BSE is solved in a 'one-shot' manner or through an iterative cycle where the excitonic states are updated to reach a self-consistent solution.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `BSE0`, `scBSE`. Other values are allowed.
+
+**Clarifications:** "BSE0" – One-shot BSE (BSE₀); the excitonic Hamiltonian is built once using fixed quasiparticle energies and screening (*W*). "scBSE" – Self-consistent BSE; internal refinement of the kernel or energies within the BSE process.
+
+Note: Give it when `type` is BSE or GW/BSE.
 
 </details>
 
@@ -318,7 +341,7 @@ Dataset source: [https://archive.materialscloud.org/record/2023.92](https://arch
         ],
         "mbpt-method": {
           "type": "GW",
-          "self-consistency": "G0W0"
+          "gw-self-consistency": "G0W0"
         },
         "dielectric-matrix": {
           "planewave-basis-cutoff": "60.0",

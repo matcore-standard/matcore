@@ -681,3 +681,32 @@ def test_mbpt_properties_sit_in_settings_naming_computations():
     assert 'role Starting point' in intro
     example = json.loads((ROOT / 'examples/mbpt.json').read_text(encoding='utf-8'))['mbpt']
     assert [list(b)[0] for b in example['settings']] == ['computation-label']
+
+
+GW_VARIANTS = ['G0W0', 'GW0', 'G0W', 'evGW', 'scGW', 'QSGW']
+BSE_VARIANTS = ['BSE0', 'scBSE']
+
+
+def test_mbpt_method_gives_each_stage_its_own_self_consistency():
+    """A GW + BSE calculation is one computation, so the GW and BSE variants are two properties instead of one list
+    of combined terms, which could not name G0W0 followed by BSE (0070). Terms stay typable ASCII; definitions
+    write the zero as a subscript, since the digit reads as the letter O on the site."""
+    m = sub(top('mbpt', 'settings'), 'mbpt-method')
+    assert (m['type'], m['extent'], m['kind'], m['values']) == (None, None, None, None)
+    assert [(s['name'], s['required'], s['repeatable']) for s in m['subproperties']] == [
+        ('type', True, False), ('gw-self-consistency', False, False), ('bse-self-consistency', False, False)]
+    assert sub(m, 'type')['values']['terms'] == ['GW', 'BSE', 'GW/BSE']
+    for name, terms in [('gw-self-consistency', GW_VARIANTS), ('bse-self-consistency', BSE_VARIANTS)]:
+        s = sub(m, name)
+        assert shape(s) == (False, False, 'string', [], 'inapplicable', None)
+        assert s['values']['terms'] == terms
+        assert all(t.isascii() for t in terms)
+        note = ' '.join(s['values']['note'].split())
+        definitions = dict(re.findall(r'"([^"]+)" – (.*?)(?= "[^"]+" – |$)', note))
+        assert list(definitions) == terms
+        assert [t for t in terms if '0' in t and '₀' not in definitions[t]] == []
+        assert s['notes'][0] == f"Note: Give it when `type` is {'GW' if name[0] == 'g' else 'BSE'} or GW/BSE."
+    assert sub(m, 'gw-self-consistency')['values']['note'].count('Eigenvalue-only self-consistent GW') == 1
+    assert not any(k.startswith('legacy_') for s in [m, *m['subproperties']] for k in s)
+    example = json.loads((ROOT / 'examples/mbpt.json').read_text(encoding='utf-8'))['mbpt']
+    assert example['settings'][0]['mbpt-method'] == {'type': 'GW', 'gw-self-consistency': 'G0W0'}
