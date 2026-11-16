@@ -326,7 +326,9 @@ record or marked PROPOSED, NOT DECIDED.
      method is repeatable with grouped thermostat, barostat and particle-exchange terms, type gains
      ΔμNPT and points to conditions, and td-parameter is a generic parameter; ps is complete (0069);
      mbpt's properties sit in `settings` blocks naming their computations, and starting-point is
-     removed, the DFT computation named as input role Starting point (0046).
+     removed, the DFT computation named as input role Starting point (0046); mbpt-method's
+     self-consistency becomes gw-self-consistency and bse-self-consistency, the combined terms removed,
+     evGW added, GW followed by BSE one computation of type GW/BSE (0070).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -943,7 +945,7 @@ record or marked PROPOSED, NOT DECIDED.
    like the letter O in the site's fonts. Two structures were declined: the baseline's combined terms,
    and GW and BSE as two computations linked by input role Starting point. No released instance breaks.
    PROPOSED, NOT DECIDED (0070): whether the step 9 validator checks which property follows type.
-   [in progress, branch mbpt-method, committed, awaiting push and PR] mbpt mbpt-method (step 5),
+   [done, PR #112 merged 2026-11-16] mbpt mbpt-method (step 5),
    applying 0070: type string with terms GW, BSE, GW/BSE, defined in a new note (GW/BSE one
    computation; BSE alone names its quasiparticle energies' computation as input role Starting point);
    gw-self-consistency and bse-self-consistency optional strings, the baseline's definitions with
