@@ -72,8 +72,18 @@ def test_dispersion_correction_is_named_apart_from_the_functional():
     assert d['notes'][0].startswith('Note: Give it when `calculation-physics` lists Van der Waals')
     name_note = ' '.join(sub(s, 'xc-functional', 'name')['values']['note'].split())
     assert 'VdW-corrections' not in name_note
-    assert name_note.endswith('Give the functional alone, without a dispersion correction (e.g. PBE, not '
-                              'PBE-D3); the correction is given in dispersion-correction.')
+    assert ('Give the functional alone, without a dispersion correction (e.g. PBE, not PBE-D3); the correction is '
+            'given in dispersion-correction.') in name_note
+
+
+def test_hubbard_correction_is_flagged_apart_from_the_functional():
+    """DFT+U adds an on-site term to a functional, so it is flagged in calculation-physics, not written into the
+    functional's name (decided in review 2026-11-16)."""
+    s = settings()
+    name_note = ' '.join(sub(s, 'xc-functional', 'name')['values']['note'].split())
+    assert name_note.endswith('Likewise give it without a Hubbard correction (e.g. PBE, not PBE+U), which is '
+                              'given as calculation-physics "On-site correlation".')
+    assert 'On-site correlation' in sub(s, 'calculation-physics')['values']['terms']
 
 
 WIDTH_NOTE = 'Note: Give the width as an energy; for Fermi-Dirac smearing it is k<sub>B</sub>T, where T is the electronic temperature. It is not a temperature imposed on the simulated system, which is given in `conditions`.'

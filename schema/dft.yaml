@@ -71,7 +71,9 @@ properties:
           SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA,
           CIDER, etc. Others: BEEF, etc. A decomposition into the components of a community library such
           as LibXC is given in normalization. Give the functional alone, without a dispersion correction
-          (e.g. PBE, not PBE-D3); the correction is given in dispersion-correction.
+          (e.g. PBE, not PBE-D3); the correction is given in dispersion-correction. Likewise give it
+          without a Hubbard correction (e.g. PBE, not PBE+U), which is given as calculation-physics
+          "On-site correlation".
       repeatable: false
     - name: description
       required: false
