@@ -59,7 +59,7 @@ The exchange-correlation functional as the author names it.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-**Clarifications:** Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. Others: BEEF, etc. A decomposition into the components of a community library such as LibXC is given in normalization. Give the functional alone, without a dispersion correction (e.g. PBE, not PBE-D3); the correction is given in dispersion-correction.
+**Clarifications:** Examples of possible content by type: LDA: Common parameterizations: VWN, PW92, etc. GGA: Typical choices are PW91, PBE, rPBE, revPBE, BLYP, etc. Meta GGA: Specific named examples include TPSS, SCAN, M06, etc. Hybrid: B3LYP, PBE0, HSE03, HSE06, NeuralXC, DeePKS, … ML: DM21, NNLDA, NNGGA, CIDER, etc. Others: BEEF, etc. A decomposition into the components of a community library such as LibXC is given in normalization. Give the functional alone, without a dispersion correction (e.g. PBE, not PBE-D3); the correction is given in dispersion-correction. Likewise give it without a Hubbard correction (e.g. PBE, not PBE+U), which is given as calculation-physics "On-site correlation".
 
 </details>
 

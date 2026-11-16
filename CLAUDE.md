@@ -957,6 +957,15 @@ record or marked PROPOSED, NOT DECIDED.
    and QMC belong. By 0064's method definitions, TDDFT is DFT (a dft extension or its own section),
    EOM-CC is CC and QMC is QMC (future sections), and ADC, a propagator method from diagrammatic
    perturbation theory, fits MBPT's definition, though quantum chemistry groups it with CC.
+   Reviewer feedback 2026-11-16 on the baseline's mbpt starting-point (term "DFT+U"): DFT+U should be a
+   separate flag, not an xc-functional, as dft calculation-physics has it. Already met: starting-point
+   is removed (0046), the starting DFT computation records the functional in xc-functional and DFT+U
+   as calculation-physics "On-site correlation"; the U values were declined 2026-11-09. Decided by the
+   human 2026-11-16: xc-functional › name's note, which says to give the functional without a dispersion
+   correction (0051), adds "Likewise give it without a Hubbard correction (e.g. PBE, not PBE+U), which
+   is given as calculation-physics "On-site correlation"." [in progress, branch dft-xc-name-plus-u,
+   committed, awaiting push and PR] schema/dft.yaml, tests/test_dft_rulings.py (a new test; the 0051
+   test checks its sentence with `in` instead of `endswith`), 03-dft regenerated.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
