@@ -328,7 +328,9 @@ record or marked PROPOSED, NOT DECIDED.
      mbpt's properties sit in `settings` blocks naming their computations, and starting-point is
      removed, the DFT computation named as input role Starting point (0046); mbpt-method's
      self-consistency becomes gw-self-consistency and bse-self-consistency, the combined terms removed,
-     evGW added, GW followed by BSE one computation of type GW/BSE (0070).
+     evGW added, GW followed by BSE one computation of type GW/BSE (0070); dft xc-functional › name is
+     given without a Hubbard correction (PBE, not PBE+U), DFT+U being calculation-physics On-site
+     correlation (review 2026-11-16).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -963,8 +965,8 @@ record or marked PROPOSED, NOT DECIDED.
    as calculation-physics "On-site correlation"; the U values were declined 2026-11-09. Decided by the
    human 2026-11-16: xc-functional › name's note, which says to give the functional without a dispersion
    correction (0051), adds "Likewise give it without a Hubbard correction (e.g. PBE, not PBE+U), which
-   is given as calculation-physics "On-site correlation"." [in progress, branch dft-xc-name-plus-u,
-   committed, awaiting push and PR] schema/dft.yaml, tests/test_dft_rulings.py (a new test; the 0051
+   is given as calculation-physics "On-site correlation"." [done, PR #113 merged
+   2026-11-16] schema/dft.yaml, tests/test_dft_rulings.py (a new test; the 0051
    test checks its sentence with `in` instead of `endswith`), 03-dft regenerated.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
