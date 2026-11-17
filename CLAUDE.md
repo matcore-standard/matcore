@@ -217,7 +217,7 @@ items are applied in their "alone" form (see 0001's note). Kept for reference.
 - Table MD-3 was malformed in the Google Doc: its header row was actually the `source` parent row.
   Migration handled it; check md.yaml › particle-interactions / source against the docx (0004).
 - The accepted items of docs/decisions/0001-units-change-list.md Part B (see its Status line).
-  B2 (added note) is PROPOSED, NOT DECIDED; B9 is decided for generic parameters (0016); B5 is
+  B2 (added note) is declined (2026-11-17, mbpt dielectric-matrix PR); B9 is decided for generic parameters (0016); B5 is
   settled as fractional shifts, k-point-spacing removed and methfessel-paxton-order replaced by a
   generic smearing-parameter (0004 item 47).
   B4's Ė symbol needs no decision: the baseline .docx already writes the strain-rate tensor as Ė
@@ -328,7 +328,10 @@ record or marked PROPOSED, NOT DECIDED.
      mbpt's properties sit in `settings` blocks naming their computations, and starting-point is
      removed, the DFT computation named as input role Starting point (0046); mbpt-method's
      self-consistency becomes gw-self-consistency and bse-self-consistency, the combined terms removed,
-     evGW added, GW followed by BSE one computation of type GW/BSE (0070).
+     evGW added, GW followed by BSE one computation of type GW/BSE (0070); dft xc-functional › name is
+     given without a Hubbard correction (PBE, not PBE+U), DFT+U being calculation-physics On-site
+     correlation (review 2026-11-16); mbpt dielectric-matrix's typed fields filled, its plane-wave cutoff
+     described as set separately from the wavefunction cutoff (step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -963,9 +966,33 @@ record or marked PROPOSED, NOT DECIDED.
    as calculation-physics "On-site correlation"; the U values were declined 2026-11-09. Decided by the
    human 2026-11-16: xc-functional › name's note, which says to give the functional without a dispersion
    correction (0051), adds "Likewise give it without a Hubbard correction (e.g. PBE, not PBE+U), which
-   is given as calculation-physics "On-site correlation"." [in progress, branch dft-xc-name-plus-u,
-   committed, awaiting push and PR] schema/dft.yaml, tests/test_dft_rulings.py (a new test; the 0051
+   is given as calculation-physics "On-site correlation"." [done, PR #113 merged
+   2026-11-16] schema/dft.yaml, tests/test_dft_rulings.py (a new test; the 0051
    test checks its sentence with `in` instead of `endswith`), 03-dft regenerated.
+   [in progress, branch mbpt-dielectric-matrix, committed, awaiting push and PR] mbpt dielectric-matrix
+   (step 5): planewave-basis-cutoff value + unit (Energy, recommended eV, minimum 0; 0001 A5);
+   localized-orbital-basis-set a string (example cc-pV6Z; stray space before the period removed); frequency
+   and coulomb-truncation strings with the baseline's open terms, each defined in a note drafted in this PR
+   (judgment calls); response-basis-size an int leaf, q-points int [3] (dimensionless, minimum 1); the "either
+   ... but not both" notes kept (0011 item 3); legacy_* deleted; examples/mbpt.json corrected from the source
+   dataset (Materials Cloud 2023.92, Yambo input ppa_48kp.in): the cutoff is NGsBlkXp 12 Ry (the baseline's
+   60.0 was the wavefunction cutoff, ecutwfc 60 Ry), q-points [48, 48, 1], frequency Godby-Needs (Yambo's
+   ppa), response-basis-size 200 (BndsRnXp); test in tests/test_computations.py; 05-mbpt regenerated.
+   Reviewer feedback 2026-11-17, answered: the cutoff's recommended unit stays eV (0001 A5, decided); codes
+   differ (Yambo Ry, ABINIT ecuteps Ha, VASP ENCUTGW eV), and an instance gives its own unit. Decided by the
+   human 2026-11-17: planewave-basis-cutoff's description drops "This is the same as the kinetic energy
+   cutoff" and says it is set separately from, and usually lower than, the wavefunction cutoff (dft
+   kinetic-energy-cutoff); 0001's B2 note ("should agree with it") is declined.
+   Reviewer feedback 2026-11-17: add "Brunelva-Gonze" to coulomb-truncation. Held by the human 2026-11-17:
+   no such truncation was found; the name is Yambo's GW terminator (GTermKind "BG", Bruneval-Gonze), the
+   extrapolar approximation of F. Bruneval and X. Gonze, Phys. Rev. B 78, 085125 (2008), which reduces the
+   number of empty states, as the source dataset's input uses it. Not a coulomb-truncation term (decided by
+   the human 2026-11-17): a truncation and a terminator are separate choices, set together in that input
+   (CUTGeo "box z" with GTermKind "BG"). Decided by the human 2026-11-17: the term's home is decided in the
+   gw-bands PR. PROPOSED, NOT DECIDED (for that PR): an optional string `band-terminator`, open terms None
+   and Bruneval-Gonze, its definition citing Bruneval and Gonze (2008), placed beside the band counts it
+   corrects (response-basis-size for the polarization sum, Yambo XTermKind; gw-bands or the self-energy band
+   range, Yambo GTermKind); confirm the reading with the reviewer.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over

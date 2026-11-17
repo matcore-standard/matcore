@@ -98,30 +98,50 @@ Information on the dielectric matrix used to compute the screened Coulomb intera
 <details class="note mc-property" id="mbpt.settings.dielectric-matrix.planewave-basis-cutoff" markdown="1">
 <summary><span class="mc-name">planewave-basis-cutoff</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-For a planewave code, the basis set cutoff employed for the dielectric matrix. This is the same as the kinetic energy cutoff.
+For a planewave code, the basis set cutoff employed for the dielectric matrix. It is set separately from the cutoff of the wave functions (dft kinetic-energy-cutoff) and is usually lower.
+
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
+
+<details class="note mc-property" id="mbpt.settings.dielectric-matrix.planewave-basis-cutoff.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| yes | no | float | [] | Energy | eV |
 
-<span class='legacy'>Legacy: A real number containing the cutoff.</span>
+Minimum: 0.
 
-<span class='legacy'>Legacy unit: Rydberg (Ry)</span>
+</details>
 
-Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
+<details class="note mc-property" id="mbpt.settings.dielectric-matrix.planewave-basis-cutoff.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+</details>
 
 </details>
 
 <details class="note mc-property" id="mbpt.settings.dielectric-matrix.localized-orbital-basis-set" markdown="1">
 <summary><span class="mc-name">localized-orbital-basis-set</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-For local orbital codes, the name of the basis set .
+For local orbital codes, the name of the basis set.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the name of the atomic orbital basis. (e.g. "cc-pV6Z").</span>
+Examples: `cc-pV6Z`.
 
 Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
 
@@ -134,9 +154,11 @@ The method used to handle the frequency dependence of the Green's function, the 
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Hybertsen-Louie" "Godby-Needs" "Full frequency real axis" "Full frequency imaginary axis" "Contour deformation" "Spacetime" Other user-specified value if none of the above apply.</span>
+Recommended: `Hybertsen-Louie`, `Godby-Needs`, `Full frequency real axis`, `Full frequency imaginary axis`, `Contour deformation`, `Spacetime`. Other values are allowed.
+
+**Clarifications:** "Hybertsen-Louie" – Generalized plasmon-pole model fitted to the static dielectric matrix and the f-sum rule. "Godby-Needs" – Plasmon-pole model fitted to the dielectric matrix at zero frequency and at one imaginary frequency. "Full frequency real axis" – The dielectric matrix is computed on a grid of real frequencies and the frequency integral evaluated on the real axis. "Full frequency imaginary axis" – The dielectric matrix is computed on the imaginary axis and the self-energy continued analytically to real frequencies. "Contour deformation" – The frequency integral is evaluated along the imaginary axis plus the residues of the poles it encloses. "Spacetime" – The Green's function and the screened interaction are computed in real space and imaginary time.
 
 </details>
 
@@ -147,11 +169,9 @@ For sum-over-states methods, the number of bands used in the sum. For linear-res
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | int | [] | dimensionless | — |
 
-<span class='legacy'>Legacy: One integer containing the number of bands or eigenvalues.</span>
-
-<span class='legacy'>Legacy unit: dimensionless</span>
+Minimum: 1.
 
 </details>
 
@@ -162,11 +182,11 @@ Brillouin zone grid used for sampling the dielectric matrix.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | int | [3] | dimensionless | — |
 
-<span class='legacy'>Legacy: Ordered list of 3 integer numbers containing the number points along the three reciprocal lattice vector directions.</span>
+Minimum: 1, for each component.
 
-<span class='legacy'>Legacy unit: dimensionless</span>
+**Clarifications:** Ordered list of three integers, the number of points along the three reciprocal lattice vector directions.
 
 </details>
 
@@ -177,9 +197,11 @@ Method used to eliminate long-range Coulomb interactions between periodic replic
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Ismail-Beigi" "Rozzi" "Spencer-Alavi" Other user-specified value if none of the above apply.</span>
+Recommended: `Ismail-Beigi`, `Rozzi`, `Spencer-Alavi`. Other values are allowed.
+
+**Clarifications:** "Ismail-Beigi" – Truncation for systems periodic in one or two dimensions (wires, slabs). "Rozzi" – Exact cutoff for systems periodic in zero, one or two dimensions (molecules, wires, slabs). "Spencer-Alavi" – Truncation of the Coulomb interaction beyond a sphere.
 
 </details>
 
@@ -344,8 +366,17 @@ Dataset source: [https://archive.materialscloud.org/record/2023.92](https://arch
           "gw-self-consistency": "G0W0"
         },
         "dielectric-matrix": {
-          "planewave-basis-cutoff": "60.0",
-          "q-points": "48"
+          "planewave-basis-cutoff": {
+            "value": 12.0,
+            "unit": "Ry"
+          },
+          "frequency": "Godby-Needs",
+          "response-basis-size": 200,
+          "q-points": [
+            48,
+            48,
+            1
+          ]
         }
       }
     ]
