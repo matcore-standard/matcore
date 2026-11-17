@@ -670,7 +670,7 @@ def test_mbpt_properties_sit_in_settings_naming_computations():
     assert (s['required'], s['repeatable'], s['type']) == (True, True, None)
     assert s['description'] == 'Settings shared by the computations named in it.'
     assert [c['name'] for c in s['subproperties']] == [
-        'computation-label', 'mbpt-method', 'dielectric-matrix', 'gw-bands', 'bse-hamiltonian',
+        'computation-label', 'mbpt-method', 'dielectric-matrix', 'self-energy', 'bse-hamiltonian',
         'bse-kernel-truncation']
     c = sub(s, 'computation-label')
     assert shape(c) == (True, True, 'string', [], 'inapplicable', None)
@@ -725,7 +725,8 @@ def test_mbpt_dielectric_matrix_is_typed():
     assert (d['type'], d['required'], d['repeatable']) == (None, True, False)
     assert [(s['name'], s['required']) for s in d['subproperties']] == [
         ('planewave-basis-cutoff', False), ('localized-orbital-basis-set', False), ('frequency', False),
-        ('response-basis-size', False), ('q-points', True), ('coulomb-truncation', False)]
+        ('response-basis-size', False), ('band-terminator', False), ('q-points', True),
+        ('coulomb-truncation', False)]
     cutoff = sub(d, 'planewave-basis-cutoff')
     value = sub(cutoff, 'value')
     assert (value['type'], value['kind'], value['recommended-unit'], value['values']) == (
@@ -750,3 +751,33 @@ def test_mbpt_dielectric_matrix_is_typed():
     example = json.loads((ROOT / 'examples/mbpt.json').read_text(encoding='utf-8'))['mbpt']
     assert example['settings'][0]['dielectric-matrix']['planewave-basis-cutoff'] == {'value': 12.0, 'unit': 'Ry'}
     assert example['settings'][0]['dielectric-matrix']['q-points'] == [48, 48, 1]
+
+
+def test_mbpt_self_energy_separates_corrected_bands_from_summed_bands():
+    """The bands whose energies are corrected are a range, an output; the bands summed over in G and in W are
+    separate convergence parameters, each with its own terminator for the bands left out (0071)."""
+    settings = top('mbpt', 'settings')
+    names = [s['name'] for s in settings['subproperties']]
+    assert 'gw-bands' not in names
+    assert names.index('self-energy') == names.index('dielectric-matrix') + 1
+    se = sub(settings, 'self-energy')
+    assert (se['type'], se['required'], se['repeatable']) == (None, False, False)
+    assert se['notes'] == ['Note: Give it when `type` is GW or GW/BSE.']
+    assert [s['name'] for s in se['subproperties']] == ['band-range', 'number-of-bands', 'band-terminator']
+    band_range = sub(se, 'band-range')
+    assert (band_range['type'], band_range['extent'], band_range['kind'], band_range['values']['minimum']) == (
+        'int', [2], 'dimensionless', 1)
+    count = sub(se, 'number-of-bands')
+    assert (count['type'], count['extent']) == ('int', [])
+    assert 'bands 1 to number-of-bands' in ' '.join(count['description'].split())
+    assert 'lowest band' not in count['description']
+    d = sub(settings, 'dielectric-matrix')
+    dnames = [s['name'] for s in d['subproperties']]
+    assert dnames.index('band-terminator') == dnames.index('response-basis-size') + 1
+    for t in [sub(se, 'band-terminator'), sub(d, 'band-terminator')]:
+        assert shape(t) == (False, False, 'string', [], 'inapplicable', None)
+        assert t['values']['terms'] == ['None', 'Bruneval-Gonze']
+        assert 'extrapolar approximation' in t['values']['note'] and 'Phys. Rev.' not in t['values']['note']
+    assert 'Bruneval-Gonze' not in sub(d, 'coulomb-truncation')['values']['terms']
+    example = json.loads((ROOT / 'examples/mbpt.json').read_text(encoding='utf-8'))['mbpt']['settings'][0]
+    assert example['self-energy'] == {'band-range': [3, 4], 'number-of-bands': 200, 'band-terminator': 'Bruneval-Gonze'}

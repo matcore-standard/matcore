@@ -29,3 +29,8 @@ In diagonal GW the corrected bands *n* and the summed bands *m* are separate ind
   - `band-range` from `QPkrange` (bands 3 to 4).
 - No released instance breaks: mbpt's properties were legacy text in 0.6.0.
 - PROPOSED, NOT DECIDED: whether the step 9 validator checks that the last band of `band-range` does not exceed `number-bands`.
+
+## Amendment (2026-11-17, review of the pull request)
+- `number-bands` is renamed `number-of-bands`.
+- Its description says the sum runs over bands 1 to `number-of-bands`. The phrase "counted from 1 at the lowest band in the calculation" is dropped, because it read as the first band of `band-range`. Band numbering is stated once, in `band-range`.
+- The note on `band-terminator` names the extrapolar approximation without citing the paper, as no other term in the schema cites one.

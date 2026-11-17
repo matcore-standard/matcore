@@ -190,6 +190,21 @@ properties:
       values:
         minimum: 1
       repeatable: false
+    - name: band-terminator
+      required: false
+      description: >-
+        The method used to approximate the contribution of the bands left out of the sum over states of the
+        polarizability.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [None, Bruneval-Gonze]
+        note: >-
+          "None" – No correction; the sum stops at its last band. "Bruneval-Gonze" – The bands left out are
+          replaced by one effective energy (the extrapolar approximation).
+      repeatable: false
     - name: q-points
       required: true
       description: Brillouin zone grid used for sampling the dielectric matrix.
@@ -219,18 +234,58 @@ properties:
           Exact cutoff for systems periodic in zero, one or two dimensions (molecules, wires, slabs).
           "Spencer-Alavi" – Truncation of the Coulomb interaction beyond a sphere.
       repeatable: false
-  - name: gw-bands
+  - name: self-energy
     required: false
-    description: Number of bands for which the GW correction is evaluated.
+    description: The settings of the GW self-energy and the bands it corrects.
     type: null
     extent: null
     kind: null
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: >-
-      One integer specifying how many bands are corrected, counting from the bottom of the valence bands.
-    legacy_unit: dimensionless
+    notes:
+    - 'Note: Give it when `type` is GW or GW/BSE.'
+    subproperties:
+    - name: band-range
+      required: false
+      description: >-
+        The first and last band whose quasiparticle energies are computed. Bands are numbered from 1, the
+        lowest band in the calculation.
+      type: int
+      extent: [2]
+      kind: dimensionless
+      recommended-unit: null
+      values:
+        minimum: 1
+        examples: [[35, 70]]
+      repeatable: false
+    - name: number-of-bands
+      required: false
+      description: >-
+        The number of bands in the sum over states of the self-energy, which runs over bands 1 to
+        number-of-bands. It is at least the last band of band-range.
+      type: int
+      extent: []
+      kind: dimensionless
+      recommended-unit: null
+      values:
+        minimum: 1
+      repeatable: false
+    - name: band-terminator
+      required: false
+      description: >-
+        The method used to approximate the contribution of the bands left out of the sum over states of the
+        self-energy.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [None, Bruneval-Gonze]
+        note: >-
+          "None" – No correction; the sum stops at its last band. "Bruneval-Gonze" – The bands left out are
+          replaced by one effective energy (the extrapolar approximation).
+      repeatable: false
   - name: bse-hamiltonian
     required: false
     description: >-
