@@ -992,7 +992,17 @@ record or marked PROPOSED, NOT DECIDED.
    gw-bands PR. PROPOSED, NOT DECIDED (for that PR): an optional string `band-terminator`, open terms None
    and Bruneval-Gonze, its definition citing Bruneval and Gonze (2008), placed beside the band counts it
    corrects (response-basis-size for the polarization sum, Yambo XTermKind; gw-bands or the self-energy band
-   range, Yambo GTermKind); confirm the reading with the reviewer.
+   range, Yambo GTermKind); confirm the reading with the reviewer. (Superseded: decided by 0071.)
+   Self-energy bands by 0071 (ruling 2026-11-17, from reviewer feedback: codes give the corrected bands as a
+   range, e.g. 35 to 70, and sum different numbers of bands for W and G, e.g. 500 and 600): mbpt gw-bands is
+   replaced by an optional container `self-energy` (note "Give it when `type` is GW or GW/BSE.") holding
+   band-range (int [2], first and last corrected band, counted from 1 at the lowest band in the
+   calculation), number-bands (the bands in the self-energy's sum over states; band-range's last band does
+   not exceed it) and band-terminator (open terms None, Bruneval-Gonze, the extrapolar approximation of
+   Bruneval and Gonze 2008); dielectric-matrix gains the same band-terminator after response-basis-size,
+   which already holds the polarizability's count; the sums stay counts, not ranges; Bruneval-Gonze is
+   not a coulomb-truncation term. No released instance breaks. PROPOSED, NOT DECIDED (0071): whether the
+   step 9 validator checks band-range against number-bands.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
