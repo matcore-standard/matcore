@@ -21,6 +21,14 @@
             48,
             1
           ]
+        },
+        "self-energy": {
+          "band-range": [
+            3,
+            4
+          ],
+          "number-of-bands": 200,
+          "band-terminator": "Bruneval-Gonze"
         }
       }
     ]

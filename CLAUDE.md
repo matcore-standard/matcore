@@ -331,7 +331,9 @@ record or marked PROPOSED, NOT DECIDED.
      evGW added, GW followed by BSE one computation of type GW/BSE (0070); dft xc-functional › name is
      given without a Hubbard correction (PBE, not PBE+U), DFT+U being calculation-physics On-site
      correlation (review 2026-11-16); mbpt dielectric-matrix's typed fields filled, its plane-wave cutoff
-     described as set separately from the wavefunction cutoff (step 5).
+     described as set separately from the wavefunction cutoff (step 5); mbpt gw-bands is replaced by a
+     self-energy container of band-range, number-of-bands and band-terminator, and dielectric-matrix gains
+     band-terminator (0071).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -969,7 +971,7 @@ record or marked PROPOSED, NOT DECIDED.
    is given as calculation-physics "On-site correlation"." [done, PR #113 merged
    2026-11-16] schema/dft.yaml, tests/test_dft_rulings.py (a new test; the 0051
    test checks its sentence with `in` instead of `endswith`), 03-dft regenerated.
-   [in progress, branch mbpt-dielectric-matrix, committed, awaiting push and PR] mbpt dielectric-matrix
+   [done, PR #114 merged 2026-11-17] mbpt dielectric-matrix
    (step 5): planewave-basis-cutoff value + unit (Energy, recommended eV, minimum 0; 0001 A5);
    localized-orbital-basis-set a string (example cc-pV6Z; stray space before the period removed); frequency
    and coulomb-truncation strings with the baseline's open terms, each defined in a note drafted in this PR
@@ -992,7 +994,26 @@ record or marked PROPOSED, NOT DECIDED.
    gw-bands PR. PROPOSED, NOT DECIDED (for that PR): an optional string `band-terminator`, open terms None
    and Bruneval-Gonze, its definition citing Bruneval and Gonze (2008), placed beside the band counts it
    corrects (response-basis-size for the polarization sum, Yambo XTermKind; gw-bands or the self-energy band
-   range, Yambo GTermKind); confirm the reading with the reviewer.
+   range, Yambo GTermKind); confirm the reading with the reviewer. (Superseded: decided by 0071.)
+   Self-energy bands by 0071 (ruling 2026-11-17, from reviewer feedback: codes give the corrected bands as a
+   range, e.g. 35 to 70, and sum different numbers of bands for W and G, e.g. 500 and 600): mbpt gw-bands is
+   replaced by an optional container `self-energy` (note "Give it when `type` is GW or GW/BSE.") holding
+   band-range (int [2], first and last corrected band, counted from 1 at the lowest band in the
+   calculation), number-of-bands (renamed from number-bands by the 0071 amendment; the bands in the self-energy's sum over states; band-range's last band does
+   not exceed it) and band-terminator (open terms None, Bruneval-Gonze, the extrapolar approximation of
+   Bruneval and Gonze 2008); dielectric-matrix gains the same band-terminator after response-basis-size,
+   which already holds the polarizability's count; the sums stay counts, not ranges; Bruneval-Gonze is
+   not a coulomb-truncation term. No released instance breaks. PROPOSED, NOT DECIDED (0071): whether the
+   step 9 validator checks band-range against number-of-bands.
+   [in progress, branch mbpt-self-energy, committed, awaiting push and PR] mbpt self-energy by 0071 (step 5,
+   in place of gw-bands): schema/mbpt.yaml (self-energy container after dielectric-matrix; band-terminator in
+   dielectric-matrix after response-basis-size; gw-bands and its legacy_* deleted); examples/mbpt.json gives
+   band-range [3, 4] (QPkrange), number-of-bands 200 (GbndRnge) and band-terminator Bruneval-Gonze (GTermKind
+   "BG"), from Yambo input ppa_48kp.in of Materials Cloud 2023.92; tests/test_computations.py (a new test;
+   two name lists updated); 05-mbpt regenerated.
+   Decided in review 2026-11-17 (0071 amendment): number-bands renamed number-of-bands, its description "the
+   sum runs over bands 1 to number-of-bands", band numbering stated once in band-range; band-terminator's
+   note names the extrapolar approximation without a citation, as no other term cites a paper.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
