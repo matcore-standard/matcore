@@ -710,3 +710,43 @@ def test_mbpt_method_gives_each_stage_its_own_self_consistency():
     assert not any(k.startswith('legacy_') for s in [m, *m['subproperties']] for k in s)
     example = json.loads((ROOT / 'examples/mbpt.json').read_text(encoding='utf-8'))['mbpt']
     assert example['settings'][0]['mbpt-method'] == {'type': 'GW', 'gw-self-consistency': 'G0W0'}
+
+
+FREQUENCY_TREATMENTS = ['Hybertsen-Louie', 'Godby-Needs', 'Full frequency real axis', 'Full frequency imaginary axis',
+                        'Contour deformation', 'Spacetime']
+COULOMB_TRUNCATIONS = ['Ismail-Beigi', 'Rozzi', 'Spencer-Alavi']
+
+
+def test_mbpt_dielectric_matrix_is_typed():
+    """The dielectric cutoff is an Energy with a unit like any other cutoff (0001 A5), and it is not the wavefunction
+    cutoff: codes set it apart and lower (VASP ENCUTGW, ABINIT ecuteps, Yambo NGsBlkXp), so a reader must not copy
+    dft kinetic-energy-cutoff into it. Exactly one of the two basis properties is given (0011 item 3)."""
+    d = sub(top('mbpt', 'settings'), 'dielectric-matrix')
+    assert (d['type'], d['required'], d['repeatable']) == (None, True, False)
+    assert [(s['name'], s['required']) for s in d['subproperties']] == [
+        ('planewave-basis-cutoff', False), ('localized-orbital-basis-set', False), ('frequency', False),
+        ('response-basis-size', False), ('q-points', True), ('coulomb-truncation', False)]
+    cutoff = sub(d, 'planewave-basis-cutoff')
+    value = sub(cutoff, 'value')
+    assert (value['type'], value['kind'], value['recommended-unit'], value['values']) == (
+        'float', 'Energy', 'eV', {'minimum': 0})
+    assert 'same as the kinetic energy cutoff' not in cutoff['description']
+    assert 'kinetic-energy-cutoff' in cutoff['description']
+    exclusive = 'Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.'
+    assert cutoff['notes'] == [exclusive]
+    basis = sub(d, 'localized-orbital-basis-set')
+    assert shape(basis) == (False, False, 'string', [], 'inapplicable', None)
+    assert basis['notes'] == [exclusive]
+    for name, terms in [('frequency', FREQUENCY_TREATMENTS), ('coulomb-truncation', COULOMB_TRUNCATIONS)]:
+        s = sub(d, name)
+        assert shape(s) == (False, False, 'string', [], 'inapplicable', None)
+        assert s['values']['terms'] == terms
+        note = ' '.join(s['values']['note'].split())
+        assert list(dict(re.findall(r'"([^"]+)" – (.*?)(?= "[^"]+" – |$)', note))) == terms
+    for name, extent in [('response-basis-size', []), ('q-points', [3])]:
+        s = sub(d, name)
+        assert (s['type'], s['extent'], s['kind'], s['values']['minimum']) == ('int', extent, 'dimensionless', 1)
+    assert not any(k.startswith('legacy_') for s in [d, *d['subproperties']] for k in s)
+    example = json.loads((ROOT / 'examples/mbpt.json').read_text(encoding='utf-8'))['mbpt']
+    assert example['settings'][0]['dielectric-matrix']['planewave-basis-cutoff'] == {'value': 12.0, 'unit': 'Ry'}
+    assert example['settings'][0]['dielectric-matrix']['q-points'] == [48, 48, 1]
