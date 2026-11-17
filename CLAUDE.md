@@ -1005,7 +1005,7 @@ record or marked PROPOSED, NOT DECIDED.
    which already holds the polarizability's count; the sums stay counts, not ranges; Bruneval-Gonze is
    not a coulomb-truncation term. No released instance breaks. PROPOSED, NOT DECIDED (0071): whether the
    step 9 validator checks band-range against number-of-bands.
-   [in progress, branch mbpt-self-energy, committed, awaiting push and PR] mbpt self-energy by 0071 (step 5,
+   [done, PR #115 merged 2026-11-17] mbpt self-energy by 0071 (step 5,
    in place of gw-bands): schema/mbpt.yaml (self-energy container after dielectric-matrix; band-terminator in
    dielectric-matrix after response-basis-size; gw-bands and its legacy_* deleted); examples/mbpt.json gives
    band-range [3, 4] (QPkrange), number-of-bands 200 (GbndRnge) and band-terminator Bruneval-Gonze (GTermKind
