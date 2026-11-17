@@ -969,7 +969,7 @@ record or marked PROPOSED, NOT DECIDED.
    is given as calculation-physics "On-site correlation"." [done, PR #113 merged
    2026-11-16] schema/dft.yaml, tests/test_dft_rulings.py (a new test; the 0051
    test checks its sentence with `in` instead of `endswith`), 03-dft regenerated.
-   [in progress, branch mbpt-dielectric-matrix, committed, awaiting push and PR] mbpt dielectric-matrix
+   [done, PR #114 merged 2026-11-17] mbpt dielectric-matrix
    (step 5): planewave-basis-cutoff value + unit (Energy, recommended eV, minimum 0; 0001 A5);
    localized-orbital-basis-set a string (example cc-pV6Z; stray space before the period removed); frequency
    and coulomb-truncation strings with the baseline's open terms, each defined in a note drafted in this PR
