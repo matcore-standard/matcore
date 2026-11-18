@@ -54,7 +54,7 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   `any` when the shape is not fixed by the schema. In prose write `[:]` without quotes.
 - `any` (for type, extent or kind) means the schema leaves the field open and something else fixes it:
   the instance (generic parameters) or a required enumerated subproperty (e.g. `criterion` for the SCF
-  tolerance, `basis` for exciton-momentum).
+  tolerance; `basis` for exciton-momentum before 0072 made it fractional).
   PROPOSED, NOT DECIDED: a field such as `determined-by: criterion` naming what fixes an `any`, so the
   validator can check that the subproperty exists and is required.
 - `kind`: a key of units.yaml#kinds, or reserved `dimensionless` | `inapplicable` | `any`.
@@ -67,7 +67,8 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
 - `convention`: an optional property field in meta-schema.yaml, rendered by build_docs.py but
   used by no property; the units model below expresses conventions as subproperties instead.
   PROPOSED, NOT DECIDED: remove the field, or define its use, when the next convention-like
-  property comes up (mbpt exciton-momentum's `basis`).
+  property comes up (mbpt exciton-momentum's `basis`). (Superseded in part: 0072 gives
+  exciton-momentum no `basis`; the field waits for the next convention-like property.)
 - `values`: structured; replaces the old prose "Values" (0002). Null or a mapping of `terms` (open
   vocabulary: unlisted strings conform, reported as user-specified, near-misses as possible typos),
   `enum` (closed list), `minimum`/`maximum` (inclusive), `format` (a JSON Schema 2020-12 format
@@ -142,11 +143,12 @@ Every `unit` subproperty has kind inapplicable and holds an Annex U symbol or `d
 and 2, and the `unit` beside any other `value` of kind any (dft SCF tolerance, 0019); group 3 and all
 other typed properties use Annex U symbols only (0001 A1.1).
 PROPOSED, NOT DECIDED: state conditional validation rules (the allowed unit or values of one
-subproperty depend on another's value: `basis` for exciton-momentum, `scaling` for PF lengths and
+subproperty depend on another's value: `scaling` for PF lengths and
 times) once in §1.3, so each property refers to the rule rather than restating it. Needs a decision
-before implementation, when the first such property comes up (mbpt exciton-momentum); whether
+before implementation, when the first such property comes up; whether
 0013's `depends-on`/`cases` can express it is part of that decision. (dft k-point-spacing, the
-first candidate, is removed: 0004 item 47.)
+first candidate, is removed: 0004 item 47; mbpt exciton-momentum, the second, is fractional with no
+`basis`: 0072.)
 Group 1 is defined once in §1.3 as a *generic parameter* (0016): a container of `name*`, `value*`
 (type, extent and kind any), `unit*` (fixed description "The unit in which the associated value is
 expressed." (0001 B9) and the A3.2 note) and `description`, in that order. It is recognised by a
@@ -1014,6 +1016,20 @@ record or marked PROPOSED, NOT DECIDED.
    Decided in review 2026-11-17 (0071 amendment): number-bands renamed number-of-bands, its description "the
    sum runs over bands 1 to number-of-bands", band numbering stated once in band-range; band-terminator's
    note names the extrapolar approximation without a citation, as no other term cites a paper.
+   [in progress, branch mbpt-bse-hamiltonian, nothing changed yet] mbpt bse-hamiltonian (step 5). Cross-check
+   2026-11-17: names, definitions, terms and repeatable match the .docx; exciton-momentum's Values text was
+   changed by 0001 B3 (step 4, intended); the description lacks its final period (as in the .docx); the
+   source dataset (Materials Cloud 2023.92) has no BSE input, so examples/mbpt.json stays GW only. Decided
+   by the human 2026-11-17: number-valence-bands and number-conduction-bands stay counts from the valence
+   band top and the conduction band bottom, "corrected" becoming "included"; diagonalization keeps
+   Tamm-Dancoff and Full diagonalization, defined in a note as the approximation (coupling block dropped or
+   kept), the solver not recorded.
+   Exciton momentum by 0072 (ruling 2026-11-17, amending 0001 A5): exciton-momentum is a float [3]
+   dimensionless leaf, no unit, in fractions of the reciprocal lattice vectors of minimal conditions ›
+   cell (as k-point-mesh, 0059); a note gives Q = Q₁b₁ + Q₂b₂ + Q₃b₃, [0, 0, 0] the optical limit, and
+   that it is the exciton's momentum, not a code's input shift (BerkeleyGW's exciton_Q_shift is −Q). A5's
+   basis, unit and 2π convention are declined, so no conditional rule is needed yet. No released
+   instance breaks.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
