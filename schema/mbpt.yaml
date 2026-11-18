@@ -292,101 +292,106 @@ properties:
       A collective descriptor for the parameters defining the construction, dimensionality, and solution
       method of the effective excitonic Bethe-Salpeter Hamiltonian that is being solved in a BSE calculation.
       It characterizes the Hilbert space size and the physical constraints (momentum and spin) applied during
-      the diagonalization
+      the diagonalization.
     type: null
     extent: null
     kind: null
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: Contains SubProperties as listed below.
+    notes:
+    - 'Note: Give it when `type` is BSE or GW/BSE.'
     subproperties:
     - name: number-valence-bands
       required: false
       description: Number of valence bands included in the BSE Hamiltonian.
-      type: null
-      extent: null
-      kind: null
+      type: int
+      extent: []
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        minimum: 1
+        note: Counted downward from the valence band top.
       repeatable: false
-      legacy_values: >-
-        One integer specifying how many valence bands are corrected, counting from the valence band top.
-      legacy_unit: dimensionless
     - name: number-conduction-bands
       required: false
       description: Number of conduction bands included in the BSE Hamiltonian.
-      type: null
-      extent: null
-      kind: null
+      type: int
+      extent: []
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        minimum: 1
+        note: Counted upward from the conduction band bottom.
       repeatable: false
-      legacy_values: >-
-        One integer specifying how many bands are corrected, counting from the conduction band bottom.
-      legacy_unit: dimensionless
     - name: k-point-mesh
       required: false
       description: Brillouin zone grid used for building the BSE Hamiltonian.
-      type: null
-      extent: null
-      kind: null
+      type: int
+      extent: [3]
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        minimum: 1
+        note: >-
+          The number of points along each reciprocal lattice vector of the cell in minimal `conditions ›
+          cell`.
       repeatable: false
-      legacy_values: >-
-        Ordered list of 3 integer numbers containing the number points along the reciprocal lattice vector
-        directions.
-      legacy_unit: dimensionless
     - name: exciton-momentum
       required: false
       description: Crystal momentum of the exciton in the BSE calculation.
-      type: null
-      extent: null
-      kind: null
+      type: float
+      extent: [3]
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        examples:
+        - [0.5, 0.5, 1.0]
+        note: >-
+          The exciton's center-of-mass crystal momentum Q = Q₁b₁ + Q₂b₂ + Q₃b₃, where b₁, b₂, b₃ are the
+          reciprocal lattice vectors of the cell in minimal `conditions › cell`; the value gives Q₁, Q₂, Q₃.
+          [0, 0, 0] is the optical limit. Give the exciton's momentum, not an input shift that a code may
+          define with the opposite sign.
       repeatable: false
-      legacy_values: >-
-        Ordered list of 3 real values containing the crystal momentum in fractions of the reciprocal
-        lattice vectors (dimensionless), e.g. [0.5,0.5,1.0].
-      legacy_unit: dimensionless
     - name: exciton-multiplicity
       required: false
       description: >-
         Specification whether the BSE calculation is performed for singlet or triplet excitons.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Singlet, Triplet]
+        note: >-
+          "Singlet" – Spin-singlet excitons; the kernel includes the exchange term. "Triplet" – Spin-triplet
+          excitons; the exchange term vanishes.
       repeatable: false
-      legacy_values: >-
-        string containing one of the values: "Singlet" "Triplet" Other user-specified value if none of the
-        above apply.
     - name: diagonalization
       required: false
       description: Approximation method used to diagonalize the BSE Hamiltonian.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Tamm-Dancoff, Full diagonalization]
+        note: >-
+          "Tamm-Dancoff" – Only the resonant block of the Hamiltonian is kept; its coupling to the
+          antiresonant block is neglected. "Full diagonalization" – The resonant and antiresonant blocks and
+          the coupling between them are kept. The term names the approximation, not the solver (direct or
+          iterative).
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "Tamm-Dancoff" "Full diagonalization" Other user-specified
-        value if none of the above apply.
     - name: number-lowest-eigenvalues
       required: false
       description: Number of lowest eigenvalues computed by solving the BSE Hamiltonian.
-      type: null
-      extent: null
-      kind: null
+      type: int
+      extent: []
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        minimum: 1
       repeatable: false
-      legacy_values: One integer containing the number of BSE eigenvalues.
-      legacy_unit: dimensionless
   - name: bse-kernel-truncation
     required: false
     description: >-

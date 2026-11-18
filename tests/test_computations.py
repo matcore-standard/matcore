@@ -781,3 +781,34 @@ def test_mbpt_self_energy_separates_corrected_bands_from_summed_bands():
     assert 'Bruneval-Gonze' not in sub(d, 'coulomb-truncation')['values']['terms']
     example = json.loads((ROOT / 'examples/mbpt.json').read_text(encoding='utf-8'))['mbpt']['settings'][0]
     assert example['self-energy'] == {'band-range': [3, 4], 'number-of-bands': 200, 'band-terminator': 'Bruneval-Gonze'}
+
+
+def test_mbpt_bse_hamiltonian_is_typed():
+    """The BSE Hamiltonian's band counts start at the gap edges, its exciton momentum is fractional so it needs
+    no unit or 2π convention (0072), and diagonalization names the approximation, not the solver."""
+    settings = top('mbpt', 'settings')
+    h = sub(settings, 'bse-hamiltonian')
+    assert h['notes'] == ['Note: Give it when `type` is BSE or GW/BSE.']
+    assert h['description'].endswith('diagonalization.')
+    for name, edge in [('number-valence-bands', 'valence band top'),
+                       ('number-conduction-bands', 'conduction band bottom')]:
+        p = sub(h, name)
+        assert shape(p) == (False, False, 'int', [], 'dimensionless', None)
+        assert p['values']['minimum'] == 1
+        assert edge in ' '.join(p['values']['note'].split()) and 'corrected' not in p['values']['note']
+    mesh = sub(h, 'k-point-mesh')
+    assert shape(mesh) == (False, False, 'int', [3], 'dimensionless', None)
+    q = sub(h, 'exciton-momentum')
+    assert shape(q) == (False, False, 'float', [3], 'dimensionless', None)
+    assert 'subproperties' not in q
+    note = ' '.join(q['values']['note'].split())
+    assert 'conditions › cell' in note and 'Q₁b₁ + Q₂b₂ + Q₃b₃' in note
+    multiplicity = sub(h, 'exciton-multiplicity')
+    assert shape(multiplicity) == (False, False, 'string', [], 'inapplicable', None)
+    assert multiplicity['values']['terms'] == ['Singlet', 'Triplet']
+    diag = sub(h, 'diagonalization')
+    assert diag['values']['terms'] == ['Tamm-Dancoff', 'Full diagonalization']
+    assert 'coupling' in diag['values']['note']
+    n = sub(h, 'number-lowest-eigenvalues')
+    assert shape(n) == (False, False, 'int', [], 'dimensionless', None)
+    assert not any(k.startswith('legacy_') for p in [h, *h['subproperties']] for k in p)
