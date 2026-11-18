@@ -336,7 +336,8 @@ record or marked PROPOSED, NOT DECIDED.
      described as set separately from the wavefunction cutoff (step 5); mbpt gw-bands is replaced by a
      self-energy container of band-range, number-of-bands and band-terminator, and dielectric-matrix gains
      band-terminator (0071); mbpt bse-hamiltonian's typed fields filled, exciton-momentum given in fractions
-     of the reciprocal lattice vectors with no unit (0072; step 5).
+     of the reciprocal lattice vectors with no unit (0072; step 5); mbpt bse-kernel-truncation's typed fields
+     filled with coulomb-truncation's terms, mbpt is complete (step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1035,7 +1036,7 @@ record or marked PROPOSED, NOT DECIDED.
    that it is the exciton's momentum, not a code's input shift (BerkeleyGW's exciton_Q_shift is −Q). A5's
    basis, unit and 2π convention are declined, so no conditional rule is needed yet. No released
    instance breaks.
-   [in progress, branch mbpt-bse-kernel-truncation, committed, awaiting push and PR] mbpt bse-kernel-truncation
+   [done, PR #117 merged 2026-11-17] mbpt bse-kernel-truncation
    (step 5): cross-check 2026-11-17, description and terms match the .docx; a string with dielectric-matrix ›
    coulomb-truncation's terms and definitions (Ismail-Beigi, Rozzi, Spencer-Alavi), locked equal by a test, and
    the note "Give it when `type` is BSE or GW/BSE." (judgment call); legacy_* deleted; mbpt is complete and
