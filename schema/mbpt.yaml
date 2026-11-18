@@ -9,6 +9,7 @@ examples:
   - caption: MBPT Method-Specific Metadata
     file: mbpt.json
     source: https://archive.materialscloud.org/record/2023.92
+legacy_complete: true
 properties:
 - name: settings
   required: true
@@ -397,12 +398,16 @@ properties:
     description: >-
       Method used to eliminate long-range Coulomb interactions between periodic replicas in the BSE Coulomb
       kernel.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      terms: [Ismail-Beigi, Rozzi, Spencer-Alavi]
+      note: >-
+        "Ismail-Beigi" – Truncation for systems periodic in one or two dimensions (wires, slabs). "Rozzi" –
+        Exact cutoff for systems periodic in zero, one or two dimensions (molecules, wires, slabs).
+        "Spencer-Alavi" – Truncation of the Coulomb interaction beyond a sphere.
     repeatable: false
-    legacy_values: >-
-      String containing one of the following values: "Ismail-Beigi" "Rozzi" "Spencer-Alavi" Other user-specified
-      value if none of the above apply.
+    notes:
+    - 'Note: Give it when `type` is BSE or GW/BSE.'

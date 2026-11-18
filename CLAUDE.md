@@ -1035,6 +1035,12 @@ record or marked PROPOSED, NOT DECIDED.
    that it is the exciton's momentum, not a code's input shift (BerkeleyGW's exciton_Q_shift is −Q). A5's
    basis, unit and 2π convention are declined, so no conditional rule is needed yet. No released
    instance breaks.
+   [in progress, branch mbpt-bse-kernel-truncation, committed, awaiting push and PR] mbpt bse-kernel-truncation
+   (step 5): cross-check 2026-11-17, description and terms match the .docx; a string with dielectric-matrix ›
+   coulomb-truncation's terms and definitions (Ismail-Beigi, Rozzi, Spencer-Alavi), locked equal by a test, and
+   the note "Give it when `type` is BSE or GW/BSE." (judgment call); legacy_* deleted; mbpt is complete and
+   declares `legacy_complete: true`; tests/test_build_docs.py's --show-legacy check moves from mbpt to ml;
+   05-mbpt regenerated; examples/mbpt.json unchanged. Next: ml.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
