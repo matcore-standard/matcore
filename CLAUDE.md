@@ -335,7 +335,8 @@ record or marked PROPOSED, NOT DECIDED.
      correlation (review 2026-11-16); mbpt dielectric-matrix's typed fields filled, its plane-wave cutoff
      described as set separately from the wavefunction cutoff (step 5); mbpt gw-bands is replaced by a
      self-energy container of band-range, number-of-bands and band-terminator, and dielectric-matrix gains
-     band-terminator (0071).
+     band-terminator (0071); mbpt bse-hamiltonian's typed fields filled, exciton-momentum given in fractions
+     of the reciprocal lattice vectors with no unit (0072; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1016,7 +1017,7 @@ record or marked PROPOSED, NOT DECIDED.
    Decided in review 2026-11-17 (0071 amendment): number-bands renamed number-of-bands, its description "the
    sum runs over bands 1 to number-of-bands", band numbering stated once in band-range; band-terminator's
    note names the extrapolar approximation without a citation, as no other term cites a paper.
-   [in progress, branch mbpt-bse-hamiltonian, committed, awaiting push and PR] mbpt bse-hamiltonian (step 5):
+   [done, PR #116 merged 2026-11-17] mbpt bse-hamiltonian (step 5):
    typed fields filled by the rulings below and 0072, legacy_* deleted, the container noted "Give it when
    `type` is BSE or GW/BSE.", k-point-mesh read against minimal conditions › cell (0059), exciton-multiplicity
    and diagonalization terms defined in notes drafted in this PR (judgment calls); test in
