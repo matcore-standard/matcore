@@ -279,11 +279,13 @@ Recommended: `None`, `Bruneval-Gonze`. Other values are allowed.
 <details class="note mc-property" id="mbpt.settings.bse-hamiltonian" markdown="1">
 <summary><span class="mc-name">bse-hamiltonian</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-A collective descriptor for the parameters defining the construction, dimensionality, and solution method of the effective excitonic Bethe-Salpeter Hamiltonian that is being solved in a BSE calculation. It characterizes the Hilbert space size and the physical constraints (momentum and spin) applied during the diagonalization
+A collective descriptor for the parameters defining the construction, dimensionality, and solution method of the effective excitonic Bethe-Salpeter Hamiltonian that is being solved in a BSE calculation. It characterizes the Hilbert space size and the physical constraints (momentum and spin) applied during the diagonalization.
 
 | Required | Repeatable |
 |---|---|
 | no | no |
+
+Note: Give it when `type` is BSE or GW/BSE.
 
 <details class="note mc-property" id="mbpt.settings.bse-hamiltonian.number-valence-bands" markdown="1">
 <summary><span class="mc-name">number-valence-bands</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -292,11 +294,11 @@ Number of valence bands included in the BSE Hamiltonian.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | int | [] | dimensionless | — |
 
-<span class='legacy'>Legacy: One integer specifying how many valence bands are corrected, counting from the valence band top.</span>
+Minimum: 1.
 
-<span class='legacy'>Legacy unit: dimensionless</span>
+**Clarifications:** Counted downward from the valence band top.
 
 </details>
 
@@ -307,11 +309,11 @@ Number of conduction bands included in the BSE Hamiltonian.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | int | [] | dimensionless | — |
 
-<span class='legacy'>Legacy: One integer specifying how many bands are corrected, counting from the conduction band bottom.</span>
+Minimum: 1.
 
-<span class='legacy'>Legacy unit: dimensionless</span>
+**Clarifications:** Counted upward from the conduction band bottom.
 
 </details>
 
@@ -322,11 +324,11 @@ Brillouin zone grid used for building the BSE Hamiltonian.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | int | [3] | dimensionless | — |
 
-<span class='legacy'>Legacy: Ordered list of 3 integer numbers containing the number points along the reciprocal lattice vector directions.</span>
+Minimum: 1, for each component.
 
-<span class='legacy'>Legacy unit: dimensionless</span>
+**Clarifications:** The number of points along each reciprocal lattice vector of the cell in minimal `conditions › cell`.
 
 </details>
 
@@ -337,11 +339,11 @@ Crystal momentum of the exciton in the BSE calculation.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | float | [3] | dimensionless | — |
 
-<span class='legacy'>Legacy: Ordered list of 3 real values containing the crystal momentum in fractions of the reciprocal lattice vectors (dimensionless), e.g. [0.5,0.5,1.0].</span>
+Examples: `[0.5, 0.5, 1.0]`.
 
-<span class='legacy'>Legacy unit: dimensionless</span>
+**Clarifications:** The exciton's center-of-mass crystal momentum Q = Q₁b₁ + Q₂b₂ + Q₃b₃, where b₁, b₂, b₃ are the reciprocal lattice vectors of the cell in minimal `conditions › cell`; the value gives Q₁, Q₂, Q₃. [0, 0, 0] is the optical limit. Give the exciton's momentum, not an input shift that a code may define with the opposite sign.
 
 </details>
 
@@ -352,9 +354,11 @@ Specification whether the BSE calculation is performed for singlet or triplet ex
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: string containing one of the values: "Singlet" "Triplet" Other user-specified value if none of the above apply.</span>
+Recommended: `Singlet`, `Triplet`. Other values are allowed.
+
+**Clarifications:** "Singlet" – Spin-singlet excitons; the kernel includes the exchange term. "Triplet" – Spin-triplet excitons; the exchange term vanishes.
 
 </details>
 
@@ -365,9 +369,11 @@ Approximation method used to diagonalize the BSE Hamiltonian.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Tamm-Dancoff" "Full diagonalization" Other user-specified value if none of the above apply.</span>
+Recommended: `Tamm-Dancoff`, `Full diagonalization`. Other values are allowed.
+
+**Clarifications:** "Tamm-Dancoff" – Only the resonant block of the Hamiltonian is kept; its coupling to the antiresonant block is neglected. "Full diagonalization" – The resonant and antiresonant blocks and the coupling between them are kept. The term names the approximation, not the solver (direct or iterative).
 
 </details>
 
@@ -378,11 +384,9 @@ Number of lowest eigenvalues computed by solving the BSE Hamiltonian.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | int | [] | dimensionless | — |
 
-<span class='legacy'>Legacy: One integer containing the number of BSE eigenvalues.</span>
-
-<span class='legacy'>Legacy unit: dimensionless</span>
+Minimum: 1.
 
 </details>
 

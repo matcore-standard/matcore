@@ -1016,7 +1016,11 @@ record or marked PROPOSED, NOT DECIDED.
    Decided in review 2026-11-17 (0071 amendment): number-bands renamed number-of-bands, its description "the
    sum runs over bands 1 to number-of-bands", band numbering stated once in band-range; band-terminator's
    note names the extrapolar approximation without a citation, as no other term cites a paper.
-   [in progress, branch mbpt-bse-hamiltonian, nothing changed yet] mbpt bse-hamiltonian (step 5). Cross-check
+   [in progress, branch mbpt-bse-hamiltonian, committed, awaiting push and PR] mbpt bse-hamiltonian (step 5):
+   typed fields filled by the rulings below and 0072, legacy_* deleted, the container noted "Give it when
+   `type` is BSE or GW/BSE.", k-point-mesh read against minimal conditions › cell (0059), exciton-multiplicity
+   and diagonalization terms defined in notes drafted in this PR (judgment calls); test in
+   tests/test_computations.py; 05-mbpt regenerated. Next: bse-kernel-truncation, then mbpt is complete. Cross-check
    2026-11-17: names, definitions, terms and repeatable match the .docx; exciton-momentum's Values text was
    changed by 0001 B3 (step 4, intended); the description lacks its final period (as in the .docx); the
    source dataset (Materials Cloud 2023.92) has no BSE input, so examples/mbpt.json stays GW only. Decided
