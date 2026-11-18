@@ -812,3 +812,15 @@ def test_mbpt_bse_hamiltonian_is_typed():
     n = sub(h, 'number-lowest-eigenvalues')
     assert shape(n) == (False, False, 'int', [], 'dimensionless', None)
     assert not any(k.startswith('legacy_') for p in [h, *h['subproperties']] for k in p)
+
+
+def test_mbpt_bse_kernel_truncation_matches_the_dielectric_truncation():
+    """The BSE kernel and the dielectric matrix truncate the same Coulomb interaction, so they share terms and
+    definitions; with it filled, mbpt holds no legacy text (0004 item 36)."""
+    settings = top('mbpt', 'settings')
+    k = sub(settings, 'bse-kernel-truncation')
+    c = sub(sub(settings, 'dielectric-matrix'), 'coulomb-truncation')
+    assert shape(k) == (False, False, 'string', [], 'inapplicable', None)
+    assert k['values'] == c['values']
+    assert k['notes'] == ['Note: Give it when `type` is BSE or GW/BSE.']
+    assert section('mbpt')['legacy_complete'] is True

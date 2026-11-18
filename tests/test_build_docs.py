@@ -262,9 +262,9 @@ def test_main_writes_every_page_and_honours_the_flag(tmp_path):
     build_docs.main(['--out', str(tmp_path)])
     names = sorted(p.name for p in tmp_path.iterdir())
     assert names == sorted(list(build_docs.PAGES.values()) + ['annex-i-identifiers.md', 'annex-u-units.md', 'index.md', 'revision-history.md'])
-    assert 'Legacy:' not in (tmp_path / '05-mbpt.md').read_text()  # mbpt still holds legacy text
+    assert 'Legacy:' not in (tmp_path / '06-ml.md').read_text()  # ml still holds legacy text
     build_docs.main(['--out', str(tmp_path), '--show-legacy'])
-    assert 'Legacy:' in (tmp_path / '05-mbpt.md').read_text()
+    assert 'Legacy:' in (tmp_path / '06-ml.md').read_text()
 
 
 def test_every_section_has_a_well_formed_example():

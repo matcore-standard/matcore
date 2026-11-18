@@ -399,9 +399,13 @@ Method used to eliminate long-range Coulomb interactions between periodic replic
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
+| no | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String containing one of the following values: "Ismail-Beigi" "Rozzi" "Spencer-Alavi" Other user-specified value if none of the above apply.</span>
+Recommended: `Ismail-Beigi`, `Rozzi`, `Spencer-Alavi`. Other values are allowed.
+
+**Clarifications:** "Ismail-Beigi" – Truncation for systems periodic in one or two dimensions (wires, slabs). "Rozzi" – Exact cutoff for systems periodic in zero, one or two dimensions (molecules, wires, slabs). "Spencer-Alavi" – Truncation of the Coulomb interaction beyond a sphere.
+
+Note: Give it when `type` is BSE or GW/BSE.
 
 </details>
 
