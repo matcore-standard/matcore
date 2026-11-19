@@ -351,7 +351,10 @@ record or marked PROPOSED, NOT DECIDED.
      unit) and applicability-domain (0073; step 5); a new ml inference describes how a dataset was produced
      from the model: input-data, conditioning, sampling-procedure, a generic inference-parameter,
      number-generated and filtering (0073); ml interpretability-method moves inside ml-model and is filled;
-     ml is complete (0073 amendment; step 5).
+     ml is complete (0073 amendment; step 5); pf's properties sit in `settings` blocks naming their
+     computations, physical-phenomena is renamed physical-phenomenon, free-energy free-energy-density (now
+     repeatable), driving-energy free-energy-density-term and domain-and-mesh domain, governing-equation › type
+     repeats, and mesh-type moves into numerical-method (0074).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1244,7 +1247,7 @@ record or marked PROPOSED, NOT DECIDED.
    solver terms; free-energy-density › unit dropping "or of the free energy"; temporal-discretization's Mixed and
    the spelling Crank-Nicolson; how a boundary condition names its boundary, and Fixed vs Dirichlet, Free vs
    Zero-Neumann; time-dependence vs minimal conditions › type (0036).
-   Ruling 0074 committed on main (e394bf7). [in progress, branch pf-structure, committed, awaiting push and PR]
+   Ruling 0074 committed on main (e394bf7). [done, PR #126 merged 2026-11-19]
    pf structure by 0074, no typed field filled: pf's properties in a required, repeatable `settings` whose
    first member is computation-label; physical-phenomena renamed physical-phenomenon, free-energy renamed
    free-energy-density and repeatable, driving-energy renamed free-energy-density-term, governing-equation ›
