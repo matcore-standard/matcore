@@ -9,6 +9,7 @@ examples:
   - caption: ML Method-Specific Metadata
     file: ml.json
     source: https://figshare.com/articles/dataset/WyFormer_generated_structures/29094701
+legacy_complete: true
 properties:
 - name: settings
   required: true
@@ -535,6 +536,21 @@ properties:
             E.g. the elements, structure types or range of compositions the training data cover, and how inputs
             outside them were identified (a distance in feature space, an uncertainty threshold).
         repeatable: false
+    - name: interpretability-method
+      required: false
+      description: >-
+        A technique used to understand the cause-and-effect relationships within the machine learning model's
+        inputs and outputs.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          The approach and results of the interpretability analysis, e.g. feature importance, global surrogate
+          models, LIME (Local Interpretable Model-agnostic Explanations), SHAP (SHapley Additive exPlanations)
+          or saliency maps.
+      repeatable: false
   - name: inference
     required: false
     description: How the dataset was produced from the machine learning model.
@@ -662,18 +678,3 @@ properties:
           pre-screen, with the fraction removed by each. Checks on the generated set (the fraction
           valid, unique or novel) are given here, as they describe the output, not the model.
       repeatable: false
-  - name: interpretability-method
-    required: false
-    description: >-
-      A technique used to understand the cause-and-effect relationships within the machine learning model's
-      inputs and outputs.
-    type: null
-    extent: null
-    kind: null
-    recommended-unit: null
-    values: null
-    repeatable: false
-    legacy_values: >-
-      A string containing details of the approach and results of the interpretability analysis (e.g. feature
-      importance, global surrogate models, LIME (Local Interpretable Model-agnostic Explanations), SHAP
-      (SHapley Additive exPlanations), Saliency Maps, etc.)

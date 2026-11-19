@@ -1215,6 +1215,13 @@ record or marked PROPOSED, NOT DECIDED.
    model-performance, since it explains the model, not how the dataset was produced; settings holds
    computation-label, ml-task, ml-model and inference. Applied in the interpretability-method PR, which
    also declares ml complete.
+   [in progress, branch ml-interpretability, committed, awaiting push and PR] ml interpretability-method
+   (step 5, 0073 amendment): moved inside ml-model after model-performance; a string whose note gives the
+   baseline's guidance (approach and results; feature importance, global surrogate models, LIME, SHAP,
+   saliency maps); legacy_* deleted; ml is complete and declares `legacy_complete: true`;
+   tests/test_computations.py (a new test; the structure test's lists updated); tests/test_build_docs.py's
+   --show-legacy check and tests/test_schema.py's legacy_complete check move from ml to pf, which still holds
+   legacy text; 06-ml regenerated; examples/ml.json unchanged. Next: pf.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
