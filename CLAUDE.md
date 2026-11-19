@@ -1182,6 +1182,16 @@ record or marked PROPOSED, NOT DECIDED.
    point to architecture-parameter); transfer-learning a string, the baseline's examples as a note;
    legacy_* deleted; tests/test_computations.py (a new test; the structure test's list gains
    loss-function); 06-ml regenerated; examples/ml.json unchanged (its source gives no training settings).
+   [in progress, branch ml-model-performance, committed, awaiting push and PR] ml ml-model, part 4 (step 5,
+   0073 item 6): evaluation-method* a repeatable string (as validation was), its note telling validation
+   (tuning, stopping) from testing; a new repeatable metric of subset* (terms Training, Validation, Test,
+   defined), quantity* (examples Formation energy, Forces), measure* (terms MAE, RMSE, R², Accuracy,
+   defined), value* (float, kind any) and unit* (the generic unit, as the dft SCF tolerance); uncertainty-
+   quantification a string whose note asks whether per-item uncertainties are in the dataset; a new
+   applicability-domain string; legacy_* deleted; tests/test_computations.py (a new test; the structure
+   test's list gains metric and applicability-domain); 06-ml regenerated; examples/ml.json unchanged.
+   Judgment calls: Accuracy added for classifiers; R² written with a superscript; evaluation-method stays
+   repeatable. Then interpretability-method, and inference, complete ml.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over

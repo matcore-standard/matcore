@@ -425,36 +425,116 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: Contains SubProperties as listed below.
       subproperties:
       - name: evaluation-method
         required: true
         description: >-
           A description of the approach used to determine the reliability of the obtained machine learning
           results.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            E.g. a hold-out test set or k-fold cross-validation. Validation data serve to tune the model's
+            hyperparameters or stop its training; test data, used for neither, assess it. The scores are metric
+            entries.
+        repeatable: true
+      - name: metric
+        required: false
+        description: A score of the machine learning model on one subset of the data.
         type: null
         extent: null
         kind: null
         recommended-unit: null
         values: null
         repeatable: true
-        legacy_values: >-
-          A string containing a description of the validation method used (e.g. k-fold cross-validation, hold-out
-          set, etc.) and associated validation measure (e.g. MAE, RMSE, R^2, etc.).
+        subproperties:
+        - name: subset
+          required: true
+          description: The data on which the score was measured.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [Training, Validation, Test]
+            note: >-
+              "Training" – The data the model's parameters were fitted to. "Validation" – Data used to tune
+              hyperparameters or to stop training. "Test" – Data used in neither, which assesses the model.
+          repeatable: false
+        - name: quantity
+          required: true
+          description: The target variable the score is for.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            examples: [Formation energy, Forces]
+          repeatable: false
+        - name: measure
+          required: true
+          description: The statistic used as the score.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [MAE, RMSE, R², Accuracy]
+            note: >-
+              "MAE" – Mean absolute error. "RMSE" – Root-mean-square error. "R²" – Coefficient of
+              determination. "Accuracy" – Fraction of correct predictions, for a classification.
+          repeatable: false
+        - name: value
+          required: true
+          description: The value of the property, in the unit given by `unit`.
+          type: float
+          extent: []
+          kind: any
+          recommended-unit: null
+          values: null
+          repeatable: false
+        - name: unit
+          required: true
+          description: The unit in which the associated value is expressed.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            note: >-
+              A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only
+              if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted
+              with a validation warning).
+          repeatable: false
       - name: uncertainty-quantification
         required: false
         description: >-
           The method or process used to identify and measure the range of possible outcomes to assess the
           reliability of machine learning model predictions.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            E.g. Bayesian methods, dropout, ensemble methods or a Gaussian process. Say whether an uncertainty
+            for each item is part of the dataset.
         repeatable: false
-        legacy_values: >-
-          A string containing a description of the method used to assess uncertainty of the machine learning
-          method outputs (e.g. Bayesian methods, dropout, ensemble methods, Gaussian process, etc.)
+      - name: applicability-domain
+        required: false
+        description: Where the inputs the model is applied to lie relative to its training data.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            E.g. the elements, structure types or range of compositions the training data cover, and how inputs
+            outside them were identified (a distance in feature space, an uncertainty threshold).
+        repeatable: false
   - name: interpretability-method
     required: false
     description: >-
