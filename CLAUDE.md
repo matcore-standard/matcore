@@ -340,7 +340,9 @@ record or marked PROPOSED, NOT DECIDED.
      filled with coulomb-truncation's terms, mbpt is complete (step 5); ml's properties sit in `settings`
      blocks naming their computations, ml-task is not repeatable, training-data, training-method and
      model-performance move into ml-model, training-hyperparameters is renamed hyperparameter and
-     validation evaluation-method (0073).
+     validation evaluation-method (0073); ml ml-task's type has the terms Property prediction, Structure
+     generation, Synthesis prediction, Ranking, Clustering and Embedding, an MLIP being described in pim
+     (0073; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1139,7 +1141,7 @@ record or marked PROPOSED, NOT DECIDED.
    (architecture-parameter, loss-function, metric, applicability-domain, inference) come in the property PRs.
    Then ml's properties in file order: ml-task, ml-model (perhaps one PR per member), inference,
    interpretability-method.
-   [in progress, branch ml-task, committed, awaiting push and PR] ml ml-task (step 5) by 0073 item 2: type a
+   [done, PR #119 merged 2026-11-19] ml ml-task (step 5) by 0073 item 2: type a
    string with open terms Property prediction, Structure generation, Synthesis prediction, Ranking,
    Clustering, Embedding, each defined in a note drafted in this PR (judgment calls; Structure generation
    includes crystal structure prediction for a given composition); a second note sends machine-learned
