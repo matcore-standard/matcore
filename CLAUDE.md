@@ -1125,6 +1125,17 @@ record or marked PROPOSED, NOT DECIDED.
    Structure generation) and then the step 5 property PRs in file order, each adding its new members.
    No released instance breaks. PROPOSED, NOT DECIDED (0073): how pim records an MLIP's fit; a minimal
    software role for a trained model; whether interpretability-method belongs inside ml-model.
+   [in progress, branch ml-structure-0073, committed, awaiting push and PR] ml structure by 0073, no typed
+   field filled: ml's properties in a required, repeatable `settings` whose first member is
+   computation-label; ml-task not repeatable; training-data, training-method and model-performance moved
+   unchanged into ml-model after model-size; training-hyperparameters renamed hyperparameter and validation
+   renamed evaluation-method (legacy text kept); interpretability-method last in settings; the introduction
+   gains 0054's sentence; examples/ml.json in settings with label wyformer-generation, ml-task an object,
+   type Structure generation, training-data inside ml-model; tests/test_computations.py (a new test; the
+   label test gains ml); 06-ml regenerated (addresses gain `settings.` and `ml-model.`). The new members
+   (architecture-parameter, loss-function, metric, applicability-domain, inference) come in the property PRs.
+   Then ml's properties in file order: ml-task, ml-model (perhaps one PR per member), inference,
+   interpretability-method.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over

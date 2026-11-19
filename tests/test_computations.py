@@ -235,7 +235,7 @@ def test_a_property_holding_a_label_is_named_for_it():
                                              'The label of that computation'))}
     assert found == {('minimal', 'structure-label'), ('minimal', 'computation-label'),
                      ('dft', 'computation-label'), ('pim', 'computation-label'), ('ps', 'computation-label'),
-                     ('mbpt', 'computation-label')}
+                     ('mbpt', 'computation-label'), ('ml', 'computation-label')}
 
 
 def test_example_labels_are_unique_and_every_reference_resolves():
@@ -824,3 +824,33 @@ def test_mbpt_bse_kernel_truncation_matches_the_dielectric_truncation():
     assert k['values'] == c['values']
     assert k['notes'] == ['Note: Give it when `type` is BSE or GW/BSE.']
     assert section('mbpt')['legacy_complete'] is True
+
+
+def test_ml_properties_sit_in_settings_with_the_model_holding_how_it_was_built():
+    """An ml block names the ML computations it describes; the model holds what it is, how it was built and how
+    good it is, and ml-task does not repeat since its type does (0073 items 1-3, 5, 6, 8)."""
+    props = section('ml')['properties']
+    assert [p['name'] for p in props] == ['settings']
+    s = props[0]
+    assert (s['required'], s['repeatable'], s['type']) == (True, True, None)
+    assert [c['name'] for c in s['subproperties']] == [
+        'computation-label', 'ml-task', 'ml-model', 'interpretability-method']
+    assert shape(sub(s, 'computation-label')) == (True, True, 'string', [], 'inapplicable', None)
+    task = sub(s, 'ml-task')
+    assert (task['required'], task['repeatable']) == (True, False)
+    model = sub(s, 'ml-model')
+    assert [c['name'] for c in model['subproperties']] == [
+        'algorithm', 'target-variable', 'input-feature', 'model-architecture', 'model-size', 'training-data',
+        'training-method', 'model-performance']
+    method = sub(model, 'training-method')
+    assert [c['name'] for c in method['subproperties']] == [
+        'training-procedure', 'hyperparameter', 'transfer-learning']
+    performance = sub(model, 'model-performance')
+    assert [c['name'] for c in performance['subproperties']] == ['evaluation-method', 'uncertainty-quantification']
+    assert ('The properties are given in settings blocks, each naming the ML computations it describes.'
+            in section('ml')['introduction'])
+    example = json.loads((ROOT / 'examples/ml.json').read_text(encoding='utf-8'))['ml']
+    block = example['settings'][0]
+    assert list(block)[0] == 'computation-label'
+    assert block['ml-task']['type'] == ['Structure generation']
+    assert 'training-data' in block['ml-model']
