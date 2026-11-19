@@ -350,7 +350,8 @@ record or marked PROPOSED, NOT DECIDED.
      evaluation-method, with a new metric (subset Training, Validation or Test; quantity; measure; value;
      unit) and applicability-domain (0073; step 5); a new ml inference describes how a dataset was produced
      from the model: input-data, conditioning, sampling-procedure, a generic inference-parameter,
-     number-generated and filtering (0073).
+     number-generated and filtering (0073); ml interpretability-method moves inside ml-model and is filled;
+     ml is complete (0073 amendment; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1215,7 +1216,7 @@ record or marked PROPOSED, NOT DECIDED.
    model-performance, since it explains the model, not how the dataset was produced; settings holds
    computation-label, ml-task, ml-model and inference. Applied in the interpretability-method PR, which
    also declares ml complete.
-   [in progress, branch ml-interpretability, committed, awaiting push and PR] ml interpretability-method
+   [done, PR #125 merged 2026-11-19] ml interpretability-method
    (step 5, 0073 amendment): moved inside ml-model after model-performance; a string whose note gives the
    baseline's guidance (approach and results; feature importance, global surrogate models, LIME, SHAP,
    saliency maps); legacy_* deleted; ml is complete and declares `legacy_complete: true`;
