@@ -535,6 +535,133 @@ properties:
             E.g. the elements, structure types or range of compositions the training data cover, and how inputs
             outside them were identified (a distance in feature space, an uncertainty threshold).
         repeatable: false
+  - name: inference
+    required: false
+    description: How the dataset was produced from the machine learning model.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    notes:
+    - >-
+      Note: Give it for a computation that applies a trained model, e.g. one whose task is Structure generation
+      or Property calculation.
+    subproperties:
+    - name: input-data
+      required: false
+      description: What the machine learning model was applied to.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          E.g. a list of candidate compositions or a screening set of structures. Data from a computation
+          of the record is named in minimal `computation › input` instead, e.g. with the role Source data.
+      repeatable: false
+    - name: conditioning
+      required: false
+      description: The targets imposed on a generative model's outputs.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          E.g. a space group, a composition or a range of a property.
+      repeatable: false
+    - name: sampling-procedure
+      required: false
+      description: How the outputs were drawn from the machine learning model.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          E.g. autoregressive sampling at a given temperature, beam search, or one prediction per input.
+          Explain the role of each inference-parameter entry.
+      repeatable: false
+    - name: inference-parameter
+      required: false
+      description: A fixed variable that controls the application of the machine learning model.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      notes:
+      - >-
+        Note: For example, the sampling temperature, the number of samples drawn or the beam width.
+      subproperties:
+      - name: name
+        required: true
+        description: The designation of the inference parameter.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: value
+        required: true
+        description: The data associated with the inference parameter.
+        type: any
+        extent: any
+        kind: any
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit in which the associated value is expressed.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+            only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+            (accepted with a validation warning).
+        repeatable: false
+      - name: description
+        required: false
+        description: An explanation of the meaning, source, or purpose of the inference parameter.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+    - name: number-generated
+      required: false
+      description: The number of outputs of the machine learning model kept in the dataset.
+      type: int
+      extent: []
+      kind: dimensionless
+      recommended-unit: null
+      values:
+        minimum: 1
+        note: >-
+          A number drawn before filtering is stated in filtering.
+      repeatable: false
+    - name: filtering
+      required: false
+      description: What was removed from or kept among the model's outputs.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          E.g. validity checks, deduplication, novelty against the training data or a stability
+          pre-screen, with the fraction removed by each. Checks on the generated set (the fraction
+          valid, unique or novel) are given here, as they describe the output, not the model.
+      repeatable: false
   - name: interpretability-method
     required: false
     description: >-
