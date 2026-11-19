@@ -854,3 +854,23 @@ def test_ml_properties_sit_in_settings_with_the_model_holding_how_it_was_built()
     assert list(block)[0] == 'computation-label'
     assert block['ml-task']['type'] == ['Structure generation']
     assert 'training-data' in block['ml-model']
+
+
+ML_TASK_TYPES = ['Property prediction', 'Structure generation', 'Synthesis prediction', 'Ranking', 'Clustering',
+                 'Embedding']
+
+
+def test_ml_task_names_the_kind_of_result_and_leaves_potentials_to_pim():
+    """The task type names what the model produces for the dataset; structure prediction is generation with a
+    fixed composition, and a machine-learned interatomic potential is a pim model, not an ML result (0073
+    item 2)."""
+    task = sub(top('ml', 'settings'), 'ml-task')
+    t = sub(task, 'type')
+    assert shape(t) == (True, True, 'string', [], 'inapplicable', None)
+    assert t['values']['terms'] == ML_TASK_TYPES
+    note = ' '.join(t['values']['note'].split())
+    assert all(f'"{term}" –' in note for term in ML_TASK_TYPES)
+    assert 'Structure prediction' not in t['values']['terms'] and 'composition' in note
+    assert any('pim' in n and 'interatomic potential' in n for n in t['notes'])
+    assert shape(sub(task, 'description')) == (False, False, 'string', [], 'inapplicable', None)
+    assert not any(k.startswith('legacy_') for p in [task, *task['subproperties']] for k in p)
