@@ -132,7 +132,7 @@ Three groups, not to be merged:
    in the instance, not inferred from how the value is written; each serialization (defined in
    §1.3) defines how.
    The value need not be a scalar (0004).
-2. Free-form units: field-variable, free-energy (pf). No `value`; a free-form `unit` whose kind
+2. Free-form units: field-variable, free-energy-density (pf). No `value`; a free-form `unit` whose kind
    the schema does not fix.
 3. Typed properties with a required unit: grid-spacing (Length, recommended m) and time-step-size
    (Time, recommended s) (pf). Handled like temperature, not as generic parameters. With
@@ -1244,8 +1244,16 @@ record or marked PROPOSED, NOT DECIDED.
    solver terms; free-energy-density › unit dropping "or of the free energy"; temporal-discretization's Mixed and
    the spelling Crank-Nicolson; how a boundary condition names its boundary, and Fixed vs Dirichlet, Free vs
    Zero-Neumann; time-dependence vs minimal conditions › type (0036).
-   Ruling 0074 committed on main. [in progress, branch pf-structure] pf structure by 0074, no typed field
-   filled.
+   Ruling 0074 committed on main (e394bf7). [in progress, branch pf-structure, committed, awaiting push and PR]
+   pf structure by 0074, no typed field filled: pf's properties in a required, repeatable `settings` whose
+   first member is computation-label; physical-phenomena renamed physical-phenomenon, free-energy renamed
+   free-energy-density and repeatable, driving-energy renamed free-energy-density-term, governing-equation ›
+   type repeatable, domain-and-mesh renamed domain, mesh-type moved into numerical-method after
+   spatial-accuracy-order (legacy text kept); the introduction gains 0054's sentence; examples/pf.json in
+   settings with label nucleation under the new names, type and free-energy-density as lists;
+   tests/test_computations.py (a new test; the label test gains pf); 07-pf regenerated (addresses gain
+   `settings.`). Then pf's properties in file order: physical-phenomenon, problem-specification, domain,
+   numerical-method, variables.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
