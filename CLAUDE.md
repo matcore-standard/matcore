@@ -1223,6 +1223,29 @@ record or marked PROPOSED, NOT DECIDED.
    tests/test_computations.py (a new test; the structure test's lists updated); tests/test_build_docs.py's
    --show-legacy check and tests/test_schema.py's legacy_complete check move from ml to pf, which still holds
    legacy text; 06-ml regenerated; examples/ml.json unchanged. Next: pf.
+   pf cross-check 2026-11-19 against the .docx: names, definitions, values text, required and repeatable
+   match; the differences are intended (free-energy › unit's definition by 0001 B11/A7.3; Δx and Δt restored
+   in the accuracy orders, lost as equation objects in the export).
+   PF section by 0074 (ruling 2026-11-19, from review): pf in `settings` with computation-label;
+   physical-phenomena renamed physical-phenomenon, gaining Fracture and Plasticity; time-dependence loses
+   Property prediction; free-energy renamed free-energy-density and repeatable (one entry per term);
+   governing-equation › type repeatable, Fluid renamed Navier-Stokes, Multi renamed Multi-phase-field, Coupled
+   and Diffuse removed, Mechanical equilibrium and Poisson added (solved within the one PF computation),
+   evolved-variable "The name of the field-variable being evolved by this equation.", driving-energy renamed
+   free-energy-density-term; anti-trapping and sharp- or thin-interface given as user-specified types; no
+   property for a TDB file; domain-and-mesh renamed domain, mesh-type moved to numerical-method; domain-size
+   noted as a characteristic size for irregular geometries; boundary-conditions NoFlux becomes Zero-Neumann,
+   the boundaries given in a new numerical-method › mesh-file (0056's full file form); initial-conditions
+   from an algorithm or a distribution are user-specified; numerical-method gains a generic
+   spatial-discretization-parameter and an optional repeatable evolved-variable naming the equations an entry
+   solves (one entry per group solved differently); temporal-discretization loses Implicit and Explicit; solver
+   gains Explicit and further solvers; field-variable documents one entry per field (e.g. per component).
+   Applied in a structure PR, then the property PRs in file order. PROPOSED, NOT DECIDED (0074): the further
+   solver terms; free-energy-density › unit dropping "or of the free energy"; temporal-discretization's Mixed and
+   the spelling Crank-Nicolson; how a boundary condition names its boundary, and Fixed vs Dirichlet, Free vs
+   Zero-Neumann; time-dependence vs minimal conditions › type (0036).
+   Ruling 0074 committed on main. [in progress, branch pf-structure] pf structure by 0074, no typed field
+   filled.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
