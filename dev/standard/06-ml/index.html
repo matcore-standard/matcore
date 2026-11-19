@@ -1445,14 +1445,13 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: String containing the dataset name.</span></p>
 </details>
 <details class="note mc-property" id="ml.settings.ml-model.training-data.contents">
 <summary><span class="mc-name">contents<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1472,14 +1471,14 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: String containing a description of the training data (e.g. DFT calculations, experiments, etc.)</span></p>
+<p><strong>Clarifications:</strong> E.g. DFT calculations or experiments, and what one item of the data is (a structure, a configuration), since size counts items.</p>
 </details>
 <details class="note mc-property" id="ml.settings.ml-model.training-data.source">
 <summary><span class="mc-name">source</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1499,14 +1498,14 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing a MatCore ID, web address, DOI, citation, or other description of the source of the training data.</span></p>
+<p><strong>Clarifications:</strong> A MatCore ID, web address, DOI, citation, or other description of where the data was obtained. Training data produced by a computation of the record is not given here: the training computation names it in minimal <code>computation › input</code> with the role Training data.</p>
 </details>
 <details class="note mc-property" id="ml.settings.ml-model.training-data.size">
 <summary><span class="mc-name">size</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1526,14 +1525,15 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>int</td>
+<td>[]</td>
+<td>dimensionless</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing information on the number of data points, configurations, etc., in the training set.</span></p>
+<p>Minimum: 1.</p>
+<p><strong>Clarifications:</strong> The kind of item is stated in contents.</p>
 </details>
 <details class="note mc-property" id="ml.settings.ml-model.training-data.data-preprocessing">
 <summary><span class="mc-name">data-preprocessing</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1553,14 +1553,13 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing a description of any preprocessing applied to the dataset to prepare it for training the machine learning model.</span></p>
 </details>
 <details class="note mc-property" id="ml.settings.ml-model.training-data.missing-data">
 <summary><span class="mc-name">missing-data</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1580,14 +1579,14 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A description of missing entries in the raw dataset (e.g. percentage of missing data and explanation of which fields are missing and why).</span></p>
+<p><strong>Clarifications:</strong> E.g. the percentage of missing data, and which fields are missing and why.</p>
 </details>
 <details class="note mc-property" id="ml.settings.ml-model.training-data.missing-data-strategy">
 <summary><span class="mc-name">missing-data-strategy</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1607,14 +1606,13 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string describing the approach used for handling missing data.</span></p>
 </details>
 <details class="note mc-property" id="ml.settings.ml-model.training-data.outlier-handling">
 <summary><span class="mc-name">outlier-handling</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1634,14 +1632,13 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing the method used to detect and handle outliers.</span></p>
 </details>
 <details class="note mc-property" id="ml.settings.ml-model.training-data.dataset-split">
 <summary><span class="mc-name">dataset-split</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1661,14 +1658,14 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing information about how the dataset was split into train/validation/test ratios, and any other relevant information related to how the dataset was distributed in the training process.</span></p>
+<p><strong>Clarifications:</strong> In words, e.g. a random split of 80/10/10 into training, validation and test sets, a split stratified by composition, or k-fold cross-validation.</p>
 </details>
 </details>
 <details class="note mc-property" id="ml.settings.ml-model.training-method">
@@ -1898,9 +1895,9 @@
 <span class="w">          </span><span class="nt">"training-data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MP-20"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"contents"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inorganic crystalline materials relaxed using density functional theory (DFT) to a local energy minimum. There are 89 elements and the materials have 1–20 atoms in the unit cells. MP-20 includes most experimentally known materials with no more than 20 atoms in unit cell."</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"contents"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inorganic crystalline materials relaxed using density functional theory (DFT) to a local energy minimum. There are 89 elements and the materials have 1–20 atoms in the unit cells. MP-20 includes most experimentally known materials with no more than 20 atoms in unit cell. Each item is a structure; the structures differ in both structure and composition."</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Materials Project, first published in https://doi.org/10.1063/1.4812323"</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45,231 structures that differ in both structure and composition."</span>
+<span class="w">              </span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">45231</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">]</span>
 <span class="w">        </span><span class="p">}</span>
