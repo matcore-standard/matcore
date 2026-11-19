@@ -847,7 +847,8 @@ def test_ml_properties_sit_in_settings_with_the_model_holding_how_it_was_built()
     assert [c['name'] for c in method['subproperties']] == [
         'training-procedure', 'loss-function', 'hyperparameter', 'transfer-learning']
     performance = sub(model, 'model-performance')
-    assert [c['name'] for c in performance['subproperties']] == ['evaluation-method', 'uncertainty-quantification']
+    assert [c['name'] for c in performance['subproperties']] == [
+        'evaluation-method', 'metric', 'uncertainty-quantification', 'applicability-domain']
     assert ('The properties are given in settings blocks, each naming the ML computations it describes.'
             in section('ml')['introduction'])
     example = json.loads((ROOT / 'examples/ml.json').read_text(encoding='utf-8'))['ml']
@@ -942,3 +943,28 @@ def test_ml_training_method_explains_its_hyperparameters_and_states_the_loss():
     assert 'architecture-parameter' in hyper['notes'][0]
     assert shape(sub(method, 'transfer-learning')) == (False, False, 'string', [], 'inapplicable', None)
     assert not any(k.startswith('legacy_') for p in [method, *method['subproperties']] for k in p)
+
+
+def test_ml_model_performance_keeps_validation_apart_from_testing():
+    """How the model was assessed is separate from its scores; each score names the subset it was measured
+    on, validation data tuning the model and test data assessing it, and carries its unit (0073 item 6)."""
+    perf = sub(sub(top('ml', 'settings'), 'ml-model'), 'model-performance')
+    assert [c['name'] for c in perf['subproperties']] == [
+        'evaluation-method', 'metric', 'uncertainty-quantification', 'applicability-domain']
+    method = sub(perf, 'evaluation-method')
+    assert shape(method) == (True, True, 'string', [], 'inapplicable', None)
+    metric = sub(perf, 'metric')
+    assert (metric['required'], metric['repeatable'], metric['type']) == (False, True, None)
+    assert [c['name'] for c in metric['subproperties']] == ['subset', 'quantity', 'measure', 'value', 'unit']
+    subset = sub(metric, 'subset')
+    assert subset['values']['terms'] == ['Training', 'Validation', 'Test']
+    note = ' '.join(subset['values']['note'].split())
+    assert 'tune' in note and 'neither' in note
+    assert sub(metric, 'measure')['values']['terms'][:3] == ['MAE', 'RMSE', 'R²']
+    value = sub(metric, 'value')
+    assert (value['type'], value['kind']) == ('float', 'any')
+    assert sub(metric, 'unit')['description'] == 'The unit in which the associated value is expressed.'
+    uq = sub(perf, 'uncertainty-quantification')
+    assert 'part of the dataset' in ' '.join(uq['values']['note'].split())
+    assert shape(sub(perf, 'applicability-domain')) == (False, False, 'string', [], 'inapplicable', None)
+    assert not any(k.startswith('legacy_') for p in [perf, *perf['subproperties']] for k in p)
