@@ -235,7 +235,8 @@ def test_a_property_holding_a_label_is_named_for_it():
                                              'The label of that computation'))}
     assert found == {('minimal', 'structure-label'), ('minimal', 'computation-label'),
                      ('dft', 'computation-label'), ('pim', 'computation-label'), ('ps', 'computation-label'),
-                     ('mbpt', 'computation-label'), ('ml', 'computation-label')}
+                     ('mbpt', 'computation-label'), ('ml', 'computation-label'),
+                     ('pf', 'computation-label')}
 
 
 def test_example_labels_are_unique_and_every_reference_resolves():
@@ -1009,3 +1010,33 @@ def test_ml_interpretability_explains_the_model_and_ml_is_complete():
     assert shape(p) == (False, False, 'string', [], 'inapplicable', None)
     assert 'SHAP' in p['values']['note']
     assert section('ml')['legacy_complete'] is True
+
+
+def test_pf_properties_sit_in_settings_under_names_that_match_their_meaning():
+    """A pf block names the PF computations it describes; a repeating property is singular, the free energy is a
+    density given term by term, coupled models repeat the equation type, and the mesh belongs to the numerical
+    method rather than the domain (0074 items 1-5)."""
+    props = section('pf')['properties']
+    assert [p['name'] for p in props] == ['settings']
+    s = props[0]
+    assert (s['required'], s['repeatable'], s['type']) == (True, True, None)
+    assert [c['name'] for c in s['subproperties']] == [
+        'computation-label', 'physical-phenomenon', 'problem-specification', 'domain', 'numerical-method',
+        'variables']
+    assert shape(sub(s, 'computation-label')) == (True, True, 'string', [], 'inapplicable', None)
+    problem = sub(s, 'problem-specification')
+    assert [c['name'] for c in problem['subproperties']] == [
+        'time-dependence', 'governing-equation', 'free-energy-density', 'additional-energy-contribution']
+    assert sub(problem, 'free-energy-density')['repeatable'] is True
+    equation = sub(problem, 'governing-equation')
+    assert [c['name'] for c in equation['subproperties']] == ['type', 'evolved-variable', 'free-energy-density-term']
+    assert sub(equation, 'type')['repeatable'] is True
+    assert [c['name'] for c in sub(s, 'domain')['subproperties']] == [
+        'dimensionality', 'coordinate-system', 'domain-size', 'boundary-conditions', 'initial-conditions']
+    assert 'mesh-type' in [c['name'] for c in sub(s, 'numerical-method')['subproperties']]
+    assert ('The properties are given in settings blocks, each naming the PF computations it describes.'
+            in section('pf')['introduction'])
+    block = json.loads((ROOT / 'examples/pf.json').read_text(encoding='utf-8'))['pf']['settings'][0]
+    assert list(block) == ['computation-label', 'physical-phenomenon', 'problem-specification', 'domain',
+                           'numerical-method', 'variables']
+    assert block['problem-specification']['governing-equation'][0]['free-energy-density-term'] == ['f_total']
