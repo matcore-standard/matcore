@@ -834,7 +834,7 @@ def test_ml_properties_sit_in_settings_with_the_model_holding_how_it_was_built()
     s = props[0]
     assert (s['required'], s['repeatable'], s['type']) == (True, True, None)
     assert [c['name'] for c in s['subproperties']] == [
-        'computation-label', 'ml-task', 'ml-model', 'inference', 'interpretability-method']
+        'computation-label', 'ml-task', 'ml-model', 'inference']
     assert shape(sub(s, 'computation-label')) == (True, True, 'string', [], 'inapplicable', None)
     task = sub(s, 'ml-task')
     assert (task['required'], task['repeatable']) == (True, False)
@@ -842,7 +842,7 @@ def test_ml_properties_sit_in_settings_with_the_model_holding_how_it_was_built()
     assert [c['name'] for c in model['subproperties']] == [
         'algorithm', 'target-variable', 'input-feature', 'model-architecture', 'architecture-parameter',
         'model-size', 'training-data',
-        'training-method', 'model-performance']
+        'training-method', 'model-performance', 'interpretability-method']
     method = sub(model, 'training-method')
     assert [c['name'] for c in method['subproperties']] == [
         'training-procedure', 'loss-function', 'hyperparameter', 'transfer-learning']
@@ -995,3 +995,17 @@ def test_ml_inference_says_how_the_dataset_came_from_the_model():
     assert 'novel' in sub(inference, 'filtering')['values']['note']
     example = json.loads((ROOT / 'examples/ml.json').read_text(encoding='utf-8'))['ml']['settings'][0]
     assert example['inference']['number-generated'] == 10000
+
+
+def test_ml_interpretability_explains_the_model_and_ml_is_complete():
+    """Interpretability explains how the model works, so it sits with the model (0073 amendment); with it filled,
+    ml holds no legacy text (0004 item 36)."""
+    settings = top('ml', 'settings')
+    assert 'interpretability-method' not in [c['name'] for c in settings['subproperties']]
+    model = sub(settings, 'ml-model')
+    names = [c['name'] for c in model['subproperties']]
+    assert names[-1] == 'interpretability-method' and names[-2] == 'model-performance'
+    p = sub(model, 'interpretability-method')
+    assert shape(p) == (False, False, 'string', [], 'inapplicable', None)
+    assert 'SHAP' in p['values']['note']
+    assert section('ml')['legacy_complete'] is True
