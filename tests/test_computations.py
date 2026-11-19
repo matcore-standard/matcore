@@ -834,7 +834,7 @@ def test_ml_properties_sit_in_settings_with_the_model_holding_how_it_was_built()
     s = props[0]
     assert (s['required'], s['repeatable'], s['type']) == (True, True, None)
     assert [c['name'] for c in s['subproperties']] == [
-        'computation-label', 'ml-task', 'ml-model', 'interpretability-method']
+        'computation-label', 'ml-task', 'ml-model', 'inference', 'interpretability-method']
     assert shape(sub(s, 'computation-label')) == (True, True, 'string', [], 'inapplicable', None)
     task = sub(s, 'ml-task')
     assert (task['required'], task['repeatable']) == (True, False)
@@ -968,3 +968,30 @@ def test_ml_model_performance_keeps_validation_apart_from_testing():
     assert 'part of the dataset' in ' '.join(uq['values']['note'].split())
     assert shape(sub(perf, 'applicability-domain')) == (False, False, 'string', [], 'inapplicable', None)
     assert not any(k.startswith('legacy_') for p in [perf, *perf['subproperties']] for k in p)
+
+
+INFERENCE_MEMBERS = ['input-data', 'conditioning', 'sampling-procedure', 'inference-parameter', 'number-generated',
+                     'filtering']
+
+
+def test_ml_inference_says_how_the_dataset_came_from_the_model():
+    """A dataset produced by a model is described by what the model was applied to, how its outputs were drawn,
+    how many were kept and what was removed, the sampling settings explained by the procedure (0073 item 7)."""
+    settings = top('ml', 'settings')
+    names = [c['name'] for c in settings['subproperties']]
+    assert names.index('inference') == names.index('ml-model') + 1
+    inference = sub(settings, 'inference')
+    assert (inference['required'], inference['repeatable'], inference['type']) == (False, False, None)
+    assert [c['name'] for c in inference['subproperties']] == INFERENCE_MEMBERS
+    for name in ['input-data', 'conditioning', 'sampling-procedure', 'filtering']:
+        assert shape(sub(inference, name)) == (False, False, 'string', [], 'inapplicable', None), name
+    assert 'inference-parameter entry' in ' '.join(sub(inference, 'sampling-procedure')['values']['note'].split())
+    assert 'role Source data' in ' '.join(sub(inference, 'input-data')['values']['note'].split())
+    param = sub(inference, 'inference-parameter')
+    assert param['repeatable'] and [c['name'] for c in param['subproperties']] == [
+        'name', 'value', 'unit', 'description']
+    count = sub(inference, 'number-generated')
+    assert shape(count) == (False, False, 'int', [], 'dimensionless', None)
+    assert 'novel' in sub(inference, 'filtering')['values']['note']
+    example = json.loads((ROOT / 'examples/ml.json').read_text(encoding='utf-8'))['ml']['settings'][0]
+    assert example['inference']['number-generated'] == 10000

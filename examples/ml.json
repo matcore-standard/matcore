@@ -28,6 +28,10 @@
               "size": 45231
             }
           ]
+        },
+        "inference": {
+          "number-generated": 10000,
+          "filtering": "Only formally valid Wyckoff representations are kept."
         }
       }
     ]
