@@ -1170,6 +1170,16 @@ record or marked PROPOSED, NOT DECIDED.
    the record is an input with role Training data, not given here), missing-data and dataset-split (in
    words, e.g. random 80/10/10, stratified, k-fold); legacy_* deleted; examples/ml.json size 45231, its
    text moved into contents; test in tests/test_computations.py; 06-ml regenerated.
+   [in progress, branch ml-training-method, committed, awaiting push and PR] ml ml-model, part 3 (step 5,
+   0073 item 5): training-method's members in the order training-procedure*, loss-function (new),
+   hyperparameter, transfer-learning; training-procedure a string whose note lists the optimizer,
+   schedule, stopping rule and an active-learning loop with its selection criterion (0065 item 5) and asks
+   for the role of each hyperparameter entry; loss-function a string, "The quantities fitted in training
+   and how they are weighted." (example energies, forces, stresses 1:100:10); hyperparameter a repeatable
+   generic parameter (0016; learning rate, batch size, epochs, early-stopping patience; architecture numbers
+   point to architecture-parameter); transfer-learning a string, the baseline's examples as a note;
+   legacy_* deleted; tests/test_computations.py (a new test; the structure test's list gains
+   loss-function); 06-ml regenerated; examples/ml.json unchanged (its source gives no training settings).
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over

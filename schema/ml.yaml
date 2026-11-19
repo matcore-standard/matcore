@@ -322,45 +322,100 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: Contains SubProperties as listed below.
       subproperties:
       - name: training-procedure
         required: true
         description: The methodology used to determine the machine learning model's free parameters.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            E.g. the optimizer (Adam, L-BFGS, closed-form least squares), the learning-rate schedule, the
+            stopping rule, and any active-learning loop with its selection criterion (e.g. query by committee,
+            an uncertainty threshold). Explain the role of each hyperparameter entry.
         repeatable: false
-        legacy_values: >-
-          A string containing a description of the procedure used to train the machine learning model.
+      - name: loss-function
+        required: false
+        description: The quantities fitted in training and how they are weighted.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            E.g. the mean squared error of formation energies, or a weighted sum of the errors in energies,
+            forces and stresses with weights 1:100:10.
+        repeatable: false
       - name: hyperparameter
         required: false
-        description: Documentation of the settings used in fitting the model.
+        description: A fixed variable that controls the fitting of the machine learning model.
         type: null
         extent: null
         kind: null
         recommended-unit: null
         values: null
-        repeatable: false
-        legacy_values: >-
-          A string describing the hyperparameters used in the training of the model (e.g. learning rate, early-stopping,
-          etc.)
+        repeatable: true
+        notes:
+        - >-
+          Note: For example, the learning rate, the batch size, the number of epochs or the early-stopping
+          patience. Numbers that fix the model's architecture are architecture-parameter entries of ml-model.
+        subproperties:
+        - name: name
+          required: true
+          description: The designation of the hyperparameter.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values: null
+          repeatable: false
+        - name: value
+          required: true
+          description: The data associated with the hyperparameter.
+          type: any
+          extent: any
+          kind: any
+          recommended-unit: null
+          values: null
+          repeatable: false
+        - name: unit
+          required: true
+          description: The unit in which the associated value is expressed.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            note: >-
+              A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+              only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+              (accepted with a validation warning).
+          repeatable: false
+        - name: description
+          required: false
+          description: An explanation of the meaning, source, or purpose of the hyperparameter.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values: null
+          repeatable: false
       - name: transfer-learning
         required: false
         description: >-
           Method used to migrate knowledge from previously mastered objectives to accelerate proficiency for
           the current machine learning task.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            E.g. fine-tuning, domain adaptation, multi-task learning or delta learning, with the details of
+            how it was applied.
         repeatable: false
-        legacy_values: >-
-          A string containing details of the transfer learning methods used (such as fine-tuning, domain adaptation,
-          multi-task learning, delta learning, etc.).
     - name: model-performance
       required: false
       description: An assessment of the reliability of the machine learning results.
