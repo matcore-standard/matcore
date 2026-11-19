@@ -1137,7 +1137,8 @@ record or marked PROPOSED, NOT DECIDED.
    structure PR (settings, moves, renames, introduction; examples/ml.json in settings with type
    Structure generation) and then the step 5 property PRs in file order, each adding its new members.
    No released instance breaks. PROPOSED, NOT DECIDED (0073): how pim records an MLIP's fit; a minimal
-   software role for a trained model; whether interpretability-method belongs inside ml-model.
+   software role for a trained model; whether interpretability-method belongs inside ml-model
+   (Superseded: decided by the 0073 amendment).
    [done, PR #118 merged 2026-11-19] ml structure by 0073, no typed
    field filled: ml's properties in a required, repeatable `settings` whose first member is
    computation-label; ml-task not repeatable; training-data, training-method and model-performance moved
@@ -1210,6 +1211,10 @@ record or marked PROPOSED, NOT DECIDED.
    Also found in that README, for a later PR: WyFormer was trained on MP-20's train and validation parts
    only; its Wyckoff representations were turned into structures by DiffCSP++ (9999 of 10,000), then
    relaxed by CHGNet and DFT, each a further computation.
+   0073 amended 2026-11-19 (decided by the human): interpretability-method moves inside ml-model, after
+   model-performance, since it explains the model, not how the dataset was produced; settings holds
+   computation-label, ml-task, ml-model and inference. Applied in the interpretability-method PR, which
+   also declares ml complete.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over

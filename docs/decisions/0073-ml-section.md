@@ -81,3 +81,7 @@ The inference names the training computation as input role Parameters. A model t
   - how pim records the fit of an MLIP, since it has no training properties;
   - a minimal `software` role for a trained model used by an inference computation;
   - whether `interpretability-method` belongs inside `ml-model`.
+
+## Amendment (2026-11-19, before the interpretability-method pull request)
+- `interpretability-method` moves inside `ml-model`, after `model-performance`. It explains how the model works, not how the dataset was produced, so `ml-model` holds everything about the model. `settings` then holds `computation-label`, `ml-task`, `ml-model` and `inference`.
+- This settles the open point on its placement in the Consequences.
