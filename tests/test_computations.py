@@ -900,3 +900,24 @@ def test_ml_model_identifies_the_model_and_its_architecture_numbers_carry_units(
     assert shape(size) == (False, False, 'int', [], 'dimensionless', None)
     assert 'trainable parameters' in size['description']
     assert not any(k.startswith('legacy_') for p in [model, *model['subproperties'][:6]] for k in p)
+
+
+def test_ml_training_data_points_to_the_record_and_counts_its_items():
+    """Training data in the record is an input link, so source is for data from elsewhere; the split is
+    described in words; size is a count whose item contents names (0073 item 4)."""
+    data = sub(sub(top('ml', 'settings'), 'ml-model'), 'training-data')
+    assert (data['required'], data['repeatable']) == (False, True)
+    strings = ['name', 'contents', 'source', 'data-preprocessing', 'missing-data', 'missing-data-strategy',
+               'outlier-handling', 'dataset-split']
+    for name in strings:
+        p = sub(data, name)
+        assert (p['type'], p['extent'], p['kind'], p['repeatable']) == ('string', [], 'inapplicable', False), name
+    assert sub(data, 'name')['required'] and sub(data, 'contents')['required']
+    assert 'role Training data' in ' '.join(sub(data, 'source')['values']['note'].split())
+    assert 'In words' in sub(data, 'dataset-split')['values']['note']
+    size = sub(data, 'size')
+    assert shape(size) == (False, False, 'int', [], 'dimensionless', None)
+    assert size['values']['minimum'] == 1 and 'contents' in size['values']['note']
+    assert not any(k.startswith('legacy_') for p in [data, *data['subproperties']] for k in p)
+    example = json.loads((ROOT / 'examples/ml.json').read_text(encoding='utf-8'))
+    assert example['ml']['settings'][0]['ml-model']['training-data'][0]['size'] == 45231
