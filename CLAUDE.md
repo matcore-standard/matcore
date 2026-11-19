@@ -343,7 +343,8 @@ record or marked PROPOSED, NOT DECIDED.
      validation evaluation-method (0073); ml ml-task's type has the terms Property prediction, Structure
      generation, Synthesis prediction, Ranking, Clustering and Embedding, an MLIP being described in pim
      (0073; step 5); ml ml-model's own members filled, with a generic architecture-parameter and model-size
-     the number of trainable parameters (0073; step 5).
+     the number of trainable parameters (0073; step 5); ml training-data filled, its size an int, its split
+     described in words, data in the record named as an input with role Training data (0073; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1162,7 +1163,7 @@ record or marked PROPOSED, NOT DECIDED.
    int, "The number of trainable parameters of the machine learning model.", minimum 1; legacy_* of these
    deleted; tests/test_computations.py (a new test; the structure test's list gains architecture-parameter);
    06-ml regenerated; examples/ml.json unchanged.
-   [in progress, branch ml-training-data, committed, awaiting push and PR] ml ml-model, part 2 (step 5, 0073
+   [done, PR #121 merged 2026-11-19] ml ml-model, part 2 (step 5, 0073
    item 4): training-data's nine members filled, baseline descriptions kept; strings except size, an int
    (dimensionless, minimum 1; judgment call, 0073 does not state it) whose note says contents names the
    item; notes drafted from the baseline's Values text for contents (what one item is), source (data in
