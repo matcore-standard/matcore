@@ -346,7 +346,9 @@ record or marked PROPOSED, NOT DECIDED.
      the number of trainable parameters (0073; step 5); ml training-data filled, its size an int, its split
      described in words, data in the record named as an input with role Training data (0073; step 5); ml
      training-method filled, with a new loss-function and a generic hyperparameter whose role
-     training-procedure explains (0073; step 5).
+     training-procedure explains (0073; step 5); ml model-performance filled, validation replaced by
+     evaluation-method, with a new metric (subset Training, Validation or Test; quantity; measure; value;
+     unit) and applicability-domain (0073; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1182,7 +1184,7 @@ record or marked PROPOSED, NOT DECIDED.
    point to architecture-parameter); transfer-learning a string, the baseline's examples as a note;
    legacy_* deleted; tests/test_computations.py (a new test; the structure test's list gains
    loss-function); 06-ml regenerated; examples/ml.json unchanged (its source gives no training settings).
-   [in progress, branch ml-model-performance, committed, awaiting push and PR] ml ml-model, part 4 (step 5,
+   [done, PR #123 merged 2026-11-19] ml ml-model, part 4 (step 5,
    0073 item 6): evaluation-method* a repeatable string (as validation was), its note telling validation
    (tuning, stopping) from testing; a new repeatable metric of subset* (terms Training, Validation, Test,
    defined), quantity* (examples Formation energy, Forces), measure* (terms MAE, RMSE, R², Accuracy,
