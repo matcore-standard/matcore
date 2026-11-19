@@ -344,7 +344,9 @@ record or marked PROPOSED, NOT DECIDED.
      generation, Synthesis prediction, Ranking, Clustering and Embedding, an MLIP being described in pim
      (0073; step 5); ml ml-model's own members filled, with a generic architecture-parameter and model-size
      the number of trainable parameters (0073; step 5); ml training-data filled, its size an int, its split
-     described in words, data in the record named as an input with role Training data (0073; step 5).
+     described in words, data in the record named as an input with role Training data (0073; step 5); ml
+     training-method filled, with a new loss-function and a generic hyperparameter whose role
+     training-procedure explains (0073; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1170,7 +1172,7 @@ record or marked PROPOSED, NOT DECIDED.
    the record is an input with role Training data, not given here), missing-data and dataset-split (in
    words, e.g. random 80/10/10, stratified, k-fold); legacy_* deleted; examples/ml.json size 45231, its
    text moved into contents; test in tests/test_computations.py; 06-ml regenerated.
-   [in progress, branch ml-training-method, committed, awaiting push and PR] ml ml-model, part 3 (step 5,
+   [done, PR #122 merged 2026-11-19] ml ml-model, part 3 (step 5,
    0073 item 5): training-method's members in the order training-procedure*, loss-function (new),
    hyperparameter, transfer-learning; training-procedure a string whose note lists the optimizer,
    schedule, stopping rule and an active-learning loop with its selection criterion (0065 item 5) and asks
