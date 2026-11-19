@@ -1042,6 +1042,89 @@ record or marked PROPOSED, NOT DECIDED.
    the note "Give it when `type` is BSE or GW/BSE." (judgment call); legacy_* deleted; mbpt is complete and
    declares `legacy_complete: true`; tests/test_build_docs.py's --show-legacy check moves from mbpt to ml;
    05-mbpt regenerated; examples/mbpt.json unchanged. Next: ml.
+   ml, analysed 2026-11-18 before any ml PR. Cross-check against the .docx: names, definitions, values
+   text and required marks match (only curly apostrophes differ). ml is not yet in `settings` (0046 item 7).
+   Reviewer feedback 2026-11-18: (1) ml-task › type: is an MLIP "Property prediction", and should a smooth
+   E(positions) be told apart from arbitrary property maps (e.g. Tc from composition)? (2) training-data
+   holds the train/validation/test split (dataset-split); can the three subsets be given explicitly?
+   (3) training-method › training-procedure: does it mean the loss, or should the loss be its own property?
+   (4) training-hyperparameters: use subproperties; overlap with model-architecture (layers, nodes)?
+   (5) model-performance › validation: validation is for hyperparameter tuning, testing assesses the model.
+   The human also asked for an analysis of the whole ml schema. PROPOSED, NOT DECIDED (recommendations,
+   for a ruling 0073): (a) a structure PR as for mbpt (PR #111): ml's properties in `settings` with
+   computation-label, the introduction gains 0054's sentence; (b) an MLIP's training is an ML computation
+   (task Training) and the trained potential's evaluations a PIM computation (theory-level Machine-learned)
+   naming it as input role Parameters; 0046 does not say which method the training computation has;
+   (c) ml-task › type gains "Interatomic potential" (energy of a configuration of particles as a function
+   of their positions, forces as its gradient), told apart from "Property prediction" (a property of a
+   material or structure); ml-task becomes non-repeatable, as type already repeats; type's definitions
+   written in a note; the example's type corrected to Structure generation (WyFormer generates de novo);
+   (d) training-data entries gain a required `subset` (terms Training, Validation, Test) with their own
+   size, so the three subsets are given explicitly; the property renamed `data` or kept; dataset-split
+   keeps how the split was made (random, stratified, by composition, k-fold); source used only for data
+   outside the record, data in the record being an input with role Training data (0046's open point);
+   (e) training-method gains `loss-function` (string: the quantities fitted and their weights, e.g.
+   energies, forces and stresses); training-procedure is the optimization procedure (e.g. Adam, L-BFGS,
+   closed-form least squares) and, by 0065 item 5, an active-learning selection criterion;
+   (f) training-hyperparameters becomes a repeatable generic parameter (0016; as 0001 A6 suggested),
+   for training settings only (learning rate, batch size, epochs, early stopping); model-architecture
+   keeps the architecture (layers, nodes, cutoff radius, body order) and gains an optional repeatable
+   generic parameter `architecture-parameter`, so a cutoff radius carries a unit; notes point each to the
+   other; (g) model-performance › validation is replaced by `evaluation-method` (hold-out test set,
+   k-fold cross-validation) and a repeatable `metric` (subset Validation/Test/Training, quantity, measure
+   MAE/RMSE/R²/..., value and unit of kind any); (h) smaller: model-size an int number of trainable
+   parameters; training-data size an int, contents saying what an item is; transfer-learning names a
+   pretrained model as software or as input role Parameters; algorithm stays a free string. (Superseded:
+   decided by 0073.)
+   The human's answers 2026-11-18: (1) MLIPs belong to pim: MatCore documents the methods that generate a
+   dataset, and an MLIP is an ingredient, not an end; not every ml-task term may be relevant (Superseded:
+   (b) and (c)'s Interatomic potential). (2) A split is usually made at training time by percentages;
+   dataset-split stays a description in words, the structured subsets being overly specific (Superseded:
+   (d)'s subset). (3) Write out the proposed training-method schema. (4) Hyperparameters as generic
+   parameters need a description of the overall process that refers to them and explains their role, as
+   elsewhere (ps settings › description, 0067). (5) (g) accepted. The analysis should judge the section as
+   a whole: does it document ML methods that generate datasets?
+   Revised proposal, PROPOSED, NOT DECIDED (for 0073): the baseline is a model card (how a model was built)
+   and has nothing on how the data were produced from the model. Two ML computations: training (task
+   Training) and inference (Structure generation, Property calculation, ...), the inference naming the
+   training as input role Parameters, or a model trained elsewhere given as software. settings ›
+   computation-label*, ml-task* (type* the kind of result: Property prediction, Structure generation (with
+   structure prediction merged in), Synthesis prediction, Ranking, Clustering, Embedding; description),
+   ml-model* (algorithm*, target-variable*, input-feature, model-architecture, architecture-parameter
+   generic, model-size int), training-data (as baseline, dataset-split in words), training-method
+   (training-procedure* describing the process and the role of each hyperparameter, loss-function,
+   hyperparameter generic, transfer-learning), a new `inference` (input-data, conditioning,
+   sampling-procedure, inference-parameter generic, number-generated, filtering), model-performance
+   (evaluation-method*, metric repeatable with subset, quantity, measure, value, unit; uncertainty-
+   quantification, saying whether per-item uncertainties are in the dataset; a new applicability-domain),
+   interpretability-method. Open with it: how an MLIP's fit is recorded in pim, which has no training
+   properties; a software role for a trained model. (Superseded: decided by 0073.)
+   Raised by the human 2026-11-19: training-data and training-method inside ml-model, since they say how
+   the model was built. Recommended in reply, PROPOSED, NOT DECIDED: yes, and model-performance with them,
+   since test metrics describe the model; ml-model then holds what the model is, how it was built and how
+   good it is, and inference how the dataset was produced from it. Checks on a generated set (validity,
+   uniqueness, novelty) go in inference › filtering, as they describe the output, not the model.
+   (Superseded: decided by 0073.)
+   ML section by 0073 (ruling 2026-11-19, from the review of 2026-11-18): the section documents how a
+   dataset is produced from a model, not only the model; an MLIP is pim, not ml. ML work is a training
+   computation and an inference computation (both method ML), the inference naming the training as input
+   role Parameters or a model trained elsewhere as software. settings › computation-label*; ml-task* not
+   repeatable, type* terms Property prediction, Structure generation (structure prediction merged in),
+   Synthesis prediction, Ranking, Clustering, Embedding, defined in a note that sends MLIPs to pim;
+   ml-model* holds algorithm*, target-variable*, input-feature, model-architecture (explaining the new
+   generic architecture-parameter), model-size (int, trainable parameters), then training-data
+   (dataset-split in words; source only for data outside the record), training-method
+   (training-procedure* explaining the new generic hyperparameter, which replaces
+   training-hyperparameters and settles 0001 A6 for ML; new loss-function; transfer-learning) and
+   model-performance (evaluation-method* replaces validation; new metric: subset*, quantity*, measure*,
+   value* kind any, unit*; uncertainty-quantification says whether per-item uncertainties are in the
+   dataset; new applicability-domain); a new inference after ml-model (input-data, conditioning,
+   sampling-procedure explaining the generic inference-parameter, number-generated, filtering, which
+   holds the checks on a generated set); interpretability-method stays in settings. Applied in a
+   structure PR (settings, moves, renames, introduction; examples/ml.json in settings with type
+   Structure generation) and then the step 5 property PRs in file order, each adding its new members.
+   No released instance breaks. PROPOSED, NOT DECIDED (0073): how pim records an MLIP's fit; a minimal
+   software role for a trained model; whether interpretability-method belongs inside ml-model.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
