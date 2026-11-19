@@ -83,69 +83,120 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: Contains SubProperties as listed below.
+    notes:
+    - >-
+      Note: An inference computation whose model is trained in another computation of the record gives only
+      algorithm and target-variable, to identify the model; the training computation's settings describe the
+      rest.
     subproperties:
     - name: algorithm
       required: true
       description: The machine learning method used.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        examples: [Neural network, Random forest, Gaussian process]
       repeatable: false
-      legacy_values: >-
-        A string containing a description of the machine learning algorithm used (e.g. neural network, random
-        forest, Gaussian process, etc.)
     - name: target-variable
       required: true
       description: The desired output or answer the machine learning model aims to predict.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: true
-      legacy_values: >-
-        A string containing a description of a target variable the machine learning model aims to predict.
     - name: input-feature
       required: false
       description: Information provided to the machine learning method.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          The form and meaning of an input variable or feature, e.g. a graph representation of a crystal
+          structure, including any feature engineering performed to define it (e.g. dimensionality reduction,
+          clustering).
+      repeatable: true
+    - name: model-architecture
+      required: false
+      description: A description of the network topology used by the specified algorithm.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          E.g. for a neural network, the kinds of layers and how they are connected. Explain the role of each
+          architecture-parameter entry.
+      repeatable: false
+    - name: architecture-parameter
+      required: false
+      description: A fixed variable that defines the architecture of the machine learning model.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
       repeatable: true
-      legacy_values: >-
-        A string containing a description of the form and meaning of an input variable/feature provided
-        to the machine learning model (e.g. a graph representation of a crystal structure). This can include
-        information on feature engineering performed to define the input (e.g. dimensionality reduction,
-        clustering, etc.).
-    - name: model-architecture
-      required: false
-      description: A description of the network topology used by the specified algorithm.
-      type: null
-      extent: null
-      kind: null
-      recommended-unit: null
-      values: null
-      repeatable: false
-      legacy_values: >-
-        A string containing a description of the model architecture used by the specified algorithm (e.g.
-        for a neural network: the number of layers, nodes per layer, etc.).
+      notes:
+      - >-
+        Note: For example, the number of layers, the number of nodes per layer, a cutoff radius or a maximum
+        body order. Training settings are hyperparameter entries of training-method.
+      subproperties:
+      - name: name
+        required: true
+        description: The designation of the architecture parameter.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: value
+        required: true
+        description: The data associated with the architecture parameter.
+        type: any
+        extent: any
+        kind: any
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit in which the associated value is expressed.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+            only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+            (accepted with a validation warning).
+        repeatable: false
+      - name: description
+        required: false
+        description: An explanation of the meaning, source, or purpose of the architecture parameter.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
     - name: model-size
       required: false
-      description: A measure of the magnitude of the machine learning architecture.
-      type: null
-      extent: null
-      kind: null
+      description: The number of trainable parameters of the machine learning model.
+      type: int
+      extent: []
+      kind: dimensionless
       recommended-unit: null
-      values: null
+      values:
+        minimum: 1
       repeatable: false
-      legacy_values: >-
-        A string containing a description of the size of the trained model (e.g. number of parameters, storage
-        space, memory requirements, etc.)
     - name: training-data
       required: false
       description: The information used for parameterizing the machine learning model.

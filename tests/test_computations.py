@@ -840,7 +840,8 @@ def test_ml_properties_sit_in_settings_with_the_model_holding_how_it_was_built()
     assert (task['required'], task['repeatable']) == (True, False)
     model = sub(s, 'ml-model')
     assert [c['name'] for c in model['subproperties']] == [
-        'algorithm', 'target-variable', 'input-feature', 'model-architecture', 'model-size', 'training-data',
+        'algorithm', 'target-variable', 'input-feature', 'model-architecture', 'architecture-parameter',
+        'model-size', 'training-data',
         'training-method', 'model-performance']
     method = sub(model, 'training-method')
     assert [c['name'] for c in method['subproperties']] == [
@@ -874,3 +875,28 @@ def test_ml_task_names_the_kind_of_result_and_leaves_potentials_to_pim():
     assert any('pim' in n and 'interatomic potential' in n for n in t['notes'])
     assert shape(sub(task, 'description')) == (False, False, 'string', [], 'inapplicable', None)
     assert not any(k.startswith('legacy_') for p in [task, *task['subproperties']] for k in p)
+
+
+def test_ml_model_identifies_the_model_and_its_architecture_numbers_carry_units():
+    """The model's own members say what it is; numbers that fix the architecture, such as a cutoff radius with
+    its unit, are generic parameters explained by model-architecture, and model-size counts trainable
+    parameters (0073 item 3)."""
+    model = sub(top('ml', 'settings'), 'ml-model')
+    names = [c['name'] for c in model['subproperties']]
+    assert names[:6] == ['algorithm', 'target-variable', 'input-feature', 'model-architecture',
+                         'architecture-parameter', 'model-size']
+    assert any('only algorithm and target-variable' in n for n in model['notes'])
+    assert shape(sub(model, 'algorithm')) == (True, False, 'string', [], 'inapplicable', None)
+    assert shape(sub(model, 'target-variable')) == (True, True, 'string', [], 'inapplicable', None)
+    assert shape(sub(model, 'input-feature')) == (False, True, 'string', [], 'inapplicable', None)
+    arch = sub(model, 'model-architecture')
+    assert shape(arch) == (False, False, 'string', [], 'inapplicable', None)
+    assert 'architecture-parameter' in arch['values']['note']
+    param = sub(model, 'architecture-parameter')
+    assert (param['required'], param['repeatable']) == (False, True)
+    assert [c['name'] for c in param['subproperties']] == ['name', 'value', 'unit', 'description']
+    assert 'cutoff radius' in ' '.join(param['notes'][0].split())
+    size = sub(model, 'model-size')
+    assert shape(size) == (False, False, 'int', [], 'dimensionless', None)
+    assert 'trainable parameters' in size['description']
+    assert not any(k.startswith('legacy_') for p in [model, *model['subproperties'][:6]] for k in p)

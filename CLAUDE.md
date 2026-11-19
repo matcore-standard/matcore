@@ -1148,6 +1148,19 @@ record or marked PROPOSED, NOT DECIDED.
    interatomic potentials to pim; the baseline's repeat note and both descriptions kept; description a
    string; legacy_* deleted; test in tests/test_computations.py; 06-ml regenerated; examples/ml.json
    unchanged (already Structure generation).
+   Decided by the human 2026-11-19: ml-model is filled in four PRs, not one: (1) the model's own members
+   with architecture-parameter, (2) training-data, (3) training-method with loss-function and hyperparameter,
+   (4) model-performance with metric and applicability-domain.
+   [in progress, branch ml-model, committed, awaiting push and PR] ml ml-model, part 1 (step 5, 0073 item 3):
+   the container keeps its description and gains a note that an inference computation whose model is
+   trained in the record gives only algorithm and target-variable; algorithm a string, examples Neural
+   network, Random forest, Gaussian process (from the baseline's text); target-variable and input-feature
+   repeatable strings, input-feature's guidance as a note; model-architecture a string whose note asks it to
+   explain each architecture-parameter entry; a new architecture-parameter, a generic parameter (0016;
+   e.g. layers, nodes, cutoff radius, body order; training settings point to hyperparameter); model-size an
+   int, "The number of trainable parameters of the machine learning model.", minimum 1; legacy_* of these
+   deleted; tests/test_computations.py (a new test; the structure test's list gains architecture-parameter);
+   06-ml regenerated; examples/ml.json unchanged.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
