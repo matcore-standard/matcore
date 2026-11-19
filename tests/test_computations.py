@@ -845,7 +845,7 @@ def test_ml_properties_sit_in_settings_with_the_model_holding_how_it_was_built()
         'training-method', 'model-performance']
     method = sub(model, 'training-method')
     assert [c['name'] for c in method['subproperties']] == [
-        'training-procedure', 'hyperparameter', 'transfer-learning']
+        'training-procedure', 'loss-function', 'hyperparameter', 'transfer-learning']
     performance = sub(model, 'model-performance')
     assert [c['name'] for c in performance['subproperties']] == ['evaluation-method', 'uncertainty-quantification']
     assert ('The properties are given in settings blocks, each naming the ML computations it describes.'
@@ -921,3 +921,24 @@ def test_ml_training_data_points_to_the_record_and_counts_its_items():
     assert not any(k.startswith('legacy_') for p in [data, *data['subproperties']] for k in p)
     example = json.loads((ROOT / 'examples/ml.json').read_text(encoding='utf-8'))
     assert example['ml']['settings'][0]['ml-model']['training-data'][0]['size'] == 45231
+
+
+def test_ml_training_method_explains_its_hyperparameters_and_states_the_loss():
+    """The procedure describes the fit and the role of each hyperparameter, which carries a value and a unit;
+    the loss says what is fitted and how it is weighted (0073 item 5)."""
+    method = sub(sub(top('ml', 'settings'), 'ml-model'), 'training-method')
+    assert [c['name'] for c in method['subproperties']] == [
+        'training-procedure', 'loss-function', 'hyperparameter', 'transfer-learning']
+    procedure = sub(method, 'training-procedure')
+    assert shape(procedure) == (True, False, 'string', [], 'inapplicable', None)
+    note = ' '.join(procedure['values']['note'].split())
+    assert 'hyperparameter entry' in note and 'active-learning' in note
+    loss = sub(method, 'loss-function')
+    assert shape(loss) == (False, False, 'string', [], 'inapplicable', None)
+    assert 'forces' in loss['values']['note']
+    hyper = sub(method, 'hyperparameter')
+    assert (hyper['required'], hyper['repeatable']) == (False, True)
+    assert [c['name'] for c in hyper['subproperties']] == ['name', 'value', 'unit', 'description']
+    assert 'architecture-parameter' in hyper['notes'][0]
+    assert shape(sub(method, 'transfer-learning')) == (False, False, 'string', [], 'inapplicable', None)
+    assert not any(k.startswith('legacy_') for p in [method, *method['subproperties']] for k in p)
