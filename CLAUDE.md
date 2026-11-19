@@ -337,7 +337,10 @@ record or marked PROPOSED, NOT DECIDED.
      self-energy container of band-range, number-of-bands and band-terminator, and dielectric-matrix gains
      band-terminator (0071); mbpt bse-hamiltonian's typed fields filled, exciton-momentum given in fractions
      of the reciprocal lattice vectors with no unit (0072; step 5); mbpt bse-kernel-truncation's typed fields
-     filled with coulomb-truncation's terms, mbpt is complete (step 5).
+     filled with coulomb-truncation's terms, mbpt is complete (step 5); ml's properties sit in `settings`
+     blocks naming their computations, ml-task is not repeatable, training-data, training-method and
+     model-performance move into ml-model, training-hyperparameters is renamed hyperparameter and
+     validation evaluation-method (0073).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1125,7 +1128,7 @@ record or marked PROPOSED, NOT DECIDED.
    Structure generation) and then the step 5 property PRs in file order, each adding its new members.
    No released instance breaks. PROPOSED, NOT DECIDED (0073): how pim records an MLIP's fit; a minimal
    software role for a trained model; whether interpretability-method belongs inside ml-model.
-   [in progress, branch ml-structure-0073, committed, awaiting push and PR] ml structure by 0073, no typed
+   [done, PR #118 merged 2026-11-19] ml structure by 0073, no typed
    field filled: ml's properties in a required, repeatable `settings` whose first member is
    computation-label; ml-task not repeatable; training-data, training-method and model-performance moved
    unchanged into ml-model after model-size; training-hyperparameters renamed hyperparameter and validation
