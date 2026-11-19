@@ -206,118 +206,113 @@ properties:
       recommended-unit: null
       values: null
       repeatable: true
-      legacy_values: Contains SubProperties as listed below.
       subproperties:
       - name: name
         required: true
         description: Name of the training dataset used to train in the machine learning model.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: String containing the dataset name.
       - name: contents
         required: true
         description: Description of the information included in the training dataset.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            E.g. DFT calculations or experiments, and what one item of the data is (a structure, a
+            configuration), since size counts items.
         repeatable: false
-        legacy_values: >-
-          String containing a description of the training data (e.g. DFT calculations, experiments, etc.)
       - name: source
         required: false
         description: Location from which the training data was obtained.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            A MatCore ID, web address, DOI, citation, or other description of where the data was
+            obtained. Training data produced by a computation of the record is not given here: the
+            training computation names it in minimal `computation › input` with the role Training
+            data.
         repeatable: false
-        legacy_values: >-
-          A string containing a MatCore ID, web address, DOI, citation, or other description of the source
-          of the training data.
       - name: size
         required: false
         description: Number of items in the training dataset.
-        type: null
-        extent: null
-        kind: null
+        type: int
+        extent: []
+        kind: dimensionless
         recommended-unit: null
-        values: null
+        values:
+          minimum: 1
+          note: >-
+            The kind of item is stated in contents.
         repeatable: false
-        legacy_values: >-
-          A string containing information on the number of data points, configurations, etc., in the training
-          set.
       - name: data-preprocessing
         required: false
         description: >-
           Approach used for preliminary refining of raw, unformatted, or incomplete information into a structured
           and clean state suitable for modeling or analysis.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: >-
-          A string containing a description of any preprocessing applied to the dataset to prepare it for
-          training the machine learning model.
       - name: missing-data
         required: false
         description: >-
           Documentation of incomplete, null, or unrecorded entries within a feature set that hinder algorithm
           training.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            E.g. the percentage of missing data, and which fields are missing and why.
         repeatable: false
-        legacy_values: >-
-          A description of missing entries in the raw dataset (e.g. percentage of missing data and explanation
-          of which fields are missing and why).
       - name: missing-data-strategy
         required: false
         description: >-
           Approach used for filling in or removing blank, null, or unknown entries in a dataset.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: A string describing the approach used for handling missing data.
       - name: outlier-handling
         required: false
         description: >-
           Approach to identifying and addressing extreme observations that deviate significantly from the
           general distribution to ensure they do not disproportionately skew model training.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: A string containing the method used to detect and handle outliers.
       - name: dataset-split
         required: false
         description: >-
           A description of how information used to train the machine learning model was divided into subsets
           as part of the training process.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            In words, e.g. a random split of 80/10/10 into training, validation and test sets, a split
+            stratified by composition, or k-fold cross-validation.
         repeatable: false
-        legacy_values: >-
-          A string containing information about how the dataset was split into train/validation/test ratios,
-          and any other relevant information related to how the dataset was distributed in the training process.
     - name: training-method
       required: false
       description: The approach used to determine the machine learning model's free parameters.

@@ -1162,6 +1162,13 @@ record or marked PROPOSED, NOT DECIDED.
    int, "The number of trainable parameters of the machine learning model.", minimum 1; legacy_* of these
    deleted; tests/test_computations.py (a new test; the structure test's list gains architecture-parameter);
    06-ml regenerated; examples/ml.json unchanged.
+   [in progress, branch ml-training-data, committed, awaiting push and PR] ml ml-model, part 2 (step 5, 0073
+   item 4): training-data's nine members filled, baseline descriptions kept; strings except size, an int
+   (dimensionless, minimum 1; judgment call, 0073 does not state it) whose note says contents names the
+   item; notes drafted from the baseline's Values text for contents (what one item is), source (data in
+   the record is an input with role Training data, not given here), missing-data and dataset-split (in
+   words, e.g. random 80/10/10, stratified, k-fold); legacy_* deleted; examples/ml.json size 45231, its
+   text moved into contents; test in tests/test_computations.py; 06-ml regenerated.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over

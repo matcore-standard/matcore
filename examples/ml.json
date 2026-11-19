@@ -23,9 +23,9 @@
           "training-data": [
             {
               "name": "MP-20",
-              "contents": "Inorganic crystalline materials relaxed using density functional theory (DFT) to a local energy minimum. There are 89 elements and the materials have 1–20 atoms in the unit cells. MP-20 includes most experimentally known materials with no more than 20 atoms in unit cell.",
+              "contents": "Inorganic crystalline materials relaxed using density functional theory (DFT) to a local energy minimum. There are 89 elements and the materials have 1–20 atoms in the unit cells. MP-20 includes most experimentally known materials with no more than 20 atoms in unit cell. Each item is a structure; the structures differ in both structure and composition.",
               "source": "Materials Project, first published in https://doi.org/10.1063/1.4812323",
-              "size": "45,231 structures that differ in both structure and composition."
+              "size": 45231
             }
           ]
         }
