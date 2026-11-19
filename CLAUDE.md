@@ -348,7 +348,9 @@ record or marked PROPOSED, NOT DECIDED.
      training-method filled, with a new loss-function and a generic hyperparameter whose role
      training-procedure explains (0073; step 5); ml model-performance filled, validation replaced by
      evaluation-method, with a new metric (subset Training, Validation or Test; quantity; measure; value;
-     unit) and applicability-domain (0073; step 5).
+     unit) and applicability-domain (0073; step 5); a new ml inference describes how a dataset was produced
+     from the model: input-data, conditioning, sampling-procedure, a generic inference-parameter,
+     number-generated and filtering (0073).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1194,7 +1196,7 @@ record or marked PROPOSED, NOT DECIDED.
    test's list gains metric and applicability-domain); 06-ml regenerated; examples/ml.json unchanged.
    Judgment calls: Accuracy added for classifiers; R² written with a superscript; evaluation-method stays
    repeatable. Then interpretability-method, and inference, complete ml.
-   [in progress, branch ml-inference, committed, awaiting push and PR] ml inference (step 5, 0073 item 7): a
+   [done, PR #124 merged 2026-11-19] ml inference (step 5, 0073 item 7): a
    new optional container after ml-model, its note "Give it for a computation that applies a trained
    model"; input-data (data in the record is an input, e.g. role Source data), conditioning,
    sampling-procedure (explains each inference-parameter entry) and filtering (with the checks on a
