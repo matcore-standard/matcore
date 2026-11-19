@@ -38,36 +38,41 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: Contains SubProperties as listed below.
     subproperties:
     - name: type
       required: true
       description: The nature of the machine learning task.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Property prediction, Structure generation, Synthesis prediction, Ranking, Clustering, Embedding]
+        note: >-
+          "Property prediction" – Values of a property predicted for given materials or structures, e.g.
+          formation energies or band gaps. "Structure generation" – New structures produced by the model,
+          freely or for a given composition, space group or target property, including crystal structure
+          prediction for a given composition. "Synthesis prediction" – Routes, precursors or conditions
+          predicted for making a given material. "Ranking" – Given materials or structures ordered by a
+          predicted score, e.g. to select candidates for further calculation. "Clustering" – Given materials
+          or structures grouped by similarity. "Embedding" – A numerical representation computed for each
+          given material or structure, for use by other models or analyses.
       repeatable: true
       notes:
       - >-
         Note: This Property can be repeated if the machine learning task involves multiple types of calculations.
-      legacy_values: >-
-        String containing one of the following values: "Property prediction" "Structure prediction" (e.g.
-        crystal structure prediction) "Structure generation" (e.g. de novo crystal generation) "Synthesis
-        prediction" "Material ranking" "Clustering" "Embedding" Other user-specified value if none of the
-        above apply.
+      - >-
+        Note: A machine-learned interatomic potential is not described here; it is a particle interaction model
+        (pim, theory-level Machine-learned).
     - name: description
       required: false
       description: Explanation of the machine learning task performed.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: >-
-        A string containing a more detailed explanation of the machine learning task and its objectives.
   - name: ml-model
     required: true
     description: >-

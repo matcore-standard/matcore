@@ -1139,6 +1139,13 @@ record or marked PROPOSED, NOT DECIDED.
    (architecture-parameter, loss-function, metric, applicability-domain, inference) come in the property PRs.
    Then ml's properties in file order: ml-task, ml-model (perhaps one PR per member), inference,
    interpretability-method.
+   [in progress, branch ml-task, committed, awaiting push and PR] ml ml-task (step 5) by 0073 item 2: type a
+   string with open terms Property prediction, Structure generation, Synthesis prediction, Ranking,
+   Clustering, Embedding, each defined in a note drafted in this PR (judgment calls; Structure generation
+   includes crystal structure prediction for a given composition); a second note sends machine-learned
+   interatomic potentials to pim; the baseline's repeat note and both descriptions kept; description a
+   string; legacy_* deleted; test in tests/test_computations.py; 06-ml regenerated; examples/ml.json
+   unchanged (already Structure generation).
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
