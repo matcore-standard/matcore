@@ -342,7 +342,8 @@ record or marked PROPOSED, NOT DECIDED.
      model-performance move into ml-model, training-hyperparameters is renamed hyperparameter and
      validation evaluation-method (0073); ml ml-task's type has the terms Property prediction, Structure
      generation, Synthesis prediction, Ranking, Clustering and Embedding, an MLIP being described in pim
-     (0073; step 5).
+     (0073; step 5); ml ml-model's own members filled, with a generic architecture-parameter and model-size
+     the number of trainable parameters (0073; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1151,7 +1152,7 @@ record or marked PROPOSED, NOT DECIDED.
    Decided by the human 2026-11-19: ml-model is filled in four PRs, not one: (1) the model's own members
    with architecture-parameter, (2) training-data, (3) training-method with loss-function and hyperparameter,
    (4) model-performance with metric and applicability-domain.
-   [in progress, branch ml-model, committed, awaiting push and PR] ml ml-model, part 1 (step 5, 0073 item 3):
+   [done, PR #120 merged 2026-11-19] ml ml-model, part 1 (step 5, 0073 item 3):
    the container keeps its description and gains a note that an inference computation whose model is
    trained in the record gives only algorithm and target-variable; algorithm a string, examples Neural
    network, Random forest, Gaussian process (from the baseline's text); target-variable and input-feature
