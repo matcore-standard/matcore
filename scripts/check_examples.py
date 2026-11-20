@@ -5,6 +5,8 @@ An example is a JSON object whose only member is its section, holding that secti
 For every member: it names a property defined at that place in the section's hierarchy; every required
 property is present wherever its parent is; a repeatable property is an array of entries; a container is
 an object; a leaf with a Type has a value of that Type and of the shape its Extent gives; nothing is null.
+A generic parameter's object also carries the JSON-only member `type` (float, int, string or bool), and its
+value, or each component of it, has that type (0044 item 3).
 A leaf whose Type is not yet filled (status step 5) takes any value but an object or null.
 
 Run alone, or through scripts/validate_schema.py, which CI runs. Exit non-zero on any error.
@@ -51,6 +53,24 @@ def value_errors(value, p, path):
     return shape(value, extent, path)
 
 
+def generic_type_errors(obj, path):
+    """Return the errors of a generic parameter's JSON member `type` and of its value against it (0044 item 3).
+
+    obj (dict): the parameter's object; path (str): location for messages.
+    """
+    t = obj.get('type')
+    if t not in SCALARS:
+        return [f'{path}: a generic parameter gives "type", one of {", ".join(SCALARS)} (0044 item 3)']
+    check, word = SCALARS[t]
+
+    def flat(v):
+        """Return the components of a value given as nested arrays, or the value itself."""
+        return [x for item in v for x in flat(item)] if isinstance(v, list) else [v]
+    if 'value' in obj and not all(check(x) for x in flat(obj['value'])):
+        return [f'{path}/value: must be {word}, as "type" says']
+    return []
+
+
 def structure_errors(obj, props, path):
     """Return the errors of an object's members against the properties allowed there, as messages.
 
@@ -59,8 +79,12 @@ def structure_errors(obj, props, path):
     """
     if not isinstance(obj, dict):
         return [f'{path}: must be an object']
+    out = []
+    if any(p['name'] == 'value' and p.get('type') == p.get('kind') == 'any' for p in props):
+        out += generic_type_errors(obj, path)
+        obj = {k: v for k, v in obj.items() if k != 'type'}
     by_name = {p['name']: p for p in props}
-    out = [f'{path}: "{k}" is not a property defined here' for k in obj if k not in by_name]
+    out += [f'{path}: "{k}" is not a property defined here' for k in obj if k not in by_name]
     out += [f'{path}: required "{p["name"]}" is missing' for p in props if p['required'] and p['name'] not in obj]
     for key, value in obj.items():
         p = by_name.get(key)

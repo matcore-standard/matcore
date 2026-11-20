@@ -89,7 +89,7 @@ def test_legacy_complete_requires_no_legacy_fields(tmp_path):
     import shutil
     for d in ('schema', 'scripts', 'examples'):
         shutil.copytree(ROOT / d, tmp_path / d)
-    f = tmp_path / 'schema/pf.yaml'  # pf still holds legacy text
+    f = tmp_path / 'schema/derived.yaml'  # derived still holds legacy text
     doc = yaml.safe_load(f.read_text())
 
     def run():

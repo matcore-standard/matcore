@@ -1209,3 +1209,30 @@ def test_pf_numerical_method_says_how_each_group_of_equations_is_discretized_and
     assert entry['temporal-discretization'] == 'Backward Euler'
     assert [g['value'] for g in entry['grid-spacing']] == [0.4, 0.4]
     assert entry['time-step-size'][0]['value'] == 0.01
+
+
+def test_pf_variables_give_each_field_its_own_entry_and_pf_is_complete():
+    """A model parameter's value takes any type, shape and unit, so it is a generic parameter; a field variable is
+    the field one equation evolves, so each field (each component's concentration, each grain's order parameter) is
+    its own entry, named as the equations and boundary conditions refer to it (0016, 0074 item 6)."""
+    variables = sub(top('pf', 'settings'), 'variables')
+    param = sub(variables, 'model-parameter')
+    assert [c['name'] for c in param['subproperties']] == ['name', 'value', 'unit', 'description']
+    assert (sub(param, 'value')['type'], sub(param, 'value')['kind']) == ('any', 'any')
+    assert 'reduced units' in ' '.join(' '.join(param['notes']).split())
+    field = sub(variables, 'field-variable')
+    assert (field['required'], field['repeatable']) == (False, True)
+    assert [c['name'] for c in field['subproperties']] == ['name', 'type', 'unit', 'description']
+    assert 'one concentration entry for each component' in ' '.join(' '.join(field['notes']).split())
+    t = sub(field, 'type')
+    assert shape(t) == (True, False, 'string', [], 'inapplicable', None)
+    assert t['values']['terms'] == ['Scalar', 'Vector', 'Tensor']
+    assert all(f'"{term}" –' in ' '.join(t['values']['note'].split()) for term in t['values']['terms'])
+    unit = sub(field, 'unit')
+    assert shape(unit) == (True, False, 'string', [], 'inapplicable', None)
+    assert 'x-gnu:' in unit['values']['note']
+    no_legacy([variables])
+    assert section('pf')['legacy_complete'] is True
+    block = json.loads((ROOT / 'examples/pf.json').read_text(encoding='utf-8'))['pf']['settings'][0]
+    params = block['variables']['model-parameter']
+    assert [(p['value'], p['type']) for p in params] == [(0.04714045, 'float'), (5.05, 'float')]

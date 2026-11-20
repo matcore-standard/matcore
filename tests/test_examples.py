@@ -64,6 +64,34 @@ def test_each_kind_of_violation_is_reported(doc, fragment):
     assert any(fragment in e for e in found), found
 
 
+GENERIC = [{'name': 'parameter', 'required': False, 'repeatable': True, 'type': None, 'extent': None, 'subproperties': [
+    {'name': 'name', 'required': True, 'repeatable': False, 'type': 'string', 'extent': []},
+    {'name': 'value', 'required': True, 'repeatable': False, 'type': 'any', 'extent': 'any', 'kind': 'any'},
+    {'name': 'unit', 'required': True, 'repeatable': False, 'type': 'string', 'extent': []}]}]
+
+
+@pytest.mark.parametrize('entry, fragment', [
+    ({'name': 'n', 'value': 4, 'type': 'int', 'unit': 'dimensionless'}, None),
+    ({'name': 'n', 'value': [0.5, 1], 'type': 'float', 'unit': 'm'}, None),
+    ({'name': 'n', 'value': 'tanh', 'type': 'string', 'unit': 'dimensionless'}, None),
+    ({'name': 'n', 'value': 4, 'unit': 'dimensionless'}, 'gives "type"'),
+    ({'name': 'n', 'value': 4, 'type': 'number', 'unit': 'dimensionless'}, 'gives "type"'),
+    ({'name': 'n', 'value': 4.5, 'type': 'int', 'unit': 'dimensionless'}, 'as "type" says'),
+    ({'name': 'n', 'value': [1, 'a'], 'type': 'float', 'unit': 'm'}, 'as "type" says'),
+])
+def test_a_generic_parameter_states_its_type_in_json(entry, fragment):
+    """JSON writes 4 and 4.0 alike, so a generic parameter's object states its instance type in a member `type`
+    (float, int, string, bool), and its value, or each component of it, has that type (0044 item 3). The member
+    is allowed only on a generic parameter.
+
+    entry (dict): one parameter entry; fragment (str | None): part of the expected message, or None if conformant.
+    """
+    found = check_examples.structure_errors({'parameter': [entry]}, GENERIC, 'test')
+    assert found == [] if fragment is None else any(fragment in e for e in found), found
+    person = {'person': [{'name': 'A', 'type': 'int'}], 'title': 'T'}
+    assert any('"type" is not a property defined here' in e for e in errors(person))
+
+
 @pytest.mark.parametrize('key', SECTIONS)
 def test_every_example_conforms_to_the_current_standard(key):
     """The published examples follow the standard as it is now, so readers can copy them (0012); each is one
