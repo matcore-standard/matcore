@@ -1275,6 +1275,19 @@ record or marked PROPOSED, NOT DECIDED.
    `contribution` after name (open terms Chemical, Interfacial, Elastic, Plastic, Electrical, Magnetic, Fluid-solid
    interaction, Solid-solid interaction). No released instance breaks. Amendment committed on main; the
    problem-specification PR (branch pf-problem-specification) is in progress.
+   [in progress, branch pf-problem-specification, committed, awaiting push and PR] pf problem-specification (step 5,
+   0074 item 3 and amendment): cross-check 2026-11-20, names, definitions and terms match the .docx apart from 0074's
+   renames, type made repeatable, and the unit wording; time-dependence and additional-energy-contribution removed,
+   "time-evolution state" dropped from the description and the introduction; governing-equation noted one entry per
+   equation; type a repeatable string with the nine terms of 0074, each defined in a note drafted in this PR, and a
+   note sending anti-trapping and sharp- or thin-interface formulations to user-specified values; evolved-variable and
+   free-energy-density-term strings naming a field-variable or free-energy-density entry, the latter's description
+   reworded ("A term of the free energy density that drives this equation."); free-energy-density described as one
+   term, noted one entry per term; its name a string; a new repeatable contribution with the amendment's terms,
+   defined; description's six model terms defined; expression and unit as the amendment says, unit a free-form unit
+   with A3.2's note; legacy_* deleted; examples/pf.json loses time-dependence and gives f_total contribution
+   Interfacial and Chemical; test in tests/test_computations.py; 07-pf regenerated. Judgment calls: all term
+   definitions; contribution repeatable; the example's contribution read from its expression.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
