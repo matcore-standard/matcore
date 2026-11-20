@@ -363,7 +363,10 @@ record or marked PROPOSED, NOT DECIDED.
      free-energy-density › unit is the unit of the density (0074 amendment; step 5); pf domain is filled:
      domain-size is a value + unit, `dimensionless` in reduced units with no `scaling` flag (0075, amending 0003),
      boundary-conditions is a container of type (Dirichlet, Neumann, Zero-Neumann, Periodic; Fixed and Free removed),
-     boundary and field-variable, and NoFlux is Zero-Neumann (0074, 0075; step 5).
+     boundary and field-variable, and NoFlux is Zero-Neumann (0074, 0075; step 5); pf numerical-method is filled:
+     evolved-variable, spatial-discretization-parameter and mesh-file are added, grid-spacing and time-step-size are
+     value + unit with no `scaling` flag, temporal-discretization's Implicit and Explicit are removed and Mixed is IMEX,
+     mesh-type loses Cartesian, and solver has nine defined terms (0074, 0075; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1298,7 +1301,7 @@ record or marked PROPOSED, NOT DECIDED.
    committed on main (683d561). Found in the source
    (benchmark8a.py at abffcd9) for that PR: dx = dy = 0.4, dt = 0.01, a FiPy TransientTerm with implicit diffusion and
    five sweeps per step (first order, i.e. Backward Euler).
-   [in progress, branch pf-numerical-method, committed, awaiting push and PR] pf numerical-method (step 5, 0074 item 5
+   [done, PR #130 merged 2026-11-20] pf numerical-method (step 5, 0074 item 5
    and second amendment, 0075): cross-check 2026-11-20, names, definitions and terms match the .docx (Δx and Δt
    restored, lost as equation objects); members in the order evolved-variable (new, repeatable, path note, given when
    equations are solved differently), spatial-discretization (six terms defined), spatial-discretization-parameter
