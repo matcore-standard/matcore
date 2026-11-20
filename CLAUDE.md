@@ -360,7 +360,10 @@ record or marked PROPOSED, NOT DECIDED.
      time-dependence is removed, the time-evolution state being given in minimal conditions,
      additional-energy-contribution is replaced by free-energy-density › contribution, governing-equation › type has
      nine defined terms with Navier-Stokes, Multi-phase-field, Mechanical equilibrium and Poisson, and
-     free-energy-density › unit is the unit of the density (0074 amendment; step 5).
+     free-energy-density › unit is the unit of the density (0074 amendment; step 5); pf domain is filled:
+     domain-size is a value + unit, `dimensionless` in reduced units with no `scaling` flag (0075, amending 0003),
+     boundary-conditions is a container of type (Dirichlet, Neumann, Zero-Neumann, Periodic; Fixed and Free removed),
+     boundary and field-variable, and NoFlux is Zero-Neumann (0074, 0075; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1287,7 +1290,7 @@ record or marked PROPOSED, NOT DECIDED.
    boundary in mesh-file or a description such as "x = 0") and field-variable (the field constrained), boundary and
    field-variable omitted when the condition applies to all. Settles 0074's boundary points and the §1.3 conditional
    rule for `scaling`. No released instance breaks. Ruling committed on main (4ad61a8).
-   [in progress, branch pf-domain, committed, awaiting push and PR] pf domain (step 5, 0074 item 4, 0075): cross-check
+   [done, PR #129 merged 2026-11-20] pf domain (step 5, 0074 item 4, 0075): cross-check
    2026-11-20, names, definitions and terms match the .docx apart from 0074's move of mesh-type; the container's
    description drops "topological discretization details" (the mesh is in numerical-method); dimensionality and
    coordinate-system strings with the baseline's terms; domain-size value (float [:], Length, m, minimum 0) + unit, with
@@ -1301,7 +1304,7 @@ record or marked PROPOSED, NOT DECIDED.
    example's numbers are strings ("1.0"), to be written as numbers.
    Changed in review 2026-11-20 (the human): a note that refers to another property gives its path within the settings
    block, e.g. `variables › field-variable`, `numerical-method › mesh-file`, `variables › model-parameter`, not its
-   bare name; applied to boundary, field-variable and domain-size's notes, uncommitted on pf-domain. The same defect is
+   bare name; applied to boundary, field-variable and domain-size's notes (in PR #129). The same defect is
    in problem-specification's evolved-variable and free-energy-density-term notes (PR #128, merged); fixed in this
    PR too (decided by the human 2026-11-20), with the test of problem-specification checking their paths.
    [done, PR #128 merged 2026-11-20] pf problem-specification (step 5,
