@@ -366,7 +366,8 @@ record or marked PROPOSED, NOT DECIDED.
      boundary and field-variable, and NoFlux is Zero-Neumann (0074, 0075; step 5); pf numerical-method is filled:
      evolved-variable, spatial-discretization-parameter and mesh-file are added, grid-spacing and time-step-size are
      value + unit with no `scaling` flag, temporal-discretization's Implicit and Explicit are removed and Mixed is IMEX,
-     mesh-type loses Cartesian, and solver has nine defined terms (0074, 0075; step 5).
+     mesh-type loses Cartesian, and solver has nine defined terms (0074, 0075; step 5); pf mesh-file is repeatable,
+     one entry per file (decided by the human 2026-11-20).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1318,8 +1319,8 @@ record or marked PROPOSED, NOT DECIDED.
    replacing two copies); 07-pf regenerated. Judgment calls: all definitions, member order, the example's Picard.
    Decided by the human 2026-11-20, after PR #130: numerical-method › mesh-file is repeatable, since a mesh may be
    split over several files (e.g. its structure and its boundaries); its description says "A file holding the mesh or
-   part of it" and a note asks for one entry per file. [in progress, branch pf-mesh-file-repeatable, committed,
-   awaiting push and PR] schema/pf.yaml, tests/test_computations.py, 07-pf regenerated; examples/pf.json unchanged (no
+   part of it" and a note asks for one entry per file. [done, PR #131 merged 2026-11-20]
+   schema/pf.yaml, tests/test_computations.py, 07-pf regenerated; examples/pf.json unchanged (no
    mesh file). Then the variables PR.
    [done, PR #129 merged 2026-11-20] pf domain (step 5, 0074 item 4, 0075): cross-check
    2026-11-20, names, definitions and terms match the .docx apart from 0074's move of mesh-type; the container's
