@@ -1299,6 +1299,11 @@ record or marked PROPOSED, NOT DECIDED.
    params8a.yaml Lx = Ly = 100, PeriodicGrid2D); test in tests/test_computations.py; 07-pf regenerated.
    Found for the numerical-method PR: the source's dx is 0.4 (params8a.yaml), the example's grid-spacing 1.0; the
    example's numbers are strings ("1.0"), to be written as numbers.
+   Changed in review 2026-11-20 (the human): a note that refers to another property gives its path within the settings
+   block, e.g. `variables › field-variable`, `numerical-method › mesh-file`, `variables › model-parameter`, not its
+   bare name; applied to boundary, field-variable and domain-size's notes, uncommitted on pf-domain. The same defect is
+   in problem-specification's evolved-variable and free-energy-density-term notes (PR #128, merged); fixed in this
+   PR too (decided by the human 2026-11-20), with the test of problem-specification checking their paths.
    [done, PR #128 merged 2026-11-20] pf problem-specification (step 5,
    0074 item 3 and amendment): cross-check 2026-11-20, names, definitions and terms match the .docx apart from 0074's
    renames, type made repeatable, and the unit wording; time-dependence and additional-energy-contribution removed,

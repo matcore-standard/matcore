@@ -115,7 +115,9 @@ properties:
         recommended-unit: null
         values:
           examples: [phi, c]
-          note: The name of a `field-variable` entry.
+          note: >-
+            The `name` of a field variable defined in `variables › field-variable` of the same settings
+            block.
         repeatable: false
       - name: free-energy-density-term
         required: false
@@ -126,7 +128,9 @@ properties:
         recommended-unit: null
         values:
           examples: [f_chem, f_elastic]
-          note: The name of a `free-energy-density` entry.
+          note: >-
+            The `name` of a term defined in `problem-specification › free-energy-density` of the same
+            settings block.
         repeatable: true
     - name: free-energy-density
       required: true
@@ -255,11 +259,11 @@ properties:
       - 'Note: Give one extent for each coordinate direction, in the order of the coordinates.'
       - >-
         Note: `unit` is a Length symbol from Annex U, or `dimensionless` when the simulation uses reduced
-        units; the characteristic length is then given as a `model-parameter` entry, so the extents can be
-        converted.
+        units; the characteristic length is then given as a `variables › model-parameter` entry, so the
+        extents can be converted.
       - >-
         Note: For a regular domain the extents are its size. For an irregular geometry, whose mesh is given in
-        `mesh-file`, they may give a characteristic size of the structure.
+        `numerical-method › mesh-file`, they may give a characteristic size of the structure.
       subproperties:
       - name: value
         required: true
@@ -318,7 +322,9 @@ properties:
         kind: inapplicable
         recommended-unit: null
         values:
-          note: The name of a boundary in `mesh-file`, or a description such as "x = 0".
+          note: >-
+            The name of a boundary in the mesh file (`numerical-method › mesh-file` of the same settings block),
+            or a description such as "x = 0".
         repeatable: false
       - name: field-variable
         required: false
@@ -328,7 +334,9 @@ properties:
         kind: inapplicable
         recommended-unit: null
         values:
-          note: The name of a `field-variable` entry.
+          note: >-
+            The `name` of a field variable defined in `variables › field-variable` of the same settings
+            block.
         repeatable: false
     - name: initial-conditions
       required: false
