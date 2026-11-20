@@ -62,3 +62,11 @@ The PF section is the last method section still in its baseline form. 0046 item 
   - "Mixed" in `temporal-discretization`, and the spelling "Crank-Nicholson" (the scheme is Crank–Nicolson);
   - how a boundary condition names its boundary in `mesh-file`, and the overlap of "Fixed" with "Dirichlet" and of "Free" with "Zero-Neumann";
   - how `time-dependence` relates to minimal `conditions › type` (thermodynamic-state, time-dependence; 0036).
+
+## Amendment (2026-11-20, before the problem-specification pull request)
+Three points came up in the cross-check of `problem-specification`:
+1. **`free-energy-density › unit`** drops the parenthesis that 0001 A7.3 added. Its description is the baseline's: "The physical unit of the free energy density." `expression`'s description becomes "The mathematical expression of the free energy density.", so the two agree. This settles the open point on the unit in the Consequences.
+2. **`problem-specification › time-dependence`** is removed. Its terms (Transient evolution, Steady state, Thermodynamic equilibrium) repeat minimal `conditions › type › thermodynamic-state` (Equilibrium, Steady state, Transient; 0036), and a method section does not repeat what minimal conditions hold (0042 item 3). Its remaining term, "Stationary", names a time-independent problem solved without time integration. `numerical-method › temporal-discretization` gets a note saying to omit it for such a problem (applied in the numerical-method pull request). The descriptions of `problem-specification` and the section introduction drop "time-evolution state". This settles the open point on `time-dependence` in the Consequences.
+3. **`additional-energy-contribution`** is removed. An optional `contribution` follows `name` in `free-energy-density` and names the physical contribution each term represents. Its open terms are Chemical, Interfacial, Elastic, Plastic, Electrical, Magnetic, Fluid-solid interaction and Solid-solid interaction: the baseline's six, as adjectives, plus Chemical and Interfacial. Since 0074 item 3 each term is its own entry, so a separate list of contributions would say twice what the entries say.
+
+No released instance breaks: pf's properties were legacy text in 0.6.0. examples/pf.json loses `time-dependence`.

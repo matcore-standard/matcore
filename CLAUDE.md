@@ -1247,7 +1247,8 @@ record or marked PROPOSED, NOT DECIDED.
    Applied in a structure PR, then the property PRs in file order. PROPOSED, NOT DECIDED (0074): the further
    solver terms; free-energy-density › unit dropping "or of the free energy"; temporal-discretization's Mixed and
    the spelling Crank-Nicolson; how a boundary condition names its boundary, and Fixed vs Dirichlet, Free vs
-   Zero-Neumann; time-dependence vs minimal conditions › type (0036).
+   Zero-Neumann; time-dependence vs minimal conditions › type (0036). (Superseded in part: the unit and time-dependence points are
+   settled by the 0074 amendment of 2026-11-20.)
    Ruling 0074 committed on main (e394bf7). [done, PR #126 merged 2026-11-19]
    pf structure by 0074, no typed field filled: pf's properties in a required, repeatable `settings` whose
    first member is computation-label; physical-phenomena renamed physical-phenomenon, free-energy renamed
@@ -1264,6 +1265,16 @@ record or marked PROPOSED, NOT DECIDED.
    baseline description kept; legacy_* deleted; test in tests/test_computations.py; 07-pf regenerated;
    examples/pf.json unchanged (its "Homogeneous nucleation (single seed)" is a user-specified value).
    PROPOSED, NOT DECIDED: a term Nucleation, since the section's own example models it.
+   0074 amended 2026-11-20 (decided by the human, from the problem-specification cross-check): free-energy-density ›
+   unit drops 0001 A7.3's parenthesis ("The physical unit of the free energy density.", the .docx wording) and
+   expression becomes "The mathematical expression of the free energy density."; problem-specification ›
+   time-dependence is removed, since it repeats minimal conditions › type › thermodynamic-state (0036, 0042 item 3),
+   its term Stationary becoming a note on temporal-discretization to omit it for a problem solved without time
+   integration (in the numerical-method PR), and "time-evolution state" leaves problem-specification's description
+   and the introduction; additional-energy-contribution is removed and free-energy-density gains an optional
+   `contribution` after name (open terms Chemical, Interfacial, Elastic, Plastic, Electrical, Magnetic, Fluid-solid
+   interaction, Solid-solid interaction). No released instance breaks. Amendment committed on main; the
+   problem-specification PR (branch pf-problem-specification) is in progress.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
