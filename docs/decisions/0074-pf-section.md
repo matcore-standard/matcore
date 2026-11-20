@@ -70,3 +70,11 @@ Three points came up in the cross-check of `problem-specification`:
 3. **`additional-energy-contribution`** is removed. An optional `contribution` follows `name` in `free-energy-density` and names the physical contribution each term represents. Its open terms are Chemical, Interfacial, Elastic, Plastic, Electrical, Magnetic, Fluid-solid interaction and Solid-solid interaction: the baseline's six, as adjectives, plus Chemical and Interfacial. Since 0074 item 3 each term is its own entry, so a separate list of contributions would say twice what the entries say.
 
 No released instance breaks: pf's properties were legacy text in 0.6.0. examples/pf.json loses `time-dependence`.
+
+## Second amendment (2026-11-20, before the numerical-method pull request)
+Three points came up in the cross-check of `numerical-method`:
+1. **`solver`** has open terms Explicit, Direct, Conjugate gradient, BiCGSTAB, GMRES, Multigrid, Newton, Newton-Krylov and Picard, each defined. The .docx gave only examples. A note asks for one entry per layer of the solution, e.g. Newton with GMRES and a Multigrid preconditioner. The library or code that provides a solver is the computation's software. This settles the open point on solver terms in the Consequences.
+2. **`temporal-discretization`**: "Mixed", undefined in the .docx, becomes "IMEX" (implicit-explicit: stiff terms treated implicitly, the rest explicitly). "Crank-Nicholson" is spelled Crank-Nicolson and "Adams Bashforth" Adams-Bashforth. The terms are Forward Euler, Backward Euler, Adams-Bashforth, Crank-Nicolson, Runge-Kutta and IMEX, each defined. This settles the open point on Mixed and the spelling in the Consequences.
+3. **`mesh-type`** loses "Cartesian". It overlaps Regular (uniform spacing along each axis) and Rectilinear (axis-aligned, with varying spacing), and it is also a `domain › coordinate-system` term. "Adaptive Mesh Refinement" is written "Adaptive mesh refinement", in sentence case like the other terms. The remaining seven terms are each defined.
+
+No released instance breaks: pf's properties were legacy text in 0.6.0.

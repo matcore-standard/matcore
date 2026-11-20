@@ -1255,9 +1255,9 @@ record or marked PROPOSED, NOT DECIDED.
    Applied in a structure PR, then the property PRs in file order. PROPOSED, NOT DECIDED (0074): the further
    solver terms; free-energy-density › unit dropping "or of the free energy"; temporal-discretization's Mixed and
    the spelling Crank-Nicolson; how a boundary condition names its boundary, and Fixed vs Dirichlet, Free vs
-   Zero-Neumann; time-dependence vs minimal conditions › type (0036). (Superseded in part: the unit and time-dependence points are
+   Zero-Neumann; time-dependence vs minimal conditions › type (0036). (Superseded: the unit and time-dependence points are
    settled by the 0074 amendment of 2026-11-20; the boundary points by
-   0075.)
+   0075; the solver terms, Mixed and the spelling by the second amendment of 2026-11-20.)
    Ruling 0074 committed on main (e394bf7). [done, PR #126 merged 2026-11-19]
    pf structure by 0074, no typed field filled: pf's properties in a required, repeatable `settings` whose
    first member is computation-label; physical-phenomena renamed physical-phenomenon, free-energy renamed
@@ -1290,6 +1290,14 @@ record or marked PROPOSED, NOT DECIDED.
    boundary in mesh-file or a description such as "x = 0") and field-variable (the field constrained), boundary and
    field-variable omitted when the condition applies to all. Settles 0074's boundary points and the §1.3 conditional
    rule for `scaling`. No released instance breaks. Ruling committed on main (4ad61a8).
+   0074's second amendment 2026-11-20 (decided by the human, from the numerical-method cross-check): solver gets open
+   terms Explicit, Direct, Conjugate gradient, BiCGSTAB, GMRES, Multigrid, Newton, Newton-Krylov, Picard, defined, with
+   a note asking for one entry per layer and naming the providing library as software; temporal-discretization's Mixed
+   becomes IMEX and the spellings are Crank-Nicolson and Adams-Bashforth; mesh-type loses Cartesian (overlapping
+   Regular, Rectilinear and the coordinate-system term) and writes Adaptive mesh refinement. Amendment
+   committed on main; the numerical-method PR (branch pf-numerical-method) is in progress. Found in the source
+   (benchmark8a.py at abffcd9) for that PR: dx = dy = 0.4, dt = 0.01, a FiPy TransientTerm with implicit diffusion and
+   five sweeps per step (first order, i.e. Backward Euler).
    [done, PR #129 merged 2026-11-20] pf domain (step 5, 0074 item 4, 0075): cross-check
    2026-11-20, names, definitions and terms match the .docx apart from 0074's move of mesh-type; the container's
    description drops "topological discretization details" (the mesh is in numerical-method); dimensionality and
