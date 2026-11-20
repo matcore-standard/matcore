@@ -33,16 +33,29 @@ properties:
     required: true
     description: >-
       Material process being modeled; description of the overarching processes and mechanisms being modeled/simulated.
-    type: null
-    extent: null
-    kind: null
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
-    values: null
+    values:
+      terms: [Isothermal solidification, Directional solidification, Isothermal annealing, Sintering, Twinning,
+        Grain growth, Spinodal decomposition, Fracture, Plasticity]
+      note: >-
+        "Isothermal solidification" – Growth of a solid from a melt or solution held at one uniform temperature,
+        e.g. dendrites growing into an undercooled melt. "Directional solidification" – Solidification in an
+        imposed temperature gradient, the front advancing along it, e.g. cellular or dendritic growth in a
+        pulled sample. "Isothermal annealing" – Evolution of a solid microstructure held at one temperature,
+        e.g. recovery, recrystallization or precipitate coarsening. "Sintering" – Bonding and densification of
+        particles by diffusion below their melting point. "Twinning" – Formation or growth of twins, domains
+        whose lattice is the mirror image of the parent's across a twin plane. "Grain growth" – Coarsening of a
+        polycrystal by grain-boundary migration, driven by the reduction of grain-boundary energy. "Spinodal
+        decomposition" – Phase separation of an unstable solution by the growth of composition fluctuations,
+        without a nucleation barrier. "Fracture" – Initiation and propagation of cracks, a phase field marking
+        the broken material. "Plasticity" – Irreversible deformation, e.g. by dislocation motion, described
+        by phase fields or coupled to the phase field model.
     repeatable: true
-    legacy_values: >-
-      String containing one of the following values: "Isothermal solidification" "Directional solidification"
-      "Isothermal annealing" "Sintering" "Twinning" "Grain growth" "Spinodal decomposition" Other user-specified
-      value if none of the above apply.
+    notes:
+    - 'Note: Give one entry for each process modeled.'
   - name: problem-specification
     required: true
     description: >-
