@@ -1025,8 +1025,7 @@ def test_pf_properties_sit_in_settings_under_names_that_match_their_meaning():
         'variables']
     assert shape(sub(s, 'computation-label')) == (True, True, 'string', [], 'inapplicable', None)
     problem = sub(s, 'problem-specification')
-    assert [c['name'] for c in problem['subproperties']] == [
-        'time-dependence', 'governing-equation', 'free-energy-density', 'additional-energy-contribution']
+    assert [c['name'] for c in problem['subproperties']] == ['governing-equation', 'free-energy-density']
     assert sub(problem, 'free-energy-density')['repeatable'] is True
     equation = sub(problem, 'governing-equation')
     assert [c['name'] for c in equation['subproperties']] == ['type', 'evolved-variable', 'free-energy-density-term']
@@ -1056,3 +1055,55 @@ def test_pf_physical_phenomenon_names_each_process_modeled_with_fracture_and_pla
     assert all(f'"{term}" –' in note for term in PF_PHENOMENA)
     assert p['notes'] == ['Note: Give one entry for each process modeled.']
     assert not any(k.startswith('legacy_') for k in p)
+
+
+PF_EQUATIONS = ['CH', 'AC', 'GP', 'FID', 'PFC', 'Navier-Stokes', 'Multi-phase-field', 'Mechanical equilibrium',
+                'Poisson']
+PF_CONTRIBUTIONS = ['Chemical', 'Interfacial', 'Elastic', 'Plastic', 'Electrical', 'Magnetic', 'Fluid-solid interaction',
+                    'Solid-solid interaction']
+PF_FREE_ENERGY_MODELS = ['Ideal', 'Regular', 'Flory', 'Calphad', 'Poly', 'Non-polynomial']
+
+
+def test_pf_problem_specification_gives_each_equation_and_free_energy_term_once():
+    """A phase field model is its equations and the free energy terms that drive them. Each equation and each term is
+    its own entry, so a coupled model lists them all; the system's time-evolution state is given once, in minimal
+    conditions, and a term names the physical contribution it represents instead of a separate list (0074 item 3
+    and its amendment)."""
+    problem = sub(top('pf', 'settings'), 'problem-specification')
+    assert 'time-evolution' not in problem['description'] + section('pf')['introduction']
+    equation = sub(problem, 'governing-equation')
+    t = sub(equation, 'type')
+    assert shape(t) == (True, True, 'string', [], 'inapplicable', None)
+    assert t['values']['terms'] == PF_EQUATIONS
+    note = ' '.join(t['values']['note'].split())
+    assert all(f'"{term}" –' in note for term in PF_EQUATIONS)
+    assert any('anti-trapping' in n for n in t['notes'])
+    v = sub(equation, 'evolved-variable')
+    assert shape(v) == (True, False, 'string', [], 'inapplicable', None)
+    assert v['description'] == 'The name of the field-variable being evolved by this equation.'
+    assert shape(sub(equation, 'free-energy-density-term')) == (False, True, 'string', [], 'inapplicable', None)
+    density = sub(problem, 'free-energy-density')
+    assert [c['name'] for c in density['subproperties']] == ['name', 'contribution', 'description', 'expression', 'unit']
+    c = sub(density, 'contribution')
+    assert shape(c) == (False, True, 'string', [], 'inapplicable', None)
+    assert c['values']['terms'] == PF_CONTRIBUTIONS
+    assert all(f'"{term}" –' in ' '.join(c['values']['note'].split()) for term in PF_CONTRIBUTIONS)
+    d = sub(density, 'description')
+    assert d['values']['terms'] == PF_FREE_ENERGY_MODELS
+    assert sub(density, 'expression')['description'] == 'The mathematical expression of the free energy density.'
+    u = sub(density, 'unit')
+    assert u['description'] == 'The physical unit of the free energy density.'
+    assert shape(u) == (False, False, 'string', [], 'inapplicable', None)
+    assert 'x-gnu:' in u['values']['note']
+
+    def walk(props):
+        """Assert that no property in the tree keeps legacy text.
+
+        props (list[dict]): properties, with nested subproperties.
+        """
+        for p in props:
+            assert not any(k.startswith('legacy_') for k in p), p['name']
+            walk(p.get('subproperties') or [])
+    walk([problem])
+    block = json.loads((ROOT / 'examples/pf.json').read_text(encoding='utf-8'))['pf']['settings'][0]
+    assert 'time-dependence' not in block['problem-specification']

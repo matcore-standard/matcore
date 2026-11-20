@@ -9,7 +9,6 @@
           "Homogeneous nucleation (single seed)"
         ],
         "problem-specification": {
-          "time-dependence": "Transient evolution",
           "governing-equation": [
             {
               "type": [
@@ -24,6 +23,10 @@
           "free-energy-density": [
             {
               "name": "f_total",
+              "contribution": [
+                "Interfacial",
+                "Chemical"
+              ],
               "description": "Non-dimensionalized Ginzburg-Landau",
               "expression": "0.5 * (nabla phi)^2 + g(phi) - delta_f * p(phi)",
               "unit": "dimensionless"
