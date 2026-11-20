@@ -367,7 +367,9 @@ record or marked PROPOSED, NOT DECIDED.
      evolved-variable, spatial-discretization-parameter and mesh-file are added, grid-spacing and time-step-size are
      value + unit with no `scaling` flag, temporal-discretization's Implicit and Explicit are removed and Mixed is IMEX,
      mesh-type loses Cartesian, and solver has nine defined terms (0074, 0075; step 5); pf mesh-file is repeatable,
-     one entry per file (decided by the human 2026-11-20).
+     one entry per file (decided by the human 2026-11-20); pf variables is filled: model-parameter is a generic
+     parameter, each field variable is its own entry, and pf is complete (0016, 0074; step 5); in the JSON
+     examples a generic parameter's object carries `type`, now checked (0044 item 3).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1322,7 +1324,7 @@ record or marked PROPOSED, NOT DECIDED.
    part of it" and a note asks for one entry per file. [done, PR #131 merged 2026-11-20]
    schema/pf.yaml, tests/test_computations.py, 07-pf regenerated; examples/pf.json unchanged (no
    mesh file).
-   [in progress, branch pf-variables, committed, awaiting push and PR] pf variables (step 5, 0016, 0074 item 6):
+   [done, PR #132 merged 2026-11-20] pf variables (step 5, 0016, 0074 item 6):
    cross-check 2026-11-20, names, definitions and terms match the .docx (Tables PF-1, PF-6, PF-7); model-parameter a
    generic parameter (0016), its note giving kappa, W and mobility and the characteristic length and time of reduced
    units (0075); field-variable noted one entry per field (0074 item 6), name with examples phi, c, T and a note naming
