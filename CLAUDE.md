@@ -355,7 +355,11 @@ record or marked PROPOSED, NOT DECIDED.
      computations, physical-phenomena is renamed physical-phenomenon, free-energy free-energy-density (now
      repeatable), driving-energy free-energy-density-term and domain-and-mesh domain, governing-equation › type
      repeats, and mesh-type moves into numerical-method (0074); pf physical-phenomenon is filled, with the
-     terms Fracture and Plasticity added and every term defined (0074; step 5).
+     terms Fracture and Plasticity added and every term defined (0074; step 5); pf problem-specification is filled:
+     time-dependence is removed, the time-evolution state being given in minimal conditions,
+     additional-energy-contribution is replaced by free-energy-density › contribution, governing-equation › type has
+     nine defined terms with Navier-Stokes, Multi-phase-field, Mechanical equilibrium and Poisson, and
+     free-energy-density › unit is the unit of the density (0074 amendment; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1273,9 +1277,8 @@ record or marked PROPOSED, NOT DECIDED.
    integration (in the numerical-method PR), and "time-evolution state" leaves problem-specification's description
    and the introduction; additional-energy-contribution is removed and free-energy-density gains an optional
    `contribution` after name (open terms Chemical, Interfacial, Elastic, Plastic, Electrical, Magnetic, Fluid-solid
-   interaction, Solid-solid interaction). No released instance breaks. Amendment committed on main; the
-   problem-specification PR (branch pf-problem-specification) is in progress.
-   [in progress, branch pf-problem-specification, committed, awaiting push and PR] pf problem-specification (step 5,
+   interaction, Solid-solid interaction). No released instance breaks. Amendment committed on main (fef95d8).
+   [done, PR #128 merged 2026-11-20] pf problem-specification (step 5,
    0074 item 3 and amendment): cross-check 2026-11-20, names, definitions and terms match the .docx apart from 0074's
    renames, type made repeatable, and the unit wording; time-dependence and additional-energy-contribution removed,
    "time-evolution state" dropped from the description and the introduction; governing-equation noted one entry per
