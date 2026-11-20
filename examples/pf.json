@@ -55,30 +55,31 @@
         "numerical-method": [
           {
             "spatial-discretization": "FVM",
-            "spatial-accuracy-order": "2",
+            "spatial-accuracy-order": 2,
             "mesh-type": "Regular",
-            "temporal-discretization": "Implicit",
-            "temporal-accuracy-order": "1",
+            "temporal-discretization": "Backward Euler",
+            "temporal-accuracy-order": 1,
             "grid-spacing": [
               {
                 "name": "dx",
-                "value": "1.0",
+                "value": 0.4,
                 "unit": "dimensionless"
               },
               {
                 "name": "dy",
-                "value": "1.0",
+                "value": 0.4,
                 "unit": "dimensionless"
               }
             ],
             "time-step-size": [
               {
                 "name": "dt",
-                "value": "0.01",
+                "value": 0.01,
                 "unit": "dimensionless"
               }
             ],
             "solver": [
+              "Picard",
               "FiPy Default Linear Solver"
             ]
           }

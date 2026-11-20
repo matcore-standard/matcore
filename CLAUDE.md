@@ -1295,9 +1295,24 @@ record or marked PROPOSED, NOT DECIDED.
    a note asking for one entry per layer and naming the providing library as software; temporal-discretization's Mixed
    becomes IMEX and the spellings are Crank-Nicolson and Adams-Bashforth; mesh-type loses Cartesian (overlapping
    Regular, Rectilinear and the coordinate-system term) and writes Adaptive mesh refinement. Amendment
-   committed on main; the numerical-method PR (branch pf-numerical-method) is in progress. Found in the source
+   committed on main (683d561). Found in the source
    (benchmark8a.py at abffcd9) for that PR: dx = dy = 0.4, dt = 0.01, a FiPy TransientTerm with implicit diffusion and
    five sweeps per step (first order, i.e. Backward Euler).
+   [in progress, branch pf-numerical-method, committed, awaiting push and PR] pf numerical-method (step 5, 0074 item 5
+   and second amendment, 0075): cross-check 2026-11-20, names, definitions and terms match the .docx (Δx and Δt
+   restored, lost as equation objects); members in the order evolved-variable (new, repeatable, path note, given when
+   equations are solved differently), spatial-discretization (six terms defined), spatial-discretization-parameter
+   (new, generic, 0016), spatial-accuracy-order and temporal-accuracy-order (int, dimensionless, minimum 1), mesh-type
+   (seven terms defined), mesh-file (new; minimal computation › software › file's members verbatim, 0056; a note on
+   when to give it and that boundary-conditions › boundary names its boundaries), temporal-discretization (six terms
+   defined; note omitting it for a stationary problem), grid-spacing and time-step-size (name with the baseline's
+   examples, value float Length m / Time s minimum 0, unit, description; reduced-unit note, 0075), solver (nine terms
+   defined, one entry per layer, the library as software); grid-spacing's description drops "physical"; solver's
+   description "A numerical algorithm used to solve the discretized equations." (was "algorithm or backend");
+   legacy_* deleted; examples/pf.json from the source: Backward Euler (was Implicit), grid spacing 0.4 (was 1.0),
+   accuracy orders and step values as numbers, solver Picard (the five sweeps) before FiPy Default Linear Solver;
+   tests/test_computations.py (a new test, the structure test's numerical-method list, a module-level no_legacy helper
+   replacing two copies); 07-pf regenerated. Judgment calls: all definitions, member order, the example's Picard.
    [done, PR #129 merged 2026-11-20] pf domain (step 5, 0074 item 4, 0075): cross-check
    2026-11-20, names, definitions and terms match the .docx apart from 0074's move of mesh-type; the container's
    description drops "topological discretization details" (the mesh is in numerical-method); dimensionality and

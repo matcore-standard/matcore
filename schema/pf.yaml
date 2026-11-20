@@ -361,134 +361,318 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
-    legacy_values: Contains SubProperties as listed below.
     subproperties:
+    - name: evolved-variable
+      required: false
+      description: The field variable evolved by an equation that this entry solves.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          The `name` of a field variable defined in `variables › field-variable` of the same settings block,
+          evolved by one of the `problem-specification › governing-equation` entries.
+      repeatable: true
+      notes:
+      - >-
+        Note: Give it when equations are solved by different methods or solvers, one `numerical-method` entry for
+        each group, each naming the variables its equations evolve. Omit it when one entry covers every
+        equation.
     - name: spatial-discretization
       required: true
       description: >-
         The numerical approach used to convert continuous governing equations into a system of algebraic
         equations defined over a discrete mesh or set of points within the computational domain.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [FDM, FEM, FVM, LBM, Particle, Spectral]
+        note: >-
+          "FDM" – Finite Difference Method: derivatives are approximated by differences of the values at grid
+          points. "FEM" – Finite Element Method: the fields are expanded in basis functions on elements, and the
+          equations are imposed in weak form. "FVM" – Finite Volume Method: the equations are integrated over
+          control volumes, balancing the fluxes across their faces. "LBM" – Lattice Boltzmann Method:
+          distribution functions are streamed and collided on a lattice. "Particle" – The fields are carried by
+          moving particles or points, e.g. smoothed particle hydrodynamics or the material point method.
+          "Spectral" – The fields are expanded in global basis functions, e.g. Fourier modes evaluated by fast
+          Fourier transforms.
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "FDM" – Finite Difference Method "FEM" – Finite Element
-        Method "FVM" – Finite Volume Method "LBM" – Lattice Boltzmann Method "Particle" "Spectral" Other
-        user-specified value if none of the above apply.
-    - name: spatial-accuracy-order
+    - name: spatial-discretization-parameter
       required: false
-      description: >-
-        The exponent of the grid spacing parameter (Δx) determining the rate at which the discretization
-        error approaches zero as the mesh is refined.
-      type: null
-      extent: null
-      kind: null
-      recommended-unit: null
-      values: null
-      repeatable: false
-      legacy_values: An integer containing the order of accuracy.
-      legacy_unit: dimensionless
-    - name: mesh-type
-      required: false
-      description: The topology or distribution of the discrete grid points.
-      type: null
-      extent: null
-      kind: null
-      recommended-unit: null
-      values: null
-      repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "Regular" "Cartesian" "Rectilinear" "Skewed" "Curvilinear"
-        "Unstructured" "Adaptive Mesh Refinement" "Meshless" Other user-specified value if none of the above
-        apply.
-    - name: temporal-discretization
-      required: false
-      description: >-
-        The algorithm, step-size approach, and integration order used to advance a simulation, governing
-        equation in time.
-      type: null
-      extent: null
-      kind: null
-      recommended-unit: null
-      values: null
-      repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "Forward Euler" "Backward Euler" "Adams Bashforth"
-        "Implicit" "Explicit" "Crank-Nicholson" "Runge-Kutta" "Mixed" Other user-specified value if none
-        of the above apply.
-    - name: temporal-accuracy-order
-      required: false
-      description: >-
-        The exponent of the time step parameter (Δt) determining the rate at which the discretization error
-        approaches zero as the time step tends to zero.
-      type: null
-      extent: null
-      kind: null
-      recommended-unit: null
-      values: null
-      repeatable: false
-      legacy_values: An integer containing the order of accuracy.
-      legacy_unit: dimensionless
-    - name: grid-spacing
-      required: false
-      description: >-
-        Defines the physical distance between adjacent discretization points in a numerical domain.
+      description: A parameter of the spatial discretization.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
       repeatable: true
-      legacy_values: Contains SubSubProperties as defined in the table below.
+      notes:
+      - >-
+        Note: For example, the element degree, the quadrature rule or the finite-difference stencil. The grid
+        spacing is given in `grid-spacing`.
+      subproperties:
+      - name: name
+        required: true
+        description: The designation of the spatial discretization parameter.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: value
+        required: true
+        description: The data associated with the spatial discretization parameter.
+        type: any
+        extent: any
+        kind: any
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit in which the associated value is expressed.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+            only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+            (accepted with a validation warning).
+        repeatable: false
+      - name: description
+        required: false
+        description: An explanation of the meaning, source, or purpose of the spatial discretization parameter.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+    - name: spatial-accuracy-order
+      required: false
+      description: >-
+        The exponent of the grid spacing parameter (Δx) determining the rate at which the discretization
+        error approaches zero as the mesh is refined.
+      type: int
+      extent: []
+      kind: dimensionless
+      recommended-unit: null
+      values:
+        minimum: 1
+      repeatable: false
+    - name: mesh-type
+      required: false
+      description: The topology or distribution of the discrete grid points.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Regular, Rectilinear, Skewed, Curvilinear, Unstructured, Adaptive mesh refinement, Meshless]
+        note: >-
+          "Regular" – A structured grid with uniform spacing along each axis. "Rectilinear" – A structured grid
+          of axis-aligned cells whose spacing varies along an axis. "Skewed" – A structured grid whose axes are
+          not orthogonal. "Curvilinear" – A structured grid whose lines follow curved coordinates, e.g. fitted to
+          a boundary. "Unstructured" – Cells of arbitrary connectivity, e.g. triangles or tetrahedra. "Adaptive
+          mesh refinement" – A grid refined and coarsened locally during the simulation, e.g. at interfaces.
+          "Meshless" – Points without connectivity, as in particle methods.
+      repeatable: false
+    - name: mesh-file
+      required: false
+      description: The file holding the mesh and the boundaries on which the boundary conditions apply.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      notes:
+      - >-
+        Note: Give it for a mesh that `mesh-type`, `grid-spacing` and `domain › domain-size` do not fix, e.g. an
+        unstructured mesh of an irregular geometry. Its named boundaries are those that
+        `domain › boundary-conditions › boundary` refers to.
+      subproperties:
+      - name: name
+        required: true
+        description: The file name.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: description
+        required: true
+        description: A brief description of the file and its contents.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: contents
+        required: false
+        description: >-
+          The contents of the file: its text, or its bytes encoded as given in encoding. Not required in case
+          a link to the file is provided instead.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: encoding
+        required: false
+        description: How contents is encoded.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Base64]
+        repeatable: false
+        notes:
+        - >-
+          Note: Without encoding, contents is the file's text. With Base64, contents is the file's bytes
+          encoded as Base64 (RFC 4648); use it for a binary file, or for a text file whose exact bytes matter.
+      - name: link
+        required: false
+        description: A URI pointing to a permanent location of the file online.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          format: uri
+        repeatable: false
+      - name: checksum
+        required: true
+        description: A digital fingerprint of the file, computed by a named algorithm.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: true
+        subproperties:
+        - name: algorithm
+          required: true
+          description: The algorithm that computed the checksum.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [SHA1, SHA224, SHA256, SHA384, SHA512, SHA3-256, SHA3-384, SHA3-512, BLAKE2b-256, BLAKE2b-384,
+              BLAKE2b-512, BLAKE3, MD2, MD4, MD5, MD6, ADLER32]
+            note: >-
+              The algorithm names of [SPDX 2.3.1 §8.4](https://spdx.github.io/spdx-spec/v2.3.1/file-information/)
+              (File checksum field).
+          repeatable: false
+        - name: value
+          required: true
+          description: The checksum of the file, in lowercase hexadecimal digits.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            pattern: '[0-9a-f]+'
+          repeatable: false
+    - name: temporal-discretization
+      required: false
+      description: >-
+        The algorithm, step-size approach, and integration order used to advance a simulation, governing
+        equation in time.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Forward Euler, Backward Euler, Adams-Bashforth, Crank-Nicolson, Runge-Kutta, IMEX]
+        note: >-
+          "Forward Euler" – First-order explicit: the rate is evaluated at the start of the step. "Backward
+          Euler" – First-order implicit: the rate is evaluated at the end of the step. "Adams-Bashforth" – An
+          explicit multistep scheme: the rate is extrapolated from previous steps. "Crank-Nicolson" –
+          Second-order implicit: the rate is averaged over the start and the end of the step. "Runge-Kutta" – A
+          multistage scheme: the rate is evaluated at intermediate points of the step, explicitly or implicitly.
+          "IMEX" – Implicit-explicit: stiff terms are treated implicitly and the rest explicitly, e.g. a
+          semi-implicit spectral scheme.
+      repeatable: false
+      notes:
+      - 'Note: Omit it for a stationary problem, which is solved without time integration.'
+    - name: temporal-accuracy-order
+      required: false
+      description: >-
+        The exponent of the time step parameter (Δt) determining the rate at which the discretization error
+        approaches zero as the time step tends to zero.
+      type: int
+      extent: []
+      kind: dimensionless
+      recommended-unit: null
+      values:
+        minimum: 1
+      repeatable: false
+    - name: grid-spacing
+      required: false
+      description: >-
+        Defines the distance between adjacent discretization points in a numerical domain.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      notes:
+      - >-
+        Note: `unit` is a Length symbol from Annex U, or `dimensionless` when the simulation uses reduced
+        units; the characteristic length is then given as a `variables › model-parameter` entry, so the
+        values can be converted.
       subproperties:
       - name: name
         required: true
         description: The designation of the grid spacing parameter.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          examples: [dx, dy, dz, min, max, average]
         repeatable: false
-        legacy_values: >-
-          A string containing the name of the spacing metric, (e.g., "dx", "dy", "dz", "min", "max", "average").
       - name: value
         required: true
-        description: The data associated with the grid spacing parameter.
-        type: null
-        extent: null
-        kind: null
-        recommended-unit: null
-        values: null
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: Length
+        recommended-unit: m
+        values:
+          minimum: 0
         repeatable: false
-        legacy_values: A real number containing the grid spacing value.
       - name: unit
         required: true
-        description: >-
-          A standardized string or identifier that defines the dimension or measurement system of the associated
-          value.
-        type: null
-        extent: null
-        kind: null
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: >-
-          A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
-          (or the text "dimensionless").
       - name: description
         required: false
         description: An explanation providing further clarification on the grid spacing parameter.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: A string explaining the grid spacing parameter.
     - name: time-step-size
       required: false
       description: >-
@@ -501,63 +685,74 @@ properties:
       recommended-unit: null
       values: null
       repeatable: true
-      legacy_values: Contains SubSubProperties as defined in the table below.
+      notes:
+      - >-
+        Note: `unit` is a Time symbol from Annex U, or `dimensionless` when the simulation uses reduced
+        units; the characteristic time is then given as a `variables › model-parameter` entry, so the
+        values can be converted.
       subproperties:
       - name: name
         required: true
         description: The designation of the time step size parameter.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          examples: [dt, initial, min, max]
         repeatable: false
-        legacy_values: >-
-          A string containing the name of the time step metric, (e.g., "dt", "initial", "min", "max").
       - name: value
         required: true
-        description: The data associated with the time step size parameter.
-        type: null
-        extent: null
-        kind: null
-        recommended-unit: null
-        values: null
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: Time
+        recommended-unit: s
+        values:
+          minimum: 0
         repeatable: false
-        legacy_values: A real number containing the magnitude of the time step.
       - name: unit
         required: true
-        description: >-
-          A standardized string or identifier that defines the dimension or measurement system of the associated
-          value.
-        type: null
-        extent: null
-        kind: null
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: >-
-          A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
-          (or the text "dimensionless").
       - name: description
         required: false
         description: An explanation providing further clarification on the time step size parameter.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: A string explaining the time step size parameter.
     - name: solver
       required: false
-      description: Specific numerical algorithm or backend used for solving the equations.
-      type: null
-      extent: null
-      kind: null
+      description: A numerical algorithm used to solve the discretized equations.
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Explicit, Direct, Conjugate gradient, BiCGSTAB, GMRES, Multigrid, Newton, Newton-Krylov, Picard]
+        note: >-
+          "Explicit" – No system of equations is solved; the update is computed directly. "Direct" – A linear
+          system is solved by factorization, e.g. LU or Cholesky. "Conjugate gradient" – A Krylov method for
+          symmetric positive-definite linear systems. "BiCGSTAB" – Biconjugate gradient stabilized, a Krylov
+          method for nonsymmetric linear systems. "GMRES" – Generalized minimal residual, a Krylov method for
+          nonsymmetric linear systems. "Multigrid" – A linear solver or preconditioner that corrects the error on
+          a hierarchy of coarser grids. "Newton" – Newton's method for a nonlinear system, each iteration solving
+          a linear system. "Newton-Krylov" – Newton's method whose linear systems are solved by a Krylov method,
+          often without forming the Jacobian. "Picard" – Fixed-point iteration of a nonlinear system, the
+          nonlinear terms taken from the previous iterate.
       repeatable: true
-      legacy_values: A string containing the solver name (e.g., "Newton-Krylov", "GMRES").
+      notes:
+      - >-
+        Note: Give one entry for each layer of the solution, e.g. Newton, GMRES, and Multigrid as its
+        preconditioner. The library or code that provides a solver is given as the computation's software.
   - name: variables
     required: false
     description: >-

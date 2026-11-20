@@ -1032,7 +1032,7 @@ def test_pf_properties_sit_in_settings_under_names_that_match_their_meaning():
     assert sub(equation, 'type')['repeatable'] is True
     assert [c['name'] for c in sub(s, 'domain')['subproperties']] == [
         'dimensionality', 'coordinate-system', 'domain-size', 'boundary-conditions', 'initial-conditions']
-    assert 'mesh-type' in [c['name'] for c in sub(s, 'numerical-method')['subproperties']]
+    assert [c['name'] for c in sub(s, 'numerical-method')['subproperties']] == PF_NUMERICAL_MEMBERS
     assert ('The properties are given in settings blocks, each naming the PF computations it describes.'
             in section('pf')['introduction'])
     block = json.loads((ROOT / 'examples/pf.json').read_text(encoding='utf-8'))['pf']['settings'][0]
@@ -1055,6 +1055,16 @@ def test_pf_physical_phenomenon_names_each_process_modeled_with_fracture_and_pla
     assert all(f'"{term}" –' in note for term in PF_PHENOMENA)
     assert p['notes'] == ['Note: Give one entry for each process modeled.']
     assert not any(k.startswith('legacy_') for k in p)
+
+
+def no_legacy(props):
+    """Assert that no property in the tree keeps legacy text.
+
+    props (list[dict]): properties, with nested subproperties.
+    """
+    for p in props:
+        assert not any(k.startswith('legacy_') for k in p), p['name']
+        no_legacy(p.get('subproperties') or [])
 
 
 PF_EQUATIONS = ['CH', 'AC', 'GP', 'FID', 'PFC', 'Navier-Stokes', 'Multi-phase-field', 'Mechanical equilibrium',
@@ -1097,16 +1107,7 @@ def test_pf_problem_specification_gives_each_equation_and_free_energy_term_once(
     assert u['description'] == 'The physical unit of the free energy density.'
     assert shape(u) == (False, False, 'string', [], 'inapplicable', None)
     assert 'x-gnu:' in u['values']['note']
-
-    def walk(props):
-        """Assert that no property in the tree keeps legacy text.
-
-        props (list[dict]): properties, with nested subproperties.
-        """
-        for p in props:
-            assert not any(k.startswith('legacy_') for k in p), p['name']
-            walk(p.get('subproperties') or [])
-    walk([problem])
+    no_legacy([problem])
     block = json.loads((ROOT / 'examples/pf.json').read_text(encoding='utf-8'))['pf']['settings'][0]
     assert 'time-dependence' not in block['problem-specification']
 
@@ -1144,3 +1145,65 @@ def test_pf_domain_takes_reduced_units_and_names_where_each_boundary_condition_a
     block = json.loads((ROOT / 'examples/pf.json').read_text(encoding='utf-8'))['pf']['settings'][0]
     assert block['domain']['domain-size'] == {'value': [100.0, 100.0], 'unit': 'dimensionless'}
     assert block['domain']['boundary-conditions'] == [{'type': 'Periodic'}]
+
+
+PF_NUMERICAL_MEMBERS = ['evolved-variable', 'spatial-discretization', 'spatial-discretization-parameter',
+                        'spatial-accuracy-order', 'mesh-type', 'mesh-file', 'temporal-discretization',
+                        'temporal-accuracy-order', 'grid-spacing', 'time-step-size', 'solver']
+PF_SPATIAL = ['FDM', 'FEM', 'FVM', 'LBM', 'Particle', 'Spectral']
+PF_MESHES = ['Regular', 'Rectilinear', 'Skewed', 'Curvilinear', 'Unstructured', 'Adaptive mesh refinement', 'Meshless']
+PF_TEMPORAL = ['Forward Euler', 'Backward Euler', 'Adams-Bashforth', 'Crank-Nicolson', 'Runge-Kutta', 'IMEX']
+PF_SOLVERS = ['Explicit', 'Direct', 'Conjugate gradient', 'BiCGSTAB', 'GMRES', 'Multigrid', 'Newton', 'Newton-Krylov',
+              'Picard']
+
+
+def test_pf_numerical_method_says_how_each_group_of_equations_is_discretized_and_solved():
+    """A numerical-method entry says how the equations it names are discretized in space and time and solved, so
+    equations solved differently get entries of their own; a mesh that the grid spacing does not fix is a file whose
+    boundaries the boundary conditions name; reduced lengths and times need no flag; each term names one scheme
+    (0074 item 5 and second amendment, 0075)."""
+    nm = sub(top('pf', 'settings'), 'numerical-method')
+    assert [c['name'] for c in nm['subproperties']] == PF_NUMERICAL_MEMBERS
+
+    def defined(p, terms):
+        """Assert that p has exactly these open terms, each defined in its note.
+
+        p (dict): property entry; terms (list[str]): the expected terms.
+        """
+        assert p['values']['terms'] == terms
+        note = ' '.join(p['values']['note'].split())
+        assert all(f'"{t}" –' in note for t in terms), p['name']
+    ev = sub(nm, 'evolved-variable')
+    assert shape(ev) == (False, True, 'string', [], 'inapplicable', None)
+    assert '`variables › field-variable`' in ev['values']['note']
+    assert 'one `numerical-method` entry for each group' in ' '.join(ev['notes'][0].split())
+    defined(sub(nm, 'spatial-discretization'), PF_SPATIAL)
+    param = sub(nm, 'spatial-discretization-parameter')
+    assert (param['required'], param['repeatable']) == (False, True)
+    assert [c['name'] for c in param['subproperties']] == ['name', 'value', 'unit', 'description']
+    for name in ('spatial-accuracy-order', 'temporal-accuracy-order'):
+        assert shape(sub(nm, name)) == (False, False, 'int', [], 'dimensionless', None)
+    defined(sub(nm, 'mesh-type'), PF_MESHES)
+    mesh = sub(nm, 'mesh-file')
+    assert (mesh['required'], mesh['repeatable']) == (False, False)
+    assert mesh['subproperties'] == sub(sub(top('minimal', 'computation'), 'software'), 'file')['subproperties']
+    assert '`domain › boundary-conditions › boundary`' in ' '.join(mesh['notes'][0].split())
+    temporal = sub(nm, 'temporal-discretization')
+    defined(temporal, PF_TEMPORAL)
+    assert any('stationary' in n for n in temporal['notes'])
+    for name, kind, unit in (('grid-spacing', 'Length', 'm'), ('time-step-size', 'Time', 's')):
+        p = sub(nm, name)
+        assert [c['name'] for c in p['subproperties']] == ['name', 'value', 'unit', 'description']
+        assert shape(sub(p, 'value')) == (True, False, 'float', [], kind, unit)
+        notes = ' '.join(' '.join(p['notes']).split())
+        assert '`dimensionless`' in notes and '`variables › model-parameter`' in notes
+    solver = sub(nm, 'solver')
+    assert shape(solver) == (False, True, 'string', [], 'inapplicable', None)
+    defined(solver, PF_SOLVERS)
+    assert 'software' in ' '.join(solver['notes'][0].split())
+    no_legacy([nm])
+    block = json.loads((ROOT / 'examples/pf.json').read_text(encoding='utf-8'))['pf']['settings'][0]
+    entry = block['numerical-method'][0]
+    assert entry['temporal-discretization'] == 'Backward Euler'
+    assert [g['value'] for g in entry['grid-spacing']] == [0.4, 0.4]
+    assert entry['time-step-size'][0]['value'] == 0.01
