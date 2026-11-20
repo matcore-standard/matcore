@@ -1316,6 +1316,11 @@ record or marked PROPOSED, NOT DECIDED.
    accuracy orders and step values as numbers, solver Picard (the five sweeps) before FiPy Default Linear Solver;
    tests/test_computations.py (a new test, the structure test's numerical-method list, a module-level no_legacy helper
    replacing two copies); 07-pf regenerated. Judgment calls: all definitions, member order, the example's Picard.
+   Decided by the human 2026-11-20, after PR #130: numerical-method › mesh-file is repeatable, since a mesh may be
+   split over several files (e.g. its structure and its boundaries); its description says "A file holding the mesh or
+   part of it" and a note asks for one entry per file. [in progress, branch pf-mesh-file-repeatable, committed,
+   awaiting push and PR] schema/pf.yaml, tests/test_computations.py, 07-pf regenerated; examples/pf.json unchanged (no
+   mesh file). Then the variables PR.
    [done, PR #129 merged 2026-11-20] pf domain (step 5, 0074 item 4, 0075): cross-check
    2026-11-20, names, definitions and terms match the .docx apart from 0074's move of mesh-type; the container's
    description drops "topological discretization details" (the mesh is in numerical-method); dimensionality and

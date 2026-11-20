@@ -1185,7 +1185,9 @@ def test_pf_numerical_method_says_how_each_group_of_equations_is_discretized_and
         assert shape(sub(nm, name)) == (False, False, 'int', [], 'dimensionless', None)
     defined(sub(nm, 'mesh-type'), PF_MESHES)
     mesh = sub(nm, 'mesh-file')
-    assert (mesh['required'], mesh['repeatable']) == (False, False)
+    # a mesh may be split over several files, e.g. its structure and its boundaries
+    assert (mesh['required'], mesh['repeatable']) == (False, True)
+    assert 'one entry for each file' in ' '.join(' '.join(mesh['notes']).split())
     assert mesh['subproperties'] == sub(sub(top('minimal', 'computation'), 'software'), 'file')['subproperties']
     assert '`domain › boundary-conditions › boundary`' in ' '.join(mesh['notes'][0].split())
     temporal = sub(nm, 'temporal-discretization')

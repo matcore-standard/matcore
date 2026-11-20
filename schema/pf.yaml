@@ -485,18 +485,23 @@ properties:
       repeatable: false
     - name: mesh-file
       required: false
-      description: The file holding the mesh and the boundaries on which the boundary conditions apply.
+      description: >-
+        A file holding the mesh or part of it, such as its structure or the boundaries on which the boundary
+        conditions apply.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
-      repeatable: false
+      repeatable: true
       notes:
       - >-
         Note: Give it for a mesh that `mesh-type`, `grid-spacing` and `domain › domain-size` do not fix, e.g. an
         unstructured mesh of an irregular geometry. Its named boundaries are those that
         `domain › boundary-conditions › boundary` refers to.
+      - >-
+        Note: Give one entry for each file, e.g. the mesh structure and its boundaries when they are stored
+        separately.
       subproperties:
       - name: name
         required: true
