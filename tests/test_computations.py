@@ -1040,3 +1040,19 @@ def test_pf_properties_sit_in_settings_under_names_that_match_their_meaning():
     assert list(block) == ['computation-label', 'physical-phenomenon', 'problem-specification', 'domain',
                            'numerical-method', 'variables']
     assert block['problem-specification']['governing-equation'][0]['free-energy-density-term'] == ['f_total']
+
+
+PF_PHENOMENA = ['Isothermal solidification', 'Directional solidification', 'Isothermal annealing', 'Sintering',
+                'Twinning', 'Grain growth', 'Spinodal decomposition', 'Fracture', 'Plasticity']
+
+
+def test_pf_physical_phenomenon_names_each_process_modeled_with_fracture_and_plasticity():
+    """A phase field record names the material process it models, one entry per process, from an open list that
+    covers fracture and plasticity as well as the baseline's processes (0074 item 2)."""
+    p = sub(top('pf', 'settings'), 'physical-phenomenon')
+    assert shape(p) == (True, True, 'string', [], 'inapplicable', None)
+    assert p['values']['terms'] == PF_PHENOMENA
+    note = ' '.join(p['values']['note'].split())
+    assert all(f'"{term}" –' in note for term in PF_PHENOMENA)
+    assert p['notes'] == ['Note: Give one entry for each process modeled.']
+    assert not any(k.startswith('legacy_') for k in p)

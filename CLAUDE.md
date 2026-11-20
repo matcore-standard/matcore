@@ -1257,6 +1257,12 @@ record or marked PROPOSED, NOT DECIDED.
    tests/test_computations.py (a new test; the label test gains pf); 07-pf regenerated (addresses gain
    `settings.`). Then pf's properties in file order: physical-phenomenon, problem-specification, domain,
    numerical-method, variables.
+   [in progress, branch pf-physical-phenomenon, committed, awaiting push and PR] pf physical-phenomenon (step 5,
+   0074 item 2): a repeatable string with open terms the baseline's seven plus Fracture and Plasticity, each
+   defined in a note drafted in this PR (judgment calls); a note "Give one entry for each process modeled.";
+   baseline description kept; legacy_* deleted; test in tests/test_computations.py; 07-pf regenerated;
+   examples/pf.json unchanged (its "Homogeneous nucleation (single seed)" is a user-specified value).
+   PROPOSED, NOT DECIDED: a term Nucleation, since the section's own example models it.
    [done, PR #109 merged 2026-11-14] ps initialization: a
    scalar string, values null, the baseline description kept; a note gives what the computation sets
    up itself (velocities from a distribution with a random seed, spins) and points a carried-over
