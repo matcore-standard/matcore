@@ -1660,6 +1660,34 @@
 </tr>
 </tbody>
 </table>
+<details class="note mc-property" id="pf.settings.numerical-method.evolved-variable">
+<summary><span class="mc-name">evolved-variable</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>The field variable evolved by an equation that this entry solves.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Clarifications:</strong> The <code>name</code> of a field variable defined in <code>variables › field-variable</code> of the same settings block, evolved by one of the <code>problem-specification › governing-equation</code> entries.</p>
+<p>Note: Give it when equations are solved by different methods or solvers, one <code>numerical-method</code> entry for each group, each naming the variables its equations evolve. Omit it when one entry covers every equation.</p>
+</details>
 <details class="note mc-property" id="pf.settings.numerical-method.spatial-discretization">
 <summary><span class="mc-name">spatial-discretization<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The numerical approach used to convert continuous governing equations into a system of algebraic equations defined over a discrete mesh or set of points within the computational domain.</p>
@@ -1678,14 +1706,139 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: String containing one of the following values: "FDM" – Finite Difference Method "FEM" – Finite Element Method "FVM" – Finite Volume Method "LBM" – Lattice Boltzmann Method "Particle" "Spectral" Other user-specified value if none of the above apply.</span></p>
+<p>Recommended: <code>FDM</code>, <code>FEM</code>, <code>FVM</code>, <code>LBM</code>, <code>Particle</code>, <code>Spectral</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "FDM" – Finite Difference Method: derivatives are approximated by differences of the values at grid points. "FEM" – Finite Element Method: the fields are expanded in basis functions on elements, and the equations are imposed in weak form. "FVM" – Finite Volume Method: the equations are integrated over control volumes, balancing the fluxes across their faces. "LBM" – Lattice Boltzmann Method: distribution functions are streamed and collided on a lattice. "Particle" – The fields are carried by moving particles or points, e.g. smoothed particle hydrodynamics or the material point method. "Spectral" – The fields are expanded in global basis functions, e.g. Fourier modes evaluated by fast Fourier transforms.</p>
+</details>
+<details class="note mc-property" id="pf.settings.numerical-method.spatial-discretization-parameter">
+<summary><span class="mc-name">spatial-discretization-parameter</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>A parameter of the spatial discretization.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Note: For example, the element degree, the quadrature rule or the finite-difference stencil. The grid spacing is given in <code>grid-spacing</code>.</p>
+<details class="note mc-property" id="pf.settings.numerical-method.spatial-discretization-parameter.name">
+<summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The designation of the spatial discretization parameter.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="pf.settings.numerical-method.spatial-discretization-parameter.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The data associated with the spatial discretization parameter.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>any</td>
+<td>any</td>
+<td>any</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="pf.settings.numerical-method.spatial-discretization-parameter.unit">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The unit in which the associated value is expressed.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Clarifications:</strong> A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>. If and only if no Annex U symbol applies, a string prefixed <code>x-gnu:</code> giving a GNU Units expression (accepted with a validation warning).</p>
+</details>
+<details class="note mc-property" id="pf.settings.numerical-method.spatial-discretization-parameter.description">
+<summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>An explanation of the meaning, source, or purpose of the spatial discretization parameter.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.spatial-accuracy-order">
 <summary><span class="mc-name">spatial-accuracy-order</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1705,15 +1858,14 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>int</td>
+<td>[]</td>
+<td>dimensionless</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: An integer containing the order of accuracy.</span></p>
-<p><span class='legacy'>Legacy unit: dimensionless</span></p>
+<p>Minimum: 1.</p>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.mesh-type">
 <summary><span class="mc-name">mesh-type</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1733,14 +1885,240 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: String containing one of the following values: "Regular" "Cartesian" "Rectilinear" "Skewed" "Curvilinear" "Unstructured" "Adaptive Mesh Refinement" "Meshless" Other user-specified value if none of the above apply.</span></p>
+<p>Recommended: <code>Regular</code>, <code>Rectilinear</code>, <code>Skewed</code>, <code>Curvilinear</code>, <code>Unstructured</code>, <code>Adaptive mesh refinement</code>, <code>Meshless</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "Regular" – A structured grid with uniform spacing along each axis. "Rectilinear" – A structured grid of axis-aligned cells whose spacing varies along an axis. "Skewed" – A structured grid whose axes are not orthogonal. "Curvilinear" – A structured grid whose lines follow curved coordinates, e.g. fitted to a boundary. "Unstructured" – Cells of arbitrary connectivity, e.g. triangles or tetrahedra. "Adaptive mesh refinement" – A grid refined and coarsened locally during the simulation, e.g. at interfaces. "Meshless" – Points without connectivity, as in particle methods.</p>
+</details>
+<details class="note mc-property" id="pf.settings.numerical-method.mesh-file">
+<summary><span class="mc-name">mesh-file</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The file holding the mesh and the boundaries on which the boundary conditions apply.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Give it for a mesh that <code>mesh-type</code>, <code>grid-spacing</code> and <code>domain › domain-size</code> do not fix, e.g. an unstructured mesh of an irregular geometry. Its named boundaries are those that <code>domain › boundary-conditions › boundary</code> refers to.</p>
+<details class="note mc-property" id="pf.settings.numerical-method.mesh-file.name">
+<summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The file name.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="pf.settings.numerical-method.mesh-file.description">
+<summary><span class="mc-name">description<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>A brief description of the file and its contents.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="pf.settings.numerical-method.mesh-file.contents">
+<summary><span class="mc-name">contents</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The contents of the file: its text, or its bytes encoded as given in encoding. Not required in case a link to the file is provided instead.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="pf.settings.numerical-method.mesh-file.encoding">
+<summary><span class="mc-name">encoding</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>How contents is encoded.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Base64</code>. Other values are allowed.</p>
+<p>Note: Without encoding, contents is the file's text. With Base64, contents is the file's bytes encoded as Base64 (RFC 4648); use it for a binary file, or for a text file whose exact bytes matter.</p>
+</details>
+<details class="note mc-property" id="pf.settings.numerical-method.mesh-file.link">
+<summary><span class="mc-name">link</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>A URI pointing to a permanent location of the file online.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Format: <code>uri</code> (JSON Schema 2020-12).</p>
+</details>
+<details class="note mc-property" id="pf.settings.numerical-method.mesh-file.checksum">
+<summary><span class="mc-name">checksum<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>A digital fingerprint of the file, computed by a named algorithm.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="pf.settings.numerical-method.mesh-file.checksum.algorithm">
+<summary><span class="mc-name">algorithm<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The algorithm that computed the checksum.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>SHA1</code>, <code>SHA224</code>, <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, <code>SHA3-256</code>, <code>SHA3-384</code>, <code>SHA3-512</code>, <code>BLAKE2b-256</code>, <code>BLAKE2b-384</code>, <code>BLAKE2b-512</code>, <code>BLAKE3</code>, <code>MD2</code>, <code>MD4</code>, <code>MD5</code>, <code>MD6</code>, <code>ADLER32</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> The algorithm names of <a href="https://spdx.github.io/spdx-spec/v2.3.1/file-information/">SPDX 2.3.1 §8.4</a> (File checksum field).</p>
+</details>
+<details class="note mc-property" id="pf.settings.numerical-method.mesh-file.checksum.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The checksum of the file, in lowercase hexadecimal digits.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Pattern: <code>[0-9a-f]+</code>.</p>
+</details>
+</details>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.temporal-discretization">
 <summary><span class="mc-name">temporal-discretization</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1760,14 +2138,16 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: String containing one of the following values: "Forward Euler" "Backward Euler" "Adams Bashforth" "Implicit" "Explicit" "Crank-Nicholson" "Runge-Kutta" "Mixed" Other user-specified value if none of the above apply.</span></p>
+<p>Recommended: <code>Forward Euler</code>, <code>Backward Euler</code>, <code>Adams-Bashforth</code>, <code>Crank-Nicolson</code>, <code>Runge-Kutta</code>, <code>IMEX</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "Forward Euler" – First-order explicit: the rate is evaluated at the start of the step. "Backward Euler" – First-order implicit: the rate is evaluated at the end of the step. "Adams-Bashforth" – An explicit multistep scheme: the rate is extrapolated from previous steps. "Crank-Nicolson" – Second-order implicit: the rate is averaged over the start and the end of the step. "Runge-Kutta" – A multistage scheme: the rate is evaluated at intermediate points of the step, explicitly or implicitly. "IMEX" – Implicit-explicit: stiff terms are treated implicitly and the rest explicitly, e.g. a semi-implicit spectral scheme.</p>
+<p>Note: Omit it for a stationary problem, which is solved without time integration.</p>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.temporal-accuracy-order">
 <summary><span class="mc-name">temporal-accuracy-order</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1787,19 +2167,18 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>int</td>
+<td>[]</td>
+<td>dimensionless</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: An integer containing the order of accuracy.</span></p>
-<p><span class='legacy'>Legacy unit: dimensionless</span></p>
+<p>Minimum: 1.</p>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.grid-spacing">
 <summary><span class="mc-name">grid-spacing</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
-<p>Defines the physical distance between adjacent discretization points in a numerical domain.</p>
+<p>Defines the distance between adjacent discretization points in a numerical domain.</p>
 <table>
 <thead>
 <tr>
@@ -1814,6 +2193,7 @@
 </tr>
 </tbody>
 </table>
+<p>Note: <code>unit</code> is a Length symbol from Annex U, or <code>dimensionless</code> when the simulation uses reduced units; the characteristic length is then given as a <code>variables › model-parameter</code> entry, so the values can be converted.</p>
 <details class="note mc-property" id="pf.settings.numerical-method.grid-spacing.name">
 <summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The designation of the grid spacing parameter.</p>
@@ -1832,18 +2212,18 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing the name of the spacing metric, (e.g., "dx", "dy", "dz", "min", "max", "average").</span></p>
+<p>Examples: <code>dx</code>, <code>dy</code>, <code>dz</code>, <code>min</code>, <code>max</code>, <code>average</code>.</p>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.grid-spacing.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-<p>The data associated with the grid spacing parameter.</p>
+<p>The value of the property, in the unit given by <code>unit</code>.</p>
 <table>
 <thead>
 <tr>
@@ -1859,18 +2239,18 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>float</td>
+<td>[]</td>
+<td>Length</td>
+<td>m</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A real number containing the grid spacing value.</span></p>
+<p>Minimum: 0.</p>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.grid-spacing.unit">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-<p>A standardized string or identifier that defines the dimension or measurement system of the associated value.</p>
+<p>The unit of the value, an Annex U symbol whose Kind is the Kind of <code>value</code>.</p>
 <table>
 <thead>
 <tr>
@@ -1886,14 +2266,13 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing the units of the value in the <a href="https://www.gnu.org/software/units/">GNU unit convention</a> (or the text "dimensionless").</span></p>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.grid-spacing.description">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -1913,14 +2292,13 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string explaining the grid spacing parameter.</span></p>
 </details>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.time-step-size">
@@ -1940,6 +2318,7 @@
 </tr>
 </tbody>
 </table>
+<p>Note: <code>unit</code> is a Time symbol from Annex U, or <code>dimensionless</code> when the simulation uses reduced units; the characteristic time is then given as a <code>variables › model-parameter</code> entry, so the values can be converted.</p>
 <details class="note mc-property" id="pf.settings.numerical-method.time-step-size.name">
 <summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The designation of the time step size parameter.</p>
@@ -1958,18 +2337,18 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing the name of the time step metric, (e.g., "dt", "initial", "min", "max").</span></p>
+<p>Examples: <code>dt</code>, <code>initial</code>, <code>min</code>, <code>max</code>.</p>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.time-step-size.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-<p>The data associated with the time step size parameter.</p>
+<p>The value of the property, in the unit given by <code>unit</code>.</p>
 <table>
 <thead>
 <tr>
@@ -1985,18 +2364,18 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>float</td>
+<td>[]</td>
+<td>Time</td>
+<td>s</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A real number containing the magnitude of the time step.</span></p>
+<p>Minimum: 0.</p>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.time-step-size.unit">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
-<p>A standardized string or identifier that defines the dimension or measurement system of the associated value.</p>
+<p>The unit of the value, an Annex U symbol whose Kind is the Kind of <code>value</code>.</p>
 <table>
 <thead>
 <tr>
@@ -2012,14 +2391,13 @@
 <tr>
 <td>yes</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing the units of the value in the <a href="https://www.gnu.org/software/units/">GNU unit convention</a> (or the text "dimensionless").</span></p>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.time-step-size.description">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -2039,19 +2417,18 @@
 <tr>
 <td>no</td>
 <td>no</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string explaining the time step size parameter.</span></p>
 </details>
 </details>
 <details class="note mc-property" id="pf.settings.numerical-method.solver">
 <summary><span class="mc-name">solver</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
-<p>Specific numerical algorithm or backend used for solving the equations.</p>
+<p>A numerical algorithm used to solve the discretized equations.</p>
 <table>
 <thead>
 <tr>
@@ -2067,14 +2444,16 @@
 <tr>
 <td>no</td>
 <td>yes</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p><span class='legacy'>Legacy: A string containing the solver name (e.g., "Newton-Krylov", "GMRES").</span></p>
+<p>Recommended: <code>Explicit</code>, <code>Direct</code>, <code>Conjugate gradient</code>, <code>BiCGSTAB</code>, <code>GMRES</code>, <code>Multigrid</code>, <code>Newton</code>, <code>Newton-Krylov</code>, <code>Picard</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> "Explicit" – No system of equations is solved; the update is computed directly. "Direct" – A linear system is solved by factorization, e.g. LU or Cholesky. "Conjugate gradient" – A Krylov method for symmetric positive-definite linear systems. "BiCGSTAB" – Biconjugate gradient stabilized, a Krylov method for nonsymmetric linear systems. "GMRES" – Generalized minimal residual, a Krylov method for nonsymmetric linear systems. "Multigrid" – A linear solver or preconditioner that corrects the error on a hierarchy of coarser grids. "Newton" – Newton's method for a nonlinear system, each iteration solving a linear system. "Newton-Krylov" – Newton's method whose linear systems are solved by a Krylov method, often without forming the Jacobian. "Picard" – Fixed-point iteration of a nonlinear system, the nonlinear terms taken from the previous iterate.</p>
+<p>Note: Give one entry for each layer of the solution, e.g. Newton, GMRES, and Multigrid as its preconditioner. The library or code that provides a solver is given as the computation's software.</p>
 </details>
 </details>
 <details class="note mc-property" id="pf.settings.variables">
@@ -2407,30 +2786,31 @@
 <span class="w">        </span><span class="nt">"numerical-method"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">          </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">"spatial-discretization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FVM"</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">"spatial-accuracy-order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"spatial-accuracy-order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">"mesh-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Regular"</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">"temporal-discretization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Implicit"</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">"temporal-accuracy-order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"temporal-discretization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Backward Euler"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"temporal-accuracy-order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">"grid-spacing"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">              </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dx"</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dimensionless"</span>
 <span class="w">              </span><span class="p">},</span>
 <span class="w">              </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dy"</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dimensionless"</span>
 <span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">],</span>
 <span class="w">            </span><span class="nt">"time-step-size"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">              </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dt"</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dimensionless"</span>
 <span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">],</span>
 <span class="w">            </span><span class="nt">"solver"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="s2">"Picard"</span><span class="p">,</span>
 <span class="w">              </span><span class="s2">"FiPy Default Linear Solver"</span>
 <span class="w">            </span><span class="p">]</span>
 <span class="w">          </span><span class="p">}</span>
