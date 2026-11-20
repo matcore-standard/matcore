@@ -36,9 +36,17 @@
         "domain": {
           "dimensionality": "2D",
           "coordinate-system": "Cartesian",
-          "domain-size": "100.0",
+          "domain-size": {
+            "value": [
+              100.0,
+              100.0
+            ],
+            "unit": "dimensionless"
+          },
           "boundary-conditions": [
-            "Periodic"
+            {
+              "type": "Periodic"
+            }
           ],
           "initial-conditions": [
             "phi(r) = 0.5 * [1 - tanh((r - r_0) / sqrt(2))] where r = sqrt(x^2 + y^2)"
