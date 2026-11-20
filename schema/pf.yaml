@@ -9,6 +9,7 @@ examples:
   - caption: PF Method-Specific Metadata
     file: pf.json
     source: https://zenodo.org/records/7319845
+legacy_complete: true
 properties:
 - name: settings
   required: true
@@ -768,7 +769,6 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: Contains SubProperties as listed below.
     subproperties:
     - name: model-parameter
       required: false
@@ -780,53 +780,51 @@ properties:
       recommended-unit: null
       values: null
       repeatable: true
-      legacy_values: Contains SubSubProperties as defined in the table below.
+      notes:
+      - >-
+        Note: For example, the gradient energy coefficient (kappa), the barrier height (W) or the mobility. A
+        simulation in reduced units gives its characteristic length and time as entries.
       subproperties:
       - name: name
         required: true
         description: The designation of the model parameter.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: >-
-          A string containing the name of the model parameter (e.g. "kappa", "W", "mobility").
       - name: value
         required: true
         description: The data associated with the model parameter.
-        type: null
-        extent: null
-        kind: null
+        type: any
+        extent: any
+        kind: any
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: An integer, real, boolean, or string containing the parameter value.
       - name: unit
         required: true
-        description: >-
-          A standardized string or identifier that defines the dimension or measurement system of the associated
-          value.
-        type: null
-        extent: null
-        kind: null
+        description: The unit in which the associated value is expressed.
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+            only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+            (accepted with a validation warning).
         repeatable: false
-        legacy_values: >-
-          A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
-          (or the text "dimensionless").
       - name: description
         required: false
         description: An explanation providing further clarification on the model parameter.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: A string explaining the model parameter (e.g. "Gradient energy coefficient").
     - name: field-variable
       required: false
       description: A physical quantity that can evolve during the simulation.
@@ -836,53 +834,59 @@ properties:
       recommended-unit: null
       values: null
       repeatable: true
-      legacy_values: Contains SubSubProperties as defined in the table below.
+      notes:
+      - >-
+        Note: Give one entry for each field, e.g. one concentration entry for each component of a multicomponent
+        alloy, or one order parameter for each phase or grain. A vector or tensor field is one entry.
       subproperties:
       - name: name
         required: true
         description: The designation of the field variable.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          examples: [phi, c, T]
+          note: >-
+            The name by which `problem-specification › governing-equation › evolved-variable`,
+            `numerical-method › evolved-variable` and `domain › boundary-conditions › field-variable` refer to
+            the field.
         repeatable: false
-        legacy_values: A string containing the name of the field variable (e.g. "phi", "c", "T").
       - name: type
         required: true
         description: The kind of data associated with the field variable.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          terms: [Scalar, Vector, Tensor]
+          note: >-
+            "Scalar" – One number at each point, e.g. a concentration or an order parameter. "Vector" – A vector
+            at each point, e.g. a displacement or a velocity. "Tensor" – A tensor at each point, e.g. a strain or
+            a stress.
         repeatable: false
-        legacy_values: >-
-          A string containing: "Scalar" "Vector" "Tensor" Other user-specified value if none of the above
-          apply.
       - name: unit
         required: true
-        description: >-
-          A standardized string or identifier that defines the dimension or measurement system of the associated
-          value.
-        type: null
-        extent: null
-        kind: null
+        description: The unit in which the field variable is expressed.
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+            only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+            (accepted with a validation warning).
         repeatable: false
-        legacy_values: >-
-          A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
-          (or the text "dimensionless").
       - name: description
         required: false
         description: An explanation providing further clarification on the field variable.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          examples: [phase field order parameter, solute concentration]
         repeatable: false
-        legacy_values: >-
-          A string explaining what the field variable represents (e.g. "phase field order parameter", "solute
-          concentration").

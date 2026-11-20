@@ -1321,7 +1321,20 @@ record or marked PROPOSED, NOT DECIDED.
    split over several files (e.g. its structure and its boundaries); its description says "A file holding the mesh or
    part of it" and a note asks for one entry per file. [done, PR #131 merged 2026-11-20]
    schema/pf.yaml, tests/test_computations.py, 07-pf regenerated; examples/pf.json unchanged (no
-   mesh file). Then the variables PR.
+   mesh file).
+   [in progress, branch pf-variables, committed, awaiting push and PR] pf variables (step 5, 0016, 0074 item 6):
+   cross-check 2026-11-20, names, definitions and terms match the .docx (Tables PF-1, PF-6, PF-7); model-parameter a
+   generic parameter (0016), its note giving kappa, W and mobility and the characteristic length and time of reduced
+   units (0075); field-variable noted one entry per field (0074 item 6), name with examples phi, c, T and a note naming
+   the three properties that refer to it by name, type Scalar, Vector, Tensor defined, unit a free-form unit with
+   A3.2's note ("The unit in which the field variable is expressed."), description with the baseline's examples;
+   legacy_* deleted; pf is complete and declares `legacy_complete: true`; tests/test_schema.py's legacy_complete check
+   and tests/test_build_docs.py's --show-legacy check move from pf to derived. Decided by the human 2026-11-20: 0044
+   item 3 is implemented in scripts/check_examples.py (a generic parameter's JSON object requires `type`, float, int,
+   string or bool, and its value or each component has that type; the member is rejected elsewhere), tested in
+   tests/test_examples.py; examples/pf.json's model parameters are numbers with "type": "float" (Δf = 1/(15√2) checked
+   against benchmark8a.py; r_0 = 5.05 is factor × 5 with the factor passed on the command line, not in the repository);
+   tests/test_computations.py (a new test); 07-pf regenerated. Next: derived.
    [done, PR #129 merged 2026-11-20] pf domain (step 5, 0074 item 4, 0075): cross-check
    2026-11-20, names, definitions and terms match the .docx apart from 0074's move of mesh-type; the container's
    description drops "topological discretization details" (the mesh is in numerical-method); dimensionality and

@@ -88,13 +88,15 @@
           "model-parameter": [
             {
               "name": "delta_f",
-              "value": "0.04714045",
+              "value": 0.04714045,
+              "type": "float",
               "unit": "dimensionless",
               "description": "Non-dimensional nucleation driving force (sqrt(2)/30)"
             },
             {
               "name": "r_0",
-              "value": "5.05",
+              "value": 5.05,
+              "type": "float",
               "unit": "dimensionless",
               "description": "Initial diffuse seed radius (e.g., 1.01 * r* for supercritical run)"
             }
