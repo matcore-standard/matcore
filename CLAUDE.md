@@ -115,7 +115,8 @@ Each property entry has exactly these fields, in this order (validate_schema.py 
   instance or by a required enumerated subproperty).
   Angles and moles are NOT dimensionless.
 - Conventions a unit cannot express (2π in reciprocal lengths, lattice vs Cartesian basis) are separate
-  required enumerated subproperties (`convention`, `basis`, `scaling`), never encoded in the unit string.
+  required enumerated subproperties (`convention`, `basis`), never encoded in the unit string. A reduced
+  (nondimensional) PF length or time is written with unit `dimensionless`, with no flag (0075, amending 0003).
 - Energy and MolarEnergy are distinct kinds (Annex U Rule 8). kJ/mol, kcal/mol → MolarEnergy.
 - CODATA 2022 factors are normative; QUDT (CODATA 2006) and GNU Units 2.23 (CODATA 2018) are stale.
 - GNU Units pinned to 2.23 / definitions.units 3.19 for `x-gnu:` escape expressions.
@@ -136,8 +137,8 @@ Three groups, not to be merged:
    the schema does not fix.
 3. Typed properties with a required unit: grid-spacing (Length, recommended m) and time-step-size
    (Time, recommended s) (pf). Handled like temperature, not as generic parameters. With
-   domain-size they carry a required `scaling` subproperty [physical, nondimensional]; when
-   nondimensional, `unit` SHALL be `dimensionless` (0003).
+   domain-size, their `unit` is a Length (Time) symbol, or `dimensionless` in reduced units, the
+   characteristic scale then given as a model-parameter (0075, amending 0003's `scaling`).
 Every `unit` subproperty has kind inapplicable and holds an Annex U symbol or `dimensionless`. The
 `x-gnu:` escape (Annex U Rule 4) is permitted only where the schema does not fix the kind: groups 1
 and 2, and the `unit` beside any other `value` of kind any (dft SCF tolerance, 0019); group 3 and all
@@ -148,7 +149,7 @@ times) once in §1.3, so each property refers to the rule rather than restating 
 before implementation, when the first such property comes up; whether
 0013's `depends-on`/`cases` can express it is part of that decision. (dft k-point-spacing, the
 first candidate, is removed: 0004 item 47; mbpt exciton-momentum, the second, is fractional with no
-`basis`: 0072.)
+`basis`: 0072; PF's `scaling`, the third, is dropped: 0075.)
 Group 1 is defined once in §1.3 as a *generic parameter* (0016): a container of `name*`, `value*`
 (type, extent and kind any), `unit*` (fixed description "The unit in which the associated value is
 expressed." (0001 B9) and the A3.2 note) and `description`, in that order. It is recognised by a
@@ -1252,7 +1253,8 @@ record or marked PROPOSED, NOT DECIDED.
    solver terms; free-energy-density › unit dropping "or of the free energy"; temporal-discretization's Mixed and
    the spelling Crank-Nicolson; how a boundary condition names its boundary, and Fixed vs Dirichlet, Free vs
    Zero-Neumann; time-dependence vs minimal conditions › type (0036). (Superseded in part: the unit and time-dependence points are
-   settled by the 0074 amendment of 2026-11-20.)
+   settled by the 0074 amendment of 2026-11-20; the boundary points by
+   0075.)
    Ruling 0074 committed on main (e394bf7). [done, PR #126 merged 2026-11-19]
    pf structure by 0074, no typed field filled: pf's properties in a required, repeatable `settings` whose
    first member is computation-label; physical-phenomena renamed physical-phenomenon, free-energy renamed
@@ -1278,6 +1280,14 @@ record or marked PROPOSED, NOT DECIDED.
    and the introduction; additional-energy-contribution is removed and free-energy-density gains an optional
    `contribution` after name (open terms Chemical, Interfacial, Elastic, Plastic, Electrical, Magnetic, Fluid-solid
    interaction, Solid-solid interaction). No released instance breaks. Amendment committed on main (fef95d8).
+   PF domain by 0075 (ruling 2026-11-20, from the domain cross-check): 0003's `scaling` is dropped, a reduced length
+   or time having unit `dimensionless` and its characteristic scale a model-parameter, noted on domain-size,
+   grid-spacing and time-step-size (value + unit, Length or Time, m or s); boundary-conditions becomes a repeatable
+   container of type* (Dirichlet, Neumann, Zero-Neumann, Periodic, defined; Fixed and Free removed), boundary (a
+   boundary in mesh-file or a description such as "x = 0") and field-variable (the field constrained), boundary and
+   field-variable omitted when the condition applies to all. Settles 0074's boundary points and the §1.3 conditional
+   rule for `scaling`. No released instance breaks. Ruling committed on main; the domain PR (branch pf-domain) is
+   in progress.
    [done, PR #128 merged 2026-11-20] pf problem-specification (step 5,
    0074 item 3 and amendment): cross-check 2026-11-20, names, definitions and terms match the .docx apart from 0074's
    renames, type made repeatable, and the unit wording; time-dependence and additional-energy-contribution removed,

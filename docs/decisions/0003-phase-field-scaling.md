@@ -15,3 +15,6 @@ Phase-field simulations are often run in nondimensional units (e.g. grid spacing
 
 ## Consequences
 Nondimensional phase-field data are conformant, and the unit check still applies to physical data. This is the first rule in which the allowed unit depends on the value of another subproperty; it has the same shape as the `convention` rule for `k-point-spacing` (0001 A3.1).
+
+## Amendment (2026-11-20)
+Superseded by 0075 item 1: there is no `scaling` subproperty. A reduced length or time is written with unit `dimensionless`, and the characteristic scale is given as a `model-parameter` entry.
