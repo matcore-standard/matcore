@@ -1286,8 +1286,24 @@ record or marked PROPOSED, NOT DECIDED.
    container of type* (Dirichlet, Neumann, Zero-Neumann, Periodic, defined; Fixed and Free removed), boundary (a
    boundary in mesh-file or a description such as "x = 0") and field-variable (the field constrained), boundary and
    field-variable omitted when the condition applies to all. Settles 0074's boundary points and the §1.3 conditional
-   rule for `scaling`. No released instance breaks. Ruling committed on main; the domain PR (branch pf-domain) is
-   in progress.
+   rule for `scaling`. No released instance breaks. Ruling committed on main (4ad61a8).
+   [in progress, branch pf-domain, committed, awaiting push and PR] pf domain (step 5, 0074 item 4, 0075): cross-check
+   2026-11-20, names, definitions and terms match the .docx apart from 0074's move of mesh-type; the container's
+   description drops "topological discretization details" (the mesh is in numerical-method); dimensionality and
+   coordinate-system strings with the baseline's terms; domain-size value (float [:], Length, m, minimum 0) + unit, with
+   notes on the order of the extents, reduced units (0075) and irregular geometries (0074); boundary-conditions a
+   repeatable container of type* (Dirichlet, Neumann, Zero-Neumann, Periodic, defined), boundary and field-variable,
+   its description singular; initial-conditions a repeatable string with the baseline's examples and a note on states
+   given in words; legacy_* deleted; examples/pf.json domain-size [100.0, 100.0] dimensionless and boundary condition
+   Periodic, checked against the source (FiPy benchmark 8a, github.com/guyer/phasefieldbenchmark-8 at abffcd9,
+   params8a.yaml Lx = Ly = 100, PeriodicGrid2D); test in tests/test_computations.py; 07-pf regenerated.
+   Found for the numerical-method PR: the source's dx is 0.4 (params8a.yaml), the example's grid-spacing 1.0; the
+   example's numbers are strings ("1.0"), to be written as numbers.
+   Changed in review 2026-11-20 (the human): a note that refers to another property gives its path within the settings
+   block, e.g. `variables › field-variable`, `numerical-method › mesh-file`, `variables › model-parameter`, not its
+   bare name; applied to boundary, field-variable and domain-size's notes, uncommitted on pf-domain. The same defect is
+   in problem-specification's evolved-variable and free-energy-density-term notes (PR #128, merged); fixed in this
+   PR too (decided by the human 2026-11-20), with the test of problem-specification checking their paths.
    [done, PR #128 merged 2026-11-20] pf problem-specification (step 5,
    0074 item 3 and amendment): cross-check 2026-11-20, names, definitions and terms match the .docx apart from 0074's
    renames, type made repeatable, and the unit wording; time-dependence and additional-energy-contribution removed,

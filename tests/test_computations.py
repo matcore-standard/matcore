@@ -1082,6 +1082,8 @@ def test_pf_problem_specification_gives_each_equation_and_free_energy_term_once(
     assert shape(v) == (True, False, 'string', [], 'inapplicable', None)
     assert v['description'] == 'The name of the field-variable being evolved by this equation.'
     assert shape(sub(equation, 'free-energy-density-term')) == (False, True, 'string', [], 'inapplicable', None)
+    assert '`variables › field-variable`' in v['values']['note']
+    assert '`problem-specification › free-energy-density`' in sub(equation, 'free-energy-density-term')['values']['note']
     density = sub(problem, 'free-energy-density')
     assert [c['name'] for c in density['subproperties']] == ['name', 'contribution', 'description', 'expression', 'unit']
     c = sub(density, 'contribution')
@@ -1107,3 +1109,38 @@ def test_pf_problem_specification_gives_each_equation_and_free_energy_term_once(
     walk([problem])
     block = json.loads((ROOT / 'examples/pf.json').read_text(encoding='utf-8'))['pf']['settings'][0]
     assert 'time-dependence' not in block['problem-specification']
+
+
+PF_BOUNDARY_CONDITIONS = ['Dirichlet', 'Neumann', 'Zero-Neumann', 'Periodic']
+
+
+def test_pf_domain_takes_reduced_units_and_names_where_each_boundary_condition_applies():
+    """A phase field domain is often given in reduced units, which unit dimensionless says without a flag; a boundary
+    condition says what it imposes, on which boundary and on which field, with no two terms for one condition (0074
+    item 4, 0075)."""
+    domain = sub(top('pf', 'settings'), 'domain')
+    assert shape(sub(domain, 'dimensionality')) == (True, False, 'string', [], 'inapplicable', None)
+    assert sub(domain, 'dimensionality')['values']['terms'] == ['1D', '2D', '3D']
+    assert sub(domain, 'coordinate-system')['values']['terms'] == ['Cartesian', 'Cylindrical', 'Spherical']
+    size = sub(domain, 'domain-size')
+    assert [c['name'] for c in size['subproperties']] == ['value', 'unit']
+    assert shape(sub(size, 'value')) == (True, False, 'float', [':'], 'Length', 'm')
+    notes = ' '.join(size['notes'])
+    assert '`dimensionless`' in notes and '`variables › model-parameter`' in notes and 'irregular' in notes
+    bc = sub(domain, 'boundary-conditions')
+    assert (bc['required'], bc['repeatable'], bc['type']) == (False, True, None)
+    assert [c['name'] for c in bc['subproperties']] == ['type', 'boundary', 'field-variable']
+    t = sub(bc, 'type')
+    assert shape(t) == (True, False, 'string', [], 'inapplicable', None)
+    assert t['values']['terms'] == PF_BOUNDARY_CONDITIONS
+    assert all(f'"{term}" –' in ' '.join(t['values']['note'].split()) for term in PF_BOUNDARY_CONDITIONS)
+    for name in ('boundary', 'field-variable'):
+        assert shape(sub(bc, name)) == (False, False, 'string', [], 'inapplicable', None)
+    # a reference names where the referenced property is defined, not just its name
+    assert '`numerical-method › mesh-file`' in sub(bc, 'boundary')['values']['note']
+    assert '`variables › field-variable`' in sub(bc, 'field-variable')['values']['note']
+    assert shape(sub(domain, 'initial-conditions')) == (False, True, 'string', [], 'inapplicable', None)
+    assert not any(k.startswith('legacy_') for p in [domain, *domain['subproperties']] for k in p)
+    block = json.loads((ROOT / 'examples/pf.json').read_text(encoding='utf-8'))['pf']['settings'][0]
+    assert block['domain']['domain-size'] == {'value': [100.0, 100.0], 'unit': 'dimensionless'}
+    assert block['domain']['boundary-conditions'] == [{'type': 'Periodic'}]

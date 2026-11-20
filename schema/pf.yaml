@@ -115,7 +115,9 @@ properties:
         recommended-unit: null
         values:
           examples: [phi, c]
-          note: The name of a `field-variable` entry.
+          note: >-
+            The `name` of a field variable defined in `variables › field-variable` of the same settings
+            block.
         repeatable: false
       - name: free-energy-density-term
         required: false
@@ -126,7 +128,9 @@ properties:
         recommended-unit: null
         values:
           examples: [f_chem, f_elastic]
-          note: The name of a `free-energy-density` entry.
+          note: >-
+            The `name` of a term defined in `problem-specification › free-energy-density` of the same
+            settings block.
         repeatable: true
     - name: free-energy-density
       required: true
@@ -212,42 +216,36 @@ properties:
         repeatable: false
   - name: domain
     required: false
-    description: >-
-      The spatial configuration, computational region, and topological discretization details.
+    description: The spatial configuration of the computational region and its boundaries.
     type: null
     extent: null
     kind: null
     recommended-unit: null
     values: null
     repeatable: false
-    legacy_values: Contains SubProperties as listed below.
     subproperties:
     - name: dimensionality
       required: true
       description: The spatial dimensions of the computational domain.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [1D, 2D, 3D]
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "1D" "2D" "3D" Other user-specified value if none
-        of the above apply.
     - name: coordinate-system
       required: false
       description: >-
         The structured framework used to uniquely determine and standardize the position of the points in
         space and the symmetry assumed.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Cartesian, Cylindrical, Spherical]
       repeatable: false
-      legacy_values: >-
-        String containing one of the following values: "Cartesian" "Cylindrical" "Spherical" Other user-specified
-        value if none of the above apply.
     - name: domain-size
       required: false
       description: Specification of the computational region extents.
@@ -257,31 +255,102 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: An ordered list of real numbers containing the domain dimensions in meters (m).
+      notes:
+      - 'Note: Give one extent for each coordinate direction, in the order of the coordinates.'
+      - >-
+        Note: `unit` is a Length symbol from Annex U, or `dimensionless` when the simulation uses reduced
+        units; the characteristic length is then given as a `variables › model-parameter` entry, so the
+        extents can be converted.
+      - >-
+        Note: For a regular domain the extents are its size. For an irregular geometry, whose mesh is given in
+        `numerical-method › mesh-file`, they may give a characteristic size of the structure.
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: [':']
+        kind: Length
+        recommended-unit: m
+        values:
+          minimum: 0
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
     - name: boundary-conditions
       required: false
-      description: Constraints applied to the computational domain perimeter.
+      description: A constraint applied on a boundary of the computational domain.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
       repeatable: true
-      legacy_values: >-
-        String containing one of the following values: "NoFlux" "Periodic" "Fixed" "Free" "Dirichlet" "Neumann"
-        Other user-specified value if none of the above apply.
+      notes:
+      - >-
+        Note: Give one entry for each condition. An entry without `boundary` applies to every boundary, and one
+        without `field-variable` to every field variable.
+      subproperties:
+      - name: type
+        required: true
+        description: The kind of boundary condition.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Dirichlet, Neumann, Zero-Neumann, Periodic]
+          note: >-
+            "Dirichlet" – The value of the field variable is prescribed on the boundary, e.g. a fixed
+            concentration or a clamped displacement. "Neumann" – The normal derivative of the field variable
+            (its flux) is prescribed on the boundary. "Zero-Neumann" – The normal derivative is zero: no flux
+            crosses the boundary, or a surface is free of traction. "Periodic" – Opposite boundaries are
+            identified, so the field variable repeats across them.
+        repeatable: false
+      - name: boundary
+        required: false
+        description: The boundary on which the condition applies.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            The name of a boundary in the mesh file (`numerical-method › mesh-file` of the same settings block),
+            or a description such as "x = 0".
+        repeatable: false
+      - name: field-variable
+        required: false
+        description: The field variable that the condition constrains.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            The `name` of a field variable defined in `variables › field-variable` of the same settings
+            block.
+        repeatable: false
     - name: initial-conditions
       required: false
       description: The spatial distribution of the field variables at the start of the simulation.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        examples: [Uniform constant, Random noise, Geometric seed, Imported array]
+        note: >-
+          A mathematical function, or a state produced by an algorithm or given as a spatial distribution, is
+          described in words.
       repeatable: true
-      legacy_values: >-
-        A string describing the initialization method (e.g., "Uniform constant", "Random noise", "Geometric
-        seed", "Imported array", a specific mathematical function, or other user-specified method)
   - name: numerical-method
     required: true
     description: >-
