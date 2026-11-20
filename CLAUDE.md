@@ -354,7 +354,8 @@ record or marked PROPOSED, NOT DECIDED.
      ml is complete (0073 amendment; step 5); pf's properties sit in `settings` blocks naming their
      computations, physical-phenomena is renamed physical-phenomenon, free-energy free-energy-density (now
      repeatable), driving-energy free-energy-density-term and domain-and-mesh domain, governing-equation › type
-     repeats, and mesh-type moves into numerical-method (0074).
+     repeats, and mesh-type moves into numerical-method (0074); pf physical-phenomenon is filled, with the
+     terms Fracture and Plasticity added and every term defined (0074; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1257,7 +1258,7 @@ record or marked PROPOSED, NOT DECIDED.
    tests/test_computations.py (a new test; the label test gains pf); 07-pf regenerated (addresses gain
    `settings.`). Then pf's properties in file order: physical-phenomenon, problem-specification, domain,
    numerical-method, variables.
-   [in progress, branch pf-physical-phenomenon, committed, awaiting push and PR] pf physical-phenomenon (step 5,
+   [done, PR #127 merged 2026-11-20] pf physical-phenomenon (step 5,
    0074 item 2): a repeatable string with open terms the baseline's seven plus Fracture and Plasticity, each
    defined in a note drafted in this PR (judgment calls); a note "Give one entry for each process modeled.";
    baseline description kept; legacy_* deleted; test in tests/test_computations.py; 07-pf regenerated;
