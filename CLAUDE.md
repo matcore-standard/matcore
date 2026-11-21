@@ -1337,6 +1337,42 @@ record or marked PROPOSED, NOT DECIDED.
    tests/test_examples.py; examples/pf.json's model parameters are numbers with "type": "float" (Δf = 1/(15√2) checked
    against benchmark8a.py; r_0 = 5.05 is factor × 5 with the factor passed on the command line, not in the repository);
    tests/test_computations.py (a new test); 07-pf regenerated. Next: derived.
+   derived, analysed 2026-11-20 before any derived PR, at the human's request (is the section still sound now that
+   a dataset may combine methods?). Cross-check against the .docx: names, definitions, values text, required and
+   repeatable match. Findings: (1) derived is the only section not in `settings`: its properties name no computation,
+   so a derived property cannot say which computation obtained it or from what; (2) its introduction limits it to a
+   single method, which 0046's input links make unnecessary: a property from several computations is a computation
+   with task Property calculation naming them as input role Source data (or Interaction model, 0067); (3) a
+   post-processing step with no physical model of its own (force constants from finite-difference forces, a Raman
+   tensor from susceptibilities, an XRD pattern from a structure, a vibrational DOS from a trajectory) has no
+   `method` term, though `method` is required: the open point of 0065 on computations with no method term; (4)
+   calculation-method repeats to chain steps, which 0046 now gives as computations; (5) type's terms mix kinds of
+   quantity (Electronic, Magnetic, Transport) with techniques (Linear-response, NMR, Microscopy) and lack Mechanical
+   (elastic constants) and Thermodynamic (free energies, heat capacities, formation energies); description holds both
+   the property's name and its explanation. PROPOSED, NOT DECIDED (recommendations, for a ruling): (a) derived's
+   properties sit in `settings` with computation-label, as in every method section; a derived block may name any
+   computation that obtains a property (e.g. a DFT computation by DFPT, a PS computation giving a Green-Kubo
+   conductivity), beside that computation's method block; (b) the single-method note and the MBPT exception are
+   removed, the introduction saying that combinations are input links; (c) `method` gains a term for a computation
+   that derives a property with no model of its own, naming the derived section (name and method-class to decide;
+   MODA's post-processing step to be checked as a source), closing 0065's open point for such computations; (d)
+   derived-property gains `name*` (e.g. Raman spectrum, phonon dispersion), description an explanation; (e)
+   calculation-method is flattened: `procedure*` (a string explaining each calculation-parameter entry, as ps settings
+   › description, 0067) and the generic `calculation-parameter` sit in derived-property; (f) type is reworded as the
+   kind of property, Linear-response replaced by Vibrational, Mechanical and Thermodynamic added (terms to settle in
+   the property PR); (g) examples/derived.json names a Raman computation. No change proposed to how results are
+   listed (0039's open question). (Superseded: decided by 0076.)
+   Derived section by 0076 (ruling 2026-11-21, from the analysis above; the human chose each recommendation):
+   derived's properties sit in `settings` with computation-label, a derived block naming any computation that obtains a
+   property; the single-method note and the MBPT exception are removed, the introduction pointing to input roles
+   Source data and Interaction model; minimal method-class gains Post-processing (CWA 17284:2018 §3.12, checked in
+   the CWA's text 2026-11-21: "operations on raw output of solvers without altering the physical system state") and
+   method gains "DP" – Derived Property under it, naming the derived section; derived-property's members are type*,
+   name* (new), description*, procedure* (replacing calculation-method, explaining each parameter) and the generic
+   calculation-parameter; type is the kind of property, Linear-response replaced by Vibrational, Mechanical and
+   Thermodynamic added; a margin-of-error property (CWA Table 7 item 4.3) is declined (0039). Settles 0065's open point
+   for post-processing computations. No released instance breaks. Ruling committed on main; the derived structure PR
+   (branch derived-structure) is in progress.
    [done, PR #129 merged 2026-11-20] pf domain (step 5, 0074 item 4, 0075): cross-check
    2026-11-20, names, definitions and terms match the .docx apart from 0074's move of mesh-type; the container's
    description drops "topological discretization details" (the mesh is in numerical-method); dimensionality and
@@ -1454,7 +1490,8 @@ record or marked PROPOSED, NOT DECIDED.
    events or Property calculation). Amends 0064 item 3; breaks no released instance. PROPOSED, NOT
    DECIDED (0065): whether Structure generation is a computation only when its configurations are in
    the dataset or another's input; the `method` of a computation with no method term (generation
-   without a model, a non-ML fit such as force matching, featurization).
+   without a model, a non-ML fit such as force matching, featurization). (Superseded in part: post-processing
+   computations take method DP, by 0076.)
    [done, PR #104 merged 2026-11-14] 0065 applied: minimal task terms and note,
    tests/test_computations.py, 02-minimal regenerated; before 0064 PR (b).
    Structure searches by 0066 (ruling 2026-11-14, from reviewer feedback: a global minimum found by
