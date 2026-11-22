@@ -375,7 +375,9 @@ record or marked PROPOSED, NOT DECIDED.
      Property (DP); minimal method-class gains Post-processing and method gains DP (0076); the derived introduction
      describes the usual record, one DP computation with one entry per property (decided by the human 2026-11-22);
      minimal computation notes that a record explains the dataset, not its workflow, giving a computation only for
-     results in the dataset or settings a reader needs (0077).
+     results in the dataset or settings a reader needs (0077); derived-property is filled: type names the kind of
+     property (14 terms, Scattering covering X-rays and neutrons), name and procedure are added, calculation-parameter
+     is a generic parameter, and derived is complete, so every section is complete (0076; step 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -467,7 +469,8 @@ record or marked PROPOSED, NOT DECIDED.
    entries were reordered to match, with no change to their content (0004 item 6).
 4. [done, PR #8 merged 2026-11-01] 0001 Part B fixes ("alone" forms) and the known
    baseline defects (0004 item 25; see 0001's note). Done before step 5 (0004).
-5. [todo] One PR per top-level property, covering all of its subproperties: 48 PRs (0004). Each PR,
+5. [done, PR #136 merged 2026-11-22: every section declares legacy_complete] One PR per top-level property, covering
+   all of its subproperties: 48 PRs (0004). Each PR,
    in this order: (a) cross-check the property against the baseline .docx (name, definition,
    values, required, repeatable, subproperty tree) so no definition or value was lost or altered
    in migration, and correct any migration error before filling anything; (b) fill
@@ -982,7 +985,7 @@ record or marked PROPOSED, NOT DECIDED.
    (X-ray and neutron diffraction, reflectivity, pair-distribution functions), electron diffraction staying under
    Microscopy, electron; Vibrational and Spectroscopy, vibrational both stay, defined apart (the vibrations
    themselves; a simulated spectrum for comparison with a measurement).
-   [in progress, branch derived-property, committed, awaiting push and PR] derived derived-property (step 5, 0076
+   [done, PR #136 merged 2026-11-22] derived derived-property (step 5, 0076
    items 4, 5): derived-property noted one entry per property; type a string with 14 open terms, each defined in a
    note drafted in this PR, its description "The kind of property computed."; name a new required string (examples
    Raman spectrum, Phonon dispersion); description a string; procedure a required string, "How the property was
