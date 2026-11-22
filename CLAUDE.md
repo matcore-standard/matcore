@@ -372,7 +372,8 @@ record or marked PROPOSED, NOT DECIDED.
      examples a generic parameter's object carries `type`, now checked (0044 item 3); derived's properties sit in
      `settings` blocks naming the computations that obtain them, of any method, its single-method limit removed,
      calculation-method replaced by procedure with calculation-parameter beside it, and the section titled Derived
-     Property (DP); minimal method-class gains Post-processing and method gains DP (0076).
+     Property (DP); minimal method-class gains Post-processing and method gains DP (0076); the derived introduction
+     describes the usual record, one DP computation with one entry per property (decided by the human 2026-11-22).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1438,8 +1439,8 @@ record or marked PROPOSED, NOT DECIDED.
    block giving one derived-property entry per property with procedure and calculation-parameter (e.g. the
    finite-difference displacement), and a property obtained within another method's computation given in a block
    naming that computation; then the list of families. The two-kinds list, the long input-role paragraph and the
-   grouping paragraph are dropped, the grouping rule being 0077's note in minimal. [in progress, branch
-   derived-introduction, committed, awaiting push and PR] schema/derived.yaml, tests/test_computations.py (the
+   grouping paragraph are dropped, the grouping rule being 0077's note in minimal. [done, PR #134 merged
+   2026-11-22] schema/derived.yaml, tests/test_computations.py (the
    introduction's prose is two paragraphs and keeps the essentials), 08-derived regenerated.
    [done, PR #129 merged 2026-11-20] pf domain (step 5, 0074 item 4, 0075): cross-check
    2026-11-20, names, definitions and terms match the .docx apart from 0074's move of mesh-type; the container's
