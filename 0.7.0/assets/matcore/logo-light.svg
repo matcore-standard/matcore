@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="42 25 598 438" role="img" aria-label="MatCore logo">
+  <!-- Variant of logo.svg for dark backgrounds (header bar, phone menu): the charcoal arch is drawn light,
+       and a white backing under all three shapes makes the gold and blue blend as they do on white. -->
+  <g fill="#FFFFFF">
+    <path d="M42 463V177.5A152.5 152.5 0 0 1 347 177.5V463Z"/>
+    <path d="M198 463V177.5A152.5 152.5 0 0 1 503 177.5V463Z"/>
+    <path d="M640 45H503A152 209 0 0 0 503 463H640Z"/>
+  </g>
+  <path fill="#D9D9D9" d="M42 463V177.5A152.5 152.5 0 0 1 347 177.5V463Z"/>
+  <path fill="#CC9933" fill-opacity=".75" d="M198 463V177.5A152.5 152.5 0 0 1 503 177.5V463Z"/>
+  <path fill="#4979CF" fill-opacity=".5" d="M640 45H503A152 209 0 0 0 503 463H640Z"/>
+</svg>
