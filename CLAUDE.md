@@ -1710,6 +1710,18 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #81 merged 2026-11-08] JSON examples by 0044: the seven examples converted from XML by script; check_examples.py,
    check_formula.py and build_docs.py read JSON; meta-schema `file` requires .json; §1.3 says the
    examples are in JSON.
+   JSON Schema by 0078 (ruling 2026-11-22; the human chose each recommendation after an explanation of what a JSON
+   Schema is and which files it checks): scripts/build_json_schema.py generates one JSON Schema (draft 2020-12) from
+   schema/*.yaml and units.yaml into docs/standard/matcore.schema.json, generated, committed (CI's staleness check),
+   published with each version and linked from §1.3; it describes a whole record (minimal required, other sections
+   optional, nothing else; each section in $defs, against which the single-section examples are checked); it checks
+   names, required, repeatable as arrays, containers as objects, Type and Extent, values' bounds, patterns and formats;
+   units by Kind (Annex U symbols of the value's Kind, plus dimensionless for 0075's reduced lengths and times; any
+   symbol, dimensionless or x-gnu: where the schema does not fix the Kind); a generic parameter's JSON `type` and
+   value (0044 item 3); open terms, x-gnu validity, label references, formula grammar and check digits are left to
+   their own checks or step 9; validate_schema.py checks the examples against it and check_examples.py is removed. No
+   property changes. The other part of step 7, the requirements any serialization must meet, is a separate change.
+   Ruling committed on main; the PR (branch json-schema) is in progress.
 8. [merged into step 2] Site content migration from matcore.org.
 9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools. After step 7;
    the validator reuses step 7's generated schema (0004).
