@@ -369,7 +369,10 @@ record or marked PROPOSED, NOT DECIDED.
      mesh-type loses Cartesian, and solver has nine defined terms (0074, 0075; step 5); pf mesh-file is repeatable,
      one entry per file (decided by the human 2026-11-20); pf variables is filled: model-parameter is a generic
      parameter, each field variable is its own entry, and pf is complete (0016, 0074; step 5); in the JSON
-     examples a generic parameter's object carries `type`, now checked (0044 item 3).
+     examples a generic parameter's object carries `type`, now checked (0044 item 3); derived's properties sit in
+     `settings` blocks naming the computations that obtain them, of any method, its single-method limit removed,
+     calculation-method replaced by procedure with calculation-parameter beside it, and the section titled Derived
+     Property (DP); minimal method-class gains Post-processing and method gains DP (0076).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -1382,7 +1385,7 @@ record or marked PROPOSED, NOT DECIDED.
    calculation-parameter; type is the kind of property, Linear-response replaced by Vibrational, Mechanical and
    Thermodynamic added; a margin-of-error property (CWA Table 7 item 4.3) is declined (0039). Settles 0065's open point
    for post-processing computations. No released instance breaks. Ruling committed on main (cd80617).
-   [in progress, branch derived-structure, committed, awaiting push and PR] derived structure by 0076, no typed field
+   [done, PR #133 merged 2026-11-22] derived structure by 0076, no typed field
    filled: derived's properties in a required, repeatable `settings` whose first member is computation-label;
    derived-property inside it, its calculation-method removed, the method's description moved up as `procedure`
    (required) and calculation-parameter moved up (legacy text kept for both); the introduction rewritten without the
