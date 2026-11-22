@@ -1381,8 +1381,54 @@ record or marked PROPOSED, NOT DECIDED.
    name* (new), description*, procedure* (replacing calculation-method, explaining each parameter) and the generic
    calculation-parameter; type is the kind of property, Linear-response replaced by Vibrational, Mechanical and
    Thermodynamic added; a margin-of-error property (CWA Table 7 item 4.3) is declined (0039). Settles 0065's open point
-   for post-processing computations. No released instance breaks. Ruling committed on main; the derived structure PR
-   (branch derived-structure) is in progress.
+   for post-processing computations. No released instance breaks. Ruling committed on main (cd80617).
+   [in progress, branch derived-structure, committed, awaiting push and PR] derived structure by 0076, no typed field
+   filled: derived's properties in a required, repeatable `settings` whose first member is computation-label;
+   derived-property inside it, its calculation-method removed, the method's description moved up as `procedure`
+   (required) and calculation-parameter moved up (legacy text kept for both); the introduction rewritten without the
+   single-method note and the MBPT exception, naming input roles Source data and Interaction model, method DP and
+   0054's settings sentence, its list of examples unchanged until the type PR; MatCore-Der becomes MatCore-DP and §1.2's
+   "DER:" becomes "DP:" (judgment call: the section's abbreviation follows its method term, as DFT, PS, PF do);
+   minimal method-class gains Post-processing, its note saying the other categories come from MODA and
+   Post-processing from CWA 17284:2018 §3.12; method gains case Post-processing → DP, defined at the end of method's
+   note; examples/derived.json in settings, label raman, calculation-method's text as procedure;
+   tests/test_computations.py (two new tests; the method test and the label test updated); 02-minimal, 08-derived and
+   index regenerated. Then derived's property PRs: derived-property (type with its terms, name, description,
+   procedure, calculation-parameter), one PR or several as the human decides.
+   Changed in review 2026-11-21 (the human): the title is "2.8 Derived Property (DP) Metadata", as every method
+   section names its abbreviation; the introduction is rewritten for clarity: what a derived property is (a Raman
+   spectrum from DFT phonons and susceptibilities), the two kinds of computation that obtain one (method DP with
+   method-class Post-processing, set in minimal `computation`; or another method's computation with a block in both
+   sections), and the input roles in plain terms (Source data for results already computed, Interaction model for
+   energies and forces requested as it proceeds), a multi-step or multi-method property being a chain of
+   computations; its list of examples applies 0076 item 5 now: Linear-response becomes Vibrational, Mechanical and
+   Thermodynamic are added, the list kept alphabetical. Tests check the title and the three families.
+   Raised by the human 2026-11-22, on a worked Raman example (six computations: a DFT relaxation, DFT forces on
+   displaced cells, a DP phonon computation, DFT susceptibilities, a DP Raman computation, each DP one with its own
+   derived block): is this too detailed for MatCore, which explains a dataset and does not give its workflow (§1.2),
+   and what do the derived blocks add beyond minimal computations of the same name? Answer given: the schema does not
+   require that granularity; the example (and the draft introduction's sentence "recorded as a chain of
+   computations, one for each step") chose it. Minimal says how each computation works and what it used (method,
+   task, input, software); the derived block says what property came out and how it was obtained (type, name,
+   procedure, parameters), as a dft block holds a DFT computation's settings; the duplication in the example came
+   from splitting one post-processing into two DP computations and from computation › description restating the
+   procedure. PROPOSED, NOT DECIDED: (a) the derived introduction replaces "one for each step" with guidance to
+   group: a computation is separate only where its method differs or its results are in the dataset; post-processing
+   steps that share one procedure are one DP computation, its properties being entries of one derived block; (b) the
+   same guidance for every section as a note on minimal `computation`, beside 0063's staged-simulation note; (c) the
+   procedure is given in derived, not repeated in computation › description. With (a), the Raman example is two
+   computations: dft (DFT, Single point: displaced-cell forces and susceptibilities) and raman (DP, Property
+   calculation, input dft as Source data; software phonopy and a script), with one derived block holding the phonon
+   modes and the Raman spectrum.
+   Decided by the human 2026-11-22 (changed in review, derived-structure): (a) and (c) are adopted in the
+   derived introduction, which replaces "one for each step" with a paragraph: the record explains the dataset, not
+   its workflow; a computation is separate only when its method differs or its results are in the dataset;
+   post-processing steps serving one purpose are one DP computation with one derived-property entry per property;
+   how a property was obtained, including the parameters of the calculations its procedure requests from other
+   computations (e.g. the finite-difference displacement), is given in the entry's procedure and
+   calculation-parameter, as a method's settings are in its section, not in those computations' descriptions. The
+   test of derived's structure checks the paragraph. (b), the same grouping guidance as a note on minimal
+   `computation` for every section, remains PROPOSED, NOT DECIDED.
    [done, PR #129 merged 2026-11-20] pf domain (step 5, 0074 item 4, 0075): cross-check
    2026-11-20, names, definitions and terms match the .docx apart from 0074's move of mesh-type; the container's
    description drops "topological discretization details" (the mesh is in numerical-method); dimensionality and

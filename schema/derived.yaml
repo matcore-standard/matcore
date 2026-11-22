@@ -1,82 +1,99 @@
 section: derived
-title: 2.8 Derived Property Metadata
+title: 2.8 Derived Property (DP) Metadata
 source: >-
   Migrated mechanically from MatCore_Dev.docx (Google Doc export). legacy_* fields hold the original prose
   and are to be replaced by typed fields in subsequent PRs.
 introduction: |
-  The metadata for derived properties (MatCore-Der) is tabulated below. This refers to properties computed from data generated using a CMS method documented elsewhere in this section (e.g. spectroscopy computations based on DFT data). (Notes: (1) This standard inherits the metadata in the minimal MatCore standard and one of the associated methods metadata, adding the properties below. (2) Derived properties in this category are limited to properties based on a single method. Derived properties involving a combination of multiple methods (e.g. MD and ML) are not supported. An exception is MBPT, which itself is based on DFT.)
+  The metadata for derived properties (MatCore-DP) is tabulated below. A derived property is a property obtained from the results of other computations described in this standard, e.g. a Raman spectrum computed from phonon modes and electronic susceptibilities obtained by DFT. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
+
+  Each derived property is obtained by a computation recorded in minimal `computation`. The properties are given in settings blocks, each naming the computations it describes. Such a computation is one of two kinds:
+
+  - A computation that only processes the results of other computations and has no physical model of its own, e.g. one that obtains phonon modes from forces computed by DFT. In minimal `computation`, its `method` is DP and its `method-class` is Post-processing.
+  - A computation of another method that also obtains a property, e.g. a DFT computation that obtains phonon modes by density functional perturbation theory. It keeps its own `method` (here DFT) and has a settings block in that method's section beside its block here.
+
+  A computation names the other computations whose results it uses in minimal `computation › input`, giving each one a role. The role is Source data when the computation processes results already computed, e.g. the forces from which phonon modes are obtained. It is Interaction model when the computation requests energies and forces as it proceeds, e.g. from an interatomic potential whose second derivatives give elastic constants.
+
+  The record explains the dataset; it does not retrace the workflow that produced it. A computation is recorded separately only when its method differs or its results are in the dataset. Post-processing steps that serve one purpose, e.g. obtaining phonon modes and then a Raman spectrum from them, form one DP computation, whose settings block here gives one `derived-property` entry for each property. How a property was obtained is given in that entry, in `procedure` and `calculation-parameter`, as a method's settings are given in its section. This includes the parameters of the calculations the procedure requests from other computations, e.g. the finite-difference displacement of the atoms, rather than the descriptions of those computations.
 
   Examples of derived properties include:
 
   - Electronic (band structure, density of states (DOS), projected DOS, dielectric function, charge and bonding analysis, etc.)
   - Electron-phonon interactions (superconducting properties, line widths, etc.)
-  - Linear-response (phonon modes, dispersion, interatomic force constants, vibrational DOS, etc.)
   - Magnetic (magnetics, magnetization, magnons, etc.)
+  - Mechanical (elastic constants, stress-strain response, etc.)
   - Microscopy, electron (S/TEM, 4D-STEM, SAED, etc.)
   - Microscopy, scanning probe (STM, AFM, etc.)
   - NMR (chemical shifts)
   - Optical (electronic excitation spectra, low-loss EELS, etc.)
   - Spectroscopy, core-level (XAS, XES, core-loss EELS, XPS, etc.)
   - Spectroscopy, vibrational (Raman, Infrared spectroscopy, etc.)
+  - Thermodynamic (free energies, heat capacity, formation energies, etc.)
   - Transport (electronic conductivity, thermal conductivity, etc.)
+  - Vibrational (phonon modes, dispersion, interatomic force constants, vibrational DOS, etc.)
   - X-ray scattering (diffraction, reflectivity, pair-distribution function, etc.)
 examples:
   - caption: Derived Property Metadata
     file: derived.json
     source: https://archive.materialscloud.org/record/2024.116
 properties:
-- name: derived-property
+- name: settings
   required: true
-  description: >-
-    Details of a quantity related to material behavior computed based on a computational materials science
-    (CMS) calculation covered by the MatCore standard.
+  description: Settings shared by the computations named in it.
   type: null
   extent: null
   kind: null
   recommended-unit: null
   values: null
   repeatable: true
-  legacy_values: Contains SubProperties as listed below.
   subproperties:
-  - name: type
+  - name: computation-label
     required: true
-    description: Kind of physical quantity being computed.
-    type: null
-    extent: null
-    kind: null
+    description: The label of a computation these settings apply to.
+    type: string
+    extent: []
+    kind: inapplicable
     recommended-unit: null
     values: null
-    repeatable: false
-    legacy_values: >-
-      String one of the following values that defines the type of the computed derived property: "Electronic"
-      "Electron-phonon interactions" "Linear-response" "Magnetic" "Microscopy, electron" "Microscopy,
-      scanning probe" "NMR" "Optical" "Spectroscopy, core-level" "Spectroscopy, vibrational" "Transport"
-      "X-ray scattering" Other user-specified value if none of the above apply.
-  - name: description
-    required: true
-    description: Explanation of the derived property.
-    type: null
-    extent: null
-    kind: null
-    recommended-unit: null
-    values: null
-    repeatable: false
-    legacy_values: >-
-      A string containing an explanation of the specific derived property that was computed.
-  - name: calculation-method
+    repeatable: true
+  - name: derived-property
     required: true
     description: >-
-      Details regarding an approach used to obtain the derived property. Multiple approaches may be involved
-      in the computation.
+      Details of a quantity related to material behavior computed based on a computational materials science
+      (CMS) calculation covered by the MatCore standard.
     type: null
     extent: null
     kind: null
     recommended-unit: null
     values: null
     repeatable: true
-    legacy_values: Contains SubSubProperties as defined in the table below.
+    legacy_values: Contains SubProperties as listed below.
     subproperties:
+    - name: type
+      required: true
+      description: Kind of physical quantity being computed.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        String one of the following values that defines the type of the computed derived property: "Electronic"
+        "Electron-phonon interactions" "Linear-response" "Magnetic" "Microscopy, electron" "Microscopy,
+        scanning probe" "NMR" "Optical" "Spectroscopy, core-level" "Spectroscopy, vibrational" "Transport"
+        "X-ray scattering" Other user-specified value if none of the above apply.
     - name: description
+      required: true
+      description: Explanation of the derived property.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      legacy_values: >-
+        A string containing an explanation of the specific derived property that was computed.
+    - name: procedure
       required: true
       description: Description of the method used to obtain the derived property.
       type: null
