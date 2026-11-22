@@ -291,7 +291,9 @@ record or marked PROPOSED, NOT DECIDED.
      the standard is published with each version and linked from §1.4; it checks the examples (0078); a new §1.4
      Serialization states what any serialization must preserve and JSON's mapping, and a record's own Properties are
      named with the prefix x- (0079); dft core-electron-treatment › type is All-electron or Frozen core, PAW being
-     named once, as a dataset type (0080; breaks 0.7.0 records with core type Pseudopotential or PAW).
+     named once, as a dataset type (0080; breaks 0.7.0 records with core type Pseudopotential or PAW); the derived
+     families Mechanical, Thermodynamic and Transport are widened (strengths, hardness, melting temperature, viscosity,
+     defect mobilities), and the derived introduction points paths found by the NEB to PS (0081).
    - Changes to the standard from 0.6.0 to 0.7.0 (released in 0.7.0, its entry in releases.yaml summarizing them): the
      examples are written in JSON, the first serialization, and §1.3 says so (0044); a required
      matcore container gives the standard version, an optional link to it, the dataset's id and
@@ -1047,7 +1049,7 @@ record or marked PROPOSED, NOT DECIDED.
    it would repeat ps algorithm NEB and minimal task Transition path; it would): the introduction says a result its
    computation already names, e.g. a path and barrier found by the NEB, needs no derived entry, while a property
    obtained from such results, e.g. a rate, is one. Terms unchanged; no record breaks. Ruling committed on
-   main (a25366a). [in progress, branch derived-families, committed, awaiting push and PR] schema/derived.yaml (the
+   main (a25366a). [done, PR #142 merged 2026-11-22] schema/derived.yaml (the
    three definitions, the introduction's three family lines, and a sentence in its second paragraph: a result its
    computation already names needs no derived entry, e.g. a path and barrier found by ps algorithm NEB with task
    Transition path; a rate from them is one), tests/test_computations.py (a new test of 0081's wording), 08-derived
