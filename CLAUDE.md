@@ -1015,7 +1015,7 @@ record or marked PROPOSED, NOT DECIDED.
    that no page shows legacy text even with --show-legacy; 08-derived regenerated. Follow-up, PROPOSED, NOT
    DECIDED: remove --show-legacy from CI (.github/workflows/ci.yml) and from the working rules once this merges,
    since no legacy text remains. (Superseded: decided by the human 2026-11-22. [in progress, branch
-   drop-show-legacy, committed, awaiting push and PR] The flag leaves CI, README.md, CONTRIBUTING.md and the working
+   drop-show-legacy: done, PR #138 merged 2026-11-22] The flag leaves CI, README.md, CONTRIBUTING.md and the working
    lines of CLAUDE.md; README's editing step names values.note instead of legacy_values; build_docs.py keeps the
    option, its docstring saying no legacy text remains (judgment call: removing it would also remove the legacy
    rendering and its test); history entries and decision records are left as written.)
