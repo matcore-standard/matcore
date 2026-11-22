@@ -960,6 +960,16 @@ record or marked PROPOSED, NOT DECIDED.
    order field are declined.
    [done, PR #100 merged 2026-11-12] the 0063 note: schema/minimal.yaml (computation note,
    Initial configuration definition), tests/test_computations.py, 02-minimal.md regenerated.
+   Grouping computations by 0077 (ruling 2026-11-22, from the review of 0076's worked Raman example): minimal
+   `computation` gains a note before 0063's: the record explains the dataset, not its workflow (§1.2); a computation is
+   given for calculations whose results are in the dataset or whose method or settings a reader needs; steps serving
+   one purpose with one method are one computation (e.g. the DP steps giving phonon modes and a Raman spectrum); a
+   step that only prepares another (e.g. a relaxation fixing the cell for later single points) may be left out or
+   mentioned in that computation's description. 0063 stands as the same test for staged simulations. A procedure's
+   parameters are given with the procedure, in the section describing it, even when applied in another computation's
+   calculations (e.g. a Raman calculation's finite-difference displacement in its derived entry). No released
+   instance breaks. Ruling committed on main; its PR (branch minimal-computation-grouping) follows the derived
+   structure PR (branch derived-structure).
    [done, PR #110] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
    algorithm done, PR #106; computation-parameter done, PR #107; initialization done, PR #109; thermodynamic-constraint done, PR #110; ps is complete; next mbpt).
    [done, PR #111 merged 2026-11-15] mbpt structure by 0046 items 7
