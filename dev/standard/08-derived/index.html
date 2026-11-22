@@ -25,7 +25,7 @@
     
     
       
-        <title>2.8 Derived Property Metadata - MatCore</title>
+        <title>2.8 Derived Property (DP) Metadata - MatCore</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#28-derived-property-metadata" class="md-skip">
+        <a href="#28-derived-property-dp-metadata" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2.8 Derived Property Metadata
+              2.8 Derived Property (DP) Metadata
             
           </span>
         </div>
@@ -798,7 +798,7 @@
   <span class="md-ellipsis">
     
   
-    2.8 Derived Property Metadata
+    2.8 Derived Property (DP) Metadata
   
 
     
@@ -816,7 +816,7 @@
   <span class="md-ellipsis">
     
   
-    2.8 Derived Property Metadata
+    2.8 Derived Property (DP) Metadata
   
 
     
@@ -1012,27 +1012,79 @@
   
 
 
-<h1 id="28-derived-property-metadata">2.8 Derived Property Metadata</h1>
+<h1 id="28-derived-property-dp-metadata">2.8 Derived Property (DP) Metadata</h1>
 <p class="mc-version" data-version="0.6.0">Version 0.6.0</p>
 
-<p>The metadata for derived properties (MatCore-Der) is tabulated below. This refers to properties computed from data generated using a CMS method documented elsewhere in this section (e.g. spectroscopy computations based on DFT data). (Notes: (1) This standard inherits the metadata in the minimal MatCore standard and one of the associated methods metadata, adding the properties below. (2) Derived properties in this category are limited to properties based on a single method. Derived properties involving a combination of multiple methods (e.g. MD and ML) are not supported. An exception is MBPT, which itself is based on DFT.)</p>
+<p>The metadata for derived properties (MatCore-DP) is tabulated below. A derived property is a property obtained from the results of other computations described in this standard, e.g. a Raman spectrum computed from phonon modes and electronic susceptibilities obtained by DFT. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)</p>
+<p>Each derived property is obtained by a computation recorded in minimal <code>computation</code>. The properties are given in settings blocks, each naming the computations it describes. Such a computation is one of two kinds:</p>
+<ul>
+<li>A computation that only processes the results of other computations and has no physical model of its own, e.g. one that obtains phonon modes from forces computed by DFT. In minimal <code>computation</code>, its <code>method</code> is DP and its <code>method-class</code> is Post-processing.</li>
+<li>A computation of another method that also obtains a property, e.g. a DFT computation that obtains phonon modes by density functional perturbation theory. It keeps its own <code>method</code> (here DFT) and has a settings block in that method's section beside its block here.</li>
+</ul>
+<p>A computation names the other computations whose results it uses in minimal <code>computation › input</code>, giving each one a role. The role is Source data when the computation processes results already computed, e.g. the forces from which phonon modes are obtained. It is Interaction model when the computation requests energies and forces as it proceeds, e.g. from an interatomic potential whose second derivatives give elastic constants.</p>
+<p>The record explains the dataset; it does not retrace the workflow that produced it. A computation is recorded separately only when its method differs or its results are in the dataset. Post-processing steps that serve one purpose, e.g. obtaining phonon modes and then a Raman spectrum from them, form one DP computation, whose settings block here gives one <code>derived-property</code> entry for each property. How a property was obtained is given in that entry, in <code>procedure</code> and <code>calculation-parameter</code>, as a method's settings are given in its section. This includes the parameters of the calculations the procedure requests from other computations, e.g. the finite-difference displacement of the atoms, rather than the descriptions of those computations.</p>
 <p>Examples of derived properties include:</p>
 <ul>
 <li>Electronic (band structure, density of states (DOS), projected DOS, dielectric function, charge and bonding analysis, etc.)</li>
 <li>Electron-phonon interactions (superconducting properties, line widths, etc.)</li>
-<li>Linear-response (phonon modes, dispersion, interatomic force constants, vibrational DOS, etc.)</li>
 <li>Magnetic (magnetics, magnetization, magnons, etc.)</li>
+<li>Mechanical (elastic constants, stress-strain response, etc.)</li>
 <li>Microscopy, electron (S/TEM, 4D-STEM, SAED, etc.)</li>
 <li>Microscopy, scanning probe (STM, AFM, etc.)</li>
 <li>NMR (chemical shifts)</li>
 <li>Optical (electronic excitation spectra, low-loss EELS, etc.)</li>
 <li>Spectroscopy, core-level (XAS, XES, core-loss EELS, XPS, etc.)</li>
 <li>Spectroscopy, vibrational (Raman, Infrared spectroscopy, etc.)</li>
+<li>Thermodynamic (free energies, heat capacity, formation energies, etc.)</li>
 <li>Transport (electronic conductivity, thermal conductivity, etc.)</li>
+<li>Vibrational (phonon modes, dispersion, interatomic force constants, vibrational DOS, etc.)</li>
 <li>X-ray scattering (diffraction, reflectivity, pair-distribution function, etc.)</li>
 </ul>
 <p><span class="mc-legend"><span class="mc-key"><span class="mc-star">*</span> required</span><span class="mc-key"><span class="mc-icon mc-i-once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span> appears at most once</span><span class="mc-key"><span class="mc-icon mc-i-rep"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span> repeatable</span></span></p>
-<details class="note mc-property" id="derived.derived-property">
+<details class="note mc-property" id="derived.settings">
+<summary><span class="mc-name">settings<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>Settings shared by the computations named in it.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<details class="note mc-property" id="derived.settings.computation-label">
+<summary><span class="mc-name">computation-label<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>The label of a computation these settings apply to.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>yes</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="derived.settings.derived-property">
 <summary><span class="mc-name">derived-property<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 <p>Details of a quantity related to material behavior computed based on a computational materials science (CMS) calculation covered by the MatCore standard.</p>
 <table>
@@ -1049,7 +1101,7 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="derived.derived-property.type">
+<details class="note mc-property" id="derived.settings.derived-property.type">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>Kind of physical quantity being computed.</p>
 <table>
@@ -1076,7 +1128,7 @@
 </table>
 <p><span class='legacy'>Legacy: String one of the following values that defines the type of the computed derived property: "Electronic" "Electron-phonon interactions" "Linear-response" "Magnetic" "Microscopy, electron" "Microscopy, scanning probe" "NMR" "Optical" "Spectroscopy, core-level" "Spectroscopy, vibrational" "Transport" "X-ray scattering" Other user-specified value if none of the above apply.</span></p>
 </details>
-<details class="note mc-property" id="derived.derived-property.description">
+<details class="note mc-property" id="derived.settings.derived-property.description">
 <summary><span class="mc-name">description<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>Explanation of the derived property.</p>
 <table>
@@ -1103,25 +1155,8 @@
 </table>
 <p><span class='legacy'>Legacy: A string containing an explanation of the specific derived property that was computed.</span></p>
 </details>
-<details class="note mc-property" id="derived.derived-property.calculation-method">
-<summary><span class="mc-name">calculation-method<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
-<p>Details regarding an approach used to obtain the derived property. Multiple approaches may be involved in the computation.</p>
-<table>
-<thead>
-<tr>
-<th>Required</th>
-<th>Repeatable</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>yes</td>
-<td>yes</td>
-</tr>
-</tbody>
-</table>
-<details class="note mc-property" id="derived.derived-property.calculation-method.description">
-<summary><span class="mc-name">description<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<details class="note mc-property" id="derived.settings.derived-property.procedure">
+<summary><span class="mc-name">procedure<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>Description of the method used to obtain the derived property.</p>
 <table>
 <thead>
@@ -1147,7 +1182,7 @@
 </table>
 <p><span class='legacy'>Legacy: A string containing a human-readable description of the approach and/or algorithm used to compute the derived property.</span></p>
 </details>
-<details class="note mc-property" id="derived.derived-property.calculation-method.calculation-parameter">
+<details class="note mc-property" id="derived.settings.derived-property.calculation-parameter">
 <summary><span class="mc-name">calculation-parameter</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 <p>A parameter associated with the specified calculation method.</p>
 <table>
@@ -1164,7 +1199,7 @@
 </tr>
 </tbody>
 </table>
-<details class="note mc-property" id="derived.derived-property.calculation-method.calculation-parameter.name">
+<details class="note mc-property" id="derived.settings.derived-property.calculation-parameter.name">
 <summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The designation of the parameter associated with the specified derived property calculation method.</p>
 <table>
@@ -1191,7 +1226,7 @@
 </table>
 <p><span class='legacy'>Legacy: A string containing the name of the calculation parameter.</span></p>
 </details>
-<details class="note mc-property" id="derived.derived-property.calculation-method.calculation-parameter.value">
+<details class="note mc-property" id="derived.settings.derived-property.calculation-parameter.value">
 <summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The data associated with the calculation parameter.</p>
 <table>
@@ -1218,7 +1253,7 @@
 </table>
 <p><span class='legacy'>Legacy: An integer, real, boolean, or string containing the calculation parameter value.</span></p>
 </details>
-<details class="note mc-property" id="derived.derived-property.calculation-method.calculation-parameter.unit">
+<details class="note mc-property" id="derived.settings.derived-property.calculation-parameter.unit">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>A standardized string or identifier that defines the dimension or measurement system of the associated value.</p>
 <table>
@@ -1245,7 +1280,7 @@
 </table>
 <p><span class='legacy'>Legacy: A string containing the units of the value in the <a href="https://www.gnu.org/software/units/">GNU unit convention</a> (or the text "dimensionless").</span></p>
 </details>
-<details class="note mc-property" id="derived.derived-property.calculation-method.calculation-parameter.description">
+<details class="note mc-property" id="derived.settings.derived-property.calculation-parameter.description">
 <summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>An explanation of the meaning, source, or purpose of the calculation parameter.</p>
 <table>
@@ -1279,13 +1314,16 @@
 <p>Dataset source: <a href="https://archive.materialscloud.org/record/2024.116">https://archive.materialscloud.org/record/2024.116</a></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"derived"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"derived-property"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nt">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spectroscopy, vibrational"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raman spectra plots of intensity versus wavenumber (frequency) representing inelastic light scattering (Raman effect) from a sample."</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"calculation-method"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nt">"computation-label"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">"raman"</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"derived-property"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Raman spectra is obtained in two steps: (1) Phonon eigenmodes and frequencies are computed for a given crystalline material within the harmonic approximation using force constants derived from density functional theory (DFT). (2) The Raman tensor is obtained by numerically differentiating the electronic susceptibility with respect to atomic displacements along each vibrational mode and using these tensors to compute Raman scattering intensities for all Raman-active modes, ultimately yielding a full Raman spectrum after appropriate averaging and broadening."</span>
+<span class="w">            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spectroscopy, vibrational"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raman spectra plots of intensity versus wavenumber (frequency) representing inelastic light scattering (Raman effect) from a sample."</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"procedure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Raman spectra is obtained in two steps: (1) Phonon eigenmodes and frequencies are computed for a given crystalline material within the harmonic approximation using force constants derived from density functional theory (DFT). (2) The Raman tensor is obtained by numerically differentiating the electronic susceptibility with respect to atomic displacements along each vibrational mode and using these tensors to compute Raman scattering intensities for all Raman-active modes, ultimately yielding a full Raman spectrum after appropriate averaging and broadening."</span>
 <span class="w">          </span><span class="p">}</span>
 <span class="w">        </span><span class="p">]</span>
 <span class="w">      </span><span class="p">}</span>
