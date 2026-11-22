@@ -3,6 +3,22 @@
 # page from this file. A release adds an entry here in one commit on main, then tags that commit vX.Y.Z.
 # description: one item per line of the history table's cell.
 releases:
+  - version: 0.7.0
+    date: 2026-11-22
+    change_type: Minor (Breaking)
+    sections: Across document
+    description:
+      - "- Every section complete: PIM, PS, MBPT, ML, PF and Derived now give every property a type, extent, Kind, recommended unit and structured values"
+      - "- Computations: structures and computations are labelled; a computation gives its method, its task and the other computations whose results it uses, each with a role; every method section's properties sit in settings blocks naming the computations they describe; a record explains the dataset, not the workflow that produced it"
+      - "- New section 2.3 Particle Interaction Model (PIM); Molecular Dynamics becomes Particle Simulation (PS), covering molecular dynamics, molecular statics and Monte Carlo; the method of a computation names the section that describes it, with new terms TB, PIM, PS and DP"
+      - "- Derived properties are attached to the computations that obtain them, of any method; post-processing is a method class, with its own method DP"
+      - "- ML describes a model, how it was trained and how good it is, and how the dataset was produced from it; PF describes its equations, free energy terms, domain, boundary conditions and numerical method"
+      - "- A required matcore container gives the standard version, the record's identifier, the dataset version, the record's author and its creation date"
+      - "- DFT: species of pseudopotentials and basis sets, a stress tolerance, a dispersion correction, smearing as its own block, a LAPW basis cutoff and initial magnetic moments"
+      - "- Conditions gain a net charge, and a material component its magnetic order; Annex U gains the Kinds ElectricCharge and MagneticMoment and the units e, C, mu_B and J/T"
+      - "- Examples are written in JSON, the first serialization; term definitions are listed one per line"
+      - "- Renaming of some properties (e.g. simulation-conditions to conditions, the md section to ps)"
+    approved_by: E. B. Tadmor
   - version: 0.6.0
     date: 2026-11-08
     change_type: Minor (Breaking)
