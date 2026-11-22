@@ -961,7 +961,7 @@
 
 
 <h1 id="matcore-standard-revisions">MatCore Standard Revisions</h1>
-<p class="mc-version" data-version="0.6.0">Version 0.6.0</p>
+<p class="mc-version" data-version="0.7.0">Version 0.7.0</p>
 
 <table>
 <thead>
@@ -975,6 +975,14 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.7.0</td>
+<td>22-Nov-2026</td>
+<td>Minor (Breaking)</td>
+<td>Across document</td>
+<td>- Every section complete: PIM, PS, MBPT, ML, PF and Derived now give every property a type, extent, Kind, recommended unit and structured values<br> - Computations: structures and computations are labelled; a computation gives its method, its task and the other computations whose results it uses, each with a role; every method section's properties sit in settings blocks naming the computations they describe; a record explains the dataset, not the workflow that produced it<br> - New section 2.3 Particle Interaction Model (PIM); Molecular Dynamics becomes Particle Simulation (PS), covering molecular dynamics, molecular statics and Monte Carlo; the method of a computation names the section that describes it, with new terms TB, PIM, PS and DP<br> - Derived properties are attached to the computations that obtain them, of any method; post-processing is a method class, with its own method DP<br> - ML describes a model, how it was trained and how good it is, and how the dataset was produced from it; PF describes its equations, free energy terms, domain, boundary conditions and numerical method<br> - A required matcore container gives the standard version, the record's identifier, the dataset version, the record's author and its creation date<br> - DFT: species of pseudopotentials and basis sets, a stress tolerance, a dispersion correction, smearing as its own block, a LAPW basis cutoff and initial magnetic moments<br> - Conditions gain a net charge, and a material component its magnetic order; Annex U gains the Kinds ElectricCharge and MagneticMoment and the units e, C, mu_B and J/T<br> - Examples are written in JSON, the first serialization; term definitions are listed one per line<br> - Renaming of some properties (e.g. simulation-conditions to conditions, the md section to ps)</td>
+<td>E. B. Tadmor</td>
+</tr>
 <tr>
 <td>0.6.0</td>
 <td>08-Nov-2026</td>
