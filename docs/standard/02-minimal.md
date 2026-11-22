@@ -604,6 +604,8 @@ A group of calculations in the dataset that share one method and one set of sett
 |---|---|
 | yes | yes |
 
+Note: The record explains the dataset; it does not retrace the workflow that produced it (§1.2). Give a computation for calculations whose results are in the dataset, or whose method or settings a reader needs in order to understand the data. Steps that serve one purpose with one method are one computation, e.g. the post-processing steps that give phonon modes and then a Raman spectrum (method DP). A step that only prepares another computation and adds nothing a reader needs, e.g. a relaxation that fixes the cell for later single points, may be left out or mentioned in the description of the computation it prepares.
+
 Note: A simulation run in stages, e.g. heating, equilibration and a quench, is described as one computation for each stage whose method, settings or conditions differ and whose data the dataset contains or depends on. Each stage names the stage it continues from in `input` with the role Initial configuration, which carries over the final state of that stage, e.g. positions, velocities and the cell. These links give the order of the stages; the order of the entries in the record does not. A condition that changes within one stage, e.g. a temperature ramp, is given in that stage's `conditions` as entries with a qualifier. The full protocol, with its control flow and complete inputs, belongs to the provenance record of a workflow manager (§1.2).
 
 <details class="note mc-property" id="minimal.computation.label" markdown="1">

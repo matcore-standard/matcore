@@ -972,8 +972,10 @@ record or marked PROPOSED, NOT DECIDED.
    mentioned in that computation's description. 0063 stands as the same test for staged simulations. A procedure's
    parameters are given with the procedure, in the section describing it, even when applied in another computation's
    calculations (e.g. a Raman calculation's finite-difference displacement in its derived entry). No released
-   instance breaks. Ruling committed on main; its PR (branch minimal-computation-grouping) follows the derived
-   structure PR (branch derived-structure).
+   instance breaks. Ruling committed on main (48adc35).
+   [in progress, branch minimal-computation-grouping, committed, awaiting push and PR] 0077 note: schema/minimal.yaml
+   (computation's first note, the ruling's text verbatim, before 0063's), tests/test_computations.py (a new test; the
+   0063 test's list of notes gains it), 02-minimal regenerated; no example changes.
    [done, PR #110] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
    algorithm done, PR #106; computation-parameter done, PR #107; initialization done, PR #109; thermodynamic-constraint done, PR #110; ps is complete; next mbpt).
    [done, PR #111 merged 2026-11-15] mbpt structure by 0046 items 7
