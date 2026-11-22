@@ -1721,7 +1721,8 @@ record or marked PROPOSED, NOT DECIDED.
    symbol, dimensionless or x-gnu: where the schema does not fix the Kind); a generic parameter's JSON `type` and
    value (0044 item 3); open terms, x-gnu validity, label references, formula grammar and check digits are left to
    their own checks or step 9; validate_schema.py checks the examples against it and check_examples.py is removed. No
-   property changes. The other part of step 7, the requirements any serialization must meet, is a separate change.
+   property changes. The other part of step 7, the requirements any serialization must meet, is a separate change. (Superseded in
+   part: 0079 lets x- members through.)
    Ruling committed on main (b89ee14).
    [done, PR #139 merged 2026-11-22] 0078: scripts/build_json_schema.py (new) builds
    the schema; build_docs.py's main writes it to docs/standard/matcore.schema.json with the pages, so CI's single build
@@ -1734,6 +1735,14 @@ record or marked PROPOSED, NOT DECIDED.
    top level, every example, the committed copy) and tests/test_examples.py reduced to its identifier test;
    tests/test_build_docs.py expects the schema among the written files; §1.3 links to the schema, saying what it
    checks and what it does not; README.md and CONTRIBUTING.md list it among the generated files.
+   Extensions and §1.4 by 0079 (ruling 2026-11-22, from the conflict found while drafting step 7's requirements:
+   §1.3 allows arbitrary added Properties, 0078's schema rejects unknown names): a record may add Properties of its own,
+   at any level, named with the prefix `x-` (e.g. x-beamline); the standard's names never begin with x- (meta-schema);
+   the JSON Schema accepts any x- member and rejects other unknown names (amends 0078 item 3); §1.3's sentence reworded;
+   a new §1.4 Serialization holds the definition of a serialization, the requirements any serialization must meet, the
+   JSON serialization (RFC 8259, UTF-8, .json, 0044's mapping, generic parameters' `type`, the x- prefix) and the link
+   to the JSON Schema, both moved from §1.3; the menu lists 1.1–1.4. Ruling committed on main; the PR
+   (branch serialization-requirements) is in progress.
 8. [merged into step 2] Site content migration from matcore.org.
 9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools. After step 7;
    the validator reuses step 7's generated schema (0004).
