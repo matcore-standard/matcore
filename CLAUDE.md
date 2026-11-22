@@ -377,7 +377,8 @@ record or marked PROPOSED, NOT DECIDED.
      minimal computation notes that a record explains the dataset, not its workflow, giving a computation only for
      results in the dataset or settings a reader needs (0077); derived-property is filled: type names the kind of
      property (14 terms, Scattering covering X-rays and neutrons), name and procedure are added, calculation-parameter
-     is a generic parameter, and derived is complete, so every section is complete (0076; step 5).
+     is a generic parameter, and derived is complete, so every section is complete (0076; step 5); every note that
+     defines terms lists them one per line (0007 item 5).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -464,7 +465,7 @@ record or marked PROPOSED, NOT DECIDED.
      a script made the change and a check confirmed that every word of every note is kept. tests/test_schema.py gains a
      test that every note defining terms gives one line per term; thirteen tests that compared a note's wording are
      updated to the list form (same words). Judgment call: the rule covers two-term notes too, for one form throughout.
-     [in progress, branch definition-lists, committed, awaiting push and PR] schema/*.yaml (all eight),
+     [done, PR #137 merged 2026-11-22] schema/*.yaml (all eight),
      tests/test_schema.py, tests/test_computations.py, tests/test_properties.py, tests/test_build_docs.py, pages
      regenerated; rendering checked in the browser (derived type, dft wavefunction-representation and
      calculation-physics).
