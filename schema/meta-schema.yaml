@@ -42,7 +42,7 @@ $defs:
     required: [name, required, description, repeatable]
     additionalProperties: false
     properties:
-      name: {type: string, pattern: "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"}  # words joined by single hyphens (0004 item 13)
+      name: {type: string, pattern: "^(?!x-)[a-z][a-z0-9]*(-[a-z0-9]+)*$"}  # words joined by single hyphens (0004 item 13); x- is for records (0079)
       required: {type: boolean}
       repeatable: {type: boolean}
       description: {type: string}

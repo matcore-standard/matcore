@@ -6,8 +6,8 @@ The schema (draft 2020-12) describes one record: an object with one member per s
 entries, a leaf a JSON value of its Type nested as its Extent gives, never null. A unit beside a typed value takes the
 Annex U symbols of that value's Kind (0015), plus dimensionless for reduced phase field lengths and times (0075); a
 unit the schema does not fix takes any symbol, dimensionless or an x-gnu: expression. A generic parameter carries the
-JSON member `type` and its value has that type (0044 item 3). Open terms, references by label and formula grammar are
-left to other checks.
+JSON member `type` and its value has that type (0044 item 3). A record may add members named with the prefix x- at any
+level (0079). Open terms, references by label and formula grammar are left to other checks.
 
 Usage: build_json_schema.py writes docs/standard/matcore.schema.json; scripts/build_docs.py calls write().
 """
@@ -21,6 +21,7 @@ SECTIONS = ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
 OUT = ROOT / 'docs/standard/matcore.schema.json'
 JSON_TYPES = {'string': 'string', 'float': 'number', 'int': 'integer', 'bool': 'boolean'}
 REDUCED = {'domain-size', 'grid-spacing', 'time-step-size'}  # lengths and times that may be reduced (0075)
+EXTENSION = {'^x-': {}}  # a Property a record adds, of any value (0079)
 
 
 def nested(t):
@@ -88,6 +89,7 @@ def section_schema(props, units, name=''):
     s = {'type': 'object',
          'properties': {p['name']: property_schema(p, name, props, units) for p in props},
          'required': [p['name'] for p in props if p['required']],
+         'patternProperties': EXTENSION,
          'additionalProperties': False}
     value = next((q for q in props if q['name'] == 'value'), None)
     if value and value.get('type') == value.get('kind') == 'any':  # a generic parameter (0016, 0044 item 3)
@@ -114,6 +116,7 @@ def build():
             'type': 'object',
             'properties': {key: {'$ref': f'#/$defs/{key}'} for key in SECTIONS},
             'required': ['minimal'],
+            'patternProperties': EXTENSION,
             'additionalProperties': False,
             '$defs': defs}
 

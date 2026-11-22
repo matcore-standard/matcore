@@ -63,7 +63,7 @@ def test_meta_schema_rejects_malformed_names():
             {'name': name, 'required': True, 'description': 'D', 'repeatable': False}]}
     for good in ('unit', 'k-point-spacing', 'b3lyp', 'x2-y'):
         jsonschema.validate(section(good), meta)
-    for bad in ('k--point', 'cutoff-', 'Cutoff', '2d-grid', 'a_b'):
+    for bad in ('k--point', 'cutoff-', 'Cutoff', '2d-grid', 'a_b', 'x-beamline'):  # x- is for records (0079)
         with pytest.raises(jsonschema.ValidationError):
             jsonschema.validate(section(bad), meta)
 
