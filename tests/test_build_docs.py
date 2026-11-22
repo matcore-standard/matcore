@@ -168,7 +168,7 @@ def test_definitions_are_set_apart_from_the_values_they_define():
     assert paragraphs[0] == 'Depends on `method-class`.'
     assert all(line.startswith('- For `') for line in paragraphs[1].split('\n'))
     assert len(paragraphs[1].split('\n')) == len(method['values']['cases'])
-    assert paragraphs[2].startswith('**Clarifications:** "CC" – Coupled Cluster')
+    assert paragraphs[2] == '**Clarifications:**' and paragraphs[3].startswith('- "CC" – Coupled Cluster')
     assert '**Clarifications:**' not in build_docs.values_text(
         {'type': 'string', 'values': {'terms': ['A']}}, show_legacy=False)
 

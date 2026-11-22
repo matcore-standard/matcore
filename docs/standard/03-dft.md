@@ -46,7 +46,13 @@ The mathematical form of the exchange-correlation functional.
 
 Recommended: `LDA`, `GGA`, `Meta GGA`, `Hybrid`, `ML`. Other values are allowed.
 
-**Clarifications:** "LDA" – Local Density Approximation. "GGA" – Generalized Gradient Approximation. "Meta GGA" – Extension to GGA including dependence on Laplacian of electron density. "Hybrid" – An approximation for the exchange-correlation (XC) functional that includes a portion of the exact XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio or empirical). "ML" – Machine learning based functional.
+**Clarifications:**
+
+- "LDA" – Local Density Approximation
+- "GGA" – Generalized Gradient Approximation
+- "Meta GGA" – Extension to GGA including dependence on Laplacian of electron density
+- "Hybrid" – An approximation for the exchange-correlation (XC) functional that includes a portion of the exact XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio or empirical)
+- "ML" – Machine learning based functional
 
 </details>
 
@@ -198,7 +204,11 @@ The method used to treat the core electrons.
 
 Recommended: `All-electron`, `PAW`, `Pseudopotential`. Other values are allowed.
 
-**Clarifications:** "All-electron" – All of the electrons in an atom are modeled explicitly. "PAW" – Projector Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential.
+**Clarifications:**
+
+- "All-electron" – All of the electrons in an atom are modeled explicitly
+- "PAW" – Projector Augmented Wave
+- "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential
 
 </details>
 
@@ -409,7 +419,22 @@ The method used to represent the electronic wave functions.
 
 Recommended: `Gaussian basis sets`, `LAPW`, `Local atomic orbitals`, `Numerical atomic orbitals`, `Plane waves`, `Real space grids`. Other values are allowed.
 
-**Clarifications:** The terms fall into three groups. (1) Basis-function expansions: "Gaussian basis sets" – Atom-centered Gaussian-type orbitals. "Local atomic orbitals" – Atom-centered orbitals of a form not covered by the previous or the next term, e.g. Slater-type orbitals. "Numerical atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius. "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff. (2) Grid methods: "Real space grids" – Values on a mesh of points in real space (finite differences or finite elements). (3) Augmented methods: "LAPW" – Linearized Augmented Plane Wave: atomic-like functions inside spheres around the atoms, plane waves between them.
+**Clarifications:**
+
+**Basis-function expansions**
+
+- "Gaussian basis sets" – Atom-centered Gaussian-type orbitals
+- "Local atomic orbitals" – Atom-centered orbitals of a form not covered by the previous or the next term, e.g. Slater-type orbitals
+- "Numerical atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius
+- "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff
+
+**Grid methods**
+
+- "Real space grids" – Values on a mesh of points in real space (finite differences or finite elements)
+
+**Augmented methods**
+
+- "LAPW" – Linearized Augmented Plane Wave: atomic-like functions inside spheres around the atoms, plane waves between them
 
 </details>
 
@@ -657,7 +682,16 @@ Additional phenomena included beyond the standard DFT calculation.
 
 Recommended: `Collinear spin polarization`, `Noncollinear spin polarization`, `On-site correlation`, `Orbital polarization`, `Spin-orbit coupling`, `Van der Waals`. Other values are allowed.
 
-**Clarifications:** "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or antiparallel to one axis. "Noncollinear spin polarization" – Spin-polarized, with magnetic moments free to point in any direction. "On-site correlation" – e.g. DFT+U. "Orbital polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks' orbital-polarization term. "Spin-orbit coupling" – The coupling of the electron spin to its orbital motion. "Van der Waals" – Dispersion interactions, by a correction or a nonlocal functional. Give at most one of the two spin-polarization terms. List each phenomenon as a separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries, "Noncollinear spin polarization" and "Spin-orbit coupling".
+**Clarifications:**
+
+- "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or antiparallel to one axis
+- "Noncollinear spin polarization" – Spin-polarized, with magnetic moments free to point in any direction
+- "On-site correlation" – e.g. DFT+U
+- "Orbital polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks' orbital-polarization term
+- "Spin-orbit coupling" – The coupling of the electron spin to its orbital motion
+- "Van der Waals" – Dispersion interactions, by a correction or a nonlocal functional
+
+Give at most one of the two spin-polarization terms. List each phenomenon as a separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries, "Noncollinear spin polarization" and "Spin-orbit coupling".
 
 </details>
 
@@ -718,7 +752,12 @@ The additive correction for van der Waals dispersion applied to the functional.
 
 Recommended: `D2`, `D3`, `D3(BJ)`, `D4`, `TS`, `MBD`. Other values are allowed.
 
-**Clarifications:** "D2", "D3", "D4" – Grimme's corrections of those generations. "D3(BJ)" – D3 with Becke–Johnson damping. "TS" – Tkatchenko–Scheffler. "MBD" – Many-body dispersion.
+**Clarifications:**
+
+- "D2", "D3", "D4" – Grimme's corrections of those generations
+- "D3(BJ)" – D3 with Becke–Johnson damping
+- "TS" – Tkatchenko–Scheffler
+- "MBD" – Many-body dispersion
 
 Note: Give it when `calculation-physics` lists Van der Waals and the dispersion is added to the functional. A functional that includes dispersion itself (e.g. vdW-DF, rVV10) is named in `xc-functional › name`.
 
@@ -931,7 +970,14 @@ The method used to obtain the Kohn-Sham orbitals at each step of the self-consis
 
 Recommended: `Car-Parrinello`, `Chebyshev filtering`, `Conjugate gradient`, `Davidson method`, `Direct diagonalization`, `Lanczos`, `LOBPCG`, `RMM-DIIS`. Other values are allowed.
 
-**Clarifications:** "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization. "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters. "Davidson method" – Including blocked variants. "Direct diagonalization" – A dense eigensolver applied to the full Hamiltonian matrix (e.g. LAPACK, ScaLAPACK). "LOBPCG" – Locally Optimal Block Preconditioned Conjugate Gradient. "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the Iterative Subspace.
+**Clarifications:**
+
+- "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization
+- "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters
+- "Davidson method" – Including blocked variants
+- "Direct diagonalization" – A dense eigensolver applied to the full Hamiltonian matrix (e.g. LAPACK, ScaLAPACK)
+- "LOBPCG" – Locally Optimal Block Preconditioned Conjugate Gradient
+- "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the Iterative Subspace
 
 </details>
 
@@ -955,7 +1001,11 @@ The quantity whose convergence the tolerance measures.
 
 Recommended: `Energy`, `Charge density`, `Potential`. Other values are allowed.
 
-**Clarifications:** "Energy" – The change in the energy between successive iterations, defined as for `relaxation-tolerance-energy`. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham potential.
+**Clarifications:**
+
+- "Energy" – The change in the energy between successive iterations, defined as for `relaxation-tolerance-energy`
+- "Charge density" – The change or residual of the electron density
+- "Potential" – The change or residual of the Kohn-Sham potential
 
 </details>
 

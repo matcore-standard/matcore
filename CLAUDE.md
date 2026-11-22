@@ -456,6 +456,18 @@ record or marked PROPOSED, NOT DECIDED.
      definitions stay prose. ps algorithm is the first; another long note (e.g. minimal task, method)
      is converted when its property next changes or by a change of its own. Implemented in the ps
      algorithm PR (branch ps-algorithm-0064).
+   - Requested by the human 2026-11-22 (derived type's clarification was dense): every values.note that defines two or
+     more terms is converted to this list form by a change of its own (0007 item 5, amended again): 57 notes in all eight
+     sections, one line `- "Term" – definition` per term, "One of:" and each item's final full stop or semicolon dropped
+     (as in ps algorithm), prose after the last definition kept as a paragraph below the list (eight notes, e.g. phase's
+     "Omit for a component whose form is Molecule."), dft wavefunction-representation's numbered groups as bold labels;
+     a script made the change and a check confirmed that every word of every note is kept. tests/test_schema.py gains a
+     test that every note defining terms gives one line per term; thirteen tests that compared a note's wording are
+     updated to the list form (same words). Judgment call: the rule covers two-term notes too, for one form throughout.
+     [in progress, branch definition-lists, committed, awaiting push and PR] schema/*.yaml (all eight),
+     tests/test_schema.py, tests/test_computations.py, tests/test_properties.py, tests/test_build_docs.py, pages
+     regenerated; rendering checked in the browser (derived type, dft wavefunction-representation and
+     calculation-physics).
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
 3. [done, PR #9 merged 2026-11-01] Apply 0001 Part A (kind/recommended-unit/convention): merged
    into step 5, property by property (0004). What remained of this step did not belong to any one

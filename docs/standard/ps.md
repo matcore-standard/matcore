@@ -226,7 +226,18 @@ The nature of the imposed thermodynamic constraint.
 
 Recommended: `NVE`, `NVT`, `μVT`, `NPT`, `NσT`, `μPT`, `μσT`, `ΔμNPT`, `NPH`, `NσH`. Other values are allowed.
 
-**Clarifications:** "NVE" – Microcanonical. "NVT" – Canonical. "μVT" – Grand canonical. "NPT" – Isothermal-isobaric. "NσT" – Isothermal-isostress. "μPT" – Grand isothermal-isobaric. "μσT" – Grand isothermal-isostress. "ΔμNPT" – Semi-grand canonical. "NPH" – Isoenthalpic-isobaric. "NσH" – Isoenthalpic-isostress.
+**Clarifications:**
+
+- "NVE" – Microcanonical
+- "NVT" – Canonical
+- "μVT" – Grand canonical
+- "NPT" – Isothermal-isobaric
+- "NσT" – Isothermal-isostress
+- "μPT" – Grand isothermal-isobaric
+- "μσT" – Grand isothermal-isostress
+- "ΔμNPT" – Semi-grand canonical
+- "NPH" – Isoenthalpic-isobaric
+- "NσH" – Isoenthalpic-isostress
 
 Note: The ensemble names the quantities held fixed. Their values are given in minimal `conditions`, e.g. the temperature for NVT, the chemical potential for μVT, or a difference of chemical potentials with `relative-to` for ΔμNPT, and are not repeated here.
 

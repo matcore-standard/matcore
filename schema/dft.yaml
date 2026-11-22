@@ -50,12 +50,12 @@ properties:
       recommended-unit: null
       values:
         terms: [LDA, GGA, Meta GGA, Hybrid, ML]
-        note: >-
-          "LDA" – Local Density Approximation. "GGA" – Generalized Gradient Approximation. "Meta GGA" –
-          Extension to GGA including dependence on Laplacian of electron density. "Hybrid" – An
-          approximation for the exchange-correlation (XC) functional that includes a portion of the exact
-          XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio
-          or empirical). "ML" – Machine learning based functional.
+        note: |-
+          - "LDA" – Local Density Approximation
+          - "GGA" – Generalized Gradient Approximation
+          - "Meta GGA" – Extension to GGA including dependence on Laplacian of electron density
+          - "Hybrid" – An approximation for the exchange-correlation (XC) functional that includes a portion of the exact XC from Hartree–Fock theory or machine learning with the rest coming from other sources (ab initio or empirical)
+          - "ML" – Machine learning based functional
       repeatable: false
     - name: name
       required: false
@@ -201,10 +201,10 @@ properties:
       recommended-unit: null
       values:
         terms: [All-electron, PAW, Pseudopotential]
-        note: >-
-          "All-electron" – All of the electrons in an atom are modeled explicitly. "PAW" – Projector
-          Augmented Wave. "Pseudopotential" – Valence electrons are treated explicitly, and core
-          electrons are modeled by a simplified potential.
+        note: |-
+          - "All-electron" – All of the electrons in an atom are modeled explicitly
+          - "PAW" – Projector Augmented Wave
+          - "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential
       repeatable: false
     - name: pseudopotential-or-paw
       required: false
@@ -391,15 +391,21 @@ properties:
       values:
         terms: [Gaussian basis sets, LAPW, Local atomic orbitals, Numerical atomic orbitals, Plane waves,
           Real space grids]
-        note: >-
-          The terms fall into three groups. (1) Basis-function expansions: "Gaussian basis sets" –
-          Atom-centered Gaussian-type orbitals. "Local atomic orbitals" – Atom-centered orbitals of a
-          form not covered by the previous or the next term, e.g. Slater-type orbitals. "Numerical
-          atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius.
-          "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff. (2) Grid methods: "Real
-          space grids" – Values on a mesh of points in real space (finite differences or finite
-          elements). (3) Augmented methods: "LAPW" – Linearized Augmented Plane Wave: atomic-like
-          functions inside spheres around the atoms, plane waves between them.
+        note: |-
+          **Basis-function expansions**
+
+          - "Gaussian basis sets" – Atom-centered Gaussian-type orbitals
+          - "Local atomic orbitals" – Atom-centered orbitals of a form not covered by the previous or the next term, e.g. Slater-type orbitals
+          - "Numerical atomic orbitals" – Atom-centered orbitals tabulated numerically, zero beyond a cutoff radius
+          - "Plane waves" – Periodic plane waves up to a kinetic-energy cutoff
+
+          **Grid methods**
+
+          - "Real space grids" – Values on a mesh of points in real space (finite differences or finite elements)
+
+          **Augmented methods**
+
+          - "LAPW" – Linearized Augmented Plane Wave: atomic-like functions inside spheres around the atoms, plane waves between them
       repeatable: true
     - name: localized-orbital-basis-set
       required: false
@@ -621,16 +627,15 @@ properties:
     values:
       terms: [Collinear spin polarization, Noncollinear spin polarization, On-site correlation,
         Orbital polarization, Spin-orbit coupling, Van der Waals]
-      note: >-
-        "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or
-        antiparallel to one axis. "Noncollinear spin polarization" – Spin-polarized, with magnetic
-        moments free to point in any direction. "On-site correlation" – e.g. DFT+U. "Orbital
-        polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks'
-        orbital-polarization term. "Spin-orbit coupling" – The coupling of the electron spin to its
-        orbital motion. "Van der Waals" – Dispersion interactions, by a correction or a nonlocal
-        functional. Give at most one of the two spin-polarization terms. List each phenomenon as a
-        separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries,
-        "Noncollinear spin polarization" and "Spin-orbit coupling".
+      note: |-
+        - "Collinear spin polarization" – Spin-polarized, with all magnetic moments parallel or antiparallel to one axis
+        - "Noncollinear spin polarization" – Spin-polarized, with magnetic moments free to point in any direction
+        - "On-site correlation" – e.g. DFT+U
+        - "Orbital polarization" – A correction that enhances the orbital magnetic moment, e.g. Brooks' orbital-polarization term
+        - "Spin-orbit coupling" – The coupling of the electron spin to its orbital motion
+        - "Van der Waals" – Dispersion interactions, by a correction or a nonlocal functional
+
+        Give at most one of the two spin-polarization terms. List each phenomenon as a separate entry, e.g. a noncollinear calculation with spin-orbit coupling has two entries, "Noncollinear spin polarization" and "Spin-orbit coupling".
     repeatable: true
   - name: initial-magnetic-moment
     required: false
@@ -684,9 +689,11 @@ properties:
     recommended-unit: null
     values:
       terms: [D2, D3, D3(BJ), D4, TS, MBD]
-      note: >-
-        "D2", "D3", "D4" – Grimme's corrections of those generations. "D3(BJ)" – D3 with Becke–Johnson
-        damping. "TS" – Tkatchenko–Scheffler. "MBD" – Many-body dispersion.
+      note: |-
+        - "D2", "D3", "D4" – Grimme's corrections of those generations
+        - "D3(BJ)" – D3 with Becke–Johnson damping
+        - "TS" – Tkatchenko–Scheffler
+        - "MBD" – Many-body dispersion
     repeatable: false
     notes:
     - >-
@@ -895,13 +902,13 @@ properties:
       values:
         terms: [Car-Parrinello, Chebyshev filtering, Conjugate gradient, Davidson method, Direct diagonalization,
           Lanczos, LOBPCG, RMM-DIIS]
-        note: >-
-          "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization.
-          "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters. "Davidson method" –
-          Including blocked variants. "Direct diagonalization" – A dense eigensolver applied to the full
-          Hamiltonian matrix (e.g. LAPACK, ScaLAPACK). "LOBPCG" – Locally Optimal Block Preconditioned
-          Conjugate Gradient. "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the
-          Iterative Subspace.
+        note: |-
+          - "Car-Parrinello" – Fictitious dynamics of the electronic orbitals, which replaces diagonalization
+          - "Chebyshev filtering" – Subspace iteration with Chebyshev polynomial filters
+          - "Davidson method" – Including blocked variants
+          - "Direct diagonalization" – A dense eigensolver applied to the full Hamiltonian matrix (e.g. LAPACK, ScaLAPACK)
+          - "LOBPCG" – Locally Optimal Block Preconditioned Conjugate Gradient
+          - "RMM-DIIS" – Residual Minimization Method with Direct Inversion in the Iterative Subspace
       repeatable: true
     - name: tolerance
       required: true
@@ -922,10 +929,10 @@ properties:
         recommended-unit: null
         values:
           terms: [Energy, Charge density, Potential]
-          note: >-
-            "Energy" – The change in the energy between successive iterations, defined as for
-            `relaxation-tolerance-energy`. "Charge density" – The change or residual of the electron density. "Potential" – The change or residual of the Kohn-Sham
-            potential.
+          note: |-
+            - "Energy" – The change in the energy between successive iterations, defined as for `relaxation-tolerance-energy`
+            - "Charge density" – The change or residual of the electron density
+            - "Potential" – The change or residual of the Kohn-Sham potential
         repeatable: false
       - name: value
         required: true

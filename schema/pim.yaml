@@ -40,11 +40,9 @@ properties:
     recommended-unit: null
     values:
       terms: [Physics-based, Machine-learned]
-      note: >-
-        "Physics-based" – A functional form built from a physical model of the interactions, with parameters
-        fitted to data, e.g. EAM, Tersoff, a bonded force field or the electron force field.
-        "Machine-learned" – A machine learning model trained to take particle positions as input, e.g. GAP or
-        MACE.
+      note: |-
+        - "Physics-based" – A functional form built from a physical model of the interactions, with parameters fitted to data, e.g. EAM, Tersoff, a bonded force field or the electron force field
+        - "Machine-learned" – A machine learning model trained to take particle positions as input, e.g. GAP or MACE
     repeatable: false
   - name: model-type
     required: true
@@ -69,15 +67,17 @@ properties:
     recommended-unit: null
     values:
       terms: [Atom, Radical, United atom, Bead, Coarse grained, Mesoscale, Classical electron, Nucleus]
-      note: >-
-        "Atom" – Each particle represents an individual atom. "Radical" – Each particle represents a free
-        radical. "United atom" – Each particle represents a fixed grouping of atoms. "Bead" – Each particle
-        represents a user-tuneable group of atoms. "Coarse grained" – Each particle represents a higher scale
-        particle obtained by scaling up the atomic representation. "Mesoscale" – Granular particles used to
-        simulate microstructure at the mesoscopic scale. "Classical electron" – Antisymmetrized wave packet
-        representation of valence electrons. "Nucleus" – A nucleus or an ion core as a point charge, with its
-        electrons represented by other particles, e.g. in the electron force field. Give one entry for each
-        kind of particle the model has, e.g. Nucleus and Classical electron for the electron force field.
+      note: |-
+        - "Atom" – Each particle represents an individual atom
+        - "Radical" – Each particle represents a free radical
+        - "United atom" – Each particle represents a fixed grouping of atoms
+        - "Bead" – Each particle represents a user-tuneable group of atoms
+        - "Coarse grained" – Each particle represents a higher scale particle obtained by scaling up the atomic representation
+        - "Mesoscale" – Granular particles used to simulate microstructure at the mesoscopic scale
+        - "Classical electron" – Antisymmetrized wave packet representation of valence electrons
+        - "Nucleus" – A nucleus or an ion core as a point charge, with its electrons represented by other particles, e.g. in the electron force field
+
+        Give one entry for each kind of particle the model has, e.g. Nucleus and Classical electron for the electron force field.
     repeatable: true
   - name: bonding-type
     required: true
@@ -88,11 +88,10 @@ properties:
     recommended-unit: null
     values:
       terms: [Reactive, Bonded fixed, Bonded mutable]
-      note: >-
-        "Reactive" – A model without a predetermined bonding topology in which bonds are formed or broken
-        on-the-fly based on the particle environment. "Bonded fixed" – Bonds defined <i>a priori</i> and
-        cannot be broken during a simulation. "Bonded mutable" – Bonds defined <i>a priori</i> but can be
-        broken and/or formed during a simulation.
+      note: |-
+        - "Reactive" – A model without a predetermined bonding topology in which bonds are formed or broken on-the-fly based on the particle environment
+        - "Bonded fixed" – Bonds defined <i>a priori</i> and cannot be broken during a simulation
+        - "Bonded mutable" – Bonds defined <i>a priori</i> but can be broken and/or formed during a simulation
     repeatable: false
   - name: charge-interactions
     required: false
@@ -113,11 +112,12 @@ properties:
       recommended-unit: null
       values:
         terms: [Semi empirical, Quantum, Electronic population, Electronegativity, Tabulated]
-        note: >-
-          "Semi empirical" – Charges obtained from semi-empirical quantum calculations. "Quantum" – Charges
-          obtained from quantum calculations. "Electronic population" – Charges obtained from electronic
-          population analysis, e.g. Mulliken. "Electronegativity" – Charges obtained from electronegativity
-          differences between atoms. "Tabulated" – Charges obtained from an external source.
+        note: |-
+          - "Semi empirical" – Charges obtained from semi-empirical quantum calculations
+          - "Quantum" – Charges obtained from quantum calculations
+          - "Electronic population" – Charges obtained from electronic population analysis, e.g. Mulliken
+          - "Electronegativity" – Charges obtained from electronegativity differences between atoms
+          - "Tabulated" – Charges obtained from an external source
       repeatable: false
     - name: charge-style
       required: true
@@ -129,9 +129,9 @@ properties:
       recommended-unit: null
       values:
         terms: [Coulomb full, Coulomb screened]
-        note: >-
-          "Coulomb full" – The particle charge accounting for all electrons. "Coulomb screened" – Effective
-          charge due to screening or shielding by other electrons (e.g. Slater).
+        note: |-
+          - "Coulomb full" – The particle charge accounting for all electrons
+          - "Coulomb screened" – Effective charge due to screening or shielding by other electrons (e.g. Slater)
       repeatable: false
     - name: charge-variability
       required: true
@@ -144,10 +144,13 @@ properties:
       recommended-unit: null
       values:
         terms: [Fixed, QEq, EEM, iEL/SCF, FlucQ, Drude]
-        note: >-
-          "Fixed" – Charges cannot change during a simulation. "QEq" – Charge equilibration method. "EEM" –
-          Electronegativity Equalization Method. "iEL/SCF" – Extended Lagrangian/self-consistent field scheme.
-          "FlucQ" – Fluctuating charge potential. "Drude" – Drude method.
+        note: |-
+          - "Fixed" – Charges cannot change during a simulation
+          - "QEq" – Charge equilibration method
+          - "EEM" – Electronegativity Equalization Method
+          - "iEL/SCF" – Extended Lagrangian/self-consistent field scheme
+          - "FlucQ" – Fluctuating charge potential
+          - "Drude" – Drude method
       repeatable: false
     - name: electrostatic-summation
       required: false
@@ -158,13 +161,14 @@ properties:
       recommended-unit: null
       values:
         terms: [None, Direct, Short-range, Ewald, PME, PPPM, Reaction]
-        note: >-
-          "None" – No electrostatic interactions are computed from the charges. A model whose particles
-          carry no charges omits charge-interactions. "Direct" – All Coulomb interactions computed
-          directly. "Short-range" – Electrostatic interactions computed only within a cutoff distance,
-          possibly shifted or damped, e.g. Wolf summation or damped shifted force (DSF). "Ewald" – Ewald
-          summation. "PME" – Particle mesh Ewald. "PPPM" – Particle particle particle
-          mesh. "Reaction" – Reaction field.
+        note: |-
+          - "None" – No electrostatic interactions are computed from the charges. A model whose particles carry no charges omits charge-interactions
+          - "Direct" – All Coulomb interactions computed directly
+          - "Short-range" – Electrostatic interactions computed only within a cutoff distance, possibly shifted or damped, e.g. Wolf summation or damped shifted force (DSF)
+          - "Ewald" – Ewald summation
+          - "PME" – Particle mesh Ewald
+          - "PPPM" – Particle particle particle mesh
+          - "Reaction" – Reaction field
       repeatable: false
     - name: electric-dipole
       required: false
@@ -177,8 +181,10 @@ properties:
       recommended-unit: null
       values:
         terms: [Stockmayer, Screened, Long range]
-        note: >-
-          "Stockmayer" – Stockmayer potential. "Screened" – Screened dipoles. "Long range" – Long-range dipoles.
+        note: |-
+          - "Stockmayer" – Stockmayer potential
+          - "Screened" – Screened dipoles
+          - "Long range" – Long-range dipoles
       repeatable: false
     - name: electric-dipole-variability
       required: false
@@ -191,9 +197,10 @@ properties:
       recommended-unit: null
       values:
         terms: [Induced, Isotropic, Anisotropic]
-        note: >-
-          "Induced" – Induced point dipoles. "Isotropic" – Isotropic polarizability. "Anisotropic" –
-          Anisotropic polarizability.
+        note: |-
+          - "Induced" – Induced point dipoles
+          - "Isotropic" – Isotropic polarizability
+          - "Anisotropic" – Anisotropic polarizability
       repeatable: false
   - name: magnetic-interactions
     required: false
@@ -214,13 +221,11 @@ properties:
       recommended-unit: null
       values:
         terms: [Classical spin, Coupled spin lattice]
-        note: >-
-          "Classical spin" – Spins modeled as classical vectors evolved via the Landau–Lifshitz–Gilbert (LLG)
-          equation defined by a spin Hamiltonian. "Coupled spin lattice" – Classical spins whose spin
-          Hamiltonian depends on the particle positions, so that the spins and the particles evolve together.
-          Magnetism obtained from the electrons, e.g. by spin-polarized DFT or tight binding, is a computation
-          of its own (method DFT or TB), which the computation that uses it names as an `input` with the role
-          Interaction model.
+        note: |-
+          - "Classical spin" – Spins modeled as classical vectors evolved via the Landau–Lifshitz–Gilbert (LLG) equation defined by a spin Hamiltonian
+          - "Coupled spin lattice" – Classical spins whose spin Hamiltonian depends on the particle positions, so that the spins and the particles evolve together
+
+          Magnetism obtained from the electrons, e.g. by spin-polarized DFT or tight binding, is a computation of its own (method DFT or TB), which the computation that uses it names as an `input` with the role Interaction model.
       repeatable: false
     - name: magnetic-dipole
       required: false

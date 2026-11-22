@@ -150,3 +150,29 @@ def test_meta_schema_pairs_depends_on_with_cases():
     assert not v.is_valid(section({'cases': {'A': case}}))
     assert not v.is_valid(section({'depends-on': 'c', 'cases': {'A': {'depends-on': 'd', 'cases': {}}}}))
     assert not v.is_valid(section({'depends-on': 'c', 'cases': {'A': {'colour': 'red'}}}))
+
+
+def test_every_note_defining_terms_gives_one_line_per_term():
+    """Definitions run together in one paragraph cannot be read; a note that defines terms lists them, one line
+    `- "Term" – definition` each, under bold labels where the terms form groups (0007 item 5, amended again
+    2026-11-14)."""
+    import re
+    definition = re.compile(r'(?:"[^"]+", )*"[^"]+" –')
+    dense = []
+
+    def walk(props, path):
+        """Collect the notes in which a definition does not begin its own list line.
+
+        props (list[dict]): properties, with nested subproperties; path (str): location for messages.
+        """
+        for p in props:
+            note = (p.get('values') or {}).get('note')
+            if isinstance(note, str) and len(definition.findall(note)) >= 2:
+                lines = note.split('\n')
+                if any(not l.startswith('- ') or not definition.match(l[2:]) or len(definition.findall(l)) > 1
+                       for l in lines if definition.search(l)):
+                    dense.append(f'{path}/{p["name"]}')
+            walk(p.get('subproperties') or [], f'{path}/{p["name"]}')
+    for key in ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']:
+        walk(yaml.safe_load(open(ROOT / f'schema/{key}.yaml'))['properties'], key)
+    assert dense == []
