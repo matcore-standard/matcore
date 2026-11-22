@@ -288,7 +288,9 @@ record or marked PROPOSED, NOT DECIDED.
      (tag v0.7.0 on 19b4b3d; step 5 complete, every section filled); the site's `latest` is 0.7.0 (checked in
      gh-pages versions.json) and `dev` is main.
    - Changes to the standard since 0.7.0, for the next release's entry in releases.yaml: a JSON Schema generated from
-     the standard is published with each version and linked from §1.3; it checks the examples (0078).
+     the standard is published with each version and linked from §1.4; it checks the examples (0078); a new §1.4
+     Serialization states what any serialization must preserve and JSON's mapping, and a record's own Properties are
+     named with the prefix x- (0079).
    - Changes to the standard from 0.6.0 to 0.7.0 (released in 0.7.0, its entry in releases.yaml summarizing them): the
      examples are written in JSON, the first serialization, and §1.3 says so (0044); a required
      matcore container gives the standard version, an optional link to it, the dataset's id and
@@ -1700,7 +1702,8 @@ record or marked PROPOSED, NOT DECIDED.
    point) is where levels 1 and 2 still meet in one computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
-7. [todo] Define, as a section of the standard, the serialization requirements that any format must
+7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
+   serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one
    serialization, generated from the same source, and validate them in CI against a schema
    generated from the YAML for that serialization.
@@ -1742,7 +1745,7 @@ record or marked PROPOSED, NOT DECIDED.
    a new §1.4 Serialization holds the definition of a serialization, the requirements any serialization must meet, the
    JSON serialization (RFC 8259, UTF-8, .json, 0044's mapping, generic parameters' `type`, the x- prefix) and the link
    to the JSON Schema, both moved from §1.3; the menu lists 1.1–1.4. Ruling committed on main (bee7edf).
-   [in progress, branch serialization-requirements, committed, awaiting push and PR] 0079: schema/meta-schema.yaml's
+   [done, PR #140 merged 2026-11-22] 0079: schema/meta-schema.yaml's
    name pattern refuses x- (a negative lookahead); scripts/build_json_schema.py accepts `^x-` members (any value) on
    every object and on the record, the schema regenerated; docs/standard/index.md: §1.3's sentence on added Properties
    reworded with the x- prefix, the definition of a serialization and the JSON Schema paragraph moved into a new
