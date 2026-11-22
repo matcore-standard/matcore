@@ -31,7 +31,7 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
   revision-history; and the marked regions in
   index and the annexes: version line, Tables U.3/U.4, Table I.1).
   Never hand-edit generated parts; edit the YAML and run
-  `scripts/build_docs.py --show-legacy`.
+  `scripts/build_docs.py`.
 - `docs/decisions/` — decision records: internal committee information, not published on the site
   (0004). 0001 is the units change list (not yet applied; see Status). The frozen Google Doc export
   is stored there as the baseline artifact.
@@ -39,7 +39,7 @@ The MatCore effort is funded by NSF DMR Award #2404283 and supported through the
   validates the standard itself, not instance files (the instance validator is status step 9).
   scripts/check_formula.py (0034) parses formulas and checks the examples' material components.
 - `scripts/build_docs.py` — regenerates docs from YAML in the layout of 0007; tested by
-  tests/test_build_docs.py. Run it with `--show-legacy` until status step 5 is complete (CI does).
+  tests/test_build_docs.py. Its `--show-legacy` option is no longer needed: no legacy text remains.
   CI runs both scripts.
 - `docs/assets/matcore/` — layout.css and layout.js for the standard pages (0007).
 
@@ -272,7 +272,8 @@ record or marked PROPOSED, NOT DECIDED.
    - [done, PR #1] build_docs.py renders the standard from the YAML
      in the layout of 0007 (tests in tests/test_build_docs.py); layout.css and layout.js in
      docs/assets/matcore/; mkdocs.yml has the settings 0007 lists. legacy_* fields hidden unless
-     --show-legacy is passed, and CI builds with --show-legacy until step 5 is complete.
+     --show-legacy is passed, and CI builds with --show-legacy until step 5 is complete. (Superseded: step 5 is
+     complete and CI builds without the flag, decided by the human 2026-11-22.)
    - [done, PR #1] Annex U's Tables U.3 and U.4 generated from schema/units.yaml; the separate
      generated page removed (0009).
    - [done] Decision records are internal committee information: docs/decisions/, including the
@@ -1013,7 +1014,11 @@ record or marked PROPOSED, NOT DECIDED.
    legacy_complete test plants a legacy field in a copy of derived; tests/test_build_docs.py's main() test checks
    that no page shows legacy text even with --show-legacy; 08-derived regenerated. Follow-up, PROPOSED, NOT
    DECIDED: remove --show-legacy from CI (.github/workflows/ci.yml) and from the working rules once this merges,
-   since no legacy text remains.
+   since no legacy text remains. (Superseded: decided by the human 2026-11-22. [in progress, branch
+   drop-show-legacy, committed, awaiting push and PR] The flag leaves CI, README.md, CONTRIBUTING.md and the working
+   lines of CLAUDE.md; README's editing step names values.note instead of legacy_values; build_docs.py keeps the
+   option, its docstring saying no legacy text remains (judgment call: removing it would also remove the legacy
+   rendering and its test); history entries and decision records are left as written.)
    [done, PR #110] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
    algorithm done, PR #106; computation-parameter done, PR #107; initialization done, PR #109; thermodynamic-constraint done, PR #110; ps is complete; next mbpt).
    [done, PR #111 merged 2026-11-15] mbpt structure by 0046 items 7
@@ -1757,7 +1762,7 @@ record or marked PROPOSED, NOT DECIDED.
   was done and what remains, and commit any correction. Assume the conversation will not be
   available next time (0004).
 - Before every commit run the checks CI runs: `uv run python scripts/validate_schema.py`,
-  `uv run python scripts/build_docs.py --show-legacy` (the flag until status step 5 is complete),
+  `uv run python scripts/build_docs.py`,
   `uv run mkdocs build --strict`. Commit any files
   build_docs.py regenerates with the change; CI fails if the committed copies are stale. Never
   hand-edit generated files under docs/standard/ (02-*.md … 08-*.md, pim.md, ps.md, revision-history.md, the

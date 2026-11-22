@@ -5,8 +5,8 @@ Section pages follow the layout of decision record 0007: every property is a col
 whose id is its citable address, nested as in the schema. Styles and behaviour are in
 docs/assets/matcore/layout.css and layout.js.
 
-Usage: build_docs.py [--show-legacy] [--out DIR]. Idempotent. legacy_* text is left out unless
---show-legacy is given; CI builds with it until every section's typed fields are filled.
+Usage: build_docs.py [--show-legacy] [--out DIR]. Idempotent. --show-legacy adds legacy_* text from the
+baseline migration, of which none remains since status step 5 filled every section's typed fields.
 """
 import argparse
 from pathlib import Path

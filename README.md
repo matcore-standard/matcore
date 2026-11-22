@@ -23,15 +23,12 @@ repository root; there is no environment to activate.
 ```
 uv sync
 uv run python scripts/validate_schema.py
-uv run python scripts/build_docs.py --show-legacy
+uv run python scripts/build_docs.py
 uv run mkdocs serve
 ```
 
 - `uv sync` installs the dependencies pinned in `uv.lock`. It is needed once, and again after
   `pyproject.toml` or `uv.lock` changes. `uv run` also syncs before each command.
-- `--show-legacy` adds the `legacy_*` text from the baseline migration to the pages. CI builds
-  with it until every section's typed fields are filled, so use it locally too; without it the
-  regenerated pages differ from the committed ones and CI fails.
 - `mkdocs serve` serves the site at http://127.0.0.1:8000/matcore/ until stopped with Ctrl-C.
 - Edits to prose pages (`docs/index.md`, `docs/standard/index.md`,
   `docs/standard/annex-u-units.md`, …) reload in the browser on save.
@@ -40,7 +37,7 @@ uv run mkdocs serve
   never edit them by hand. After a YAML edit,
   regenerate them in a second terminal while `mkdocs serve` keeps running:
   ```
-  uv run python scripts/validate_schema.py && uv run python scripts/build_docs.py --show-legacy
+  uv run python scripts/validate_schema.py && uv run python scripts/build_docs.py
   ```
 - Commit the regenerated files with the YAML. CI regenerates them and fails if they differ from
   the committed copies.
@@ -50,7 +47,7 @@ uv run mkdocs serve
 Before committing, run the checks CI runs:
 ```
 uv run python scripts/validate_schema.py
-uv run python scripts/build_docs.py --show-legacy
+uv run python scripts/build_docs.py
 uv run mkdocs build --strict
 ```
 
@@ -64,15 +61,15 @@ merged into `main` through a pull request, where CI checks them first (decision 
    git switch main && git pull --ff-only
    git switch -c short-description-of-change
    ```
-2. **Edit the YAML.** Wording lives in a property's `description` (and, until a section's typed
-   fields are filled, in `legacy_values`). Keep the indentation. Changing a property's `name`,
+2. **Edit the YAML.** Wording lives in a property's `description`, and term definitions in
+   `values.note`. Keep the indentation. Changing a property's `name`,
    `required`, `repeatable` or subproperties changes the standard itself: record the decision in
    `docs/decisions/` and review every example in `examples/`, updating any that no longer conform
    (decision record 0012).
 3. **Regenerate the pages and run the checks:**
    ```
    uv run python scripts/validate_schema.py
-   uv run python scripts/build_docs.py --show-legacy
+   uv run python scripts/build_docs.py
    uv run mkdocs build --strict
    ```
    To look at the result, run `uv run mkdocs serve` and open http://127.0.0.1:8000/matcore/.
