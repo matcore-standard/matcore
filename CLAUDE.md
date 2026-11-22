@@ -284,9 +284,9 @@ record or marked PROPOSED, NOT DECIDED.
      standard pages, versioned permalinks, CI deploys per version. 0.4.0 released 2026-11-01
      (tag v0.4.0). 0.5.0 released 2026-11-04 (tag v0.5.0; minimal complete). 0.6.0 released 2026-11-08
      (tag v0.6.0 on b688e40; dft complete; rulings 0016–0043); the site's `latest` is 0.6.0 and `dev`
-     is main. (An earlier v0.6.0 tag on 2908f57 failed CI's release check and was moved.) 0.7.0 prepared 2026-11-22
-     (step 5 complete; every section filled): [release commit on main, awaiting the human's push of main and of
-     the tag v0.7.0 on that commit]. The site's `latest` stays 0.6.0 until the tag is pushed.
+     is main. (An earlier v0.6.0 tag on 2908f57 failed CI's release check and was moved.) 0.7.0 released 2026-11-22
+     (tag v0.7.0 on 19b4b3d; step 5 complete, every section filled); the site's `latest` is 0.7.0 (checked in
+     gh-pages versions.json) and `dev` is main.
    - Changes to the standard since 0.7.0, for the next release's entry in releases.yaml: none yet.
    - Changes to the standard from 0.6.0 to 0.7.0 (released in 0.7.0, its entry in releases.yaml summarizing them): the
      examples are written in JSON, the first serialization, and §1.3 says so (0044); a required
