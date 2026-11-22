@@ -1741,8 +1741,16 @@ record or marked PROPOSED, NOT DECIDED.
    the JSON Schema accepts any x- member and rejects other unknown names (amends 0078 item 3); §1.3's sentence reworded;
    a new §1.4 Serialization holds the definition of a serialization, the requirements any serialization must meet, the
    JSON serialization (RFC 8259, UTF-8, .json, 0044's mapping, generic parameters' `type`, the x- prefix) and the link
-   to the JSON Schema, both moved from §1.3; the menu lists 1.1–1.4. Ruling committed on main; the PR
-   (branch serialization-requirements) is in progress.
+   to the JSON Schema, both moved from §1.3; the menu lists 1.1–1.4. Ruling committed on main (bee7edf).
+   [in progress, branch serialization-requirements, committed, awaiting push and PR] 0079: schema/meta-schema.yaml's
+   name pattern refuses x- (a negative lookahead); scripts/build_json_schema.py accepts `^x-` members (any value) on
+   every object and on the record, the schema regenerated; docs/standard/index.md: §1.3's sentence on added Properties
+   reworded with the x- prefix, the definition of a serialization and the JSON Schema paragraph moved into a new
+   §1.4 Serialization, which states six requirements any serialization SHALL meet, then JSON (Request for Comments
+   (RFC) 8259, UTF-8, .json) and 0044's mapping with the generic parameter's `type` and the x- members, then the JSON
+   Schema; tests: test_preamble (a new test of §1.4; RFC spelled out at first use), test_schema (x-beamline refused as
+   a standard name), test_json_schema (x- members accepted at any level, a misspelled name still rejected); the menu
+   lists 1.1–1.4 (checked in the browser).
 8. [merged into step 2] Site content migration from matcore.org.
 9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools. After step 7;
    the validator reuses step 7's generated schema (0004).

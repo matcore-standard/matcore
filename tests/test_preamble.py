@@ -87,6 +87,7 @@ def test_objectives_state_fair_data_and_ai_readiness():
     ('CODATA', 'Committee on Data of the International Science Council (CODATA)'),
     ('IRI', 'Internationalized Resource Identifier (IRI)'),
     ('QUDT', 'QUDT, an ontology of quantities, quantity kinds, units, dimensions and data types'),
+    ('RFC', 'Request for Comments (RFC)'),
 ])
 def test_less_familiar_acronyms_are_spelled_out_at_first_use(acronym, expansion):
     """A reader of the Preamble may not know these acronyms, so each is spelled out where it first
@@ -131,3 +132,20 @@ def test_examples_are_said_to_be_in_json():
     assert ('Examples are provided after each Standard specification in JSON, the first serialization adopted for '
             'MatCore instances. However, this is for clarification purposes only.') in text
     assert 'in XML format' not in text
+
+
+def test_serialization_has_its_own_section_with_the_json_mapping():
+    """A reader of the site sees what any serialization must preserve and how JSON maps the data model, which 0044
+    decided but only its record stated; added Properties carry the prefix x-, so the published JSON Schema can accept
+    them and still catch a misspelled name (0079)."""
+    text = (ROOT / 'docs/standard/index.md').read_text()
+    assert text.index('## 1.3 Format') < text.index('## 1.4 Serialization')
+    fmt, ser = text.split('## 1.3 Format', 1)[1].split('## 1.4 Serialization', 1)
+    assert 'arbitrary' not in fmt and '`x-`' in fmt and 'A *serialization*' not in fmt
+    assert 'A *serialization* is a file format' in ser and 'SHALL' in ser
+    assert '[matcore.schema.json](matcore.schema.json)' in ser and 'matcore.schema.json' not in fmt
+    keys = re.search(r'named by the key of its section: (.+?)\.', ser).group(1)
+    assert re.findall(r'`([a-z]+)`', keys) == ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
+    for rule in ('UTF-8', '`.json`', 'never an array of entries', '`null` is not written', 'first index outermost',
+                 '`type`', '`x-`'):
+        assert rule in ser, rule

@@ -70,13 +70,35 @@ Each standard consists of a set of Properties with possible SubProperties, SubSu
 
     - Note(s): Additional clarifying information regarding a Property.
 
-In addition to the required and optional Properties, other arbitrary Properties can be added to any MatCore Standard metadata files to support developments in the field. Such Properties may eventually be standardized and added to the MatCore Standard.
+In addition to the required and optional Properties, a metadata file may add Properties of its own, at any level, to support developments in the field. Their names begin with the prefix `x-`, e.g. `x-beamline`, which no Property of the Standard uses, so that they cannot be mistaken for the Standard's. Such Properties may eventually be standardized and added to the MatCore Standard.
 
 Examples are provided after each Standard specification in JSON, the first serialization adopted for MatCore instances. However, this is for clarification purposes only. The MatCore Standard serves as a conceptual and logical framework. It defines the schema for Properties required to ensure data consistency and interoperability. Critically, the MatCore Standard is implementation-agnostic. It dictates what information must be captured and how it should be structured logically, but it does not mandate a specific substrate, file format, or programming language.
 
-A *serialization* is a file format (for example XML or JSON) together with the rules that map the MatCore data model onto it.
-
-For JSON, a [JSON Schema](https://json-schema.org/) generated from this version of the standard, [matcore.schema.json](matcore.schema.json), describes a valid MatCore record. Any JSON Schema validator can check a record against it: its structure, the Type and Extent of each value, and that each unit fits its Kind. It does not check what lies beyond a JSON Schema, such as the spelling of a chemical formula or whether a label refers to a computation in the record.
-
 MatCore adopts [Semantic Versioning](https://semver.org/) (SemVer) three-part versioning system (major, minor, patch) to indicate Standard changes.
 
+
+## 1.4 Serialization
+
+A *serialization* is a file format (for example XML or JSON) together with the rules that map the MatCore data model onto it. The Standard defines the data model; a serialization says how a record of it is written in a file.
+
+A serialization conforms to the Standard when a record written in it can be read back into the data model without loss. To that end it SHALL:
+
+- keep the Properties of each section apart from those of the others, since a Property name may recur in two sections;
+- name each Property by its name, and keep its SubProperties nested within it;
+- tell a Property given once from a repeatable Property given as entries, even when there is a single entry;
+- write each value in its Type, and a value whose Extent lists dimensions as nested lists, the first index outermost;
+- state the type of a generic parameter's value (float, int, string or bool) where the format does not show it;
+- leave out an optional Property that is not given, rather than write an empty value.
+
+JSON is the first serialization adopted for MatCore records. It is defined by Request for Comments (RFC) 8259 of the Internet Engineering Task Force. A MatCore record in JSON is a file encoded in UTF-8, with the extension `.json`, that maps the data model as follows:
+
+- The record is an object with one member for each section it uses, named by the key of its section: `minimal`, `dft`, `pim`, `ps`, `mbpt`, `ml`, `pf`, `derived`. Each member holds the Properties of its section. The member `minimal` is always present.
+- A Property is a member named by the Property's name. A Property with SubProperties is an object. A value is a string, `true` or `false`, or a number, as its Type is string, bool, or float or int; an int is written without a fraction or an exponent.
+- A repeatable Property is always an array of entries, even with one entry. A Property that is not repeatable is never an array of entries.
+- A value whose Extent lists dimensions is nested arrays, the first index outermost: Extent [3] is an array of 3 numbers, and Extent [3,3] an array of 3 arrays of 3 numbers.
+- An optional Property that is not given is omitted; `null` is not written.
+- A generic parameter's object has one more member, `type`, holding `float`, `int`, `string` or `bool`, since JSON writes 4 and 4.0 alike.
+- A Property added by the record is a member whose name begins with `x-`, holding any value.
+- Members may appear in any order; a writer should follow the order of the Standard.
+
+A [JSON Schema](https://json-schema.org/) generated from this version of the Standard, [matcore.schema.json](matcore.schema.json), describes a valid MatCore record in JSON. Any JSON Schema validator can check a record against it: its structure, the Type and Extent of each value, and that each unit fits its Kind. It does not check what lies beyond a JSON Schema, such as the spelling of a chemical formula or whether a label refers to a computation in the record.

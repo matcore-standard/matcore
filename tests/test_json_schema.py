@@ -159,3 +159,12 @@ def test_the_published_schema_is_the_generated_one():
     committed = json.loads((ROOT / 'docs/standard/matcore.schema.json').read_text(encoding='utf-8'))
     assert committed == SCHEMA
     Draft202012Validator.check_schema(committed)
+
+
+def test_a_record_may_add_properties_named_with_x():
+    """A record may add Properties of its own, at any level, named with the prefix x-; any other name the standard
+    does not define is still rejected, so a misspelled property is caught (0079)."""
+    assert valid({'person': [{'name': 'A', 'x-note': {'any': [1, 2]}}], 'title': 'T', 'x-beamline': 'ID13'},
+                 SYNTHETIC)
+    assert not valid({'person': [{'name': 'A', 'nmae': 'B'}], 'title': 'T'}, SYNTHETIC)
+    assert SCHEMA['patternProperties'] == {'^x-': {}}
