@@ -13,7 +13,7 @@
           }
         ],
         "core-electron-treatment": {
-          "type": "Pseudopotential",
+          "type": "Frozen core",
           "pseudopotential-or-paw": [
             {
               "name": "Ultrasoft Pseudopotentials (USP)",

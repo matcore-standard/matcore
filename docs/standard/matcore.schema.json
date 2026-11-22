@@ -2119,7 +2119,7 @@
          "pseudopotential-or-paw": {
           "type": "array",
           "items": {
-           "description": "For type \"Pseudopotential\", or type \"PAW\", additional information about each pseudopotential or PAW dataset.",
+           "description": "For type \"Frozen core\", additional information about each pseudopotential or PAW dataset.",
            "type": "object",
            "properties": {
             "name": {

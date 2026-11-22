@@ -200,17 +200,15 @@ properties:
       kind: inapplicable
       recommended-unit: null
       values:
-        terms: [All-electron, PAW, Pseudopotential]
+        terms: [All-electron, Frozen core]
         note: |-
-          - "All-electron" – All of the electrons in an atom are modeled explicitly
-          - "PAW" – Projector Augmented Wave
-          - "Pseudopotential" – Valence electrons are treated explicitly, and core electrons are modeled by a simplified potential
+          - "All-electron" – All of the electrons are treated explicitly, the core electrons included, even where a code holds the deepest core states fixed at their atomic form
+          - "Frozen core" – The core electrons are not treated explicitly; their effect on the valence electrons enters through a pseudopotential or a PAW dataset, described in `pseudopotential-or-paw`
       repeatable: false
     - name: pseudopotential-or-paw
       required: false
       description: >-
-        For type "Pseudopotential", or type "PAW", additional information about each pseudopotential or
-        PAW dataset.
+        For type "Frozen core", additional information about each pseudopotential or PAW dataset.
       type: null
       extent: null
       kind: null

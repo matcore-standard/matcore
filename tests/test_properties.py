@@ -612,7 +612,7 @@ def test_core_electron_treatment_structure():
         ('doi', False, False, 'string', (), ()), file,
         ('unique-identifier', False, False, 'string', (), ())))
     assert tree(c) == ('core-electron-treatment', True, False, None, (), (
-        ('type', True, False, 'string', ('All-electron', 'PAW', 'Pseudopotential'), ()), pseudopotential))
+        ('type', True, False, 'string', ('All-electron', 'Frozen core'), ()), pseudopotential))
     assert legacy_fields(c) == []
 
 
