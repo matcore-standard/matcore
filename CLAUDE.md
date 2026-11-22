@@ -655,6 +655,24 @@ record or marked PROPOSED, NOT DECIDED.
    Numerical atomic orbitals, Plane waves, Real space grids; a note groups them as (1), (2), (3)
    and explains each in a phrase, wording in 0018); descriptions of both,
    localized-orbital-basis-set and the two cutoffs reworded; examples/dft.xml renamed to match.
+   Reviewer feedback 2026-11-22 on dft core-electron-treatment: its first sentence repeats the feedback 0018 answered
+   (separate basis from core treatment; LAPW is an all-electron basis method), and adds that PAW is a frozen-core
+   valence treatment, not a peer of All-electron or Pseudopotential, the current solution being to fill LAPW or PAW
+   twice. LAPW: already met by 0018 (LAPW only in wavefunction-representation; core All-electron). PAW: still written
+   twice (core type PAW and pseudopotential-or-paw › type PAW). PROPOSED, NOT DECIDED: core-electron-treatment › type
+   becomes All-electron or Frozen core (core electrons not treated explicitly; their effect through a pseudopotential or
+   PAW dataset, described in pseudopotential-or-paw, whose type says Norm conserving, Ultrasoft or PAW); breaks 0.7.0
+   records with core type Pseudopotential or PAW. The human asked to see the resulting schema before deciding. (Superseded:
+   decided by 0080.)
+   Core electrons by 0080 (ruling 2026-11-22, from that feedback, after the human saw the resulting schema and asked
+   where LAPW goes: in wavefunction-representation, unchanged): core-electron-treatment › type has open terms
+   All-electron (every electron treated explicitly, even where a code holds the deepest core states fixed) and Frozen
+   core (core electrons not treated explicitly; their effect through a pseudopotential or PAW dataset described in
+   pseudopotential-or-paw); Pseudopotential and PAW leave the list; pseudopotential-or-paw keeps its type terms (Norm
+   conserving, PAW, Ultrasoft) and is described 'For type "Frozen core", …'; examples/dft.json's core type becomes
+   Frozen core. Breaks 0.7.0 records with core type Pseudopotential or PAW (still conformant, open terms). PROPOSED,
+   NOT DECIDED (0080): a sentence in LAPW's definition covering APW+lo and LAPW with local orbitals; a step 9 warning
+   for LAPW with Frozen core. Ruling committed on main; the PR (branch dft-frozen-core) is in progress.
    [done, PR #46 merged 2026-11-06] dft self-consistent-field-convergence, by 0019 and 0020:
    tolerance a container of criterion* (open terms Energy, Charge density, Potential), value* (float, kind
    any, minimum 0, no unit check against the criterion) and unit* (a generic parameter's unit);
