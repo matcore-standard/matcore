@@ -16,12 +16,12 @@ Examples of derived properties include:
 - Microscopy, scanning probe (STM, AFM, etc.)
 - NMR (chemical shifts)
 - Optical (electronic excitation spectra, low-loss EELS, etc.)
+- Scattering (X-ray and neutron diffraction, reflectivity, pair-distribution function, etc.)
 - Spectroscopy, core-level (XAS, XES, core-loss EELS, XPS, etc.)
 - Spectroscopy, vibrational (Raman, Infrared spectroscopy, etc.)
 - Thermodynamic (free energies, heat capacity, formation energies, etc.)
 - Transport (electronic conductivity, thermal conductivity, etc.)
 - Vibrational (phonon modes, dispersion, interatomic force constants, vibrational DOS, etc.)
-- X-ray scattering (diffraction, reflectivity, pair-distribution function, etc.)
 
 <span class="mc-legend"><span class="mc-key"><span class="mc-star">*</span> required</span><span class="mc-key"><span class="mc-icon mc-i-once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span> appears at most once</span><span class="mc-key"><span class="mc-icon mc-i-rep"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span> repeatable</span></span>
 
@@ -54,16 +54,33 @@ Details of a quantity related to material behavior computed based on a computati
 |---|---|
 | yes | yes |
 
+Note: Give one entry for each property.
+
 <details class="note mc-property" id="derived.settings.derived-property.type" markdown="1">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-Kind of physical quantity being computed.
+The kind of property computed.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: String one of the following values that defines the type of the computed derived property: "Electronic" "Electron-phonon interactions" "Linear-response" "Magnetic" "Microscopy, electron" "Microscopy, scanning probe" "NMR" "Optical" "Spectroscopy, core-level" "Spectroscopy, vibrational" "Transport" "X-ray scattering" Other user-specified value if none of the above apply.</span>
+Recommended: `Electronic`, `Electron-phonon interactions`, `Magnetic`, `Mechanical`, `Microscopy, electron`, `Microscopy, scanning probe`, `NMR`, `Optical`, `Scattering`, `Spectroscopy, core-level`, `Spectroscopy, vibrational`, `Thermodynamic`, `Transport`, `Vibrational`. Other values are allowed.
+
+**Clarifications:** "Electronic" – The electronic structure and quantities obtained from it, e.g. a band structure, a density of states, a dielectric function, or a charge and bonding analysis. "Electron-phonon interactions" – The coupling of electrons and lattice vibrations, e.g. superconducting properties or phonon linewidths. "Magnetic" – Magnetic order and its excitations, e.g. a magnetization, exchange constants or magnons. "Mechanical" – The response to a mechanical load, e.g. elastic constants or a stress-strain response. "Microscopy, electron" – A simulated electron microscopy image or diffraction pattern, e.g. S/TEM, 4D-STEM or SAED. "Microscopy, scanning probe" – A simulated scanning probe image, e.g. STM or AFM. "NMR" – Nuclear magnetic resonance parameters, e.g. chemical shifts. "Optical" – The response to light through electronic excitations, e.g. an absorption spectrum or low-loss EELS. "Scattering" – The scattering of X-rays or neutrons by the structure, e.g. a diffraction pattern, reflectivity or a pair-distribution function. "Spectroscopy, core-level" – Spectra from excitations of core electrons, e.g. XAS, XES, core-loss EELS or XPS. "Spectroscopy, vibrational" – A simulated vibrational spectrum for comparison with a measurement, e.g. a Raman or infrared spectrum. "Thermodynamic" – Thermodynamic quantities, e.g. free energies, heat capacities or formation energies. "Transport" – The transport of charge, heat or mass, e.g. an electrical or thermal conductivity or a diffusion coefficient. "Vibrational" – The vibrations of the atoms themselves, e.g. phonon modes and dispersion, interatomic force constants or a vibrational density of states.
+
+</details>
+
+<details class="note mc-property" id="derived.settings.derived-property.name" markdown="1">
+<summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The specific property computed.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+Examples: `Raman spectrum`, `Phonon dispersion`.
 
 </details>
 
@@ -74,44 +91,42 @@ Explanation of the derived property.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing an explanation of the specific derived property that was computed.</span>
+| yes | no | string | [] | inapplicable | — |
 
 </details>
 
 <details class="note mc-property" id="derived.settings.derived-property.procedure" markdown="1">
 <summary><span class="mc-name">procedure<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-Description of the method used to obtain the derived property.
+How the property was obtained from the results of the computations named in minimal `computation › input`.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing a human-readable description of the approach and/or algorithm used to compute the derived property.</span>
+Note: Explain the role of each `calculation-parameter` entry. The parameters of the calculations the procedure requests from other computations, e.g. the finite-difference displacement of the atoms, are given here, not in the descriptions of those computations.
 
 </details>
 
 <details class="note mc-property" id="derived.settings.derived-property.calculation-parameter" markdown="1">
 <summary><span class="mc-name">calculation-parameter</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-A parameter associated with the specified calculation method.
+A parameter of the procedure that obtained the derived property.
 
 | Required | Repeatable |
 |---|---|
 | no | yes |
 
+Note: For example, a supercell size, a finite-difference displacement, a broadening width, or the spin-spin coupling constant of an NMR calculation.
+
 <details class="note mc-property" id="derived.settings.derived-property.calculation-parameter.name" markdown="1">
 <summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-The designation of the parameter associated with the specified derived property calculation method.
+The designation of the calculation parameter.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string containing the name of the calculation parameter.</span>
+| yes | no | string | [] | inapplicable | — |
 
 </details>
 
@@ -122,22 +137,20 @@ The data associated with the calculation parameter.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
-
-<span class='legacy'>Legacy: An integer, real, boolean, or string containing the calculation parameter value.</span>
+| yes | no | any | any | any | — |
 
 </details>
 
 <details class="note mc-property" id="derived.settings.derived-property.calculation-parameter.unit" markdown="1">
 <summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
-A standardized string or identifier that defines the dimension or measurement system of the associated value.
+The unit in which the associated value is expressed.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | — | — | — | — |
+| yes | no | string | [] | inapplicable | — |
 
-<span class='legacy'>Legacy: A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/) (or the text "dimensionless").</span>
+**Clarifications:** A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted with a validation warning).
 
 </details>
 
@@ -148,9 +161,7 @@ An explanation of the meaning, source, or purpose of the calculation parameter.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| no | no | — | — | — | — |
-
-<span class='legacy'>Legacy: A string explaining the computation parameter (e.g. "The spin-spin coupling constant for an NMR spectroscopy calculation").</span>
+| no | no | string | [] | inapplicable | — |
 
 </details>
 
@@ -175,6 +186,7 @@ Dataset source: [https://archive.materialscloud.org/record/2024.116](https://arc
         "derived-property": [
           {
             "type": "Spectroscopy, vibrational",
+            "name": "Raman spectrum",
             "description": "Raman spectra plots of intensity versus wavenumber (frequency) representing inelastic light scattering (Raman effect) from a sample.",
             "procedure": "The Raman spectra is obtained in two steps: (1) Phonon eigenmodes and frequencies are computed for a given crystalline material within the harmonic approximation using force constants derived from density functional theory (DFT). (2) The Raman tensor is obtained by numerically differentiating the electronic susceptibility with respect to atomic displacements along each vibrational mode and using these tensors to compute Raman scattering intensities for all Raman-active modes, ultimately yielding a full Raman spectrum after appropriate averaging and broadening."
           }

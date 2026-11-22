@@ -89,8 +89,9 @@ def test_legacy_complete_requires_no_legacy_fields(tmp_path):
     import shutil
     for d in ('schema', 'scripts', 'examples'):
         shutil.copytree(ROOT / d, tmp_path / d)
-    f = tmp_path / 'schema/derived.yaml'  # derived still holds legacy text
+    f = tmp_path / 'schema/derived.yaml'
     doc = yaml.safe_load(f.read_text())
+    doc['properties'][0]['legacy_values'] = 'Prose left over from the baseline.'  # every section is complete
 
     def run():
         """Run the validator on the copy and return the completed process."""

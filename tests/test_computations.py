@@ -1279,7 +1279,8 @@ def test_derived_properties_sit_in_settings_naming_the_computation_that_obtains_
     assert shape(sub(s, 'computation-label')) == (True, True, 'string', [], 'inapplicable', None)
     prop = sub(s, 'derived-property')
     assert (prop['required'], prop['repeatable']) == (True, True)
-    assert [c['name'] for c in prop['subproperties']] == ['type', 'description', 'procedure', 'calculation-parameter']
+    assert [c['name'] for c in prop['subproperties']] == ['type', 'name', 'description', 'procedure',
+                                                       'calculation-parameter']
     intro = ' '.join(section('derived')['introduction'].split())
     assert 'single method' not in intro and 'MBPT' not in intro
     assert 'Source data' in intro and 'Interaction model' in intro and 'DP' in intro
@@ -1299,4 +1300,32 @@ def test_derived_properties_sit_in_settings_naming_the_computation_that_obtains_
                                                                                    'Thermodynamic'))
     block = json.loads((ROOT / 'examples/derived.json').read_text(encoding='utf-8'))['derived']['settings'][0]
     assert block['computation-label'] == ['raman']
-    assert list(block['derived-property'][0]) == ['type', 'description', 'procedure']
+    assert list(block['derived-property'][0]) == ['type', 'name', 'description', 'procedure']
+
+
+DERIVED_TYPES = ['Electronic', 'Electron-phonon interactions', 'Magnetic', 'Mechanical', 'Microscopy, electron',
+                 'Microscopy, scanning probe', 'NMR', 'Optical', 'Scattering', 'Spectroscopy, core-level',
+                 'Spectroscopy, vibrational', 'Thermodynamic', 'Transport', 'Vibrational']
+
+
+def test_derived_property_names_the_property_and_how_it_was_obtained_and_derived_is_complete():
+    """A derived entry says what kind of property it is and which one, then how it was obtained, with the parameters
+    of that procedure as generic parameters; the kinds are those the introduction lists, scattering covering neutrons
+    as well as X-rays (0076 items 4, 5; review 2026-11-22)."""
+    prop = sub(top('derived', 'settings'), 'derived-property')
+    t = sub(prop, 'type')
+    assert shape(t) == (True, False, 'string', [], 'inapplicable', None)
+    assert t['values']['terms'] == DERIVED_TYPES
+    note = ' '.join(t['values']['note'].split())
+    assert all(f'"{term}" –' in note for term in DERIVED_TYPES)
+    families = re.findall(r'^- (.+?) \(', section('derived')['introduction'], re.M)
+    assert families == DERIVED_TYPES
+    for name in ('name', 'description', 'procedure'):
+        assert shape(sub(prop, name)) == (True, False, 'string', [], 'inapplicable', None)
+    assert 'finite-difference' in ' '.join(' '.join(sub(prop, 'procedure')['notes']).split())
+    param = sub(prop, 'calculation-parameter')
+    assert (param['required'], param['repeatable']) == (False, True)
+    assert [c['name'] for c in param['subproperties']] == ['name', 'value', 'unit', 'description']
+    assert (sub(param, 'value')['type'], sub(param, 'value')['kind']) == ('any', 'any')
+    no_legacy(section('derived')['properties'])
+    assert section('derived')['legacy_complete'] is True

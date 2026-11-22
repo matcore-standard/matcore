@@ -18,16 +18,17 @@ introduction: |
   - Microscopy, scanning probe (STM, AFM, etc.)
   - NMR (chemical shifts)
   - Optical (electronic excitation spectra, low-loss EELS, etc.)
+  - Scattering (X-ray and neutron diffraction, reflectivity, pair-distribution function, etc.)
   - Spectroscopy, core-level (XAS, XES, core-loss EELS, XPS, etc.)
   - Spectroscopy, vibrational (Raman, Infrared spectroscopy, etc.)
   - Thermodynamic (free energies, heat capacity, formation energies, etc.)
   - Transport (electronic conductivity, thermal conductivity, etc.)
   - Vibrational (phonon modes, dispersion, interatomic force constants, vibrational DOS, etc.)
-  - X-ray scattering (diffraction, reflectivity, pair-distribution function, etc.)
 examples:
   - caption: Derived Property Metadata
     file: derived.json
     source: https://archive.materialscloud.org/record/2024.116
+legacy_complete: true
 properties:
 - name: settings
   required: true
@@ -59,101 +60,125 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
-    legacy_values: Contains SubProperties as listed below.
+    notes:
+    - 'Note: Give one entry for each property.'
     subproperties:
     - name: type
       required: true
-      description: Kind of physical quantity being computed.
-      type: null
-      extent: null
-      kind: null
+      description: The kind of property computed.
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
-      values: null
+      values:
+        terms: [Electronic, Electron-phonon interactions, Magnetic, Mechanical, 'Microscopy, electron', 'Microscopy,
+            scanning probe', NMR, Optical, Scattering, 'Spectroscopy, core-level', 'Spectroscopy, vibrational',
+          Thermodynamic, Transport, Vibrational]
+        note: >-
+          "Electronic" – The electronic structure and quantities obtained from it, e.g. a band structure, a density
+          of states, a dielectric function, or a charge and bonding analysis. "Electron-phonon interactions" – The
+          coupling of electrons and lattice vibrations, e.g. superconducting properties or phonon linewidths.
+          "Magnetic" – Magnetic order and its excitations, e.g. a magnetization, exchange constants or magnons.
+          "Mechanical" – The response to a mechanical load, e.g. elastic constants or a stress-strain response.
+          "Microscopy, electron" – A simulated electron microscopy image or diffraction pattern, e.g. S/TEM,
+          4D-STEM or SAED. "Microscopy, scanning probe" – A simulated scanning probe image, e.g. STM or AFM.
+          "NMR" – Nuclear magnetic resonance parameters, e.g. chemical shifts. "Optical" – The response to light
+          through electronic excitations, e.g. an absorption spectrum or low-loss EELS. "Scattering" – The
+          scattering of X-rays or neutrons by the structure, e.g. a diffraction pattern, reflectivity or a
+          pair-distribution function. "Spectroscopy, core-level" – Spectra from excitations of core electrons,
+          e.g. XAS, XES, core-loss EELS or XPS. "Spectroscopy, vibrational" – A simulated vibrational spectrum for
+          comparison with a measurement, e.g. a Raman or infrared spectrum. "Thermodynamic" – Thermodynamic
+          quantities, e.g. free energies, heat capacities or formation energies. "Transport" – The transport of
+          charge, heat or mass, e.g. an electrical or thermal conductivity or a diffusion coefficient.
+          "Vibrational" – The vibrations of the atoms themselves, e.g. phonon modes and dispersion, interatomic
+          force constants or a vibrational density of states.
       repeatable: false
-      legacy_values: >-
-        String one of the following values that defines the type of the computed derived property: "Electronic"
-        "Electron-phonon interactions" "Linear-response" "Magnetic" "Microscopy, electron" "Microscopy,
-        scanning probe" "NMR" "Optical" "Spectroscopy, core-level" "Spectroscopy, vibrational" "Transport"
-        "X-ray scattering" Other user-specified value if none of the above apply.
+    - name: name
+      required: true
+      description: The specific property computed.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        examples: [Raman spectrum, Phonon dispersion]
+      repeatable: false
     - name: description
       required: true
       description: Explanation of the derived property.
-      type: null
-      extent: null
-      kind: null
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: >-
-        A string containing an explanation of the specific derived property that was computed.
     - name: procedure
       required: true
-      description: Description of the method used to obtain the derived property.
-      type: null
-      extent: null
-      kind: null
+      description: >-
+        How the property was obtained from the results of the computations named in minimal `computation ›
+        input`.
+      type: string
+      extent: []
+      kind: inapplicable
       recommended-unit: null
       values: null
       repeatable: false
-      legacy_values: >-
-        A string containing a human-readable description of the approach and/or algorithm used to compute
-        the derived property.
+      notes:
+      - >-
+        Note: Explain the role of each `calculation-parameter` entry. The parameters of the calculations the
+        procedure requests from other computations, e.g. the finite-difference displacement of the atoms, are
+        given here, not in the descriptions of those computations.
     - name: calculation-parameter
       required: false
-      description: A parameter associated with the specified calculation method.
+      description: A parameter of the procedure that obtained the derived property.
       type: null
       extent: null
       kind: null
       recommended-unit: null
       values: null
       repeatable: true
-      legacy_values: Contains SubSubSubProperties as defined in the table below.
+      notes:
+      - >-
+        Note: For example, a supercell size, a finite-difference displacement, a broadening width, or the
+        spin-spin coupling constant of an NMR calculation.
       subproperties:
       - name: name
         required: true
-        description: >-
-          The designation of the parameter associated with the specified derived property calculation
-          method.
-        type: null
-        extent: null
-        kind: null
+        description: The designation of the calculation parameter.
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: A string containing the name of the calculation parameter.
       - name: value
         required: true
         description: The data associated with the calculation parameter.
-        type: null
-        extent: null
-        kind: null
+        type: any
+        extent: any
+        kind: any
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: An integer, real, boolean, or string containing the calculation parameter value.
       - name: unit
         required: true
-        description: >-
-          A standardized string or identifier that defines the dimension or measurement system of the
-          associated value.
-        type: null
-        extent: null
-        kind: null
+        description: The unit in which the associated value is expressed.
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
-        values: null
+        values:
+          note: >-
+            A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+            only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+            (accepted with a validation warning).
         repeatable: false
-        legacy_values: >-
-          A string containing the units of the value in the [GNU unit convention](https://www.gnu.org/software/units/)
-          (or the text "dimensionless").
       - name: description
         required: false
         description: An explanation of the meaning, source, or purpose of the calculation parameter.
-        type: null
-        extent: null
-        kind: null
+        type: string
+        extent: []
+        kind: inapplicable
         recommended-unit: null
         values: null
         repeatable: false
-        legacy_values: >-
-          A string explaining the computation parameter (e.g. "The spin-spin coupling constant for an
-          NMR spectroscopy calculation").
