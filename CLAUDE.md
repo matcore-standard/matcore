@@ -1028,6 +1028,26 @@ record or marked PROPOSED, NOT DECIDED.
    (X-ray and neutron diffraction, reflectivity, pair-distribution functions), electron diffraction staying under
    Microscopy, electron; Vibrational and Spectroscopy, vibrational both stay, defined apart (the vibrations
    themselves; a simulated spectrum for comparison with a measurement).
+   Reviewer feedback 2026-11-22 on derived type's families: (1) Mechanical: tensile, yield and fracture stresses and
+   strengths, hardness; (2) Thermodynamic: thermodynamic integration, melting temperature; (3) a new
+   "Transformation-pathway": nudged elastic band, energy maps, minimum energy paths; (4) are diffusion and viscosity
+   Transport, and where do defect mobilities go (point defects, dislocations, grain boundaries)? Analysis: (1) and (2)
+   exist since 0076, the examples are new; thermodynamic integration is a procedure (ps algorithm, task Free energy
+   calculation), not a property; (3) paths and barriers are computed by PS computations of task Transition path, and a
+   derived block may name such a computation (0076 item 1), so a type term is needed to classify them; (4) diffusion is
+   Transport (mass), viscosity is momentum transport, absent from Transport's definition. PROPOSED, NOT DECIDED: add the
+   reviewer's examples to Mechanical and Thermodynamic (not thermodynamic integration); a term "Transition path"
+   named after minimal task (energy barriers, minimum energy paths, energy landscapes, transition rates); Transport
+   covers momentum (viscosity) and the motion of defects under a driving force (dislocation and grain-boundary
+   mobility), point-defect migration barriers being Transition path. (Superseded: decided by 0081, without a new term.)
+   Derived families by 0081 (ruling 2026-11-22, from that feedback): Mechanical's definition and examples gain tensile,
+   yield and fracture strengths and hardness; Thermodynamic's gain a melting temperature (thermodynamic integration not
+   listed: a procedure in ps); Transport covers charge, heat, mass and momentum (viscosity) and the motion of defects
+   under a driving force (dislocation and grain-boundary mobility); no transition-path family (the human asked whether
+   it would repeat ps algorithm NEB and minimal task Transition path; it would): the introduction says a result its
+   computation already names, e.g. a path and barrier found by the NEB, needs no derived entry, while a property
+   obtained from such results, e.g. a rate, is one. Terms unchanged; no record breaks. Ruling committed on
+   main; the PR (branch derived-families) is in progress.
    [done, PR #136 merged 2026-11-22] derived derived-property (step 5, 0076
    items 4, 5): derived-property noted one entry per property; type a string with 14 open terms, each defined in a
    note drafted in this PR, its description "The kind of property computed."; name a new required string (examples
