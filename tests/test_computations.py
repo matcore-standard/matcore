@@ -1329,3 +1329,27 @@ def test_derived_property_names_the_property_and_how_it_was_obtained_and_derived
     assert (sub(param, 'value')['type'], sub(param, 'value')['kind']) == ('any', 'any')
     no_legacy(section('derived')['properties'])
     assert section('derived')['legacy_complete'] is True
+
+
+def test_derived_families_cover_strength_melting_viscosity_and_defect_mobility():
+    """A reader looking for a strength, a melting temperature, a viscosity or a dislocation mobility finds its family,
+    and one looking for a transition path is sent to the PS computation that already names it rather than to a family
+    that would repeat it (0081)."""
+    note = sub(sub(top('derived', 'settings'), 'derived-property'), 'type')['values']['note']
+    definition = {line.split('" – ')[0][3:]: line.split('" – ')[1] for line in note.split('\n')}
+    assert definition['Mechanical'] == ('The response to a mechanical load, e.g. elastic constants, a stress-strain '
+                                        'response, a tensile, yield or fracture strength, or a hardness')
+    assert definition['Thermodynamic'] == ('Thermodynamic quantities, e.g. free energies, heat capacities, formation '
+                                           'energies or a melting temperature')
+    assert definition['Transport'] == (
+        'The transport of charge, heat, mass or momentum, or the motion of defects under a driving force, e.g. an '
+        'electrical or thermal conductivity, a diffusion coefficient, a viscosity, or the mobility of a dislocation or '
+        'a grain boundary')
+    intro = section('derived')['introduction']
+    assert ('- Mechanical (elastic constants, stress-strain response, tensile, yield and fracture strengths, '
+            'hardness') in intro
+    assert '- Thermodynamic (free energies, heat capacity, formation energies, melting temperature' in intro
+    assert '- Transport (electronic and thermal conductivity, diffusion, viscosity, defect mobilities' in intro
+    prose = ' '.join(intro.split('Examples of derived properties include:')[0].split())
+    assert 'needs no derived entry' in prose and 'nudged elastic band' in prose and 'Transition path' in prose
+    assert 'thermodynamic integration' not in intro.lower()

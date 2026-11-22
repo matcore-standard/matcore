@@ -1047,7 +1047,11 @@ record or marked PROPOSED, NOT DECIDED.
    it would repeat ps algorithm NEB and minimal task Transition path; it would): the introduction says a result its
    computation already names, e.g. a path and barrier found by the NEB, needs no derived entry, while a property
    obtained from such results, e.g. a rate, is one. Terms unchanged; no record breaks. Ruling committed on
-   main; the PR (branch derived-families) is in progress.
+   main (a25366a). [in progress, branch derived-families, committed, awaiting push and PR] schema/derived.yaml (the
+   three definitions, the introduction's three family lines, and a sentence in its second paragraph: a result its
+   computation already names needs no derived entry, e.g. a path and barrier found by ps algorithm NEB with task
+   Transition path; a rate from them is one), tests/test_computations.py (a new test of 0081's wording), 08-derived
+   regenerated; the JSON Schema is unchanged (it carries descriptions, not term definitions).
    [done, PR #136 merged 2026-11-22] derived derived-property (step 5, 0076
    items 4, 5): derived-property noted one entry per property; type a string with 14 open terms, each defined in a
    note drafted in this PR, its description "The kind of property computed."; name a new required string (examples
