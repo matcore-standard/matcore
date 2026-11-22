@@ -373,7 +373,9 @@ record or marked PROPOSED, NOT DECIDED.
      `settings` blocks naming the computations that obtain them, of any method, its single-method limit removed,
      calculation-method replaced by procedure with calculation-parameter beside it, and the section titled Derived
      Property (DP); minimal method-class gains Post-processing and method gains DP (0076); the derived introduction
-     describes the usual record, one DP computation with one entry per property (decided by the human 2026-11-22).
+     describes the usual record, one DP computation with one entry per property (decided by the human 2026-11-22);
+     minimal computation notes that a record explains the dataset, not its workflow, giving a computation only for
+     results in the dataset or settings a reader needs (0077).
    - Changes to the standard from 0.5.0 to 0.6.0 (released in 0.6.0): §1.3
      defines the generic parameter, checked by validate_schema.py (0016); dft xc-functional's
      typed fields filled (step 5); dft core-electron-model's typed fields filled, pseudopotential
@@ -973,7 +975,7 @@ record or marked PROPOSED, NOT DECIDED.
    parameters are given with the procedure, in the section describing it, even when applied in another computation's
    calculations (e.g. a Raman calculation's finite-difference displacement in its derived entry). No released
    instance breaks. Ruling committed on main (48adc35).
-   [in progress, branch minimal-computation-grouping, committed, awaiting push and PR] 0077 note: schema/minimal.yaml
+   [done, PR #135 merged 2026-11-22] 0077 note: schema/minimal.yaml
    (computation's first note, the ruling's text verbatim, before 0063's), tests/test_computations.py (a new test; the
    0063 test's list of notes gains it), 02-minimal regenerated; no example changes.
    [done, PR #110] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
