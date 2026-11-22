@@ -6,14 +6,14 @@ source: >-
 introduction: |
   The metadata for derived properties (MatCore-DP) is tabulated below. A derived property is a property obtained from the results of other computations, e.g. a Raman spectrum computed from phonon modes and dielectric tensors obtained by DFT. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 
-  The properties are given in settings blocks, each naming the computations it describes. Usually the derived properties of a dataset come from one computation in minimal `computation` whose `method` is DP (method-class Post-processing). It names the computations whose results it uses in `input`, with the role Source data, e.g. the DFT computation that gave the forces and dielectric tensors, or Interaction model for energies and forces it requests as it proceeds. Its block here gives one `derived-property` entry for each property, with the procedure that obtained it and its parameters in `procedure` and `calculation-parameter`, e.g. the finite-difference displacement of the atoms. A property obtained within a computation of another method, e.g. phonons computed by density functional perturbation theory in a DFT computation, is given in a block naming that computation.
+  The properties are given in settings blocks, each naming the computations it describes. Usually the derived properties of a dataset come from one computation in minimal `computation` whose `method` is DP (method-class Post-processing). It names the computations whose results it uses in `input`, with the role Source data, e.g. the DFT computation that gave the forces and dielectric tensors, or Interaction model for energies and forces it requests as it proceeds. Its block here gives one `derived-property` entry for each property, with the procedure that obtained it and its parameters in `procedure` and `calculation-parameter`, e.g. the finite-difference displacement of the atoms. A property obtained within a computation of another method, e.g. phonons computed by density functional perturbation theory in a DFT computation, is given in a block naming that computation. A result that its computation already names needs no derived entry: a transition path and its energy barrier, e.g. a point defect's migration barrier, found by the nudged elastic band (ps `algorithm` NEB, minimal `task` Transition path), are described by that PS computation. A property obtained from such results, e.g. a rate from barriers and attempt frequencies, is a derived entry.
 
   Examples of derived properties include:
 
   - Electronic (band structure, density of states (DOS), projected DOS, dielectric function, charge and bonding analysis, etc.)
   - Electron-phonon interactions (superconducting properties, line widths, etc.)
   - Magnetic (magnetics, magnetization, magnons, etc.)
-  - Mechanical (elastic constants, stress-strain response, etc.)
+  - Mechanical (elastic constants, stress-strain response, tensile, yield and fracture strengths, hardness, etc.)
   - Microscopy, electron (S/TEM, 4D-STEM, SAED, etc.)
   - Microscopy, scanning probe (STM, AFM, etc.)
   - NMR (chemical shifts)
@@ -21,8 +21,8 @@ introduction: |
   - Scattering (X-ray and neutron diffraction, reflectivity, pair-distribution function, etc.)
   - Spectroscopy, core-level (XAS, XES, core-loss EELS, XPS, etc.)
   - Spectroscopy, vibrational (Raman, Infrared spectroscopy, etc.)
-  - Thermodynamic (free energies, heat capacity, formation energies, etc.)
-  - Transport (electronic conductivity, thermal conductivity, etc.)
+  - Thermodynamic (free energies, heat capacity, formation energies, melting temperature, etc.)
+  - Transport (electronic and thermal conductivity, diffusion, viscosity, defect mobilities, etc.)
   - Vibrational (phonon modes, dispersion, interatomic force constants, vibrational DOS, etc.)
 examples:
   - caption: Derived Property Metadata
@@ -78,7 +78,7 @@ properties:
           - "Electronic" – The electronic structure and quantities obtained from it, e.g. a band structure, a density of states, a dielectric function, or a charge and bonding analysis
           - "Electron-phonon interactions" – The coupling of electrons and lattice vibrations, e.g. superconducting properties or phonon linewidths
           - "Magnetic" – Magnetic order and its excitations, e.g. a magnetization, exchange constants or magnons
-          - "Mechanical" – The response to a mechanical load, e.g. elastic constants or a stress-strain response
+          - "Mechanical" – The response to a mechanical load, e.g. elastic constants, a stress-strain response, a tensile, yield or fracture strength, or a hardness
           - "Microscopy, electron" – A simulated electron microscopy image or diffraction pattern, e.g. S/TEM, 4D-STEM or SAED
           - "Microscopy, scanning probe" – A simulated scanning probe image, e.g. STM or AFM
           - "NMR" – Nuclear magnetic resonance parameters, e.g. chemical shifts
@@ -86,8 +86,8 @@ properties:
           - "Scattering" – The scattering of X-rays or neutrons by the structure, e.g. a diffraction pattern, reflectivity or a pair-distribution function
           - "Spectroscopy, core-level" – Spectra from excitations of core electrons, e.g. XAS, XES, core-loss EELS or XPS
           - "Spectroscopy, vibrational" – A simulated vibrational spectrum for comparison with a measurement, e.g. a Raman or infrared spectrum
-          - "Thermodynamic" – Thermodynamic quantities, e.g. free energies, heat capacities or formation energies
-          - "Transport" – The transport of charge, heat or mass, e.g. an electrical or thermal conductivity or a diffusion coefficient
+          - "Thermodynamic" – Thermodynamic quantities, e.g. free energies, heat capacities, formation energies or a melting temperature
+          - "Transport" – The transport of charge, heat, mass or momentum, or the motion of defects under a driving force, e.g. an electrical or thermal conductivity, a diffusion coefficient, a viscosity, or the mobility of a dislocation or a grain boundary
           - "Vibrational" – The vibrations of the atoms themselves, e.g. phonon modes and dispersion, interatomic force constants or a vibrational density of states
       repeatable: false
     - name: name
