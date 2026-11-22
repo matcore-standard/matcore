@@ -978,6 +978,26 @@ record or marked PROPOSED, NOT DECIDED.
    [done, PR #135 merged 2026-11-22] 0077 note: schema/minimal.yaml
    (computation's first note, the ruling's text verbatim, before 0063's), tests/test_computations.py (a new test; the
    0063 test's list of notes gains it), 02-minimal regenerated; no example changes.
+   Decided by the human 2026-11-22 for the derived property PR: type's term "X-ray scattering" becomes "Scattering"
+   (X-ray and neutron diffraction, reflectivity, pair-distribution functions), electron diffraction staying under
+   Microscopy, electron; Vibrational and Spectroscopy, vibrational both stay, defined apart (the vibrations
+   themselves; a simulated spectrum for comparison with a measurement).
+   [in progress, branch derived-property, committed, awaiting push and PR] derived derived-property (step 5, 0076
+   items 4, 5): derived-property noted one entry per property; type a string with 14 open terms, each defined in a
+   note drafted in this PR, its description "The kind of property computed."; name a new required string (examples
+   Raman spectrum, Phonon dispersion); description a string; procedure a required string, "How the property was
+   obtained from the results of the computations named in minimal `computation › input`.", its note asking for the
+   role of each calculation-parameter entry and placing the parameters of requested calculations here (0077 item 3);
+   calculation-parameter a generic parameter (0016), its description "A parameter of the procedure that obtained the
+   derived property." and a note with examples (supercell, displacement, broadening, the baseline's NMR coupling
+   constant); legacy_* deleted; derived is complete and declares `legacy_complete: true`, so every section is
+   complete and status step 5 is done once this merges; the introduction's list of families uses Scattering and
+   matches type's terms (locked by a test); examples/derived.json gives name Raman spectrum;
+   tests/test_computations.py (a new test; the structure test's lists gain name); tests/test_schema.py's
+   legacy_complete test plants a legacy field in a copy of derived; tests/test_build_docs.py's main() test checks
+   that no page shows legacy text even with --show-legacy; 08-derived regenerated. Follow-up, PROPOSED, NOT
+   DECIDED: remove --show-legacy from CI (.github/workflows/ci.yml) and from the working rules once this merges,
+   since no legacy text remains.
    [done, PR #110] md (ps after 0061) in file order, starting with algorithm (computation-label needs no fill;
    algorithm done, PR #106; computation-parameter done, PR #107; initialization done, PR #109; thermodynamic-constraint done, PR #110; ps is complete; next mbpt).
    [done, PR #111 merged 2026-11-15] mbpt structure by 0046 items 7

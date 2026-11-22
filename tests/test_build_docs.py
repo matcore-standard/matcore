@@ -258,13 +258,14 @@ def test_symbol_key_keeps_each_symbol_with_its_label():
 
 
 def test_main_writes_every_page_and_honours_the_flag(tmp_path):
-    """The command writes one page per section plus Annex U with its tables; --show-legacy controls legacy text."""
+    """The command writes one page per section plus Annex U with its tables. Every section's baseline prose has been
+    moved to typed fields (status step 5), so no page shows legacy text even with --show-legacy; how the flag renders
+    legacy text is tested on a synthetic section in test_legacy_text_only_with_show_legacy."""
     build_docs.main(['--out', str(tmp_path)])
     names = sorted(p.name for p in tmp_path.iterdir())
     assert names == sorted(list(build_docs.PAGES.values()) + ['annex-i-identifiers.md', 'annex-u-units.md', 'index.md', 'revision-history.md'])
-    assert 'Legacy:' not in (tmp_path / '08-derived.md').read_text()  # derived still holds legacy text
     build_docs.main(['--out', str(tmp_path), '--show-legacy'])
-    assert 'Legacy:' in (tmp_path / '08-derived.md').read_text()
+    assert not [n for n in build_docs.PAGES.values() if 'Legacy:' in (tmp_path / n).read_text()]
 
 
 def test_every_section_has_a_well_formed_example():
