@@ -672,7 +672,11 @@ record or marked PROPOSED, NOT DECIDED.
    conserving, PAW, Ultrasoft) and is described 'For type "Frozen core", …'; examples/dft.json's core type becomes
    Frozen core. Breaks 0.7.0 records with core type Pseudopotential or PAW (still conformant, open terms). PROPOSED,
    NOT DECIDED (0080): a sentence in LAPW's definition covering APW+lo and LAPW with local orbitals; a step 9 warning
-   for LAPW with Frozen core. Ruling committed on main; the PR (branch dft-frozen-core) is in progress.
+   for LAPW with Frozen core. Ruling committed on main (223d638).
+   [in progress, branch dft-frozen-core, committed, awaiting push and PR] 0080: schema/dft.yaml (core type terms and
+   their definitions, pseudopotential-or-paw's description), examples/dft.json (core type Frozen core; its dataset
+   stays Ultrasoft), tests/test_dft_rulings.py (a new test of 0080's wording, the dataset's terms, LAPW's place and the
+   example), tests/test_properties.py (the 0018 structure test's core terms), 03-dft and the JSON Schema regenerated.
    [done, PR #46 merged 2026-11-06] dft self-consistent-field-convergence, by 0019 and 0020:
    tolerance a container of criterion* (open terms Energy, Charge density, Potential), value* (float, kind
    any, minimum 0, no unit check against the criterion) and unit* (a generic parameter's unit);

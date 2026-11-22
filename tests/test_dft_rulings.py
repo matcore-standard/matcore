@@ -154,3 +154,25 @@ def test_initial_magnetic_moment_is_given_per_species():
     assert (v['type'], v['extent'], v['kind'], v['recommended-unit']) == ('float', 'any', 'MagneticMoment', 'mu_B')
     assert 'noncollinear' in v['notes'][0]
     assert shape(sub(m, 'species')) == (True, False, 'string', [], 'inapplicable', None)
+
+
+def test_the_core_is_all_electron_or_frozen_and_paw_is_a_kind_of_dataset():
+    """PAW, like a pseudopotential, keeps the core out of the calculation, so the core is either in it or frozen, and
+    whether a frozen core is represented by a pseudopotential or a PAW dataset is said once, by the dataset's type;
+    LAPW stays a wavefunction representation (0080)."""
+    import json
+    core = sub(settings(), 'core-electron-treatment')
+    t = sub(core, 'type')
+    assert t['values']['terms'] == ['All-electron', 'Frozen core']
+    assert t['values']['note'] == (
+        '- "All-electron" – All of the electrons are treated explicitly, the core electrons included, even where a '
+        'code holds the deepest core states fixed at their atomic form\n'
+        '- "Frozen core" – The core electrons are not treated explicitly; their effect on the valence electrons '
+        'enters through a pseudopotential or a PAW dataset, described in `pseudopotential-or-paw`')
+    pp = sub(core, 'pseudopotential-or-paw')
+    assert ' '.join(pp['description'].split()) == (
+        'For type "Frozen core", additional information about each pseudopotential or PAW dataset.')
+    assert sub(pp, 'type')['values']['terms'] == ['Norm conserving', 'PAW', 'Ultrasoft']
+    assert 'LAPW' in sub(settings(), 'wavefunction-representation', 'type')['values']['terms']
+    dft = json.loads((ROOT / 'examples/dft.json').read_text(encoding='utf-8'))['dft']
+    assert dft['settings'][0]['core-electron-treatment']['type'] == 'Frozen core'
