@@ -1432,6 +1432,15 @@ record or marked PROPOSED, NOT DECIDED.
    calculation-parameter, as a method's settings are in its section, not in those computations' descriptions. The
    test of derived's structure checks the paragraph. (b), the same grouping guidance as a note on minimal
    `computation` for every section, remains PROPOSED, NOT DECIDED.
+   Decided by the human 2026-11-22, after PR #133: the derived introduction is shortened to reflect the simplified
+   structure: a definition (with the Raman example), then the usual record in one paragraph: one minimal computation
+   of method DP (method-class Post-processing) naming its sources in `input` (Source data, or Interaction model), its
+   block giving one derived-property entry per property with procedure and calculation-parameter (e.g. the
+   finite-difference displacement), and a property obtained within another method's computation given in a block
+   naming that computation; then the list of families. The two-kinds list, the long input-role paragraph and the
+   grouping paragraph are dropped, the grouping rule being 0077's note in minimal. [in progress, branch
+   derived-introduction, committed, awaiting push and PR] schema/derived.yaml, tests/test_computations.py (the
+   introduction's prose is two paragraphs and keeps the essentials), 08-derived regenerated.
    [done, PR #129 merged 2026-11-20] pf domain (step 5, 0074 item 4, 0075): cross-check
    2026-11-20, names, definitions and terms match the .docx apart from 0074's move of mesh-type; the container's
    description drops "topological discretization details" (the mesh is in numerical-method); dimensionality and

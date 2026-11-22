@@ -1272,7 +1272,12 @@ def test_derived_properties_sit_in_settings_naming_the_computation_that_obtains_
     # the record explains the dataset, not its workflow: steps are grouped, and how a property was obtained, with its
     # parameters, sits in the derived entry as a method's settings sit in its section (review 2026-11-22)
     assert 'one for each step' not in intro
-    assert 'one DP computation' in intro and 'finite-difference' in intro and '`calculation-parameter`' in intro
+    assert 'finite-difference' in intro and '`calculation-parameter`' in intro
+    # the introduction stays short: what a derived property is, then the usual record, one DP computation whose
+    # block gives an entry per property (review 2026-11-22)
+    prose = section('derived')['introduction'].split('Examples of derived properties include:')[0]
+    assert len([p for p in prose.split('\n\n') if p.strip()]) == 2
+    assert 'one computation' in intro and 'one `derived-property` entry for each property' in intro
     # the introduction lists the property families of `type` as 0076 item 5 states them
     assert 'Linear-response' not in intro
     assert all(f'- {family} (' in section('derived')['introduction'] for family in ('Vibrational', 'Mechanical',
