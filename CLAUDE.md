@@ -1721,7 +1721,18 @@ record or marked PROPOSED, NOT DECIDED.
    value (0044 item 3); open terms, x-gnu validity, label references, formula grammar and check digits are left to
    their own checks or step 9; validate_schema.py checks the examples against it and check_examples.py is removed. No
    property changes. The other part of step 7, the requirements any serialization must meet, is a separate change.
-   Ruling committed on main; the PR (branch json-schema) is in progress.
+   Ruling committed on main (b89ee14).
+   [in progress, branch json-schema, committed, awaiting push and PR] 0078: scripts/build_json_schema.py (new) builds
+   the schema; build_docs.py's main writes it to docs/standard/matcore.schema.json with the pages, so CI's single build
+   step and its stale-page check cover it (judgment call, in place of a separate CI step); every property's description
+   is carried into the schema; a repeatable property is an array of at least one entry (judgment call); a Type with
+   Extent any, and a generic parameter's value, are a value or arrays of it to any depth ($defs any-depth-<type>);
+   validate_schema.py checks the generated schema and validates every example against its section's $defs entry, with
+   format checking; scripts/check_examples.py removed, check_formula.py takes SECTIONS from the generator;
+   tests/test_json_schema.py (new: the old structural and generic cases, units by Kind, reduced lengths, the record's
+   top level, every example, the committed copy) and tests/test_examples.py reduced to its identifier test;
+   tests/test_build_docs.py expects the schema among the written files; §1.3 links to the schema, saying what it
+   checks and what it does not; README.md and CONTRIBUTING.md list it among the generated files.
 8. [merged into step 2] Site content migration from matcore.org.
 9. [todo] `matcore` Python package: validator, then parsers, then Pyodide web tools. After step 7;
    the validator reuses step 7's generated schema (0004).

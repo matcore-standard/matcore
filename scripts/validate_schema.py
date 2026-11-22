@@ -97,9 +97,22 @@ for f in sorted(glob.glob(str(ROOT/'schema/[a-z]*.yaml'))):
     if doc.get('legacy_complete') and (n := legacy_count(doc['properties'])):
         print(f"ERROR {Path(f).name}: legacy_complete is true but {n} legacy_* fields remain"); errors += 1
     print(f"ok    {Path(f).name}: {len(errs)} schema errors")
-# Examples follow the structure of the current standard (decision 0012).
-from check_examples import all_errors
-example_errors = all_errors() + formula_example_errors()  # 0012, 0034
+# Examples follow the current standard: each is checked against the JSON Schema generated from it (0012, 0078).
+import json
+from build_json_schema import SECTIONS, build
+record = build()
+Draft202012Validator.check_schema(record)
+example_errors = []
+for key in SECTIONS:
+    for ex in yaml.safe_load((ROOT/f'schema/{key}.yaml').read_text()).get('examples') or []:
+        doc = json.loads((ROOT/'examples'/ex['file']).read_text(encoding='utf-8'))
+        if not isinstance(doc, dict) or list(doc) != [key]:
+            example_errors.append(f'examples/{ex["file"]}: must be an object whose only member is "{key}"'); continue
+        check = Draft202012Validator({'$ref': f'#/$defs/{key}', '$defs': record['$defs']},
+                                     format_checker=Draft202012Validator.FORMAT_CHECKER)
+        example_errors += [f'examples/{ex["file"]}: {"/".join([key, *map(str, e.absolute_path)])}: {e.message}'
+                           for e in check.iter_errors(doc[key])]
+example_errors += formula_example_errors()  # 0034
 for e in example_errors: print(f"ERROR {e}")
 errors += len(example_errors)
 print(f"ok    examples: {len(example_errors)} structural errors" if not example_errors else f"FAIL  examples: {len(example_errors)} structural errors")

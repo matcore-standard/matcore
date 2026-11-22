@@ -15,6 +15,8 @@ from urllib.parse import urlsplit
 import material
 import yaml
 
+import build_json_schema
+
 ROOT = Path(__file__).resolve().parents[1]
 # Each section's page file. Files keep their names when sections are renumbered, so their addresses do not
 # change; the order is the order of the sections (0046, settled 2026-11-09).
@@ -293,6 +295,9 @@ def main(argv=None):
     print('wrote', path)
     path = args.out / 'revision-history.md'
     path.write_text(render_revision_history(yaml.safe_load(open(ROOT / 'schema/releases.yaml'))['releases']))
+    print('wrote', path)
+    path = args.out / 'matcore.schema.json'
+    build_json_schema.write(path)  # the JSON Schema is generated with the pages (0078)
     print('wrote', path)
     units = yaml.safe_load(open(ROOT / 'schema/units.yaml'))
     annex = (ROOT / 'docs/standard/annex-u-units.md').read_text()
