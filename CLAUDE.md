@@ -287,7 +287,8 @@ record or marked PROPOSED, NOT DECIDED.
      is main. (An earlier v0.6.0 tag on 2908f57 failed CI's release check and was moved.) 0.7.0 released 2026-11-22
      (tag v0.7.0 on 19b4b3d; step 5 complete, every section filled); the site's `latest` is 0.7.0 (checked in
      gh-pages versions.json) and `dev` is main.
-   - Changes to the standard since 0.7.0, for the next release's entry in releases.yaml: none yet.
+   - Changes to the standard since 0.7.0, for the next release's entry in releases.yaml: a JSON Schema generated from
+     the standard is published with each version and linked from §1.3; it checks the examples (0078).
    - Changes to the standard from 0.6.0 to 0.7.0 (released in 0.7.0, its entry in releases.yaml summarizing them): the
      examples are written in JSON, the first serialization, and §1.3 says so (0044); a required
      matcore container gives the standard version, an optional link to it, the dataset's id and
@@ -1722,7 +1723,7 @@ record or marked PROPOSED, NOT DECIDED.
    their own checks or step 9; validate_schema.py checks the examples against it and check_examples.py is removed. No
    property changes. The other part of step 7, the requirements any serialization must meet, is a separate change.
    Ruling committed on main (b89ee14).
-   [in progress, branch json-schema, committed, awaiting push and PR] 0078: scripts/build_json_schema.py (new) builds
+   [done, PR #139 merged 2026-11-22] 0078: scripts/build_json_schema.py (new) builds
    the schema; build_docs.py's main writes it to docs/standard/matcore.schema.json with the pages, so CI's single build
    step and its stale-page check cover it (judgment call, in place of a separate CI step); every property's description
    is carried into the schema; a repeatable property is an array of at least one entry (judgment call); a Type with
