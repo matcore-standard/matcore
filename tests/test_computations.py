@@ -92,11 +92,26 @@ STAGES_NOTE = (
     'with its control flow and complete inputs, belongs to the provenance record of a workflow manager (§1.2).')
 
 
+GROUPING_NOTE = (
+    'Note: The record explains the dataset; it does not retrace the workflow that produced it (§1.2). Give a '
+    'computation for calculations whose results are in the dataset, or whose method or settings a reader needs in '
+    'order to understand the data. Steps that serve one purpose with one method are one computation, e.g. the '
+    'post-processing steps that give phonon modes and then a Raman spectrum (method DP). A step that only prepares '
+    'another computation and adds nothing a reader needs, e.g. a relaxation that fixes the cell for later single '
+    'points, may be left out or mentioned in the description of the computation it prepares.')
+
+
+def test_a_record_groups_calculations_instead_of_retracing_the_workflow():
+    """Divided step by step, a record becomes a workflow, which MatCore does not describe; the note says when
+    calculations deserve a computation of their own, before 0063's note on stages applies the same test (0077)."""
+    assert top('minimal', 'computation')['notes'][0] == GROUPING_NOTE
+
+
 def test_a_staged_simulation_is_a_chain_of_computations():
     """A reader of a repeatable computation asks how stages are ordered and what carries over between them; the
     answer is the input links, not a protocol object, and the role says the state carries over (0063)."""
     c = top('minimal', 'computation')
-    assert c['notes'] == [STAGES_NOTE]
+    assert c['notes'] == [GROUPING_NOTE, STAGES_NOTE]
     role = sub(sub(c, 'input'), 'role')['values']['note']
     assert ('"Initial configuration" – The configurations this computation starts from, with the state carried '
             'over from that computation, e.g. velocities;') in role
