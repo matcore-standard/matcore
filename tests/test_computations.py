@@ -168,7 +168,10 @@ METHOD_DEFINITIONS = (
     'deformation from the motion and interaction of dislocation lines; "KMC" – Kinetic Monte Carlo: evolution of a '
     'system as a sequence of thermally activated events chosen by their rates; "PF" – Phase Field: microstructure '
     'evolution described by continuous fields with diffuse interfaces; "ML" – Machine Learning: models trained on '
-    'data to predict materials properties or behavior.')
+    'data to predict materials properties or behavior; "DP" – Derived Property: a property obtained from the '
+    'results of other computations by a procedure with no physical model of its own, e.g. force constants from '
+    'finite-difference forces, an X-ray diffraction pattern from a structure, or a vibrational density of states '
+    'from a trajectory.')
 
 
 def test_method_names_the_section_that_describes_the_computation():
@@ -181,7 +184,8 @@ def test_method_names_the_section_that_describes_the_computation():
                                 'this standard that describes their settings, where one exists.')
     assert {k: c['terms'] for k, c in m['values']['cases'].items()} == {
         'Electronic': ['CC', 'QMC', 'DFT', 'MBPT', 'TB'], 'Atomistic': ['PIM', 'PS'],
-        'Mesoscopic': ['DDD', 'KMC', 'PIM', 'PS'], 'Continuum': ['PF'], 'Data-driven': ['ML']}
+        'Mesoscopic': ['DDD', 'KMC', 'PIM', 'PS'], 'Continuum': ['PF'], 'Data-driven': ['ML'],
+        'Post-processing': ['DP']}
     assert m['values']['note'] == METHOD_DEFINITIONS
     assert sub(computation, 'method-class')['notes'][-1] == (
         'Note: For a PS computation, give the entity of its particles: Atomistic for atoms, Mesoscopic for '
@@ -236,7 +240,7 @@ def test_a_property_holding_a_label_is_named_for_it():
     assert found == {('minimal', 'structure-label'), ('minimal', 'computation-label'),
                      ('dft', 'computation-label'), ('pim', 'computation-label'), ('ps', 'computation-label'),
                      ('mbpt', 'computation-label'), ('ml', 'computation-label'),
-                     ('pf', 'computation-label')}
+                     ('pf', 'computation-label'), ('derived', 'computation-label')}
 
 
 def test_example_labels_are_unique_and_every_reference_resolves():
@@ -258,7 +262,7 @@ def test_example_labels_are_unique_and_every_reference_resolves():
 TITLES = {'minimal': '2.1 Minimal MatCore Metadata', 'dft': '2.2 Density Functional Theory (DFT) Metadata',
           'pim': '2.3 Particle Interaction Model (PIM) Metadata', 'ps': '2.4 Particle Simulation (PS) Metadata',
           'mbpt': '2.5 Many-Body Perturbation Theory (MBPT) Metadata', 'ml': '2.6 Machine Learning (ML) Metadata',
-          'pf': '2.7 Phase Field (PF) Metadata', 'derived': '2.8 Derived Property Metadata'}
+          'pf': '2.7 Phase Field (PF) Metadata', 'derived': '2.8 Derived Property (DP) Metadata'}
 PAGES = {'minimal': '02-minimal.md', 'dft': '03-dft.md', 'pim': 'pim.md', 'ps': 'ps.md', 'mbpt': '05-mbpt.md',
          'ml': '06-ml.md', 'pf': '07-pf.md', 'derived': '08-derived.md'}
 
@@ -1236,3 +1240,43 @@ def test_pf_variables_give_each_field_its_own_entry_and_pf_is_complete():
     block = json.loads((ROOT / 'examples/pf.json').read_text(encoding='utf-8'))['pf']['settings'][0]
     params = block['variables']['model-parameter']
     assert [(p['value'], p['type']) for p in params] == [(0.04714045, 'float'), (5.05, 'float')]
+
+
+def test_post_processing_is_a_method_class_whose_method_names_the_derived_section():
+    """A computation that only processes other computations' results solves no physical model, yet `method` is
+    required; MODA's post-processing (CWA 17284:2018 §3.12) is its class, and DP names the section that describes
+    it (0076 item 3)."""
+    mc = sub(top('minimal', 'computation'), 'method-class')
+    assert mc['values']['terms'][-1] == 'Post-processing'
+    note = ' '.join(mc['notes'][0].split())
+    assert 'CWA 17284:2018 §3.12' in note and 'do not alter the physical system' in note
+
+
+def test_derived_properties_sit_in_settings_naming_the_computation_that_obtains_them():
+    """A derived property names the computation that obtained it, of any method, and a property built from several
+    computations names them as inputs rather than being limited to one method; steps that are computations are not
+    chained inside the property (0076 items 1, 2, 4)."""
+    props = section('derived')['properties']
+    assert [p['name'] for p in props] == ['settings']
+    s = props[0]
+    assert (s['required'], s['repeatable'], s['type']) == (True, True, None)
+    assert [c['name'] for c in s['subproperties']] == ['computation-label', 'derived-property']
+    assert shape(sub(s, 'computation-label')) == (True, True, 'string', [], 'inapplicable', None)
+    prop = sub(s, 'derived-property')
+    assert (prop['required'], prop['repeatable']) == (True, True)
+    assert [c['name'] for c in prop['subproperties']] == ['type', 'description', 'procedure', 'calculation-parameter']
+    intro = ' '.join(section('derived')['introduction'].split())
+    assert 'single method' not in intro and 'MBPT' not in intro
+    assert 'Source data' in intro and 'Interaction model' in intro and 'DP' in intro
+    assert 'The properties are given in settings blocks, each naming the computations it describes.' in intro
+    # the record explains the dataset, not its workflow: steps are grouped, and how a property was obtained, with its
+    # parameters, sits in the derived entry as a method's settings sit in its section (review 2026-11-22)
+    assert 'one for each step' not in intro
+    assert 'one DP computation' in intro and 'finite-difference' in intro and '`calculation-parameter`' in intro
+    # the introduction lists the property families of `type` as 0076 item 5 states them
+    assert 'Linear-response' not in intro
+    assert all(f'- {family} (' in section('derived')['introduction'] for family in ('Vibrational', 'Mechanical',
+                                                                                   'Thermodynamic'))
+    block = json.loads((ROOT / 'examples/derived.json').read_text(encoding='utf-8'))['derived']['settings'][0]
+    assert block['computation-label'] == ['raman']
+    assert list(block['derived-property'][0]) == ['type', 'description', 'procedure']

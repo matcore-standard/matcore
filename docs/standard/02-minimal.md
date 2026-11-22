@@ -641,9 +641,9 @@ The general category to which the computational technique belongs.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Electronic`, `Atomistic`, `Mesoscopic`, `Continuum`, `Data-driven`. Other values are allowed.
+Recommended: `Electronic`, `Atomistic`, `Mesoscopic`, `Continuum`, `Data-driven`, `Post-processing`. Other values are allowed.
 
-Note: The categories listed above are based on the [MODA standard](https://data.europa.eu/doi/10.2777/404734).
+Note: The categories other than Post-processing are based on the [MODA standard](https://data.europa.eu/doi/10.2777/404734). Post-processing follows the definition in CWA 17284:2018 §3.12: operations on the results of other computations that do not alter the physical system's state.
 
 Note: For a PS computation, give the entity of its particles: Atomistic for atoms, Mesoscopic for coarse-grained particles such as beads.
 
@@ -665,8 +665,9 @@ Depends on `method-class`.
 - For `Mesoscopic`: Recommended: `DDD`, `KMC`, `PIM`, `PS`. Other values are allowed.
 - For `Continuum`: Recommended: `PF`. Other values are allowed.
 - For `Data-driven`: Recommended: `ML`. Other values are allowed.
+- For `Post-processing`: Recommended: `DP`. Other values are allowed.
 
-**Clarifications:** "CC" – Coupled Cluster: wavefunction methods that build electron correlation from excitations of a reference state; "QMC" – Quantum Monte Carlo: stochastic solutions of the many-electron Schrödinger equation; "DFT" – Density Functional Theory: electronic structure obtained from the electron density; "MBPT" – Many-Body Perturbation Theory: excited states obtained from many-body Green's functions; "TB" – Tight Binding: electronic structure in a basis of localized orbitals with parameterized matrix elements; "PIM" – Particle Interaction Model: energies and forces given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density; "PS" – Particle Simulation: particles moved or sampled using the energies and forces of another computation; "DDD" – Discrete Dislocation Dynamics: plastic deformation from the motion and interaction of dislocation lines; "KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events chosen by their rates; "PF" – Phase Field: microstructure evolution described by continuous fields with diffuse interfaces; "ML" – Machine Learning: models trained on data to predict materials properties or behavior.
+**Clarifications:** "CC" – Coupled Cluster: wavefunction methods that build electron correlation from excitations of a reference state; "QMC" – Quantum Monte Carlo: stochastic solutions of the many-electron Schrödinger equation; "DFT" – Density Functional Theory: electronic structure obtained from the electron density; "MBPT" – Many-Body Perturbation Theory: excited states obtained from many-body Green's functions; "TB" – Tight Binding: electronic structure in a basis of localized orbitals with parameterized matrix elements; "PIM" – Particle Interaction Model: energies and forces given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density; "PS" – Particle Simulation: particles moved or sampled using the energies and forces of another computation; "DDD" – Discrete Dislocation Dynamics: plastic deformation from the motion and interaction of dislocation lines; "KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events chosen by their rates; "PF" – Phase Field: microstructure evolution described by continuous fields with diffuse interfaces; "ML" – Machine Learning: models trained on data to predict materials properties or behavior; "DP" – Derived Property: a property obtained from the results of other computations by a procedure with no physical model of its own, e.g. force constants from finite-difference forces, an X-ray diffraction pattern from a structure, or a vibrational density of states from a trajectory.
 
 Note: Give the method of the calculations in this computation. When they use energies and forces from another method, describe that method as a computation of its own and name it in `input` with the role Interaction model.
 

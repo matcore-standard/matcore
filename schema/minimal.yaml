@@ -645,12 +645,14 @@ properties:
     kind: inapplicable
     recommended-unit: null
     values:
-      terms: [Electronic, Atomistic, Mesoscopic, Continuum, Data-driven]
+      terms: [Electronic, Atomistic, Mesoscopic, Continuum, Data-driven, Post-processing]
     repeatable: false
     notes:
     - >-
-      Note: The categories listed above are based on the [MODA
-      standard](https://data.europa.eu/doi/10.2777/404734).
+      Note: The categories other than Post-processing are based on the [MODA
+      standard](https://data.europa.eu/doi/10.2777/404734). Post-processing follows the definition in CWA
+      17284:2018 §3.12: operations on the results of other computations that do not alter the physical
+      system's state.
     - >-
       Note: For a PS computation, give the entity of its particles: Atomistic for atoms, Mesoscopic for
       coarse-grained particles such as beads.
@@ -670,6 +672,7 @@ properties:
         Mesoscopic: {terms: [DDD, KMC, PIM, PS]}
         Continuum: {terms: [PF]}
         Data-driven: {terms: [ML]}
+        Post-processing: {terms: [DP]}
       note: >-
         "CC" – Coupled Cluster: wavefunction methods that build electron correlation from excitations of a
         reference state; "QMC" – Quantum Monte Carlo: stochastic solutions of the many-electron Schrödinger
@@ -683,7 +686,10 @@ properties:
         lines; "KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events
         chosen by their rates; "PF" – Phase Field: microstructure evolution described by continuous fields
         with diffuse interfaces; "ML" – Machine Learning: models trained on data to predict materials
-        properties or behavior.
+        properties or behavior; "DP" – Derived Property: a property obtained from the results of other
+        computations by a procedure with no physical model of its own, e.g. force constants from
+        finite-difference forces, an X-ray diffraction pattern from a structure, or a vibrational density of
+        states from a trajectory.
     repeatable: false
     notes:
     - >-

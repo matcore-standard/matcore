@@ -28,7 +28,7 @@ The MatCore standard is focused on CMS methods aimed at computing material prope
 
 - PF: Phase field
 
-- DER: Derived properties from CMS calculations
+- DP: Derived properties from CMS calculations
 
 All methods share a common minimal set of metadata defined by the MatCore standard. In addition, each method has its own MatCore extension, e.g. MatCore-DFT, MatCore-PS, etc., that inherits from the minimal MatCore metadata and adds additional method-specific metadata. 
 
