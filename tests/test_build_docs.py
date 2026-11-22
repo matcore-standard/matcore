@@ -263,7 +263,7 @@ def test_main_writes_every_page_and_honours_the_flag(tmp_path):
     legacy text is tested on a synthetic section in test_legacy_text_only_with_show_legacy."""
     build_docs.main(['--out', str(tmp_path)])
     names = sorted(p.name for p in tmp_path.iterdir())
-    assert names == sorted(list(build_docs.PAGES.values()) + ['annex-i-identifiers.md', 'annex-u-units.md', 'index.md', 'revision-history.md'])
+    assert names == sorted(list(build_docs.PAGES.values()) + ['annex-i-identifiers.md', 'annex-u-units.md', 'index.md', 'matcore.schema.json', 'revision-history.md'])
     build_docs.main(['--out', str(tmp_path), '--show-legacy'])
     assert not [n for n in build_docs.PAGES.values() if 'Legacy:' in (tmp_path / n).read_text()]
 

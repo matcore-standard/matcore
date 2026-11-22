@@ -16,7 +16,7 @@ from pathlib import Path
 
 import yaml
 
-from check_examples import SECTIONS
+from build_json_schema import SECTIONS
 
 ROOT = Path(__file__).resolve().parents[1]
 # The 118 symbols of the IUPAC Periodic Table, atomic numbers 1 to 118, as listed in the Standard Atomic

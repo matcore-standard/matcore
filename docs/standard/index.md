@@ -76,5 +76,7 @@ Examples are provided after each Standard specification in JSON, the first seria
 
 A *serialization* is a file format (for example XML or JSON) together with the rules that map the MatCore data model onto it.
 
+For JSON, a [JSON Schema](https://json-schema.org/) generated from this version of the standard, [matcore.schema.json](matcore.schema.json), describes a valid MatCore record. Any JSON Schema validator can check a record against it: its structure, the Type and Extent of each value, and that each unit fits its Kind. It does not check what lies beyond a JSON Schema, such as the spelling of a chemical formula or whether a label refers to a computation in the record.
+
 MatCore adopts [Semantic Versioning](https://semver.org/) (SemVer) three-part versioning system (major, minor, patch) to indicate Standard changes.
 
