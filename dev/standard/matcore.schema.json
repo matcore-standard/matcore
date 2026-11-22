@@ -32,6 +32,9 @@
  "required": [
   "minimal"
  ],
+ "patternProperties": {
+  "^x-": {}
+ },
  "additionalProperties": false,
  "$defs": {
   "minimal": {
@@ -67,6 +70,9 @@
           "value",
           "scheme"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -98,12 +104,18 @@
             "value",
             "scheme"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           }
          },
          "required": [
           "name"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -112,6 +124,9 @@
       "required": [
        "name"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -145,6 +160,9 @@
           "value",
           "scheme"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -176,12 +194,18 @@
             "value",
             "scheme"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           }
          },
          "required": [
           "name"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -190,6 +214,9 @@
       "required": [
        "name"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -262,6 +289,9 @@
              "value",
              "qualifier"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -295,6 +325,9 @@
                 "value",
                 "scheme"
                ],
+               "patternProperties": {
+                "^x-": {}
+               },
                "additionalProperties": false
               },
               "minItems": 1
@@ -304,6 +337,9 @@
              "substance",
              "identifier"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -336,6 +372,9 @@
             "required": [
              "value"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -365,6 +404,9 @@
           "formula",
           "form"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -374,6 +416,9 @@
        "label",
        "material-component"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -432,6 +477,9 @@
           "computation-label",
           "role"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -464,6 +512,9 @@
           "required": [
            "thermodynamic-state"
           ],
+          "patternProperties": {
+           "^x-": {}
+          },
           "additionalProperties": false
          },
          "description": {
@@ -488,6 +539,9 @@
            "required": [
             "value"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -518,6 +572,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -550,6 +607,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -580,6 +640,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -623,6 +686,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -666,6 +732,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -704,6 +773,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -742,6 +814,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -769,6 +844,9 @@
            "required": [
             "value"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -804,6 +882,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -838,6 +919,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -873,6 +957,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -908,6 +995,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -942,6 +1032,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -976,6 +1069,9 @@
             "value",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -1010,6 +1106,9 @@
             "unit",
             "reference"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -1052,6 +1151,9 @@
             "unit",
             "species"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -1060,6 +1162,9 @@
         "required": [
          "type"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "software": {
@@ -1112,6 +1217,9 @@
              "value",
              "scheme"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -1138,6 +1246,9 @@
             "required": [
              "name"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -1193,6 +1304,9 @@
                 "algorithm",
                 "value"
                ],
+               "patternProperties": {
+                "^x-": {}
+               },
                "additionalProperties": false
               },
               "minItems": 1
@@ -1203,6 +1317,9 @@
              "description",
              "checksum"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -1211,6 +1328,9 @@
          "required": [
           "name"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -1223,6 +1343,9 @@
        "task",
        "software"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -1251,6 +1374,9 @@
       "required": [
        "reference"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -1279,6 +1405,9 @@
       "required": [
        "link"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -1318,12 +1447,18 @@
            "value",
            "scheme"
           ],
+          "patternProperties": {
+           "^x-": {}
+          },
           "additionalProperties": false
          }
         },
         "required": [
          "name"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "award-number": {
@@ -1334,6 +1469,9 @@
       "required": [
        "funder"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -1357,6 +1495,9 @@
       "required": [
        "link"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -1405,6 +1546,9 @@
              "value",
              "scheme"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -1436,12 +1580,18 @@
                "value",
                "scheme"
               ],
+              "patternProperties": {
+               "^x-": {}
+              },
               "additionalProperties": false
              }
             },
             "required": [
              "name"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -1450,6 +1600,9 @@
          "required": [
           "name"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -1488,6 +1641,9 @@
              "algorithm",
              "value"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -1497,6 +1653,9 @@
           "name",
           "checksum"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -1507,6 +1666,9 @@
        "date",
        "agent"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -1563,6 +1725,9 @@
             "value",
             "scheme"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -1594,12 +1759,18 @@
               "value",
               "scheme"
              ],
+             "patternProperties": {
+              "^x-": {}
+             },
              "additionalProperties": false
             }
            },
            "required": [
             "name"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -1608,6 +1779,9 @@
         "required": [
          "name"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "minItems": 1
@@ -1625,6 +1799,9 @@
       "record-author",
       "creation-date"
      ],
+     "patternProperties": {
+      "^x-": {}
+     },
      "additionalProperties": false
     },
     "license": {
@@ -1654,6 +1831,9 @@
       "required": [
        "identifier"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -1669,6 +1849,9 @@
     "matcore",
     "license"
    ],
+   "patternProperties": {
+    "^x-": {}
+   },
    "additionalProperties": false
   },
   "dft": {
@@ -1727,6 +1910,9 @@
             "components",
             "source"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "xc-parameter": {
@@ -1838,6 +2024,9 @@
              "unit",
              "type"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false,
             "allOf": [
              {
@@ -1912,6 +2101,9 @@
          "required": [
           "type"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -1992,6 +2184,9 @@
                  "algorithm",
                  "value"
                 ],
+                "patternProperties": {
+                 "^x-": {}
+                },
                 "additionalProperties": false
                },
                "minItems": 1
@@ -2001,6 +2196,9 @@
               "name",
               "checksum"
              ],
+             "patternProperties": {
+              "^x-": {}
+             },
              "additionalProperties": false
             },
             "unique-identifier": {
@@ -2014,6 +2212,9 @@
             "type",
             "number-of-valence-electrons"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -2022,6 +2223,9 @@
         "required": [
          "type"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "wavefunction-representation": {
@@ -2095,6 +2299,9 @@
                  "algorithm",
                  "value"
                 ],
+                "patternProperties": {
+                 "^x-": {}
+                },
                 "additionalProperties": false
                },
                "minItems": 1
@@ -2104,6 +2311,9 @@
               "name",
               "checksum"
              ],
+             "patternProperties": {
+              "^x-": {}
+             },
              "additionalProperties": false
             },
             "unique-identifier": {
@@ -2114,6 +2324,9 @@
            "required": [
             "type"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -2142,6 +2355,9 @@
            "value",
            "unit"
           ],
+          "patternProperties": {
+           "^x-": {}
+          },
           "additionalProperties": false
          },
          "lapw-basis-cutoff": {
@@ -2173,12 +2389,18 @@
            "value",
            "unit"
           ],
+          "patternProperties": {
+           "^x-": {}
+          },
           "additionalProperties": false
          }
         },
         "required": [
          "type"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "calculation-physics": {
@@ -2216,6 +2438,9 @@
           "value",
           "unit"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -2255,6 +2480,9 @@
         "required": [
          "type"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "smearing": {
@@ -2289,6 +2517,9 @@
            "value",
            "unit"
           ],
+          "patternProperties": {
+           "^x-": {}
+          },
           "additionalProperties": false
          },
          "parameter": {
@@ -2400,6 +2631,9 @@
             "unit",
             "type"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false,
            "allOf": [
             {
@@ -2472,6 +2706,9 @@
          }
         },
         "required": [],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "self-consistent-field-convergence": {
@@ -2580,12 +2817,18 @@
            "value",
            "unit"
           ],
+          "patternProperties": {
+           "^x-": {}
+          },
           "additionalProperties": false
          }
         },
         "required": [
          "tolerance"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "relaxation-tolerance-energy": {
@@ -2612,6 +2855,9 @@
          "value",
          "unit"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "relaxation-tolerance-forces": {
@@ -2636,6 +2882,9 @@
          "value",
          "unit"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "relaxation-tolerance-stress": {
@@ -2662,6 +2911,9 @@
          "value",
          "unit"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "comment": {
@@ -2679,6 +2931,9 @@
        "core-electron-treatment",
        "wavefunction-representation"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -2687,6 +2942,9 @@
    "required": [
     "settings"
    ],
+   "patternProperties": {
+    "^x-": {}
+   },
    "additionalProperties": false
   },
   "pim": {
@@ -2763,6 +3021,9 @@
           "charge-style",
           "charge-variability"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -2785,6 +3046,9 @@
          "required": [
           "spin-style"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -2797,6 +3061,9 @@
        "particle-style",
        "bonding-type"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -2805,6 +3072,9 @@
    "required": [
     "settings"
    ],
+   "patternProperties": {
+    "^x-": {}
+   },
    "additionalProperties": false
   },
   "ps": {
@@ -2946,6 +3216,9 @@
           "unit",
           "type"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false,
          "allOf": [
           {
@@ -3155,6 +3428,9 @@
              "unit",
              "type"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false,
             "allOf": [
              {
@@ -3230,6 +3506,9 @@
           "system",
           "type"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -3239,6 +3518,9 @@
        "computation-label",
        "algorithm"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -3247,6 +3529,9 @@
    "required": [
     "settings"
    ],
+   "patternProperties": {
+    "^x-": {}
+   },
    "additionalProperties": false
   },
   "mbpt": {
@@ -3287,6 +3572,9 @@
         "required": [
          "type"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "dielectric-matrix": {
@@ -3317,6 +3605,9 @@
            "value",
            "unit"
           ],
+          "patternProperties": {
+           "^x-": {}
+          },
           "additionalProperties": false
          },
          "localized-orbital-basis-set": {
@@ -3354,6 +3645,9 @@
         "required": [
          "q-points"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "self-energy": {
@@ -3381,6 +3675,9 @@
          }
         },
         "required": [],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "bse-hamiltonian": {
@@ -3431,6 +3728,9 @@
          }
         },
         "required": [],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "bse-kernel-truncation": {
@@ -3443,6 +3743,9 @@
        "mbpt-method",
        "dielectric-matrix"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -3451,6 +3754,9 @@
    "required": [
     "settings"
    ],
+   "patternProperties": {
+    "^x-": {}
+   },
    "additionalProperties": false
   },
   "ml": {
@@ -3491,6 +3797,9 @@
         "required": [
          "type"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "ml-model": {
@@ -3630,6 +3939,9 @@
             "unit",
             "type"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false,
            "allOf": [
             {
@@ -3753,6 +4065,9 @@
             "name",
             "contents"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -3878,6 +4193,9 @@
               "unit",
               "type"
              ],
+             "patternProperties": {
+              "^x-": {}
+             },
              "additionalProperties": false,
              "allOf": [
               {
@@ -3956,6 +4274,9 @@
           "required": [
            "training-procedure"
           ],
+          "patternProperties": {
+           "^x-": {}
+          },
           "additionalProperties": false
          },
          "model-performance": {
@@ -4071,6 +4392,9 @@
               "value",
               "unit"
              ],
+             "patternProperties": {
+              "^x-": {}
+             },
              "additionalProperties": false
             },
             "minItems": 1
@@ -4087,6 +4411,9 @@
           "required": [
            "evaluation-method"
           ],
+          "patternProperties": {
+           "^x-": {}
+          },
           "additionalProperties": false
          },
          "interpretability-method": {
@@ -4098,6 +4425,9 @@
          "algorithm",
          "target-variable"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "inference": {
@@ -4225,6 +4555,9 @@
             "unit",
             "type"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false,
            "allOf": [
             {
@@ -4306,6 +4639,9 @@
          }
         },
         "required": [],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        }
       },
@@ -4314,6 +4650,9 @@
        "ml-task",
        "ml-model"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -4322,6 +4661,9 @@
    "required": [
     "settings"
    ],
+   "patternProperties": {
+    "^x-": {}
+   },
    "additionalProperties": false
   },
   "pf": {
@@ -4385,6 +4727,9 @@
             "type",
             "evolved-variable"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -4491,6 +4836,9 @@
             "name",
             "description"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -4500,6 +4848,9 @@
          "governing-equation",
          "free-energy-density"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "domain": {
@@ -4542,6 +4893,9 @@
            "value",
            "unit"
           ],
+          "patternProperties": {
+           "^x-": {}
+          },
           "additionalProperties": false
          },
          "boundary-conditions": {
@@ -4566,6 +4920,9 @@
            "required": [
             "type"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
@@ -4582,6 +4939,9 @@
         "required": [
          "dimensionality"
         ],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        },
        "numerical-method": {
@@ -4711,6 +5071,9 @@
              "unit",
              "type"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false,
             "allOf": [
              {
@@ -4837,6 +5200,9 @@
                 "algorithm",
                 "value"
                ],
+               "patternProperties": {
+                "^x-": {}
+               },
                "additionalProperties": false
               },
               "minItems": 1
@@ -4847,6 +5213,9 @@
              "description",
              "checksum"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -4896,6 +5265,9 @@
              "value",
              "unit"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -4935,6 +5307,9 @@
              "value",
              "unit"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false
            },
            "minItems": 1
@@ -4951,6 +5326,9 @@
          "required": [
           "spatial-discretization"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -5068,6 +5446,9 @@
             "unit",
             "type"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false,
            "allOf": [
             {
@@ -5233,12 +5614,18 @@
             "type",
             "unit"
            ],
+           "patternProperties": {
+            "^x-": {}
+           },
            "additionalProperties": false
           },
           "minItems": 1
          }
         },
         "required": [],
+        "patternProperties": {
+         "^x-": {}
+        },
         "additionalProperties": false
        }
       },
@@ -5248,6 +5635,9 @@
        "problem-specification",
        "numerical-method"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -5256,6 +5646,9 @@
    "required": [
     "settings"
    ],
+   "patternProperties": {
+    "^x-": {}
+   },
    "additionalProperties": false
   },
   "derived": {
@@ -5407,6 +5800,9 @@
              "unit",
              "type"
             ],
+            "patternProperties": {
+             "^x-": {}
+            },
             "additionalProperties": false,
             "allOf": [
              {
@@ -5484,6 +5880,9 @@
           "description",
           "procedure"
          ],
+         "patternProperties": {
+          "^x-": {}
+         },
          "additionalProperties": false
         },
         "minItems": 1
@@ -5493,6 +5892,9 @@
        "computation-label",
        "derived-property"
       ],
+      "patternProperties": {
+       "^x-": {}
+      },
       "additionalProperties": false
      },
      "minItems": 1
@@ -5501,6 +5903,9 @@
    "required": [
     "settings"
    ],
+   "patternProperties": {
+    "^x-": {}
+   },
    "additionalProperties": false
   },
   "any-depth-string": {
