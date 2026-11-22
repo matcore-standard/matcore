@@ -2,16 +2,9 @@
 
 <p class="mc-version" data-version="0.6.0">Version 0.6.0</p>
 
-The metadata for derived properties (MatCore-DP) is tabulated below. A derived property is a property obtained from the results of other computations described in this standard, e.g. a Raman spectrum computed from phonon modes and electronic susceptibilities obtained by DFT. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
+The metadata for derived properties (MatCore-DP) is tabulated below. A derived property is a property obtained from the results of other computations, e.g. a Raman spectrum computed from phonon modes and dielectric tensors obtained by DFT. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 
-Each derived property is obtained by a computation recorded in minimal `computation`. The properties are given in settings blocks, each naming the computations it describes. Such a computation is one of two kinds:
-
-- A computation that only processes the results of other computations and has no physical model of its own, e.g. one that obtains phonon modes from forces computed by DFT. In minimal `computation`, its `method` is DP and its `method-class` is Post-processing.
-- A computation of another method that also obtains a property, e.g. a DFT computation that obtains phonon modes by density functional perturbation theory. It keeps its own `method` (here DFT) and has a settings block in that method's section beside its block here.
-
-A computation names the other computations whose results it uses in minimal `computation › input`, giving each one a role. The role is Source data when the computation processes results already computed, e.g. the forces from which phonon modes are obtained. It is Interaction model when the computation requests energies and forces as it proceeds, e.g. from an interatomic potential whose second derivatives give elastic constants.
-
-The record explains the dataset; it does not retrace the workflow that produced it. A computation is recorded separately only when its method differs or its results are in the dataset. Post-processing steps that serve one purpose, e.g. obtaining phonon modes and then a Raman spectrum from them, form one DP computation, whose settings block here gives one `derived-property` entry for each property. How a property was obtained is given in that entry, in `procedure` and `calculation-parameter`, as a method's settings are given in its section. This includes the parameters of the calculations the procedure requests from other computations, e.g. the finite-difference displacement of the atoms, rather than the descriptions of those computations.
+The properties are given in settings blocks, each naming the computations it describes. Usually the derived properties of a dataset come from one computation in minimal `computation` whose `method` is DP (method-class Post-processing). It names the computations whose results it uses in `input`, with the role Source data, e.g. the DFT computation that gave the forces and dielectric tensors, or Interaction model for energies and forces it requests as it proceeds. Its block here gives one `derived-property` entry for each property, with the procedure that obtained it and its parameters in `procedure` and `calculation-parameter`, e.g. the finite-difference displacement of the atoms. A property obtained within a computation of another method, e.g. phonons computed by density functional perturbation theory in a DFT computation, is given in a block naming that computation.
 
 Examples of derived properties include:
 
