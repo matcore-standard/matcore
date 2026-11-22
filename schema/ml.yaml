@@ -49,15 +49,13 @@ properties:
       recommended-unit: null
       values:
         terms: [Property prediction, Structure generation, Synthesis prediction, Ranking, Clustering, Embedding]
-        note: >-
-          "Property prediction" – Values of a property predicted for given materials or structures, e.g.
-          formation energies or band gaps. "Structure generation" – New structures produced by the model,
-          freely or for a given composition, space group or target property, including crystal structure
-          prediction for a given composition. "Synthesis prediction" – Routes, precursors or conditions
-          predicted for making a given material. "Ranking" – Given materials or structures ordered by a
-          predicted score, e.g. to select candidates for further calculation. "Clustering" – Given materials
-          or structures grouped by similarity. "Embedding" – A numerical representation computed for each
-          given material or structure, for use by other models or analyses.
+        note: |-
+          - "Property prediction" – Values of a property predicted for given materials or structures, e.g. formation energies or band gaps
+          - "Structure generation" – New structures produced by the model, freely or for a given composition, space group or target property, including crystal structure prediction for a given composition
+          - "Synthesis prediction" – Routes, precursors or conditions predicted for making a given material
+          - "Ranking" – Given materials or structures ordered by a predicted score, e.g. to select candidates for further calculation
+          - "Clustering" – Given materials or structures grouped by similarity
+          - "Embedding" – A numerical representation computed for each given material or structure, for use by other models or analyses
       repeatable: true
       notes:
       - >-
@@ -461,9 +459,10 @@ properties:
           recommended-unit: null
           values:
             terms: [Training, Validation, Test]
-            note: >-
-              "Training" – The data the model's parameters were fitted to. "Validation" – Data used to tune
-              hyperparameters or to stop training. "Test" – Data used in neither, which assesses the model.
+            note: |-
+              - "Training" – The data the model's parameters were fitted to
+              - "Validation" – Data used to tune hyperparameters or to stop training
+              - "Test" – Data used in neither, which assesses the model
           repeatable: false
         - name: quantity
           required: true
@@ -484,9 +483,11 @@ properties:
           recommended-unit: null
           values:
             terms: [MAE, RMSE, R², Accuracy]
-            note: >-
-              "MAE" – Mean absolute error. "RMSE" – Root-mean-square error. "R²" – Coefficient of
-              determination. "Accuracy" – Fraction of correct predictions, for a classification.
+            note: |-
+              - "MAE" – Mean absolute error
+              - "RMSE" – Root-mean-square error
+              - "R²" – Coefficient of determination
+              - "Accuracy" – Fraction of correct predictions, for a classification
           repeatable: false
         - name: value
           required: true

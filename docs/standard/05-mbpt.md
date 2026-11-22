@@ -46,7 +46,11 @@ The nature of the MBPT calculation performed.
 
 Recommended: `GW`, `BSE`, `GW/BSE`. Other values are allowed.
 
-**Clarifications:** "GW" – A GW calculation of quasiparticle energies. "BSE" – A BSE calculation of neutral excitations from given quasiparticle energies, e.g. DFT energies with a scissor shift, the computation they come from named in minimal `computation › input` with the role Starting point. "GW/BSE" – A GW calculation followed by a BSE calculation using its results, described as one computation.
+**Clarifications:**
+
+- "GW" – A GW calculation of quasiparticle energies
+- "BSE" – A BSE calculation of neutral excitations from given quasiparticle energies, e.g. DFT energies with a scissor shift, the computation they come from named in minimal `computation › input` with the role Starting point
+- "GW/BSE" – A GW calculation followed by a BSE calculation using its results, described as one computation
 
 </details>
 
@@ -61,7 +65,14 @@ Specifies the level of iterative updating applied to the Green's function (*G*) 
 
 Recommended: `G0W0`, `GW0`, `G0W`, `evGW`, `scGW`, `QSGW`. Other values are allowed.
 
-**Clarifications:** "G0W0" – One-shot calculation; *G*₀ and *W*₀ are constructed using the starting eigenvalues and wavefunctions. "GW0" – Only the Green's function *G* is updated iteratively, while *W* remains fixed at *W*₀. "G0W" – Only the screened interaction *W* is updated iteratively, while *G* remains fixed at *G*₀. "evGW" – Eigenvalue-only self-consistent GW; the quasiparticle energies are updated iteratively in both *G* and *W*, while the wavefunctions are kept from the starting point. "scGW" – Fully self-consistent GW; both *G* and *W* are updated iteratively until the quasiparticle energies and wavefunctions converge. "QSGW" – Quasiparticle self-consistent GW; the starting potential is updated to provide the optimal independent particle basis for the GW expansion.
+**Clarifications:**
+
+- "G0W0" – One-shot calculation; *G*₀ and *W*₀ are constructed using the starting eigenvalues and wavefunctions
+- "GW0" – Only the Green's function *G* is updated iteratively, while *W* remains fixed at *W*₀
+- "G0W" – Only the screened interaction *W* is updated iteratively, while *G* remains fixed at *G*₀
+- "evGW" – Eigenvalue-only self-consistent GW; the quasiparticle energies are updated iteratively in both *G* and *W*, while the wavefunctions are kept from the starting point
+- "scGW" – Fully self-consistent GW; both *G* and *W* are updated iteratively until the quasiparticle energies and wavefunctions converge
+- "QSGW" – Quasiparticle self-consistent GW; the starting potential is updated to provide the optimal independent particle basis for the GW expansion
 
 Note: Give it when `type` is GW or GW/BSE.
 
@@ -78,7 +89,10 @@ Specifies the level of iterative updating applied to the excitonic Hamiltonian i
 
 Recommended: `BSE0`, `scBSE`. Other values are allowed.
 
-**Clarifications:** "BSE0" – One-shot BSE (BSE₀); the excitonic Hamiltonian is built once using fixed quasiparticle energies and screening (*W*). "scBSE" – Self-consistent BSE; internal refinement of the kernel or energies within the BSE process.
+**Clarifications:**
+
+- "BSE0" – One-shot BSE (BSE₀); the excitonic Hamiltonian is built once using fixed quasiparticle energies and screening (*W*)
+- "scBSE" – Self-consistent BSE; internal refinement of the kernel or energies within the BSE process
 
 Note: Give it when `type` is BSE or GW/BSE.
 
@@ -158,7 +172,14 @@ The method used to handle the frequency dependence of the Green's function, the 
 
 Recommended: `Hybertsen-Louie`, `Godby-Needs`, `Full frequency real axis`, `Full frequency imaginary axis`, `Contour deformation`, `Spacetime`. Other values are allowed.
 
-**Clarifications:** "Hybertsen-Louie" – Generalized plasmon-pole model fitted to the static dielectric matrix and the f-sum rule. "Godby-Needs" – Plasmon-pole model fitted to the dielectric matrix at zero frequency and at one imaginary frequency. "Full frequency real axis" – The dielectric matrix is computed on a grid of real frequencies and the frequency integral evaluated on the real axis. "Full frequency imaginary axis" – The dielectric matrix is computed on the imaginary axis and the self-energy continued analytically to real frequencies. "Contour deformation" – The frequency integral is evaluated along the imaginary axis plus the residues of the poles it encloses. "Spacetime" – The Green's function and the screened interaction are computed in real space and imaginary time.
+**Clarifications:**
+
+- "Hybertsen-Louie" – Generalized plasmon-pole model fitted to the static dielectric matrix and the f-sum rule
+- "Godby-Needs" – Plasmon-pole model fitted to the dielectric matrix at zero frequency and at one imaginary frequency
+- "Full frequency real axis" – The dielectric matrix is computed on a grid of real frequencies and the frequency integral evaluated on the real axis
+- "Full frequency imaginary axis" – The dielectric matrix is computed on the imaginary axis and the self-energy continued analytically to real frequencies
+- "Contour deformation" – The frequency integral is evaluated along the imaginary axis plus the residues of the poles it encloses
+- "Spacetime" – The Green's function and the screened interaction are computed in real space and imaginary time
 
 </details>
 
@@ -186,7 +207,10 @@ The method used to approximate the contribution of the bands left out of the sum
 
 Recommended: `None`, `Bruneval-Gonze`. Other values are allowed.
 
-**Clarifications:** "None" – No correction; the sum stops at its last band. "Bruneval-Gonze" – The bands left out are replaced by one effective energy (the extrapolar approximation).
+**Clarifications:**
+
+- "None" – No correction; the sum stops at its last band
+- "Bruneval-Gonze" – The bands left out are replaced by one effective energy (the extrapolar approximation)
 
 </details>
 
@@ -216,7 +240,11 @@ Method used to eliminate long-range Coulomb interactions between periodic replic
 
 Recommended: `Ismail-Beigi`, `Rozzi`, `Spencer-Alavi`. Other values are allowed.
 
-**Clarifications:** "Ismail-Beigi" – Truncation for systems periodic in one or two dimensions (wires, slabs). "Rozzi" – Exact cutoff for systems periodic in zero, one or two dimensions (molecules, wires, slabs). "Spencer-Alavi" – Truncation of the Coulomb interaction beyond a sphere.
+**Clarifications:**
+
+- "Ismail-Beigi" – Truncation for systems periodic in one or two dimensions (wires, slabs)
+- "Rozzi" – Exact cutoff for systems periodic in zero, one or two dimensions (molecules, wires, slabs)
+- "Spencer-Alavi" – Truncation of the Coulomb interaction beyond a sphere
 
 </details>
 
@@ -270,7 +298,10 @@ The method used to approximate the contribution of the bands left out of the sum
 
 Recommended: `None`, `Bruneval-Gonze`. Other values are allowed.
 
-**Clarifications:** "None" – No correction; the sum stops at its last band. "Bruneval-Gonze" – The bands left out are replaced by one effective energy (the extrapolar approximation).
+**Clarifications:**
+
+- "None" – No correction; the sum stops at its last band
+- "Bruneval-Gonze" – The bands left out are replaced by one effective energy (the extrapolar approximation)
 
 </details>
 
@@ -358,7 +389,10 @@ Specification whether the BSE calculation is performed for singlet or triplet ex
 
 Recommended: `Singlet`, `Triplet`. Other values are allowed.
 
-**Clarifications:** "Singlet" – Spin-singlet excitons; the kernel includes the exchange term. "Triplet" – Spin-triplet excitons; the exchange term vanishes.
+**Clarifications:**
+
+- "Singlet" – Spin-singlet excitons; the kernel includes the exchange term
+- "Triplet" – Spin-triplet excitons; the exchange term vanishes
 
 </details>
 
@@ -373,7 +407,12 @@ Approximation method used to diagonalize the BSE Hamiltonian.
 
 Recommended: `Tamm-Dancoff`, `Full diagonalization`. Other values are allowed.
 
-**Clarifications:** "Tamm-Dancoff" – Only the resonant block of the Hamiltonian is kept; its coupling to the antiresonant block is neglected. "Full diagonalization" – The resonant and antiresonant blocks and the coupling between them are kept. The term names the approximation, not the solver (direct or iterative).
+**Clarifications:**
+
+- "Tamm-Dancoff" – Only the resonant block of the Hamiltonian is kept; its coupling to the antiresonant block is neglected
+- "Full diagonalization" – The resonant and antiresonant blocks and the coupling between them are kept
+
+The term names the approximation, not the solver (direct or iterative).
 
 </details>
 
@@ -403,7 +442,11 @@ Method used to eliminate long-range Coulomb interactions between periodic replic
 
 Recommended: `Ismail-Beigi`, `Rozzi`, `Spencer-Alavi`. Other values are allowed.
 
-**Clarifications:** "Ismail-Beigi" – Truncation for systems periodic in one or two dimensions (wires, slabs). "Rozzi" – Exact cutoff for systems periodic in zero, one or two dimensions (molecules, wires, slabs). "Spencer-Alavi" – Truncation of the Coulomb interaction beyond a sphere.
+**Clarifications:**
+
+- "Ismail-Beigi" – Truncation for systems periodic in one or two dimensions (wires, slabs)
+- "Rozzi" – Exact cutoff for systems periodic in zero, one or two dimensions (molecules, wires, slabs)
+- "Spencer-Alavi" – Truncation of the Coulomb interaction beyond a sphere
 
 Note: Give it when `type` is BSE or GW/BSE.
 

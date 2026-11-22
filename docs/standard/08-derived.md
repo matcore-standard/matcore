@@ -67,7 +67,22 @@ The kind of property computed.
 
 Recommended: `Electronic`, `Electron-phonon interactions`, `Magnetic`, `Mechanical`, `Microscopy, electron`, `Microscopy, scanning probe`, `NMR`, `Optical`, `Scattering`, `Spectroscopy, core-level`, `Spectroscopy, vibrational`, `Thermodynamic`, `Transport`, `Vibrational`. Other values are allowed.
 
-**Clarifications:** "Electronic" – The electronic structure and quantities obtained from it, e.g. a band structure, a density of states, a dielectric function, or a charge and bonding analysis. "Electron-phonon interactions" – The coupling of electrons and lattice vibrations, e.g. superconducting properties or phonon linewidths. "Magnetic" – Magnetic order and its excitations, e.g. a magnetization, exchange constants or magnons. "Mechanical" – The response to a mechanical load, e.g. elastic constants or a stress-strain response. "Microscopy, electron" – A simulated electron microscopy image or diffraction pattern, e.g. S/TEM, 4D-STEM or SAED. "Microscopy, scanning probe" – A simulated scanning probe image, e.g. STM or AFM. "NMR" – Nuclear magnetic resonance parameters, e.g. chemical shifts. "Optical" – The response to light through electronic excitations, e.g. an absorption spectrum or low-loss EELS. "Scattering" – The scattering of X-rays or neutrons by the structure, e.g. a diffraction pattern, reflectivity or a pair-distribution function. "Spectroscopy, core-level" – Spectra from excitations of core electrons, e.g. XAS, XES, core-loss EELS or XPS. "Spectroscopy, vibrational" – A simulated vibrational spectrum for comparison with a measurement, e.g. a Raman or infrared spectrum. "Thermodynamic" – Thermodynamic quantities, e.g. free energies, heat capacities or formation energies. "Transport" – The transport of charge, heat or mass, e.g. an electrical or thermal conductivity or a diffusion coefficient. "Vibrational" – The vibrations of the atoms themselves, e.g. phonon modes and dispersion, interatomic force constants or a vibrational density of states.
+**Clarifications:**
+
+- "Electronic" – The electronic structure and quantities obtained from it, e.g. a band structure, a density of states, a dielectric function, or a charge and bonding analysis
+- "Electron-phonon interactions" – The coupling of electrons and lattice vibrations, e.g. superconducting properties or phonon linewidths
+- "Magnetic" – Magnetic order and its excitations, e.g. a magnetization, exchange constants or magnons
+- "Mechanical" – The response to a mechanical load, e.g. elastic constants or a stress-strain response
+- "Microscopy, electron" – A simulated electron microscopy image or diffraction pattern, e.g. S/TEM, 4D-STEM or SAED
+- "Microscopy, scanning probe" – A simulated scanning probe image, e.g. STM or AFM
+- "NMR" – Nuclear magnetic resonance parameters, e.g. chemical shifts
+- "Optical" – The response to light through electronic excitations, e.g. an absorption spectrum or low-loss EELS
+- "Scattering" – The scattering of X-rays or neutrons by the structure, e.g. a diffraction pattern, reflectivity or a pair-distribution function
+- "Spectroscopy, core-level" – Spectra from excitations of core electrons, e.g. XAS, XES, core-loss EELS or XPS
+- "Spectroscopy, vibrational" – A simulated vibrational spectrum for comparison with a measurement, e.g. a Raman or infrared spectrum
+- "Thermodynamic" – Thermodynamic quantities, e.g. free energies, heat capacities or formation energies
+- "Transport" – The transport of charge, heat or mass, e.g. an electrical or thermal conductivity or a diffusion coefficient
+- "Vibrational" – The vibrations of the atoms themselves, e.g. phonon modes and dispersion, interatomic force constants or a vibrational density of states
 
 </details>
 

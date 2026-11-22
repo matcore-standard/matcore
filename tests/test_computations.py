@@ -114,7 +114,7 @@ def test_a_staged_simulation_is_a_chain_of_computations():
     assert c['notes'] == [GROUPING_NOTE, STAGES_NOTE]
     role = sub(sub(c, 'input'), 'role')['values']['note']
     assert ('"Initial configuration" – The configurations this computation starts from, with the state carried '
-            'over from that computation, e.g. velocities;') in role
+            'over from that computation, e.g. velocities') in role
 
 
 def test_task_terms_are_defined():
@@ -134,20 +134,20 @@ def test_task_names_the_goal_not_the_mechanism():
     for definition in (
             '"Structure generation" – The computational creation, modification, or systematic enumeration of '
             'initial atomic, molecular, or crystalline configurations before running physics-based energy or force '
-            'evaluations;',
+            'evaluations',
             '"Optimization" – Configurations or cells taken to a minimum of the energy, local or global, e.g. a '
-            'relaxation or a search for the lowest-energy structure;',
+            'relaxation or a search for the lowest-energy structure',
             '"Transition path" – Transitions between stable states: saddle points of the energy, minimum energy '
             'paths, or ensembles of reactive trajectories and the rates they give, e.g. by the nudged elastic band, '
-            'dimer method or transition path sampling;',
+            'dimer method or transition path sampling',
             '"Equilibration" – Configurations brought to the conditions of another computation, which takes them '
-            'as its Initial configuration; its results are not meant for analysis;',
+            'as its Initial configuration; its results are not meant for analysis',
             '"Dynamics" – Configurations evolved in time where the evolution or the kinetics is the result, e.g. '
-            'trajectories, transport coefficients or rates, including accelerated dynamics;',
+            'trajectories, transport coefficients or rates, including accelerated dynamics',
             '"Sampling" – Averages over a distribution of configurations, by Monte Carlo or by dynamics, where the '
-            'time evolution is not itself the result;',
+            'time evolution is not itself the result',
             '"Training" – The parameters of a model fitted to data, e.g. a machine-learned model, a potential fitted '
-            'by force matching or Boltzmann inversion, or a cluster expansion;'):
+            'by force matching or Boltzmann inversion, or a cluster expansion'):
         assert definition in note
     assert t['notes'] == ['Note: Give the term for the results the computation is meant to provide; the procedure '
                           'is given in the method\'s section, e.g. ps `algorithm`.']
@@ -201,7 +201,7 @@ def test_method_names_the_section_that_describes_the_computation():
         'Electronic': ['CC', 'QMC', 'DFT', 'MBPT', 'TB'], 'Atomistic': ['PIM', 'PS'],
         'Mesoscopic': ['DDD', 'KMC', 'PIM', 'PS'], 'Continuum': ['PF'], 'Data-driven': ['ML'],
         'Post-processing': ['DP']}
-    assert m['values']['note'] == METHOD_DEFINITIONS
+    assert m['values']['note'] == '\n'.join('- ' + d.rstrip('.') for d in METHOD_DEFINITIONS.split('; '))
     assert sub(computation, 'method-class')['notes'][-1] == (
         'Note: For a PS computation, give the entity of its particles: Atomistic for atoms, Mesoscopic for '
         'coarse-grained particles such as beads.')
@@ -387,7 +387,7 @@ def test_pim_theory_level_is_the_origin_of_the_functional_form():
     assert t['description'] == 'How the functional form of the model was obtained.'
     assert t['values']['terms'] == THEORY_LEVELS
     note = ' '.join(t['values']['note'].split())
-    assert note.startswith('"Physics-based" – A functional form built from a physical model of the interactions')
+    assert note.startswith('- "Physics-based" – A functional form built from a physical model of the interactions')
     assert 'electron force field' in note and '"Machine-learned" – A machine learning model trained to take' in note
     assert not [k for k in t if k.startswith('legacy_')]
 
@@ -425,15 +425,15 @@ def test_pim_particle_style_names_each_kind_of_particle():
     note = ' '.join(t['values']['note'].split())
     assert '"Atom" – Each particle represents an individual atom' in note
     assert ('"Nucleus" – A nucleus or an ion core as a point charge, with its electrons represented by other '
-            'particles, e.g. in the electron force field.') in note
+            'particles, e.g. in the electron force field') in note
     assert 'Give one entry for each kind of particle the model has' in note
     assert not [k for k in t if k.startswith('legacy_')]
 
 
-BONDING_TYPE_NOTE = ('"Reactive" – A model without a predetermined bonding topology in which bonds are formed or '
-                     'broken on-the-fly based on the particle environment. "Bonded fixed" – Bonds defined '
-                     '<i>a priori</i> and cannot be broken during a simulation. "Bonded mutable" – Bonds defined '
-                     '<i>a priori</i> but can be broken and/or formed during a simulation.')
+BONDING_TYPE_NOTE = ('- "Reactive" – A model without a predetermined bonding topology in which bonds are formed or '
+                     'broken on-the-fly based on the particle environment\n- "Bonded fixed" – Bonds defined '
+                     '<i>a priori</i> and cannot be broken during a simulation\n- "Bonded mutable" – Bonds defined '
+                     '<i>a priori</i> but can be broken and/or formed during a simulation')
 
 
 def test_pim_bonding_type_says_whether_the_topology_is_given():
@@ -444,7 +444,7 @@ def test_pim_bonding_type_says_whether_the_topology_is_given():
         True, False, 'string', [], 'inapplicable', None)
     assert t['description'] == 'Specifies whether the bonds between particles are immutable or can be broken.'
     assert t['values']['terms'] == ['Reactive', 'Bonded fixed', 'Bonded mutable']
-    assert ' '.join(t['values']['note'].split()) == BONDING_TYPE_NOTE
+    assert t['values']['note'] == BONDING_TYPE_NOTE
     assert not [k for k in t if k.startswith('legacy_')]
 
 
@@ -479,7 +479,7 @@ def test_pim_dipole_variability_is_about_dipoles():
     c = sub(section('pim')['properties'][0], 'charge-interactions')
     assert 'local electric dipoles' in sub(c, 'electric-dipole-variability')['description']
     note = ' '.join(sub(c, 'charge-variability')['values']['note'].split())
-    assert '"Fixed" – Charges cannot change during a simulation.' in note
+    assert '"Fixed" – Charges cannot change during a simulation' in note
 
 
 def test_pim_electrostatic_summation_covers_short_range_sums():
@@ -489,7 +489,7 @@ def test_pim_electrostatic_summation_covers_short_range_sums():
     assert e['description'] == 'Method used to compute the electrostatic interactions between the charges.'
     note = ' '.join(e['values']['note'].split())
     assert ('"Short-range" – Electrostatic interactions computed only within a cutoff distance, possibly shifted '
-            'or damped, e.g. Wolf summation or damped shifted force (DSF).') in note
+            'or damped, e.g. Wolf summation or damped shifted force (DSF)') in note
     assert '"None" – No electrostatic interactions are computed from the charges.' in note
 
 

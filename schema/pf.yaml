@@ -41,19 +41,16 @@ properties:
     values:
       terms: [Isothermal solidification, Directional solidification, Isothermal annealing, Sintering, Twinning,
         Grain growth, Spinodal decomposition, Fracture, Plasticity]
-      note: >-
-        "Isothermal solidification" – Growth of a solid from a melt or solution held at one uniform temperature,
-        e.g. dendrites growing into an undercooled melt. "Directional solidification" – Solidification in an
-        imposed temperature gradient, the front advancing along it, e.g. cellular or dendritic growth in a
-        pulled sample. "Isothermal annealing" – Evolution of a solid microstructure held at one temperature,
-        e.g. recovery, recrystallization or precipitate coarsening. "Sintering" – Bonding and densification of
-        particles by diffusion below their melting point. "Twinning" – Formation or growth of twins, domains
-        whose lattice is the mirror image of the parent's across a twin plane. "Grain growth" – Coarsening of a
-        polycrystal by grain-boundary migration, driven by the reduction of grain-boundary energy. "Spinodal
-        decomposition" – Phase separation of an unstable solution by the growth of composition fluctuations,
-        without a nucleation barrier. "Fracture" – Initiation and propagation of cracks, a phase field marking
-        the broken material. "Plasticity" – Irreversible deformation, e.g. by dislocation motion, described
-        by phase fields or coupled to the phase field model.
+      note: |-
+        - "Isothermal solidification" – Growth of a solid from a melt or solution held at one uniform temperature, e.g. dendrites growing into an undercooled melt
+        - "Directional solidification" – Solidification in an imposed temperature gradient, the front advancing along it, e.g. cellular or dendritic growth in a pulled sample
+        - "Isothermal annealing" – Evolution of a solid microstructure held at one temperature, e.g. recovery, recrystallization or precipitate coarsening
+        - "Sintering" – Bonding and densification of particles by diffusion below their melting point
+        - "Twinning" – Formation or growth of twins, domains whose lattice is the mirror image of the parent's across a twin plane
+        - "Grain growth" – Coarsening of a polycrystal by grain-boundary migration, driven by the reduction of grain-boundary energy
+        - "Spinodal decomposition" – Phase separation of an unstable solution by the growth of composition fluctuations, without a nucleation barrier
+        - "Fracture" – Initiation and propagation of cracks, a phase field marking the broken material
+        - "Plasticity" – Irreversible deformation, e.g. by dislocation motion, described by phase fields or coupled to the phase field model
     repeatable: true
     notes:
     - 'Note: Give one entry for each process modeled.'
@@ -90,18 +87,16 @@ properties:
         recommended-unit: null
         values:
           terms: [CH, AC, GP, FID, PFC, Navier-Stokes, Multi-phase-field, Mechanical equilibrium, Poisson]
-          note: >-
-            "CH" – Cahn-Hilliard: a conserved field evolves by a flux driven by the gradient of the
-            variational derivative of the free energy. "AC" – Allen-Cahn: a nonconserved field relaxes at a
-            rate proportional to the variational derivative of the free energy. "GP" – Grand potential: the
-            phase fields evolve with the grand potential, the chemical potentials being the diffusion
-            variables instead of the concentrations. "FID" – Finite interface dissipation: each phase has its
-            own concentration within the interface, and the phases exchange solute at a finite rate. "PFC" –
-            Phase field crystal: a conserved field periodic on the atomic scale resolves the crystal lattice
-            and its defects. "Navier-Stokes" – The flow of a fluid phase; the evolved variable is the
-            velocity. "Multi-phase-field" – Several phase fields, one for each phase or grain, constrained to
-            sum to one. "Mechanical equilibrium" – The balance of stresses; the evolved variable is the
-            displacement. "Poisson" – Electrostatics; the evolved variable is the electric potential.
+          note: |-
+            - "CH" – Cahn-Hilliard: a conserved field evolves by a flux driven by the gradient of the variational derivative of the free energy
+            - "AC" – Allen-Cahn: a nonconserved field relaxes at a rate proportional to the variational derivative of the free energy
+            - "GP" – Grand potential: the phase fields evolve with the grand potential, the chemical potentials being the diffusion variables instead of the concentrations
+            - "FID" – Finite interface dissipation: each phase has its own concentration within the interface, and the phases exchange solute at a finite rate
+            - "PFC" – Phase field crystal: a conserved field periodic on the atomic scale resolves the crystal lattice and its defects
+            - "Navier-Stokes" – The flow of a fluid phase; the evolved variable is the velocity
+            - "Multi-phase-field" – Several phase fields, one for each phase or grain, constrained to sum to one
+            - "Mechanical equilibrium" – The balance of stresses; the evolved variable is the displacement
+            - "Poisson" – Electrostatics; the evolved variable is the electric potential
         repeatable: true
         notes:
         - >-
@@ -165,14 +160,15 @@ properties:
         values:
           terms: [Chemical, Interfacial, Elastic, Plastic, Electrical, Magnetic, Fluid-solid interaction, Solid-solid
               interaction]
-          note: >-
-            "Chemical" – The bulk free energy of the phases as a function of composition and temperature.
-            "Interfacial" – The energy of interfaces, from the gradient terms and the barrier between phases.
-            "Elastic" – The elastic strain energy. "Plastic" – The energy stored by plastic deformation.
-            "Electrical" – The energy of charges, polarization and electric fields. "Magnetic" – The energy of
-            magnetization and magnetic fields. "Fluid-solid interaction" – The energy of the coupling between a
-            fluid and a solid. "Solid-solid interaction" – The energy of the coupling between solid phases or
-            grains.
+          note: |-
+            - "Chemical" – The bulk free energy of the phases as a function of composition and temperature
+            - "Interfacial" – The energy of interfaces, from the gradient terms and the barrier between phases
+            - "Elastic" – The elastic strain energy
+            - "Plastic" – The energy stored by plastic deformation
+            - "Electrical" – The energy of charges, polarization and electric fields
+            - "Magnetic" – The energy of magnetization and magnetic fields
+            - "Fluid-solid interaction" – The energy of the coupling between a fluid and a solid
+            - "Solid-solid interaction" – The energy of the coupling between solid phases or grains
         repeatable: true
         notes:
         - 'Note: A term that combines several contributions gives one entry for each.'
@@ -185,12 +181,13 @@ properties:
         recommended-unit: null
         values:
           terms: [Ideal, Regular, Flory, Calphad, Poly, Non-polynomial]
-          note: >-
-            "Ideal" – Ideal solution: the entropy of ideal mixing, with no interaction energy. "Regular" –
-            Regular solution: ideal mixing with an interaction energy. "Flory" – Flory-Huggins: the free energy
-            of mixing of polymer solutions or blends. "Calphad" – Gibbs energies from a CALPHAD thermodynamic
-            database. "Poly" – A polynomial in the field variables, e.g. a double well or a Landau expansion.
-            "Non-polynomial" – Any other closed-form function of the field variables.
+          note: |-
+            - "Ideal" – Ideal solution: the entropy of ideal mixing, with no interaction energy
+            - "Regular" – Regular solution: ideal mixing with an interaction energy
+            - "Flory" – Flory-Huggins: the free energy of mixing of polymer solutions or blends
+            - "Calphad" – Gibbs energies from a CALPHAD thermodynamic database
+            - "Poly" – A polynomial in the field variables, e.g. a double well or a Landau expansion
+            - "Non-polynomial" – Any other closed-form function of the field variables
         repeatable: false
       - name: expression
         required: false
@@ -308,12 +305,11 @@ properties:
         recommended-unit: null
         values:
           terms: [Dirichlet, Neumann, Zero-Neumann, Periodic]
-          note: >-
-            "Dirichlet" – The value of the field variable is prescribed on the boundary, e.g. a fixed
-            concentration or a clamped displacement. "Neumann" – The normal derivative of the field variable
-            (its flux) is prescribed on the boundary. "Zero-Neumann" – The normal derivative is zero: no flux
-            crosses the boundary, or a surface is free of traction. "Periodic" – Opposite boundaries are
-            identified, so the field variable repeats across them.
+          note: |-
+            - "Dirichlet" – The value of the field variable is prescribed on the boundary, e.g. a fixed concentration or a clamped displacement
+            - "Neumann" – The normal derivative of the field variable (its flux) is prescribed on the boundary
+            - "Zero-Neumann" – The normal derivative is zero: no flux crosses the boundary, or a surface is free of traction
+            - "Periodic" – Opposite boundaries are identified, so the field variable repeats across them
         repeatable: false
       - name: boundary
         required: false
@@ -391,15 +387,13 @@ properties:
       recommended-unit: null
       values:
         terms: [FDM, FEM, FVM, LBM, Particle, Spectral]
-        note: >-
-          "FDM" – Finite Difference Method: derivatives are approximated by differences of the values at grid
-          points. "FEM" – Finite Element Method: the fields are expanded in basis functions on elements, and the
-          equations are imposed in weak form. "FVM" – Finite Volume Method: the equations are integrated over
-          control volumes, balancing the fluxes across their faces. "LBM" – Lattice Boltzmann Method:
-          distribution functions are streamed and collided on a lattice. "Particle" – The fields are carried by
-          moving particles or points, e.g. smoothed particle hydrodynamics or the material point method.
-          "Spectral" – The fields are expanded in global basis functions, e.g. Fourier modes evaluated by fast
-          Fourier transforms.
+        note: |-
+          - "FDM" – Finite Difference Method: derivatives are approximated by differences of the values at grid points
+          - "FEM" – Finite Element Method: the fields are expanded in basis functions on elements, and the equations are imposed in weak form
+          - "FVM" – Finite Volume Method: the equations are integrated over control volumes, balancing the fluxes across their faces
+          - "LBM" – Lattice Boltzmann Method: distribution functions are streamed and collided on a lattice
+          - "Particle" – The fields are carried by moving particles or points, e.g. smoothed particle hydrodynamics or the material point method
+          - "Spectral" – The fields are expanded in global basis functions, e.g. Fourier modes evaluated by fast Fourier transforms
       repeatable: false
     - name: spatial-discretization-parameter
       required: false
@@ -476,13 +470,14 @@ properties:
       recommended-unit: null
       values:
         terms: [Regular, Rectilinear, Skewed, Curvilinear, Unstructured, Adaptive mesh refinement, Meshless]
-        note: >-
-          "Regular" – A structured grid with uniform spacing along each axis. "Rectilinear" – A structured grid
-          of axis-aligned cells whose spacing varies along an axis. "Skewed" – A structured grid whose axes are
-          not orthogonal. "Curvilinear" – A structured grid whose lines follow curved coordinates, e.g. fitted to
-          a boundary. "Unstructured" – Cells of arbitrary connectivity, e.g. triangles or tetrahedra. "Adaptive
-          mesh refinement" – A grid refined and coarsened locally during the simulation, e.g. at interfaces.
-          "Meshless" – Points without connectivity, as in particle methods.
+        note: |-
+          - "Regular" – A structured grid with uniform spacing along each axis
+          - "Rectilinear" – A structured grid of axis-aligned cells whose spacing varies along an axis
+          - "Skewed" – A structured grid whose axes are not orthogonal
+          - "Curvilinear" – A structured grid whose lines follow curved coordinates, e.g. fitted to a boundary
+          - "Unstructured" – Cells of arbitrary connectivity, e.g. triangles or tetrahedra
+          - "Adaptive mesh refinement" – A grid refined and coarsened locally during the simulation, e.g. at interfaces
+          - "Meshless" – Points without connectivity, as in particle methods
       repeatable: false
     - name: mesh-file
       required: false
@@ -602,14 +597,13 @@ properties:
       recommended-unit: null
       values:
         terms: [Forward Euler, Backward Euler, Adams-Bashforth, Crank-Nicolson, Runge-Kutta, IMEX]
-        note: >-
-          "Forward Euler" – First-order explicit: the rate is evaluated at the start of the step. "Backward
-          Euler" – First-order implicit: the rate is evaluated at the end of the step. "Adams-Bashforth" – An
-          explicit multistep scheme: the rate is extrapolated from previous steps. "Crank-Nicolson" –
-          Second-order implicit: the rate is averaged over the start and the end of the step. "Runge-Kutta" – A
-          multistage scheme: the rate is evaluated at intermediate points of the step, explicitly or implicitly.
-          "IMEX" – Implicit-explicit: stiff terms are treated implicitly and the rest explicitly, e.g. a
-          semi-implicit spectral scheme.
+        note: |-
+          - "Forward Euler" – First-order explicit: the rate is evaluated at the start of the step
+          - "Backward Euler" – First-order implicit: the rate is evaluated at the end of the step
+          - "Adams-Bashforth" – An explicit multistep scheme: the rate is extrapolated from previous steps
+          - "Crank-Nicolson" – Second-order implicit: the rate is averaged over the start and the end of the step
+          - "Runge-Kutta" – A multistage scheme: the rate is evaluated at intermediate points of the step, explicitly or implicitly
+          - "IMEX" – Implicit-explicit: stiff terms are treated implicitly and the rest explicitly, e.g. a semi-implicit spectral scheme
       repeatable: false
       notes:
       - 'Note: Omit it for a stationary problem, which is solved without time integration.'
@@ -744,16 +738,16 @@ properties:
       recommended-unit: null
       values:
         terms: [Explicit, Direct, Conjugate gradient, BiCGSTAB, GMRES, Multigrid, Newton, Newton-Krylov, Picard]
-        note: >-
-          "Explicit" – No system of equations is solved; the update is computed directly. "Direct" – A linear
-          system is solved by factorization, e.g. LU or Cholesky. "Conjugate gradient" – A Krylov method for
-          symmetric positive-definite linear systems. "BiCGSTAB" – Biconjugate gradient stabilized, a Krylov
-          method for nonsymmetric linear systems. "GMRES" – Generalized minimal residual, a Krylov method for
-          nonsymmetric linear systems. "Multigrid" – A linear solver or preconditioner that corrects the error on
-          a hierarchy of coarser grids. "Newton" – Newton's method for a nonlinear system, each iteration solving
-          a linear system. "Newton-Krylov" – Newton's method whose linear systems are solved by a Krylov method,
-          often without forming the Jacobian. "Picard" – Fixed-point iteration of a nonlinear system, the
-          nonlinear terms taken from the previous iterate.
+        note: |-
+          - "Explicit" – No system of equations is solved; the update is computed directly
+          - "Direct" – A linear system is solved by factorization, e.g. LU or Cholesky
+          - "Conjugate gradient" – A Krylov method for symmetric positive-definite linear systems
+          - "BiCGSTAB" – Biconjugate gradient stabilized, a Krylov method for nonsymmetric linear systems
+          - "GMRES" – Generalized minimal residual, a Krylov method for nonsymmetric linear systems
+          - "Multigrid" – A linear solver or preconditioner that corrects the error on a hierarchy of coarser grids
+          - "Newton" – Newton's method for a nonlinear system, each iteration solving a linear system
+          - "Newton-Krylov" – Newton's method whose linear systems are solved by a Krylov method, often without forming the Jacobian
+          - "Picard" – Fixed-point iteration of a nonlinear system, the nonlinear terms taken from the previous iterate
       repeatable: true
       notes:
       - >-
@@ -862,10 +856,10 @@ properties:
         recommended-unit: null
         values:
           terms: [Scalar, Vector, Tensor]
-          note: >-
-            "Scalar" – One number at each point, e.g. a concentration or an order parameter. "Vector" – A vector
-            at each point, e.g. a displacement or a velocity. "Tensor" – A tensor at each point, e.g. a strain or
-            a stress.
+          note: |-
+            - "Scalar" – One number at each point, e.g. a concentration or an order parameter
+            - "Vector" – A vector at each point, e.g. a displacement or a velocity
+            - "Tensor" – A tensor at each point, e.g. a strain or a stress
         repeatable: false
       - name: unit
         required: true

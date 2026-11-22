@@ -236,10 +236,17 @@ properties:
       recommended-unit: null
       values:
         terms: [NVE, NVT, μVT, NPT, NσT, μPT, μσT, ΔμNPT, NPH, NσH]
-        note: >-
-          "NVE" – Microcanonical. "NVT" – Canonical. "μVT" – Grand canonical. "NPT" – Isothermal-isobaric.
-          "NσT" – Isothermal-isostress. "μPT" – Grand isothermal-isobaric. "μσT" – Grand isothermal-isostress.
-          "ΔμNPT" – Semi-grand canonical. "NPH" – Isoenthalpic-isobaric. "NσH" – Isoenthalpic-isostress.
+        note: |-
+          - "NVE" – Microcanonical
+          - "NVT" – Canonical
+          - "μVT" – Grand canonical
+          - "NPT" – Isothermal-isobaric
+          - "NσT" – Isothermal-isostress
+          - "μPT" – Grand isothermal-isobaric
+          - "μσT" – Grand isothermal-isostress
+          - "ΔμNPT" – Semi-grand canonical
+          - "NPH" – Isoenthalpic-isobaric
+          - "NσH" – Isoenthalpic-isostress
       repeatable: false
       notes:
       - >-

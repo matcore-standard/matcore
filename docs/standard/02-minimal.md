@@ -477,7 +477,22 @@ The geometric form of the component as modeled.
 
 Recommended: `2D material`, `Bulk`, `Chain`, `Cluster`, `Molecule`, `Monolayer`, `Nanoparticle`, `Nanoribbon`, `Nanotube`, `Nanowire`, `Slab`, `Thin film`. Other values are allowed.
 
-**Clarifications:** One of: "2D material" – A crystalline solid that is a single unit cell thick (typically a few nanometers or less), while extending infinitely or to large dimensions in the lateral plane, e.g. graphene. "Bulk" – A material extending without bound in all three directions, e.g. a periodic crystal or a liquid. "Chain" – A one-dimensional sequence of atoms or monomers, e.g. an isolated polymer chain or a monatomic chain. "Cluster" – A finite aggregate of atoms or molecules, smaller than a nanoparticle. "Molecule" – A single molecule. "Monolayer" – A single layer of atoms or molecules deposited on another material. "Nanoparticle" – A solid particle of nanometer size in all three directions. "Nanoribbon" – A strip of a 2D material of nanometer width. "Nanotube" – A hollow cylinder of nanometer diameter, e.g. a carbon nanotube. "Nanowire" – A solid wire of nanometer diameter, extending without bound along its axis. "Slab" – A truncated bulk structure that can be used, for example, to model surfaces. "Thin film" – A layer of finite thickness, free-standing or on a substrate. The form is that of the component as modeled, e.g. a substrate modeled as a slab is a Slab.
+**Clarifications:**
+
+- "2D material" – A crystalline solid that is a single unit cell thick (typically a few nanometers or less), while extending infinitely or to large dimensions in the lateral plane, e.g. graphene
+- "Bulk" – A material extending without bound in all three directions, e.g. a periodic crystal or a liquid
+- "Chain" – A one-dimensional sequence of atoms or monomers, e.g. an isolated polymer chain or a monatomic chain
+- "Cluster" – A finite aggregate of atoms or molecules, smaller than a nanoparticle
+- "Molecule" – A single molecule
+- "Monolayer" – A single layer of atoms or molecules deposited on another material
+- "Nanoparticle" – A solid particle of nanometer size in all three directions
+- "Nanoribbon" – A strip of a 2D material of nanometer width
+- "Nanotube" – A hollow cylinder of nanometer diameter, e.g. a carbon nanotube
+- "Nanowire" – A solid wire of nanometer diameter, extending without bound along its axis
+- "Slab" – A truncated bulk structure that can be used, for example, to model surfaces
+- "Thin film" – A layer of finite thickness, free-standing or on a substrate
+
+The form is that of the component as modeled, e.g. a substrate modeled as a slab is a Slab.
 
 </details>
 
@@ -492,7 +507,20 @@ The part the component plays in the structure.
 
 Recommended: `Adsorbate`, `Core`, `Film`, `Inclusion`, `Layer`, `Matrix`, `Shell`, `Solute`, `Solvent`, `Substrate`. Other values are allowed.
 
-**Clarifications:** One of: "Adsorbate" – A molecule, cluster or particle on the surface of a substrate. "Core" – The inner part of a particle, enclosed by a shell. "Film" – A layer of finite thickness on a substrate. "Inclusion" – A material enclosed in a matrix, e.g. a precipitate or an embedded nanotube. "Layer" – One of the layers of a layered structure, e.g. a heterostructure, a superlattice or a stack of 2D materials. "Matrix" – A material that encloses one or more inclusions. "Shell" – A layer enclosing a core. "Solute" – A material dissolved in a solvent. "Solvent" – A liquid in which a solute is dissolved. "Substrate" – A material on which a film, layer or adsorbate lies. Give a role for each component when the structure has more than one.
+**Clarifications:**
+
+- "Adsorbate" – A molecule, cluster or particle on the surface of a substrate
+- "Core" – The inner part of a particle, enclosed by a shell
+- "Film" – A layer of finite thickness on a substrate
+- "Inclusion" – A material enclosed in a matrix, e.g. a precipitate or an embedded nanotube
+- "Layer" – One of the layers of a layered structure, e.g. a heterostructure, a superlattice or a stack of 2D materials
+- "Matrix" – A material that encloses one or more inclusions
+- "Shell" – A layer enclosing a core
+- "Solute" – A material dissolved in a solvent
+- "Solvent" – A liquid in which a solute is dissolved
+- "Substrate" – A material on which a film, layer or adsorbate lies
+
+Give a role for each component when the structure has more than one.
 
 </details>
 
@@ -548,7 +576,17 @@ A phase of the material.
 
 Recommended: `Amorphous`, `Single crystal`, `Polycrystal`, `Quasicrystal`, `Liquid`, `Gas`, `Plasma`. Other values are allowed.
 
-**Clarifications:** One of: "Amorphous" – A solid material without crystalline order. "Single crystal" – A solid material characterized by a repeating pattern of atoms that extends throughout it without interruption. "Polycrystal" – A solid material made of more than one crystalline grain of differing orientation. "Quasicrystal" – A solid material with long-range order but without translational periodicity, e.g. one whose diffraction pattern shows five-fold rotational symmetry. "Liquid" – A fluid structure (e.g. the molten state of a material). "Gas" – A state where molecules or atoms are far apart and only interact during collisions. "Plasma" – A gas comprised of ions and electrons. Omit for a component whose form is Molecule.
+**Clarifications:**
+
+- "Amorphous" – A solid material without crystalline order
+- "Single crystal" – A solid material characterized by a repeating pattern of atoms that extends throughout it without interruption
+- "Polycrystal" – A solid material made of more than one crystalline grain of differing orientation
+- "Quasicrystal" – A solid material with long-range order but without translational periodicity, e.g. one whose diffraction pattern shows five-fold rotational symmetry
+- "Liquid" – A fluid structure (e.g. the molten state of a material)
+- "Gas" – A state where molecules or atoms are far apart and only interact during collisions
+- "Plasma" – A gas comprised of ions and electrons
+
+Omit for a component whose form is Molecule.
 
 </details>
 
@@ -563,7 +601,14 @@ The arrangement of the magnetic moments in the material component as modeled.
 
 Recommended: `Nonmagnetic`, `Ferromagnetic`, `Antiferromagnetic`, `Ferrimagnetic`, `Paramagnetic`, `Noncollinear`. Other values are allowed.
 
-**Clarifications:** "Nonmagnetic" – No magnetic moments. "Ferromagnetic" – Moments aligned parallel. "Antiferromagnetic" – Equal moments aligned antiparallel, with no net moment. "Ferrimagnetic" – Unequal moments aligned antiparallel, with a net moment. "Paramagnetic" – Moments present but disordered, e.g. modeled as disordered local moments. "Noncollinear" – Moments not along one axis, e.g. a spin spiral.
+**Clarifications:**
+
+- "Nonmagnetic" – No magnetic moments
+- "Ferromagnetic" – Moments aligned parallel
+- "Antiferromagnetic" – Equal moments aligned antiparallel, with no net moment
+- "Ferrimagnetic" – Unequal moments aligned antiparallel, with a net moment
+- "Paramagnetic" – Moments present but disordered, e.g. modeled as disordered local moments
+- "Noncollinear" – Moments not along one axis, e.g. a spin spiral
 
 </details>
 
@@ -669,7 +714,20 @@ Depends on `method-class`.
 - For `Data-driven`: Recommended: `ML`. Other values are allowed.
 - For `Post-processing`: Recommended: `DP`. Other values are allowed.
 
-**Clarifications:** "CC" – Coupled Cluster: wavefunction methods that build electron correlation from excitations of a reference state; "QMC" – Quantum Monte Carlo: stochastic solutions of the many-electron Schrödinger equation; "DFT" – Density Functional Theory: electronic structure obtained from the electron density; "MBPT" – Many-Body Perturbation Theory: excited states obtained from many-body Green's functions; "TB" – Tight Binding: electronic structure in a basis of localized orbitals with parameterized matrix elements; "PIM" – Particle Interaction Model: energies and forces given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density; "PS" – Particle Simulation: particles moved or sampled using the energies and forces of another computation; "DDD" – Discrete Dislocation Dynamics: plastic deformation from the motion and interaction of dislocation lines; "KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events chosen by their rates; "PF" – Phase Field: microstructure evolution described by continuous fields with diffuse interfaces; "ML" – Machine Learning: models trained on data to predict materials properties or behavior; "DP" – Derived Property: a property obtained from the results of other computations by a procedure with no physical model of its own, e.g. force constants from finite-difference forces, an X-ray diffraction pattern from a structure, or a vibrational density of states from a trajectory.
+**Clarifications:**
+
+- "CC" – Coupled Cluster: wavefunction methods that build electron correlation from excitations of a reference state
+- "QMC" – Quantum Monte Carlo: stochastic solutions of the many-electron Schrödinger equation
+- "DFT" – Density Functional Theory: electronic structure obtained from the electron density
+- "MBPT" – Many-Body Perturbation Theory: excited states obtained from many-body Green's functions
+- "TB" – Tight Binding: electronic structure in a basis of localized orbitals with parameterized matrix elements
+- "PIM" – Particle Interaction Model: energies and forces given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density
+- "PS" – Particle Simulation: particles moved or sampled using the energies and forces of another computation
+- "DDD" – Discrete Dislocation Dynamics: plastic deformation from the motion and interaction of dislocation lines
+- "KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events chosen by their rates
+- "PF" – Phase Field: microstructure evolution described by continuous fields with diffuse interfaces
+- "ML" – Machine Learning: models trained on data to predict materials properties or behavior
+- "DP" – Derived Property: a property obtained from the results of other computations by a procedure with no physical model of its own, e.g. force constants from finite-difference forces, an X-ray diffraction pattern from a structure, or a vibrational density of states from a trajectory
 
 Note: Give the method of the calculations in this computation. When they use energies and forces from another method, describe that method as a computation of its own and name it in `input` with the role Interaction model.
 
@@ -686,7 +744,18 @@ What the calculations of this computation do.
 
 Recommended: `Structure generation`, `Single point`, `Optimization`, `Transition path`, `Equilibration`, `Dynamics`, `Sampling`, `Free energy calculation`, `Training`, `Property calculation`. Other values are allowed.
 
-**Clarifications:** "Structure generation" – The computational creation, modification, or systematic enumeration of initial atomic, molecular, or crystalline configurations before running physics-based energy or force evaluations; "Single point" – Energies, forces or other quantities evaluated for given configurations, without moving them, including the evaluations another computation requests of an interaction model; "Optimization" – Configurations or cells taken to a minimum of the energy, local or global, e.g. a relaxation or a search for the lowest-energy structure; "Transition path" – Transitions between stable states: saddle points of the energy, minimum energy paths, or ensembles of reactive trajectories and the rates they give, e.g. by the nudged elastic band, dimer method or transition path sampling; "Equilibration" – Configurations brought to the conditions of another computation, which takes them as its Initial configuration; its results are not meant for analysis; "Dynamics" – Configurations evolved in time where the evolution or the kinetics is the result, e.g. trajectories, transport coefficients or rates, including accelerated dynamics; "Sampling" – Averages over a distribution of configurations, by Monte Carlo or by dynamics, where the time evolution is not itself the result; "Free energy calculation" – A free energy, or a potential of mean force, computed from sampled configurations; "Training" – The parameters of a model fitted to data, e.g. a machine-learned model, a potential fitted by force matching or Boltzmann inversion, or a cluster expansion; "Property calculation" – A property obtained from given configurations or from the results of another computation, e.g. phonons, spectra, or a prediction by a trained model.
+**Clarifications:**
+
+- "Structure generation" – The computational creation, modification, or systematic enumeration of initial atomic, molecular, or crystalline configurations before running physics-based energy or force evaluations
+- "Single point" – Energies, forces or other quantities evaluated for given configurations, without moving them, including the evaluations another computation requests of an interaction model
+- "Optimization" – Configurations or cells taken to a minimum of the energy, local or global, e.g. a relaxation or a search for the lowest-energy structure
+- "Transition path" – Transitions between stable states: saddle points of the energy, minimum energy paths, or ensembles of reactive trajectories and the rates they give, e.g. by the nudged elastic band, dimer method or transition path sampling
+- "Equilibration" – Configurations brought to the conditions of another computation, which takes them as its Initial configuration; its results are not meant for analysis
+- "Dynamics" – Configurations evolved in time where the evolution or the kinetics is the result, e.g. trajectories, transport coefficients or rates, including accelerated dynamics
+- "Sampling" – Averages over a distribution of configurations, by Monte Carlo or by dynamics, where the time evolution is not itself the result
+- "Free energy calculation" – A free energy, or a potential of mean force, computed from sampled configurations
+- "Training" – The parameters of a model fitted to data, e.g. a machine-learned model, a potential fitted by force matching or Boltzmann inversion, or a cluster expansion
+- "Property calculation" – A property obtained from given configurations or from the results of another computation, e.g. phonons, spectra, or a prediction by a trained model
 
 Note: Give the term for the results the computation is meant to provide; the procedure is given in the method's section, e.g. ps `algorithm`.
 
@@ -738,7 +807,14 @@ What this computation takes from that computation.
 
 Recommended: `Interaction model`, `Initial configuration`, `Starting point`, `Training data`, `Parameters`, `Source data`. Other values are allowed.
 
-**Clarifications:** "Interaction model" – The energies and forces of the configurations this computation evaluates; "Initial configuration" – The configurations this computation starts from, with the state carried over from that computation, e.g. velocities; "Starting point" – An electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground state of a GW calculation; "Training data" – Data a model is fitted to; "Parameters" – Values used as parameters of this computation's model, e.g. a free energy or elastic constants in a phase field model; "Source data" – Results from which this computation obtains a property.
+**Clarifications:**
+
+- "Interaction model" – The energies and forces of the configurations this computation evaluates
+- "Initial configuration" – The configurations this computation starts from, with the state carried over from that computation, e.g. velocities
+- "Starting point" – An electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground state of a GW calculation
+- "Training data" – Data a model is fitted to
+- "Parameters" – Values used as parameters of this computation's model, e.g. a free energy or elastic constants in a phase field model
+- "Source data" – Results from which this computation obtains a property
 
 </details>
 
@@ -777,7 +853,11 @@ Whether the simulated system is at equilibrium, in a steady state, or evolving i
 
 Recommended: `Equilibrium`, `Steady state`, `Transient`. Other values are allowed.
 
-**Clarifications:** One of: "Equilibrium" – The system samples thermodynamic equilibrium. "Steady state" – A nonequilibrium state whose averages do not change in time, maintained by a driving such as a strain rate or a heat flux. "Transient" – A state whose averages change in time, e.g. relaxation toward equilibrium or a steady state, or a quench.
+**Clarifications:**
+
+- "Equilibrium" – The system samples thermodynamic equilibrium
+- "Steady state" – A nonequilibrium state whose averages do not change in time, maintained by a driving such as a strain rate or a heat flux
+- "Transient" – A state whose averages change in time, e.g. relaxation toward equilibrium or a steady state, or a quench
 
 </details>
 
@@ -792,7 +872,11 @@ What the system exchanges with its surroundings.
 
 Recommended: `Isolated`, `Closed`, `Open`. Other values are allowed.
 
-**Clarifications:** One of: "Isolated" – Exchanges neither energy nor particles, e.g. the microcanonical ensemble. "Closed" – Exchanges energy but not particles, e.g. the canonical or isothermal-isobaric ensemble. "Open" – Exchanges particles, or their species, with a reservoir, e.g. the grand-canonical or semi-grand-canonical ensemble.
+**Clarifications:**
+
+- "Isolated" – Exchanges neither energy nor particles, e.g. the microcanonical ensemble
+- "Closed" – Exchanges energy but not particles, e.g. the canonical or isothermal-isobaric ensemble
+- "Open" – Exchanges particles, or their species, with a reservoir, e.g. the grand-canonical or semi-grand-canonical ensemble
 
 </details>
 
@@ -807,7 +891,11 @@ How the imposed conditions change during the simulation.
 
 Recommended: `Constant`, `Varying`, `Cyclic`. Other values are allowed.
 
-**Clarifications:** One of: "Constant" – No imposed condition changes. "Varying" – An imposed condition changes, e.g. a temperature ramp or a change of ensemble. "Cyclic" – An imposed condition changes periodically, e.g. cyclic loading.
+**Clarifications:**
+
+- "Constant" – No imposed condition changes
+- "Varying" – An imposed condition changes, e.g. a temperature ramp or a change of ensemble
+- "Cyclic" – An imposed condition changes periodically, e.g. cyclic loading
 
 </details>
 
@@ -822,7 +910,13 @@ How the imposed conditions vary across the system.
 
 Recommended: `Uniform`, `Nonuniform`, `Periodic`. Other values are allowed.
 
-**Clarifications:** One of: "Uniform" – Every imposed condition is the same throughout the system. "Nonuniform" – An imposed condition differs between parts of the system, e.g. a thermostat applied to part of it. "Periodic" – An imposed condition varies periodically across the system, e.g. sinusoidal heating. Not to be confused with `cell-periodicity`.
+**Clarifications:**
+
+- "Uniform" – Every imposed condition is the same throughout the system
+- "Nonuniform" – An imposed condition differs between parts of the system, e.g. a thermostat applied to part of it
+- "Periodic" – An imposed condition varies periodically across the system, e.g. sinusoidal heating
+
+Not to be confused with `cell-periodicity`.
 
 </details>
 
@@ -1642,7 +1736,11 @@ The reference against which the potential is given.
 
 Recommended: `SHE`, `RHE`, `Vacuum`. Other values are allowed.
 
-**Clarifications:** One of: "SHE" – The standard hydrogen electrode. "RHE" – The reversible hydrogen electrode, at the pH of the simulation. "Vacuum" – The vacuum level, giving an absolute potential.
+**Clarifications:**
+
+- "SHE" – The standard hydrogen electrode
+- "RHE" – The reversible hydrogen electrode, at the pH of the simulation
+- "Vacuum" – The vacuum level, giving an absolute potential
 
 </details>
 
@@ -1776,7 +1874,13 @@ The part this software played in the calculations.
 
 Recommended: `Calculation method`, `Interaction model`, `Script`, `Simulation code`, `Workflow framework`. Other values are allowed.
 
-**Clarifications:** One of: "Calculation method" – A packaged procedure that computes a defined property, e.g. an OpenKIM test or an iprPy calculation. "Interaction model" – The implementation of a particle interaction model, e.g. a KIM model or a potential file; give its identifier and link. "Script" – Custom code written for the calculations, e.g. a Python script using ASE. "Simulation code" – A program that performs the simulation or calculation itself, e.g. LAMMPS or VASP. "Workflow framework" – A system that sets up, runs and manages calculations with other software, e.g. pyiron, AiiDA or MedeA.
+**Clarifications:**
+
+- "Calculation method" – A packaged procedure that computes a defined property, e.g. an OpenKIM test or an iprPy calculation
+- "Interaction model" – The implementation of a particle interaction model, e.g. a KIM model or a potential file; give its identifier and link
+- "Script" – Custom code written for the calculations, e.g. a Python script using ASE
+- "Simulation code" – A program that performs the simulation or calculation itself, e.g. LAMMPS or VASP
+- "Workflow framework" – A system that sets up, runs and manages calculations with other software, e.g. pyiron, AiiDA or MedeA
 
 </details>
 
@@ -1913,7 +2017,14 @@ The kind of component.
 
 Recommended: `Compiler`, `FFT library`, `Interpreter`, `Library`, `Linear algebra library`, `MPI library`. Other values are allowed.
 
-**Clarifications:** One of: "Compiler" – Translates source code into an executable, e.g. GCC or the Intel oneAPI compilers. "FFT library" – Computes fast Fourier transforms, e.g. FFTW. "Interpreter" – Runs a script, e.g. Python. "Library" – Any other library the software calls, e.g. LibXC or ASE. "Linear algebra library" – Provides BLAS, LAPACK or ScaLAPACK routines, e.g. OpenBLAS or Intel MKL. "MPI library" – Implements the Message Passing Interface (MPI), e.g. Open MPI or MPICH.
+**Clarifications:**
+
+- "Compiler" – Translates source code into an executable, e.g. GCC or the Intel oneAPI compilers
+- "FFT library" – Computes fast Fourier transforms, e.g. FFTW
+- "Interpreter" – Runs a script, e.g. Python
+- "Library" – Any other library the software calls, e.g. LibXC or ASE
+- "Linear algebra library" – Provides BLAS, LAPACK or ScaLAPACK routines, e.g. OpenBLAS or Intel MKL
+- "MPI library" – Implements the Message Passing Interface (MPI), e.g. Open MPI or MPICH
 
 </details>
 
@@ -2300,7 +2411,12 @@ Description of change made to the dataset.
 
 Recommended: `Initial creation`, `Admin update`, `Version update`, `Metadata update`. Other values are allowed.
 
-**Clarifications:** "Initial creation" – Initial creation of the dataset. "Admin update" – Editorial update to the dataset not requiring a version update (e.g. spelling correction). "Version update" – Change to the dataset or associated files requiring a new version. "Metadata update" – Change to the metadata, but not the dataset itself.
+**Clarifications:**
+
+- "Initial creation" – Initial creation of the dataset
+- "Admin update" – Editorial update to the dataset not requiring a version update (e.g. spelling correction)
+- "Version update" – Change to the dataset or associated files requiring a new version
+- "Metadata update" – Change to the metadata, but not the dataset itself
 
 </details>
 

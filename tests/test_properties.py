@@ -161,7 +161,7 @@ def test_structure_notes_define_every_term_and_state_the_rules():
     assert '"Crystal"' not in phase and '"Molecule"' not in phase
     assert '"Gas" – A state where' in phase and phase.endswith('Omit for a component whose form is Molecule.')
     assert ('"Quasicrystal" – A solid material with long-range order but without translational periodicity, e.g. '
-            'one whose diffraction pattern shows five-fold rotational symmetry.') in phase
+            'one whose diffraction pattern shows five-fold rotational symmetry') in phase
     assert 'short-range order' not in phase
 
 
@@ -683,11 +683,11 @@ def test_wavefunction_representation_structure():
 
 
 def test_representation_note_groups_every_term():
-    """The note numbers the three groups of 0018 and explains every representation term, so no term is
+    """The note labels the three groups of 0018 and explains every representation term, so no term is
     listed without a meaning."""
     t = sub(dft('wavefunction-representation'), 'type')['values']
     assert t['terms'] == sorted(t['terms'])
-    for mark in ('(1) Basis-function expansions:', '(2) Grid methods:', '(3) Augmented methods:'):
+    for mark in ('**Basis-function expansions**', '**Grid methods**', '**Augmented methods**'):
         assert mark in t['note']
     assert all(f'"{term}" –' in t['note'] for term in t['terms'])
 
@@ -781,7 +781,7 @@ def test_convergence_energy_is_the_free_energy_when_smeared():
                           "Note: Give it when the computation's task is Optimization."]
     criterion = sub(sub(dft('self-consistent-field-convergence'), 'tolerance'), 'criterion')
     assert ('"Energy" – The change in the energy between successive iterations, defined as for '
-            '`relaxation-tolerance-energy`.') in ' '.join(criterion['values']['note'].split())
+            '`relaxation-tolerance-energy`') in ' '.join(criterion['values']['note'].split())
 
 
 def test_relaxation_tolerance_forces_is_a_force():
@@ -1017,9 +1017,9 @@ def test_electrode_potential_names_its_reference():
         True, False, 'string', [], 'inapplicable', None)
     assert r['values']['terms'] == ['SHE', 'RHE', 'Vacuum']
     assert r['description'] == 'The reference against which the potential is given.'
-    assert r['values']['note'] == ('One of: "SHE" – The standard hydrogen electrode. "RHE" – The reversible hydrogen '
-                                   'electrode, at the pH of the simulation. "Vacuum" – The vacuum level, giving an '
-                                   'absolute potential.')
+    assert r['values']['note'] == ('- "SHE" – The standard hydrogen electrode\n- "RHE" – The reversible hydrogen '
+                                   'electrode, at the pH of the simulation\n- "Vacuum" – The vacuum level, giving an '
+                                   'absolute potential')
 
 
 def test_chemical_potential_names_its_species():
