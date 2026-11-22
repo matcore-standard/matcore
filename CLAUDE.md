@@ -290,7 +290,8 @@ record or marked PROPOSED, NOT DECIDED.
    - Changes to the standard since 0.7.0, for the next release's entry in releases.yaml: a JSON Schema generated from
      the standard is published with each version and linked from §1.4; it checks the examples (0078); a new §1.4
      Serialization states what any serialization must preserve and JSON's mapping, and a record's own Properties are
-     named with the prefix x- (0079).
+     named with the prefix x- (0079); dft core-electron-treatment › type is All-electron or Frozen core, PAW being
+     named once, as a dataset type (0080; breaks 0.7.0 records with core type Pseudopotential or PAW).
    - Changes to the standard from 0.6.0 to 0.7.0 (released in 0.7.0, its entry in releases.yaml summarizing them): the
      examples are written in JSON, the first serialization, and §1.3 says so (0044); a required
      matcore container gives the standard version, an optional link to it, the dataset's id and
@@ -673,7 +674,7 @@ record or marked PROPOSED, NOT DECIDED.
    Frozen core. Breaks 0.7.0 records with core type Pseudopotential or PAW (still conformant, open terms). PROPOSED,
    NOT DECIDED (0080): a sentence in LAPW's definition covering APW+lo and LAPW with local orbitals; a step 9 warning
    for LAPW with Frozen core. Ruling committed on main (223d638).
-   [in progress, branch dft-frozen-core, committed, awaiting push and PR] 0080: schema/dft.yaml (core type terms and
+   [done, PR #141 merged 2026-11-22] 0080: schema/dft.yaml (core type terms and
    their definitions, pseudopotential-or-paw's description), examples/dft.json (core type Frozen core; its dataset
    stays Ultrasoft), tests/test_dft_rulings.py (a new test of 0080's wording, the dataset's terms, LAPW's place and the
    example), tests/test_properties.py (the 0018 structure test's core terms), 03-dft and the JSON Schema regenerated.
