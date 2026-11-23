@@ -1827,7 +1827,7 @@ record or marked PROPOSED, NOT DECIDED.
    versioning line on how a change is proposed, reviewed by the Standard Committee members of its section (linked to
    Leadership) and decided, renames and removals breaking and listed in the Revision History); tests/test_preamble.py
    (a new test). Judgment calls: placement of each paragraph; "can be aligned" (no mappings exist yet).
-   [in progress, branch atom-centered-basis-set, committed, not pushed; PR to open after the push] 0083 item 5:
+   [done, PR #145 merged 2026-11-23] 0083 item 5:
    schema/dft.yaml and schema/mbpt.yaml (the name, "atom-centered basis set" in five dft descriptions, mbpt's
    description "For a code using basis functions centered on atoms, the name of the basis set.", the two "either ...
    or" notes), by script; tests/test_properties.py (a new test; the structure tests renamed), test_computations.py and
