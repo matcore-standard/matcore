@@ -1908,6 +1908,13 @@ record or marked PROPOSED, NOT DECIDED.
    singular, except settings, species, calculation-physics, number-of-particles), test_properties (matcore first;
    two generic structure tests), test_preamble (the unit clause). Pages and JSON Schema regenerated; rendering
    checked. Found, not changed: examples/minimal.json gives standard-version 0.6.0.
+   The human's summary of the committee review's feedback (Feedback_summary/feedback_summary.docx, outside the
+   repository), checked 2026-11-23: its ten items (FAIRmat's semantic level, identifiers, layers, method vs workflow,
+   conditions, vocabularies and governance; FAIRmat's LibXC normalization; one reviewer's spatial and temporal
+   inhomogeneity and rare-event methods) are all addressed (0017, 0035-0042, 0046, 0063-0069, 0079, 0082, 0083), apart
+   from two points deferred by 0083: resolvable IRIs (until matcore.org points to the site) and mappings to other
+   schemas (with FAIRmat). The summary is unfinished: the list after "the following are absent:" and the MBPT, ML, PF
+   and Derived sections are empty, and the other two reviews (0084 and the spreadsheet) are not in it.
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one
