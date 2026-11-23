@@ -149,3 +149,22 @@ def test_serialization_has_its_own_section_with_the_json_mapping():
     for rule in ('UTF-8', '`.json`', 'never an array of entries', '`null` is not written', 'first index outermost',
                  '`type`', '`x-`'):
         assert rule in ser, rule
+
+
+def test_preamble_states_what_kind_of_standard_matcore_is_and_how_it_changes():
+    """A reader aligning MatCore with an ontology or a richer schema learns that it is a reporting standard, which
+    part of a record holds which kind of metadata, how a Property is identified, and how a change is made (0083
+    items 1-4)."""
+    text = (ROOT / 'docs/standard/index.md').read_text()
+    scope = text.split('## 1.2 Scope', 1)[1].split('## 1.3 Format', 1)[0]
+    fmt = text.split('## 1.3 Format', 1)[1].split('## 1.4 Serialization', 1)[0]
+    assert 'MatCore is a reporting standard' in scope and 'It is not an ontology.' in scope
+    assert 'through mappings' in scope
+    for part in ('`structure`', '`computation`', 'method-specific sections', 'derived section',
+                 'The results themselves are in the dataset.'):
+        assert part in scope, part
+    assert 'identified by its path' in fmt and '`dft.settings.xc-functional`' in fmt and 'permalink' in fmt
+    governance = fmt.split('Semantic Versioning', 1)[1]
+    for part in ('issue or pull request', '[Standard Committee](../leadership.md)', 'breaking change',
+                 'Revision History', '`x-`'):
+        assert part in governance, part
