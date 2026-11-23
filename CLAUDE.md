@@ -1845,6 +1845,36 @@ record or marked PROPOSED, NOT DECIDED.
    point (0046), DFT+U as calculation-physics On-site correlation (review 2026-11-16); the planewave-basis-cutoff note
    (step 4); μσT's gloss (fixed); pf time-dependence removed (0074 amendment); "paramter" and time-step-size's "grid
    spacing" text gone (PR #130). Left open, as before: whether minimal lists the quantities a dataset contains (0039).
+   A reviewer's written comments on minimal and other sections (committee review of 2026-09-23, by email; questions on
+   purpose and use, then specific points), reviewed 2026-11-23. Already addressed: wrappers and scripts (software one
+   entry per layer, roles Calculation method, Script, Simulation code, Workflow framework, with description, link,
+   identifier DOI/SWHID and dependency; 0043); phase "Cluster", nanostructures, surfaces and thin films (form terms,
+   0025); how structures were built (task Structure generation, 0065); the root element (JSON, a matcore container,
+   0044, 0045); cell as a 3x3 array (0038); units in the record (value + unit, 0015); non-SPDX licenses (LicenseRef-,
+   0031); "0" vs "o" in GW terms (0070); the Ry cutoff (recommended eV, the instance gives its own unit);
+   methfessel-paxton-order (a generic smearing parameter, 0004 item 47); singular names (the naming rule). Answered by
+   scope, no change: a record describes a dataset, not a method or wrapper alone (§1.2), so a material-agnostic method
+   has no record of its own; results are in the dataset (0083). Not addressed, PROPOSED, NOT DECIDED (recommendations):
+   (a) a generic parameter whose value is a string or bool carries no unit (amends 0016's unit*; §1.3,
+   check_generic.py, the JSON Schema); (b) four repeatable Properties break the rule that a repeatable Property stays
+   singular: pf domain › boundary-conditions and initial-conditions, pim charge-interactions and magnetic-interactions,
+   renamed boundary-condition, initial-condition, charge-interaction, magnetic-interaction (breaks 0.7.0 records);
+   `settings` kept as a mass noun; (c) matcore › id gets a note: the dataset's persistent identifier that is the same
+   for all versions (e.g. a Zenodo concept DOI), otherwise an identifier the record author generates (e.g. a UUID); no
+   central registry (settles the step 6 open point on the MatCore ID); (d) matcore moves to the top of minimal, since it
+   identifies the record (no record breaks); (e) links between records for shared components: not now
+   (related-content links datasets); (f) purpose, central databases and record generators: answered in the reply,
+   parsers being status step 9. (Superseded: (a), (b), (d) decided by 0084; (c) withdrawn, see below.)
+   Generic units, singular names, matcore first by 0084 (ruling 2026-11-23, from that review; the human chose each
+   recommendation): (1) a generic parameter whose value is a string or bool has no unit; unit is required for float
+   and int (amends 0016; §1.3, check_generic.py, the JSON Schema via the JSON `type` member); (2) pf domain ›
+   boundary-conditions and initial-conditions, pim charge-interactions and magnetic-interactions renamed
+   boundary-condition, initial-condition, charge-interaction, magnetic-interaction; settings kept; (3) matcore becomes
+   minimal's first top-level Property. Breaks 0.7.0 records with the old names or a unit on a string or bool
+   parameter. The human corrected (c): the reviewer asks how MatCore ids are assigned (e.g. minted by a central service
+   through a software tool, or another way); that process is undecided, and no note is added to matcore › id.
+   PROPOSED, NOT DECIDED: how MatCore ids are assigned (replaces the earlier step 6 point on the MatCore ID's form and
+   issuer). Ruling committed on main; next, one PR.
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one
