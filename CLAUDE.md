@@ -289,8 +289,12 @@ record or marked PROPOSED, NOT DECIDED.
      gh-pages versions.json) and `dev` is main. 0.8.0 released 2026-11-23 (tag v0.8.0 on 2b13114; rulings 0078-0084:
      the JSON Schema, §1.4, and the committee review's feedback); the site's `latest` is 0.8.0 (checked in gh-pages
      versions.json). Its tag run's first deploy failed: pushed together with main, it raced main's dev deploy to
-     gh-pages and was rejected; the re-run (attempt 2) deployed it. PROPOSED, NOT DECIDED: a `concurrency` group on
-     the deploy steps of .github/workflows/ci.yml so that deploys wait for one another.
+     gh-pages and was rejected; the re-run (attempt 2) deployed it. Decided by the human 2026-11-23: deploys wait for one
+     another. [in progress, branch ci-deploy-concurrency, committed, not pushed; PR to open after the push]
+     .github/workflows/ci.yml: the job's concurrency group is shared by push runs (deploy-gh-pages) and unique per
+     pull-request run, cancel-in-progress false, queue max (a waiting run is kept, not replaced; GitHub's
+     control-workflow-concurrency how-to, read 2026-11-23); tests/test_ci.py (new). The deploy path is verified only
+     at the next push to main.
    - Changes to the standard since 0.8.0, for the next release's entry in releases.yaml: none yet.
    - Changes to the standard from 0.7.0 to 0.8.0 (released in 0.8.0, its entry in releases.yaml summarizing them): a JSON Schema generated from
      the standard is published with each version and linked from §1.4; it checks the examples (0078); a new §1.4

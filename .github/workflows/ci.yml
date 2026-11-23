@@ -4,6 +4,12 @@ permissions: {contents: write}
 jobs:
   validate-and-build:
     runs-on: ubuntu-latest
+    # Pushes deploy to gh-pages, so one push run at a time; every waiting run is kept, so a tag pushed with main
+    # deploys after it instead of being rejected. Pull requests deploy nothing and are not held.
+    concurrency:
+      group: ${{ github.event_name == 'push' && 'deploy-gh-pages' || github.run_id }}
+      cancel-in-progress: false
+      queue: max
     steps:
       - uses: actions/checkout@v4
         with: {fetch-depth: 0}
