@@ -509,8 +509,7 @@ record or marked PROPOSED, NOT DECIDED.
    widths (the table scrolls sideways on a phone, as before).
    Requested by the human 2026-11-23: the bottom bar's "Made with Material for MkDocs" is replaced by "MatCore is
    supported by" and white-on-black logos of NSF, OpenKIM and Matterstack (the human's files; Matterstack's inverted),
-   on one line, spaced, in proportion to the text. [in progress, branch footer-supporters, committed, not pushed; PR to
-   open after the push] overrides/partials/copyright.html (a new override of the theme's partial; re-check on theme
+   on one line, spaced, in proportion to the text. [done, PR #149 merged 2026-11-23] overrides/partials/copyright.html (a new override of the theme's partial; re-check on theme
    upgrades), docs/assets/matcore/supporters/ (nsf.png, openkim.png, matterstack.png, 96 px tall, white on
    transparent; OpenKIM's own black box kept), layout.css (the bar black; the logos 2em, 1.5em and .8em tall, gap
    1.6em, no wrapping); each logo links to its site, opening in a new tab: https://www.nsf.gov/ (the human gave
