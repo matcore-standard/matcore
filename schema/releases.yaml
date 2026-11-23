@@ -3,6 +3,20 @@
 # page from this file. A release adds an entry here in one commit on main, then tags that commit vX.Y.Z.
 # description: one item per line of the history table's cell.
 releases:
+  - version: 0.8.0
+    date: 2026-11-23
+    change_type: Minor (Breaking)
+    sections: Across document
+    description:
+      - "- A JSON Schema generated from the standard is published with each version; it checks a record's names, structure, types, shapes, values and units"
+      - "- New §1.4 Serialization: what any serialization must preserve, and the JSON serialization; a record's own properties are named with the prefix x-"
+      - "- Preamble: MatCore is a reporting standard; which part of a record holds which metadata; a property is identified by its path; how a change to the standard is proposed and decided"
+      - "- DFT: the core-electron treatment is All-electron or Frozen core, PAW being a kind of pseudopotential dataset; localized-orbital-basis-set is renamed atom-centered-basis-set"
+      - "- PS: a constraint on, or a potential applied to, a group of particles (fixed, tethered, restricted, rigid, holonomic, flexible boundaries, walls, indenters, driving potentials)"
+      - "- Derived Property: the Mechanical, Thermodynamic and Transport families widened (strengths, hardness, melting temperature, viscosity, defect mobilities)"
+      - "- A generic parameter whose value is a string or a bool has no unit; the matcore container comes first in the minimal metadata"
+      - "- Renaming of some properties to the singular (e.g. boundary-conditions to boundary-condition, charge-interactions to charge-interaction)"
+    approved_by: E. B. Tadmor
   - version: 0.7.0
     date: 2026-11-22
     change_type: Minor (Breaking)

@@ -1,6 +1,6 @@
 # 2.8 Derived Property (DP) Metadata
 
-<p class="mc-version" data-version="0.7.0">Version 0.7.0</p>
+<p class="mc-version" data-version="0.8.0">Version 0.8.0</p>
 
 The metadata for derived properties (MatCore-DP) is tabulated below. A derived property is a property obtained from the results of other computations, e.g. a Raman spectrum computed from phonon modes and dielectric tensors obtained by DFT. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 

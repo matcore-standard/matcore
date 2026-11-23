@@ -286,8 +286,11 @@ record or marked PROPOSED, NOT DECIDED.
      (tag v0.6.0 on b688e40; dft complete; rulings 0016–0043); the site's `latest` is 0.6.0 and `dev`
      is main. (An earlier v0.6.0 tag on 2908f57 failed CI's release check and was moved.) 0.7.0 released 2026-11-22
      (tag v0.7.0 on 19b4b3d; step 5 complete, every section filled); the site's `latest` is 0.7.0 (checked in
-     gh-pages versions.json) and `dev` is main.
-   - Changes to the standard since 0.7.0, for the next release's entry in releases.yaml: a JSON Schema generated from
+     gh-pages versions.json) and `dev` is main. 0.8.0 prepared 2026-11-23 (rulings 0078-0084: the JSON Schema, §1.4,
+     and the committee review's feedback), its entry in releases.yaml; release commit on main, awaiting the human's push
+     and the tag v0.8.0.
+   - Changes to the standard since 0.8.0, for the next release's entry in releases.yaml: none yet.
+   - Changes to the standard from 0.7.0 to 0.8.0 (released in 0.8.0, its entry in releases.yaml summarizing them): a JSON Schema generated from
      the standard is published with each version and linked from §1.4; it checks the examples (0078); a new §1.4
      Serialization states what any serialization must preserve and JSON's mapping, and a record's own Properties are
      named with the prefix x- (0079); dft core-electron-treatment › type is All-electron or Frozen core, PAW being
