@@ -1,0 +1,17 @@
+{#-
+  Override of the theme's partials/copyright.html: the bottom bar names MatCore's supporters, with their logos
+  linking to their sites, in place of the theme's "Made with Material for MkDocs" line. Re-check on theme upgrades.
+-#}
+<div class="md-copyright">
+  {% if config.copyright %}
+    <div class="md-copyright__highlight">
+      {{ config.copyright }}
+    </div>
+  {% endif %}
+  <div class="mc-supporters">
+    <span>MatCore is supported by</span>
+    <a href="https://www.nsf.gov/" target="_blank" rel="noopener"><img class="mc-supporter mc-supporter--nsf" src="{{ 'assets/matcore/supporters/nsf.png' | url }}" alt="U.S. National Science Foundation"></a>
+    <a href="https://openkim.org" target="_blank" rel="noopener"><img class="mc-supporter mc-supporter--openkim" src="{{ 'assets/matcore/supporters/openkim.png' | url }}" alt="OpenKIM"></a>
+    <a href="https://matterstack.ai" target="_blank" rel="noopener"><img class="mc-supporter mc-supporter--matterstack" src="{{ 'assets/matcore/supporters/matterstack.png' | url }}" alt="Matterstack"></a>
+  </div>
+</div>

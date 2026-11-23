@@ -507,6 +507,16 @@ record or marked PROPOSED, NOT DECIDED.
    regenerated; tests: test_build_docs (a new test of the row), test_releases (the matcore.org rows compared word for
    word instead of character for character, since the markup changed). Checked in the browser at desktop and phone
    widths (the table scrolls sideways on a phone, as before).
+   Requested by the human 2026-11-23: the bottom bar's "Made with Material for MkDocs" is replaced by "MatCore is
+   supported by" and white-on-black logos of NSF, OpenKIM and Matterstack (the human's files; Matterstack's inverted),
+   on one line, spaced, in proportion to the text. [in progress, branch footer-supporters, committed, not pushed; PR to
+   open after the push] overrides/partials/copyright.html (a new override of the theme's partial; re-check on theme
+   upgrades), docs/assets/matcore/supporters/ (nsf.png, openkim.png, matterstack.png, 96 px tall, white on
+   transparent; OpenKIM's own black box kept), layout.css (the bar black; the logos 2em, 1.5em and .8em tall, gap
+   1.6em, no wrapping); each logo links to its site, opening in a new tab: https://www.nsf.gov/ (the human gave
+   https://www.nsf.org/, NSF International, and chose nsf.gov when asked), https://openkim.org, https://matterstack.ai.
+   Checked in the browser at desktop and phone widths; the links checked in a fresh build (mkdocs serve does not
+   reload overrides/).
 3. [done, PR #9 merged 2026-11-01] Apply 0001 Part A (kind/recommended-unit/convention): merged
    into step 5, property by property (0004). What remained of this step did not belong to any one
    property; each was its own change.

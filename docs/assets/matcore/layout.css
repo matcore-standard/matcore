@@ -159,3 +159,12 @@ summary:hover > .mc-permalink, .mc-permalink:focus-visible { opacity: 1; }
 /* Bullets change with depth, as in the baseline .docx: ● ○ ■ (the theme uses ● at every level). */
 .md-typeset ul ul { list-style-type: circle; }
 .md-typeset ul ul ul { list-style-type: square; }
+
+/* Bottom bar: "MatCore is supported by" and the supporters' white logos on black, on one line
+   (overrides/partials/copyright.html). Heights are in em, so the logos keep their proportion to the text. */
+.md-footer-meta { background-color: #000; }
+.mc-supporters { display: flex; flex-wrap: nowrap; align-items: center; gap: 1.6em; white-space: nowrap; }
+.md-copyright .mc-supporter { display: block; width: auto; }
+.md-copyright .mc-supporter--nsf { height: 2em; }
+.md-copyright .mc-supporter--openkim { height: 1.5em; }
+.md-copyright .mc-supporter--matterstack { height: .8em; }
