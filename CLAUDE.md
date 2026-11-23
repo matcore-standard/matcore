@@ -1751,6 +1751,29 @@ record or marked PROPOSED, NOT DECIDED.
    point) is where levels 1 and 2 still meet in one computation.
 6. [todo] Committee decisions and community feedback (user will supply, after step 5):
    one decision record + one PR each.
+   A reviewer's written feedback on MatCore-MD v0.3.0 (committee review of 2026-09-23, by email), reviewed 2026-11-22
+   against the current schema. Already addressed: stages, ramps and carry-over of state (0063, 0035, 0026); a thermostat
+   on a group of atoms (0069 `system`); rare-event and accelerated methods (ps algorithm: hyperdynamics, ParRep, TAD,
+   aMD, replica exchange, basin hopping and filling, forward flux and transition path sampling, milestoning, string,
+   dimer, ART, eigenvector following, steered and targeted MD; 0064, 0066); variants (bond- and strain-boost, GaMD, TIS,
+   ART nouveau, metadynamics variants) in ps settings › description (0067); Born-matrix elastic constants (0067); the
+   simulated-annealing schedule (qualified temperature entries, 0035, with computation-parameter and description);
+   the μσT gloss (fixed). KMC variants wait for a KMC section (0064). Not addressed: (1) constraints on groups of
+   particles (fixed, tethered, restricted to a plane or line, rigid bodies, holonomic constraints such as SHAKE,
+   RATTLE or LINCS, centre-of-mass constraints, prescribed motion of a block); (2) flexible (Green's function)
+   boundary conditions; (3) applied potentials (walls, indenters, synthetic grain-boundary driving forces); (4) the
+   reviewer's point that PF has boundary conditions and PS none; (5) SLLOD / Lees-Edwards shear (not raised as a term,
+   but implied).
+   Particle constraints by 0082 (ruling 2026-11-22, from that feedback; the human decided each item): ps settings gains
+   an optional, repeatable `particle-constraint` after thermodynamic-constraint, "A constraint on, or a potential
+   applied to, a group of particles.": system* (words, as thermodynamic-constraint › system; no atom indices or code
+   group names), type* with open terms in two groups, motion constraints (Fixed, Tethered, Restricted, Rigid body,
+   Holonomic, Centre of mass, Prescribed motion, Flexible boundary) and applied potentials (Wall, Indenter, Driving
+   potential), and description (form, variant, and the role of each computation-parameter entry, 0067). No ps
+   boundary-conditions property: particle boundaries are minimal conditions › cell-periodicity with particle-constraint
+   entries, the counterpart of PF's. SLLOD needs no change (strain-rate with qualified entries; a user-specified
+   algorithm term; Lees-Edwards in description). No released record breaks. Ruling committed on main; next, one PR
+   (schema/ps.yaml, term definitions drafted in it, tests, ps page and JSON Schema).
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one
