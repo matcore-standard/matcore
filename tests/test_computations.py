@@ -324,7 +324,7 @@ def test_ps_keeps_only_the_dynamics():
     assert [p['name'] for p in props] == ['settings']
     assert [c['name'] for c in props[0]['subproperties']] == [
         'computation-label', 'algorithm', 'description', 'computation-parameter', 'initialization',
-        'thermodynamic-constraint']
+        'thermodynamic-constraint', 'particle-constraint']
     text = (ROOT / 'schema/ps.yaml').read_text()
     for gone in ('name: mode', 'particle-style', 'particle-interactions', 'charge-interactions',
                  'magnetic-interactions'):
@@ -673,6 +673,37 @@ def test_ps_thermodynamic_constraint_names_the_ensemble_and_its_enforcement():
     assert 'minimal `conditions`' in p['notes'][0]
     assert 'conditions › description' in sub(c, 'system')['notes'][0]
     assert not any(k.startswith('legacy_') for s in [c, *c['subproperties'], *p['subproperties']] for k in s)
+
+
+PARTICLE_CONSTRAINTS = {
+    'Motion constraints': ['Fixed', 'Tethered', 'Restricted', 'Rigid body', 'Holonomic', 'Centre of mass',
+                           'Prescribed motion', 'Flexible boundary'],
+    'Applied potentials': ['Wall', 'Indenter', 'Driving potential'],
+}
+
+
+def test_ps_particle_constraint_names_the_group_and_what_acts_on_it():
+    """A group of particles may be held, moved or pushed apart from the rest of the cell; the group is named in
+    words, as a thermostat's is, and the numbers are computation-parameter entries explained in description
+    (0082, 0067). Particle boundaries need no property of their own beside cell-periodicity (0082 item 2)."""
+    c = sub(top('ps', 'settings'), 'particle-constraint')
+    assert (c['required'], c['repeatable'], c['type']) == (False, True, None)
+    assert c['description'] == 'A constraint on, or a potential applied to, a group of particles.'
+    assert [(s['name'], s['required'], s['repeatable']) for s in c['subproperties']] == [
+        ('system', True, False), ('type', True, False), ('description', False, False)]
+    for s in c['subproperties']:
+        assert (s['type'], s['extent'], s['kind']) == ('string', [], 'inapplicable')
+    assert 'computation-parameter' in sub(c, 'description')['description']
+    assert 'Atom indices' in sub(c, 'system')['notes'][0]
+    t = sub(c, 'type')
+    assert t['values']['terms'] == [x for g in PARTICLE_CONSTRAINTS.values() for x in g]
+    blocks = t['values']['note'].split('\n\n')  # a bold label, a blank line, then the list (0007 item 5)
+    assert blocks[0::2] == [f'**{k}**' for k in PARTICLE_CONSTRAINTS]
+    assert [[line.split(' – ')[0] for line in b.split('\n')] for b in blocks[1::2]] == [
+        [f'- "{x}"' for x in g] for g in PARTICLE_CONSTRAINTS.values()]
+    notes = ' '.join(' '.join(c.get('notes', [])).split())
+    assert 'cell-periodicity' in notes
+    assert 'boundary-conditions' not in [s['name'] for s in top('ps', 'settings')['subproperties']]
 
 
 def test_ps_is_complete():

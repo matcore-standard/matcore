@@ -355,6 +355,77 @@ An explanation of the meaning, source, or purpose of the thermodynamic constrain
 
 </details>
 
+<details class="note mc-property" id="ps.settings.particle-constraint" markdown="1">
+<summary><span class="mc-name">particle-constraint</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+A constraint on, or a potential applied to, a group of particles.
+
+| Required | Repeatable |
+|---|---|
+| no | yes |
+
+Note: Give one entry for each group of particles and each constraint or potential acting on it, e.g. a fixed bottom layer and a wall above a free surface. The boundaries of a particle simulation are given by minimal `conditions › cell-periodicity` together with these entries, e.g. Fixed or Flexible boundary for the particles of a nonperiodic direction.
+
+<details class="note mc-property" id="ps.settings.particle-constraint.system" markdown="1">
+<summary><span class="mc-name">system<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The collection of particles to which the constraint or potential is applied.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+Examples: `Bottom three atomic layers of the slab`, `Indenter block`.
+
+Note: Name the group in words, as in `thermodynamic-constraint › system`, e.g. by region, layer, species or molecule. Atom indices and the group names of a code's input file are not used, since the record does not carry that file (§1.2).
+
+</details>
+
+<details class="note mc-property" id="ps.settings.particle-constraint.type" markdown="1">
+<summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The kind of constraint or applied potential.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+Recommended: `Fixed`, `Tethered`, `Restricted`, `Rigid body`, `Holonomic`, `Centre of mass`, `Prescribed motion`, `Flexible boundary`, `Wall`, `Indenter`, `Driving potential`. Other values are allowed.
+
+**Clarifications:**
+
+**Motion constraints**
+
+- "Fixed" – The particles are held at their positions
+- "Tethered" – Each particle is bound to a reference position by a spring
+- "Restricted" – The particles move only within a plane or along a line, e.g. in a slab or wire geometry
+- "Rigid body" – The particles move together as one rigid body, with no relative motion
+- "Holonomic" – Bond lengths or angles are held at fixed values, e.g. by SHAKE, RATTLE or LINCS
+- "Centre of mass" – The centre of mass of the particles is held fixed or moves as prescribed, the particles moving freely about it
+- "Prescribed motion" – The particles follow a prescribed displacement or velocity, e.g. a block driven as an indenter or a piston
+- "Flexible boundary" – The particles of a boundary region are displaced by the elastic response of the surrounding material to the forces on them, e.g. through a lattice Green's function
+
+**Applied potentials**
+
+- "Wall" – A potential that confines the particles on one side of a surface, e.g. a harmonic or Lennard-Jones wall
+- "Indenter" – A repulsive potential of a given shape, e.g. a sphere or a cone, pressed into the particles
+- "Driving potential" – A potential that adds an energy difference between states of the particles to drive a transformation, e.g. a synthetic driving force on a grain boundary
+
+</details>
+
+<details class="note mc-property" id="ps.settings.particle-constraint.description" markdown="1">
+<summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+Explanatory text about the constraint or potential: its form, the variant used, and the role of each `computation-parameter` entry it uses, e.g. a spring constant or an indenter's radius and speed.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+</details>
+
+</details>
+
 </details>
 
 ## Example: PS Method-Specific Metadata
