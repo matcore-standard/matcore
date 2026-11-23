@@ -1819,7 +1819,7 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED (0083): a note on atom-centered-basis-set pointing Wannier functions and localized molecular
    orbitals to derived; the IRI form once matcore.org points to the site. Ruling committed on main (4840fe7); two PRs: the
    Preamble (items 1-4) and the rename (item 5).
-   [in progress, branch preamble-scope-0083, committed, not pushed; PR to open after the push] 0083 items 1-4:
+   [done, PR #144 merged 2026-11-23] 0083 items 1-4:
    docs/standard/index.md (§1.2 gains two paragraphs at its end, the parts of a record and the reporting-standard
    sentence; §1.3 gains a paragraph before the x- paragraph on a Property's path and permalink, and one after the
    versioning line on how a change is proposed, reviewed by the Standard Committee members of its section (linked to
