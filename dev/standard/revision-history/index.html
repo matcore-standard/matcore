@@ -961,7 +961,7 @@
 
 
 <h1 id="matcore-standard-revisions">MatCore Standard Revisions</h1>
-<p class="mc-version" data-version="0.7.0">Version 0.7.0</p>
+<p class="mc-version" data-version="0.8.0">Version 0.8.0</p>
 
 <table>
 <thead>
@@ -975,6 +975,14 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.8.0</td>
+<td>23-Nov-2026</td>
+<td>Minor (Breaking)</td>
+<td>Across document</td>
+<td>- A JSON Schema generated from the standard is published with each version; it checks a record's names, structure, types, shapes, values and units<br> - New §1.4 Serialization: what any serialization must preserve, and the JSON serialization; a record's own properties are named with the prefix x-<br> - Preamble: MatCore is a reporting standard; which part of a record holds which metadata; a property is identified by its path; how a change to the standard is proposed and decided<br> - DFT: the core-electron treatment is All-electron or Frozen core, PAW being a kind of pseudopotential dataset; localized-orbital-basis-set is renamed atom-centered-basis-set<br> - PS: a constraint on, or a potential applied to, a group of particles (fixed, tethered, restricted, rigid, holonomic, flexible boundaries, walls, indenters, driving potentials)<br> - Derived Property: the Mechanical, Thermodynamic and Transport families widened (strengths, hardness, melting temperature, viscosity, defect mobilities)<br> - A generic parameter whose value is a string or a bool has no unit; the matcore container comes first in the minimal metadata<br> - Renaming of some properties to the singular (e.g. boundary-conditions to boundary-condition, charge-interactions to charge-interaction)</td>
+<td>E. B. Tadmor</td>
+</tr>
 <tr>
 <td>0.7.0</td>
 <td>22-Nov-2026</td>
