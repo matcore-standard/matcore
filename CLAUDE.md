@@ -1878,7 +1878,7 @@ record or marked PROPOSED, NOT DECIDED.
    through a software tool, or another way); that process is undecided, and no note is added to matcore › id.
    PROPOSED, NOT DECIDED: how MatCore ids are assigned (replaces the earlier step 6 point on the MatCore ID's form and
    issuer). Ruling committed on main (4d1f109).
-   [in progress, branch generic-units-singular-names, committed, not pushed; PR to open after the push] 0084: (1)
+   [done, PR #146 merged 2026-11-23] 0084: (1)
    scripts/check_generic.py (UNIT_GIVEN; unit not required, with that note), the ten generic parameters' unit in dft,
    ps, pf, ml and derived (required false, the note; by script), scripts/build_json_schema.py (unit required for float
    and int, forbidden for string and bool), §1.3's definition; (2) pf boundary-condition and initial-condition, pim
