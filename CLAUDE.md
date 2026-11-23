@@ -1834,6 +1834,17 @@ record or marked PROPOSED, NOT DECIDED.
    test_dft_rulings.py renamed; 03-dft, 05-mbpt and the JSON Schema regenerated; no example uses it. Judgment calls:
    US spelling, as the schema's "modeled"; minimal method's TB definition keeps "a basis of localized orbitals" (the
    usual wording for tight binding, outside the ruling). The Wannier note is declined by the human 2026-11-23 (committed without it).
+   A reviewer's spreadsheet of fourteen items (committee review of 2026-09-23, by email; errors, typos and vocabularies in
+   minimal, DFT, MBPT, MD and PF), reviewed 2026-11-23 against the current schema: all are addressed, nothing to
+   decide. temperature-gradient is TemperatureGradient, K/m (step 5, PR #25); provenance › date reads "The date and
+   time when the change was made." (PR #33); the "Nonstandard" simulation type is gone, type being a container of four
+   vocabularies (0036); cell-reference writes |a₀|, |b₀|, |c₀| (PR #25); heat-flux and temperature-gradient give
+   whichever is imposed, a measured value being a result (0039); units: any Annex U symbol of the right Kind, no
+   normalization to SI, the recommended unit informative, x-gnu: only where the Kind is any (0001, 0015, §1.3); LAPW
+   and PAW (0018, 0080); mbpt starting-point and its type removed, the DFT computation named as input role Starting
+   point (0046), DFT+U as calculation-physics On-site correlation (review 2026-11-16); the planewave-basis-cutoff note
+   (step 4); μσT's gloss (fixed); pf time-dependence removed (0074 amendment); "paramter" and time-step-size's "grid
+   spacing" text gone (PR #130). Left open, as before: whether minimal lists the quantities a dataset contains (0039).
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one
