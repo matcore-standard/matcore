@@ -295,7 +295,9 @@ record or marked PROPOSED, NOT DECIDED.
      families Mechanical, Thermodynamic and Transport are widened (strengths, hardness, melting temperature, viscosity,
      defect mobilities), and the derived introduction points paths found by the NEB to PS (0081); ps settings gains an
      optional, repeatable particle-constraint for a constraint on, or a potential applied to, a group of particles
-     (0082).
+     (0082); §1.2 states that MatCore is a reporting standard and which part of a record holds which metadata, and §1.3
+     how a Property is identified and how a change is made (0083); dft and mbpt localized-orbital-basis-set are renamed
+     atom-centered-basis-set (0083; breaks 0.7.0 records that use them).
    - Changes to the standard from 0.6.0 to 0.7.0 (released in 0.7.0, its entry in releases.yaml summarizing them): the
      examples are written in JSON, the first serialization, and §1.3 says so (0044); a required
      matcore container gives the standard version, an optional link to it, the dataset's id and
@@ -1817,15 +1819,21 @@ record or marked PROPOSED, NOT DECIDED.
    molecular orbitals being derived results (a DP computation, e.g. software Wannier90, naming its source as Source
    data); (6) software-code vocabulary and general normalized values declined; (7) mappings later, with FAIRmat.
    PROPOSED, NOT DECIDED (0083): a note on atom-centered-basis-set pointing Wannier functions and localized molecular
-   orbitals to derived; the IRI form once matcore.org points to the site. Ruling committed on main (4840fe7); two PRs: the
+   orbitals to derived (Superseded: declined by the human 2026-11-23); the IRI form once matcore.org points to the site. Ruling committed on main (4840fe7); two PRs: the
    Preamble (items 1-4) and the rename (item 5).
    [done, PR #144 merged 2026-11-23] 0083 items 1-4:
    docs/standard/index.md (§1.2 gains two paragraphs at its end, the parts of a record and the reporting-standard
    sentence; §1.3 gains a paragraph before the x- paragraph on a Property's path and permalink, and one after the
    versioning line on how a change is proposed, reviewed by the Standard Committee members of its section (linked to
    Leadership) and decided, renames and removals breaking and listed in the Revision History); tests/test_preamble.py
-   (a new test). Judgment calls: placement of each paragraph; "can be aligned" (no mappings exist yet). Then the rename
-   PR (item 5).
+   (a new test). Judgment calls: placement of each paragraph; "can be aligned" (no mappings exist yet).
+   [in progress, branch atom-centered-basis-set, committed, not pushed; PR to open after the push] 0083 item 5:
+   schema/dft.yaml and schema/mbpt.yaml (the name, "atom-centered basis set" in five dft descriptions, mbpt's
+   description "For a code using basis functions centered on atoms, the name of the basis set.", the two "either ...
+   or" notes), by script; tests/test_properties.py (a new test; the structure tests renamed), test_computations.py and
+   test_dft_rulings.py renamed; 03-dft, 05-mbpt and the JSON Schema regenerated; no example uses it. Judgment calls:
+   US spelling, as the schema's "modeled"; minimal method's TB definition keeps "a basis of localized orbitals" (the
+   usual wording for tight binding, outside the ruling). The Wannier note is declined by the human 2026-11-23 (committed without it).
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one
