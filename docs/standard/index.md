@@ -34,6 +34,10 @@ All methods share a common minimal set of metadata defined by the MatCore standa
 
 Some methods supply energies and forces (e.g. DFT, or an interatomic potential), others use them to sample or evolve a system (e.g. MD). A dataset is described as one or more computations, each a group of calculations that share a method and its settings. A computation that uses the results of another names it, with the role the other plays: an ab initio molecular dynamics (AIMD) computation names the DFT computation that supplies its energies and forces. Each method-specific section describes the computations of its method. MatCore describes a dataset; it does not record how to reproduce its execution. The order of the calculations, their control flow and complete inputs belong to the provenance record of a workflow manager, to which a MatCore record may point.
 
+The parts of a record hold different kinds of metadata. The top-level Properties of the minimal metadata describe the dataset: its title, creators, license and provenance. `structure` describes the modeled system. `computation` describes each computation: its method, task, inputs, imposed conditions and software. The method-specific sections give the settings of each computation, and the derived section the properties obtained from the results. The results themselves are in the dataset.
+
+MatCore is a reporting standard: it says what the metadata of a dataset must contain and how it is structured. It is not an ontology. Its Properties are defined in words, and they can be aligned with ontologies and richer schemas through mappings.
+
 ## 1.3 Format
 
 Each standard consists of a set of Properties with possible SubProperties, SubSubProperties, etc. The term “Property” will be used in the rest of this section to refer collectively to Property, SubProperty, etc. Properties have the following characteristics:
@@ -70,11 +74,15 @@ Each standard consists of a set of Properties with possible SubProperties, SubSu
 
     - Note(s): Additional clarifying information regarding a Property.
 
+A Property is identified by its path: the key of its section followed by the names leading down to it, joined by full stops, e.g. `dft.settings.xc-functional`. The path is the Property's address on the page of its section, and the permalink of a Property cites its definition in one version of the Standard.
+
 In addition to the required and optional Properties, a metadata file may add Properties of its own, at any level, to support developments in the field. Their names begin with the prefix `x-`, e.g. `x-beamline`, which no Property of the Standard uses, so that they cannot be mistaken for the Standard's. Such Properties may eventually be standardized and added to the MatCore Standard.
 
 Examples are provided after each Standard specification in JSON, the first serialization adopted for MatCore instances. However, this is for clarification purposes only. The MatCore Standard serves as a conceptual and logical framework. It defines the schema for Properties required to ensure data consistency and interoperability. Critically, the MatCore Standard is implementation-agnostic. It dictates what information must be captured and how it should be structured logically, but it does not mandate a specific substrate, file format, or programming language.
 
 MatCore adopts [Semantic Versioning](https://semver.org/) (SemVer) three-part versioning system (major, minor, patch) to indicate Standard changes.
+
+A change to the Standard, such as a new, renamed or removed Property, or the adoption of a Property added with the prefix `x-`, is proposed as an issue or pull request in the MatCore repository on GitHub. It is reviewed by the members of the [Standard Committee](../leadership.md) responsible for the section it concerns, and decided by the Committee. Renaming or removing a Property is a breaking change and is listed in the Revision History.
 
 
 ## 1.4 Serialization
