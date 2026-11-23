@@ -9,6 +9,7 @@ Usage: build_docs.py [--show-legacy] [--out DIR]. Idempotent. --show-legacy adds
 baseline migration, of which none remains since status step 5 filled every section's typed fields.
 """
 import argparse
+import html
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -155,17 +156,38 @@ def version_line():
     return f'<p class="mc-version" data-version="{v}">Version {v}</p>'
 
 
+def release_row(r):
+    """Return one release as an HTML table row. A release of several changes is a row that layout.js lets the
+    reader open and close as a whole; closed, it shows its first change (layout.css).
+
+    r (dict): one entry of schema/releases.yaml; a description line starting '- ' is one change.
+    """
+    lines = r['description']
+    items = [html.escape(l[2:]) for l in lines if l.startswith('- ')]
+    lead = '<br>'.join(html.escape(l) for l in lines if not l.startswith('- '))
+    many = len(items) > 1
+    version = html.escape(r['version'])
+    first = (f'<button type="button" class="mc-release-toggle" aria-expanded="false">{version}</button>'
+             if many else version)
+    changes = lead + (f'<ul>{"".join(f"<li>{i}</li>" for i in items)}</ul>' if items else '')
+    more = f' data-more="+{len(items) - 1} more"' if many else ''
+    cells = [first, r['date'].strftime('%d-%b-%Y'), html.escape(r['change_type']), html.escape(r['sections']),
+             f'<div class="mc-changes"{more}>{changes}</div>', html.escape(r['approved_by'])]
+    tr = '<tr class="mc-release">' if many else '<tr>'
+    return tr + ''.join(f'<td>{c}</td>' for c in cells) + '</tr>'
+
+
 def render_revision_history(releases):
     """Return the Revision History page, generated from schema/releases.yaml (decision 0010).
 
     releases (list[dict]): the `releases` list, newest first.
     """
+    head = ''.join(f'<th>{h}</th>' for h in
+                   ('Version', 'Date', 'Change Type', 'Section(s)', 'Description of Change', 'Approved By'))
     rows = ['# MatCore Standard Revisions', '', version_line(), '',
-            '| Version | Date | Change Type | Section(s) | Description of Change | Approved By |',
-            '|---|---|---|---|---|---|']
-    for r in releases:
-        rows.append(f"| {r['version']} | {r['date'].strftime('%d-%b-%Y')} | {r['change_type']} | {r['sections']} | "
-                    f"{'<br> '.join(r['description'])} | {r['approved_by']} |")
+            '<div class="mc-revisions"><table>', f'<thead><tr>{head}</tr></thead>', '<tbody>']
+    rows += [release_row(r) for r in releases]
+    rows += ['</tbody>', '</table></div>']
     return '\n'.join(rows) + '\n'
 
 

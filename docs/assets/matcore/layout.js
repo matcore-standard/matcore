@@ -32,6 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Revision History: a release of several changes opens and closes as a whole row, by a click anywhere on it or
+// on its version button (keyboard). Rows start closed; without this script every row stays open.
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.mc-revisions').forEach(table => {
+    table.classList.add('mc-collapsible');
+    table.querySelectorAll('tr.mc-release').forEach(tr => {
+      const button = tr.querySelector('.mc-release-toggle');
+      tr.addEventListener('click', e => {
+        if (e.target.closest('a') || getSelection().toString()) return;  // keep links and text selection working
+        button.setAttribute('aria-expanded', tr.classList.toggle('mc-open'));
+      });
+    });
+  });
+});
+
 // Standard-page behaviour of decision record 0007, for pages whose property blocks
 // scripts/build_docs.py writes (details.mc-property, id = citable address). Adds: a permalink button on each block,
 // a property tree in the left sidebar, a breadcrumb bar for narrow screens, opening the block

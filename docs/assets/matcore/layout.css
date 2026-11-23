@@ -29,6 +29,22 @@
 .md-typeset details.mc-property table:not([class]) { border-color: var(--mc-blue); }
 .md-typeset details.mc-property table:not([class]) th { background-color: rgba(217, 178, 102, .22); }
 
+/* Revision History: a release of several changes is a row that opens and closes as a whole (layout.js adds
+   mc-collapsible; without it every row is shown open). A closed row shows its first change and how many follow. */
+.md-typeset .mc-revisions td:not(:nth-child(5)) { white-space: nowrap; }  /* only the description wraps */
+.md-typeset .mc-revisions .mc-changes ul { margin: 0 0 0 1.1em; }
+.md-typeset .mc-revisions .mc-changes li { margin: 0 0 .25em; }
+.md-typeset .mc-revisions.mc-collapsible tr.mc-release { cursor: pointer; }
+.md-typeset .mc-revisions.mc-collapsible tr.mc-release:hover { background-color: rgba(164, 188, 231, .15); }
+.mc-release-toggle { display: inline-flex; align-items: center; gap: .3em; padding: 0; border: 0; background: none;
+  font: inherit; color: inherit; cursor: pointer; white-space: nowrap; }
+.mc-collapsible .mc-release-toggle::before { content: "▸"; color: var(--mc-charcoal); transition: transform .15s; }
+.mc-collapsible tr.mc-open .mc-release-toggle::before { transform: rotate(90deg); }
+.mc-collapsible tr.mc-release:not(.mc-open) .mc-changes li:not(:first-child) { display: none; }
+.mc-collapsible tr.mc-release:not(.mc-open) .mc-changes li:first-child {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+.mc-collapsible tr.mc-release:not(.mc-open) .mc-changes::after { content: attr(data-more); color: var(--mc-slate); }
+
 /* Title bar: bold name, red asterisk if required, repeat icon right-aligned. */
 .mc-name { font-weight: 700; font-size: .8rem; }
 .mc-star { color: var(--mc-required); font-weight: 700; margin-left: .15em; }
@@ -99,7 +115,7 @@ summary:hover > .mc-permalink, .mc-permalink:focus-visible { opacity: 1; }
 @media screen and (min-width: 76.25em) {
   .md-nav--primary > .md-nav__title { display: flex; align-items: center; gap: .5rem; height: auto; padding: .4rem .6rem .6rem; font-size: 1.1rem; font-weight: 700; color: var(--mc-charcoal); }
   .md-nav--primary > .md-nav__title .md-nav__button.md-logo { display: inline-flex; margin: 0; padding: 0; }
-  .md-nav--primary > .md-nav__title .md-nav__button.md-logo img { height: 1.8rem; width: auto; }
+  .md-nav--primary > .md-nav__title .md-nav__button.md-logo img { height: 1.1rem; width: auto; }
 }
 /* The section entries under "2. Schema", the only menu group at level 3, get the same left bar as the
    page headings under "1. Preamble" (the theme's rule for the integrated table of contents). */
