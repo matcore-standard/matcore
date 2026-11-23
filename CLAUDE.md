@@ -293,7 +293,9 @@ record or marked PROPOSED, NOT DECIDED.
      named with the prefix x- (0079); dft core-electron-treatment › type is All-electron or Frozen core, PAW being
      named once, as a dataset type (0080; breaks 0.7.0 records with core type Pseudopotential or PAW); the derived
      families Mechanical, Thermodynamic and Transport are widened (strengths, hardness, melting temperature, viscosity,
-     defect mobilities), and the derived introduction points paths found by the NEB to PS (0081).
+     defect mobilities), and the derived introduction points paths found by the NEB to PS (0081); ps settings gains an
+     optional, repeatable particle-constraint for a constraint on, or a potential applied to, a group of particles
+     (0082).
    - Changes to the standard from 0.6.0 to 0.7.0 (released in 0.7.0, its entry in releases.yaml summarizing them): the
      examples are written in JSON, the first serialization, and §1.3 says so (0044); a required
      matcore container gives the standard version, an optional link to it, the dataset's id and
@@ -1772,8 +1774,13 @@ record or marked PROPOSED, NOT DECIDED.
    potential), and description (form, variant, and the role of each computation-parameter entry, 0067). No ps
    boundary-conditions property: particle boundaries are minimal conditions › cell-periodicity with particle-constraint
    entries, the counterpart of PF's. SLLOD needs no change (strain-rate with qualified entries; a user-specified
-   algorithm term; Lees-Edwards in description). No released record breaks. Ruling committed on main; next, one PR
-   (schema/ps.yaml, term definitions drafted in it, tests, ps page and JSON Schema).
+   algorithm term; Lees-Edwards in description). No released record breaks. Ruling committed on main (250b96e).
+   [in progress, branch ps-particle-constraint, committed, not pushed; PR to open once main is pushed] 0082: schema/ps.yaml
+   (particle-constraint last in settings; a note on one entry per group and on cell-periodicity; system's note on
+   words, not atom indices; the eleven term definitions, drafted in this PR (judgment calls); description naming
+   computation-parameter), tests/test_computations.py (a new test; the ps settings list gains the member), ps page and
+   JSON Schema regenerated; examples/ps.json reviewed, unchanged (no constraint in its source). Rendering checked in
+   the browser.
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one

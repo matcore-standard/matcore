@@ -3512,6 +3512,36 @@
          "additionalProperties": false
         },
         "minItems": 1
+       },
+       "particle-constraint": {
+        "type": "array",
+        "items": {
+         "description": "A constraint on, or a potential applied to, a group of particles.",
+         "type": "object",
+         "properties": {
+          "system": {
+           "description": "The collection of particles to which the constraint or potential is applied.",
+           "type": "string"
+          },
+          "type": {
+           "description": "The kind of constraint or applied potential.",
+           "type": "string"
+          },
+          "description": {
+           "description": "Explanatory text about the constraint or potential: its form, the variant used, and the role of each `computation-parameter` entry it uses, e.g. a spring constant or an indenter's radius and speed.",
+           "type": "string"
+          }
+         },
+         "required": [
+          "system",
+          "type"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
        }
       },
       "required": [
