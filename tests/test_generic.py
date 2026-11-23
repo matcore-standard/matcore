@@ -12,7 +12,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from check_generic import UNIT_DESCRIPTION, UNIT_NOTE, generic_errors  # noqa: E402
+from check_generic import UNIT_DESCRIPTION, UNIT_GIVEN, UNIT_NOTE, generic_errors  # noqa: E402
 
 
 def leaf(name, required, description, **fields):
@@ -33,7 +33,7 @@ def parameter(subs=None):
     canonical = [
         leaf('name', True, 'The designation of the parameter.'),
         leaf('value', True, 'The data associated with the parameter.', type='any', extent='any', kind='any'),
-        leaf('unit', True, UNIT_DESCRIPTION, values={'note': UNIT_NOTE}),
+        leaf('unit', False, UNIT_DESCRIPTION, values={'note': UNIT_NOTE}, notes=[UNIT_GIVEN]),
         leaf('description', False, 'An explanation of the parameter.'),
     ]
     return {'name': 'xc-parameter', 'type': None, 'subproperties': canonical if subs is None else subs}
@@ -51,6 +51,14 @@ def test_unit_carries_the_fixed_text_of_0001():
     """The unit's description is 0001 B9's, its note 0001 A3.2's, with the x-gnu escape."""
     assert UNIT_DESCRIPTION == 'The unit in which the associated value is expressed.'
     assert 'Annex U' in UNIT_NOTE and '`dimensionless`' in UNIT_NOTE and '`x-gnu:`' in UNIT_NOTE
+
+
+def test_unit_is_given_only_for_a_number():
+    """A string or bool value is not measured, so the unit is not required, and its note says when it is given
+    (0084 item 1)."""
+    unit = next(s for s in parameter()['subproperties'] if s['name'] == 'unit')
+    assert unit['required'] is False
+    assert UNIT_GIVEN == 'Note: Give it when the type of the value is float or int; omit it when it is string or bool.'
 
 
 def test_departures_from_the_form_fail():

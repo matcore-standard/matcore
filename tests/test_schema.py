@@ -176,3 +176,27 @@ def test_every_note_defining_terms_gives_one_line_per_term():
     for key in ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']:
         walk(yaml.safe_load(open(ROOT / f'schema/{key}.yaml'))['properties'], key)
     assert dense == []
+
+
+MASS_NOUNS = {'settings', 'species', 'calculation-physics', 'number-of-particles'}
+
+
+def test_a_repeatable_property_has_a_singular_name():
+    """Each entry of a repeatable Property is one thing, so its name is singular; a plural name is kept for a list
+    (0084 item 2). A few names are singular in meaning though they end in s."""
+    def walk(p):
+        """Yield p and every Property below it.
+
+        p (dict): property entry.
+        """
+        yield p
+        for s in p.get('subproperties') or []:
+            yield from walk(s)
+    for f in sorted((ROOT / 'schema').glob('*.yaml')):
+        d = yaml.safe_load(f.read_text())
+        if not isinstance(d, dict) or not isinstance(d.get('properties'), list):
+            continue
+        for top in d['properties']:
+            for p in walk(top):
+                if p['repeatable'] and p['name'] not in MASS_NOUNS:
+                    assert not (p['name'].endswith('s') and not p['name'].endswith('ss')), (f.name, p['name'])

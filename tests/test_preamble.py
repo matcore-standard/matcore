@@ -65,11 +65,12 @@ def test_bullet_symbols_change_with_depth():
 
 def test_preamble_defines_the_generic_parameter():
     """§1.3 defines the term once, naming the four subproperties in their order, so the five properties
-    that use the form can refer to it (0016 item 4)."""
+    that use the form can refer to it (0016 item 4), and says when the unit is given (0084 item 1)."""
     text = (ROOT / 'docs/standard/index.md').read_text()
     line = next(l for l in text.splitlines() if 'A *generic parameter*' in l)
-    assert [line.index(f'`{n}` (') for n in ('name', 'value', 'unit', 'description')] == sorted(
-        line.index(f'`{n}` (') for n in ('name', 'value', 'unit', 'description'))
+    order = [line.index(f'`{n}` (') for n in ('name', 'value')] + [line.index('`unit`, given when')] + [
+        line.index('`description` (')]
+    assert order == sorted(order)
     assert '`x-gnu:`' in line and '`any`' in line
 
 

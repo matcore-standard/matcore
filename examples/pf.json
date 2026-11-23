@@ -43,12 +43,12 @@
             ],
             "unit": "dimensionless"
           },
-          "boundary-conditions": [
+          "boundary-condition": [
             {
               "type": "Periodic"
             }
           ],
-          "initial-conditions": [
+          "initial-condition": [
             "phi(r) = 0.5 * [1 - tanh((r - r_0) / sqrt(2))] where r = sqrt(x^2 + y^2)"
           ]
         },

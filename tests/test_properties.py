@@ -479,10 +479,11 @@ def test_checksum_value_is_lowercase_hexadecimal(value, ok):
 
 def test_matcore_gathers_the_record_information():
     """One required container says which standard the record follows, which dataset and version it describes,
-    and who wrote it when; it replaces matcore-id, matcore-author and matcore-date at their place (0045)."""
+    and who wrote it when; it replaces matcore-id, matcore-author and matcore-date (0045), and comes first, since it
+    identifies the record (0084 item 3)."""
     names = [p['name'] for p in yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))['properties']]
     assert not {'matcore-id', 'matcore-author', 'matcore-date'} & set(names)
-    assert names.index('matcore') == names.index('provenance') + 1
+    assert names[0] == 'matcore'
     m = minimal('matcore')
     assert [(s['name'], s['required'], s['repeatable']) for s in m['subproperties']] == [
         ('standard-version', True, False), ('standard-link', False, False), ('id', True, False),
@@ -558,7 +559,7 @@ def test_xc_functional_structure():
     xc = dft('xc-functional')
     param = ('xc-parameter', False, True, None, (), (
         ('name', True, False, 'string', (), ()), ('value', True, False, 'any', (), ()),
-        ('unit', True, False, 'string', (), ()), ('description', False, False, 'string', (), ())))
+        ('unit', False, False, 'string', (), ()), ('description', False, False, 'string', (), ())))
     normalization = ('normalization', False, False, None, (), (
         ('components', True, False, 'string', (), ()), ('source', True, False, 'string', ('LibXC',), ())))
     assert tree(xc) == ('xc-functional', True, True, None, (), (
@@ -844,7 +845,7 @@ def test_k_point_mesh_structure():
                                                       ('unit', True, False, 'string', (), ())))
     param = ('parameter', False, True, None, (), (
         ('name', True, False, 'string', (), ()), ('value', True, False, 'any', (), ()),
-        ('unit', True, False, 'string', (), ()), ('description', False, False, 'string', (), ())))
+        ('unit', False, False, 'string', (), ()), ('description', False, False, 'string', (), ())))
     assert tree(k) == ('k-point-mesh', False, False, None, (), (
         ('type', True, False, 'string', ('Regular gamma-centered', 'Regular shifted', 'Irregular'), ()),
         ('number-of-points', False, False, 'int', (), ()), ('shift', False, False, 'float', (), ())))

@@ -297,7 +297,10 @@ record or marked PROPOSED, NOT DECIDED.
      optional, repeatable particle-constraint for a constraint on, or a potential applied to, a group of particles
      (0082); §1.2 states that MatCore is a reporting standard and which part of a record holds which metadata, and §1.3
      how a Property is identified and how a change is made (0083); dft and mbpt localized-orbital-basis-set are renamed
-     atom-centered-basis-set (0083; breaks 0.7.0 records that use them).
+     atom-centered-basis-set (0083; breaks 0.7.0 records that use them); a generic parameter whose value is a string or
+     bool has no unit, pf boundary-condition and initial-condition and pim charge-interaction and magnetic-interaction
+     take the singular, and matcore comes first in minimal (0084; breaks 0.7.0 records with the old names or a unit on a
+     string or bool parameter).
    - Changes to the standard from 0.6.0 to 0.7.0 (released in 0.7.0, its entry in releases.yaml summarizing them): the
      examples are written in JSON, the first serialization, and §1.3 says so (0044); a required
      matcore container gives the standard version, an optional link to it, the dataset's id and
@@ -1874,7 +1877,17 @@ record or marked PROPOSED, NOT DECIDED.
    parameter. The human corrected (c): the reviewer asks how MatCore ids are assigned (e.g. minted by a central service
    through a software tool, or another way); that process is undecided, and no note is added to matcore › id.
    PROPOSED, NOT DECIDED: how MatCore ids are assigned (replaces the earlier step 6 point on the MatCore ID's form and
-   issuer). Ruling committed on main; next, one PR.
+   issuer). Ruling committed on main (4d1f109).
+   [in progress, branch generic-units-singular-names, committed, not pushed; PR to open after the push] 0084: (1)
+   scripts/check_generic.py (UNIT_GIVEN; unit not required, with that note), the ten generic parameters' unit in dft,
+   ps, pf, ml and derived (required false, the note; by script), scripts/build_json_schema.py (unit required for float
+   and int, forbidden for string and bool), §1.3's definition; (2) pf boundary-condition and initial-condition, pim
+   charge-interaction and magnetic-interaction (by script, with examples/pf.json and tests/test_computations.py); (3)
+   matcore first in schema/minimal.yaml and examples/minimal.json. Tests: test_generic (a new test), test_json_schema
+   (string and bool without unit, float and int with), test_schema (a new test: a repeatable Property's name is
+   singular, except settings, species, calculation-physics, number-of-particles), test_properties (matcore first;
+   two generic structure tests), test_preamble (the unit clause). Pages and JSON Schema regenerated; rendering
+   checked. Found, not changed: examples/minimal.json gives standard-version 0.6.0.
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one

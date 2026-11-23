@@ -104,8 +104,8 @@ Recommended: `Reactive`, `Bonded fixed`, `Bonded mutable`. Other values are allo
 
 </details>
 
-<details class="note mc-property" id="pim.settings.charge-interactions" markdown="1">
-<summary><span class="mc-name">charge-interactions</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<details class="note mc-property" id="pim.settings.charge-interaction" markdown="1">
+<summary><span class="mc-name">charge-interaction</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The model used to describe the interactions between charged particles.
 
@@ -113,7 +113,7 @@ The model used to describe the interactions between charged particles.
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="pim.settings.charge-interactions.charge-origin" markdown="1">
+<details class="note mc-property" id="pim.settings.charge-interaction.charge-origin" markdown="1">
 <summary><span class="mc-name">charge-origin<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 Nature of the particle charges.
@@ -134,7 +134,7 @@ Recommended: `Semi empirical`, `Quantum`, `Electronic population`, `Electronegat
 
 </details>
 
-<details class="note mc-property" id="pim.settings.charge-interactions.charge-style" markdown="1">
+<details class="note mc-property" id="pim.settings.charge-interaction.charge-style" markdown="1">
 <summary><span class="mc-name">charge-style<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The nature of the charges associated with the particles, such as total or effective charges.
@@ -152,7 +152,7 @@ Recommended: `Coulomb full`, `Coulomb screened`. Other values are allowed.
 
 </details>
 
-<details class="note mc-property" id="pim.settings.charge-interactions.charge-variability" markdown="1">
+<details class="note mc-property" id="pim.settings.charge-interaction.charge-variability" markdown="1">
 <summary><span class="mc-name">charge-variability<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 Attribute specifying the method for dynamically varying the local electric charge associated with discrete entities.
@@ -174,7 +174,7 @@ Recommended: `Fixed`, `QEq`, `EEM`, `iEL/SCF`, `FlucQ`, `Drude`. Other values ar
 
 </details>
 
-<details class="note mc-property" id="pim.settings.charge-interactions.electrostatic-summation" markdown="1">
+<details class="note mc-property" id="pim.settings.charge-interaction.electrostatic-summation" markdown="1">
 <summary><span class="mc-name">electrostatic-summation</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 Method used to compute the electrostatic interactions between the charges.
@@ -187,7 +187,7 @@ Recommended: `None`, `Direct`, `Short-range`, `Ewald`, `PME`, `PPPM`, `Reaction`
 
 **Clarifications:**
 
-- "None" – No electrostatic interactions are computed from the charges. A model whose particles carry no charges omits charge-interactions
+- "None" – No electrostatic interactions are computed from the charges. A model whose particles carry no charges omits charge-interaction
 - "Direct" – All Coulomb interactions computed directly
 - "Short-range" – Electrostatic interactions computed only within a cutoff distance, possibly shifted or damped, e.g. Wolf summation or damped shifted force (DSF)
 - "Ewald" – Ewald summation
@@ -197,7 +197,7 @@ Recommended: `None`, `Direct`, `Short-range`, `Ewald`, `PME`, `PPPM`, `Reaction`
 
 </details>
 
-<details class="note mc-property" id="pim.settings.charge-interactions.electric-dipole" markdown="1">
+<details class="note mc-property" id="pim.settings.charge-interaction.electric-dipole" markdown="1">
 <summary><span class="mc-name">electric-dipole</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 Attribute specifying the type of interaction associated with the local electric dipoles associated with particles.
@@ -216,7 +216,7 @@ Recommended: `Stockmayer`, `Screened`, `Long range`. Other values are allowed.
 
 </details>
 
-<details class="note mc-property" id="pim.settings.charge-interactions.electric-dipole-variability" markdown="1">
+<details class="note mc-property" id="pim.settings.charge-interaction.electric-dipole-variability" markdown="1">
 <summary><span class="mc-name">electric-dipole-variability</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 Attribute specifying the method for dynamically varying the local electric dipoles associated with discrete entities.
@@ -237,8 +237,8 @@ Recommended: `Induced`, `Isotropic`, `Anisotropic`. Other values are allowed.
 
 </details>
 
-<details class="note mc-property" id="pim.settings.magnetic-interactions" markdown="1">
-<summary><span class="mc-name">magnetic-interactions</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<details class="note mc-property" id="pim.settings.magnetic-interaction" markdown="1">
+<summary><span class="mc-name">magnetic-interaction</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 The model used to describe the interactions between magnetic spins.
 
@@ -246,7 +246,7 @@ The model used to describe the interactions between magnetic spins.
 |---|---|
 | no | yes |
 
-<details class="note mc-property" id="pim.settings.magnetic-interactions.spin-style" markdown="1">
+<details class="note mc-property" id="pim.settings.magnetic-interaction.spin-style" markdown="1">
 <summary><span class="mc-name">spin-style<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The nature of the magnetic spins associated with the particles.
@@ -266,7 +266,7 @@ Magnetism obtained from the electrons, e.g. by spin-polarized DFT or tight bindi
 
 </details>
 
-<details class="note mc-property" id="pim.settings.magnetic-interactions.magnetic-dipole" markdown="1">
+<details class="note mc-property" id="pim.settings.magnetic-interaction.magnetic-dipole" markdown="1">
 <summary><span class="mc-name">magnetic-dipole</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 Attribute specifying the type of interaction (spin Hamiltonian) between the magnetic dipoles associated with particles.

@@ -282,7 +282,7 @@ properties:
         recommended-unit: null
         values: null
         repeatable: false
-    - name: boundary-conditions
+    - name: boundary-condition
       required: false
       description: A constraint applied on a boundary of the computational domain.
       type: null
@@ -335,7 +335,7 @@ properties:
             The `name` of a field variable defined in `variables › field-variable` of the same settings
             block.
         repeatable: false
-    - name: initial-conditions
+    - name: initial-condition
       required: false
       description: The spatial distribution of the field variables at the start of the simulation.
       type: string
@@ -428,7 +428,7 @@ properties:
         values: null
         repeatable: false
       - name: unit
-        required: true
+        required: false
         description: The unit in which the associated value is expressed.
         type: string
         extent: []
@@ -440,6 +440,8 @@ properties:
             only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
             (accepted with a validation warning).
         repeatable: false
+        notes:
+        - 'Note: Give it when the type of the value is float or int; omit it when it is string or bool.'
       - name: description
         required: false
         description: An explanation of the meaning, source, or purpose of the spatial discretization parameter.
@@ -494,7 +496,7 @@ properties:
       - >-
         Note: Give it for a mesh that `mesh-type`, `grid-spacing` and `domain › domain-size` do not fix, e.g. an
         unstructured mesh of an irregular geometry. Its named boundaries are those that
-        `domain › boundary-conditions › boundary` refers to.
+        `domain › boundary-condition › boundary` refers to.
       - >-
         Note: Give one entry for each file, e.g. the mesh structure and its boundaries when they are stored
         separately.
@@ -798,7 +800,7 @@ properties:
         values: null
         repeatable: false
       - name: unit
-        required: true
+        required: false
         description: The unit in which the associated value is expressed.
         type: string
         extent: []
@@ -810,6 +812,8 @@ properties:
             only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
             (accepted with a validation warning).
         repeatable: false
+        notes:
+        - 'Note: Give it when the type of the value is float or int; omit it when it is string or bool.'
       - name: description
         required: false
         description: An explanation providing further clarification on the model parameter.
@@ -844,7 +848,7 @@ properties:
           examples: [phi, c, T]
           note: >-
             The name by which `problem-specification › governing-equation › evolved-variable`,
-            `numerical-method › evolved-variable` and `domain › boundary-conditions › field-variable` refer to
+            `numerical-method › evolved-variable` and `domain › boundary-condition › field-variable` refer to
             the field.
         repeatable: false
       - name: type

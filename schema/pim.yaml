@@ -1,8 +1,8 @@
 section: pim
 title: 2.3 Particle Interaction Model (PIM) Metadata
 source: >-
-  Moved from md.yaml by decision 0046 (particle-style, particle-interactions, charge-interactions and
-  magnetic-interactions). legacy_* fields hold the baseline prose and are to be replaced by typed fields in
+  Moved from md.yaml by decision 0046 (particle-style, particle-interactions, charge-interaction and
+  magnetic-interaction). legacy_* fields hold the baseline prose and are to be replaced by typed fields in
   subsequent PRs.
 introduction: |
   The metadata for particle interaction models (MatCore-PIM) is tabulated below. A particle interaction model gives the energy and forces of a system of particles as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic potential, a bonded force field, a coarse-grained model or the electron force field. These properties describe a computation whose method is PIM, the evaluation of energies and forces used by another computation, e.g. molecular dynamics. The properties are given in settings blocks, each naming the PIM computations it describes. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
@@ -93,7 +93,7 @@ properties:
         - "Bonded fixed" – Bonds defined <i>a priori</i> and cannot be broken during a simulation
         - "Bonded mutable" – Bonds defined <i>a priori</i> but can be broken and/or formed during a simulation
     repeatable: false
-  - name: charge-interactions
+  - name: charge-interaction
     required: false
     description: The model used to describe the interactions between charged particles.
     type: null
@@ -162,7 +162,7 @@ properties:
       values:
         terms: [None, Direct, Short-range, Ewald, PME, PPPM, Reaction]
         note: |-
-          - "None" – No electrostatic interactions are computed from the charges. A model whose particles carry no charges omits charge-interactions
+          - "None" – No electrostatic interactions are computed from the charges. A model whose particles carry no charges omits charge-interaction
           - "Direct" – All Coulomb interactions computed directly
           - "Short-range" – Electrostatic interactions computed only within a cutoff distance, possibly shifted or damped, e.g. Wolf summation or damped shifted force (DSF)
           - "Ewald" – Ewald summation
@@ -202,7 +202,7 @@ properties:
           - "Isotropic" – Isotropic polarizability
           - "Anisotropic" – Anisotropic polarizability
       repeatable: false
-  - name: magnetic-interactions
+  - name: magnetic-interaction
     required: false
     description: The model used to describe the interactions between magnetic spins.
     type: null
