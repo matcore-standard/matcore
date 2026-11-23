@@ -290,7 +290,7 @@ record or marked PROPOSED, NOT DECIDED.
      the JSON Schema, §1.4, and the committee review's feedback); the site's `latest` is 0.8.0 (checked in gh-pages
      versions.json). Its tag run's first deploy failed: pushed together with main, it raced main's dev deploy to
      gh-pages and was rejected; the re-run (attempt 2) deployed it. Decided by the human 2026-11-23: deploys wait for one
-     another. [in progress, branch ci-deploy-concurrency, committed, not pushed; PR to open after the push]
+     another. [done, PR #147 merged 2026-11-23]
      .github/workflows/ci.yml: the job's concurrency group is shared by push runs (deploy-gh-pages) and unique per
      pull-request run, cancel-in-progress false, queue max (a waiting run is kept, not replaced; GitHub's
      control-workflow-concurrency how-to, read 2026-11-23); tests/test_ci.py (new). The deploy path is verified only
