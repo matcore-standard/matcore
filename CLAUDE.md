@@ -498,8 +498,8 @@ record or marked PROPOSED, NOT DECIDED.
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
    Requested by the human 2026-11-23: the Revision History's descriptions were too long; each release's row starts
    closed and opens and closes as a whole (a box opening inside the description cell was tried and rejected); the
-   left-menu logo is reduced to the size of the "MatCore" lettering. [in progress, branch collapsible-revision-history,
-   committed, not pushed; PR to open after the push] scripts/build_docs.py (release_row: the history is an HTML table in a
+   left-menu logo is reduced to the size of the "MatCore" lettering. [done, PR #148 merged
+   2026-11-23] scripts/build_docs.py (release_row: the history is an HTML table in a
    div.mc-revisions; a release of several changes is tr.mc-release, its version a toggle button, its changes a list
    with data-more "+N more"), docs/assets/matcore/layout.js (marks the table mc-collapsible and toggles a row on a
    click anywhere on it; without the script every row shows open), layout.css (a closed row shows its first change,
