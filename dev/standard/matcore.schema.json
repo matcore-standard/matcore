@@ -2240,7 +2240,7 @@
           },
           "minItems": 1
          },
-         "localized-orbital-basis-set": {
+         "atom-centered-basis-set": {
           "type": "array",
           "items": {
            "description": "For type \"Gaussian basis sets\", \"Local atomic orbitals\" or \"Numerical atomic orbitals\", additional information about the basis set.",
@@ -2259,20 +2259,20 @@
              "minItems": 1
             },
             "repository": {
-             "description": "The database from which the localized-orbital basis set was obtained.",
+             "description": "The database from which the atom-centered basis set was obtained.",
              "type": "string"
             },
             "version": {
-             "description": "The version of the localized-orbital basis set.",
+             "description": "The version of the atom-centered basis set.",
              "type": "string"
             },
             "doi": {
-             "description": "The digital object identifier (DOI) for the localized-orbital basis set.",
+             "description": "The digital object identifier (DOI) for the atom-centered basis set.",
              "type": "string",
              "pattern": "https://doi\\.org/10\\.[^/]+/.+"
             },
             "file": {
-             "description": "The localized-orbital basis set file, with its checksums.",
+             "description": "The atom-centered basis set file, with its checksums.",
              "type": "object",
              "properties": {
               "name": {
@@ -2317,7 +2317,7 @@
              "additionalProperties": false
             },
             "unique-identifier": {
-             "description": "A token other than a checksum that identifies the localized-orbital basis set, such as a label or code assigned by the library that distributes it.",
+             "description": "A token other than a checksum that identifies the atom-centered basis set, such as a label or code assigned by the library that distributes it.",
              "type": "string"
             }
            },
@@ -3640,8 +3640,8 @@
           },
           "additionalProperties": false
          },
-         "localized-orbital-basis-set": {
-          "description": "For local orbital codes, the name of the basis set.",
+         "atom-centered-basis-set": {
+          "description": "For a code using basis functions centered on atoms, the name of the basis set.",
           "type": "string"
          },
          "frequency": {
