@@ -1775,7 +1775,7 @@ record or marked PROPOSED, NOT DECIDED.
    boundary-conditions property: particle boundaries are minimal conditions › cell-periodicity with particle-constraint
    entries, the counterpart of PF's. SLLOD needs no change (strain-rate with qualified entries; a user-specified
    algorithm term; Lees-Edwards in description). No released record breaks. Ruling committed on main (250b96e).
-   [in progress, branch ps-particle-constraint, committed, not pushed; PR to open once main is pushed] 0082: schema/ps.yaml
+   [done, PR #143 merged 2026-11-22] 0082: schema/ps.yaml
    (particle-constraint last in settings; a note on one entry per group and on cell-periodicity; system's note on
    words, not atom indices; the eleven term definitions, drafted in this PR (judgment calls); description naming
    computation-parameter), tests/test_computations.py (a new test; the ps settings list gains the member), ps page and
