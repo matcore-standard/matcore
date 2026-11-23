@@ -1781,6 +1781,44 @@ record or marked PROPOSED, NOT DECIDED.
    computation-parameter), tests/test_computations.py (a new test; the ps settings list gains the member), ps page and
    JSON Schema regenerated; examples/ps.json reviewed, unchanged (no constraint in its source). Rendering checked in
    the browser.
+   FAIRmat Area C's written feedback (committee review of 2026-09-23, by email; eight points on semantic scope and
+   interoperability with nomad-simulations and PMDCore), reviewed 2026-11-23 against the current schema. Already
+   addressed: (4) method vs workflow (method and task, computations linked by input; 0046, 0064, 0065); (5)
+   simulation-conditions decomposed into typed conditions, the ensemble and time step in ps, convergence in dft
+   (0035-0042, 0069, 0082); (6) open vocabularies for method, task, xc type, basis type, pseudopotential type, k-point
+   mesh, smearing and ensemble, an unlisted value kept and reported as user-specified (0013); (7) LibXC normalization
+   (0017), DFT+U and dispersion apart from the functional name (0051, review 2026-11-16); (2, in part) "material" split
+   into structure › material-component's formula, form, phase and role (0025, 0034); (8, in part) added Properties
+   prefixed x- (0079), versioning (0010). Not addressed, PROPOSED, NOT DECIDED (recommendations): (a) point 1, the
+   semantic level: §1.1 or §1.2 states that MatCore is a reporting standard for datasets, not an ontology, and is
+   aligned with ontologies and richer schemas through mappings; (b) point 6, dft wavefunction-representation ›
+   localized-orbital-basis-set and mbpt dielectric-matrix › localized-orbital-basis-set renamed
+   `atom-centered-basis-set`, since they hold basis functions centred on atoms, not localized orbitals (breaks 0.7.0
+   records that use them; no example does); (c) points 2-3, the layers (dataset, structure, computation, method
+   settings, results): a paragraph in §1.2 saying which part of the schema holds each, results left to 0039's open
+   question, instead of a per-property layer tag; (d) point 2, identifiers: §1.3 states that a Property is identified
+   by its path (e.g. `dft.settings.xc-functional`), cited per version by its permalink; IRIs on matcore.org wait until
+   the domain points to the site; (e) point 8, governance: a short paragraph on how a Property is proposed (issue or
+   pull request), reviewed by the section's committee, and renamed or removed (a breaking change listed in Revision
+   History, 0010); (f) point 6, a vocabulary of software codes, and normalized values beside other free values:
+   declined (no community list; xc is the one field with a normalization source); (g) mappings to nomad-simulations,
+   PMDCore and OPTIMADE: later, as a non-normative annex or a step 9 tool, with FAIRmat's collaboration. (Superseded:
+   decided by 0083.)
+   Semantic scope and basis-set name by 0083 (ruling 2026-11-23, from that feedback; the human chose each
+   recommendation): (1) §1.2 says MatCore is a reporting standard, not an ontology, its Properties defined in words and
+   alignable with ontologies and richer schemas through mappings; (2) a §1.2 paragraph says which part of a record holds
+   the dataset, the modelled system, the computations, their settings and derived properties, the results being in the
+   dataset (no per-property layer tag); (3) §1.3 says a Property is identified by its path (e.g.
+   dft.settings.xc-functional), a version's definition cited by its permalink, IRIs waiting for matcore.org; (4) a §1.3
+   paragraph after versioning: a change is proposed as an issue or pull request, reviewed by the section's committee,
+   decided by the Standard Committee; renames and removals are breaking, listed in the Revision History; no deprecation
+   period below 1.0; (5) dft wavefunction-representation › and mbpt dielectric-matrix › localized-orbital-basis-set
+   renamed atom-centered-basis-set (breaks 0.7.0 records using it; no example does), Wannier functions and localized
+   molecular orbitals being derived results (a DP computation, e.g. software Wannier90, naming its source as Source
+   data); (6) software-code vocabulary and general normalized values declined; (7) mappings later, with FAIRmat.
+   PROPOSED, NOT DECIDED (0083): a note on atom-centered-basis-set pointing Wannier functions and localized molecular
+   orbitals to derived; the IRI form once matcore.org points to the site. Ruling committed on main; next, two PRs: the
+   Preamble (items 1-4) and the rename (item 5).
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one
