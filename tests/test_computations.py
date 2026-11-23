@@ -775,7 +775,7 @@ def test_mbpt_dielectric_matrix_is_typed():
     d = sub(top('mbpt', 'settings'), 'dielectric-matrix')
     assert (d['type'], d['required'], d['repeatable']) == (None, True, False)
     assert [(s['name'], s['required']) for s in d['subproperties']] == [
-        ('planewave-basis-cutoff', False), ('localized-orbital-basis-set', False), ('frequency', False),
+        ('planewave-basis-cutoff', False), ('atom-centered-basis-set', False), ('frequency', False),
         ('response-basis-size', False), ('band-terminator', False), ('q-points', True),
         ('coulomb-truncation', False)]
     cutoff = sub(d, 'planewave-basis-cutoff')
@@ -784,9 +784,9 @@ def test_mbpt_dielectric_matrix_is_typed():
         'float', 'Energy', 'eV', {'minimum': 0})
     assert 'same as the kinetic energy cutoff' not in cutoff['description']
     assert 'kinetic-energy-cutoff' in cutoff['description']
-    exclusive = 'Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.'
+    exclusive = 'Note: Specify either "planewave-basis-cutoff" or "atom-centered-basis-set", but not both.'
     assert cutoff['notes'] == [exclusive]
-    basis = sub(d, 'localized-orbital-basis-set')
+    basis = sub(d, 'atom-centered-basis-set')
     assert shape(basis) == (False, False, 'string', [], 'inapplicable', None)
     assert basis['notes'] == [exclusive]
     for name, terms in [('frequency', FREQUENCY_TREATMENTS), ('coulomb-truncation', COULOMB_TRUNCATIONS)]:

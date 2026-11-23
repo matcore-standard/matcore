@@ -662,11 +662,11 @@ def test_number_of_valence_electrons_is_a_positive_count(value, ok):
 
 
 def test_wavefunction_representation_structure():
-    """The wavefunction representation names its types, the localized-orbital basis sets used, and the
+    """The wavefunction representation names its types, the atom-centered basis sets used, and the
     plane-wave cutoffs; a basis set is identified as a pseudopotential is, by checksum or other token."""
     v = dft('wavefunction-representation')
     file = ('file', False, False, None, (), tuple(tree(s) for s in sub(minimal('provenance'), 'file')['subproperties']))
-    basis = ('localized-orbital-basis-set', False, True, None, (), (
+    basis = ('atom-centered-basis-set', False, True, None, (), (
         ('type', True, False, 'string', (), ()), ('species', False, True, 'string', (), ()),
         ('repository', False, False, 'string', (), ()),
         ('version', False, False, 'string', (), ()), ('doi', False, False, 'string', (), ()), file,
@@ -693,7 +693,7 @@ def test_representation_note_groups_every_term():
 
 
 @pytest.mark.parametrize('name, terms', [
-    ('localized-orbital-basis-set', ['Gaussian basis sets', 'Local atomic orbitals', 'Numerical atomic orbitals']),
+    ('atom-centered-basis-set', ['Gaussian basis sets', 'Local atomic orbitals', 'Numerical atomic orbitals']),
     ('kinetic-energy-cutoff', ['LAPW', 'Plane waves']), ('lapw-basis-cutoff', ['LAPW']),
     ('charge-density-cutoff', ['LAPW', 'Plane waves'])])
 def test_conditional_subproperties_name_the_types_they_serve(name, terms):
@@ -709,7 +709,7 @@ def test_conditional_subproperties_name_the_types_they_serve(name, terms):
 
 def test_basis_set_identifiers_match_the_pseudopotential_split():
     """The basis set's file is provenance's, and its two identifiers point to each other (0032)."""
-    b = sub(dft('wavefunction-representation'), 'localized-orbital-basis-set')
+    b = sub(dft('wavefunction-representation'), 'atom-centered-basis-set')
     assert sub(b, 'file')['subproperties'] == sub(minimal('provenance'), 'file')['subproperties']
     assert sub(b, 'file')['notes'][0].startswith('Note: Use file when')
     assert sub(b, 'unique-identifier')['notes'][0].endswith('use file instead.')
@@ -1184,3 +1184,15 @@ def test_magnetic_order_describes_the_material_as_modeled():
     assert (m['type'], m['extent'], m['kind'], m['recommended-unit']) == ('string', [], 'inapplicable', None)
     assert m['description'] == 'The arrangement of the magnetic moments in the material component as modeled.'
     assert all(f'"{t}" –' in m['values']['note'] for t in MAGNETIC_ORDERS)
+
+
+def test_basis_functions_centered_on_atoms_are_named_for_them():
+    """A basis set of functions centered on atoms is not a set of localized orbitals (Wannier functions, localized
+    molecular orbitals), which are derived results; its name says what it is, in dft and in mbpt alike (0083 item 5)."""
+    assert 'atom-centered-basis-set' in [s['name'] for s in dft('wavefunction-representation')['subproperties']]
+    mbpt = yaml.safe_load(open(ROOT / 'schema/mbpt.yaml'))
+    settings = next(p for p in mbpt['properties'] if p['name'] == 'settings')
+    dm = sub(settings, 'dielectric-matrix')
+    assert 'atom-centered-basis-set' in [s['name'] for s in dm['subproperties']]
+    for f in ('dft', 'mbpt'):
+        assert 'localized-orbital' not in (ROOT / f'schema/{f}.yaml').read_text(), f

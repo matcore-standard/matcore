@@ -119,7 +119,7 @@ properties:
       repeatable: false
       notes:
       - >-
-        Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
+        Note: Specify either "planewave-basis-cutoff" or "atom-centered-basis-set", but not both.
       subproperties:
       - name: value
         required: true
@@ -140,9 +140,9 @@ properties:
         recommended-unit: null
         values: null
         repeatable: false
-    - name: localized-orbital-basis-set
+    - name: atom-centered-basis-set
       required: false
-      description: For local orbital codes, the name of the basis set.
+      description: For a code using basis functions centered on atoms, the name of the basis set.
       type: string
       extent: []
       kind: inapplicable
@@ -152,7 +152,7 @@ properties:
       repeatable: false
       notes:
       - >-
-        Note: Specify either "planewave-basis-cutoff" or "localized-orbital-basis-set", but not both.
+        Note: Specify either "planewave-basis-cutoff" or "atom-centered-basis-set", but not both.
     - name: frequency
       required: false
       description: >-

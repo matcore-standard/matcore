@@ -36,7 +36,7 @@ def test_pseudopotential_and_basis_set_name_their_species():
     pp = sub(settings(), 'core-electron-treatment', 'pseudopotential-or-paw', 'species')
     assert shape(pp) == (True, False, 'string', [], 'inapplicable', None)
     assert pp['values']['examples'] == ['Si', 'Ja']
-    basis = sub(settings(), 'wavefunction-representation', 'localized-orbital-basis-set', 'species')
+    basis = sub(settings(), 'wavefunction-representation', 'atom-centered-basis-set', 'species')
     assert shape(basis) == (False, True, 'string', [], 'inapplicable', None)
     assert basis['notes'] == ['Note: Give the species this basis set is used for. Omit it when one basis set is '
                               'used for every species.']

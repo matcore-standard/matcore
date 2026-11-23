@@ -405,7 +405,7 @@ properties:
 
           - "LAPW" – Linearized Augmented Plane Wave: atomic-like functions inside spheres around the atoms, plane waves between them
       repeatable: true
-    - name: localized-orbital-basis-set
+    - name: atom-centered-basis-set
       required: false
       description: >-
         For type "Gaussian basis sets", "Local atomic orbitals" or "Numerical atomic orbitals",
@@ -443,7 +443,7 @@ properties:
         - 'Note: Give the species this basis set is used for. Omit it when one basis set is used for every species.'
       - name: repository
         required: false
-        description: The database from which the localized-orbital basis set was obtained.
+        description: The database from which the atom-centered basis set was obtained.
         type: string
         extent: []
         kind: inapplicable
@@ -452,7 +452,7 @@ properties:
         repeatable: false
       - name: version
         required: false
-        description: The version of the localized-orbital basis set.
+        description: The version of the atom-centered basis set.
         type: string
         extent: []
         kind: inapplicable
@@ -461,7 +461,7 @@ properties:
         repeatable: false
       - name: doi
         required: false
-        description: The digital object identifier (DOI) for the localized-orbital basis set.
+        description: The digital object identifier (DOI) for the atom-centered basis set.
         type: string
         extent: []
         kind: inapplicable
@@ -472,7 +472,7 @@ properties:
       - name: file
         required: false
         description: >-
-          The localized-orbital basis set file, with its checksums.
+          The atom-centered basis set file, with its checksums.
         type: null
         extent: null
         kind: null
@@ -530,7 +530,7 @@ properties:
       - name: unique-identifier
         required: false
         description: >-
-          A token other than a checksum that identifies the localized-orbital basis set, such as a label or
+          A token other than a checksum that identifies the atom-centered basis set, such as a label or
           code assigned by the library that distributes it.
         type: string
         extent: []
