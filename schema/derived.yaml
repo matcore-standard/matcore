@@ -158,7 +158,7 @@ properties:
         values: null
         repeatable: false
       - name: unit
-        required: true
+        required: false
         description: The unit in which the associated value is expressed.
         type: string
         extent: []
@@ -170,6 +170,8 @@ properties:
             only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
             (accepted with a validation warning).
         repeatable: false
+        notes:
+        - 'Note: Give it when the type of the value is float or int; omit it when it is string or bool.'
       - name: description
         required: false
         description: An explanation of the meaning, source, or purpose of the calculation parameter.

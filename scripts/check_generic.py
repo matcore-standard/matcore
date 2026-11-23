@@ -4,7 +4,8 @@
 A container is a generic parameter when one of its subproperties is a `value` whose Type and Kind are
 both `any` (0019 item 3). Its
 subproperties are then exactly `name`, `value`, `unit` and `description`, in that order, each with the
-fields of FORM; `unit` also has the fixed description and note of 0001 B9 and A3.2. The descriptions of
+fields of FORM; `unit` also has the fixed description and note of 0001 B9 and A3.2, and is not required, since a
+string or bool value carries none (0084 item 1). The descriptions of
 `name`, `value` and `description` are the parameter's own. Called by scripts/validate_schema.py for
 every property.
 """
@@ -12,12 +13,14 @@ UNIT_DESCRIPTION = 'The unit in which the associated value is expressed.'
 UNIT_NOTE = ('A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only if '
              'no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted with a '
              'validation warning).')
+UNIT_GIVEN = 'Note: Give it when the type of the value is float or int; omit it when it is string or bool.'
 STRING = {'type': 'string', 'extent': [], 'kind': 'inapplicable', 'recommended-unit': None, 'values': None,
           'repeatable': False}
 FORM = {
     'name': STRING | {'required': True},
     'value': STRING | {'required': True, 'type': 'any', 'extent': 'any', 'kind': 'any'},
-    'unit': STRING | {'required': True, 'description': UNIT_DESCRIPTION, 'values': {'note': UNIT_NOTE}},
+    'unit': STRING | {'required': False, 'description': UNIT_DESCRIPTION, 'values': {'note': UNIT_NOTE},
+                      'notes': [UNIT_GIVEN]},
     'description': STRING | {'required': False},
 }
 

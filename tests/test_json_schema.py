@@ -90,14 +90,19 @@ GENERIC = build_json_schema.section_schema([
           'kind': 'inapplicable', 'values': None},
          {'name': 'value', 'required': True, 'repeatable': False, 'type': 'any', 'extent': 'any', 'kind': 'any',
           'values': None},
-         {'name': 'unit', 'required': True, 'repeatable': False, 'type': 'string', 'extent': [],
+         {'name': 'unit', 'required': False, 'repeatable': False, 'type': 'string', 'extent': [],
           'kind': 'inapplicable', 'values': None}]}], UNITS)
 
 
 @pytest.mark.parametrize('entry, ok', [
     ({'name': 'n', 'value': 4, 'type': 'int', 'unit': 'dimensionless'}, True),
     ({'name': 'n', 'value': [0.5, 1], 'type': 'float', 'unit': 'm'}, True),
-    ({'name': 'n', 'value': 'tanh', 'type': 'string', 'unit': 'dimensionless'}, True),
+    ({'name': 'n', 'value': 'tanh', 'type': 'string'}, True),
+    ({'name': 'n', 'value': True, 'type': 'bool'}, True),
+    ({'name': 'n', 'value': 'tanh', 'type': 'string', 'unit': 'dimensionless'}, False),
+    ({'name': 'n', 'value': False, 'type': 'bool', 'unit': 'dimensionless'}, False),
+    ({'name': 'n', 'value': 4.0, 'type': 'float'}, False),
+    ({'name': 'n', 'value': 4, 'type': 'int'}, False),
     ({'name': 'n', 'value': 4.0, 'type': 'float', 'unit': 'x-gnu:1/cm'}, True),
     ({'name': 'n', 'value': 4, 'unit': 'dimensionless'}, False),
     ({'name': 'n', 'value': 4, 'type': 'number', 'unit': 'dimensionless'}, False),
@@ -107,8 +112,9 @@ GENERIC = build_json_schema.section_schema([
 ])
 def test_a_generic_parameter_states_its_type(entry, ok):
     """JSON writes 4 and 4.0 alike, so a generic parameter's object states its instance type in a member `type`, and
-    its value, or each component, has that type (0044 item 3); its unit is any Annex U symbol, `dimensionless`, or an
-    x-gnu: expression (Annex U Rule 4).
+    its value, or each component, has that type (0044 item 3). A float or int carries a unit, any Annex U symbol,
+    `dimensionless`, or an x-gnu: expression (Annex U Rule 4); a string or bool is not measured and carries none
+    (0084 item 1).
 
     entry (dict): one parameter entry; ok (bool): whether it conforms.
     """

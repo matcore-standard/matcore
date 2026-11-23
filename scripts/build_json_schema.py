@@ -6,7 +6,8 @@ The schema (draft 2020-12) describes one record: an object with one member per s
 entries, a leaf a JSON value of its Type nested as its Extent gives, never null. A unit beside a typed value takes the
 Annex U symbols of that value's Kind (0015), plus dimensionless for reduced phase field lengths and times (0075); a
 unit the schema does not fix takes any symbol, dimensionless or an x-gnu: expression. A generic parameter carries the
-JSON member `type` and its value has that type (0044 item 3). A record may add members named with the prefix x- at any
+JSON member `type` and its value has that type (0044 item 3); it has a unit when that type is float or int and none
+when it is string or bool (0084 item 1). A record may add members named with the prefix x- at any
 level (0079). Open terms, references by label and formula grammar are left to other checks.
 
 Usage: build_json_schema.py writes docs/standard/matcore.schema.json; scripts/build_docs.py calls write().
@@ -96,7 +97,9 @@ def section_schema(props, units, name=''):
         s['properties']['type'] = {'enum': list(JSON_TYPES)}
         s['required'].append('type')
         s['allOf'] = [{'if': {'properties': {'type': {'const': t}}},
-                       'then': {'properties': {'value': nested(t)}}} for t in JSON_TYPES]
+                       'then': {'properties': {'value': nested(t)}} | (
+                           {'required': ['unit']} if t in ('float', 'int') else {'not': {'required': ['unit']}})}
+                      for t in JSON_TYPES]  # a string or bool is not measured, so it has no unit (0084 item 1)
     return s
 
 

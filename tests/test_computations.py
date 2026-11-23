@@ -309,12 +309,12 @@ def test_pim_holds_the_model_properties_moved_from_md():
     assert (s['required'], s['repeatable']) == (True, True)
     assert [(c['name'], c['required'], c['repeatable']) for c in s['subproperties']] == [
         ('computation-label', True, True), ('theory-level', True, False), ('model-type', True, False),
-        ('particle-style', True, True), ('bonding-type', True, False), ('charge-interactions', False, True),
-        ('magnetic-interactions', False, True)]
-    assert [c['name'] for c in sub(s, 'charge-interactions')['subproperties']] == [
+        ('particle-style', True, True), ('bonding-type', True, False), ('charge-interaction', False, True),
+        ('magnetic-interaction', False, True)]
+    assert [c['name'] for c in sub(s, 'charge-interaction')['subproperties']] == [
         'charge-origin', 'charge-style', 'charge-variability', 'electrostatic-summation', 'electric-dipole',
         'electric-dipole-variability']
-    assert [c['name'] for c in sub(s, 'magnetic-interactions')['subproperties']] == ['spin-style', 'magnetic-dipole']
+    assert [c['name'] for c in sub(s, 'magnetic-interaction')['subproperties']] == ['spin-style', 'magnetic-dipole']
 
 
 def test_ps_keeps_only_the_dynamics():
@@ -326,8 +326,8 @@ def test_ps_keeps_only_the_dynamics():
         'computation-label', 'algorithm', 'description', 'computation-parameter', 'initialization',
         'thermodynamic-constraint', 'particle-constraint']
     text = (ROOT / 'schema/ps.yaml').read_text()
-    for gone in ('name: mode', 'particle-style', 'particle-interactions', 'charge-interactions',
-                 'magnetic-interactions'):
+    for gone in ('name: mode', 'particle-style', 'particle-interactions', 'charge-interaction',
+                 'magnetic-interaction'):
         assert gone not in text, gone
 
 
@@ -459,9 +459,9 @@ CHARGE_TERMS = {
 
 
 def test_pim_charge_interactions_keeps_the_baseline_vocabularies():
-    """charge-interactions moves whole from md (0046 item 8): a repeatable container of six string properties,
+    """charge-interaction moves whole from md (0046 item 8): a repeatable container of six string properties,
     each with the baseline's open terms, defined in its note."""
-    c = sub(section('pim')['properties'][0], 'charge-interactions')
+    c = sub(section('pim')['properties'][0], 'charge-interaction')
     assert (c['required'], c['repeatable'], c['type'], c['values']) == (False, True, None, None)
     assert [s['name'] for s in c['subproperties']] == list(CHARGE_TERMS)
     for s in c['subproperties']:
@@ -476,7 +476,7 @@ def test_pim_charge_interactions_keeps_the_baseline_vocabularies():
 def test_pim_dipole_variability_is_about_dipoles():
     """The baseline copied charge-variability's description onto electric-dipole-variability; its values are
     about dipoles, so the description says so (decided in review)."""
-    c = sub(section('pim')['properties'][0], 'charge-interactions')
+    c = sub(section('pim')['properties'][0], 'charge-interaction')
     assert 'local electric dipoles' in sub(c, 'electric-dipole-variability')['description']
     note = ' '.join(sub(c, 'charge-variability')['values']['note'].split())
     assert '"Fixed" – Charges cannot change during a simulation' in note
@@ -484,8 +484,8 @@ def test_pim_dipole_variability_is_about_dipoles():
 
 def test_pim_electrostatic_summation_covers_short_range_sums():
     """A sum truncated at a cutoff is neither the absence of electrostatics nor a long-range method, and a
-    model without charges has no charge-interactions at all (0068)."""
-    e = sub(sub(section('pim')['properties'][0], 'charge-interactions'), 'electrostatic-summation')
+    model without charges has no charge-interaction at all (0068)."""
+    e = sub(sub(section('pim')['properties'][0], 'charge-interaction'), 'electrostatic-summation')
     assert e['description'] == 'Method used to compute the electrostatic interactions between the charges.'
     note = ' '.join(e['values']['note'].split())
     assert ('"Short-range" – Electrostatic interactions computed only within a cutoff distance, possibly shifted '
@@ -497,7 +497,7 @@ def test_pim_spin_style_keeps_only_particle_models():
     """Spin dynamics driven by spin-polarized DFT, tight binding or a wavefunction is not a particle interaction
     model (0046); such a computation is named as an input instead, so only the classical spin styles remain
     (0060)."""
-    m = sub(section('pim')['properties'][0], 'magnetic-interactions')
+    m = sub(section('pim')['properties'][0], 'magnetic-interaction')
     assert (m['required'], m['repeatable'], m['type'], m['values']) == (False, True, None, None)
     assert [s['name'] for s in m['subproperties']] == ['spin-style', 'magnetic-dipole']
     s = sub(m, 'spin-style')
@@ -703,7 +703,7 @@ def test_ps_particle_constraint_names_the_group_and_what_acts_on_it():
         [f'- "{x}"' for x in g] for g in PARTICLE_CONSTRAINTS.values()]
     notes = ' '.join(' '.join(c.get('notes', [])).split())
     assert 'cell-periodicity' in notes
-    assert 'boundary-conditions' not in [s['name'] for s in top('ps', 'settings')['subproperties']]
+    assert 'boundary-condition' not in [s['name'] for s in top('ps', 'settings')['subproperties']]
 
 
 def test_ps_is_complete():
@@ -1081,7 +1081,7 @@ def test_pf_properties_sit_in_settings_under_names_that_match_their_meaning():
     assert [c['name'] for c in equation['subproperties']] == ['type', 'evolved-variable', 'free-energy-density-term']
     assert sub(equation, 'type')['repeatable'] is True
     assert [c['name'] for c in sub(s, 'domain')['subproperties']] == [
-        'dimensionality', 'coordinate-system', 'domain-size', 'boundary-conditions', 'initial-conditions']
+        'dimensionality', 'coordinate-system', 'domain-size', 'boundary-condition', 'initial-condition']
     assert [c['name'] for c in sub(s, 'numerical-method')['subproperties']] == PF_NUMERICAL_MEMBERS
     assert ('The properties are given in settings blocks, each naming the PF computations it describes.'
             in section('pf')['introduction'])
@@ -1178,7 +1178,7 @@ def test_pf_domain_takes_reduced_units_and_names_where_each_boundary_condition_a
     assert shape(sub(size, 'value')) == (True, False, 'float', [':'], 'Length', 'm')
     notes = ' '.join(size['notes'])
     assert '`dimensionless`' in notes and '`variables › model-parameter`' in notes and 'irregular' in notes
-    bc = sub(domain, 'boundary-conditions')
+    bc = sub(domain, 'boundary-condition')
     assert (bc['required'], bc['repeatable'], bc['type']) == (False, True, None)
     assert [c['name'] for c in bc['subproperties']] == ['type', 'boundary', 'field-variable']
     t = sub(bc, 'type')
@@ -1190,11 +1190,11 @@ def test_pf_domain_takes_reduced_units_and_names_where_each_boundary_condition_a
     # a reference names where the referenced property is defined, not just its name
     assert '`numerical-method › mesh-file`' in sub(bc, 'boundary')['values']['note']
     assert '`variables › field-variable`' in sub(bc, 'field-variable')['values']['note']
-    assert shape(sub(domain, 'initial-conditions')) == (False, True, 'string', [], 'inapplicable', None)
+    assert shape(sub(domain, 'initial-condition')) == (False, True, 'string', [], 'inapplicable', None)
     assert not any(k.startswith('legacy_') for p in [domain, *domain['subproperties']] for k in p)
     block = json.loads((ROOT / 'examples/pf.json').read_text(encoding='utf-8'))['pf']['settings'][0]
     assert block['domain']['domain-size'] == {'value': [100.0, 100.0], 'unit': 'dimensionless'}
-    assert block['domain']['boundary-conditions'] == [{'type': 'Periodic'}]
+    assert block['domain']['boundary-condition'] == [{'type': 'Periodic'}]
 
 
 PF_NUMERICAL_MEMBERS = ['evolved-variable', 'spatial-discretization', 'spatial-discretization-parameter',
@@ -1239,7 +1239,7 @@ def test_pf_numerical_method_says_how_each_group_of_equations_is_discretized_and
     assert (mesh['required'], mesh['repeatable']) == (False, True)
     assert 'one entry for each file' in ' '.join(' '.join(mesh['notes']).split())
     assert mesh['subproperties'] == sub(sub(top('minimal', 'computation'), 'software'), 'file')['subproperties']
-    assert '`domain › boundary-conditions › boundary`' in ' '.join(mesh['notes'][0].split())
+    assert '`domain › boundary-condition › boundary`' in ' '.join(mesh['notes'][0].split())
     temporal = sub(nm, 'temporal-discretization')
     defined(temporal, PF_TEMPORAL)
     assert any('stationary' in n for n in temporal['notes'])
