@@ -354,3 +354,21 @@ def test_note_7_lists_every_unit_absent_from_qudt():
     text = (ROOT / 'docs/standard/annex-u-units.md').read_text()
     note = text[text.index('**Note 7'):].split('\n')[0]
     assert set(re.findall(r'`([^`]+)`', note)) == absent
+
+
+def test_revision_history_opens_each_release_as_a_whole_row():
+    """A release's changes can run to many lines, so a release of several changes is a row the reader opens and
+    closes as a whole, through a button holding its version; its changes are a list, the first shown while the row is
+    closed with the count of the rest. A release of one change is a plain row."""
+    import datetime
+    rel = lambda lines: {'version': '9.9.9', 'date': datetime.date(2026, 1, 1), 'change_type': 'Patch',
+                         'sections': 'All', 'description': lines, 'approved_by': 'X'}
+    page = build_docs.render_revision_history([
+        rel(['Lead line:', '- First change', '- Second change']), rel(['Initial release'])])
+    assert '<div class="mc-revisions"><table>' in page
+    many, one = [l for l in page.splitlines() if '9.9.9' in l]
+    assert many.startswith('<tr class="mc-release"><td><button type="button" class="mc-release-toggle" '
+                           'aria-expanded="false">9.9.9</button></td>')
+    assert ('<div class="mc-changes" data-more="+1 more">Lead line:<ul><li>First change</li><li>Second change</li>'
+            '</ul></div>') in many
+    assert one.startswith('<tr><td>9.9.9</td>') and '<button' not in one and 'data-more' not in one

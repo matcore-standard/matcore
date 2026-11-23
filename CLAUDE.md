@@ -496,6 +496,17 @@ record or marked PROPOSED, NOT DECIDED.
      regenerated; rendering checked in the browser (derived type, dft wavefunction-representation and
      calculation-physics).
    PROPOSED, NOT DECIDED: "Expand all", a tree that follows scrolling, a dark scheme (0007 item 14).
+   Requested by the human 2026-11-23: the Revision History's descriptions were too long; each release's row starts
+   closed and opens and closes as a whole (a box opening inside the description cell was tried and rejected); the
+   left-menu logo is reduced to the size of the "MatCore" lettering. [in progress, branch collapsible-revision-history,
+   committed, not pushed; PR to open after the push] scripts/build_docs.py (release_row: the history is an HTML table in a
+   div.mc-revisions; a release of several changes is tr.mc-release, its version a toggle button, its changes a list
+   with data-more "+N more"), docs/assets/matcore/layout.js (marks the table mc-collapsible and toggles a row on a
+   click anywhere on it; without the script every row shows open), layout.css (a closed row shows its first change,
+   clamped to two lines, and "+N more"; short columns on one line; logo 1.8rem to 1.1rem), revision-history.md
+   regenerated; tests: test_build_docs (a new test of the row), test_releases (the matcore.org rows compared word for
+   word instead of character for character, since the markup changed). Checked in the browser at desktop and phone
+   widths (the table scrolls sideways on a phone, as before).
 3. [done, PR #9 merged 2026-11-01] Apply 0001 Part A (kind/recommended-unit/convention): merged
    into step 5, property by property (0004). What remained of this step did not belong to any one
    property; each was its own change.

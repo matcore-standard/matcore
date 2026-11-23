@@ -53,13 +53,25 @@ def test_section_files_carry_no_version_of_their_own():
         jsonschema.validate({'section': 'x', 'title': 'X', 'matcore_version': '0.4.0', 'properties': []}, meta)
 
 
+def row_text(row):
+    """Return the text of a history row: each cell's text pieces, a change list's items one piece each.
+
+    row (str): an HTML <tr> line of the generated page, or a Markdown row of the fixture.
+    """
+    if row.startswith('|'):
+        cells = [c.strip() for c in row.strip('|').split('|')]
+        return [[p.strip().removeprefix('- ') for p in c.split('<br>')] for c in cells]
+    cells = re.findall(r'<td>(.*?)</td>', row)
+    return [[p for p in re.split(r'<br>|<ul>|</ul>|<li>|</li>|<[^>]+>', c) if p] for c in cells]
+
+
 def test_revision_history_reproduces_the_published_rows():
-    """The generated page keeps the matcore.org rows character for character, with the newest release on top."""
+    """The generated page keeps the matcore.org rows word for word, with the newest release on top."""
     page = build_docs.render_revision_history(RELEASES)
-    rows = [l for l in page.splitlines() if l.startswith('| 0.')]
-    assert rows[0].startswith(f"| {RELEASES[0]['version']} | ")
+    rows = [l for l in page.splitlines() if l.startswith('<tr') and '<th>' not in l]
+    assert f">{RELEASES[0]['version']}<" in rows[0]
     expected = (ROOT / 'tests/fixtures/revision_history_0.3.0_and_earlier.md').read_text().splitlines()
-    assert rows[-len(expected):] == expected
+    assert [row_text(r) for r in rows[-len(expected):]] == [row_text(e) for e in expected]
 
 
 def test_every_standard_page_states_its_version(tmp_path):
