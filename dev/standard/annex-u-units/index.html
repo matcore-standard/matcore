@@ -1096,7 +1096,7 @@
 <h2 id="u2-rules">U.2 Rules</h2>
 <ol>
 <li>Symbols are case-sensitive ASCII strings. <code>eV</code> and <code>ev</code> are not the same symbol.</li>
-<li>Compound symbols use <code>/</code> for division and <code>^</code> for integer exponents, exactly as written in Table U.4. Symbols not listed (e.g. <code>eV/A</code>, <code>Å</code>, <code>angstrom**3</code>) are non-conformant.</li>
+<li>Compound symbols use <code>*</code> for multiplication, <code>/</code> for division and <code>^</code> for integer exponents, with a denominator of several factors in parentheses, exactly as written in Table U.4. Symbols not listed (e.g. <code>eV/A</code>, <code>Å</code>, <code>angstrom**3</code>) are non-conformant.</li>
 <li>The reserved symbol <code>dimensionless</code> is used for quantities of dimension one (ratios, counts, fractional coordinates). It SHALL NOT be used for plane angles (use <code>rad</code> or <code>degree</code>) or for amount of substance (use <code>mol</code>).</li>
 <li>A <code>unit</code> subproperty of a generic parameter or of any other subproperty whose Kind the schema declares as <code>any</code> MAY, if and only if no symbol in Table U.4 applies, contain a string of the form <code>x-gnu:&lt;expression&gt;</code>, where <code>&lt;expression&gt;</code> is a unit expression valid in GNU Units 2.23 with <code>definitions.units</code> version 3.19 (February 2024). Such values are accepted with a validation warning and are not guaranteed to be machine-convertible. Later versions of <code>definitions.units</code> are not implied; a change of the pinned version is a revision of this annex.</li>
 <li>Conversion factors marked <em>exact</em> follow from the SI definitions. Factors marked <em>CODATA 2022</em> are the 2022 CODATA recommended values published by NIST. The factors in Table U.4 are normative for MatCore and take precedence over the values embedded in any external vocabulary (see Note 5). A revision to a later CODATA release is a revision of this annex.</li>
@@ -1242,6 +1242,48 @@
 <td>MagneticMoment</td>
 <td>A0E1L2I0M0H0T0D0</td>
 <td>m²·A</td>
+</tr>
+<tr>
+<td>EnergyPerArea</td>
+<td>EnergyPerArea</td>
+<td>A0E0L0I0M1H0T-2D0</td>
+<td>kg·s⁻²</td>
+</tr>
+<tr>
+<td>ElectricDipoleMoment</td>
+<td>ElectricDipoleMoment</td>
+<td>A0E1L1I0M0H0T1D0</td>
+<td>m·s·A</td>
+</tr>
+<tr>
+<td>Polarizability</td>
+<td>Polarizability</td>
+<td>A0E2L0I0M-1H0T4D0</td>
+<td>kg⁻¹·s⁴·A²</td>
+</tr>
+<tr>
+<td>SecondOrderSusceptibility</td>
+<td>—</td>
+<td>A0E1L-1I0M-1H0T3D0</td>
+<td>kg⁻¹·m⁻¹·s³·A</td>
+</tr>
+<tr>
+<td>ThermalConductivity</td>
+<td>ThermalConductivity</td>
+<td>A0E0L1I0M1H-1T-3D0</td>
+<td>kg·m·s⁻³·K⁻¹</td>
+</tr>
+<tr>
+<td>ElectricCurrent</td>
+<td>ElectricCurrent</td>
+<td>A0E1L0I0M0H0T0D0</td>
+<td>A</td>
+</tr>
+<tr>
+<td>ElectricConductivity</td>
+<td>ElectricConductivity</td>
+<td>A0E2L-3I0M-1H0T3D0</td>
+<td>kg⁻¹·m⁻³·s³·A²</td>
 </tr>
 <tr>
 <td>Angle</td>
@@ -1726,6 +1768,110 @@
 <td>exact</td>
 </tr>
 <tr>
+<td><code>J/m^2</code></td>
+<td>EnergyPerArea</td>
+<td>J-PER-M2</td>
+<td>J/m^2</td>
+<td>1</td>
+<td>exact</td>
+</tr>
+<tr>
+<td><code>mJ/m^2</code></td>
+<td>EnergyPerArea</td>
+<td>MilliJ-PER-M2</td>
+<td>mJ/m^2</td>
+<td>1 × 10⁻³ J·m⁻²</td>
+<td>exact</td>
+</tr>
+<tr>
+<td><code>eV/angstrom^2</code></td>
+<td>EnergyPerArea</td>
+<td>—</td>
+<td>eV/angstrom^2</td>
+<td>1.602 176 634 × 10¹ J·m⁻²</td>
+<td>exact</td>
+</tr>
+<tr>
+<td><code>e*angstrom</code></td>
+<td>ElectricDipoleMoment</td>
+<td>—</td>
+<td>e*angstrom</td>
+<td>1.602 176 634 × 10⁻²⁹ C·m</td>
+<td>exact</td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>ElectricDipoleMoment</td>
+<td>DEBYE</td>
+<td>debye</td>
+<td>10⁻²¹/c C·m</td>
+<td>exact (1 D = 10⁻¹⁸ statC·cm)</td>
+</tr>
+<tr>
+<td><code>C*m</code></td>
+<td>ElectricDipoleMoment</td>
+<td>C-M</td>
+<td>C*m</td>
+<td>1</td>
+<td>exact</td>
+</tr>
+<tr>
+<td><code>C*m^2/V</code></td>
+<td>Polarizability</td>
+<td>C-M2-PER-V</td>
+<td>C*m^2/V</td>
+<td>1</td>
+<td>exact</td>
+</tr>
+<tr>
+<td><code>e*angstrom^2/V</code></td>
+<td>Polarizability</td>
+<td>—</td>
+<td>e*angstrom^2/V</td>
+<td>1.602 176 634 × 10⁻³⁹ C·m²·V⁻¹</td>
+<td>exact</td>
+</tr>
+<tr>
+<td><code>pm/V</code></td>
+<td>SecondOrderSusceptibility</td>
+<td>—</td>
+<td>pm/V</td>
+<td>1 × 10⁻¹² m·V⁻¹</td>
+<td>exact</td>
+</tr>
+<tr>
+<td><code>m/V</code></td>
+<td>SecondOrderSusceptibility</td>
+<td>—</td>
+<td>m/V</td>
+<td>1</td>
+<td>exact</td>
+</tr>
+<tr>
+<td><code>W/(m*K)</code></td>
+<td>ThermalConductivity</td>
+<td>W-PER-M-K</td>
+<td>W/(m*K)</td>
+<td>1</td>
+<td>exact</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>ElectricCurrent</td>
+<td>A</td>
+<td>A</td>
+<td>1</td>
+<td>exact</td>
+</tr>
+<tr>
+<td><code>S/m</code></td>
+<td>ElectricConductivity</td>
+<td>S-PER-M</td>
+<td>S/m</td>
+<td>1</td>
+<td>exact</td>
+</tr>
+<tr>
 <td><code>rad</code></td>
 <td>Angle</td>
 <td>RAD</td>
@@ -1767,7 +1913,7 @@
 <p><strong>Note 4 (QUDT quantity-kind links are not a validation basis).</strong> QUDT attaches its own quantity kinds to units, and these are often narrower or differently named than MatCore's: <code>PER-SEC</code> is linked to Frequency and DecayConstant (not InverseTime); <code>PER-M3</code> to InverseVolume (not NumberDensity); <code>W-PER-M2</code> to PowerPerArea (not HeatFluxDensity); <code>GigaPA</code>, <code>KiloBAR</code> and <code>BAR</code> to ForcePerArea (not Pressure); <code>EV-PER-ANGSTROM</code> to TotalLinearStoppingPower (not Force). In every case the dimension vector agrees with the MatCore kind, so compatibility is validated by dimension vector (Rule 7), and the QUDT unit IRI serves only as a stable identifier.</p>
 <p><strong>Note 5 (stale constants in reference vocabularies).</strong> QUDT's own conversion multipliers for <code>E_h</code> (4.359 743 94 × 10⁻¹⁸ J) and <code>AMU</code> (1.660 538 782 83 × 10⁻²⁷ kg) are CODATA 2006 values, and GNU Units 2.23 uses CODATA 2018 values (hartree 4.359 744 722 2071 × 10⁻¹⁸ J, bohrradius 5.291 772 109 02 × 10⁻¹¹ m, amu 1.660 539 066 6 × 10⁻²⁷ kg). The factors in Table U.4 are therefore normative in MatCore (Rule 5) and take precedence over the values embedded in either reference vocabulary.</p>
 <p><strong>Note 6 (GNU spelling of bohr).</strong> GNU Units does not define <code>bohr</code>; the GNU name is <code>bohrradius</code>. The MatCore symbol remains <code>bohr</code>; the mapping is given in the GNU column.</p>
-<p><strong>Note 7 (units absent from QUDT).</strong> <code>Ry</code>, <code>bohr</code>, <code>meV</code>, <code>nm^3</code>, <code>1/ps</code>, <code>1/bohr</code>, <code>bohr^3</code>, <code>K/angstrom</code>, <code>eV/angstrom^3</code>, <code>hartree/bohr</code>, <code>1/angstrom^3</code>, <code>V/angstrom</code> and <code>mu_B</code> have no unit IRI in QUDT Units v3.3.0. For these, the MatCore symbol is the identifier and the quantity-kind IRI in Table U.3 supplies the semantic anchor. QUDT accepts contributions through its public repository, and IRIs will be added to this table if and when they are published.</p>
+<p><strong>Note 7 (units absent from QUDT).</strong> <code>Ry</code>, <code>bohr</code>, <code>meV</code>, <code>nm^3</code>, <code>1/ps</code>, <code>1/bohr</code>, <code>bohr^3</code>, <code>K/angstrom</code>, <code>eV/angstrom^3</code>, <code>hartree/bohr</code>, <code>1/angstrom^3</code>, <code>V/angstrom</code>, <code>mu_B</code>, <code>eV/angstrom^2</code>, <code>e*angstrom</code>, <code>e*angstrom^2/V</code>, <code>pm/V</code> and <code>m/V</code> have no unit IRI in QUDT Units v3.3.0. For these, the MatCore symbol is the identifier and the quantity-kind IRI in Table U.3 supplies the semantic anchor. Likewise the Kind SecondOrderSusceptibility, of dimension m·V⁻¹, has no quantity kind in QUDT; its SI dimension vector is the anchor. QUDT accepts contributions through its public repository, and IRIs will be added to this table if and when they are published.</p>
 <h2 id="u5-references">U.5 References</h2>
 <ul>
 <li>QUDT Units Vocabulary v3.3.0 and QUDT Quantity Kinds Vocabulary, <code>https://qudt.org/vocab/unit/</code> and <code>https://qudt.org/vocab/quantitykind/</code> (source: <code>https://github.com/qudt/qudt-public-repo</code>), consulted 2026-09-27.</li>
