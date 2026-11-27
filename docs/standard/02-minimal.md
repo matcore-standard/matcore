@@ -1136,7 +1136,7 @@ Depends on `method-class`.
 - "DFT" – Density Functional Theory: electronic structure obtained from the electron density
 - "MBPT" – Many-Body Perturbation Theory: excited states obtained from many-body Green's functions
 - "TB" – Tight Binding: electronic structure in a basis of localized orbitals with parameterized matrix elements
-- "PIM" – Particle Interaction Model: energies and forces given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density
+- "PIM" – Particle Interaction Model: energies, forces and other per-configuration responses (e.g. charges, dipoles, polarizabilities) given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density
 - "PS" – Particle Simulation: particles moved or sampled using the energies and forces of another computation
 - "DDD" – Discrete Dislocation Dynamics: plastic deformation from the motion and interaction of dislocation lines
 - "KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events chosen by their rates
@@ -1241,7 +1241,7 @@ Recommended: `Interaction model`, `Initial configuration`, `Starting point`, `Tr
 
 **Clarifications:**
 
-- "Interaction model" – The energies and forces of the configurations this computation evaluates
+- "Interaction model" – The energies, forces and other per-configuration responses (e.g. charges, dipoles, polarizabilities) of the configurations this computation evaluates
 - "Initial configuration" – The configurations this computation starts from or evaluates, with any state carried over, e.g. velocities
 - "Starting point" – An electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground state of a GW calculation
 - "Training data" – Data a model is fitted to

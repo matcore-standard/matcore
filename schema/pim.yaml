@@ -58,6 +58,62 @@ properties:
     - >-
       Note: Give the functional form. The specific parameterization, e.g. an OpenKIM model, NIST IPR record,
       or a published potential file, is identified in the computation's software (role Interaction model).
+  - name: architecture-parameter
+    required: false
+    description: A fixed variable that defines the architecture of the interatomic model.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    notes:
+    - >-
+      Note: For example, the number of layers, the number of nodes per layer, a cutoff radius or a maximum
+      body order. Training settings are hyperparameter entries of training › training-method.
+    subproperties:
+    - name: name
+      required: true
+      description: The designation of the architecture parameter.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+    - name: value
+      required: true
+      description: The data associated with the architecture parameter.
+      type: any
+      extent: any
+      kind: any
+      recommended-unit: null
+      values: null
+      repeatable: false
+    - name: unit
+      required: false
+      description: The unit in which the associated value is expressed.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: >-
+          A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+          only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+          (accepted with a validation warning).
+      repeatable: false
+      notes:
+      - 'Note: Give it when the type of the value is float or int; omit it when it is string or bool.'
+    - name: description
+      required: false
+      description: An explanation of the meaning, source, or purpose of the architecture parameter.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
   - name: particle-style
     required: true
     description: The nature of the discrete entities whose interactions the model describes.
@@ -243,3 +299,360 @@ properties:
       - >-
         Note: The strength of an applied field is the condition `magnetic-field` in minimal `conditions`; a
         Zeeman term names its coupling to the spins.
+  - name: training
+    required: false
+    description: How the interatomic model was fitted to data.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    notes:
+    - >-
+      Note: Give it for a computation whose task is Training. A computation that uses the trained model names this
+      one in `input` with the role Parameters; a model trained elsewhere is given as software.
+    subproperties:
+    - name: training-data
+      required: false
+      description: The information used for parameterizing the interatomic model.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      subproperties:
+      - name: name
+        required: true
+        description: Name of the training dataset used to train in the interatomic model.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: contents
+        required: true
+        description: Description of the information included in the training dataset.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            E.g. DFT calculations or experiments, and what one item of the data is (a structure, a
+            configuration), since size counts items.
+        repeatable: false
+      - name: source
+        required: false
+        description: Location from which the training data was obtained.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            A MatCore ID, web address, DOI, citation, or other description of where the data was
+            obtained. Training data produced by a computation of the record is not given here: the
+            training computation names it in minimal `computation › input` with the role Training
+            data.
+        repeatable: false
+      - name: size
+        required: false
+        description: Number of items in the training dataset.
+        type: int
+        extent: []
+        kind: dimensionless
+        recommended-unit: null
+        values:
+          minimum: 1
+          note: >-
+            The kind of item is stated in contents.
+        repeatable: false
+      - name: data-preprocessing
+        required: false
+        description: >-
+          Approach used for preliminary refining of raw, unformatted, or incomplete information into a structured
+          and clean state suitable for modeling or analysis.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: missing-data
+        required: false
+        description: >-
+          Documentation of incomplete, null, or unrecorded entries within a feature set that hinder algorithm
+          training.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            E.g. the percentage of missing data, and which fields are missing and why.
+        repeatable: false
+      - name: missing-data-strategy
+        required: false
+        description: >-
+          Approach used for filling in or removing blank, null, or unknown entries in a dataset.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: outlier-handling
+        required: false
+        description: >-
+          Approach to identifying and addressing extreme observations that deviate significantly from the
+          general distribution to ensure they do not disproportionately skew model training.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values: null
+        repeatable: false
+      - name: dataset-split
+        required: false
+        description: >-
+          A description of how information used to train the interatomic model was divided into subsets
+          as part of the training process.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            In words, e.g. a random split of 80/10/10 into training, validation and test sets, a split
+            stratified by composition, or k-fold cross-validation.
+        repeatable: false
+    - name: training-method
+      required: false
+      description: The approach used to determine the interatomic model's free parameters.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      subproperties:
+      - name: training-procedure
+        required: true
+        description: The methodology used to determine the interatomic model's free parameters.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            E.g. the optimizer (Adam, L-BFGS, closed-form least squares), the learning-rate schedule, the
+            stopping rule, and any active-learning loop with its selection criterion (e.g. query by committee,
+            an uncertainty threshold). Explain the role of each hyperparameter entry.
+        repeatable: false
+      - name: loss-function
+        required: false
+        description: The quantities fitted in training and how they are weighted.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            E.g. the mean squared error of formation energies, or a weighted sum of the errors in energies,
+            forces and stresses with weights 1:100:10.
+        repeatable: false
+      - name: hyperparameter
+        required: false
+        description: A fixed variable that controls the fitting of the interatomic model.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: true
+        notes:
+        - >-
+          Note: For example, the learning rate, the batch size, the number of epochs or the early-stopping
+          patience. Numbers that fix the model's architecture are architecture-parameter entries of the settings.
+        subproperties:
+        - name: name
+          required: true
+          description: The designation of the hyperparameter.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values: null
+          repeatable: false
+        - name: value
+          required: true
+          description: The data associated with the hyperparameter.
+          type: any
+          extent: any
+          kind: any
+          recommended-unit: null
+          values: null
+          repeatable: false
+        - name: unit
+          required: false
+          description: The unit in which the associated value is expressed.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            note: >-
+              A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and
+              only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression
+              (accepted with a validation warning).
+          repeatable: false
+          notes:
+          - 'Note: Give it when the type of the value is float or int; omit it when it is string or bool.'
+        - name: description
+          required: false
+          description: An explanation of the meaning, source, or purpose of the hyperparameter.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values: null
+          repeatable: false
+      - name: transfer-learning
+        required: false
+        description: >-
+          Method used to migrate knowledge from previously mastered objectives to accelerate proficiency for
+          the current training.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            E.g. fine-tuning, domain adaptation, multi-task learning or delta learning, with the details of
+            how it was applied.
+        repeatable: false
+    - name: model-performance
+      required: false
+      description: An assessment of the reliability of the results of the interatomic model.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      subproperties:
+      - name: evaluation-method
+        required: true
+        description: >-
+          A description of the approach used to determine the reliability of the obtained results of
+          the interatomic model.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            E.g. a hold-out test set or k-fold cross-validation. Validation data serve to tune the model's
+            hyperparameters or stop its training; test data, used for neither, assess it. The scores are metric
+            entries.
+        repeatable: true
+      - name: metric
+        required: false
+        description: A score of the interatomic model on one subset of the data.
+        type: null
+        extent: null
+        kind: null
+        recommended-unit: null
+        values: null
+        repeatable: true
+        subproperties:
+        - name: subset
+          required: true
+          description: The data on which the score was measured.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [Training, Validation, Test]
+            note: |-
+              - "Training" – The data the model's parameters were fitted to
+              - "Validation" – Data used to tune hyperparameters or to stop training
+              - "Test" – Data used in neither, which assesses the model
+          repeatable: false
+        - name: quantity
+          required: true
+          description: The target variable the score is for.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            examples: [Formation energy, Forces]
+          repeatable: false
+        - name: measure
+          required: true
+          description: The statistic used as the score.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [MAE, RMSE, R², Accuracy]
+            note: |-
+              - "MAE" – Mean absolute error
+              - "RMSE" – Root-mean-square error
+              - "R²" – Coefficient of determination
+              - "Accuracy" – Fraction of correct predictions, for a classification
+          repeatable: false
+        - name: value
+          required: true
+          description: The value of the property, in the unit given by `unit`.
+          type: float
+          extent: []
+          kind: any
+          recommended-unit: null
+          values: null
+          repeatable: false
+        - name: unit
+          required: true
+          description: The unit in which the associated value is expressed.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            note: >-
+              A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only
+              if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted
+              with a validation warning).
+          repeatable: false
+      - name: uncertainty-quantification
+        required: false
+        description: >-
+          The method or process used to identify and measure the range of possible outcomes to assess the
+          reliability of interatomic model predictions.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            E.g. Bayesian methods, dropout, ensemble methods or a Gaussian process. Say whether an uncertainty
+            for each item is part of the dataset.
+        repeatable: false
+      - name: applicability-domain
+        required: false
+        description: Where the inputs the model is applied to lie relative to its training data.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            E.g. the elements, structure types or range of compositions the training data cover, and how inputs
+            outside them were identified (a distance in feature space, an uncertainty threshold).
+        repeatable: false

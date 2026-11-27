@@ -178,7 +178,8 @@ METHOD_DEFINITIONS = (
     'Density Functional Theory: electronic structure obtained from the electron density; "MBPT" – Many-Body '
     'Perturbation Theory: excited states obtained from many-body Green\'s functions; "TB" – Tight Binding: '
     'electronic structure in a basis of localized orbitals with parameterized matrix elements; "PIM" – Particle '
-    'Interaction Model: energies and forces given as an explicit function of the particles\' coordinates, without '
+    'Interaction Model: energies, forces and other per-configuration responses (e.g. charges, dipoles, '
+    'polarizabilities) given as an explicit function of the particles\' coordinates, without '
     'solving for a wavefunction or an electron density; "PS" – Particle Simulation: particles moved or sampled '
     'using the energies and forces of another computation; "DDD" – Discrete Dislocation Dynamics: plastic '
     'deformation from the motion and interaction of dislocation lines; "KMC" – Kinetic Monte Carlo: evolution of a '
@@ -310,8 +311,8 @@ def test_pim_holds_the_model_properties_moved_from_md():
     assert (s['required'], s['repeatable']) == (True, True)
     assert [(c['name'], c['required'], c['repeatable']) for c in s['subproperties']] == [
         ('computation-label', True, True), ('theory-level', True, False), ('model-type', True, False),
-        ('particle-style', True, True), ('bonding-type', True, False), ('charge-interaction', False, True),
-        ('magnetic-interaction', False, True)]
+        ('architecture-parameter', False, True), ('particle-style', True, True), ('bonding-type', True, False),
+        ('charge-interaction', False, True), ('magnetic-interaction', False, True), ('training', False, False)]
     assert [c['name'] for c in sub(s, 'charge-interaction')['subproperties']] == [
         'charge-origin', 'charge-style', 'charge-variability', 'electrostatic-summation', 'electric-dipole',
         'electric-dipole-variability']
@@ -1442,3 +1443,56 @@ def test_roles_name_guidance_trained_models_and_container_images():
     assert 'Trained model' in sr['terms'] and 'interatomic potential' in sr['note'].split('"Trained model"')[1]
     dr = sub(sub(sw, 'dependency'), 'role')['values']
     assert 'Container image' in dr['terms'] and 'digest' in dr['note']
+
+
+def form(p):
+    """Return the fields that fix a Property's form, recursively: name, required, repeatable, Type, Extent, Kind,
+    the values' keys and terms, without descriptions or notes.
+
+    p (dict): property entry.
+    """
+    v = p.get('values') or {}
+    return (p['name'], p['required'], p['repeatable'], p['type'], str(p['extent']), p['kind'],
+            tuple(sorted(v)), tuple(v.get('terms') or v.get('enum') or ()),
+            tuple(form(s) for s in p.get('subproperties') or []))
+
+
+def text(p):
+    """Return every description and note of a Property and its subproperties, joined.
+
+    p (dict): property entry.
+    """
+    v = p.get('values') or {}
+    own = [p.get('description') or '', v.get('note') or '', *p.get('notes', [])]
+    return ' '.join(own + [text(s) for s in p.get('subproperties') or []])
+
+
+def test_pim_training_describes_an_mlip_fit_as_ml_describes_a_model_fit():
+    """A machine-learned interatomic potential is described in pim (0073), so its fit is too: the same training-data,
+    training-method and model-performance as ML, worded for an interatomic model; the trained potential is then used
+    through input role Parameters (0086 item 9)."""
+    settings = top('pim', 'settings')
+    assert [s['name'] for s in settings['subproperties']][:4] == [
+        'computation-label', 'theory-level', 'model-type', 'architecture-parameter']
+    assert [s['name'] for s in settings['subproperties']][-1] == 'training'
+    t = sub(settings, 'training')
+    assert (t['required'], t['repeatable'], t['type']) == (False, False, None)
+    assert 'task is Training' in t['notes'][0] and 'Parameters' in t['notes'][0]
+    ml_model = sub(top('ml', 'settings'), 'ml-model')
+    for name in ('training-data', 'training-method', 'model-performance'):
+        assert form(sub(t, name)) == form(sub(ml_model, name)), name
+    assert form(sub(settings, 'architecture-parameter')) == form(sub(ml_model, 'architecture-parameter'))
+    words = ' '.join((text(t) + ' ' + text(sub(settings, 'architecture-parameter'))).split())
+    assert 'machine learning' not in words and 'ml-model' not in words
+    assert 'interatomic model' in words
+
+
+def test_pim_covers_responses_beyond_energies_and_forces():
+    """A potential that also predicts charges, dipoles or polarizabilities is still a particle interaction model, and
+    those responses are what it supplies to the computations that use it (0086 item 9)."""
+    method = sub(top('minimal', 'computation'), 'method')['values']['note']
+    widened = 'energies, forces and other per-configuration responses (e.g. charges, dipoles, polarizabilities)'
+    assert f'"PIM" – Particle Interaction Model: {widened} given as an explicit function' in ' '.join(method.split())
+    role = sub(sub(top('minimal', 'computation'), 'input'), 'role')['values']['note']
+    assert ('"Interaction model" – The energies, forces and other per-configuration responses (e.g. charges, '
+            'dipoles, polarizabilities) of the configurations this computation evaluates') in role

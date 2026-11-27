@@ -2056,6 +2056,14 @@ record or marked PROPOSED, NOT DECIDED.
    the Initial configuration wording updated), test_schema (counts named number-of-... allowed), test_preamble (the new
    bullet); pages and JSON Schema regenerated; rendering checked. Judgment calls: member positions; population's
    qualifier copies the fixed form (its note speaks of a simulation); orientation-relationship's two definitions.
+   [in progress, branch pim-training-0086, committed, not pushed; PR to open after the push] 0086 item 9: schema/pim.yaml
+   (by script: architecture-parameter after model-type and training last in settings, copied from ml-model with
+   "machine learning model" worded "interatomic model" and the cross-references to ml-model and training-method
+   re-pointed); schema/minimal.yaml (the PIM term and input role Interaction model widened to "energies, forces and
+   other per-configuration responses (e.g. charges, dipoles, polarizabilities)"); tests/test_computations.py (two new
+   tests, one checking that pim's copies keep ML's form and none of its ML wording; the pim member list and the method
+   note updated); pim and 02-minimal pages and the JSON Schema regenerated; rendering checked. Judgment call: ML's
+   phrasing kept verbatim where it reads oddly ("used to train in the interatomic model"), so the two stay in step.
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one
