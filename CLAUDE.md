@@ -308,7 +308,12 @@ record or marked PROPOSED, NOT DECIDED.
      serialized, PR #147, not listed in the entry). Main and the tag were pushed together: the tag's deploy job was
      queued at 15:35:37 and started at 15:35:56, after main's finished at 15:35:54, so the concurrency group of PR #147
      works; both succeeded.
-   - Changes to the standard since 0.8.0, for the next release's entry in releases.yaml (the website changes of PRs #148
+   - 0.9.0 prepared 2026-11-27 (ruling 0086, PRs #150-#156; Minor (Breaking), the label 0010 item 1 gives every MINOR
+     release, although no conformant record breaks apart from a LicenseRef without name or link), its entry in
+     releases.yaml and examples/minimal.json naming 0.9.0; release commit on main, awaiting the human's push and the
+     tag v0.9.0. Then the reply to Matterstack can be sent, citing 0.9.0.
+   - Changes to the standard since 0.9.0, for the next release's entry in releases.yaml: none yet.
+   - Changes to the standard from 0.8.0 to 0.9.0 (released in 0.9.0, its entry in releases.yaml summarizing them; the website changes of PRs #148
      and #149 are not changes to the standard, 0085), all from 0086: minimal gains computation quantity (with per and
      normalized-by) and selection, structure population and orientation-relationship, material-component orientation
      and role Grain, input dataset, a top-level access (COAR terms), the roles Guidance, Trained model and Container

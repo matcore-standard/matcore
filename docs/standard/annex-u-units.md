@@ -1,7 +1,7 @@
 # Annex U — MatCore Unit Table
 
 <!-- BEGIN generated: version from schema/releases.yaml by scripts/build_docs.py; do not edit -->
-<p class="mc-version" data-version="0.8.0">Version 0.8.0</p>
+<p class="mc-version" data-version="0.9.0">Version 0.9.0</p>
 <!-- END generated -->
 
 *(Normative)*

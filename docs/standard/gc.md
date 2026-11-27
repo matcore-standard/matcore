@@ -1,6 +1,6 @@
 # 2.9 Geometric Construction (GC) Metadata
 
-<p class="mc-version" data-version="0.8.0">Version 0.8.0</p>
+<p class="mc-version" data-version="0.9.0">Version 0.9.0</p>
 
 The metadata for geometric construction (MatCore-GC) is tabulated below. A geometric construction builds structures by rules the author specifies, without evaluating energies or forces and without a model learned from data: stacking or cutting a lattice, joining two crystals at an interface, inserting defects, displacing or straining atoms, enumerating or randomly generating arrangements, or converting a mesoscale configuration into atoms. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 

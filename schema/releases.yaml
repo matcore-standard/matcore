@@ -3,6 +3,20 @@
 # page from this file. A release adds an entry here in one commit on main, then tags that commit vX.Y.Z.
 # description: one item per line of the history table's cell.
 releases:
+  - version: 0.9.0
+    date: 2026-11-27
+    change_type: Minor (Breaking)
+    sections: Across document
+    description:
+      - "- A record can describe the quantities a dataset holds (name, unit, shape, type, what each value belongs to and is divided by), which results were kept, and inputs taken from other datasets"
+      - "- A structure can describe a population of many compositions; interfaces and grain boundaries give each side's plane, direction and termination, and the orientation relationship"
+      - "- New section 2.9 Geometric Construction (GC), for structures built by rules without a model or energies"
+      - "- PIM describes how a machine-learned potential was trained, and covers models that also predict charges, dipoles or polarizabilities"
+      - "- DFT: a k-point mesh chosen by a spacing or density records its rule"
+      - "- New roles (guidance, trained model, container image), access rights in COAR's terms, and the reserved value Unknown for unrecorded information"
+      - "- Annex U gains seven Kinds and thirteen units, among them energy per area, dipole moment, polarizability and thermal conductivity; symbols may use * for multiplication"
+      - "- The JSON Schema requires the name and link of a license outside the SPDX list"
+    approved_by: E. B. Tadmor
   - version: 0.8.0
     date: 2026-11-23
     change_type: Minor (Breaking)
