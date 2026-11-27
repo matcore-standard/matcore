@@ -2085,7 +2085,7 @@ record or marked PROPOSED, NOT DECIDED.
    a density); no conditional mechanism (judgment call settling 0086's open point for this PR). Tests:
    test_dft_rulings (a new test; the 0053 member list and the 0059 note updated), test_properties (the k-point tree);
    03-dft and the JSON Schema regenerated; rendering checked.
-   [in progress, branch metric-normalized-by-0086, committed, not pushed; PR to open after the push] 0086 item 12:
+   [done, PR #154 merged 2026-11-27] 0086 item 12:
    schema/ml.yaml and schema/pim.yaml (metric gains normalized-by after unit, copied by script from minimal computation
    › quantity › normalized-by, terms, definitions and note identical); tests/test_computations.py (a new test checking
    the three are identical; the ML metric member list updated); 06-ml, pim and the JSON Schema regenerated; rendering
