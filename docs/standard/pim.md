@@ -1,6 +1,6 @@
 # 2.3 Particle Interaction Model (PIM) Metadata
 
-<p class="mc-version" data-version="0.8.0">Version 0.8.0</p>
+<p class="mc-version" data-version="0.8.1">Version 0.8.1</p>
 
 The metadata for particle interaction models (MatCore-PIM) is tabulated below. A particle interaction model gives the energy and forces of a system of particles as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density, e.g. an interatomic potential, a machine-learned interatomic potential, a bonded force field, a coarse-grained model or the electron force field. These properties describe a computation whose method is PIM, the evaluation of energies and forces used by another computation, e.g. molecular dynamics. The properties are given in settings blocks, each naming the PIM computations it describes. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 
