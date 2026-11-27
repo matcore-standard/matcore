@@ -30,6 +30,13 @@ kinds:
   ElectricPotential:   {qudt: ElectricPotential,        dimension: A0E-1L2I0M1H0T-3D0, si_unit: 'V', si_dimension: 'kg·m²·s⁻³·A⁻¹'}
   ElectricCharge:      {qudt: ElectricCharge,           dimension: A0E1L0I0M0H0T1D0, si_unit: 'C', si_dimension: 's·A'}
   MagneticMoment:      {qudt: MagneticMoment,           dimension: A0E1L2I0M0H0T0D0, si_unit: 'A·m²', si_dimension: 'm²·A'}
+  EnergyPerArea:       {qudt: EnergyPerArea,            dimension: A0E0L0I0M1H0T-2D0, si_unit: 'J·m⁻²', si_dimension: 'kg·s⁻²'}
+  ElectricDipoleMoment: {qudt: ElectricDipoleMoment,    dimension: A0E1L1I0M0H0T1D0, si_unit: 'C·m', si_dimension: 'm·s·A'}
+  Polarizability:      {qudt: Polarizability,           dimension: A0E2L0I0M-1H0T4D0, si_unit: 'C·m²·V⁻¹', si_dimension: 'kg⁻¹·s⁴·A²'}
+  SecondOrderSusceptibility: {qudt: null,               dimension: A0E1L-1I0M-1H0T3D0, si_unit: 'm·V⁻¹', si_dimension: 'kg⁻¹·m⁻¹·s³·A'}
+  ThermalConductivity: {qudt: ThermalConductivity,      dimension: A0E0L1I0M1H-1T-3D0, si_unit: 'W·m⁻¹·K⁻¹', si_dimension: 'kg·m·s⁻³·K⁻¹'}
+  ElectricCurrent:     {qudt: ElectricCurrent,          dimension: A0E1L0I0M0H0T0D0, si_unit: 'A', si_dimension: 'A'}
+  ElectricConductivity: {qudt: ElectricConductivity,    dimension: A0E2L-3I0M-1H0T3D0, si_unit: 'S·m⁻¹', si_dimension: 'kg⁻¹·m⁻³·s³·A²'}
   Angle:               {qudt: PlaneAngle,               dimension: A0E0L0I0M0H0T0D1, si_unit: 'rad', si_dimension: '1 (rad)'}
   AmountOfSubstance:   {qudt: AmountOfSubstance,        dimension: A1E0L0I0M0H0T0D0, si_unit: 'mol', si_dimension: 'mol'}
   dimensionless:       {qudt: Dimensionless,            dimension: A0E0L0I0M0H0T0D1, si_unit: '1', si_dimension: '1'}
@@ -89,6 +96,19 @@ units:
   C:             {kind: ElectricCharge, qudt: C, gnu: C, si_factor: "1", source: exact}
   mu_B:          {kind: MagneticMoment, qudt: null, gnu: mu_B, si_factor: "9.2740100657e-24", source: CODATA 2022}
   J/T:           {kind: MagneticMoment, qudt: J-PER-T, gnu: J/T, si_factor: "1", source: exact}
+  J/m^2:         {kind: EnergyPerArea, qudt: J-PER-M2, gnu: J/m^2, si_factor: "1", source: exact}
+  mJ/m^2:        {kind: EnergyPerArea, qudt: MilliJ-PER-M2, gnu: mJ/m^2, si_factor: "1e-3", source: exact}
+  eV/angstrom^2: {kind: EnergyPerArea, qudt: null, gnu: eV/angstrom^2, si_factor: "1.602176634e1", source: exact}
+  e*angstrom:    {kind: ElectricDipoleMoment, qudt: null, gnu: e*angstrom, si_factor: "1.602176634e-29", source: exact}
+  D:             {kind: ElectricDipoleMoment, qudt: DEBYE, gnu: debye, exact: 10⁻²¹/c, si_factor: "3.33564095198152e-30", source: exact (1 D = 10⁻¹⁸ statC·cm)}
+  C*m:           {kind: ElectricDipoleMoment, qudt: C-M, gnu: C*m, si_factor: "1", source: exact}
+  C*m^2/V:       {kind: Polarizability, qudt: C-M2-PER-V, gnu: C*m^2/V, si_factor: "1", source: exact}
+  e*angstrom^2/V: {kind: Polarizability, qudt: null, gnu: e*angstrom^2/V, si_factor: "1.602176634e-39", source: exact}
+  pm/V:          {kind: SecondOrderSusceptibility, qudt: null, gnu: pm/V, si_factor: "1e-12", source: exact}
+  m/V:           {kind: SecondOrderSusceptibility, qudt: null, gnu: m/V, si_factor: "1", source: exact}
+  W/(m*K):       {kind: ThermalConductivity, qudt: W-PER-M-K, gnu: W/(m*K), si_factor: "1", source: exact}
+  A:             {kind: ElectricCurrent, qudt: A, gnu: A, si_factor: "1", source: exact}
+  S/m:           {kind: ElectricConductivity, qudt: S-PER-M, gnu: S/m, si_factor: "1", source: exact}
   rad:           {kind: Angle, qudt: RAD, gnu: radian, si_factor: "1", source: exact}
   degree:        {kind: Angle, qudt: DEG, gnu: degree, exact: π/180, si_factor: "0.017453292519943295", source: exact}
   mol:           {kind: AmountOfSubstance, qudt: MOL, gnu: mol, si_factor: "1", source: exact}

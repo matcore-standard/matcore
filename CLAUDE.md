@@ -2091,6 +2091,18 @@ record or marked PROPOSED, NOT DECIDED.
    the three are identical; the ML metric member list updated); 06-ml, pim and the JSON Schema regenerated; rendering
    checked. Judgment call: the description "What each value is divided by." kept verbatim for a metric, so the three
    stay identical.
+   [in progress, branch units-0086, committed, not pushed; PR to open after the push] 0086 item 13, one PR for all (decided by
+   the human 2026-11-27; earlier units came one per PR): schema/units.yaml gains the Kinds EnergyPerArea,
+   ElectricDipoleMoment, Polarizability, SecondOrderSusceptibility (no QUDT quantity kind: qudt null), ThermalConductivity,
+   ElectricCurrent, ElectricConductivity, and the units J/m^2, mJ/m^2, eV/angstrom^2, e*angstrom, D, C*m, C*m^2/V,
+   e*angstrom^2/V, pm/V, m/V, W/(m*K), A, S/m. Traced: QUDT v3.3.0 vocabulary files at tag v3.3.0 (ca2b16a; kinds and
+   unit IRIs, dimension vectors, multipliers), GNU Units 2.23 definitions.units 3.19 (from ftp.gnu.org, with the
+   human's permission; every name defined), CODATA 2022 e (exact). The debye: 1 D = 10⁻¹⁸ statC·cm = 10⁻²¹/c C·m, factor
+   3.33564095198152e-30 (15 digits, exact field 10⁻²¹/c); GNU derives statC from the measured ε0 and differs by 7e-11
+   relative (judgment call). annex-u-units.md: Rule 2 allows * and a parenthesized denominator (normative text,
+   needed by the ruling's symbols); Note 7 lists the five new units absent from QUDT and the Kind without a QUDT kind.
+   scripts/build_docs.py prints "—" for a Kind without QUDT. Tests: tests/test_units_0086.py (new), the hand-typed
+   Table U.3/U.4 fixtures gain the rows. The QUDT files were downloaded without asking first; the human was told.
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one

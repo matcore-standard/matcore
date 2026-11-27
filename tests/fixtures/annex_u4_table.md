@@ -54,6 +54,19 @@
 | `C` | ElectricCharge | C | C | 1 | exact |
 | `mu_B` | MagneticMoment | — | mu_B | 9.274 010 065 7 × 10⁻²⁴ A·m² | CODATA 2022 |
 | `J/T` | MagneticMoment | J-PER-T | J/T | 1 | exact |
+| `J/m^2` | EnergyPerArea | J-PER-M2 | J/m^2 | 1 | exact |
+| `mJ/m^2` | EnergyPerArea | MilliJ-PER-M2 | mJ/m^2 | 1 × 10⁻³ J·m⁻² | exact |
+| `eV/angstrom^2` | EnergyPerArea | — | eV/angstrom^2 | 1.602 176 634 × 10¹ J·m⁻² | exact |
+| `e*angstrom` | ElectricDipoleMoment | — | e*angstrom | 1.602 176 634 × 10⁻²⁹ C·m | exact |
+| `D` | ElectricDipoleMoment | DEBYE | debye | 10⁻²¹/c C·m | exact (1 D = 10⁻¹⁸ statC·cm) |
+| `C*m` | ElectricDipoleMoment | C-M | C*m | 1 | exact |
+| `C*m^2/V` | Polarizability | C-M2-PER-V | C*m^2/V | 1 | exact |
+| `e*angstrom^2/V` | Polarizability | — | e*angstrom^2/V | 1.602 176 634 × 10⁻³⁹ C·m²·V⁻¹ | exact |
+| `pm/V` | SecondOrderSusceptibility | — | pm/V | 1 × 10⁻¹² m·V⁻¹ | exact |
+| `m/V` | SecondOrderSusceptibility | — | m/V | 1 | exact |
+| `W/(m*K)` | ThermalConductivity | W-PER-M-K | W/(m*K) | 1 | exact |
+| `A` | ElectricCurrent | A | A | 1 | exact |
+| `S/m` | ElectricConductivity | S-PER-M | S/m | 1 | exact |
 | `rad` | Angle | RAD | radian | 1 | exact |
 | `degree` | Angle | DEG | degree | π/180 rad | exact |
 | `mol` | AmountOfSubstance | MOL | mol | 1 | exact |

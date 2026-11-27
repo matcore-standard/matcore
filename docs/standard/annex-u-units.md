@@ -17,7 +17,7 @@ A validator checks that (a) the symbol is in Table U.4 and (b) its kind matches 
 ## U.2 Rules
 
 1. Symbols are case-sensitive ASCII strings. `eV` and `ev` are not the same symbol.
-2. Compound symbols use `/` for division and `^` for integer exponents, exactly as written in Table U.4. Symbols not listed (e.g. `eV/A`, `Å`, `angstrom**3`) are non-conformant.
+2. Compound symbols use `*` for multiplication, `/` for division and `^` for integer exponents, with a denominator of several factors in parentheses, exactly as written in Table U.4. Symbols not listed (e.g. `eV/A`, `Å`, `angstrom**3`) are non-conformant.
 3. The reserved symbol `dimensionless` is used for quantities of dimension one (ratios, counts, fractional coordinates). It SHALL NOT be used for plane angles (use `rad` or `degree`) or for amount of substance (use `mol`).
 4. A `unit` subproperty of a generic parameter or of any other subproperty whose Kind the schema declares as `any` MAY, if and only if no symbol in Table U.4 applies, contain a string of the form `x-gnu:<expression>`, where `<expression>` is a unit expression valid in GNU Units 2.23 with `definitions.units` version 3.19 (February 2024). Such values are accepted with a validation warning and are not guaranteed to be machine-convertible. Later versions of `definitions.units` are not implied; a change of the pinned version is a revision of this annex.
 5. Conversion factors marked *exact* follow from the SI definitions. Factors marked *CODATA 2022* are the 2022 CODATA recommended values published by NIST. The factors in Table U.4 are normative for MatCore and take precedence over the values embedded in any external vocabulary (see Note 5). A revision to a later CODATA release is a revision of this annex.
@@ -53,6 +53,13 @@ QUDT namespace: `http://qudt.org/vocab/quantitykind/`. The dimension vector is Q
 | ElectricPotential | ElectricPotential | A0E-1L2I0M1H0T-3D0 | kg·m²·s⁻³·A⁻¹ |
 | ElectricCharge | ElectricCharge | A0E1L0I0M0H0T1D0 | s·A |
 | MagneticMoment | MagneticMoment | A0E1L2I0M0H0T0D0 | m²·A |
+| EnergyPerArea | EnergyPerArea | A0E0L0I0M1H0T-2D0 | kg·s⁻² |
+| ElectricDipoleMoment | ElectricDipoleMoment | A0E1L1I0M0H0T1D0 | m·s·A |
+| Polarizability | Polarizability | A0E2L0I0M-1H0T4D0 | kg⁻¹·s⁴·A² |
+| SecondOrderSusceptibility | — | A0E1L-1I0M-1H0T3D0 | kg⁻¹·m⁻¹·s³·A |
+| ThermalConductivity | ThermalConductivity | A0E0L1I0M1H-1T-3D0 | kg·m·s⁻³·K⁻¹ |
+| ElectricCurrent | ElectricCurrent | A0E1L0I0M0H0T0D0 | A |
+| ElectricConductivity | ElectricConductivity | A0E2L-3I0M-1H0T3D0 | kg⁻¹·m⁻³·s³·A² |
 | Angle | PlaneAngle | A0E0L0I0M0H0T0D1 | 1 (rad) |
 | AmountOfSubstance | AmountOfSubstance | A1E0L0I0M0H0T0D0 | mol |
 | dimensionless | Dimensionless | A0E0L0I0M0H0T0D1 | 1 |
@@ -123,6 +130,19 @@ QUDT namespace: `http://qudt.org/vocab/unit/`. "—" in the QUDT column means th
 | `C` | ElectricCharge | C | C | 1 | exact |
 | `mu_B` | MagneticMoment | — | mu_B | 9.274 010 065 7 × 10⁻²⁴ A·m² | CODATA 2022 |
 | `J/T` | MagneticMoment | J-PER-T | J/T | 1 | exact |
+| `J/m^2` | EnergyPerArea | J-PER-M2 | J/m^2 | 1 | exact |
+| `mJ/m^2` | EnergyPerArea | MilliJ-PER-M2 | mJ/m^2 | 1 × 10⁻³ J·m⁻² | exact |
+| `eV/angstrom^2` | EnergyPerArea | — | eV/angstrom^2 | 1.602 176 634 × 10¹ J·m⁻² | exact |
+| `e*angstrom` | ElectricDipoleMoment | — | e*angstrom | 1.602 176 634 × 10⁻²⁹ C·m | exact |
+| `D` | ElectricDipoleMoment | DEBYE | debye | 10⁻²¹/c C·m | exact (1 D = 10⁻¹⁸ statC·cm) |
+| `C*m` | ElectricDipoleMoment | C-M | C*m | 1 | exact |
+| `C*m^2/V` | Polarizability | C-M2-PER-V | C*m^2/V | 1 | exact |
+| `e*angstrom^2/V` | Polarizability | — | e*angstrom^2/V | 1.602 176 634 × 10⁻³⁹ C·m²·V⁻¹ | exact |
+| `pm/V` | SecondOrderSusceptibility | — | pm/V | 1 × 10⁻¹² m·V⁻¹ | exact |
+| `m/V` | SecondOrderSusceptibility | — | m/V | 1 | exact |
+| `W/(m*K)` | ThermalConductivity | W-PER-M-K | W/(m*K) | 1 | exact |
+| `A` | ElectricCurrent | A | A | 1 | exact |
+| `S/m` | ElectricConductivity | S-PER-M | S/m | 1 | exact |
 | `rad` | Angle | RAD | radian | 1 | exact |
 | `degree` | Angle | DEG | degree | π/180 rad | exact |
 | `mol` | AmountOfSubstance | MOL | mol | 1 | exact |
@@ -141,7 +161,7 @@ QUDT namespace: `http://qudt.org/vocab/unit/`. "—" in the QUDT column means th
 
 **Note 6 (GNU spelling of bohr).** GNU Units does not define `bohr`; the GNU name is `bohrradius`. The MatCore symbol remains `bohr`; the mapping is given in the GNU column.
 
-**Note 7 (units absent from QUDT).** `Ry`, `bohr`, `meV`, `nm^3`, `1/ps`, `1/bohr`, `bohr^3`, `K/angstrom`, `eV/angstrom^3`, `hartree/bohr`, `1/angstrom^3`, `V/angstrom` and `mu_B` have no unit IRI in QUDT Units v3.3.0. For these, the MatCore symbol is the identifier and the quantity-kind IRI in Table U.3 supplies the semantic anchor. QUDT accepts contributions through its public repository, and IRIs will be added to this table if and when they are published.
+**Note 7 (units absent from QUDT).** `Ry`, `bohr`, `meV`, `nm^3`, `1/ps`, `1/bohr`, `bohr^3`, `K/angstrom`, `eV/angstrom^3`, `hartree/bohr`, `1/angstrom^3`, `V/angstrom`, `mu_B`, `eV/angstrom^2`, `e*angstrom`, `e*angstrom^2/V`, `pm/V` and `m/V` have no unit IRI in QUDT Units v3.3.0. For these, the MatCore symbol is the identifier and the quantity-kind IRI in Table U.3 supplies the semantic anchor. Likewise the Kind SecondOrderSusceptibility, of dimension m·V⁻¹, has no quantity kind in QUDT; its SI dimension vector is the anchor. QUDT accepts contributions through its public repository, and IRIs will be added to this table if and when they are published.
 
 ## U.5 References
 
