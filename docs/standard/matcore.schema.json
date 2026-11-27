@@ -4043,6 +4043,10 @@
                  "pattern": "^x-gnu:"
                 }
                ]
+              },
+              "normalized-by": {
+               "description": "What each value is divided by.",
+               "type": "string"
               }
              },
              "required": [
@@ -5503,6 +5507,10 @@
                  "pattern": "^x-gnu:"
                 }
                ]
+              },
+              "normalized-by": {
+               "description": "What each value is divided by.",
+               "type": "string"
               }
              },
              "required": [
