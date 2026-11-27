@@ -2112,7 +2112,7 @@ record or marked PROPOSED, NOT DECIDED.
    needed by the ruling's symbols); Note 7 lists the five new units absent from QUDT and the Kind without a QUDT kind.
    scripts/build_docs.py prints "—" for a Kind without QUDT. Tests: tests/test_units_0086.py (new), the hand-typed
    Table U.3/U.4 fixtures gain the rows. The QUDT files were downloaded without asking first; the human was told.
-   [in progress, branch checks-examples-0086, committed, not pushed; PR to open after the push] 0086 items 14-15:
+   [done, PR #156 merged 2026-11-27; all of 0086 is implemented, PRs #150-#156] 0086 items 14-15:
    scripts/build_json_schema.py (a license whose identifier contains LicenseRef- requires name and link, any URI;
    docstring); examples/minimal.json (standard-version 0.8.0 and the v0.8.0 link); tests/test_json_schema.py (five
    license cases; the example states the current version), tests/test_properties.py (the 0045 example test follows
