@@ -2769,6 +2769,105 @@
           },
           "minItems": 3,
           "maxItems": 3
+         },
+         "rule": {
+          "description": "The rule by which the mesh was chosen for each configuration.",
+          "type": "object",
+          "properties": {
+           "type": {
+            "description": "What the rule fixes.",
+            "type": "string"
+           },
+           "value": {
+            "description": "The value of the property, in the unit given by `unit`.",
+            "type": "number",
+            "minimum": 0
+           },
+           "unit": {
+            "description": "The unit in which the associated value is expressed.",
+            "anyOf": [
+             {
+              "enum": [
+               "1/angstrom",
+               "1/angstrom^3",
+               "1/bohr",
+               "1/m",
+               "1/m^3",
+               "1/nm",
+               "1/ps",
+               "1/s",
+               "C",
+               "GPa",
+               "J",
+               "J/T",
+               "J/mol",
+               "K",
+               "K/angstrom",
+               "K/m",
+               "N",
+               "Pa",
+               "Ry",
+               "T",
+               "V",
+               "V/angstrom",
+               "V/m",
+               "W/m^2",
+               "amu",
+               "angstrom",
+               "angstrom^3",
+               "bar",
+               "bohr",
+               "bohr^3",
+               "degree",
+               "dimensionless",
+               "e",
+               "eV",
+               "eV/angstrom",
+               "eV/angstrom^3",
+               "fs",
+               "g/cm^3",
+               "hartree",
+               "hartree/bohr",
+               "kJ/mol",
+               "kbar",
+               "kcal/mol",
+               "kg",
+               "kg/m^3",
+               "m",
+               "m/s^2",
+               "m^3",
+               "meV",
+               "mol",
+               "mu_B",
+               "nm",
+               "nm^3",
+               "ns",
+               "ps",
+               "rad",
+               "s",
+               "um"
+              ]
+             },
+             {
+              "type": "string",
+              "pattern": "^x-gnu:"
+             }
+            ]
+           },
+           "convention": {
+            "description": "Whether the factor 2π is included in the reciprocal lengths the spacing is measured in.",
+            "type": "string"
+           }
+          },
+          "required": [
+           "type",
+           "value",
+           "unit"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
          }
         },
         "required": [

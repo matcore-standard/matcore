@@ -2077,6 +2077,14 @@ record or marked PROPOSED, NOT DECIDED.
    rendering checked. Found, not changed: docs/about.md still lists the original matcore.org methods (molecular
    dynamics; no PIM, PS, DP or GC). Judgment calls: the introduction's wording, the example and its plain-text source,
    the GC committee after Derived Properties (section order).
+   [in progress, branch kpoint-rule-0086, committed, not pushed; PR to open after the push] 0086 item 11: schema/dft.yaml
+   (k-point-mesh gains `rule` after shift: type* Spacing or Density, defined; value* float, kind any, minimum 0; unit*
+   in the generic form; convention, 2pi included or excluded, noted to give for a spacing; the mesh's note says to give
+   the rule instead of number-of-points, never both). The Kind that depends on type is handled as the SCF tolerance's
+   criterion does (0019): value of kind any, the instance giving the unit (1/angstrom for a spacing, dimensionless for
+   a density); no conditional mechanism (judgment call settling 0086's open point for this PR). Tests:
+   test_dft_rulings (a new test; the 0053 member list and the 0059 note updated), test_properties (the k-point tree);
+   03-dft and the JSON Schema regenerated; rendering checked.
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one

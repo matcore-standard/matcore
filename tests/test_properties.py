@@ -843,8 +843,8 @@ def test_calculation_physics_note_defines_every_term_and_the_spin_rule():
 
 
 def test_k_point_mesh_structure():
-    """A k-point mesh is given by its kind and its explicit number of points, never also by a spacing that
-    could contradict them, with fractional shifts (0004 item 47); the smearing is given beside it, since it
+    """A k-point mesh is given by its kind and its explicit number of points, or, when the count varies, by the rule
+    that chose it, never both (0004 item 47; 0086), with fractional shifts; the smearing is given beside it, since it
     concerns occupations, not the mesh (0053)."""
     from check_generic import generic_errors
     k = dft('k-point-mesh')
@@ -855,7 +855,8 @@ def test_k_point_mesh_structure():
         ('unit', False, False, 'string', (), ()), ('description', False, False, 'string', (), ())))
     assert tree(k) == ('k-point-mesh', False, False, None, (), (
         ('type', True, False, 'string', ('Regular gamma-centered', 'Regular shifted', 'Irregular'), ()),
-        ('number-of-points', False, False, 'int', (), ()), ('shift', False, False, 'float', (), ())))
+        ('number-of-points', False, False, 'int', (), ()), ('shift', False, False, 'float', (), ()),
+        tree(sub(k, 'rule'))))  # a rule instead of a count when the mesh varies (0086 item 11)
     smearing = dft('smearing')
     assert tree(smearing) == ('smearing', False, False, None, (), (
         ('type', False, False, 'string', ('None', 'None - tetrahedron', 'None - Blöchl-corrected tetrahedron',

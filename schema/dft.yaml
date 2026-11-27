@@ -715,8 +715,8 @@ properties:
     - >-
       Note: The mesh samples the Brillouin zone of the simulation cell (minimal `conditions › cell`),
       periodic in the directions given by `cell-periodicity`. When the mesh differs between the
-      configurations of a computation, e.g. one chosen from a k-point spacing, omit `number-of-points` and
-      say in `comment` how the mesh was chosen.
+      configurations of a computation because it is chosen by a rule, e.g. a k-point spacing, omit
+      `number-of-points` and give the rule in `rule`; a mesh gives a count or a rule, never both.
     subproperties:
     - name: type
       required: true
@@ -754,6 +754,70 @@ properties:
           directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice
           vector.
       repeatable: false
+    - name: rule
+      required: false
+      description: The rule by which the mesh was chosen for each configuration.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      notes:
+      - >-
+        Note: Give it instead of `number-of-points` when the number of k-points varies between configurations.
+      subproperties:
+      - name: type
+        required: true
+        description: What the rule fixes.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Spacing, Density]
+          note: |-
+            - "Spacing" – The largest distance between neighboring k-points, a reciprocal length, e.g. in 1/angstrom
+            - "Density" – The number of k-points per reciprocal atom, i.e. the number of k-points times the number of atoms in the cell, a pure number
+        repeatable: false
+      - name: value
+        required: true
+        description: The value of the property, in the unit given by `unit`.
+        type: float
+        extent: []
+        kind: any
+        recommended-unit: null
+        values:
+          minimum: 0
+        repeatable: false
+      - name: unit
+        required: true
+        description: The unit in which the associated value is expressed.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          note: >-
+            A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only
+            if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted
+            with a validation warning).
+        repeatable: false
+      - name: convention
+        required: false
+        description: Whether the factor 2π is included in the reciprocal lengths the spacing is measured in.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [2pi included, 2pi excluded]
+          note: |-
+            - "2pi included" – Reciprocal lattice vectors of length 2π/a for a lattice parameter a
+            - "2pi excluded" – Reciprocal lattice vectors of length 1/a
+        repeatable: false
+        notes:
+        - 'Note: Give it for type Spacing, since a spacing means a different mesh in each convention.'
   - name: smearing
     required: false
     description: >-
