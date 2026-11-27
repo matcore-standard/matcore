@@ -172,6 +172,8 @@ validates the examples in CI (status step 7).
 - Semantic versioning MAJOR.MINOR.PATCH; below 1.0, breaking changes or new property sets raise MINOR,
   editorial or non-breaking fixes raise PATCH. A release is cut per milestone (a status step or a batch
   of committee decisions), never per change.
+- A release commit also updates examples/minimal.json's standard-version and standard-link to the new version; a test
+  fails otherwise (0086 item 15).
 - A version is cut only for a change to the standard: its schema files or its normative text (Preamble, Annexes,
   section introductions); website presentation, tools, tests and CI never warrant one, and reach a released version's
   pages only with the next release (0085, amending 0010).
@@ -306,8 +308,15 @@ record or marked PROPOSED, NOT DECIDED.
      serialized, PR #147, not listed in the entry). Main and the tag were pushed together: the tag's deploy job was
      queued at 15:35:37 and started at 15:35:56, after main's finished at 15:35:54, so the concurrency group of PR #147
      works; both succeeded.
-   - Changes to the standard since 0.8.0, for the next release's entry in releases.yaml: none yet (the website changes of
-     PRs #148 and #149 are not changes to the standard, 0085).
+   - Changes to the standard since 0.8.0, for the next release's entry in releases.yaml (the website changes of PRs #148
+     and #149 are not changes to the standard, 0085), all from 0086: minimal gains computation quantity (with per and
+     normalized-by) and selection, structure population and orientation-relationship, material-component orientation
+     and role Grain, input dataset, a top-level access (COAR terms), the roles Guidance, Trained model and Container
+     image, and the reserved Unknown in §1.3; Initial configuration reworded; pim gains training and
+     architecture-parameter, and PIM covers other per-configuration responses; a new section 2.9 Geometric Construction
+     (GC) and method term GC; dft k-point-mesh gains rule; ML and pim metrics gain normalized-by; Annex U gains seven
+     Kinds and thirteen units, and Rule 2 allows * and a parenthesized denominator; the JSON Schema enforces a
+     LicenseRef's name and link. (Missed in PRs #150-#155 and added in the checks PR.)
    - Changes to the standard from 0.7.0 to 0.8.0 (released in 0.8.0, its entry in releases.yaml summarizing them): a JSON Schema generated from
      the standard is published with each version and linked from §1.4; it checks the examples (0078); a new §1.4
      Serialization states what any serialization must preserve and JSON's mapping, and a record's own Properties are
@@ -2103,6 +2112,13 @@ record or marked PROPOSED, NOT DECIDED.
    needed by the ruling's symbols); Note 7 lists the five new units absent from QUDT and the Kind without a QUDT kind.
    scripts/build_docs.py prints "—" for a Kind without QUDT. Tests: tests/test_units_0086.py (new), the hand-typed
    Table U.3/U.4 fixtures gain the rows. The QUDT files were downloaded without asking first; the human was told.
+   [in progress, branch checks-examples-0086, committed, not pushed; PR to open after the push] 0086 items 14-15:
+   scripts/build_json_schema.py (a license whose identifier contains LicenseRef- requires name and link, any URI;
+   docstring); examples/minimal.json (standard-version 0.8.0 and the v0.8.0 link); tests/test_json_schema.py (five
+   license cases; the example states the current version), tests/test_properties.py (the 0045 example test follows
+   the current release); the JSON Schema regenerated; CLAUDE.md's list of changes since 0.8.0 filled in (it had been
+   left "none yet" through PRs #150-#155) and the release step for the example. Judgment call: the rule is matched by
+   "contains LicenseRef-", so a compound expression such as "MIT AND LicenseRef-x" also needs them.
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one

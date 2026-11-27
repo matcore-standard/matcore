@@ -174,3 +174,30 @@ def test_a_record_may_add_properties_named_with_x():
                  SYNTHETIC)
     assert not valid({'person': [{'name': 'A', 'nmae': 'B'}], 'title': 'T'}, SYNTHETIC)
     assert SCHEMA['patternProperties'] == {'^x-': {}}
+
+
+@pytest.mark.parametrize('entry, ok', [
+    ({'identifier': 'CC-BY-4.0'}, True),
+    ({'identifier': 'LicenseRef-internal', 'name': 'Internal terms', 'link': 's3://bucket/terms.txt'}, True),
+    ({'identifier': 'LicenseRef-internal', 'name': 'Internal terms'}, False),
+    ({'identifier': 'LicenseRef-internal', 'link': 'https://example.org/terms'}, False),
+    ({'identifier': 'MIT AND LicenseRef-extra', 'name': 'Extra terms', 'link': 'https://example.org/x'}, True),
+])
+def test_a_license_ref_names_and_links_its_text(entry, ok):
+    """A license outside the SPDX list can be read only through its name and the text it links to, so the published
+    schema enforces what license's note asks; the link may be any URI, an internal one included (0086 item 14).
+
+    entry (dict): one license entry; ok (bool): whether it conforms.
+    """
+    minimal = json.loads((ROOT / 'examples/minimal.json').read_text(encoding='utf-8'))['minimal']
+    minimal['license'] = [entry]
+    assert valid(minimal, section('minimal')) is ok
+
+
+def test_the_minimal_example_states_the_current_version():
+    """A reader who copies the example cites the version it names, so it names the current release, and a release
+    commit that forgets to update it fails (0086 item 15)."""
+    current = yaml.safe_load((ROOT / 'schema/releases.yaml').read_text())['releases'][0]['version']
+    m = json.loads((ROOT / 'examples/minimal.json').read_text(encoding='utf-8'))['minimal']['matcore']
+    assert m['standard-version'] == current
+    assert m['standard-link'].endswith(f'/tree/v{current}/schema')
