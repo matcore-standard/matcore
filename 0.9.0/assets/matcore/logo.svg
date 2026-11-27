@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="42 25 598 438" role="img" aria-label="MatCore logo">
+  <!-- Three overlapping U shapes: a charcoal arch, a gold arch (75% opacity), and a blue U on its side (50% opacity). -->
+  <path fill="#404040" d="M42 463V177.5A152.5 152.5 0 0 1 347 177.5V463Z"/>
+  <path fill="#CC9933" fill-opacity=".75" d="M198 463V177.5A152.5 152.5 0 0 1 503 177.5V463Z"/>
+  <path fill="#4979CF" fill-opacity=".5" d="M640 45H503A152 209 0 0 0 503 463H640Z"/>
+</svg>
