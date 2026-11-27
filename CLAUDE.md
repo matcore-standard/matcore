@@ -2046,7 +2046,7 @@ record or marked PROPOSED, NOT DECIDED.
    Sampling where trajectories are the result (Dynamics, 0064). Ruling 0086 drafted (docs/decisions/0086-matterstack-assessment.md), with the reply
    report to Matterstack (sent to the human to forward); ruling committed on main (652bbf4); then the PRs listed in
    0086's consequences.
-   [in progress, branch minimal-0086, committed, not pushed; PR to open after the push] 0086 items 1-8: schema/minimal.yaml
+   [done, PR #150 merged 2026-11-27] 0086 items 1-8: schema/minimal.yaml
    (by script: structure › population, orientation-relationship; material-component optional with a note,
    orientation, role Grain, its description note pointing to orientation; computation › quantity, selection; input ›
    dataset, computation-label optional, role Guidance, Initial configuration reworded; software role Trained model;
