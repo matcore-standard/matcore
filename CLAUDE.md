@@ -2064,7 +2064,7 @@ record or marked PROPOSED, NOT DECIDED.
    tests, one checking that pim's copies keep ML's form and none of its ML wording; the pim member list and the method
    note updated); pim and 02-minimal pages and the JSON Schema regenerated; rendering checked. Judgment call: ML's
    phrasing kept verbatim where it reads oddly ("used to train in the interatomic model"), so the two stay in step.
-   [in progress, branch gc-section-0086, committed, not pushed; PR to open after the push] 0086 item 10: schema/gc.yaml (new:
+   [done, PR #152 merged 2026-11-27] 0086 item 10: schema/gc.yaml (new:
    title 2.9 Geometric Construction (GC) Metadata, introduction, settings* with computation-label*, procedure* and a
    generic construction-parameter; legacy_complete true); examples/gc.json (the Cu/Nb Kurdjumov-Sachs construction,
    its source "Illustrative example, not taken from a published dataset."); schema/minimal.yaml (method GC under
