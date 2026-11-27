@@ -30,6 +30,8 @@ The MatCore standard is focused on CMS methods aimed at computing material prope
 
 - DP: Derived properties from CMS calculations
 
+- GC: Geometric construction of structures
+
 All methods share a common minimal set of metadata defined by the MatCore standard. In addition, each method has its own MatCore extension, e.g. MatCore-DFT, MatCore-PS, etc., that inherits from the minimal MatCore metadata and adds additional method-specific metadata. 
 
 Some methods supply energies and forces (e.g. DFT, or an interatomic potential), others use them to sample or evolve a system (e.g. MD). A dataset is described as one or more computations, each a group of calculations that share a method and its settings. A computation that uses the results of another names it, with the role the other plays: an ab initio molecular dynamics (AIMD) computation names the DFT computation that supplies its energies and forces. Each method-specific section describes the computations of its method. MatCore describes a dataset; it does not record how to reproduce its execution. The order of the calculations, their control flow and complete inputs belong to the provenance record of a workflow manager, to which a MatCore record may point.
@@ -102,7 +104,7 @@ A serialization conforms to the Standard when a record written in it can be read
 
 JSON is the first serialization adopted for MatCore records. It is defined by Request for Comments (RFC) 8259 of the Internet Engineering Task Force. A MatCore record in JSON is a file encoded in UTF-8, with the extension `.json`, that maps the data model as follows:
 
-- The record is an object with one member for each section it uses, named by the key of its section: `minimal`, `dft`, `pim`, `ps`, `mbpt`, `ml`, `pf`, `derived`. Each member holds the Properties of its section. The member `minimal` is always present.
+- The record is an object with one member for each section it uses, named by the key of its section: `minimal`, `dft`, `pim`, `ps`, `mbpt`, `ml`, `pf`, `derived`, `gc`. Each member holds the Properties of its section. The member `minimal` is always present.
 - A Property is a member named by the Property's name. A Property with SubProperties is an object. A value is a string, `true` or `false`, or a number, as its Type is string, bool, or float or int; an int is written without a fraction or an exponent.
 - A repeatable Property is always an array of entries, even with one entry. A Property that is not repeatable is never an array of entries.
 - A value whose Extent lists dimensions is nested arrays, the first index outermost: Extent [3] is an array of 3 numbers, and Extent [3,3] an array of 3 arrays of 3 numbers.

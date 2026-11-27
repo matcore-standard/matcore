@@ -106,6 +106,8 @@ Note: Give one entry for each procedure used, e.g. Velocity Verlet and Hyperdyna
 
 Note: Numerical parameters of a procedure, e.g. the time step of Velocity Verlet or the number of images of NEB, are given as `computation-parameter` entries; its variant, e.g. well-tempered metadynamics, and other specifics are given in `description`.
 
+Note: A search that relaxes its candidates is described here, its generation of candidates included. Structures built by rules alone, with no energies evaluated, are a computation of method GC.
+
 </details>
 
 <details class="note mc-property" id="ps.settings.description" markdown="1">

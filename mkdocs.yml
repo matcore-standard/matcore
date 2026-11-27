@@ -27,6 +27,7 @@ nav:
               - standard/06-ml.md
               - standard/07-pf.md
               - standard/08-derived.md
+              - standard/gc.md
           - Annex U. MatCore Unit Table: standard/annex-u-units.md
           - Annex I. Identifier Schemes: standard/annex-i-identifiers.md
       - Revision History: standard/revision-history.md

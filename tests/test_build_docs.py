@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import build_docs  # noqa: E402
 
-SECTIONS = ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
+SECTIONS = ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived', 'gc']
 OPEN = re.compile(r'<details class="note mc-property" id="([^"]+)" markdown="1">')
 
 
@@ -276,7 +276,8 @@ def test_every_section_has_a_well_formed_example():
         examples = load(key).get('examples')
         assert examples and len(examples) == 1, key
         ex = examples[0]
-        assert ex['caption'] and ex['source'].startswith('https://'), key
+        # a published dataset's address, or a plain statement that the example is illustrative (0086, gc)
+        assert ex['caption'] and (ex['source'].startswith('https://') or ex['source'].startswith('Illustrative')), key
         json.loads((ROOT / 'examples' / ex['file']).read_text(encoding='utf-8'))  # raises if not well-formed
 
 
@@ -287,7 +288,7 @@ def test_examples_appear_verbatim_after_the_properties(page):
     for ex in data['examples']:
         text = (ROOT / 'examples' / ex['file']).read_text(encoding='utf-8')
         assert f"```json\n{text}```" in tail, ex['file']
-        assert f"({ex['source']})" in tail and ex['caption'] in tail
+        assert build_docs.example_source(ex['source']) in tail and ex['caption'] in tail
         if ex.get('notes'):
             assert ' '.join(ex['notes'].split()) in ' '.join(tail.split())
 
@@ -372,3 +373,11 @@ def test_revision_history_opens_each_release_as_a_whole_row():
     assert ('<div class="mc-changes" data-more="+1 more">Lead line:<ul><li>First change</li><li>Second change</li>'
             '</ul></div>') in many
     assert one.startswith('<tr><td>9.9.9</td>') and '<button' not in one and 'data-more' not in one
+
+
+def test_an_example_source_is_a_link_only_when_it_is_an_address():
+    """An example taken from a published dataset links to it; an illustrative example says so in plain text, since a
+    sentence is not an address (0086 item 10, the GC example)."""
+    linked = build_docs.example_source('https://doi.org/10.1/x')
+    assert linked == 'Dataset source: [https://doi.org/10.1/x](https://doi.org/10.1/x)'
+    assert build_docs.example_source('Illustrative example.') == 'Dataset source: Illustrative example.'

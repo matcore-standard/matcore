@@ -22,7 +22,8 @@ ROOT = Path(__file__).resolve().parents[1]
 # Each section's page file. Files keep their names when sections are renumbered, so their addresses do not
 # change; the order is the order of the sections (0046, settled 2026-11-09).
 PAGES = {'minimal': '02-minimal.md', 'dft': '03-dft.md', 'pim': 'pim.md', 'ps': 'ps.md', 'mbpt': '05-mbpt.md',
-         'ml': '06-ml.md', 'pf': '07-pf.md', 'derived': '08-derived.md'}
+         'ml': '06-ml.md', 'pf': '07-pf.md', 'derived': '08-derived.md',
+         'gc': 'gc.md'}
 ICON_DIR = Path(material.__file__).parent / 'templates/.icons/material'
 
 # Material Design Icons as bundled with mkdocs-material. Each SVG gets an intrinsic size so it
@@ -191,6 +192,14 @@ def render_revision_history(releases):
     return '\n'.join(rows) + '\n'
 
 
+def example_source(source):
+    """Return the line naming an example's source: a link when it is an address, plain text otherwise.
+
+    source (str): the example's `source` in its section file.
+    """
+    return f'Dataset source: [{source}]({source})' if urlsplit(source).scheme else f'Dataset source: {source}'
+
+
 def render_section(section, show_legacy):
     """Return the Markdown of a section page: title, introduction, symbol key, property blocks, examples.
 
@@ -204,7 +213,7 @@ def render_section(section, show_legacy):
         render_property(p, [section['section'], p['name']], out, show_legacy)
     for ex in section.get('examples') or []:
         text = (ROOT / 'examples' / ex['file']).read_text(encoding='utf-8')
-        out += [f"## Example: {ex['caption']}", '', f"Dataset source: [{ex['source']}]({ex['source']})", '',
+        out += [f"## Example: {ex['caption']}", '', example_source(ex['source']), '',
                 f'```json\n{text}```', '']
         if ex.get('notes'):
             out += [f"Note: {' '.join(ex['notes'].split())}", '']

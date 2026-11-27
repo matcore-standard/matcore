@@ -52,7 +52,7 @@ def test_notes_keep_the_space_after_note():
         for p in props:
             yield from p.get('notes') or []
             yield from notes(p.get('subproperties') or [])
-    sections = ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
+    sections = ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived', 'gc']
     found = [n for s in sections for n in notes(yaml.safe_load(open(ROOT / f'schema/{s}.yaml'))['properties'])]
     assert found and not [n for n in found if re.match(r'Note\s*\d*:\S', n)]
 
@@ -147,7 +147,7 @@ def test_serialization_has_its_own_section_with_the_json_mapping():
     assert 'A *serialization* is a file format' in ser and 'SHALL' in ser
     assert '[matcore.schema.json](matcore.schema.json)' in ser and 'matcore.schema.json' not in fmt
     keys = re.search(r'named by the key of its section: (.+?)\.', ser).group(1)
-    assert re.findall(r'`([a-z]+)`', keys) == ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
+    assert re.findall(r'`([a-z]+)`', keys) == ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived', 'gc']
     for rule in ('UTF-8', '`.json`', 'never an array of entries', '`null` is not written', 'first index outermost',
                  '`type`', '`x-`'):
         assert rule in ser, rule

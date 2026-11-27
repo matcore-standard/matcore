@@ -1067,8 +1067,8 @@ properties:
       depends-on: method-class
       cases:
         Electronic: {terms: [CC, QMC, DFT, MBPT, TB]}
-        Atomistic: {terms: [PIM, PS]}
-        Mesoscopic: {terms: [DDD, KMC, PIM, PS]}
+        Atomistic: {terms: [PIM, PS, GC]}
+        Mesoscopic: {terms: [DDD, KMC, PIM, PS, GC]}
         Continuum: {terms: [PF]}
         Data-driven: {terms: [ML]}
         Post-processing: {terms: [DP]}
@@ -1080,6 +1080,7 @@ properties:
         - "TB" – Tight Binding: electronic structure in a basis of localized orbitals with parameterized matrix elements
         - "PIM" – Particle Interaction Model: energies, forces and other per-configuration responses (e.g. charges, dipoles, polarizabilities) given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density
         - "PS" – Particle Simulation: particles moved or sampled using the energies and forces of another computation
+        - "GC" – Geometric Construction: structures built by rules the author specifies (geometric, combinatorial or random), without evaluating energies or forces and without a model learned from data
         - "DDD" – Discrete Dislocation Dynamics: plastic deformation from the motion and interaction of dislocation lines
         - "KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events chosen by their rates
         - "PF" – Phase Field: microstructure evolution described by continuous fields with diffuse interfaces

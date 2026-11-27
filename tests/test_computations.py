@@ -181,7 +181,9 @@ METHOD_DEFINITIONS = (
     'Interaction Model: energies, forces and other per-configuration responses (e.g. charges, dipoles, '
     'polarizabilities) given as an explicit function of the particles\' coordinates, without '
     'solving for a wavefunction or an electron density; "PS" – Particle Simulation: particles moved or sampled '
-    'using the energies and forces of another computation; "DDD" – Discrete Dislocation Dynamics: plastic '
+    'using the energies and forces of another computation; "GC" – Geometric Construction: structures built by '
+    'rules the author specifies (geometric, combinatorial or random), without evaluating energies or forces and '
+    'without a model learned from data; "DDD" – Discrete Dislocation Dynamics: plastic '
     'deformation from the motion and interaction of dislocation lines; "KMC" – Kinetic Monte Carlo: evolution of a '
     'system as a sequence of thermally activated events chosen by their rates; "PF" – Phase Field: microstructure '
     'evolution described by continuous fields with diffuse interfaces; "ML" – Machine Learning: models trained on '
@@ -200,8 +202,8 @@ def test_method_names_the_section_that_describes_the_computation():
     assert m['description'] == ('The method of the calculations in this computation, which names the section of '
                                 'this standard that describes their settings, where one exists.')
     assert {k: c['terms'] for k, c in m['values']['cases'].items()} == {
-        'Electronic': ['CC', 'QMC', 'DFT', 'MBPT', 'TB'], 'Atomistic': ['PIM', 'PS'],
-        'Mesoscopic': ['DDD', 'KMC', 'PIM', 'PS'], 'Continuum': ['PF'], 'Data-driven': ['ML'],
+        'Electronic': ['CC', 'QMC', 'DFT', 'MBPT', 'TB'], 'Atomistic': ['PIM', 'PS', 'GC'],
+        'Mesoscopic': ['DDD', 'KMC', 'PIM', 'PS', 'GC'], 'Continuum': ['PF'], 'Data-driven': ['ML'],
         'Post-processing': ['DP']}
     assert m['values']['note'] == '\n'.join('- ' + d.rstrip('.') for d in METHOD_DEFINITIONS.split('; '))
     assert sub(computation, 'method-class')['notes'][-1] == (
@@ -250,14 +252,15 @@ def test_a_property_holding_a_label_is_named_for_it():
         for p in props:
             yield p
             yield from walk(p.get('subproperties') or [])
-    found = {(k, p['name']) for k in ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
+    found = {(k, p['name']) for k in ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived', 'gc']
              for p in walk(section(k)['properties'])
              if p['description'].startswith(('The label of a structure', 'The label of a computation',
                                              'The label of that computation'))}
     assert found == {('minimal', 'structure-label'), ('minimal', 'computation-label'),
                      ('dft', 'computation-label'), ('pim', 'computation-label'), ('ps', 'computation-label'),
                      ('mbpt', 'computation-label'), ('ml', 'computation-label'),
-                     ('pf', 'computation-label'), ('derived', 'computation-label')}
+                     ('pf', 'computation-label'), ('derived', 'computation-label'),
+                     ('gc', 'computation-label')}
 
 
 def test_example_labels_are_unique_and_every_reference_resolves():
@@ -279,9 +282,10 @@ def test_example_labels_are_unique_and_every_reference_resolves():
 TITLES = {'minimal': '2.1 Minimal MatCore Metadata', 'dft': '2.2 Density Functional Theory (DFT) Metadata',
           'pim': '2.3 Particle Interaction Model (PIM) Metadata', 'ps': '2.4 Particle Simulation (PS) Metadata',
           'mbpt': '2.5 Many-Body Perturbation Theory (MBPT) Metadata', 'ml': '2.6 Machine Learning (ML) Metadata',
-          'pf': '2.7 Phase Field (PF) Metadata', 'derived': '2.8 Derived Property (DP) Metadata'}
+          'pf': '2.7 Phase Field (PF) Metadata', 'derived': '2.8 Derived Property (DP) Metadata',
+          'gc': '2.9 Geometric Construction (GC) Metadata'}
 PAGES = {'minimal': '02-minimal.md', 'dft': '03-dft.md', 'pim': 'pim.md', 'ps': 'ps.md', 'mbpt': '05-mbpt.md',
-         'ml': '06-ml.md', 'pf': '07-pf.md', 'derived': '08-derived.md'}
+         'ml': '06-ml.md', 'pf': '07-pf.md', 'derived': '08-derived.md', 'gc': 'gc.md'}
 
 
 def test_sections_are_numbered_with_pim_before_ps():
@@ -363,13 +367,13 @@ def test_ps_is_named_for_every_method_it_describes():
 
 
 def test_leadership_lists_a_committee_per_method_section():
-    """Each method section has a committee heading, in alphabetical order with Derived Properties last; the PIM
-    committee is still to be named (0061)."""
+    """Each method section has a committee heading, in alphabetical order, then Derived Properties and Geometric
+    Construction in section order; the PIM and GC committees are still to be named (0061, 0086)."""
     text = (ROOT / 'docs/leadership.md').read_text()
     methods = re.findall(r'^### Method: (.+)$', text, re.M)
     assert methods == ['Density Functional Theory', 'Machine Learning for Materials',
                        'Many-Body Perturbation Theory', 'Particle Interaction Model', 'Particle Simulation',
-                       'Phase Field', 'Derived Properties']
+                       'Phase Field', 'Derived Properties', 'Geometric Construction']
     pim = text.split('### Method: Particle Interaction Model\n\n')[1].split('\n\n')[0]
     assert pim == '- TBD'
     ps = text.split('### Method: Particle Simulation\n\n')[1].split('\n\n')[0]
@@ -579,7 +583,9 @@ def test_ps_algorithm_names_every_procedure_by_group():
         'here.',
         'Note: Numerical parameters of a procedure, e.g. the time step of Velocity Verlet or the number of images '
         'of NEB, are given as `computation-parameter` entries; its variant, e.g. well-tempered metadynamics, and '
-        'other specifics are given in `description`.']
+        'other specifics are given in `description`.',
+        'Note: A search that relaxes its candidates is described here, its generation of candidates included. '
+        'Structures built by rules alone, with no energies evaluated, are a computation of method GC.']
     assert not any(k.startswith('legacy_') for k in a)
     assert len(a['values']['terms']) == 39  # major classes only; variants go in description (0067 item 1)
 
@@ -1496,3 +1502,40 @@ def test_pim_covers_responses_beyond_energies_and_forces():
     role = sub(sub(top('minimal', 'computation'), 'input'), 'role')['values']['note']
     assert ('"Interaction model" – The energies, forces and other per-configuration responses (e.g. charges, '
             'dipoles, polarizabilities) of the configurations this computation evaluates') in role
+
+
+GC_DEFINITION = ('"GC" – Geometric Construction: structures built by rules the author specifies (geometric, '
+                 'combinatorial or random), without evaluating energies or forces and without a model learned from data')
+
+
+def test_geometric_construction_is_a_section_of_its_own():
+    """Structures built by rules, with no model and no energies (an interface builder, a defect inserted, frames
+    displaced for training), had no method; GC is the method and its section holds the rules and their numbers, as
+    every method's section does (0086 item 10)."""
+    gc = section('gc')
+    assert gc['title'] == '2.9 Geometric Construction (GC) Metadata' and gc['legacy_complete'] is True
+    settings = top('gc', 'settings')
+    assert (settings['required'], settings['repeatable']) == (True, True)
+    assert [(s['name'], s['required'], s['repeatable']) for s in settings['subproperties']] == [
+        ('computation-label', True, True), ('procedure', True, False), ('construction-parameter', False, True)]
+    import sys
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import check_generic
+    assert check_generic.generic_errors(sub(settings, 'construction-parameter')) == []
+    intro = ' '.join(gc['introduction'].split())
+    assert 'without evaluating energies or forces' in intro and 'Initial configuration' in intro
+    method = sub(top('minimal', 'computation'), 'method')
+    assert GC_DEFINITION in ' '.join(method['values']['note'].split())
+    cases = method['values']['cases']
+    assert 'GC' in cases['Atomistic']['terms'] and 'GC' in cases['Mesoscopic']['terms']
+
+
+def test_gc_is_told_apart_from_generative_models_and_searches():
+    """A learned generative model stays ML and a search that relaxes its candidates stays PS; each section says
+    so where a reader would look (0086 item 10)."""
+    ml_type = sub(sub(top('ml', 'settings'), 'ml-task'), 'type')
+    assert any('GC' in n and 'learned from data' in ' '.join(n.split()) for n in ml_type.get('notes', []))
+    algorithm = sub(top('ps', 'settings'), 'algorithm')
+    assert any('GC' in n and 'relax' in n for n in algorithm.get('notes', []))
+    leadership = (ROOT / 'docs/leadership.md').read_text()
+    assert '### Method: Geometric Construction\n\n- TBD' in leadership
