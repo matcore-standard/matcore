@@ -528,13 +528,15 @@ An explanation of the structure as a whole, e.g. the stacking order of its layer
 </details>
 
 <details class="note mc-property" id="minimal.structure.material-component" markdown="1">
-<summary><span class="mc-name">material-component<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<summary><span class="mc-name">material-component</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
 One part of the structure, made of a single material, with its composition, form, role and phase.
 
 | Required | Repeatable |
 |---|---|
-| yes | yes |
+| no | yes |
+
+Note: Give one entry for each material of a structure whose composition is known. For many structures of different compositions described together, give `population` instead; a structure gives one or the other.
 
 <details class="note mc-property" id="minimal.structure.material-component.formula" markdown="1">
 <summary><span class="mc-name">formula<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -705,13 +707,14 @@ The part the component plays in the structure.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Adsorbate`, `Core`, `Film`, `Inclusion`, `Layer`, `Matrix`, `Shell`, `Solute`, `Solvent`, `Substrate`. Other values are allowed.
+Recommended: `Adsorbate`, `Core`, `Film`, `Grain`, `Inclusion`, `Layer`, `Matrix`, `Shell`, `Solute`, `Solvent`, `Substrate`. Other values are allowed.
 
 **Clarifications:**
 
 - "Adsorbate" – A molecule, cluster or particle on the surface of a substrate
 - "Core" – The inner part of a particle, enclosed by a shell
 - "Film" – A layer of finite thickness on a substrate
+- "Grain" – One of the grains of a polycrystal or a bicrystal, e.g. one side of a grain boundary
 - "Inclusion" – A material enclosed in a matrix, e.g. a precipitate or an embedded nanotube
 - "Layer" – One of the layers of a layered structure, e.g. a heterostructure, a superlattice or a stack of 2D materials
 - "Matrix" – A material that encloses one or more inclusions
@@ -821,7 +824,7 @@ An explanation of the nature of the material, e.g. a crystal structure designati
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-**Clarifications:** e.g. a surface facet such as Pt(111), an orientation relationship such as (111)Pt ∥ (001)CeO₂, or the chirality of a nanotube.
+**Clarifications:** e.g. the chirality of a nanotube. A surface facet or the crystallography of an interface is given in `orientation`.
 
 </details>
 
@@ -835,6 +838,218 @@ For a solid state phase, a description of the arrangement of phases, grains and 
 | no | no | string | [] | inapplicable | — |
 
 </details>
+
+<details class="note mc-property" id="minimal.structure.material-component.orientation" markdown="1">
+<summary><span class="mc-name">orientation</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The crystallographic orientation of the component at a surface or an interface, in its conventional cell.
+
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+Note: Give it for each component that meets a surface or an interface, e.g. both sides of a grain boundary or of a heterointerface. The registry of the two sides and the positions of the atoms are data, not metadata.
+
+<details class="note mc-property" id="minimal.structure.material-component.orientation.plane" markdown="1">
+<summary><span class="mc-name">plane<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The Miller indices (hkl) of the plane of the component at the surface or interface.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | int | [3] | dimensionless | — |
+
+Examples: `[1, 1, 1]`.
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.material-component.orientation.direction" markdown="1">
+<summary><span class="mc-name">direction</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The indices [uvw] of a direction of the component in the plane of the interface, parallel to the direction given for the other side.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | int | [3] | dimensionless | — |
+
+Examples: `[1, -1, 0]`.
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.material-component.orientation.termination" markdown="1">
+<summary><span class="mc-name">termination</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+The atomic layer of the component at the surface or interface, named by its composition.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | yes | string | [] | inapplicable | — |
+
+Examples: `TiO2`, `SrO`.
+
+Note: Give one entry for each termination present in the dataset.
+
+</details>
+
+</details>
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.population" markdown="1">
+<summary><span class="mc-name">population</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+Many structures of different compositions described together, when listing a formula for each is impractical, e.g. a generated or screened set.
+
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+Note: Give it instead of `material-component` when one structure entry stands for many structures of different compositions; a structure gives one or the other, not both.
+
+<details class="note mc-property" id="minimal.structure.population.count" markdown="1">
+<summary><span class="mc-name">count<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The number of structures in the population.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | int | [] | dimensionless | — |
+
+Minimum: 1.
+
+Note: The number in the version of the dataset this record describes.
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.population.element" markdown="1">
+<summary><span class="mc-name">element</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+A chemical element present in at least one structure of the population.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | yes | string | [] | inapplicable | — |
+
+Examples: `Cu`, `Nb`.
+
+Note: One entry for each element, by its symbol in the IUPAC Periodic Table. Omit it when the population is not restricted in chemistry, and say so in the structure's description.
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.population.number-of-elements" markdown="1">
+<summary><span class="mc-name">number-of-elements</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+The number of distinct elements in a structure of the population.
+
+| Required | Repeatable |
+|---|---|
+| no | yes |
+
+Note: Give the range as two entries, with the qualifiers Minimum and Maximum.
+
+<details class="note mc-property" id="minimal.structure.population.number-of-elements.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | int | [] | dimensionless | — |
+
+Minimum: 1.
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.population.number-of-elements.qualifier" markdown="1">
+<summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+What the value represents.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+
+</details>
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.population.number-of-sites" markdown="1">
+<summary><span class="mc-name">number-of-sites</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+The number of atoms in the unit cell of a structure of the population.
+
+| Required | Repeatable |
+|---|---|
+| no | yes |
+
+Note: Give the range as two entries, with the qualifiers Minimum and Maximum.
+
+<details class="note mc-property" id="minimal.structure.population.number-of-sites.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | int | [] | dimensionless | — |
+
+Minimum: 1.
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.population.number-of-sites.qualifier" markdown="1">
+<summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+What the value represents.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `Average`, `Final`, `Initial`, `Maximum`, `Minimum`. Other values are allowed.
+
+**Clarifications:** Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.
+
+</details>
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.population.form" markdown="1">
+<summary><span class="mc-name">form</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The geometric form shared by the structures of the population.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `2D material`, `Bulk`, `Chain`, `Cluster`, `Molecule`, `Monolayer`, `Nanoparticle`, `Nanoribbon`, `Nanotube`, `Nanowire`, `Slab`, `Thin film`. Other values are allowed.
+
+**Clarifications:** Terms as defined for `material-component › form`.
+
+</details>
+
+</details>
+
+<details class="note mc-property" id="minimal.structure.orientation-relationship" markdown="1">
+<summary><span class="mc-name">orientation-relationship</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The named orientation relationship between the components that meet at an interface.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `Kurdjumov-Sachs`, `Nishiyama-Wassermann`. Other values are allowed.
+
+**Clarifications:**
+
+- "Kurdjumov-Sachs" – {111}fcc ∥ {110}bcc with <110>fcc ∥ <111>bcc
+- "Nishiyama-Wassermann" – {111}fcc ∥ {110}bcc with <112>fcc ∥ <110>bcc
 
 </details>
 
@@ -977,7 +1192,7 @@ Note: Omit it for a computation that acts only on configurations supplied by a c
 <details class="note mc-property" id="minimal.computation.input" markdown="1">
 <summary><span class="mc-name">input</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 
-Another computation in the record whose results this computation uses.
+Another computation, in the record or in another dataset, whose results this computation uses.
 
 | Required | Repeatable |
 |---|---|
@@ -986,13 +1201,30 @@ Another computation in the record whose results this computation uses.
 Note: Give an input only where the data of this computation cannot be understood without it. A record describes the dataset; it does not record the order of the calculations or how to repeat them.
 
 <details class="note mc-property" id="minimal.computation.input.computation-label" markdown="1">
-<summary><span class="mc-name">computation-label<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<summary><span class="mc-name">computation-label</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 
 The label of that computation.
 
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
-| yes | no | string | [] | inapplicable | — |
+| no | no | string | [] | inapplicable | — |
+
+Note: A computation in this record; with `dataset`, a computation in that dataset's MatCore record, if it has one.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.input.dataset" markdown="1">
+<summary><span class="mc-name">dataset</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+A URI of the dataset the input comes from, e.g. its DOI or the address of its MatCore record.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Format: `uri` (JSON Schema 2020-12).
+
+Note: Give it for an input from another dataset, instead of a computation in this record. Give either a computation-label of this record or a dataset.
 
 </details>
 
@@ -1005,16 +1237,17 @@ What this computation takes from that computation.
 |---|---|---|---|---|---|
 | yes | no | string | [] | inapplicable | — |
 
-Recommended: `Interaction model`, `Initial configuration`, `Starting point`, `Training data`, `Parameters`, `Source data`. Other values are allowed.
+Recommended: `Interaction model`, `Initial configuration`, `Starting point`, `Training data`, `Parameters`, `Source data`, `Guidance`. Other values are allowed.
 
 **Clarifications:**
 
 - "Interaction model" – The energies and forces of the configurations this computation evaluates
-- "Initial configuration" – The configurations this computation starts from, with the state carried over from that computation, e.g. velocities
+- "Initial configuration" – The configurations this computation starts from or evaluates, with any state carried over, e.g. velocities
 - "Starting point" – An electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground state of a GW calculation
 - "Training data" – Data a model is fitted to
 - "Parameters" – Values used as parameters of this computation's model, e.g. a free energy or elastic constants in a phase field model
 - "Source data" – Results from which this computation obtains a property
+- "Guidance" – A model whose outputs steer this computation's sampling or generation, e.g. classifier guidance or an active-learning acquisition function
 
 </details>
 
@@ -2072,7 +2305,7 @@ The part this software played in the calculations.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Calculation method`, `Interaction model`, `Script`, `Simulation code`, `Workflow framework`. Other values are allowed.
+Recommended: `Calculation method`, `Interaction model`, `Script`, `Simulation code`, `Trained model`, `Workflow framework`. Other values are allowed.
 
 **Clarifications:**
 
@@ -2080,6 +2313,7 @@ Recommended: `Calculation method`, `Interaction model`, `Script`, `Simulation co
 - "Interaction model" – The implementation of a particle interaction model, e.g. a KIM model or a potential file; give its identifier and link
 - "Script" – Custom code written for the calculations, e.g. a Python script using ASE
 - "Simulation code" – A program that performs the simulation or calculation itself, e.g. LAMMPS or VASP
+- "Trained model" – The parameters of a machine learning model trained elsewhere, e.g. a checkpoint of a generative model; give its identifier, link and file with checksum. A trained interatomic potential is an Interaction model
 - "Workflow framework" – A system that sets up, runs and manages calculations with other software, e.g. pyiron, AiiDA or MedeA
 
 </details>
@@ -2215,11 +2449,12 @@ The kind of component.
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
 
-Recommended: `Compiler`, `FFT library`, `Interpreter`, `Library`, `Linear algebra library`, `MPI library`. Other values are allowed.
+Recommended: `Compiler`, `Container image`, `FFT library`, `Interpreter`, `Library`, `Linear algebra library`, `MPI library`. Other values are allowed.
 
 **Clarifications:**
 
 - "Compiler" – Translates source code into an executable, e.g. GCC or the Intel oneAPI compilers
+- "Container image" – The image the software ran in, e.g. a Docker or Apptainer image; give its digest (sha256:…) as its version, not a tag such as latest
 - "FFT library" – Computes fast Fourier transforms, e.g. FFTW
 - "Interpreter" – Runs a script, e.g. Python
 - "Library" – Any other library the software calls, e.g. LibXC or ASE
@@ -2351,6 +2586,149 @@ Pattern: `[0-9a-f]+`.
 </details>
 
 </details>
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.quantity" markdown="1">
+<summary><span class="mc-name">quantity</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+
+A quantity the dataset holds from this computation.
+
+| Required | Repeatable |
+|---|---|
+| no | yes |
+
+Note: Give one entry for each quantity stored, e.g. each column of a table. It describes the quantity; its values are in the dataset (§1.2).
+
+<details class="note mc-property" id="minimal.computation.quantity.name" markdown="1">
+<summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The name of the quantity as stored in the dataset.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+Examples: `polarization`, `gap_fundamental_ev`.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.quantity.description" markdown="1">
+<summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+What the quantity is.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.quantity.unit" markdown="1">
+<summary><span class="mc-name">unit</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit in which the quantity is stored.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+**Clarifications:** A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`.
+
+Note: Give it for a numerical quantity; omit it for a string or boolean one.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.quantity.extent" markdown="1">
+<summary><span class="mc-name">extent</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The shape of one value, in the notation of §1.3.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Examples: `[3]`, `[3,3]`.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.quantity.type" markdown="1">
+<summary><span class="mc-name">type</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The data type of the stored values.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `Float`, `Integer`, `Complex`, `String`, `Boolean`. Other values are allowed.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.quantity.per" markdown="1">
+<summary><span class="mc-name">per</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+What each value belongs to.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `Atom`, `Configuration`. Other values are allowed.
+
+**Clarifications:**
+
+- "Atom" – One value for each atom of a configuration, e.g. forces
+- "Configuration" – One value for each configuration, e.g. a total energy or a stress
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.quantity.normalized-by" markdown="1">
+<summary><span class="mc-name">normalized-by</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+What each value is divided by.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `Atom`, `Formula unit`, `Cell volume`. Other values are allowed.
+
+**Clarifications:**
+
+- "Atom" – Divided by the number of atoms in the configuration
+- "Formula unit" – Divided by the number of formula units in the configuration
+- "Cell volume" – Divided by the volume of the cell
+
+Note: Omit it for a value not divided by anything. The unit is that of the undivided quantity, e.g. eV for a total energy divided by the number of atoms.
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.quantity.convention" markdown="1">
+<summary><span class="mc-name">convention</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+Conventions the values follow, e.g. their sign, ordering or normalization.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Examples: `Voigt order xx, yy, zz, yz, xz, xy`.
+
+</details>
+
+</details>
+
+<details class="note mc-property" id="minimal.computation.selection" markdown="1">
+<summary><span class="mc-name">selection</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+How the results kept in the dataset were chosen from those the computation produced.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Note: Give the criterion, how many results were kept out of how many, and whether the rejected or failed ones are also in the dataset. Omit it when every result is kept. A generative model's checks on its outputs are given in ml `inference › filtering`.
 
 </details>
 
@@ -2885,6 +3263,54 @@ The part of the dataset the license covers, when the dataset has more than one l
 | Required | Repeatable | Type | Extent | Kind | Rec. unit |
 |---|---|---|---|---|---|
 | no | no | string | [] | inapplicable | — |
+
+</details>
+
+</details>
+
+<details class="note mc-property" id="minimal.access" markdown="1">
+<summary><span class="mc-name">access</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+Whether and how the data of the dataset can be obtained.
+
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+Note: The license says what may be done with the data; access says whether they can be obtained. A dataset may have a license and still be closed.
+
+<details class="note mc-property" id="minimal.access.right" markdown="1">
+<summary><span class="mc-name">right<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The access right to the data, a term of the COAR Access Rights vocabulary, version 1.1.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+One of `open access`, `embargoed access`, `restricted access`, `metadata only access`.
+
+**Clarifications:**
+
+- "open access" – Available to anyone, free and permanently (http://purl.org/coar/access_right/c_abf2)
+- "embargoed access" – Metadata only until a set date, then open access (http://purl.org/coar/access_right/c_f1cf)
+- "restricted access" – Available with a restriction, e.g. a login, a request to the authors, or membership of a community (http://purl.org/coar/access_right/c_16ec)
+- "metadata only access" – Only the metadata are available; the data are not (http://purl.org/coar/access_right/c_14cb)
+
+</details>
+
+<details class="note mc-property" id="minimal.access.embargo-date" markdown="1">
+<summary><span class="mc-name">embargo-date</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The date on which embargoed data become open access.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Format: `date` (JSON Schema 2020-12).
+
+Note: Give it for embargoed access.
 
 </details>
 

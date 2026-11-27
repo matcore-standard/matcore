@@ -183,7 +183,7 @@ MASS_NOUNS = {'settings', 'species', 'calculation-physics', 'number-of-particles
 
 def test_a_repeatable_property_has_a_singular_name():
     """Each entry of a repeatable Property is one thing, so its name is singular; a plural name is kept for a list
-    (0084 item 2). A few names are singular in meaning though they end in s."""
+    (0084 item 2). A few names are singular in meaning though they end in s, as is a count named number-of-...."""
     def walk(p):
         """Yield p and every Property below it.
 
@@ -198,5 +198,5 @@ def test_a_repeatable_property_has_a_singular_name():
             continue
         for top in d['properties']:
             for p in walk(top):
-                if p['repeatable'] and p['name'] not in MASS_NOUNS:
+                if p['repeatable'] and p['name'] not in MASS_NOUNS and not p['name'].startswith('number-of-'):
                     assert not (p['name'].endswith('s') and not p['name'].endswith('ss')), (f.name, p['name'])

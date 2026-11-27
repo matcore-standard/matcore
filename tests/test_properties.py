@@ -104,7 +104,8 @@ def sub(p, name):
 
 FORMS = ('2D material', 'Bulk', 'Chain', 'Cluster', 'Molecule', 'Monolayer', 'Nanoparticle', 'Nanoribbon',
          'Nanotube', 'Nanowire', 'Slab', 'Thin film')
-ROLES = ('Adsorbate', 'Core', 'Film', 'Inclusion', 'Layer', 'Matrix', 'Shell', 'Solute', 'Solvent', 'Substrate')
+ROLES = ('Adsorbate', 'Core', 'Film', 'Grain', 'Inclusion', 'Layer', 'Matrix', 'Shell', 'Solute', 'Solvent',
+         'Substrate')
 PHASES = ('Amorphous', 'Single crystal', 'Polycrystal', 'Quasicrystal', 'Liquid', 'Gas', 'Plasma')
 MAGNETIC_ORDERS = ('Nonmagnetic', 'Ferromagnetic', 'Antiferromagnetic', 'Ferrimagnetic', 'Paramagnetic', 'Noncollinear')
 
@@ -133,14 +134,20 @@ def test_structure_is_made_of_components_with_a_form_and_a_role():
     film on a substrate, an inclusion in a matrix). A component may have several phases, each a separate
     entry, so phase is singular (0025)."""
     p = minimal('structure')
-    component = ('material-component', True, True, None, (), (
+    orientation = ('orientation', False, False, None, (), (
+        ('plane', True, False, 'int', (), ()), ('direction', False, False, 'int', (), ()),
+        ('termination', False, True, 'string', (), ())))
+    component = ('material-component', False, True, None, (), (
         *COMPOSITION, ('form', True, False, 'string', FORMS, ()), ('role', False, False, 'string', ROLES, ()),
         ('fraction', False, True, None, (), (
             ('value', True, False, 'float', (), ()), ('qualifier', False, False, 'string', QUALIFIERS, ()))),
         ('phase', False, True, 'string', PHASES, ()), ('magnetic-order', False, False, 'string', MAGNETIC_ORDERS, ()),
-        ('description', False, False, 'string', (), ()), ('microstructure', False, False, 'string', (), ())))
+        ('description', False, False, 'string', (), ()), ('microstructure', False, False, 'string', (), ()),
+        orientation))
+    # material-component is optional and orientation, population and orientation-relationship are added (0086)
     assert tree(p) == ('structure', True, True, None, (), (
-        ('label', True, False, 'string', (), ()), ('description', False, False, 'string', (), ()), component))
+        ('label', True, False, 'string', (), ()), ('description', False, False, 'string', (), ()), component,
+        tree(sub(p, 'population')), tree(sub(p, 'orientation-relationship'))))
     assert sub(material_component(), 'phase')['extent'] == []
     assert legacy_fields(p) == []
     assert not any(q['name'] == 'material-component'
@@ -1041,8 +1048,10 @@ def test_chemical_potential_names_its_species():
     assert all(formula_errors(e) == [] for e in sub(c, 'species')['values']['examples'])
 
 
-SOFTWARE_ROLES = ('Calculation method', 'Interaction model', 'Script', 'Simulation code', 'Workflow framework')
-DEPENDENCY_ROLES = ('Compiler', 'FFT library', 'Interpreter', 'Library', 'Linear algebra library', 'MPI library')
+SOFTWARE_ROLES = ('Calculation method', 'Interaction model', 'Script', 'Simulation code', 'Trained model',
+                  'Workflow framework')
+DEPENDENCY_ROLES = ('Compiler', 'Container image', 'FFT library', 'Interpreter', 'Library', 'Linear algebra library',
+                    'MPI library')
 
 
 def test_software_is_one_entry_per_layer():
@@ -1197,3 +1206,56 @@ def test_basis_functions_centered_on_atoms_are_named_for_them():
     assert 'atom-centered-basis-set' in [s['name'] for s in dm['subproperties']]
     for f in ('dft', 'mbpt'):
         assert 'localized-orbital' not in (ROOT / f'schema/{f}.yaml').read_text(), f
+
+
+
+def test_a_structure_is_one_composition_or_a_population():
+    """A dataset of many structures of different compositions cannot list a formula for each; it describes them
+    together. A structure entry gives one or the other, and each note says when (0086 item 2)."""
+    s = minimal('structure')
+    assert [x['name'] for x in s['subproperties']] == [
+        'label', 'description', 'material-component', 'population', 'orientation-relationship']
+    mc, pop = sub(s, 'material-component'), sub(s, 'population')
+    assert mc['required'] is False and 'population' in mc['notes'][0]
+    assert (pop['required'], pop['repeatable']) == (False, False)
+    assert [(x['name'], x['required'], x['repeatable']) for x in pop['subproperties']] == [
+        ('count', True, False), ('element', False, True), ('number-of-elements', False, True),
+        ('number-of-sites', False, True), ('form', False, False)]
+    assert 'not both' in pop['notes'][0]
+    assert sub(pop, 'form')['values']['terms'] == sub(mc, 'form')['values']['terms']
+
+
+def test_an_interface_states_its_crystallography():
+    """Interfaces and grain boundaries are found by the planes, directions and terminations that meet and by the
+    orientation relationship; positions and registry stay in the data (0086 item 5)."""
+    s = minimal('structure')
+    mc = sub(s, 'material-component')
+    o = sub(mc, 'orientation')
+    assert [(x['name'], x['type'], x['extent'], x['repeatable']) for x in o['subproperties']] == [
+        ('plane', 'int', [3], False), ('direction', 'int', [3], False), ('termination', 'string', [], True)]
+    assert 'parallel to the direction given for the other side' in ' '.join(sub(o, 'direction')['description'].split())
+    assert 'Grain' in sub(mc, 'role')['values']['terms']
+    assert sub(s, 'orientation-relationship')['values']['terms'] == ['Kurdjumov-Sachs', 'Nishiyama-Wassermann']
+    assert 'orientation' in sub(mc, 'description')['values']['note']
+
+
+def test_a_record_says_whether_its_data_can_be_obtained():
+    """A license says what one may do with data one has; access says whether one can get them. The terms are the
+    COAR Access Rights vocabulary's (0086 item 6)."""
+    names = [p['name'] for p in yaml.safe_load(open(ROOT / 'schema/minimal.yaml'))['properties']]
+    assert names[-1] == 'access'
+    a = minimal('access')
+    assert [(x['name'], x['required']) for x in a['subproperties']] == [('right', True), ('embargo-date', False)]
+    r = sub(a, 'right')['values']
+    assert r['enum'] == ['open access', 'embargoed access', 'restricted access', 'metadata only access']
+    for uri in ('c_abf2', 'c_f1cf', 'c_16ec', 'c_14cb'):
+        assert f'http://purl.org/coar/access_right/{uri}' in r['note']
+    assert sub(a, 'embargo-date')['values']['format'] == 'date'
+
+
+def test_preamble_reserves_unknown_for_unrecorded_information():
+    """Records back-filled from old tables meet required values nobody wrote down; one reserved value lets a reader
+    and a validator count them (0086 item 8)."""
+    text = (ROOT / 'docs/standard/index.md').read_text()
+    assert ('When the information for a required string Property was not recorded, the reserved value `Unknown` is '
+            'given.') in text

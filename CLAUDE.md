@@ -299,7 +299,8 @@ record or marked PROPOSED, NOT DECIDED.
      control-workflow-concurrency how-to, read 2026-11-23); tests/test_ci.py (new). The deploy path is verified only
      at the next push to main.
    - (Superseded: 0.8.1 withdrawn by 0085, 2026-11-27, a website-only change not warranting a version; its entry
-     removed from releases.yaml, its tag and deployed version to be removed by the human.) 0.8.1 released 2026-11-27 (tag v0.8.1 on f616603; the site's `latest` is 0.8.1, checked in gh-pages
+     removed from releases.yaml; the human deleted the tag and the deployed version, and gh-pages
+     versions.json shows latest = 0.8.0, checked 2026-11-27.) 0.8.1 released 2026-11-27 (tag v0.8.1 on f616603; the site's `latest` is 0.8.1, checked in gh-pages
      versions.json), a patch (0010 item 1): website only, no change to the standard (the collapsible
      Revision History rows and the smaller menu logo, PR #148; the supporters in the bottom bar, PR #149; CI deploys
      serialized, PR #147, not listed in the entry). Main and the tag were pushed together: the tag's deploy job was
@@ -2043,7 +2044,18 @@ record or marked PROPOSED, NOT DECIDED.
    (Single point or Optimization; Unknown is for information never recorded); method Unknown and "Geometric
    construction" in records 2 and 5 (GC, A4). Omissions in record 6: no conditions or thermodynamic-constraint; task
    Sampling where trajectories are the result (Dynamics, 0064). Ruling 0086 drafted (docs/decisions/0086-matterstack-assessment.md), with the reply
-   report to Matterstack; both await the human's approval; then the PRs listed in 0086's consequences.
+   report to Matterstack (sent to the human to forward); ruling committed on main (652bbf4); then the PRs listed in
+   0086's consequences.
+   [in progress, branch minimal-0086, committed, not pushed; PR to open after the push] 0086 items 1-8: schema/minimal.yaml
+   (by script: structure › population, orientation-relationship; material-component optional with a note,
+   orientation, role Grain, its description note pointing to orientation; computation › quantity, selection; input ›
+   dataset, computation-label optional, role Guidance, Initial configuration reworded; software role Trained model;
+   dependency role Container image; top-level access with `right*` (enum of the four COAR terms, judgment call: a
+   closed published vocabulary) and embargo-date (format date)); docs/standard/index.md §1.3 (reserved Unknown);
+   tests: test_computations and test_properties (seven new tests; ROLES, member lists, the structure and software trees,
+   the Initial configuration wording updated), test_schema (counts named number-of-... allowed), test_preamble (the new
+   bullet); pages and JSON Schema regenerated; rendering checked. Judgment calls: member positions; population's
+   qualifier copies the fixed form (its note speaks of a simulation); orientation-relationship's two definitions.
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one
