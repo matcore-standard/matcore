@@ -1,0 +1,26 @@
+{
+  "gc": {
+    "settings": [
+      {
+        "computation-label": [
+          "ks-interface-build"
+        ],
+        "procedure": "Cu(111) and Nb(110) slabs joined in the Kurdjumov-Sachs orientation relationship; the lateral mismatch is shared equally between the two slabs.",
+        "construction-parameter": [
+          {
+            "name": "layer thickness",
+            "type": "float",
+            "value": 6.0,
+            "unit": "nm"
+          },
+          {
+            "name": "strain tolerance",
+            "type": "float",
+            "value": 0.02,
+            "unit": "dimensionless"
+          }
+        ]
+      }
+    ]
+  }
+}

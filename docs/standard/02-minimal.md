@@ -1123,8 +1123,8 @@ The method of the calculations in this computation, which names the section of t
 Depends on `method-class`.
 
 - For `Electronic`: Recommended: `CC`, `QMC`, `DFT`, `MBPT`, `TB`. Other values are allowed.
-- For `Atomistic`: Recommended: `PIM`, `PS`. Other values are allowed.
-- For `Mesoscopic`: Recommended: `DDD`, `KMC`, `PIM`, `PS`. Other values are allowed.
+- For `Atomistic`: Recommended: `PIM`, `PS`, `GC`. Other values are allowed.
+- For `Mesoscopic`: Recommended: `DDD`, `KMC`, `PIM`, `PS`, `GC`. Other values are allowed.
 - For `Continuum`: Recommended: `PF`. Other values are allowed.
 - For `Data-driven`: Recommended: `ML`. Other values are allowed.
 - For `Post-processing`: Recommended: `DP`. Other values are allowed.
@@ -1138,6 +1138,7 @@ Depends on `method-class`.
 - "TB" – Tight Binding: electronic structure in a basis of localized orbitals with parameterized matrix elements
 - "PIM" – Particle Interaction Model: energies, forces and other per-configuration responses (e.g. charges, dipoles, polarizabilities) given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density
 - "PS" – Particle Simulation: particles moved or sampled using the energies and forces of another computation
+- "GC" – Geometric Construction: structures built by rules the author specifies (geometric, combinatorial or random), without evaluating energies or forces and without a model learned from data
 - "DDD" – Discrete Dislocation Dynamics: plastic deformation from the motion and interaction of dislocation lines
 - "KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events chosen by their rates
 - "PF" – Phase Field: microstructure evolution described by continuous fields with diffuse interfaces

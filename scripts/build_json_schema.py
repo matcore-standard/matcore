@@ -18,7 +18,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-SECTIONS = ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']
+SECTIONS = ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived', 'gc']
 OUT = ROOT / 'docs/standard/matcore.schema.json'
 JSON_TYPES = {'string': 'string', 'float': 'number', 'int': 'integer', 'bool': 'boolean'}
 REDUCED = {'domain-size', 'grid-spacing', 'time-step-size'}  # lengths and times that may be reduced (0075)

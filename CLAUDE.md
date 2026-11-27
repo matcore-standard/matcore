@@ -2064,6 +2064,19 @@ record or marked PROPOSED, NOT DECIDED.
    tests, one checking that pim's copies keep ML's form and none of its ML wording; the pim member list and the method
    note updated); pim and 02-minimal pages and the JSON Schema regenerated; rendering checked. Judgment call: ML's
    phrasing kept verbatim where it reads oddly ("used to train in the interatomic model"), so the two stay in step.
+   [in progress, branch gc-section-0086, committed, not pushed; PR to open after the push] 0086 item 10: schema/gc.yaml (new:
+   title 2.9 Geometric Construction (GC) Metadata, introduction, settings* with computation-label*, procedure* and a
+   generic construction-parameter; legacy_complete true); examples/gc.json (the Cu/Nb Kurdjumov-Sachs construction,
+   its source "Illustrative example, not taken from a published dataset."); schema/minimal.yaml (method GC under
+   Atomistic and Mesoscopic, defined); schema/ml.yaml and schema/ps.yaml (a note each telling GC apart from learned
+   generative models and from searches that relax candidates); scripts/build_docs.py (PAGES gains gc: gc.md; an
+   example's source is a link only when it is an address, else plain text); scripts/build_json_schema.py (SECTIONS
+   gains gc); mkdocs.yml (menu); docs/standard/index.md (§1.2's list, §1.4's keys); docs/leadership.md ("Method:
+   Geometric Construction", TBD); tests (two GC tests, one source test, and the section lists, titles, pages, method
+   cases and definitions, label set, committees and ps notes updated); pages and the JSON Schema regenerated;
+   rendering checked. Found, not changed: docs/about.md still lists the original matcore.org methods (molecular
+   dynamics; no PIM, PS, DP or GC). Judgment calls: the introduction's wording, the example and its plain-text source,
+   the GC committee after Derived Properties (section order).
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one

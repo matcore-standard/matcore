@@ -62,6 +62,10 @@ The MatCore standard has been developed as a grassroots effort through the conce
 - Maria Chan, *Argonne National Laboratory, USA*
 - Paolo Giannozzi, *University of Udine, Italy*
 
+### Method: Geometric Construction
+
+- TBD
+
 ### Research Support
 
 - Pámela Bóveda Aguirre, *University of Minnesota, Twin Cities, USA*

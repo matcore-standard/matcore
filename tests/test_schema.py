@@ -127,7 +127,7 @@ def test_notes_name_only_properties_that_exist():
             for note in p.get('notes') or []:
                 cited.extend((f'{path}/{p["name"]}', n) for n in re.findall(r'"([a-z][a-z0-9]*(?:-[a-z0-9]+)+)"', note))
             walk(p.get('subproperties') or [], f'{path}/{p["name"]}')
-    for key in ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']:
+    for key in ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived', 'gc']:
         walk(yaml.safe_load(open(ROOT / f'schema/{key}.yaml'))['properties'], key)
     assert [c for c in cited if c[1] not in names] == []
 
@@ -173,7 +173,7 @@ def test_every_note_defining_terms_gives_one_line_per_term():
                        for l in lines if definition.search(l)):
                     dense.append(f'{path}/{p["name"]}')
             walk(p.get('subproperties') or [], f'{path}/{p["name"]}')
-    for key in ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived']:
+    for key in ['minimal', 'dft', 'pim', 'ps', 'mbpt', 'ml', 'pf', 'derived', 'gc']:
         walk(yaml.safe_load(open(ROOT / f'schema/{key}.yaml'))['properties'], key)
     assert dense == []
 

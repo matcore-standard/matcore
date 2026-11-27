@@ -27,6 +27,9 @@
   },
   "derived": {
    "$ref": "#/$defs/derived"
+  },
+  "gc": {
+   "$ref": "#/$defs/gc"
   }
  },
  "required": [
@@ -6969,6 +6972,246 @@
       "required": [
        "computation-label",
        "derived-property"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    }
+   },
+   "required": [
+    "settings"
+   ],
+   "patternProperties": {
+    "^x-": {}
+   },
+   "additionalProperties": false
+  },
+  "gc": {
+   "title": "2.9 Geometric Construction (GC) Metadata",
+   "type": "object",
+   "properties": {
+    "settings": {
+     "type": "array",
+     "items": {
+      "description": "Settings shared by the computations named in it.",
+      "type": "object",
+      "properties": {
+       "computation-label": {
+        "type": "array",
+        "items": {
+         "description": "The label of a computation these settings apply to.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "procedure": {
+        "description": "How the structures were built.",
+        "type": "string"
+       },
+       "construction-parameter": {
+        "type": "array",
+        "items": {
+         "description": "A parameter of the construction.",
+         "type": "object",
+         "properties": {
+          "name": {
+           "description": "The designation of the construction parameter.",
+           "type": "string"
+          },
+          "value": {
+           "description": "The data associated with the construction parameter.",
+           "not": {
+            "type": [
+             "object",
+             "null"
+            ]
+           }
+          },
+          "unit": {
+           "description": "The unit in which the associated value is expressed.",
+           "anyOf": [
+            {
+             "enum": [
+              "1/angstrom",
+              "1/angstrom^3",
+              "1/bohr",
+              "1/m",
+              "1/m^3",
+              "1/nm",
+              "1/ps",
+              "1/s",
+              "C",
+              "GPa",
+              "J",
+              "J/T",
+              "J/mol",
+              "K",
+              "K/angstrom",
+              "K/m",
+              "N",
+              "Pa",
+              "Ry",
+              "T",
+              "V",
+              "V/angstrom",
+              "V/m",
+              "W/m^2",
+              "amu",
+              "angstrom",
+              "angstrom^3",
+              "bar",
+              "bohr",
+              "bohr^3",
+              "degree",
+              "dimensionless",
+              "e",
+              "eV",
+              "eV/angstrom",
+              "eV/angstrom^3",
+              "fs",
+              "g/cm^3",
+              "hartree",
+              "hartree/bohr",
+              "kJ/mol",
+              "kbar",
+              "kcal/mol",
+              "kg",
+              "kg/m^3",
+              "m",
+              "m/s^2",
+              "m^3",
+              "meV",
+              "mol",
+              "mu_B",
+              "nm",
+              "nm^3",
+              "ns",
+              "ps",
+              "rad",
+              "s",
+              "um"
+             ]
+            },
+            {
+             "type": "string",
+             "pattern": "^x-gnu:"
+            }
+           ]
+          },
+          "description": {
+           "description": "An explanation of the meaning, source, or purpose of the construction parameter.",
+           "type": "string"
+          },
+          "type": {
+           "enum": [
+            "string",
+            "float",
+            "int",
+            "bool"
+           ]
+          }
+         },
+         "required": [
+          "name",
+          "value",
+          "type"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false,
+         "allOf": [
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "string"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-string"
+             }
+            },
+            "not": {
+             "required": [
+              "unit"
+             ]
+            }
+           }
+          },
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "float"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-float"
+             }
+            },
+            "required": [
+             "unit"
+            ]
+           }
+          },
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "int"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-int"
+             }
+            },
+            "required": [
+             "unit"
+            ]
+           }
+          },
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "bool"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-bool"
+             }
+            },
+            "not": {
+             "required": [
+              "unit"
+             ]
+            }
+           }
+          }
+         ]
+        },
+        "minItems": 1
+       }
+      },
+      "required": [
+       "computation-label",
+       "procedure"
       ],
       "patternProperties": {
        "^x-": {}
