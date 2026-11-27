@@ -21,6 +21,13 @@
 | ElectricPotential | ElectricPotential | A0E-1L2I0M1H0T-3D0 | kg·m²·s⁻³·A⁻¹ |
 | ElectricCharge | ElectricCharge | A0E1L0I0M0H0T1D0 | s·A |
 | MagneticMoment | MagneticMoment | A0E1L2I0M0H0T0D0 | m²·A |
+| EnergyPerArea | EnergyPerArea | A0E0L0I0M1H0T-2D0 | kg·s⁻² |
+| ElectricDipoleMoment | ElectricDipoleMoment | A0E1L1I0M0H0T1D0 | m·s·A |
+| Polarizability | Polarizability | A0E2L0I0M-1H0T4D0 | kg⁻¹·s⁴·A² |
+| SecondOrderSusceptibility | — | A0E1L-1I0M-1H0T3D0 | kg⁻¹·m⁻¹·s³·A |
+| ThermalConductivity | ThermalConductivity | A0E0L1I0M1H-1T-3D0 | kg·m·s⁻³·K⁻¹ |
+| ElectricCurrent | ElectricCurrent | A0E1L0I0M0H0T0D0 | A |
+| ElectricConductivity | ElectricConductivity | A0E2L-3I0M-1H0T3D0 | kg⁻¹·m⁻³·s³·A² |
 | Angle | PlaneAngle | A0E0L0I0M0H0T0D1 | 1 (rad) |
 | AmountOfSubstance | AmountOfSubstance | A1E0L0I0M0H0T0D0 | mol |
 | dimensionless | Dimensionless | A0E0L0I0M0H0T0D1 | 1 |

@@ -252,7 +252,7 @@ def render_kind_table(units):
     """
     rows = ['| Kind | QUDT QuantityKind | QUDT dimension vector | SI dimension |', '|---|---|---|---|']
     for name, k in units['kinds'].items():
-        rows.append(f"| {name} | {k['qudt']} | {k['dimension']} | {k['si_dimension']} |")
+        rows.append(f"| {name} | {k['qudt'] or '—'} | {k['dimension']} | {k['si_dimension']} |")
     for name in units['reserved_kinds']:
         if name not in units['kinds']:
             rows.append(f'| {name} | — | — | — |')
