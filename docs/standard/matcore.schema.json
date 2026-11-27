@@ -529,6 +529,45 @@
           "microstructure": {
            "description": "For a solid state phase, a description of the arrangement of phases, grains and defects in the material.",
            "type": "string"
+          },
+          "orientation": {
+           "description": "The crystallographic orientation of the component at a surface or an interface, in its conventional cell.",
+           "type": "object",
+           "properties": {
+            "plane": {
+             "description": "The Miller indices (hkl) of the plane of the component at the surface or interface.",
+             "type": "array",
+             "items": {
+              "type": "integer"
+             },
+             "minItems": 3,
+             "maxItems": 3
+            },
+            "direction": {
+             "description": "The indices [uvw] of a direction of the component in the plane of the interface, parallel to the direction given for the other side.",
+             "type": "array",
+             "items": {
+              "type": "integer"
+             },
+             "minItems": 3,
+             "maxItems": 3
+            },
+            "termination": {
+             "type": "array",
+             "items": {
+              "description": "The atomic layer of the component at the surface or interface, named by its composition.",
+              "type": "string"
+             },
+             "minItems": 1
+            }
+           },
+           "required": [
+            "plane"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
           }
          },
          "required": [
@@ -541,11 +580,96 @@
          "additionalProperties": false
         },
         "minItems": 1
+       },
+       "population": {
+        "description": "Many structures of different compositions described together, when listing a formula for each is impractical, e.g. a generated or screened set.",
+        "type": "object",
+        "properties": {
+         "count": {
+          "description": "The number of structures in the population.",
+          "type": "integer",
+          "minimum": 1
+         },
+         "element": {
+          "type": "array",
+          "items": {
+           "description": "A chemical element present in at least one structure of the population.",
+           "type": "string"
+          },
+          "minItems": 1
+         },
+         "number-of-elements": {
+          "type": "array",
+          "items": {
+           "description": "The number of distinct elements in a structure of the population.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property.",
+             "type": "integer",
+             "minimum": 1
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "number-of-sites": {
+          "type": "array",
+          "items": {
+           "description": "The number of atoms in the unit cell of a structure of the population.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property.",
+             "type": "integer",
+             "minimum": 1
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "form": {
+          "description": "The geometric form shared by the structures of the population.",
+          "type": "string"
+         }
+        },
+        "required": [
+         "count"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "orientation-relationship": {
+        "description": "The named orientation relationship between the components that meet at an interface.",
+        "type": "string"
        }
       },
       "required": [
-       "label",
-       "material-component"
+       "label"
       ],
       "patternProperties": {
        "^x-": {}
@@ -592,12 +716,17 @@
        "input": {
         "type": "array",
         "items": {
-         "description": "Another computation in the record whose results this computation uses.",
+         "description": "Another computation, in the record or in another dataset, whose results this computation uses.",
          "type": "object",
          "properties": {
           "computation-label": {
            "description": "The label of that computation.",
            "type": "string"
+          },
+          "dataset": {
+           "description": "A URI of the dataset the input comes from, e.g. its DOI or the address of its MatCore record.",
+           "type": "string",
+           "format": "uri"
           },
           "role": {
            "description": "What this computation takes from that computation.",
@@ -605,7 +734,6 @@
           }
          },
          "required": [
-          "computation-label",
           "role"
          ],
          "patternProperties": {
@@ -1465,6 +1593,126 @@
          "additionalProperties": false
         },
         "minItems": 1
+       },
+       "quantity": {
+        "type": "array",
+        "items": {
+         "description": "A quantity the dataset holds from this computation.",
+         "type": "object",
+         "properties": {
+          "name": {
+           "description": "The name of the quantity as stored in the dataset.",
+           "type": "string"
+          },
+          "description": {
+           "description": "What the quantity is.",
+           "type": "string"
+          },
+          "unit": {
+           "description": "The unit in which the quantity is stored.",
+           "anyOf": [
+            {
+             "enum": [
+              "1/angstrom",
+              "1/angstrom^3",
+              "1/bohr",
+              "1/m",
+              "1/m^3",
+              "1/nm",
+              "1/ps",
+              "1/s",
+              "C",
+              "GPa",
+              "J",
+              "J/T",
+              "J/mol",
+              "K",
+              "K/angstrom",
+              "K/m",
+              "N",
+              "Pa",
+              "Ry",
+              "T",
+              "V",
+              "V/angstrom",
+              "V/m",
+              "W/m^2",
+              "amu",
+              "angstrom",
+              "angstrom^3",
+              "bar",
+              "bohr",
+              "bohr^3",
+              "degree",
+              "dimensionless",
+              "e",
+              "eV",
+              "eV/angstrom",
+              "eV/angstrom^3",
+              "fs",
+              "g/cm^3",
+              "hartree",
+              "hartree/bohr",
+              "kJ/mol",
+              "kbar",
+              "kcal/mol",
+              "kg",
+              "kg/m^3",
+              "m",
+              "m/s^2",
+              "m^3",
+              "meV",
+              "mol",
+              "mu_B",
+              "nm",
+              "nm^3",
+              "ns",
+              "ps",
+              "rad",
+              "s",
+              "um"
+             ]
+            },
+            {
+             "type": "string",
+             "pattern": "^x-gnu:"
+            }
+           ]
+          },
+          "extent": {
+           "description": "The shape of one value, in the notation of §1.3.",
+           "type": "string"
+          },
+          "type": {
+           "description": "The data type of the stored values.",
+           "type": "string"
+          },
+          "per": {
+           "description": "What each value belongs to.",
+           "type": "string"
+          },
+          "normalized-by": {
+           "description": "What each value is divided by.",
+           "type": "string"
+          },
+          "convention": {
+           "description": "Conventions the values follow, e.g. their sign, ordering or normalization.",
+           "type": "string"
+          }
+         },
+         "required": [
+          "name"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       },
+       "selection": {
+        "description": "How the results kept in the dataset were chosen from those the computation produced.",
+        "type": "string"
        }
       },
       "required": [
@@ -1837,6 +2085,34 @@
       "additionalProperties": false
      },
      "minItems": 1
+    },
+    "access": {
+     "description": "Whether and how the data of the dataset can be obtained.",
+     "type": "object",
+     "properties": {
+      "right": {
+       "description": "The access right to the data, a term of the COAR Access Rights vocabulary, version 1.1.",
+       "type": "string",
+       "enum": [
+        "open access",
+        "embargoed access",
+        "restricted access",
+        "metadata only access"
+       ]
+      },
+      "embargo-date": {
+       "description": "The date on which embargoed data become open access.",
+       "type": "string",
+       "format": "date"
+      }
+     },
+     "required": [
+      "right"
+     ],
+     "patternProperties": {
+      "^x-": {}
+     },
+     "additionalProperties": false
     }
    },
    "required": [

@@ -492,7 +492,7 @@ properties:
     values: null
     repeatable: false
   - name: material-component
-    required: true
+    required: false
     description: >-
       One part of the structure, made of a single material, with its composition, form, role and phase.
     type: null
@@ -501,6 +501,11 @@ properties:
     recommended-unit: null
     values: null
     repeatable: true
+    notes:
+    - >-
+      Note: Give one entry for each material of a structure whose composition is known. For many structures of
+      different compositions described together, give `population` instead; a structure gives one or the
+      other.
     subproperties:
     - name: formula
       required: true
@@ -667,11 +672,12 @@ properties:
       kind: inapplicable
       recommended-unit: null
       values:
-        terms: [Adsorbate, Core, Film, Inclusion, Layer, Matrix, Shell, Solute, Solvent, Substrate]
+        terms: [Adsorbate, Core, Film, Grain, Inclusion, Layer, Matrix, Shell, Solute, Solvent, Substrate]
         note: |-
           - "Adsorbate" – A molecule, cluster or particle on the surface of a substrate
           - "Core" – The inner part of a particle, enclosed by a shell
           - "Film" – A layer of finite thickness on a substrate
+          - "Grain" – One of the grains of a polycrystal or a bicrystal, e.g. one side of a grain boundary
           - "Inclusion" – A material enclosed in a matrix, e.g. a precipitate or an embedded nanotube
           - "Layer" – One of the layers of a layered structure, e.g. a heterostructure, a superlattice or a stack of 2D materials
           - "Matrix" – A material that encloses one or more inclusions
@@ -769,8 +775,8 @@ properties:
       recommended-unit: null
       values:
         note: >-
-          e.g. a surface facet such as Pt(111), an orientation relationship such as (111)Pt ∥ (001)CeO₂, or the
-          chirality of a nanotube.
+          e.g. the chirality of a nanotube. A surface facet or the crystallography of an interface is given in
+          `orientation`.
       repeatable: false
     - name: microstructure
       required: false
@@ -783,6 +789,199 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
+    - name: orientation
+      required: false
+      description: >-
+        The crystallographic orientation of the component at a surface or an interface, in its conventional
+        cell.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: false
+      notes:
+      - >-
+        Note: Give it for each component that meets a surface or an interface, e.g. both sides of a grain boundary
+        or of a heterointerface. The registry of the two sides and the positions of the atoms are data, not
+        metadata.
+      subproperties:
+      - name: plane
+        required: true
+        description: The Miller indices (hkl) of the plane of the component at the surface or interface.
+        type: int
+        extent: [3]
+        kind: dimensionless
+        recommended-unit: null
+        values:
+          examples: [[1, 1, 1]]
+        repeatable: false
+      - name: direction
+        required: false
+        description: >-
+          The indices [uvw] of a direction of the component in the plane of the interface, parallel to the direction
+          given for the other side.
+        type: int
+        extent: [3]
+        kind: dimensionless
+        recommended-unit: null
+        values:
+          examples: [[1, -1, 0]]
+        repeatable: false
+      - name: termination
+        required: false
+        description: The atomic layer of the component at the surface or interface, named by its composition.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          examples: [TiO2, SrO]
+        repeatable: true
+        notes:
+        - 'Note: Give one entry for each termination present in the dataset.'
+  - name: population
+    required: false
+    description: >-
+      Many structures of different compositions described together, when listing a formula for each is
+      impractical, e.g. a generated or screened set.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: false
+    notes:
+    - >-
+      Note: Give it instead of `material-component` when one structure entry stands for many structures of
+      different compositions; a structure gives one or the other, not both.
+    subproperties:
+    - name: count
+      required: true
+      description: The number of structures in the population.
+      type: int
+      extent: []
+      kind: dimensionless
+      recommended-unit: null
+      values:
+        minimum: 1
+      repeatable: false
+      notes:
+      - >-
+        Note: The number in the version of the dataset this record describes.
+    - name: element
+      required: false
+      description: A chemical element present in at least one structure of the population.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        examples: [Cu, Nb]
+      repeatable: true
+      notes:
+      - >-
+        Note: One entry for each element, by its symbol in the IUPAC Periodic Table. Omit it when the population
+        is not restricted in chemistry, and say so in the structure's description.
+    - name: number-of-elements
+      required: false
+      description: The number of distinct elements in a structure of the population.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      notes:
+      - 'Note: Give the range as two entries, with the qualifiers Minimum and Maximum.'
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property.
+        type: int
+        extent: []
+        kind: dimensionless
+        recommended-unit: null
+        values:
+          minimum: 1
+        repeatable: false
+      - name: qualifier
+        required: false
+        description: What the value represents.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Average, Final, Initial, Maximum, Minimum]
+          note: >-
+            Without a qualifier, the value holds throughout the simulation and across the system, and the entry
+            is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g.
+            Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
+            Maximum are taken component by component.
+        repeatable: false
+    - name: number-of-sites
+      required: false
+      description: The number of atoms in the unit cell of a structure of the population.
+      type: null
+      extent: null
+      kind: null
+      recommended-unit: null
+      values: null
+      repeatable: true
+      notes:
+      - 'Note: Give the range as two entries, with the qualifiers Minimum and Maximum.'
+      subproperties:
+      - name: value
+        required: true
+        description: The value of the property.
+        type: int
+        extent: []
+        kind: dimensionless
+        recommended-unit: null
+        values:
+          minimum: 1
+        repeatable: false
+      - name: qualifier
+        required: false
+        description: What the value represents.
+        type: string
+        extent: []
+        kind: inapplicable
+        recommended-unit: null
+        values:
+          terms: [Average, Final, Initial, Maximum, Minimum]
+          note: >-
+            Without a qualifier, the value holds throughout the simulation and across the system, and the entry
+            is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g.
+            Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and
+            Maximum are taken component by component.
+        repeatable: false
+    - name: form
+      required: false
+      description: The geometric form shared by the structures of the population.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [2D material, Bulk, Chain, Cluster, Molecule, Monolayer, Nanoparticle, Nanoribbon, Nanotube,
+          Nanowire, Slab, Thin film]
+        note: 'Terms as defined for `material-component › form`.'
+      repeatable: false
+  - name: orientation-relationship
+    required: false
+    description: The named orientation relationship between the components that meet at an interface.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      terms: [Kurdjumov-Sachs, Nishiyama-Wassermann]
+      note: |-
+        - "Kurdjumov-Sachs" – {111}fcc ∥ {110}bcc with <110>fcc ∥ <111>bcc
+        - "Nishiyama-Wassermann" – {111}fcc ∥ {110}bcc with <112>fcc ∥ <110>bcc
+    repeatable: false
 - name: computation
   required: true
   description: >-
@@ -933,7 +1132,7 @@ properties:
       it, e.g. the DFT that supplies the energies and forces of an ab initio MD run.
   - name: input
     required: false
-    description: Another computation in the record whose results this computation uses.
+    description: Another computation, in the record or in another dataset, whose results this computation uses.
     type: null
     extent: null
     kind: null
@@ -946,7 +1145,7 @@ properties:
       describes the dataset; it does not record the order of the calculations or how to repeat them.
     subproperties:
     - name: computation-label
-      required: true
+      required: false
       description: The label of that computation.
       type: string
       extent: []
@@ -954,6 +1153,24 @@ properties:
       recommended-unit: null
       values: null
       repeatable: false
+      notes:
+      - >-
+        Note: A computation in this record; with `dataset`, a computation in that dataset's MatCore record, if it
+        has one.
+    - name: dataset
+      required: false
+      description: A URI of the dataset the input comes from, e.g. its DOI or the address of its MatCore record.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        format: uri
+      repeatable: false
+      notes:
+      - >-
+        Note: Give it for an input from another dataset, instead of a computation in this record. Give either a
+        computation-label of this record or a dataset.
     - name: role
       required: true
       description: What this computation takes from that computation.
@@ -963,14 +1180,15 @@ properties:
       recommended-unit: null
       values:
         terms: [Interaction model, Initial configuration, Starting point, Training data, Parameters, Source
-            data]
+            data, Guidance]
         note: |-
           - "Interaction model" – The energies and forces of the configurations this computation evaluates
-          - "Initial configuration" – The configurations this computation starts from, with the state carried over from that computation, e.g. velocities
+          - "Initial configuration" – The configurations this computation starts from or evaluates, with any state carried over, e.g. velocities
           - "Starting point" – An electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground state of a GW calculation
           - "Training data" – Data a model is fitted to
           - "Parameters" – Values used as parameters of this computation's model, e.g. a free energy or elastic constants in a phase field model
           - "Source data" – Results from which this computation obtains a property
+          - "Guidance" – A model whose outputs steer this computation's sampling or generation, e.g. classifier guidance or an active-learning acquisition function
       repeatable: false
   - name: conditions
     required: false
@@ -2018,12 +2236,13 @@ properties:
       kind: inapplicable
       recommended-unit: null
       values:
-        terms: [Calculation method, Interaction model, Script, Simulation code, Workflow framework]
+        terms: [Calculation method, Interaction model, Script, Simulation code, Trained model, Workflow framework]
         note: |-
           - "Calculation method" – A packaged procedure that computes a defined property, e.g. an OpenKIM test or an iprPy calculation
           - "Interaction model" – The implementation of a particle interaction model, e.g. a KIM model or a potential file; give its identifier and link
           - "Script" – Custom code written for the calculations, e.g. a Python script using ASE
           - "Simulation code" – A program that performs the simulation or calculation itself, e.g. LAMMPS or VASP
+          - "Trained model" – The parameters of a machine learning model trained elsewhere, e.g. a checkpoint of a generative model; give its identifier, link and file with checksum. A trained interatomic potential is an Interaction model
           - "Workflow framework" – A system that sets up, runs and manages calculations with other software, e.g. pyiron, AiiDA or MedeA
       repeatable: false
     - name: description
@@ -2142,9 +2361,10 @@ properties:
         kind: inapplicable
         recommended-unit: null
         values:
-          terms: [Compiler, FFT library, Interpreter, Library, Linear algebra library, MPI library]
+          terms: [Compiler, Container image, FFT library, Interpreter, Library, Linear algebra library, MPI library]
           note: |-
             - "Compiler" – Translates source code into an executable, e.g. GCC or the Intel oneAPI compilers
+            - "Container image" – The image the software ran in, e.g. a Docker or Apptainer image; give its digest (sha256:…) as its version, not a tag such as latest
             - "FFT library" – Computes fast Fourier transforms, e.g. FFTW
             - "Interpreter" – Runs a script, e.g. Python
             - "Library" – Any other library the software calls, e.g. LibXC or ASE
@@ -2262,6 +2482,126 @@ properties:
           values:
             pattern: '[0-9a-f]+'
           repeatable: false
+  - name: quantity
+    required: false
+    description: A quantity the dataset holds from this computation.
+    type: null
+    extent: null
+    kind: null
+    recommended-unit: null
+    values: null
+    repeatable: true
+    notes:
+    - >-
+      Note: Give one entry for each quantity stored, e.g. each column of a table. It describes the quantity; its
+      values are in the dataset (§1.2).
+    subproperties:
+    - name: name
+      required: true
+      description: The name of the quantity as stored in the dataset.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        examples: [polarization, gap_fundamental_ev]
+      repeatable: false
+    - name: description
+      required: false
+      description: What the quantity is.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values: null
+      repeatable: false
+    - name: unit
+      required: false
+      description: The unit in which the quantity is stored.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        note: A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`.
+      repeatable: false
+      notes:
+      - 'Note: Give it for a numerical quantity; omit it for a string or boolean one.'
+    - name: extent
+      required: false
+      description: The shape of one value, in the notation of §1.3.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        examples: ['[3]', '[3,3]']
+      repeatable: false
+    - name: type
+      required: false
+      description: The data type of the stored values.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Float, Integer, Complex, String, Boolean]
+      repeatable: false
+    - name: per
+      required: false
+      description: What each value belongs to.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Atom, Configuration]
+        note: |-
+          - "Atom" – One value for each atom of a configuration, e.g. forces
+          - "Configuration" – One value for each configuration, e.g. a total energy or a stress
+      repeatable: false
+    - name: normalized-by
+      required: false
+      description: What each value is divided by.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        terms: [Atom, Formula unit, Cell volume]
+        note: |-
+          - "Atom" – Divided by the number of atoms in the configuration
+          - "Formula unit" – Divided by the number of formula units in the configuration
+          - "Cell volume" – Divided by the volume of the cell
+      repeatable: false
+      notes:
+      - >-
+        Note: Omit it for a value not divided by anything. The unit is that of the undivided quantity, e.g. eV
+        for a total energy divided by the number of atoms.
+    - name: convention
+      required: false
+      description: Conventions the values follow, e.g. their sign, ordering or normalization.
+      type: string
+      extent: []
+      kind: inapplicable
+      recommended-unit: null
+      values:
+        examples: ['Voigt order xx, yy, zz, yz, xz, xy']
+      repeatable: false
+  - name: selection
+    required: false
+    description: How the results kept in the dataset were chosen from those the computation produced.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values: null
+    repeatable: false
+    notes:
+    - >-
+      Note: Give the criterion, how many results were kept out of how many, and whether the rejected or failed
+      ones are also in the dataset. Omit it when every result is kept. A generative model's checks on its outputs
+      are given in ml `inference › filtering`.
 - name: publication
   required: false
   description: >-
@@ -2739,3 +3079,44 @@ properties:
     recommended-unit: null
     values: null
     repeatable: false
+- name: access
+  required: false
+  description: Whether and how the data of the dataset can be obtained.
+  type: null
+  extent: null
+  kind: null
+  recommended-unit: null
+  values: null
+  repeatable: false
+  notes:
+  - >-
+    Note: The license says what may be done with the data; access says whether they can be obtained. A dataset
+    may have a license and still be closed.
+  subproperties:
+  - name: right
+    required: true
+    description: The access right to the data, a term of the COAR Access Rights vocabulary, version 1.1.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      enum: [open access, embargoed access, restricted access, metadata only access]
+      note: |-
+        - "open access" – Available to anyone, free and permanently (http://purl.org/coar/access_right/c_abf2)
+        - "embargoed access" – Metadata only until a set date, then open access (http://purl.org/coar/access_right/c_f1cf)
+        - "restricted access" – Available with a restriction, e.g. a login, a request to the authors, or membership of a community (http://purl.org/coar/access_right/c_16ec)
+        - "metadata only access" – Only the metadata are available; the data are not (http://purl.org/coar/access_right/c_14cb)
+    repeatable: false
+  - name: embargo-date
+    required: false
+    description: The date on which embargoed data become open access.
+    type: string
+    extent: []
+    kind: inapplicable
+    recommended-unit: null
+    values:
+      format: date
+    repeatable: false
+    notes:
+    - 'Note: Give it for embargoed access.'

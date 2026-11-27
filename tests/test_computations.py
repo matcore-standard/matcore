@@ -11,7 +11,7 @@ NAME_PATTERN = '^[a-z][a-z0-9]*(-[a-z0-9]+)*$'
 TASKS = ['Structure generation', 'Single point', 'Optimization', 'Transition path', 'Equilibration', 'Dynamics',
          'Sampling', 'Free energy calculation', 'Training', 'Property calculation']
 ROLES = ['Interaction model', 'Initial configuration', 'Starting point', 'Training data', 'Parameters',
-         'Source data']
+         'Source data', 'Guidance']
 UNIQUE = 'Note: A label is unique among all labels of structures and computations in the record.'
 
 
@@ -64,7 +64,7 @@ def test_computation_members_and_order():
     c = top('minimal', 'computation')
     assert [s['name'] for s in c['subproperties']] == [
         'label', 'description', 'method-class', 'method', 'task', 'structure-label', 'input', 'conditions',
-        'software']
+        'software', 'quantity', 'selection']
     assert c['description'] == ('A group of calculations in the dataset that share one method and one set of '
                                 'settings, e.g. the DFT single points of a training set.')
     assert not sub(c, 'conditions')['required']
@@ -113,8 +113,8 @@ def test_a_staged_simulation_is_a_chain_of_computations():
     c = top('minimal', 'computation')
     assert c['notes'] == [GROUPING_NOTE, STAGES_NOTE]
     role = sub(sub(c, 'input'), 'role')['values']['note']
-    assert ('"Initial configuration" – The configurations this computation starts from, with the state carried '
-            'over from that computation, e.g. velocities') in role
+    assert ('"Initial configuration" – The configurations this computation starts from or evaluates, with any '
+            'state carried over, e.g. velocities') in role  # reworded by 0086 item 7
 
 
 def test_task_terms_are_defined():
@@ -158,8 +158,9 @@ def test_input_names_a_computation_and_its_role():
     model (0046 item 2)."""
     i = sub(top('minimal', 'computation'), 'input')
     assert (i['required'], i['repeatable'], i['type']) == (False, True, None)
-    assert [s['name'] for s in i['subproperties']] == ['computation-label', 'role']
-    assert shape(sub(i, 'computation-label')) == (True, False, 'string', [], 'inapplicable', None)
+    assert [s['name'] for s in i['subproperties']] == ['computation-label', 'dataset', 'role']
+    # optional since an input may name another dataset instead (0086 item 3)
+    assert shape(sub(i, 'computation-label')) == (False, False, 'string', [], 'inapplicable', None)
     role = sub(i, 'role')
     assert shape(role) == (True, False, 'string', [], 'inapplicable', None)
     assert role['values']['terms'] == ROLES
@@ -215,7 +216,7 @@ def test_software_can_be_an_interaction_model():
     """A KIM model or potential file is the software of a PIM computation (0046 item 6)."""
     role = sub(sub(top('minimal', 'computation'), 'software'), 'role')['values']
     assert role['terms'] == ['Calculation method', 'Interaction model', 'Script', 'Simulation code',
-                             'Workflow framework']
+                             'Trained model', 'Workflow framework']
     assert '"Interaction model" –' in role['note']
 
 
@@ -1384,3 +1385,60 @@ def test_derived_families_cover_strength_melting_viscosity_and_defect_mobility()
     prose = ' '.join(intro.split('Examples of derived properties include:')[0].split())
     assert 'needs no derived entry' in prose and 'nudged elastic band' in prose and 'Transition path' in prose
     assert 'thermodynamic integration' not in intro.lower()
+
+
+PER = ['Atom', 'Configuration']
+NORMALIZED_BY = ['Atom', 'Formula unit', 'Cell volume']
+
+
+def test_a_computation_names_the_quantities_it_put_in_the_dataset():
+    """A reader of a dataset must know what each stored quantity is, in what unit and shape, and whether it is a
+    total, a value for each atom, or a total divided by something; the values stay in the dataset (0086 item 1).
+    `per` and `normalized-by` keep the two meanings of "per atom" apart."""
+    q = sub(top('minimal', 'computation'), 'quantity')
+    assert (q['required'], q['repeatable'], q['type']) == (False, True, None)
+    assert [(s['name'], s['required']) for s in q['subproperties']] == [
+        ('name', True), ('description', False), ('unit', False), ('extent', False), ('type', False), ('per', False),
+        ('normalized-by', False), ('convention', False)]
+    assert all(s['repeatable'] is False and s['type'] == 'string' for s in q['subproperties'])
+    assert sub(q, 'type')['values']['terms'] == ['Float', 'Integer', 'Complex', 'String', 'Boolean']
+    per, norm = sub(q, 'per'), sub(q, 'normalized-by')
+    assert per['values']['terms'] == PER and norm['values']['terms'] == NORMALIZED_BY
+    assert '"Atom" – One value for each atom' in per['values']['note']
+    assert '"Atom" – Divided by the number of atoms' in norm['values']['note']
+    assert 'Annex U' in sub(q, 'unit')['values']['note']
+
+
+def test_a_computation_says_which_of_its_results_were_kept():
+    """A reader must know whether the dataset holds every result or a selection, by what criterion, and whether the
+    rejected ones are there too; ML's filtering already says so for generated sets (0086 item 4)."""
+    s = sub(top('minimal', 'computation'), 'selection')
+    assert (s['required'], s['repeatable'], s['type'], s['extent']) == (False, False, 'string', [])
+    note = ' '.join(s['notes'][0].split())
+    assert 'how many results were kept out of how many' in note and '`inference › filtering`' in note
+
+
+def test_an_input_may_come_from_another_dataset():
+    """A computation may use results from outside the record, named by the dataset's address instead of a placeholder
+    computation; a label then names a computation in that dataset's record (0086 item 3)."""
+    i = sub(top('minimal', 'computation'), 'input')
+    assert [(s['name'], s['required']) for s in i['subproperties']] == [
+        ('computation-label', False), ('dataset', False), ('role', True)]
+    d = sub(i, 'dataset')
+    assert (d['type'], d['values']['format']) == ('string', 'uri')
+    assert 'instead of a computation in this record' in ' '.join(d['notes'][0].split())
+
+
+def test_roles_name_guidance_trained_models_and_container_images():
+    """A model that steers generation, a model trained elsewhere and the image a code ran in each have a role; a
+    trained interatomic potential stays an Interaction model, so no artifact fits two roles (0086 item 7)."""
+    c = top('minimal', 'computation')
+    role = sub(sub(c, 'input'), 'role')['values']
+    assert role['terms'][-1] == 'Guidance'
+    assert ('"Initial configuration" – The configurations this computation starts from or evaluates, with any state '
+            'carried over, e.g. velocities') in role['note']
+    sw = sub(c, 'software')
+    sr = sub(sw, 'role')['values']
+    assert 'Trained model' in sr['terms'] and 'interatomic potential' in sr['note'].split('"Trained model"')[1]
+    dr = sub(sub(sw, 'dependency'), 'role')['values']
+    assert 'Container image' in dr['terms'] and 'digest' in dr['note']
