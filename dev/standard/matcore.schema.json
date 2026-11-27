@@ -3279,6 +3279,203 @@
         "description": "The kind of potential used to compute the particle interactions.",
         "type": "string"
        },
+       "architecture-parameter": {
+        "type": "array",
+        "items": {
+         "description": "A fixed variable that defines the architecture of the interatomic model.",
+         "type": "object",
+         "properties": {
+          "name": {
+           "description": "The designation of the architecture parameter.",
+           "type": "string"
+          },
+          "value": {
+           "description": "The data associated with the architecture parameter.",
+           "not": {
+            "type": [
+             "object",
+             "null"
+            ]
+           }
+          },
+          "unit": {
+           "description": "The unit in which the associated value is expressed.",
+           "anyOf": [
+            {
+             "enum": [
+              "1/angstrom",
+              "1/angstrom^3",
+              "1/bohr",
+              "1/m",
+              "1/m^3",
+              "1/nm",
+              "1/ps",
+              "1/s",
+              "C",
+              "GPa",
+              "J",
+              "J/T",
+              "J/mol",
+              "K",
+              "K/angstrom",
+              "K/m",
+              "N",
+              "Pa",
+              "Ry",
+              "T",
+              "V",
+              "V/angstrom",
+              "V/m",
+              "W/m^2",
+              "amu",
+              "angstrom",
+              "angstrom^3",
+              "bar",
+              "bohr",
+              "bohr^3",
+              "degree",
+              "dimensionless",
+              "e",
+              "eV",
+              "eV/angstrom",
+              "eV/angstrom^3",
+              "fs",
+              "g/cm^3",
+              "hartree",
+              "hartree/bohr",
+              "kJ/mol",
+              "kbar",
+              "kcal/mol",
+              "kg",
+              "kg/m^3",
+              "m",
+              "m/s^2",
+              "m^3",
+              "meV",
+              "mol",
+              "mu_B",
+              "nm",
+              "nm^3",
+              "ns",
+              "ps",
+              "rad",
+              "s",
+              "um"
+             ]
+            },
+            {
+             "type": "string",
+             "pattern": "^x-gnu:"
+            }
+           ]
+          },
+          "description": {
+           "description": "An explanation of the meaning, source, or purpose of the architecture parameter.",
+           "type": "string"
+          },
+          "type": {
+           "enum": [
+            "string",
+            "float",
+            "int",
+            "bool"
+           ]
+          }
+         },
+         "required": [
+          "name",
+          "value",
+          "type"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false,
+         "allOf": [
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "string"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-string"
+             }
+            },
+            "not": {
+             "required": [
+              "unit"
+             ]
+            }
+           }
+          },
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "float"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-float"
+             }
+            },
+            "required": [
+             "unit"
+            ]
+           }
+          },
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "int"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-int"
+             }
+            },
+            "required": [
+             "unit"
+            ]
+           }
+          },
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "bool"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-bool"
+             }
+            },
+            "not": {
+             "required": [
+              "unit"
+             ]
+            }
+           }
+          }
+         ]
+        },
+        "minItems": 1
+       },
        "particle-style": {
         "type": "array",
         "items": {
@@ -3358,6 +3555,431 @@
          "additionalProperties": false
         },
         "minItems": 1
+       },
+       "training": {
+        "description": "How the interatomic model was fitted to data.",
+        "type": "object",
+        "properties": {
+         "training-data": {
+          "type": "array",
+          "items": {
+           "description": "The information used for parameterizing the interatomic model.",
+           "type": "object",
+           "properties": {
+            "name": {
+             "description": "Name of the training dataset used to train in the interatomic model.",
+             "type": "string"
+            },
+            "contents": {
+             "description": "Description of the information included in the training dataset.",
+             "type": "string"
+            },
+            "source": {
+             "description": "Location from which the training data was obtained.",
+             "type": "string"
+            },
+            "size": {
+             "description": "Number of items in the training dataset.",
+             "type": "integer",
+             "minimum": 1
+            },
+            "data-preprocessing": {
+             "description": "Approach used for preliminary refining of raw, unformatted, or incomplete information into a structured and clean state suitable for modeling or analysis.",
+             "type": "string"
+            },
+            "missing-data": {
+             "description": "Documentation of incomplete, null, or unrecorded entries within a feature set that hinder algorithm training.",
+             "type": "string"
+            },
+            "missing-data-strategy": {
+             "description": "Approach used for filling in or removing blank, null, or unknown entries in a dataset.",
+             "type": "string"
+            },
+            "outlier-handling": {
+             "description": "Approach to identifying and addressing extreme observations that deviate significantly from the general distribution to ensure they do not disproportionately skew model training.",
+             "type": "string"
+            },
+            "dataset-split": {
+             "description": "A description of how information used to train the interatomic model was divided into subsets as part of the training process.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "name",
+            "contents"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "training-method": {
+          "description": "The approach used to determine the interatomic model's free parameters.",
+          "type": "object",
+          "properties": {
+           "training-procedure": {
+            "description": "The methodology used to determine the interatomic model's free parameters.",
+            "type": "string"
+           },
+           "loss-function": {
+            "description": "The quantities fitted in training and how they are weighted.",
+            "type": "string"
+           },
+           "hyperparameter": {
+            "type": "array",
+            "items": {
+             "description": "A fixed variable that controls the fitting of the interatomic model.",
+             "type": "object",
+             "properties": {
+              "name": {
+               "description": "The designation of the hyperparameter.",
+               "type": "string"
+              },
+              "value": {
+               "description": "The data associated with the hyperparameter.",
+               "not": {
+                "type": [
+                 "object",
+                 "null"
+                ]
+               }
+              },
+              "unit": {
+               "description": "The unit in which the associated value is expressed.",
+               "anyOf": [
+                {
+                 "enum": [
+                  "1/angstrom",
+                  "1/angstrom^3",
+                  "1/bohr",
+                  "1/m",
+                  "1/m^3",
+                  "1/nm",
+                  "1/ps",
+                  "1/s",
+                  "C",
+                  "GPa",
+                  "J",
+                  "J/T",
+                  "J/mol",
+                  "K",
+                  "K/angstrom",
+                  "K/m",
+                  "N",
+                  "Pa",
+                  "Ry",
+                  "T",
+                  "V",
+                  "V/angstrom",
+                  "V/m",
+                  "W/m^2",
+                  "amu",
+                  "angstrom",
+                  "angstrom^3",
+                  "bar",
+                  "bohr",
+                  "bohr^3",
+                  "degree",
+                  "dimensionless",
+                  "e",
+                  "eV",
+                  "eV/angstrom",
+                  "eV/angstrom^3",
+                  "fs",
+                  "g/cm^3",
+                  "hartree",
+                  "hartree/bohr",
+                  "kJ/mol",
+                  "kbar",
+                  "kcal/mol",
+                  "kg",
+                  "kg/m^3",
+                  "m",
+                  "m/s^2",
+                  "m^3",
+                  "meV",
+                  "mol",
+                  "mu_B",
+                  "nm",
+                  "nm^3",
+                  "ns",
+                  "ps",
+                  "rad",
+                  "s",
+                  "um"
+                 ]
+                },
+                {
+                 "type": "string",
+                 "pattern": "^x-gnu:"
+                }
+               ]
+              },
+              "description": {
+               "description": "An explanation of the meaning, source, or purpose of the hyperparameter.",
+               "type": "string"
+              },
+              "type": {
+               "enum": [
+                "string",
+                "float",
+                "int",
+                "bool"
+               ]
+              }
+             },
+             "required": [
+              "name",
+              "value",
+              "type"
+             ],
+             "patternProperties": {
+              "^x-": {}
+             },
+             "additionalProperties": false,
+             "allOf": [
+              {
+               "if": {
+                "properties": {
+                 "type": {
+                  "const": "string"
+                 }
+                }
+               },
+               "then": {
+                "properties": {
+                 "value": {
+                  "$ref": "#/$defs/any-depth-string"
+                 }
+                },
+                "not": {
+                 "required": [
+                  "unit"
+                 ]
+                }
+               }
+              },
+              {
+               "if": {
+                "properties": {
+                 "type": {
+                  "const": "float"
+                 }
+                }
+               },
+               "then": {
+                "properties": {
+                 "value": {
+                  "$ref": "#/$defs/any-depth-float"
+                 }
+                },
+                "required": [
+                 "unit"
+                ]
+               }
+              },
+              {
+               "if": {
+                "properties": {
+                 "type": {
+                  "const": "int"
+                 }
+                }
+               },
+               "then": {
+                "properties": {
+                 "value": {
+                  "$ref": "#/$defs/any-depth-int"
+                 }
+                },
+                "required": [
+                 "unit"
+                ]
+               }
+              },
+              {
+               "if": {
+                "properties": {
+                 "type": {
+                  "const": "bool"
+                 }
+                }
+               },
+               "then": {
+                "properties": {
+                 "value": {
+                  "$ref": "#/$defs/any-depth-bool"
+                 }
+                },
+                "not": {
+                 "required": [
+                  "unit"
+                 ]
+                }
+               }
+              }
+             ]
+            },
+            "minItems": 1
+           },
+           "transfer-learning": {
+            "description": "Method used to migrate knowledge from previously mastered objectives to accelerate proficiency for the current training.",
+            "type": "string"
+           }
+          },
+          "required": [
+           "training-procedure"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         },
+         "model-performance": {
+          "description": "An assessment of the reliability of the results of the interatomic model.",
+          "type": "object",
+          "properties": {
+           "evaluation-method": {
+            "type": "array",
+            "items": {
+             "description": "A description of the approach used to determine the reliability of the obtained results of the interatomic model.",
+             "type": "string"
+            },
+            "minItems": 1
+           },
+           "metric": {
+            "type": "array",
+            "items": {
+             "description": "A score of the interatomic model on one subset of the data.",
+             "type": "object",
+             "properties": {
+              "subset": {
+               "description": "The data on which the score was measured.",
+               "type": "string"
+              },
+              "quantity": {
+               "description": "The target variable the score is for.",
+               "type": "string"
+              },
+              "measure": {
+               "description": "The statistic used as the score.",
+               "type": "string"
+              },
+              "value": {
+               "description": "The value of the property, in the unit given by `unit`.",
+               "type": "number"
+              },
+              "unit": {
+               "description": "The unit in which the associated value is expressed.",
+               "anyOf": [
+                {
+                 "enum": [
+                  "1/angstrom",
+                  "1/angstrom^3",
+                  "1/bohr",
+                  "1/m",
+                  "1/m^3",
+                  "1/nm",
+                  "1/ps",
+                  "1/s",
+                  "C",
+                  "GPa",
+                  "J",
+                  "J/T",
+                  "J/mol",
+                  "K",
+                  "K/angstrom",
+                  "K/m",
+                  "N",
+                  "Pa",
+                  "Ry",
+                  "T",
+                  "V",
+                  "V/angstrom",
+                  "V/m",
+                  "W/m^2",
+                  "amu",
+                  "angstrom",
+                  "angstrom^3",
+                  "bar",
+                  "bohr",
+                  "bohr^3",
+                  "degree",
+                  "dimensionless",
+                  "e",
+                  "eV",
+                  "eV/angstrom",
+                  "eV/angstrom^3",
+                  "fs",
+                  "g/cm^3",
+                  "hartree",
+                  "hartree/bohr",
+                  "kJ/mol",
+                  "kbar",
+                  "kcal/mol",
+                  "kg",
+                  "kg/m^3",
+                  "m",
+                  "m/s^2",
+                  "m^3",
+                  "meV",
+                  "mol",
+                  "mu_B",
+                  "nm",
+                  "nm^3",
+                  "ns",
+                  "ps",
+                  "rad",
+                  "s",
+                  "um"
+                 ]
+                },
+                {
+                 "type": "string",
+                 "pattern": "^x-gnu:"
+                }
+               ]
+              }
+             },
+             "required": [
+              "subset",
+              "quantity",
+              "measure",
+              "value",
+              "unit"
+             ],
+             "patternProperties": {
+              "^x-": {}
+             },
+             "additionalProperties": false
+            },
+            "minItems": 1
+           },
+           "uncertainty-quantification": {
+            "description": "The method or process used to identify and measure the range of possible outcomes to assess the reliability of interatomic model predictions.",
+            "type": "string"
+           },
+           "applicability-domain": {
+            "description": "Where the inputs the model is applied to lie relative to its training data.",
+            "type": "string"
+           }
+          },
+          "required": [
+           "evaluation-method"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         }
+        },
+        "required": [],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
        }
       },
       "required": [

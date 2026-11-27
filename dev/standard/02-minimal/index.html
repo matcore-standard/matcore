@@ -3126,7 +3126,7 @@
 <li>"DFT" – Density Functional Theory: electronic structure obtained from the electron density</li>
 <li>"MBPT" – Many-Body Perturbation Theory: excited states obtained from many-body Green's functions</li>
 <li>"TB" – Tight Binding: electronic structure in a basis of localized orbitals with parameterized matrix elements</li>
-<li>"PIM" – Particle Interaction Model: energies and forces given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density</li>
+<li>"PIM" – Particle Interaction Model: energies, forces and other per-configuration responses (e.g. charges, dipoles, polarizabilities) given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density</li>
 <li>"PS" – Particle Simulation: particles moved or sampled using the energies and forces of another computation</li>
 <li>"DDD" – Discrete Dislocation Dynamics: plastic deformation from the motion and interaction of dislocation lines</li>
 <li>"KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events chosen by their rates</li>
@@ -3305,7 +3305,7 @@
 <p>Recommended: <code>Interaction model</code>, <code>Initial configuration</code>, <code>Starting point</code>, <code>Training data</code>, <code>Parameters</code>, <code>Source data</code>, <code>Guidance</code>. Other values are allowed.</p>
 <p><strong>Clarifications:</strong></p>
 <ul>
-<li>"Interaction model" – The energies and forces of the configurations this computation evaluates</li>
+<li>"Interaction model" – The energies, forces and other per-configuration responses (e.g. charges, dipoles, polarizabilities) of the configurations this computation evaluates</li>
 <li>"Initial configuration" – The configurations this computation starts from or evaluates, with any state carried over, e.g. velocities</li>
 <li>"Starting point" – An electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground state of a GW calculation</li>
 <li>"Training data" – Data a model is fitted to</li>
