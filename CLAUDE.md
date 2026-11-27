@@ -1935,6 +1935,115 @@ record or marked PROPOSED, NOT DECIDED.
    from two points deferred by 0083: resolvable IRIs (until matcore.org points to the site) and mappings to other
    schemas (with FAIRmat). The summary is unfinished: the list after "the following are absent:" and the MBPT, ML, PF
    and Derived sections are empty, and the other two reviews (0084 and the spreadsheet) are not in it.
+   Matterstack's assessment of MatCore 0.8.1 (a database agent, by the human's request; files in
+   /Users/tadmor/ArqOff/MATTERSTACK/DATABASE/matcore-assessment/, REPORT.md with gaps A1-A14, x- extensions B1-B4,
+   questions C1-C10, six records), reviewed with the human from 2026-11-27, item by item. Verified against v0.8.1:
+   every A gap is real; A8 (k-point spacing) conflicts with 0004 item 47, which removed k-point-spacing as able to
+   contradict number-of-points. Decided by the human so far (PROPOSED for a ruling once all items are decided):
+   A1 adopted: minimal computation gains an optional, repeatable `quantity` describing a quantity the dataset holds
+   from that computation (name*, description, unit, extent, type, per, convention), settling 0039's open question;
+   its `type` is a vocabulary of data types (open terms Float, Integer, Complex, String, Boolean), MatCore's own Types
+   unchanged.
+   A2 adopted (after the human asked to see the schema): structure gains an optional `population`, for many structures
+   of different compositions described together: count* (int, minimum 1), element (repeatable, IUPAC symbols; omitted
+   when unrestricted), number-of-elements and number-of-sites (repeatable value + qualifier, e.g. Minimum and Maximum),
+   form; material-component becomes required unless population is given; a structure entry gives one or the other,
+   not both (the human asked why both; "both" withdrawn); notes on both say when to use each (material-component: one
+   entry per material of a structure of known composition). The one-or-the-other rule is for the step 9 validator.
+   A3 adopted (after the human asked to see the schema): pim settings gains an optional `training` for a computation
+   of task Training, holding ml-model's training-data, training-method and model-performance with the same members and
+   notes ("interatomic model" for "machine learning model"), kept in step by a test; a computation using the trained
+   model names it as input role Parameters; the PIM term in minimal method's note and the input role Interaction
+   model widen from energies and forces to "energies, forces and other per-configuration responses (e.g. charges,
+   dipoles, polarizabilities)"; pim settings gains a generic `architecture-parameter` (as in ML) after model-type.
+   Settles 0073's open point on how pim records an MLIP's fit.
+   A4 adopted (after three revisions with the human): a new section 2.9 Geometric Construction (GC), key `gc`, built
+   like derived: settings* with computation-label*, procedure* (the rules applied and the role of each parameter) and
+   a generic construction-parameter; method term "GC" under Atomistic and Mesoscopic, defined as structures built by
+   rules the author specifies (geometric, combinatorial or random), without evaluating energies or forces and without a
+   model learned from data; generative models stay ML, searches that relax candidates stay PS (notes in ML and PS point
+   to GC); the introduction drafted in review; §1.2, the menu, an example, the JSON Schema; Leadership (under About)
+   gains "Method: Geometric Construction", membership TBD (the human's addition). Rejected on the way: a generic
+   construction-parameter on minimal computation (the human: method parameters belong in their own section). Settles
+   0065's open point for construction. Interface crystallography stays A13. Committee candidates suggested to the
+   human from memory, unverified: Hirel, van de Walle, Hart, Zhu, Marom, Patala, Ong, Bitzek.
+   A5 adopted: minimal computation › input gains an optional `dataset` (format uri: a DOI, a MatCore record's address
+   or another URI), given instead of a local computation-label when the input comes from outside the record;
+   computation-label becomes optional and, with dataset, names a computation in that dataset's record if it has one;
+   role unchanged; exactly one of a local computation-label or dataset (step 9 validator).
+   A6 adopted: §1.3 defines the reserved value `Unknown` for a required string Property (vocabulary or free text)
+   whose information was not recorded; an optional Property with missing information is omitted, never Unknown;
+   numbers have no such form.
+   A7 adopted: Annex U gains seven Kinds with units: energy per area (J/m^2, mJ/m^2, eV/angstrom^2), electric dipole
+   moment (e*angstrom, D, C*m), polarizability (C*m^2/V, e*angstrom^2/V), second-order susceptibility (pm/V, m/V),
+   thermal conductivity (W/(m*K)), electric current (A), electrical conductivity (S/m); every unit's fields traced in
+   its own PR, the first of each Kind adding the Kind (Kind names to fix in the ruling). Per-atom values (after the
+   human asked for the schema, an instance, and what energy per atom means): no eV/atom unit; two members with one
+   meaning each: `per` (how many values: one for each Atom, Configuration, ..., open terms) and `normalized-by` (what
+   each value is divided by: Atom, Formula unit, Cell volume, open terms, each defined); quantity has both, ml and pim
+   metric have normalized-by only; the unit stays that of the undivided quantity; terms kept identical by a test. A1's
+   quantity entry as written in review: name* (as stored), description, unit (Annex U or dimensionless, not checked
+   against a Kind; omitted for string or boolean), extent (a string in §1.3's notation), type (Float, Integer,
+   Complex, String, Boolean), per, normalized-by, convention.
+   A8 adopted (after a fuller explanation to the human): dft k-point-mesh gains an optional `rule` (type* Spacing or
+   Density; value* + unit*; convention* "2pi included" or "2pi excluded" for a spacing), given only when
+   number-of-points is omitted because the count varies between structures; a record never gives both, so 0004 item
+   47 stands. Open for the ruling: the value's Kind depends on type (InverseLength for Spacing, dimensionless for
+   Density), the conditional-rule case §1.3 leaves PROPOSED, NOT DECIDED.
+   A9 adopted: software › dependency › role gains "Container image" (the image the software ran in, e.g. Docker or
+   Apptainer), a note to give its digest (sha256:...) as version, not a tag. A10 adopted: software › role gains
+   "Trained model" (parameters of a model trained elsewhere, identified by identifier, link and a checksummed file);
+   settles 0073's open point; to draft in the ruling: a trained interatomic potential stays role Interaction model,
+   Trained model being for other ML models, so no artifact fits both. A11 adopted: input › role gains "Guidance" (a
+   model whose outputs steer this computation's sampling or generation, e.g. classifier guidance or an active-learning
+   acquisition function).
+   A12 adopted (after the human asked for the schema): minimal computation gains an optional string `selection`, how
+   the results kept in the dataset were chosen from those produced: the criterion, how many kept of how many, whether
+   rejected or failed results are also in the dataset; omitted when all are kept; ml inference › filtering unchanged,
+   named in its note. A13 adopted (after the human asked what it concerned, what direction means, and about
+   termination): material-component gains `orientation` (plane [hkl] and direction [uvw], Miller indices of the
+   component's conventional cell, the direction in the interface plane and parallel to the other side's; termination,
+   repeatable, the atomic layer at the interface named by composition, e.g. TiO2, SrO, one entry per termination
+   present); structure gains `orientation-relationship` (open terms, e.g. Kurdjumov-Sachs, Nishiyama-Wassermann);
+   material-component › role gains "Grain"; the registry stays in the data. A14 adopted (after the human asked for
+   more): an optional top-level `access` with the four terms of COAR Access Rights 1.1 (open access, embargoed access,
+   restricted access, metadata only access; vocabularies.coar-repositories.org, checked 2026-11-27; DataCite's rights
+   is free text and does not cite COAR, so the report's "as in DataCite" is corrected), their COAR URIs in the note,
+   and an optional embargo-date. All fourteen A gaps decided.
+   B (decided by the human after more information): B1-B3 are correct use of x-; Matterstack is advised that
+   computation-level x-matterstack hold computation keys (settings-hash, task), not lists of row ids, per its own B3;
+   B4's interim members move to the adopted Properties (x-quantity to quantity with type, per, normalized-by;
+   x-training to pim training, targets and weights in loss-function; x-construction-parameter to a gc settings block,
+   the computation's method GC; x-acceptance to selection; x-interface to material-component orientation and structure
+   orientation-relationship, registry and imposed strain staying data or x-). C1 answered: an append-only dataset is
+   described by versions, a version being an immutable release snapshot (a Version update), rows appended in between
+   belonging to the next; the snapshot id in provenance › comment; no schema change (a note on dataset-version may say
+   so). C2 answered: one computation covers calculations whose settings follow one rule (0077, 0063); the rule is given
+   in the method's settings (e.g. A8's k-point rule) or comment; a sentence in computation's note may say so.
+   C3 answered: a DFT computation whose goal is a property (band gap, SHG, Born charges, Berry-phase polarization) has
+   task Property calculation (the task note). C4 answered: two runs with identical settings on the same structures,
+   differing only in requested output and serving one purpose, are one computation (0077), their outputs two quantity
+   entries, the runs noted in dft comment. C5 answered: configurations created by another computation and evaluated by
+   this one are input role Initial configuration (0065, 0066); its definition is reworded to "The configurations this
+   computation starts from or evaluates, with any state carried over, e.g. velocities."; Matterstack's Source data is a
+   misuse. C6 answered: Wannierization is a DP computation naming the DFT computation as Source data, and a transport
+   computation names it as Source data (as told to Dr. Hale); Matterstack's Starting point is a misuse.
+   C7 answered: a temperature or bias used only in post-processing (transport coefficients, I-V curves) is a derived
+   calculation-parameter, not a condition (0039). C8 decided: a LicenseRef- license's link may be any URI, internal
+   included; the generated JSON Schema enforces license's note (an identifier beginning LicenseRef- requires name and
+   link). C9 answered: a URI form for MatCore ids waits for the decision on how ids are assigned (0084); link by DOI or
+   dataset location meanwhile; urn:matcore: is not endorsed. C10 decided: examples/minimal.json states the current
+   standard version and link, with a test comparing them with releases.yaml, so each release commit updates them.
+   All C questions answered. Also decided: runs of one simulation at several imposed temperatures are one computation
+   per temperature (0035, 0063), sharing one settings block; no series qualifier.
+   Record review (sent to Matterstack as listed, decided by the human): misuses: Source data for evaluated
+   configurations in records 2 and 4 (Initial configuration, C5); two DFT computations in record 2 (one, C4);
+   label-extraction in record 2 (drop unless it changes values, 0077, 0081); Starting point in record 3 (Source data,
+   C6); the mp-reference placeholder in record 4 (input › dataset, A5); task Unknown for dft-evaluation in record 4
+   (Single point or Optimization; Unknown is for information never recorded); method Unknown and "Geometric
+   construction" in records 2 and 5 (GC, A4). Omissions in record 6: no conditions or thermodynamic-constraint; task
+   Sampling where trajectories are the result (Dynamics, 0064). Ruling 0086 drafted (docs/decisions/0086-matterstack-assessment.md), with the reply
+   report to Matterstack; both await the human's approval; then the PRs listed in 0086's consequences.
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one
