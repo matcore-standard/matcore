@@ -518,6 +518,24 @@ properties:
               if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted
               with a validation warning).
           repeatable: false
+        - name: normalized-by
+          required: false
+          description: What each value is divided by.
+          type: string
+          extent: []
+          kind: inapplicable
+          recommended-unit: null
+          values:
+            terms: [Atom, Formula unit, Cell volume]
+            note: |-
+              - "Atom" – Divided by the number of atoms in the configuration
+              - "Formula unit" – Divided by the number of formula units in the configuration
+              - "Cell volume" – Divided by the volume of the cell
+          repeatable: false
+          notes:
+          - >-
+            Note: Omit it for a value not divided by anything. The unit is that of the undivided quantity, e.g. eV
+            for a total energy divided by the number of atoms.
       - name: uncertainty-quantification
         required: false
         description: >-

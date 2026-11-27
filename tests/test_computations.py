@@ -1014,7 +1014,8 @@ def test_ml_model_performance_keeps_validation_apart_from_testing():
     assert shape(method) == (True, True, 'string', [], 'inapplicable', None)
     metric = sub(perf, 'metric')
     assert (metric['required'], metric['repeatable'], metric['type']) == (False, True, None)
-    assert [c['name'] for c in metric['subproperties']] == ['subset', 'quantity', 'measure', 'value', 'unit']
+    assert [c['name'] for c in metric['subproperties']] == ['subset', 'quantity', 'measure', 'value', 'unit',
+                                                           'normalized-by']  # 0086 item 12
     subset = sub(metric, 'subset')
     assert subset['values']['terms'] == ['Training', 'Validation', 'Test']
     note = ' '.join(subset['values']['note'].split())
@@ -1539,3 +1540,17 @@ def test_gc_is_told_apart_from_generative_models_and_searches():
     assert any('GC' in n and 'relax' in n for n in algorithm.get('notes', []))
     leadership = (ROOT / 'docs/leadership.md').read_text()
     assert '### Method: Geometric Construction\n\n- TBD' in leadership
+
+
+def test_a_metric_says_what_its_value_is_divided_by():
+    """An error in a formation energy is usually quoted per atom; the unit stays the energy's and normalized-by
+    says what it is divided by, with the same terms as a stored quantity's, in ML and in pim alike (0086 item 12)."""
+    quantity = sub(sub(top('minimal', 'computation'), 'quantity'), 'normalized-by')
+    ml = sub(sub(sub(sub(top('ml', 'settings'), 'ml-model'), 'model-performance'), 'metric'), 'normalized-by')
+    pim = sub(sub(sub(sub(top('pim', 'settings'), 'training'), 'model-performance'), 'metric'), 'normalized-by')
+    for m in (ml, pim):
+        assert (m['required'], m['repeatable'], m['type']) == (False, False, 'string')
+        assert m['values'] == quantity['values'] and m['notes'] == quantity['notes']
+    names = [s['name'] for s in sub(sub(sub(top('ml', 'settings'), 'ml-model'), 'model-performance'),
+                                    'metric')['subproperties']]
+    assert names[-2:] == ['unit', 'normalized-by']

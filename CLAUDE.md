@@ -2085,6 +2085,12 @@ record or marked PROPOSED, NOT DECIDED.
    a density); no conditional mechanism (judgment call settling 0086's open point for this PR). Tests:
    test_dft_rulings (a new test; the 0053 member list and the 0059 note updated), test_properties (the k-point tree);
    03-dft and the JSON Schema regenerated; rendering checked.
+   [in progress, branch metric-normalized-by-0086, committed, not pushed; PR to open after the push] 0086 item 12:
+   schema/ml.yaml and schema/pim.yaml (metric gains normalized-by after unit, copied by script from minimal computation
+   › quantity › normalized-by, terms, definitions and note identical); tests/test_computations.py (a new test checking
+   the three are identical; the ML metric member list updated); 06-ml, pim and the JSON Schema regenerated; rendering
+   checked. Judgment call: the description "What each value is divided by." kept verbatim for a metric, so the three
+   stay identical.
 7. [done, PR #140 merged 2026-11-22: §1.4 and the generated JSON Schema] Define, as a section of the standard, the
    serialization requirements that any format must
    satisfy (not a specific format). Provide example instances in examples/ in at least one
