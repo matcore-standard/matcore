@@ -1,6 +1,6 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
- "title": "MatCore record, standard version 0.8.0",
+ "title": "MatCore record, standard version 0.9.0",
  "description": "A MatCore metadata record in JSON, generated from the standard (decision record 0078).",
  "type": "object",
  "properties": {
