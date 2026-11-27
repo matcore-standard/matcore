@@ -104,7 +104,8 @@ def test_smearing_leaves_the_k_point_mesh():
     s = settings()
     names = [p['name'] for p in s['subproperties']]
     assert names.index('smearing') == names.index('k-point-mesh') + 1
-    assert [p['name'] for p in sub(s, 'k-point-mesh')['subproperties']] == ['type', 'number-of-points', 'shift']
+    assert [p['name'] for p in sub(s, 'k-point-mesh')['subproperties']] == ['type', 'number-of-points', 'shift',
+                                                                          'rule']  # rule added by 0086
     assert [p['name'] for p in sub(s, 'smearing')['subproperties']] == ['type', 'width', 'parameter']
     assert 'smearing-' not in (ROOT / 'schema/dft.yaml').read_text()
 
@@ -135,8 +136,8 @@ def test_libxc_version_is_a_software_dependency():
 
 def test_k_point_mesh_names_its_cell_and_a_varying_mesh():
     """The reciprocal lattice is that of minimal's cell; a computation of many cells has no single mesh, and
-    the spacing that chose them goes in comment, since k-point-spacing was removed (0004 item 47; 0059)."""
-    assert sub(settings(), 'k-point-mesh')['notes'] == ['Note: The mesh samples the Brillouin zone of the simulation cell (minimal `conditions › cell`), periodic in the directions given by `cell-periodicity`. When the mesh differs between the configurations of a computation, e.g. one chosen from a k-point spacing, omit `number-of-points` and say in `comment` how the mesh was chosen.']
+    the rule that chose them is given in `rule`, never beside a count (0004 item 47; 0059; 0086 item 11)."""
+    assert sub(settings(), 'k-point-mesh')['notes'] == ['Note: The mesh samples the Brillouin zone of the simulation cell (minimal `conditions › cell`), periodic in the directions given by `cell-periodicity`. When the mesh differs between the configurations of a computation because it is chosen by a rule, e.g. a k-point spacing, omit `number-of-points` and give the rule in `rule`; a mesh gives a count or a rule, never both.']
 
 
 def test_initial_magnetic_moment_is_given_per_species():
@@ -176,3 +177,25 @@ def test_the_core_is_all_electron_or_frozen_and_paw_is_a_kind_of_dataset():
     assert 'LAPW' in sub(settings(), 'wavefunction-representation', 'type')['values']['terms']
     dft = json.loads((ROOT / 'examples/dft.json').read_text(encoding='utf-8'))['dft']
     assert dft['settings'][0]['core-electron-treatment']['type'] == 'Frozen core'
+
+
+def test_a_mesh_set_by_a_rule_records_the_rule():
+    """A dataset of many structures meshed by one rule cannot give one count, so it gives the rule: a spacing or a
+    density, and for a spacing whether 2π is included, without which the number is ambiguous. A record never gives
+    both a count and a rule, since they could disagree (0004 item 47, 0086 item 11). The value's Kind follows the
+    type, as the SCF tolerance's follows its criterion (0019)."""
+    mesh = sub(settings(), 'k-point-mesh')
+    assert [s['name'] for s in mesh['subproperties']] == ['type', 'number-of-points', 'shift', 'rule']
+    note = ' '.join(mesh['notes'][0].split())
+    assert '`rule`' in note and 'never both' in note
+    rule = sub(mesh, 'rule')
+    assert (rule['required'], rule['repeatable']) == (False, False)
+    assert [(s['name'], s['required']) for s in rule['subproperties']] == [
+        ('type', True), ('value', True), ('unit', True), ('convention', False)]
+    assert sub(rule, 'type')['values']['terms'] == ['Spacing', 'Density']
+    v = sub(rule, 'value')
+    assert (v['type'], v['extent'], v['kind'], v['values']['minimum']) == ('float', [], 'any', 0)
+    tolerance_unit = sub(sub(settings(), 'self-consistent-field-convergence', 'tolerance'), 'unit')
+    assert sub(rule, 'unit')['values'] == tolerance_unit['values']
+    assert sub(rule, 'convention')['values']['terms'] == ['2pi included', '2pi excluded']
+    assert 'Spacing' in sub(rule, 'convention')['notes'][0]

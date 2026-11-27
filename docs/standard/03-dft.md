@@ -773,7 +773,7 @@ For periodic systems, a grid of points sampled within the Brillouin zone, used t
 |---|---|
 | no | no |
 
-Note: The mesh samples the Brillouin zone of the simulation cell (minimal `conditions › cell`), periodic in the directions given by `cell-periodicity`. When the mesh differs between the configurations of a computation, e.g. one chosen from a k-point spacing, omit `number-of-points` and say in `comment` how the mesh was chosen.
+Note: The mesh samples the Brillouin zone of the simulation cell (minimal `conditions › cell`), periodic in the directions given by `cell-periodicity`. When the mesh differs between the configurations of a computation because it is chosen by a rule, e.g. a k-point spacing, omit `number-of-points` and give the rule in `rule`; a mesh gives a count or a rule, never both.
 
 <details class="note mc-property" id="dft.settings.k-point-mesh.type" markdown="1">
 <summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -813,6 +813,83 @@ Translation of the k-point mesh along the reciprocal lattice vector directions.
 | no | no | float | [3] | dimensionless | — |
 
 **Clarifications:** Ordered list of three real numbers, the shifts along the three reciprocal lattice vector directions. Shifts are given as fractions of the mesh spacing along each reciprocal lattice vector.
+
+</details>
+
+<details class="note mc-property" id="dft.settings.k-point-mesh.rule" markdown="1">
+<summary><span class="mc-name">rule</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The rule by which the mesh was chosen for each configuration.
+
+| Required | Repeatable |
+|---|---|
+| no | no |
+
+Note: Give it instead of `number-of-points` when the number of k-points varies between configurations.
+
+<details class="note mc-property" id="dft.settings.k-point-mesh.rule.type" markdown="1">
+<summary><span class="mc-name">type<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+What the rule fixes.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+Recommended: `Spacing`, `Density`. Other values are allowed.
+
+**Clarifications:**
+
+- "Spacing" – The largest distance between neighboring k-points, a reciprocal length, e.g. in 1/angstrom
+- "Density" – The number of k-points per reciprocal atom, i.e. the number of k-points times the number of atoms in the cell, a pure number
+
+</details>
+
+<details class="note mc-property" id="dft.settings.k-point-mesh.rule.value" markdown="1">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The value of the property, in the unit given by `unit`.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | float | [] | any | — |
+
+Minimum: 0.
+
+</details>
+
+<details class="note mc-property" id="dft.settings.k-point-mesh.rule.unit" markdown="1">
+<summary><span class="mc-name">unit<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+The unit in which the associated value is expressed.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| yes | no | string | [] | inapplicable | — |
+
+**Clarifications:** A symbol from the MatCore Unit Table (Annex U), or the reserved symbol `dimensionless`. If and only if no Annex U symbol applies, a string prefixed `x-gnu:` giving a GNU Units expression (accepted with a validation warning).
+
+</details>
+
+<details class="note mc-property" id="dft.settings.k-point-mesh.rule.convention" markdown="1">
+<summary><span class="mc-name">convention</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+
+Whether the factor 2π is included in the reciprocal lengths the spacing is measured in.
+
+| Required | Repeatable | Type | Extent | Kind | Rec. unit |
+|---|---|---|---|---|---|
+| no | no | string | [] | inapplicable | — |
+
+Recommended: `2pi included`, `2pi excluded`. Other values are allowed.
+
+**Clarifications:**
+
+- "2pi included" – Reciprocal lattice vectors of length 2π/a for a lattice parameter a
+- "2pi excluded" – Reciprocal lattice vectors of length 1/a
+
+Note: Give it for type Spacing, since a spacing means a different mesh in each convention.
+
+</details>
 
 </details>
 
