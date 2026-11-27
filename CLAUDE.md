@@ -2056,7 +2056,7 @@ record or marked PROPOSED, NOT DECIDED.
    the Initial configuration wording updated), test_schema (counts named number-of-... allowed), test_preamble (the new
    bullet); pages and JSON Schema regenerated; rendering checked. Judgment calls: member positions; population's
    qualifier copies the fixed form (its note speaks of a simulation); orientation-relationship's two definitions.
-   [in progress, branch pim-training-0086, committed, not pushed; PR to open after the push] 0086 item 9: schema/pim.yaml
+   [done, PR #151 merged 2026-11-27] 0086 item 9: schema/pim.yaml
    (by script: architecture-parameter after model-type and training last in settings, copied from ml-model with
    "machine learning model" worded "interatomic model" and the cross-references to ml-model and training-method
    re-pointed); schema/minimal.yaml (the PIM term and input role Interaction model widened to "energies, forces and
