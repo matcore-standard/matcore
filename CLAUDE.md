@@ -2091,7 +2091,7 @@ record or marked PROPOSED, NOT DECIDED.
    the three are identical; the ML metric member list updated); 06-ml, pim and the JSON Schema regenerated; rendering
    checked. Judgment call: the description "What each value is divided by." kept verbatim for a metric, so the three
    stay identical.
-   [in progress, branch units-0086, committed, not pushed; PR to open after the push] 0086 item 13, one PR for all (decided by
+   [done, PR #155 merged 2026-11-27] 0086 item 13, one PR for all (decided by
    the human 2026-11-27; earlier units came one per PR): schema/units.yaml gains the Kinds EnergyPerArea,
    ElectricDipoleMoment, Polarizability, SecondOrderSusceptibility (no QUDT quantity kind: qudt null), ThermalConductivity,
    ElectricCurrent, ElectricConductivity, and the units J/m^2, mJ/m^2, eV/angstrom^2, e*angstrom, D, C*m, C*m^2/V,
