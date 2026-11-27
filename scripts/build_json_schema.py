@@ -7,7 +7,8 @@ entries, a leaf a JSON value of its Type nested as its Extent gives, never null.
 Annex U symbols of that value's Kind (0015), plus dimensionless for reduced phase field lengths and times (0075); a
 unit the schema does not fix takes any symbol, dimensionless or an x-gnu: expression. A generic parameter carries the
 JSON member `type` and its value has that type (0044 item 3); it has a unit when that type is float or int and none
-when it is string or bool (0084 item 1). A record may add members named with the prefix x- at any
+when it is string or bool (0084 item 1). A license whose identifier contains LicenseRef- gives a name and
+a link (0086 item 14). A record may add members named with the prefix x- at any
 level (0079). Open terms, references by label and formula grammar are left to other checks.
 
 Usage: build_json_schema.py writes docs/standard/matcore.schema.json; scripts/build_docs.py calls write().
@@ -23,6 +24,9 @@ OUT = ROOT / 'docs/standard/matcore.schema.json'
 JSON_TYPES = {'string': 'string', 'float': 'number', 'int': 'integer', 'bool': 'boolean'}
 REDUCED = {'domain-size', 'grid-spacing', 'time-step-size'}  # lengths and times that may be reduced (0075)
 EXTENSION = {'^x-': {}}  # a Property a record adds, of any value (0079)
+# A license outside the SPDX list is read through its name and the text it links to (license's note; 0086 item 14).
+LICENSE_REF = {'if': {'properties': {'identifier': {'pattern': 'LicenseRef-'}}, 'required': ['identifier']},
+               'then': {'required': ['name', 'link']}}
 
 
 def nested(t):
@@ -100,6 +104,8 @@ def section_schema(props, units, name=''):
                        'then': {'properties': {'value': nested(t)}} | (
                            {'required': ['unit']} if t in ('float', 'int') else {'not': {'required': ['unit']}})}
                       for t in JSON_TYPES]  # a string or bool is not measured, so it has no unit (0084 item 1)
+    if name == 'license':
+        s['allOf'] = [LICENSE_REF]
     return s
 
 

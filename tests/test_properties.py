@@ -1169,11 +1169,13 @@ def test_record_author_names_who_wrote_the_record():
 
 
 def test_example_record_names_its_standard_and_version():
-    """The example follows 0.6.0, points to its tag, and describes the first version of its dataset (0045 item 3)."""
+    """The example follows the current release and points to its tag (0045 item 3; kept current by 0086 item 15), and
+    describes the first version of its dataset."""
     import json
     m = json.loads((ROOT / 'examples/minimal.json').read_text(encoding='utf-8'))['minimal']['matcore']
+    v = yaml.safe_load((ROOT / 'schema/releases.yaml').read_text())['releases'][0]['version']
     assert {k: m[k] for k in ('standard-version', 'standard-link', 'id', 'dataset-version', 'creation-date')} == {
-        'standard-version': '0.6.0', 'standard-link': 'https://github.com/matcore-standard/matcore/tree/v0.6.0/schema',
+        'standard-version': v, 'standard-link': f'https://github.com/matcore-standard/matcore/tree/v{v}/schema',
         'id': 'mc-ad83jsd3', 'dataset-version': 1, 'creation-date': '2026-02-14'}
 
 

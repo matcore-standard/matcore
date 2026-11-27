@@ -2098,7 +2098,27 @@
       "patternProperties": {
        "^x-": {}
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "allOf": [
+       {
+        "if": {
+         "properties": {
+          "identifier": {
+           "pattern": "LicenseRef-"
+          }
+         },
+         "required": [
+          "identifier"
+         ]
+        },
+        "then": {
+         "required": [
+          "name",
+          "link"
+         ]
+        }
+       }
+      ]
      },
      "minItems": 1
     },

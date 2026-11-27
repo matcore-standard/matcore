@@ -3325,8 +3325,8 @@ Dataset source: [https://doi.org/10.60732/8e9bc5b0](https://doi.org/10.60732/8e9
 {
   "minimal": {
     "matcore": {
-      "standard-version": "0.6.0",
-      "standard-link": "https://github.com/matcore-standard/matcore/tree/v0.6.0/schema",
+      "standard-version": "0.8.0",
+      "standard-link": "https://github.com/matcore-standard/matcore/tree/v0.8.0/schema",
       "id": "mc-ad83jsd3",
       "dataset-version": 1,
       "record-author": [
