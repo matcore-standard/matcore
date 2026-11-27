@@ -1,0 +1,6144 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "MatCore record, standard version 0.8.1",
+ "description": "A MatCore metadata record in JSON, generated from the standard (decision record 0078).",
+ "type": "object",
+ "properties": {
+  "minimal": {
+   "$ref": "#/$defs/minimal"
+  },
+  "dft": {
+   "$ref": "#/$defs/dft"
+  },
+  "pim": {
+   "$ref": "#/$defs/pim"
+  },
+  "ps": {
+   "$ref": "#/$defs/ps"
+  },
+  "mbpt": {
+   "$ref": "#/$defs/mbpt"
+  },
+  "ml": {
+   "$ref": "#/$defs/ml"
+  },
+  "pf": {
+   "$ref": "#/$defs/pf"
+  },
+  "derived": {
+   "$ref": "#/$defs/derived"
+  }
+ },
+ "required": [
+  "minimal"
+ ],
+ "patternProperties": {
+  "^x-": {}
+ },
+ "additionalProperties": false,
+ "$defs": {
+  "minimal": {
+   "title": "2.1 Minimal MatCore Metadata",
+   "type": "object",
+   "properties": {
+    "matcore": {
+     "description": "Information about this MatCore metadata record: the standard it follows, the dataset version it describes, and who created it and when.",
+     "type": "object",
+     "properties": {
+      "standard-version": {
+       "description": "The version of the MatCore standard this record follows.",
+       "type": "string",
+       "pattern": "(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)"
+      },
+      "standard-link": {
+       "description": "A URI for the schema of that version of the standard.",
+       "type": "string",
+       "format": "uri"
+      },
+      "id": {
+       "description": "An identifier of the dataset, the same for all its versions.",
+       "type": "string"
+      },
+      "dataset-version": {
+       "description": "The version of the dataset this record describes.",
+       "type": "integer",
+       "minimum": 1
+      },
+      "record-author": {
+       "type": "array",
+       "items": {
+        "description": "An entity (e.g. person, organization, software agent) responsible for creating this metadata record, and their institutional affiliation if relevant.",
+        "type": "object",
+        "properties": {
+         "name": {
+          "description": "The name of the entity that created the metadata record.",
+          "type": "string"
+         },
+         "identifier": {
+          "type": "array",
+          "items": {
+           "description": "A unique, persistent identifier that globally and unambiguously identifies the entity that created the metadata record.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The identifier, in the form Annex I gives for its scheme when the scheme is listed there.",
+             "type": "string"
+            },
+            "scheme": {
+             "description": "The identifier scheme that the value belongs to.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "scheme"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "affiliation": {
+          "type": "array",
+          "items": {
+           "description": "The affiliation of the entity that created the metadata record if they have one.",
+           "type": "object",
+           "properties": {
+            "name": {
+             "description": "The name of the affiliation.",
+             "type": "string"
+            },
+            "identifier": {
+             "description": "A unique, persistent identifier that globally and unambiguously identifies the affiliation.",
+             "type": "object",
+             "properties": {
+              "value": {
+               "description": "The identifier, in the form Annex I gives for its scheme when the scheme is listed there.",
+               "type": "string"
+              },
+              "scheme": {
+               "description": "The identifier scheme that the value belongs to.",
+               "type": "string"
+              }
+             },
+             "required": [
+              "value",
+              "scheme"
+             ],
+             "patternProperties": {
+              "^x-": {}
+             },
+             "additionalProperties": false
+            }
+           },
+           "required": [
+            "name"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         }
+        },
+        "required": [
+         "name"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "minItems": 1
+      },
+      "creation-date": {
+       "description": "The date, or date and time, when this metadata record was created.",
+       "type": "string",
+       "pattern": "\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])(T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\dZ)?"
+      }
+     },
+     "required": [
+      "standard-version",
+      "id",
+      "dataset-version",
+      "record-author",
+      "creation-date"
+     ],
+     "patternProperties": {
+      "^x-": {}
+     },
+     "additionalProperties": false
+    },
+    "creator": {
+     "type": "array",
+     "items": {
+      "description": "A primary entity (e.g. person, organization, software agent) responsible for creating the dataset's core content and their institutional affiliation if relevant.",
+      "type": "object",
+      "properties": {
+       "name": {
+        "description": "The name of the entity that generated the dataset.",
+        "type": "string"
+       },
+       "identifier": {
+        "type": "array",
+        "items": {
+         "description": "A unique, persistent identifier that globally and unambiguously identifies the entity that created the dataset.",
+         "type": "object",
+         "properties": {
+          "value": {
+           "description": "The identifier, in the form Annex I gives for its scheme when the scheme is listed there.",
+           "type": "string"
+          },
+          "scheme": {
+           "description": "The identifier scheme that the value belongs to.",
+           "type": "string"
+          }
+         },
+         "required": [
+          "value",
+          "scheme"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       },
+       "affiliation": {
+        "type": "array",
+        "items": {
+         "description": "The affiliation of the entity that generated the dataset if they have one.",
+         "type": "object",
+         "properties": {
+          "name": {
+           "description": "The name of the affiliation.",
+           "type": "string"
+          },
+          "identifier": {
+           "description": "A unique, persistent identifier that globally and unambiguously identifies the affiliation.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The identifier, in the form Annex I gives for its scheme when the scheme is listed there.",
+             "type": "string"
+            },
+            "scheme": {
+             "description": "The identifier scheme that the value belongs to.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "scheme"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          }
+         },
+         "required": [
+          "name"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       }
+      },
+      "required": [
+       "name"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    },
+    "contributor": {
+     "type": "array",
+     "items": {
+      "description": "An entity (e.g. person, organization, software agent) that provided secondary support, specialized skills, or resources to the dataset's development, but is not considered a primary author, and their institutional affiliation if relevant.",
+      "type": "object",
+      "properties": {
+       "name": {
+        "description": "The name of the entity that contributed to the dataset.",
+        "type": "string"
+       },
+       "identifier": {
+        "type": "array",
+        "items": {
+         "description": "A unique, persistent identifier that globally and unambiguously identifies the entity that contributed to the dataset.",
+         "type": "object",
+         "properties": {
+          "value": {
+           "description": "The identifier, in the form Annex I gives for its scheme when the scheme is listed there.",
+           "type": "string"
+          },
+          "scheme": {
+           "description": "The identifier scheme that the value belongs to.",
+           "type": "string"
+          }
+         },
+         "required": [
+          "value",
+          "scheme"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       },
+       "affiliation": {
+        "type": "array",
+        "items": {
+         "description": "The affiliation of the entity that contributed to the dataset if they have one.",
+         "type": "object",
+         "properties": {
+          "name": {
+           "description": "The name of the affiliation.",
+           "type": "string"
+          },
+          "identifier": {
+           "description": "A unique, persistent identifier that globally and unambiguously identifies the affiliation.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The identifier, in the form Annex I gives for its scheme when the scheme is listed there.",
+             "type": "string"
+            },
+            "scheme": {
+             "description": "The identifier scheme that the value belongs to.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "scheme"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          }
+         },
+         "required": [
+          "name"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       }
+      },
+      "required": [
+       "name"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    },
+    "title": {
+     "description": "A single sentence description of the dataset.",
+     "type": "string"
+    },
+    "creation-date": {
+     "description": "The calendar date and time when the dataset was created.",
+     "type": "string",
+     "pattern": "\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])(T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\dZ)?"
+    },
+    "description": {
+     "description": "A synopsis of the dataset, its contents, and purpose.",
+     "type": "string"
+    },
+    "disclaimer": {
+     "description": "A statement of applicability provided by the creator(s) informing users of the intended use and/or limitations of this dataset.",
+     "type": "string"
+    },
+    "structure": {
+     "type": "array",
+     "items": {
+      "description": "A system modeled in the dataset, e.g. a bulk crystal or a thin film on a substrate, and the materials that make it up.",
+      "type": "object",
+      "properties": {
+       "label": {
+        "description": "A name for this structure, by which computations in the record refer to it.",
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+       },
+       "description": {
+        "description": "An explanation of the structure as a whole, e.g. the stacking order of its layers, the number of periods of a superlattice, or how its components meet.",
+        "type": "string"
+       },
+       "material-component": {
+        "type": "array",
+        "items": {
+         "description": "One part of the structure, made of a single material, with its composition, form, role and phase.",
+         "type": "object",
+         "properties": {
+          "formula": {
+           "description": "The chemical formula of the material component.",
+           "type": "string",
+           "pattern": "[A-Za-z0-9.(){}+-]+"
+          },
+          "variable": {
+           "type": "array",
+           "items": {
+            "description": "A value of a variable used in `formula`.",
+            "type": "object",
+            "properties": {
+             "name": {
+              "description": "The name of the variable, as written in `formula`.",
+              "type": "string",
+              "pattern": "[a-z]"
+             },
+             "value": {
+              "description": "A value of the variable.",
+              "type": "number"
+             },
+             "qualifier": {
+              "description": "What the value represents.",
+              "type": "string"
+             }
+            },
+            "required": [
+             "name",
+             "value",
+             "qualifier"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          },
+          "topology": {
+           "type": "array",
+           "items": {
+            "description": "The structure of a substance in the material component, given by an identifier, when its formula alone does not determine it.",
+            "type": "object",
+            "properties": {
+             "substance": {
+              "description": "The formula of the substance, either a group in the material component's formula or the whole formula.",
+              "type": "string"
+             },
+             "identifier": {
+              "type": "array",
+              "items": {
+               "description": "An identifier of the substance's structure.",
+               "type": "object",
+               "properties": {
+                "value": {
+                 "description": "The identifier, in the form Annex I gives for its scheme when the scheme is listed there.",
+                 "type": "string"
+                },
+                "scheme": {
+                 "description": "The identifier scheme that the value belongs to.",
+                 "type": "string"
+                }
+               },
+               "required": [
+                "value",
+                "scheme"
+               ],
+               "patternProperties": {
+                "^x-": {}
+               },
+               "additionalProperties": false
+              },
+              "minItems": 1
+             }
+            },
+            "required": [
+             "substance",
+             "identifier"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          },
+          "form": {
+           "description": "The geometric form of the component as modeled.",
+           "type": "string"
+          },
+          "role": {
+           "description": "The part the component plays in the structure.",
+           "type": "string"
+          },
+          "fraction": {
+           "type": "array",
+           "items": {
+            "description": "The atomic fraction of the structure made up of this component, i.e. the number of atoms in the component divided by the number of atoms in the structure.",
+            "type": "object",
+            "properties": {
+             "value": {
+              "description": "The value of the property.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+             },
+             "qualifier": {
+              "description": "What the value represents.",
+              "type": "string"
+             }
+            },
+            "required": [
+             "value"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          },
+          "phase": {
+           "type": "array",
+           "items": {
+            "description": "A phase of the material.",
+            "type": "string"
+           },
+           "minItems": 1
+          },
+          "magnetic-order": {
+           "description": "The arrangement of the magnetic moments in the material component as modeled.",
+           "type": "string"
+          },
+          "description": {
+           "description": "An explanation of the nature of the material, e.g. a crystal structure designation, a chemical formula for a molecule, etc.",
+           "type": "string"
+          },
+          "microstructure": {
+           "description": "For a solid state phase, a description of the arrangement of phases, grains and defects in the material.",
+           "type": "string"
+          }
+         },
+         "required": [
+          "formula",
+          "form"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       }
+      },
+      "required": [
+       "label",
+       "material-component"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    },
+    "computation": {
+     "type": "array",
+     "items": {
+      "description": "A group of calculations in the dataset that share one method and one set of settings, e.g. the DFT single points of a training set.",
+      "type": "object",
+      "properties": {
+       "label": {
+        "description": "A name for this computation, by which other computations and the method-specific sections refer to it.",
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+       },
+       "description": {
+        "description": "An explanation of the computation that its other properties do not capture, e.g. the protocol of a search.",
+        "type": "string"
+       },
+       "method-class": {
+        "description": "The general category to which the computational technique belongs.",
+        "type": "string"
+       },
+       "method": {
+        "description": "The method of the calculations in this computation, which names the section of this standard that describes their settings, where one exists.",
+        "type": "string"
+       },
+       "task": {
+        "description": "What the calculations of this computation do.",
+        "type": "string"
+       },
+       "structure-label": {
+        "type": "array",
+        "items": {
+         "description": "The label of a structure modeled by this computation.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "input": {
+        "type": "array",
+        "items": {
+         "description": "Another computation in the record whose results this computation uses.",
+         "type": "object",
+         "properties": {
+          "computation-label": {
+           "description": "The label of that computation.",
+           "type": "string"
+          },
+          "role": {
+           "description": "What this computation takes from that computation.",
+           "type": "string"
+          }
+         },
+         "required": [
+          "computation-label",
+          "role"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       },
+       "conditions": {
+        "description": "The conditions imposed on the simulated system during the computation, e.g. by a thermostat, a barostat, a loading device or a fixed simulation cell. Omitted when no condition is imposed, e.g. for a single point or a training computation.",
+        "type": "object",
+        "properties": {
+         "type": {
+          "description": "The nature of the simulation being performed.",
+          "type": "object",
+          "properties": {
+           "thermodynamic-state": {
+            "description": "Whether the simulated system is at equilibrium, in a steady state, or evolving in time.",
+            "type": "string"
+           },
+           "system-openness": {
+            "description": "What the system exchanges with its surroundings.",
+            "type": "string"
+           },
+           "time-dependence": {
+            "description": "How the imposed conditions change during the simulation.",
+            "type": "string"
+           },
+           "spatial-uniformity": {
+            "description": "How the imposed conditions vary across the system.",
+            "type": "string"
+           }
+          },
+          "required": [
+           "thermodynamic-state"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         },
+         "description": {
+          "description": "Explanatory text clarifying the simulation type, and how any condition varies in space or time, e.g. a temperature ramp, a thermostat applied to part of the system, or a composition set by chemical potentials. For a condition that varies, it states how, e.g. the shape of a ramp or the region a value applies to.",
+          "type": "string"
+         },
+         "number-of-particles": {
+          "type": "array",
+          "items": {
+           "description": "The number of particles (atoms or other discrete entities) in the simulated system, as imposed by the simulation.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property.",
+             "type": "integer"
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "net-charge": {
+          "type": "array",
+          "items": {
+           "description": "The net electric charge of the simulated system, as imposed by the simulation, e.g. by fixing the number of electrons of a charged defect or an ion, or the charge of an electrode.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "number"
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "C",
+              "e"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "volume": {
+          "type": "array",
+          "items": {
+           "description": "The volume of the simulated system, as imposed by the simulation.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "number"
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "angstrom^3",
+              "bohr^3",
+              "m^3",
+              "nm^3"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "mass-density": {
+          "type": "array",
+          "items": {
+           "description": "The mass density of the simulated system, as imposed by the simulation.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "number"
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "g/cm^3",
+              "kg/m^3"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "cell": {
+          "type": "array",
+          "items": {
+           "description": "The simulation cell, as imposed by the simulation.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "array",
+             "items": {
+              "type": "array",
+              "items": {
+               "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+             },
+             "minItems": 3,
+             "maxItems": 3
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "angstrom",
+              "bohr",
+              "m",
+              "nm",
+              "um"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "cell-reference": {
+          "type": "array",
+          "items": {
+           "description": "The simulation cell in the reference configuration, relative to which strain and strain rate are defined.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "array",
+             "items": {
+              "type": "array",
+              "items": {
+               "type": "number"
+              },
+              "minItems": 3,
+              "maxItems": 3
+             },
+             "minItems": 3,
+             "maxItems": 3
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "angstrom",
+              "bohr",
+              "m",
+              "nm",
+              "um"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "cell-periodicity": {
+          "description": "Whether periodic boundary conditions are applied along each cell vector, for both cell and cell-reference.",
+          "type": "array",
+          "items": {
+           "type": "boolean"
+          },
+          "minItems": 3,
+          "maxItems": 3
+         },
+         "temperature": {
+          "type": "array",
+          "items": {
+           "description": "The temperature imposed on the simulated system, e.g. by a thermostat or a heat bath in thermal contact with it.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "number"
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "K"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "stress": {
+          "type": "array",
+          "items": {
+           "description": "The stress, normal and shear components, imposed on the simulated system, e.g. by a barostat or an external loading device.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "array",
+             "items": {
+              "type": "number"
+             },
+             "minItems": 6,
+             "maxItems": 6
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "GPa",
+              "Pa",
+              "bar",
+              "eV/angstrom^3",
+              "kbar"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "strain": {
+          "type": "array",
+          "items": {
+           "description": "The strain imposed on the simulation cell relative to cell-reference, as the Lagrangian strain tensor.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property.",
+             "type": "array",
+             "items": {
+              "type": "number"
+             },
+             "minItems": 6,
+             "maxItems": 6
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "strain-rate": {
+          "type": "array",
+          "items": {
+           "description": "The strain rate imposed on the simulation cell relative to cell-reference, as the time derivative of the Lagrangian strain tensor.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "array",
+             "items": {
+              "type": "number"
+             },
+             "minItems": 6,
+             "maxItems": 6
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "1/ps",
+              "1/s"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "heat-flux": {
+          "type": "array",
+          "items": {
+           "description": "The heat flux imposed on the simulated system, the thermal energy per unit area per unit time driven through it, e.g. by exchanging energy between a heat source and a heat sink.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "array",
+             "items": {
+              "type": "number"
+             },
+             "minItems": 3,
+             "maxItems": 3
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "W/m^2"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "temperature-gradient": {
+          "type": "array",
+          "items": {
+           "description": "The temperature gradient imposed on the simulated system, e.g. by thermostatting two regions at different temperatures.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "array",
+             "items": {
+              "type": "number"
+             },
+             "minItems": 3,
+             "maxItems": 3
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "K/angstrom",
+              "K/m"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "electric-field": {
+          "type": "array",
+          "items": {
+           "description": "The electric field imposed on the simulated system, e.g. a uniform applied field.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "array",
+             "items": {
+              "type": "number"
+             },
+             "minItems": 3,
+             "maxItems": 3
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "V/angstrom",
+              "V/m"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "magnetic-field": {
+          "type": "array",
+          "items": {
+           "description": "The magnetic field imposed on the simulated system, given as the magnetic flux density <i>B</i>.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "array",
+             "items": {
+              "type": "number"
+             },
+             "minItems": 3,
+             "maxItems": 3
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "T"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "body-force": {
+          "type": "array",
+          "items": {
+           "description": "The body force per unit mass imposed on the simulated system, e.g. gravity or a constant force driving a flow.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "array",
+             "items": {
+              "type": "number"
+             },
+             "minItems": 3,
+             "maxItems": 3
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "m/s^2"
+             ]
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "electrode-potential": {
+          "type": "array",
+          "items": {
+           "description": "The potential of the working electrode imposed on the simulated system, e.g. by a potentiostat in a constant-potential simulation, relative to the reference given in `reference`.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "number"
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "V"
+             ]
+            },
+            "reference": {
+             "description": "The reference against which the potential is given.",
+             "type": "string"
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit",
+            "reference"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "chemical-potential": {
+          "type": "array",
+          "items": {
+           "description": "The chemical potential of a species imposed on the simulated system by a reservoir, e.g. in a grand-canonical or semi-grand-canonical simulation.",
+           "type": "object",
+           "properties": {
+            "value": {
+             "description": "The value of the property, in the unit given by `unit`.",
+             "type": "number"
+            },
+            "unit": {
+             "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+             "enum": [
+              "J",
+              "Ry",
+              "eV",
+              "hartree",
+              "meV"
+             ]
+            },
+            "species": {
+             "description": "The species whose chemical potential is given, as an element symbol, a user-defined species or a group of a material component's formula.",
+             "type": "string"
+            },
+            "relative-to": {
+             "description": "A second species, when the value is the difference between the chemical potentials of species and of this one.",
+             "type": "string"
+            },
+            "qualifier": {
+             "description": "What the value represents.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "value",
+            "unit",
+            "species"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         }
+        },
+        "required": [
+         "type"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "software": {
+        "type": "array",
+        "items": {
+         "description": "A program, package or script used to perform the calculations: the simulation code, a calculation method or workflow framework that drives it, or a custom script.",
+         "type": "object",
+         "properties": {
+          "name": {
+           "description": "The name of the software package.",
+           "type": "string"
+          },
+          "role": {
+           "description": "The part this software played in the calculations.",
+           "type": "string"
+          },
+          "description": {
+           "description": "What this software did in the calculations.",
+           "type": "string"
+          },
+          "version": {
+           "description": "The version of the software package.",
+           "type": "string"
+          },
+          "link": {
+           "description": "A URI for the software, e.g. its source repository or home page.",
+           "type": "string",
+           "format": "uri"
+          },
+          "revision": {
+           "description": "A tag or commit in the repository given in link.",
+           "type": "string"
+          },
+          "identifier": {
+           "type": "array",
+           "items": {
+            "description": "A persistent identifier of the software or of the exact state of its code.",
+            "type": "object",
+            "properties": {
+             "value": {
+              "description": "The identifier, in the form Annex I gives for its scheme when the scheme is listed there.",
+              "type": "string"
+             },
+             "scheme": {
+              "description": "The identifier scheme that the value belongs to.",
+              "type": "string"
+             }
+            },
+            "required": [
+             "value",
+             "scheme"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          },
+          "dependency": {
+           "type": "array",
+           "items": {
+            "description": "A component the software was built with or ran on that can change its results.",
+            "type": "object",
+            "properties": {
+             "name": {
+              "description": "The name of the component.",
+              "type": "string"
+             },
+             "version": {
+              "description": "The version of the component.",
+              "type": "string"
+             },
+             "role": {
+              "description": "The kind of component.",
+              "type": "string"
+             }
+            },
+            "required": [
+             "name"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          },
+          "build-options": {
+           "description": "The options the software was built or run with that can change its results, e.g. compiler flags or enabled features.",
+           "type": "string"
+          },
+          "file": {
+           "type": "array",
+           "items": {
+            "description": "Input or output file for the software package associated with the computation. This includes the input file used to perform the computation, associated data files, and output generated by the software package. Most important are input files to enable reproduction of the dataset.",
+            "type": "object",
+            "properties": {
+             "name": {
+              "description": "The file name.",
+              "type": "string"
+             },
+             "description": {
+              "description": "A brief description of the file and its contents.",
+              "type": "string"
+             },
+             "contents": {
+              "description": "The contents of the file: its text, or its bytes encoded as given in encoding. Not required in case a link to the file is provided instead.",
+              "type": "string"
+             },
+             "encoding": {
+              "description": "How contents is encoded.",
+              "type": "string"
+             },
+             "link": {
+              "description": "A URI pointing to a permanent location of the file online.",
+              "type": "string",
+              "format": "uri"
+             },
+             "checksum": {
+              "type": "array",
+              "items": {
+               "description": "A digital fingerprint of the file, computed by a named algorithm.",
+               "type": "object",
+               "properties": {
+                "algorithm": {
+                 "description": "The algorithm that computed the checksum.",
+                 "type": "string"
+                },
+                "value": {
+                 "description": "The checksum of the file, in lowercase hexadecimal digits.",
+                 "type": "string",
+                 "pattern": "[0-9a-f]+"
+                }
+               },
+               "required": [
+                "algorithm",
+                "value"
+               ],
+               "patternProperties": {
+                "^x-": {}
+               },
+               "additionalProperties": false
+              },
+              "minItems": 1
+             }
+            },
+            "required": [
+             "name",
+             "description",
+             "checksum"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          }
+         },
+         "required": [
+          "name"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       }
+      },
+      "required": [
+       "label",
+       "method-class",
+       "method",
+       "task",
+       "software"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    },
+    "publication": {
+     "type": "array",
+     "items": {
+      "description": "A publication that describes the dataset or the work that produced it, e.g. a journal article or preprint, to be cited when the dataset is used.",
+      "type": "object",
+      "properties": {
+       "reference": {
+        "description": "Text that uniquely identifies the source of information being cited.",
+        "type": "string"
+       },
+       "doi": {
+        "description": "The digital object identifier (DOI) for the source.",
+        "type": "string",
+        "pattern": "https://doi\\.org/10\\.[^/]+/.+"
+       },
+       "link": {
+        "description": "A URI pointing to a permanent location of the source.",
+        "type": "string",
+        "format": "uri"
+       }
+      },
+      "required": [
+       "reference"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    },
+    "dataset-location": {
+     "type": "array",
+     "items": {
+      "description": "A repository where the dataset itself is stored and can be obtained.",
+      "type": "object",
+      "properties": {
+       "repository": {
+        "description": "The name of the repository.",
+        "type": "string"
+       },
+       "doi": {
+        "description": "The digital object identifier (DOI) of the dataset in the repository.",
+        "type": "string",
+        "pattern": "https://doi\\.org/10\\.[^/]+/.+"
+       },
+       "link": {
+        "description": "A URI pointing to the dataset in the repository.",
+        "type": "string",
+        "format": "uri"
+       }
+      },
+      "required": [
+       "link"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    },
+    "funding": {
+     "type": "array",
+     "items": {
+      "description": "Information about received monetary support or other resources to generate the dataset.",
+      "type": "object",
+      "properties": {
+       "award-title": {
+        "description": "Name of the grant that provided funding to generate the dataset.",
+        "type": "string"
+       },
+       "funder": {
+        "description": "The funding agency that provided money and/or resources to generate the dataset.",
+        "type": "object",
+        "properties": {
+         "name": {
+          "description": "The name of the funding agency.",
+          "type": "string"
+         },
+         "identifier": {
+          "description": "A unique, persistent identifier that globally and unambiguously identifies the funding agency.",
+          "type": "object",
+          "properties": {
+           "value": {
+            "description": "The identifier, in the form Annex I gives for its scheme when the scheme is listed there.",
+            "type": "string"
+           },
+           "scheme": {
+            "description": "The identifier scheme that the value belongs to.",
+            "type": "string"
+           }
+          },
+          "required": [
+           "value",
+           "scheme"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         }
+        },
+        "required": [
+         "name"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "award-number": {
+        "description": "A funder identifier for the grant.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "funder"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    },
+    "related-content": {
+     "type": "array",
+     "items": {
+      "description": "Another dataset that is connected to the current one in some manner.",
+      "type": "object",
+      "properties": {
+       "link": {
+        "description": "Pointer to a related dataset.",
+        "type": "string",
+        "format": "uri"
+       },
+       "description": {
+        "description": "Explanation of the relationship between the related content and the current dataset.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "link"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    },
+    "provenance": {
+     "type": "array",
+     "items": {
+      "description": "History of the dataset, detailing its origins and transformations.",
+      "type": "object",
+      "properties": {
+       "event-type": {
+        "description": "Description of change made to the dataset.",
+        "type": "string"
+       },
+       "date": {
+        "description": "The date and time when the change was made.",
+        "type": "string",
+        "pattern": "\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])(T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\dZ)?"
+       },
+       "agent": {
+        "type": "array",
+        "items": {
+         "description": "An entity (e.g. person, organization, software agent) responsible for the change, and their institutional affiliation if relevant.",
+         "type": "object",
+         "properties": {
+          "name": {
+           "description": "The name of the entity that made the change.",
+           "type": "string"
+          },
+          "identifier": {
+           "type": "array",
+           "items": {
+            "description": "A unique, persistent identifier that globally and unambiguously identifies the entity that made the change.",
+            "type": "object",
+            "properties": {
+             "value": {
+              "description": "The identifier, in the form Annex I gives for its scheme when the scheme is listed there.",
+              "type": "string"
+             },
+             "scheme": {
+              "description": "The identifier scheme that the value belongs to.",
+              "type": "string"
+             }
+            },
+            "required": [
+             "value",
+             "scheme"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          },
+          "affiliation": {
+           "type": "array",
+           "items": {
+            "description": "The affiliation of the entity that made the change if they have one.",
+            "type": "object",
+            "properties": {
+             "name": {
+              "description": "The name of the affiliation.",
+              "type": "string"
+             },
+             "identifier": {
+              "description": "A unique, persistent identifier that globally and unambiguously identifies the affiliation.",
+              "type": "object",
+              "properties": {
+               "value": {
+                "description": "The identifier, in the form Annex I gives for its scheme when the scheme is listed there.",
+                "type": "string"
+               },
+               "scheme": {
+                "description": "The identifier scheme that the value belongs to.",
+                "type": "string"
+               }
+              },
+              "required": [
+               "value",
+               "scheme"
+              ],
+              "patternProperties": {
+               "^x-": {}
+              },
+              "additionalProperties": false
+             }
+            },
+            "required": [
+             "name"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          }
+         },
+         "required": [
+          "name"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       },
+       "comment": {
+        "description": "Explanation for the change in provenance.",
+        "type": "string"
+       },
+       "file": {
+        "type": "array",
+        "items": {
+         "description": "A file of the dataset, or associated with it, modified by the provenance event.",
+         "type": "object",
+         "properties": {
+          "name": {
+           "description": "The name of the file.",
+           "type": "string"
+          },
+          "checksum": {
+           "type": "array",
+           "items": {
+            "description": "A digital fingerprint of the file, computed by a named algorithm.",
+            "type": "object",
+            "properties": {
+             "algorithm": {
+              "description": "The algorithm that computed the checksum.",
+              "type": "string"
+             },
+             "value": {
+              "description": "The checksum of the file, in lowercase hexadecimal digits.",
+              "type": "string",
+              "pattern": "[0-9a-f]+"
+             }
+            },
+            "required": [
+             "algorithm",
+             "value"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          }
+         },
+         "required": [
+          "name",
+          "checksum"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       }
+      },
+      "required": [
+       "event-type",
+       "date",
+       "agent"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    },
+    "license": {
+     "type": "array",
+     "items": {
+      "description": "A contract defining the terms and conditions under which the dataset can be used.",
+      "type": "object",
+      "properties": {
+       "identifier": {
+        "description": "The license as an SPDX license expression built from short identifiers of the SPDX License List, or as `LicenseRef-` followed by an identifier for a license not on the list.",
+        "type": "string"
+       },
+       "name": {
+        "description": "The full name of the license.",
+        "type": "string"
+       },
+       "link": {
+        "description": "A URI pointing to the full text of the license.",
+        "type": "string",
+        "format": "uri"
+       },
+       "applies-to": {
+        "description": "The part of the dataset the license covers, when the dataset has more than one license, e.g. the data or the code.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "identifier"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    }
+   },
+   "required": [
+    "matcore",
+    "creator",
+    "title",
+    "creation-date",
+    "description",
+    "structure",
+    "computation",
+    "license"
+   ],
+   "patternProperties": {
+    "^x-": {}
+   },
+   "additionalProperties": false
+  },
+  "dft": {
+   "title": "2.2 Density Functional Theory (DFT) Metadata",
+   "type": "object",
+   "properties": {
+    "settings": {
+     "type": "array",
+     "items": {
+      "description": "Settings shared by the computations named in it.",
+      "type": "object",
+      "properties": {
+       "computation-label": {
+        "type": "array",
+        "items": {
+         "description": "The label of a computation these settings apply to.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "xc-functional": {
+        "type": "array",
+        "items": {
+         "description": "Approximation used to describe the electron exchange and electron correlation energies",
+         "type": "object",
+         "properties": {
+          "type": {
+           "description": "The mathematical form of the exchange-correlation functional.",
+           "type": "string"
+          },
+          "name": {
+           "description": "The exchange-correlation functional as the author names it.",
+           "type": "string"
+          },
+          "description": {
+           "description": "Explanatory text providing more information about the type of the exchange-correlation method used including any relevant identifying information.",
+           "type": "string"
+          },
+          "normalization": {
+           "description": "The functional decomposed into the components of a community library, which names the components.",
+           "type": "object",
+           "properties": {
+            "components": {
+             "description": "The components of the functional, in the identifiers of the source.",
+             "type": "array",
+             "items": {
+              "type": "string"
+             }
+            },
+            "source": {
+             "description": "The library whose identifiers the components use.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "components",
+            "source"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "xc-parameter": {
+           "type": "array",
+           "items": {
+            "description": "A fixed variable associated with the specified exchange-correlation functional method.",
+            "type": "object",
+            "properties": {
+             "name": {
+              "description": "The designation of the exchange-correlation parameter.",
+              "type": "string"
+             },
+             "value": {
+              "description": "The data associated with the exchange-correlation parameter.",
+              "not": {
+               "type": [
+                "object",
+                "null"
+               ]
+              }
+             },
+             "unit": {
+              "description": "The unit in which the associated value is expressed.",
+              "anyOf": [
+               {
+                "enum": [
+                 "1/angstrom",
+                 "1/angstrom^3",
+                 "1/bohr",
+                 "1/m",
+                 "1/m^3",
+                 "1/nm",
+                 "1/ps",
+                 "1/s",
+                 "C",
+                 "GPa",
+                 "J",
+                 "J/T",
+                 "J/mol",
+                 "K",
+                 "K/angstrom",
+                 "K/m",
+                 "N",
+                 "Pa",
+                 "Ry",
+                 "T",
+                 "V",
+                 "V/angstrom",
+                 "V/m",
+                 "W/m^2",
+                 "amu",
+                 "angstrom",
+                 "angstrom^3",
+                 "bar",
+                 "bohr",
+                 "bohr^3",
+                 "degree",
+                 "dimensionless",
+                 "e",
+                 "eV",
+                 "eV/angstrom",
+                 "eV/angstrom^3",
+                 "fs",
+                 "g/cm^3",
+                 "hartree",
+                 "hartree/bohr",
+                 "kJ/mol",
+                 "kbar",
+                 "kcal/mol",
+                 "kg",
+                 "kg/m^3",
+                 "m",
+                 "m/s^2",
+                 "m^3",
+                 "meV",
+                 "mol",
+                 "mu_B",
+                 "nm",
+                 "nm^3",
+                 "ns",
+                 "ps",
+                 "rad",
+                 "s",
+                 "um"
+                ]
+               },
+               {
+                "type": "string",
+                "pattern": "^x-gnu:"
+               }
+              ]
+             },
+             "description": {
+              "description": "An explanation of the meaning, source, or purpose of the parameter.",
+              "type": "string"
+             },
+             "type": {
+              "enum": [
+               "string",
+               "float",
+               "int",
+               "bool"
+              ]
+             }
+            },
+            "required": [
+             "name",
+             "value",
+             "type"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false,
+            "allOf": [
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "string"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-string"
+                }
+               },
+               "not": {
+                "required": [
+                 "unit"
+                ]
+               }
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "float"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-float"
+                }
+               },
+               "required": [
+                "unit"
+               ]
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "int"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-int"
+                }
+               },
+               "required": [
+                "unit"
+               ]
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "bool"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-bool"
+                }
+               },
+               "not": {
+                "required": [
+                 "unit"
+                ]
+               }
+              }
+             }
+            ]
+           },
+           "minItems": 1
+          }
+         },
+         "required": [
+          "type"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       },
+       "core-electron-treatment": {
+        "description": "The treatment of the core electrons in the calculation.",
+        "type": "object",
+        "properties": {
+         "type": {
+          "description": "The method used to treat the core electrons.",
+          "type": "string"
+         },
+         "pseudopotential-or-paw": {
+          "type": "array",
+          "items": {
+           "description": "For type \"Frozen core\", additional information about each pseudopotential or PAW dataset.",
+           "type": "object",
+           "properties": {
+            "name": {
+             "description": "The name of the pseudopotential or PAW dataset.",
+             "type": "string"
+            },
+            "species": {
+             "description": "The element or user-defined species this pseudopotential or PAW dataset is for, as written in a material component's formula.",
+             "type": "string"
+            },
+            "type": {
+             "description": "The physical form of the pseudopotential or PAW dataset.",
+             "type": "string"
+            },
+            "description": {
+             "description": "Explanatory text about the pseudopotential or PAW dataset including any relevant identifying information.",
+             "type": "string"
+            },
+            "number-of-valence-electrons": {
+             "description": "The number of electrons treated explicitly.",
+             "type": "integer",
+             "minimum": 1
+            },
+            "repository": {
+             "description": "The database from which the pseudopotential or PAW dataset was obtained.",
+             "type": "string"
+            },
+            "version": {
+             "description": "The version of the pseudopotential or PAW dataset.",
+             "type": "string"
+            },
+            "doi": {
+             "description": "The digital object identifier (DOI) for the pseudopotential or PAW dataset.",
+             "type": "string",
+             "pattern": "https://doi\\.org/10\\.[^/]+/.+"
+            },
+            "file": {
+             "description": "The pseudopotential or PAW dataset file, with its checksums.",
+             "type": "object",
+             "properties": {
+              "name": {
+               "description": "The name of the file.",
+               "type": "string"
+              },
+              "checksum": {
+               "type": "array",
+               "items": {
+                "description": "A digital fingerprint of the file, computed by a named algorithm.",
+                "type": "object",
+                "properties": {
+                 "algorithm": {
+                  "description": "The algorithm that computed the checksum.",
+                  "type": "string"
+                 },
+                 "value": {
+                  "description": "The checksum of the file, in lowercase hexadecimal digits.",
+                  "type": "string",
+                  "pattern": "[0-9a-f]+"
+                 }
+                },
+                "required": [
+                 "algorithm",
+                 "value"
+                ],
+                "patternProperties": {
+                 "^x-": {}
+                },
+                "additionalProperties": false
+               },
+               "minItems": 1
+              }
+             },
+             "required": [
+              "name",
+              "checksum"
+             ],
+             "patternProperties": {
+              "^x-": {}
+             },
+             "additionalProperties": false
+            },
+            "unique-identifier": {
+             "description": "A token other than a checksum that identifies the pseudopotential or PAW dataset, such as a label or code assigned by the library that distributes it.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "name",
+            "species",
+            "type",
+            "number-of-valence-electrons"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         }
+        },
+        "required": [
+         "type"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "wavefunction-representation": {
+        "description": "The representation used to expand the electronic wave functions.",
+        "type": "object",
+        "properties": {
+         "type": {
+          "type": "array",
+          "items": {
+           "description": "The method used to represent the electronic wave functions.",
+           "type": "string"
+          },
+          "minItems": 1
+         },
+         "atom-centered-basis-set": {
+          "type": "array",
+          "items": {
+           "description": "For type \"Gaussian basis sets\", \"Local atomic orbitals\" or \"Numerical atomic orbitals\", additional information about the basis set.",
+           "type": "object",
+           "properties": {
+            "type": {
+             "description": "The designation of the set of orbital functions used for expanding electronic wave functions.",
+             "type": "string"
+            },
+            "species": {
+             "type": "array",
+             "items": {
+              "description": "The element or user-defined species this basis set is for, as written in a material component's formula.",
+              "type": "string"
+             },
+             "minItems": 1
+            },
+            "repository": {
+             "description": "The database from which the atom-centered basis set was obtained.",
+             "type": "string"
+            },
+            "version": {
+             "description": "The version of the atom-centered basis set.",
+             "type": "string"
+            },
+            "doi": {
+             "description": "The digital object identifier (DOI) for the atom-centered basis set.",
+             "type": "string",
+             "pattern": "https://doi\\.org/10\\.[^/]+/.+"
+            },
+            "file": {
+             "description": "The atom-centered basis set file, with its checksums.",
+             "type": "object",
+             "properties": {
+              "name": {
+               "description": "The name of the file.",
+               "type": "string"
+              },
+              "checksum": {
+               "type": "array",
+               "items": {
+                "description": "A digital fingerprint of the file, computed by a named algorithm.",
+                "type": "object",
+                "properties": {
+                 "algorithm": {
+                  "description": "The algorithm that computed the checksum.",
+                  "type": "string"
+                 },
+                 "value": {
+                  "description": "The checksum of the file, in lowercase hexadecimal digits.",
+                  "type": "string",
+                  "pattern": "[0-9a-f]+"
+                 }
+                },
+                "required": [
+                 "algorithm",
+                 "value"
+                ],
+                "patternProperties": {
+                 "^x-": {}
+                },
+                "additionalProperties": false
+               },
+               "minItems": 1
+              }
+             },
+             "required": [
+              "name",
+              "checksum"
+             ],
+             "patternProperties": {
+              "^x-": {}
+             },
+             "additionalProperties": false
+            },
+            "unique-identifier": {
+             "description": "A token other than a checksum that identifies the atom-centered basis set, such as a label or code assigned by the library that distributes it.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "type"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "kinetic-energy-cutoff": {
+          "description": "For type \"Plane waves\", or for \"LAPW\" when the code takes the cutoff as an energy, the maximum kinetic energy of the plane waves included in the calculation of wave functions.",
+          "type": "object",
+          "properties": {
+           "value": {
+            "description": "The value of the property, in the unit given by `unit`.",
+            "type": "number",
+            "minimum": 0
+           },
+           "unit": {
+            "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+            "enum": [
+             "J",
+             "Ry",
+             "eV",
+             "hartree",
+             "meV"
+            ]
+           }
+          },
+          "required": [
+           "value",
+           "unit"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         },
+         "lapw-basis-cutoff": {
+          "description": "For type \"LAPW\", the cutoff of the basis, given as the product of the smallest muffin-tin radius and the largest plane-wave wavevector, R<sub>MT</sub>K<sub>max</sub> (RKmax).",
+          "type": "number",
+          "minimum": 0
+         },
+         "charge-density-cutoff": {
+          "description": "For type \"LAPW\" or \"Plane waves\", the energy value used to truncate the plane wave expansion of the electron charge density.",
+          "type": "object",
+          "properties": {
+           "value": {
+            "description": "The value of the property, in the unit given by `unit`.",
+            "type": "number",
+            "minimum": 0
+           },
+           "unit": {
+            "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+            "enum": [
+             "J",
+             "Ry",
+             "eV",
+             "hartree",
+             "meV"
+            ]
+           }
+          },
+          "required": [
+           "value",
+           "unit"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         }
+        },
+        "required": [
+         "type"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "calculation-physics": {
+        "type": "array",
+        "items": {
+         "description": "Additional phenomena included beyond the standard DFT calculation.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "initial-magnetic-moment": {
+        "type": "array",
+        "items": {
+         "description": "The magnetic moment per atom of a species at the start of the self-consistent cycle.",
+         "type": "object",
+         "properties": {
+          "species": {
+           "description": "The element or user-defined species whose atoms start with this moment, as written in a material component's formula.",
+           "type": "string"
+          },
+          "value": {
+           "description": "The value of the property, in the unit given by `unit`.",
+           "$ref": "#/$defs/any-depth-float"
+          },
+          "unit": {
+           "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+           "enum": [
+            "J/T",
+            "mu_B"
+           ]
+          }
+         },
+         "required": [
+          "species",
+          "value",
+          "unit"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       },
+       "dispersion-correction": {
+        "description": "The additive correction for van der Waals dispersion applied to the functional.",
+        "type": "string"
+       },
+       "k-point-mesh": {
+        "description": "For periodic systems, a grid of points sampled within the Brillouin zone, used to approximate integrals and calculate electronic properties by discretizing the wavefunction across reciprocal space.",
+        "type": "object",
+        "properties": {
+         "type": {
+          "description": "The choice of how k-points are distributed on the mesh.",
+          "type": "string"
+         },
+         "number-of-points": {
+          "description": "The number of k-points included along each reciprocal lattice vector.",
+          "type": "array",
+          "items": {
+           "type": "integer",
+           "minimum": 1
+          },
+          "minItems": 3,
+          "maxItems": 3
+         },
+         "shift": {
+          "description": "Translation of the k-point mesh along the reciprocal lattice vector directions.",
+          "type": "array",
+          "items": {
+           "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+         }
+        },
+        "required": [
+         "type"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "smearing": {
+        "description": "The method of assigning fractional occupations to electronic states near the Fermi level, and its parameters.",
+        "type": "object",
+        "properties": {
+         "type": {
+          "description": "The choice of method for assigning fractional occupancies of electronic states and/or facilitating reciprocal space integrations.",
+          "type": "string"
+         },
+         "width": {
+          "description": "A parameter that controls the broadening of the electron energy levels near the Fermi level.",
+          "type": "object",
+          "properties": {
+           "value": {
+            "description": "The value of the property, in the unit given by `unit`.",
+            "type": "number",
+            "minimum": 0
+           },
+           "unit": {
+            "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+            "enum": [
+             "J",
+             "Ry",
+             "eV",
+             "hartree",
+             "meV"
+            ]
+           }
+          },
+          "required": [
+           "value",
+           "unit"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         },
+         "parameter": {
+          "type": "array",
+          "items": {
+           "description": "A fixed variable associated with the specified smearing method (e.g. the order of the Methfessel-Paxton method).",
+           "type": "object",
+           "properties": {
+            "name": {
+             "description": "The designation of the smearing parameter.",
+             "type": "string"
+            },
+            "value": {
+             "description": "The data associated with the smearing parameter.",
+             "not": {
+              "type": [
+               "object",
+               "null"
+              ]
+             }
+            },
+            "unit": {
+             "description": "The unit in which the associated value is expressed.",
+             "anyOf": [
+              {
+               "enum": [
+                "1/angstrom",
+                "1/angstrom^3",
+                "1/bohr",
+                "1/m",
+                "1/m^3",
+                "1/nm",
+                "1/ps",
+                "1/s",
+                "C",
+                "GPa",
+                "J",
+                "J/T",
+                "J/mol",
+                "K",
+                "K/angstrom",
+                "K/m",
+                "N",
+                "Pa",
+                "Ry",
+                "T",
+                "V",
+                "V/angstrom",
+                "V/m",
+                "W/m^2",
+                "amu",
+                "angstrom",
+                "angstrom^3",
+                "bar",
+                "bohr",
+                "bohr^3",
+                "degree",
+                "dimensionless",
+                "e",
+                "eV",
+                "eV/angstrom",
+                "eV/angstrom^3",
+                "fs",
+                "g/cm^3",
+                "hartree",
+                "hartree/bohr",
+                "kJ/mol",
+                "kbar",
+                "kcal/mol",
+                "kg",
+                "kg/m^3",
+                "m",
+                "m/s^2",
+                "m^3",
+                "meV",
+                "mol",
+                "mu_B",
+                "nm",
+                "nm^3",
+                "ns",
+                "ps",
+                "rad",
+                "s",
+                "um"
+               ]
+              },
+              {
+               "type": "string",
+               "pattern": "^x-gnu:"
+              }
+             ]
+            },
+            "description": {
+             "description": "An explanation of the meaning, source, or purpose of the parameter.",
+             "type": "string"
+            },
+            "type": {
+             "enum": [
+              "string",
+              "float",
+              "int",
+              "bool"
+             ]
+            }
+           },
+           "required": [
+            "name",
+            "value",
+            "type"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false,
+           "allOf": [
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "string"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-string"
+               }
+              },
+              "not": {
+               "required": [
+                "unit"
+               ]
+              }
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "float"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-float"
+               }
+              },
+              "required": [
+               "unit"
+              ]
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "int"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-int"
+               }
+              },
+              "required": [
+               "unit"
+              ]
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "bool"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-bool"
+               }
+              },
+              "not": {
+               "required": [
+                "unit"
+               ]
+              }
+             }
+            }
+           ]
+          },
+          "minItems": 1
+         }
+        },
+        "required": [],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "self-consistent-field-convergence": {
+        "description": "Method and termination criteria defining the precision of self-consistent solution of the Kohn-Sham equations.",
+        "type": "object",
+        "properties": {
+         "method-density": {
+          "description": "The self-consistent field mixing and/or extrapolation scheme for the iterative solution of the Kohn-Sham equations.",
+          "type": "string"
+         },
+         "method-diagonalization": {
+          "type": "array",
+          "items": {
+           "description": "The method used to obtain the Kohn-Sham orbitals at each step of the self-consistent loop.",
+           "type": "string"
+          },
+          "minItems": 1
+         },
+         "tolerance": {
+          "description": "Convergence criterion for the self-consistent loop.",
+          "type": "object",
+          "properties": {
+           "criterion": {
+            "description": "The quantity whose convergence the tolerance measures.",
+            "type": "string"
+           },
+           "value": {
+            "description": "The value of the property, in the unit given by `unit`.",
+            "type": "number",
+            "minimum": 0
+           },
+           "unit": {
+            "description": "The unit in which the associated value is expressed.",
+            "anyOf": [
+             {
+              "enum": [
+               "1/angstrom",
+               "1/angstrom^3",
+               "1/bohr",
+               "1/m",
+               "1/m^3",
+               "1/nm",
+               "1/ps",
+               "1/s",
+               "C",
+               "GPa",
+               "J",
+               "J/T",
+               "J/mol",
+               "K",
+               "K/angstrom",
+               "K/m",
+               "N",
+               "Pa",
+               "Ry",
+               "T",
+               "V",
+               "V/angstrom",
+               "V/m",
+               "W/m^2",
+               "amu",
+               "angstrom",
+               "angstrom^3",
+               "bar",
+               "bohr",
+               "bohr^3",
+               "degree",
+               "dimensionless",
+               "e",
+               "eV",
+               "eV/angstrom",
+               "eV/angstrom^3",
+               "fs",
+               "g/cm^3",
+               "hartree",
+               "hartree/bohr",
+               "kJ/mol",
+               "kbar",
+               "kcal/mol",
+               "kg",
+               "kg/m^3",
+               "m",
+               "m/s^2",
+               "m^3",
+               "meV",
+               "mol",
+               "mu_B",
+               "nm",
+               "nm^3",
+               "ns",
+               "ps",
+               "rad",
+               "s",
+               "um"
+              ]
+             },
+             {
+              "type": "string",
+              "pattern": "^x-gnu:"
+             }
+            ]
+           }
+          },
+          "required": [
+           "criterion",
+           "value",
+           "unit"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         }
+        },
+        "required": [
+         "tolerance"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "relaxation-tolerance-energy": {
+        "description": "Energy convergence criterion for atomic relaxation.",
+        "type": "object",
+        "properties": {
+         "value": {
+          "description": "The value of the property, in the unit given by `unit`.",
+          "type": "number",
+          "minimum": 0
+         },
+         "unit": {
+          "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+          "enum": [
+           "J",
+           "Ry",
+           "eV",
+           "hartree",
+           "meV"
+          ]
+         }
+        },
+        "required": [
+         "value",
+         "unit"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "relaxation-tolerance-forces": {
+        "description": "Maximum force convergence criterion for atomic relaxation.",
+        "type": "object",
+        "properties": {
+         "value": {
+          "description": "The value of the property, in the unit given by `unit`.",
+          "type": "number",
+          "minimum": 0
+         },
+         "unit": {
+          "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+          "enum": [
+           "N",
+           "eV/angstrom",
+           "hartree/bohr"
+          ]
+         }
+        },
+        "required": [
+         "value",
+         "unit"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "relaxation-tolerance-stress": {
+        "description": "Maximum stress convergence criterion for cell relaxation, relative to the stress imposed in `conditions`.",
+        "type": "object",
+        "properties": {
+         "value": {
+          "description": "The value of the property, in the unit given by `unit`.",
+          "type": "number",
+          "minimum": 0
+         },
+         "unit": {
+          "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+          "enum": [
+           "GPa",
+           "Pa",
+           "bar",
+           "eV/angstrom^3",
+           "kbar"
+          ]
+         }
+        },
+        "required": [
+         "value",
+         "unit"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "comment": {
+        "type": "array",
+        "items": {
+         "description": "Additional information on the DFT calculation. For example, non-self-consistent constraints, such as details about imposed state occupation or moment freezing.",
+         "type": "string"
+        },
+        "minItems": 1
+       }
+      },
+      "required": [
+       "computation-label",
+       "xc-functional",
+       "core-electron-treatment",
+       "wavefunction-representation"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    }
+   },
+   "required": [
+    "settings"
+   ],
+   "patternProperties": {
+    "^x-": {}
+   },
+   "additionalProperties": false
+  },
+  "pim": {
+   "title": "2.3 Particle Interaction Model (PIM) Metadata",
+   "type": "object",
+   "properties": {
+    "settings": {
+     "type": "array",
+     "items": {
+      "description": "Settings shared by the computations named in it.",
+      "type": "object",
+      "properties": {
+       "computation-label": {
+        "type": "array",
+        "items": {
+         "description": "The label of a computation these settings apply to.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "theory-level": {
+        "description": "How the functional form of the model was obtained.",
+        "type": "string"
+       },
+       "model-type": {
+        "description": "The kind of potential used to compute the particle interactions.",
+        "type": "string"
+       },
+       "particle-style": {
+        "type": "array",
+        "items": {
+         "description": "The nature of the discrete entities whose interactions the model describes.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "bonding-type": {
+        "description": "Specifies whether the bonds between particles are immutable or can be broken.",
+        "type": "string"
+       },
+       "charge-interaction": {
+        "type": "array",
+        "items": {
+         "description": "The model used to describe the interactions between charged particles.",
+         "type": "object",
+         "properties": {
+          "charge-origin": {
+           "description": "Nature of the particle charges.",
+           "type": "string"
+          },
+          "charge-style": {
+           "description": "The nature of the charges associated with the particles, such as total or effective charges.",
+           "type": "string"
+          },
+          "charge-variability": {
+           "description": "Attribute specifying the method for dynamically varying the local electric charge associated with discrete entities.",
+           "type": "string"
+          },
+          "electrostatic-summation": {
+           "description": "Method used to compute the electrostatic interactions between the charges.",
+           "type": "string"
+          },
+          "electric-dipole": {
+           "description": "Attribute specifying the type of interaction associated with the local electric dipoles associated with particles.",
+           "type": "string"
+          },
+          "electric-dipole-variability": {
+           "description": "Attribute specifying the method for dynamically varying the local electric dipoles associated with discrete entities.",
+           "type": "string"
+          }
+         },
+         "required": [
+          "charge-origin",
+          "charge-style",
+          "charge-variability"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       },
+       "magnetic-interaction": {
+        "type": "array",
+        "items": {
+         "description": "The model used to describe the interactions between magnetic spins.",
+         "type": "object",
+         "properties": {
+          "spin-style": {
+           "description": "The nature of the magnetic spins associated with the particles.",
+           "type": "string"
+          },
+          "magnetic-dipole": {
+           "description": "Attribute specifying the type of interaction (spin Hamiltonian) between the magnetic dipoles associated with particles.",
+           "type": "string"
+          }
+         },
+         "required": [
+          "spin-style"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       }
+      },
+      "required": [
+       "computation-label",
+       "theory-level",
+       "model-type",
+       "particle-style",
+       "bonding-type"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    }
+   },
+   "required": [
+    "settings"
+   ],
+   "patternProperties": {
+    "^x-": {}
+   },
+   "additionalProperties": false
+  },
+  "ps": {
+   "title": "2.4 Particle Simulation (PS) Metadata",
+   "type": "object",
+   "properties": {
+    "settings": {
+     "type": "array",
+     "items": {
+      "description": "Settings shared by the computations named in it.",
+      "type": "object",
+      "properties": {
+       "computation-label": {
+        "type": "array",
+        "items": {
+         "description": "The label of a computation these settings apply to.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "algorithm": {
+        "type": "array",
+        "items": {
+         "description": "A procedure by which the computation moves or samples the particles.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "description": {
+        "description": "Further information on the algorithms of these settings, e.g. the variant used, and an explanation of their computation-parameter entries.",
+        "type": "string"
+       },
+       "computation-parameter": {
+        "type": "array",
+        "items": {
+         "description": "A fixed variable associated with the specified computation algorithm.",
+         "type": "object",
+         "properties": {
+          "name": {
+           "description": "The designation of the parameter associated with the specified computation algorithm.",
+           "type": "string"
+          },
+          "value": {
+           "description": "The data associated with the computation parameter.",
+           "not": {
+            "type": [
+             "object",
+             "null"
+            ]
+           }
+          },
+          "unit": {
+           "description": "The unit in which the associated value is expressed.",
+           "anyOf": [
+            {
+             "enum": [
+              "1/angstrom",
+              "1/angstrom^3",
+              "1/bohr",
+              "1/m",
+              "1/m^3",
+              "1/nm",
+              "1/ps",
+              "1/s",
+              "C",
+              "GPa",
+              "J",
+              "J/T",
+              "J/mol",
+              "K",
+              "K/angstrom",
+              "K/m",
+              "N",
+              "Pa",
+              "Ry",
+              "T",
+              "V",
+              "V/angstrom",
+              "V/m",
+              "W/m^2",
+              "amu",
+              "angstrom",
+              "angstrom^3",
+              "bar",
+              "bohr",
+              "bohr^3",
+              "degree",
+              "dimensionless",
+              "e",
+              "eV",
+              "eV/angstrom",
+              "eV/angstrom^3",
+              "fs",
+              "g/cm^3",
+              "hartree",
+              "hartree/bohr",
+              "kJ/mol",
+              "kbar",
+              "kcal/mol",
+              "kg",
+              "kg/m^3",
+              "m",
+              "m/s^2",
+              "m^3",
+              "meV",
+              "mol",
+              "mu_B",
+              "nm",
+              "nm^3",
+              "ns",
+              "ps",
+              "rad",
+              "s",
+              "um"
+             ]
+            },
+            {
+             "type": "string",
+             "pattern": "^x-gnu:"
+            }
+           ]
+          },
+          "description": {
+           "description": "An explanation of the meaning, source, or purpose of the computation parameter.",
+           "type": "string"
+          },
+          "type": {
+           "enum": [
+            "string",
+            "float",
+            "int",
+            "bool"
+           ]
+          }
+         },
+         "required": [
+          "name",
+          "value",
+          "type"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false,
+         "allOf": [
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "string"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-string"
+             }
+            },
+            "not": {
+             "required": [
+              "unit"
+             ]
+            }
+           }
+          },
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "float"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-float"
+             }
+            },
+            "required": [
+             "unit"
+            ]
+           }
+          },
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "int"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-int"
+             }
+            },
+            "required": [
+             "unit"
+            ]
+           }
+          },
+          {
+           "if": {
+            "properties": {
+             "type": {
+              "const": "bool"
+             }
+            }
+           },
+           "then": {
+            "properties": {
+             "value": {
+              "$ref": "#/$defs/any-depth-bool"
+             }
+            },
+            "not": {
+             "required": [
+              "unit"
+             ]
+            }
+           }
+          }
+         ]
+        },
+        "minItems": 1
+       },
+       "initialization": {
+        "description": "Information on the conditions set at the start of the simulation.",
+        "type": "string"
+       },
+       "thermodynamic-constraint": {
+        "type": "array",
+        "items": {
+         "description": "Macroscopic physical restriction imposed on the simulation, such as a statistical mechanics ensemble.",
+         "type": "object",
+         "properties": {
+          "system": {
+           "description": "The collection of particles to which the constraint is applied.",
+           "type": "string"
+          },
+          "type": {
+           "description": "The nature of the imposed thermodynamic constraint.",
+           "type": "string"
+          },
+          "method": {
+           "type": "array",
+           "items": {
+            "description": "The name of the approach used to impose the constraint.",
+            "type": "string"
+           },
+           "minItems": 1
+          },
+          "description": {
+           "description": "Explanatory text about the constraint and method used to impose it.",
+           "type": "string"
+          },
+          "td-parameter": {
+           "type": "array",
+           "items": {
+            "description": "A fixed variable associated with the specified thermodynamic constraint.",
+            "type": "object",
+            "properties": {
+             "name": {
+              "description": "The designation of the parameter associated with the specified thermodynamic constraint.",
+              "type": "string"
+             },
+             "value": {
+              "description": "The data associated with the thermodynamic constraint parameter.",
+              "not": {
+               "type": [
+                "object",
+                "null"
+               ]
+              }
+             },
+             "unit": {
+              "description": "The unit in which the associated value is expressed.",
+              "anyOf": [
+               {
+                "enum": [
+                 "1/angstrom",
+                 "1/angstrom^3",
+                 "1/bohr",
+                 "1/m",
+                 "1/m^3",
+                 "1/nm",
+                 "1/ps",
+                 "1/s",
+                 "C",
+                 "GPa",
+                 "J",
+                 "J/T",
+                 "J/mol",
+                 "K",
+                 "K/angstrom",
+                 "K/m",
+                 "N",
+                 "Pa",
+                 "Ry",
+                 "T",
+                 "V",
+                 "V/angstrom",
+                 "V/m",
+                 "W/m^2",
+                 "amu",
+                 "angstrom",
+                 "angstrom^3",
+                 "bar",
+                 "bohr",
+                 "bohr^3",
+                 "degree",
+                 "dimensionless",
+                 "e",
+                 "eV",
+                 "eV/angstrom",
+                 "eV/angstrom^3",
+                 "fs",
+                 "g/cm^3",
+                 "hartree",
+                 "hartree/bohr",
+                 "kJ/mol",
+                 "kbar",
+                 "kcal/mol",
+                 "kg",
+                 "kg/m^3",
+                 "m",
+                 "m/s^2",
+                 "m^3",
+                 "meV",
+                 "mol",
+                 "mu_B",
+                 "nm",
+                 "nm^3",
+                 "ns",
+                 "ps",
+                 "rad",
+                 "s",
+                 "um"
+                ]
+               },
+               {
+                "type": "string",
+                "pattern": "^x-gnu:"
+               }
+              ]
+             },
+             "description": {
+              "description": "An explanation of the meaning, source, or purpose of the thermodynamic constraint parameter.",
+              "type": "string"
+             },
+             "type": {
+              "enum": [
+               "string",
+               "float",
+               "int",
+               "bool"
+              ]
+             }
+            },
+            "required": [
+             "name",
+             "value",
+             "type"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false,
+            "allOf": [
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "string"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-string"
+                }
+               },
+               "not": {
+                "required": [
+                 "unit"
+                ]
+               }
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "float"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-float"
+                }
+               },
+               "required": [
+                "unit"
+               ]
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "int"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-int"
+                }
+               },
+               "required": [
+                "unit"
+               ]
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "bool"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-bool"
+                }
+               },
+               "not": {
+                "required": [
+                 "unit"
+                ]
+               }
+              }
+             }
+            ]
+           },
+           "minItems": 1
+          }
+         },
+         "required": [
+          "system",
+          "type"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       },
+       "particle-constraint": {
+        "type": "array",
+        "items": {
+         "description": "A constraint on, or a potential applied to, a group of particles.",
+         "type": "object",
+         "properties": {
+          "system": {
+           "description": "The collection of particles to which the constraint or potential is applied.",
+           "type": "string"
+          },
+          "type": {
+           "description": "The kind of constraint or applied potential.",
+           "type": "string"
+          },
+          "description": {
+           "description": "Explanatory text about the constraint or potential: its form, the variant used, and the role of each `computation-parameter` entry it uses, e.g. a spring constant or an indenter's radius and speed.",
+           "type": "string"
+          }
+         },
+         "required": [
+          "system",
+          "type"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       }
+      },
+      "required": [
+       "computation-label",
+       "algorithm"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    }
+   },
+   "required": [
+    "settings"
+   ],
+   "patternProperties": {
+    "^x-": {}
+   },
+   "additionalProperties": false
+  },
+  "mbpt": {
+   "title": "2.5 Many-Body Perturbation Theory (MBPT) Metadata",
+   "type": "object",
+   "properties": {
+    "settings": {
+     "type": "array",
+     "items": {
+      "description": "Settings shared by the computations named in it.",
+      "type": "object",
+      "properties": {
+       "computation-label": {
+        "type": "array",
+        "items": {
+         "description": "The label of a computation these settings apply to.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "mbpt-method": {
+        "description": "The many-body perturbation theory (MBPT) approach used and associated settings.",
+        "type": "object",
+        "properties": {
+         "type": {
+          "description": "The nature of the MBPT calculation performed.",
+          "type": "string"
+         },
+         "gw-self-consistency": {
+          "description": "Specifies the level of iterative updating applied to the Green's function (*G*) and the screened Coulomb interaction (*W*) in the GW calculation. This property identifies whether the GW equations are solved in a 'one-shot' perturbative manner or through an iterative cycle where the quasiparticle states are updated to reach a self-consistent solution.",
+          "type": "string"
+         },
+         "bse-self-consistency": {
+          "description": "Specifies the level of iterative updating applied to the excitonic Hamiltonian in the BSE calculation. This property identifies whether the BSE is solved in a 'one-shot' manner or through an iterative cycle where the excitonic states are updated to reach a self-consistent solution.",
+          "type": "string"
+         }
+        },
+        "required": [
+         "type"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "dielectric-matrix": {
+        "description": "Information on the dielectric matrix used to compute the screened Coulomb interaction *W*.",
+        "type": "object",
+        "properties": {
+         "planewave-basis-cutoff": {
+          "description": "For a planewave code, the basis set cutoff employed for the dielectric matrix. It is set separately from the cutoff of the wave functions (dft kinetic-energy-cutoff) and is usually lower.",
+          "type": "object",
+          "properties": {
+           "value": {
+            "description": "The value of the property, in the unit given by `unit`.",
+            "type": "number",
+            "minimum": 0
+           },
+           "unit": {
+            "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+            "enum": [
+             "J",
+             "Ry",
+             "eV",
+             "hartree",
+             "meV"
+            ]
+           }
+          },
+          "required": [
+           "value",
+           "unit"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         },
+         "atom-centered-basis-set": {
+          "description": "For a code using basis functions centered on atoms, the name of the basis set.",
+          "type": "string"
+         },
+         "frequency": {
+          "description": "The method used to handle the frequency dependence of the Green's function, the screened Coulomb interaction, and their product.",
+          "type": "string"
+         },
+         "response-basis-size": {
+          "description": "For sum-over-states methods, the number of bands used in the sum. For linear-response methods, the number of dielectric eigenvalues.",
+          "type": "integer",
+          "minimum": 1
+         },
+         "band-terminator": {
+          "description": "The method used to approximate the contribution of the bands left out of the sum over states of the polarizability.",
+          "type": "string"
+         },
+         "q-points": {
+          "description": "Brillouin zone grid used for sampling the dielectric matrix.",
+          "type": "array",
+          "items": {
+           "type": "integer",
+           "minimum": 1
+          },
+          "minItems": 3,
+          "maxItems": 3
+         },
+         "coulomb-truncation": {
+          "description": "Method used to eliminate long-range Coulomb interactions between periodic replicas in supercell calculations.",
+          "type": "string"
+         }
+        },
+        "required": [
+         "q-points"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "self-energy": {
+        "description": "The settings of the GW self-energy and the bands it corrects.",
+        "type": "object",
+        "properties": {
+         "band-range": {
+          "description": "The first and last band whose quasiparticle energies are computed. Bands are numbered from 1, the lowest band in the calculation.",
+          "type": "array",
+          "items": {
+           "type": "integer",
+           "minimum": 1
+          },
+          "minItems": 2,
+          "maxItems": 2
+         },
+         "number-of-bands": {
+          "description": "The number of bands in the sum over states of the self-energy, which runs over bands 1 to number-of-bands. It is at least the last band of band-range.",
+          "type": "integer",
+          "minimum": 1
+         },
+         "band-terminator": {
+          "description": "The method used to approximate the contribution of the bands left out of the sum over states of the self-energy.",
+          "type": "string"
+         }
+        },
+        "required": [],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "bse-hamiltonian": {
+        "description": "A collective descriptor for the parameters defining the construction, dimensionality, and solution method of the effective excitonic Bethe-Salpeter Hamiltonian that is being solved in a BSE calculation. It characterizes the Hilbert space size and the physical constraints (momentum and spin) applied during the diagonalization.",
+        "type": "object",
+        "properties": {
+         "number-valence-bands": {
+          "description": "Number of valence bands included in the BSE Hamiltonian.",
+          "type": "integer",
+          "minimum": 1
+         },
+         "number-conduction-bands": {
+          "description": "Number of conduction bands included in the BSE Hamiltonian.",
+          "type": "integer",
+          "minimum": 1
+         },
+         "k-point-mesh": {
+          "description": "Brillouin zone grid used for building the BSE Hamiltonian.",
+          "type": "array",
+          "items": {
+           "type": "integer",
+           "minimum": 1
+          },
+          "minItems": 3,
+          "maxItems": 3
+         },
+         "exciton-momentum": {
+          "description": "Crystal momentum of the exciton in the BSE calculation.",
+          "type": "array",
+          "items": {
+           "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+         },
+         "exciton-multiplicity": {
+          "description": "Specification whether the BSE calculation is performed for singlet or triplet excitons.",
+          "type": "string"
+         },
+         "diagonalization": {
+          "description": "Approximation method used to diagonalize the BSE Hamiltonian.",
+          "type": "string"
+         },
+         "number-lowest-eigenvalues": {
+          "description": "Number of lowest eigenvalues computed by solving the BSE Hamiltonian.",
+          "type": "integer",
+          "minimum": 1
+         }
+        },
+        "required": [],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "bse-kernel-truncation": {
+        "description": "Method used to eliminate long-range Coulomb interactions between periodic replicas in the BSE Coulomb kernel.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "computation-label",
+       "mbpt-method",
+       "dielectric-matrix"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    }
+   },
+   "required": [
+    "settings"
+   ],
+   "patternProperties": {
+    "^x-": {}
+   },
+   "additionalProperties": false
+  },
+  "ml": {
+   "title": "2.6 Machine Learning (ML) Metadata",
+   "type": "object",
+   "properties": {
+    "settings": {
+     "type": "array",
+     "items": {
+      "description": "Settings shared by the computations named in it.",
+      "type": "object",
+      "properties": {
+       "computation-label": {
+        "type": "array",
+        "items": {
+         "description": "The label of a computation these settings apply to.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "ml-task": {
+        "description": "Characterization of the machine learning process performed.",
+        "type": "object",
+        "properties": {
+         "type": {
+          "type": "array",
+          "items": {
+           "description": "The nature of the machine learning task.",
+           "type": "string"
+          },
+          "minItems": 1
+         },
+         "description": {
+          "description": "Explanation of the machine learning task performed.",
+          "type": "string"
+         }
+        },
+        "required": [
+         "type"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "ml-model": {
+        "description": "A comprehensive description of the machine learning approach and architecture used.",
+        "type": "object",
+        "properties": {
+         "algorithm": {
+          "description": "The machine learning method used.",
+          "type": "string"
+         },
+         "target-variable": {
+          "type": "array",
+          "items": {
+           "description": "The desired output or answer the machine learning model aims to predict.",
+           "type": "string"
+          },
+          "minItems": 1
+         },
+         "input-feature": {
+          "type": "array",
+          "items": {
+           "description": "Information provided to the machine learning method.",
+           "type": "string"
+          },
+          "minItems": 1
+         },
+         "model-architecture": {
+          "description": "A description of the network topology used by the specified algorithm.",
+          "type": "string"
+         },
+         "architecture-parameter": {
+          "type": "array",
+          "items": {
+           "description": "A fixed variable that defines the architecture of the machine learning model.",
+           "type": "object",
+           "properties": {
+            "name": {
+             "description": "The designation of the architecture parameter.",
+             "type": "string"
+            },
+            "value": {
+             "description": "The data associated with the architecture parameter.",
+             "not": {
+              "type": [
+               "object",
+               "null"
+              ]
+             }
+            },
+            "unit": {
+             "description": "The unit in which the associated value is expressed.",
+             "anyOf": [
+              {
+               "enum": [
+                "1/angstrom",
+                "1/angstrom^3",
+                "1/bohr",
+                "1/m",
+                "1/m^3",
+                "1/nm",
+                "1/ps",
+                "1/s",
+                "C",
+                "GPa",
+                "J",
+                "J/T",
+                "J/mol",
+                "K",
+                "K/angstrom",
+                "K/m",
+                "N",
+                "Pa",
+                "Ry",
+                "T",
+                "V",
+                "V/angstrom",
+                "V/m",
+                "W/m^2",
+                "amu",
+                "angstrom",
+                "angstrom^3",
+                "bar",
+                "bohr",
+                "bohr^3",
+                "degree",
+                "dimensionless",
+                "e",
+                "eV",
+                "eV/angstrom",
+                "eV/angstrom^3",
+                "fs",
+                "g/cm^3",
+                "hartree",
+                "hartree/bohr",
+                "kJ/mol",
+                "kbar",
+                "kcal/mol",
+                "kg",
+                "kg/m^3",
+                "m",
+                "m/s^2",
+                "m^3",
+                "meV",
+                "mol",
+                "mu_B",
+                "nm",
+                "nm^3",
+                "ns",
+                "ps",
+                "rad",
+                "s",
+                "um"
+               ]
+              },
+              {
+               "type": "string",
+               "pattern": "^x-gnu:"
+              }
+             ]
+            },
+            "description": {
+             "description": "An explanation of the meaning, source, or purpose of the architecture parameter.",
+             "type": "string"
+            },
+            "type": {
+             "enum": [
+              "string",
+              "float",
+              "int",
+              "bool"
+             ]
+            }
+           },
+           "required": [
+            "name",
+            "value",
+            "type"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false,
+           "allOf": [
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "string"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-string"
+               }
+              },
+              "not": {
+               "required": [
+                "unit"
+               ]
+              }
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "float"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-float"
+               }
+              },
+              "required": [
+               "unit"
+              ]
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "int"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-int"
+               }
+              },
+              "required": [
+               "unit"
+              ]
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "bool"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-bool"
+               }
+              },
+              "not": {
+               "required": [
+                "unit"
+               ]
+              }
+             }
+            }
+           ]
+          },
+          "minItems": 1
+         },
+         "model-size": {
+          "description": "The number of trainable parameters of the machine learning model.",
+          "type": "integer",
+          "minimum": 1
+         },
+         "training-data": {
+          "type": "array",
+          "items": {
+           "description": "The information used for parameterizing the machine learning model.",
+           "type": "object",
+           "properties": {
+            "name": {
+             "description": "Name of the training dataset used to train in the machine learning model.",
+             "type": "string"
+            },
+            "contents": {
+             "description": "Description of the information included in the training dataset.",
+             "type": "string"
+            },
+            "source": {
+             "description": "Location from which the training data was obtained.",
+             "type": "string"
+            },
+            "size": {
+             "description": "Number of items in the training dataset.",
+             "type": "integer",
+             "minimum": 1
+            },
+            "data-preprocessing": {
+             "description": "Approach used for preliminary refining of raw, unformatted, or incomplete information into a structured and clean state suitable for modeling or analysis.",
+             "type": "string"
+            },
+            "missing-data": {
+             "description": "Documentation of incomplete, null, or unrecorded entries within a feature set that hinder algorithm training.",
+             "type": "string"
+            },
+            "missing-data-strategy": {
+             "description": "Approach used for filling in or removing blank, null, or unknown entries in a dataset.",
+             "type": "string"
+            },
+            "outlier-handling": {
+             "description": "Approach to identifying and addressing extreme observations that deviate significantly from the general distribution to ensure they do not disproportionately skew model training.",
+             "type": "string"
+            },
+            "dataset-split": {
+             "description": "A description of how information used to train the machine learning model was divided into subsets as part of the training process.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "name",
+            "contents"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "training-method": {
+          "description": "The approach used to determine the machine learning model's free parameters.",
+          "type": "object",
+          "properties": {
+           "training-procedure": {
+            "description": "The methodology used to determine the machine learning model's free parameters.",
+            "type": "string"
+           },
+           "loss-function": {
+            "description": "The quantities fitted in training and how they are weighted.",
+            "type": "string"
+           },
+           "hyperparameter": {
+            "type": "array",
+            "items": {
+             "description": "A fixed variable that controls the fitting of the machine learning model.",
+             "type": "object",
+             "properties": {
+              "name": {
+               "description": "The designation of the hyperparameter.",
+               "type": "string"
+              },
+              "value": {
+               "description": "The data associated with the hyperparameter.",
+               "not": {
+                "type": [
+                 "object",
+                 "null"
+                ]
+               }
+              },
+              "unit": {
+               "description": "The unit in which the associated value is expressed.",
+               "anyOf": [
+                {
+                 "enum": [
+                  "1/angstrom",
+                  "1/angstrom^3",
+                  "1/bohr",
+                  "1/m",
+                  "1/m^3",
+                  "1/nm",
+                  "1/ps",
+                  "1/s",
+                  "C",
+                  "GPa",
+                  "J",
+                  "J/T",
+                  "J/mol",
+                  "K",
+                  "K/angstrom",
+                  "K/m",
+                  "N",
+                  "Pa",
+                  "Ry",
+                  "T",
+                  "V",
+                  "V/angstrom",
+                  "V/m",
+                  "W/m^2",
+                  "amu",
+                  "angstrom",
+                  "angstrom^3",
+                  "bar",
+                  "bohr",
+                  "bohr^3",
+                  "degree",
+                  "dimensionless",
+                  "e",
+                  "eV",
+                  "eV/angstrom",
+                  "eV/angstrom^3",
+                  "fs",
+                  "g/cm^3",
+                  "hartree",
+                  "hartree/bohr",
+                  "kJ/mol",
+                  "kbar",
+                  "kcal/mol",
+                  "kg",
+                  "kg/m^3",
+                  "m",
+                  "m/s^2",
+                  "m^3",
+                  "meV",
+                  "mol",
+                  "mu_B",
+                  "nm",
+                  "nm^3",
+                  "ns",
+                  "ps",
+                  "rad",
+                  "s",
+                  "um"
+                 ]
+                },
+                {
+                 "type": "string",
+                 "pattern": "^x-gnu:"
+                }
+               ]
+              },
+              "description": {
+               "description": "An explanation of the meaning, source, or purpose of the hyperparameter.",
+               "type": "string"
+              },
+              "type": {
+               "enum": [
+                "string",
+                "float",
+                "int",
+                "bool"
+               ]
+              }
+             },
+             "required": [
+              "name",
+              "value",
+              "type"
+             ],
+             "patternProperties": {
+              "^x-": {}
+             },
+             "additionalProperties": false,
+             "allOf": [
+              {
+               "if": {
+                "properties": {
+                 "type": {
+                  "const": "string"
+                 }
+                }
+               },
+               "then": {
+                "properties": {
+                 "value": {
+                  "$ref": "#/$defs/any-depth-string"
+                 }
+                },
+                "not": {
+                 "required": [
+                  "unit"
+                 ]
+                }
+               }
+              },
+              {
+               "if": {
+                "properties": {
+                 "type": {
+                  "const": "float"
+                 }
+                }
+               },
+               "then": {
+                "properties": {
+                 "value": {
+                  "$ref": "#/$defs/any-depth-float"
+                 }
+                },
+                "required": [
+                 "unit"
+                ]
+               }
+              },
+              {
+               "if": {
+                "properties": {
+                 "type": {
+                  "const": "int"
+                 }
+                }
+               },
+               "then": {
+                "properties": {
+                 "value": {
+                  "$ref": "#/$defs/any-depth-int"
+                 }
+                },
+                "required": [
+                 "unit"
+                ]
+               }
+              },
+              {
+               "if": {
+                "properties": {
+                 "type": {
+                  "const": "bool"
+                 }
+                }
+               },
+               "then": {
+                "properties": {
+                 "value": {
+                  "$ref": "#/$defs/any-depth-bool"
+                 }
+                },
+                "not": {
+                 "required": [
+                  "unit"
+                 ]
+                }
+               }
+              }
+             ]
+            },
+            "minItems": 1
+           },
+           "transfer-learning": {
+            "description": "Method used to migrate knowledge from previously mastered objectives to accelerate proficiency for the current machine learning task.",
+            "type": "string"
+           }
+          },
+          "required": [
+           "training-procedure"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         },
+         "model-performance": {
+          "description": "An assessment of the reliability of the machine learning results.",
+          "type": "object",
+          "properties": {
+           "evaluation-method": {
+            "type": "array",
+            "items": {
+             "description": "A description of the approach used to determine the reliability of the obtained machine learning results.",
+             "type": "string"
+            },
+            "minItems": 1
+           },
+           "metric": {
+            "type": "array",
+            "items": {
+             "description": "A score of the machine learning model on one subset of the data.",
+             "type": "object",
+             "properties": {
+              "subset": {
+               "description": "The data on which the score was measured.",
+               "type": "string"
+              },
+              "quantity": {
+               "description": "The target variable the score is for.",
+               "type": "string"
+              },
+              "measure": {
+               "description": "The statistic used as the score.",
+               "type": "string"
+              },
+              "value": {
+               "description": "The value of the property, in the unit given by `unit`.",
+               "type": "number"
+              },
+              "unit": {
+               "description": "The unit in which the associated value is expressed.",
+               "anyOf": [
+                {
+                 "enum": [
+                  "1/angstrom",
+                  "1/angstrom^3",
+                  "1/bohr",
+                  "1/m",
+                  "1/m^3",
+                  "1/nm",
+                  "1/ps",
+                  "1/s",
+                  "C",
+                  "GPa",
+                  "J",
+                  "J/T",
+                  "J/mol",
+                  "K",
+                  "K/angstrom",
+                  "K/m",
+                  "N",
+                  "Pa",
+                  "Ry",
+                  "T",
+                  "V",
+                  "V/angstrom",
+                  "V/m",
+                  "W/m^2",
+                  "amu",
+                  "angstrom",
+                  "angstrom^3",
+                  "bar",
+                  "bohr",
+                  "bohr^3",
+                  "degree",
+                  "dimensionless",
+                  "e",
+                  "eV",
+                  "eV/angstrom",
+                  "eV/angstrom^3",
+                  "fs",
+                  "g/cm^3",
+                  "hartree",
+                  "hartree/bohr",
+                  "kJ/mol",
+                  "kbar",
+                  "kcal/mol",
+                  "kg",
+                  "kg/m^3",
+                  "m",
+                  "m/s^2",
+                  "m^3",
+                  "meV",
+                  "mol",
+                  "mu_B",
+                  "nm",
+                  "nm^3",
+                  "ns",
+                  "ps",
+                  "rad",
+                  "s",
+                  "um"
+                 ]
+                },
+                {
+                 "type": "string",
+                 "pattern": "^x-gnu:"
+                }
+               ]
+              }
+             },
+             "required": [
+              "subset",
+              "quantity",
+              "measure",
+              "value",
+              "unit"
+             ],
+             "patternProperties": {
+              "^x-": {}
+             },
+             "additionalProperties": false
+            },
+            "minItems": 1
+           },
+           "uncertainty-quantification": {
+            "description": "The method or process used to identify and measure the range of possible outcomes to assess the reliability of machine learning model predictions.",
+            "type": "string"
+           },
+           "applicability-domain": {
+            "description": "Where the inputs the model is applied to lie relative to its training data.",
+            "type": "string"
+           }
+          },
+          "required": [
+           "evaluation-method"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         },
+         "interpretability-method": {
+          "description": "A technique used to understand the cause-and-effect relationships within the machine learning model's inputs and outputs.",
+          "type": "string"
+         }
+        },
+        "required": [
+         "algorithm",
+         "target-variable"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "inference": {
+        "description": "How the dataset was produced from the machine learning model.",
+        "type": "object",
+        "properties": {
+         "input-data": {
+          "description": "What the machine learning model was applied to.",
+          "type": "string"
+         },
+         "conditioning": {
+          "description": "The targets imposed on a generative model's outputs.",
+          "type": "string"
+         },
+         "sampling-procedure": {
+          "description": "How the outputs were drawn from the machine learning model.",
+          "type": "string"
+         },
+         "inference-parameter": {
+          "type": "array",
+          "items": {
+           "description": "A fixed variable that controls the application of the machine learning model.",
+           "type": "object",
+           "properties": {
+            "name": {
+             "description": "The designation of the inference parameter.",
+             "type": "string"
+            },
+            "value": {
+             "description": "The data associated with the inference parameter.",
+             "not": {
+              "type": [
+               "object",
+               "null"
+              ]
+             }
+            },
+            "unit": {
+             "description": "The unit in which the associated value is expressed.",
+             "anyOf": [
+              {
+               "enum": [
+                "1/angstrom",
+                "1/angstrom^3",
+                "1/bohr",
+                "1/m",
+                "1/m^3",
+                "1/nm",
+                "1/ps",
+                "1/s",
+                "C",
+                "GPa",
+                "J",
+                "J/T",
+                "J/mol",
+                "K",
+                "K/angstrom",
+                "K/m",
+                "N",
+                "Pa",
+                "Ry",
+                "T",
+                "V",
+                "V/angstrom",
+                "V/m",
+                "W/m^2",
+                "amu",
+                "angstrom",
+                "angstrom^3",
+                "bar",
+                "bohr",
+                "bohr^3",
+                "degree",
+                "dimensionless",
+                "e",
+                "eV",
+                "eV/angstrom",
+                "eV/angstrom^3",
+                "fs",
+                "g/cm^3",
+                "hartree",
+                "hartree/bohr",
+                "kJ/mol",
+                "kbar",
+                "kcal/mol",
+                "kg",
+                "kg/m^3",
+                "m",
+                "m/s^2",
+                "m^3",
+                "meV",
+                "mol",
+                "mu_B",
+                "nm",
+                "nm^3",
+                "ns",
+                "ps",
+                "rad",
+                "s",
+                "um"
+               ]
+              },
+              {
+               "type": "string",
+               "pattern": "^x-gnu:"
+              }
+             ]
+            },
+            "description": {
+             "description": "An explanation of the meaning, source, or purpose of the inference parameter.",
+             "type": "string"
+            },
+            "type": {
+             "enum": [
+              "string",
+              "float",
+              "int",
+              "bool"
+             ]
+            }
+           },
+           "required": [
+            "name",
+            "value",
+            "type"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false,
+           "allOf": [
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "string"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-string"
+               }
+              },
+              "not": {
+               "required": [
+                "unit"
+               ]
+              }
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "float"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-float"
+               }
+              },
+              "required": [
+               "unit"
+              ]
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "int"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-int"
+               }
+              },
+              "required": [
+               "unit"
+              ]
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "bool"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-bool"
+               }
+              },
+              "not": {
+               "required": [
+                "unit"
+               ]
+              }
+             }
+            }
+           ]
+          },
+          "minItems": 1
+         },
+         "number-generated": {
+          "description": "The number of outputs of the machine learning model kept in the dataset.",
+          "type": "integer",
+          "minimum": 1
+         },
+         "filtering": {
+          "description": "What was removed from or kept among the model's outputs.",
+          "type": "string"
+         }
+        },
+        "required": [],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       }
+      },
+      "required": [
+       "computation-label",
+       "ml-task",
+       "ml-model"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    }
+   },
+   "required": [
+    "settings"
+   ],
+   "patternProperties": {
+    "^x-": {}
+   },
+   "additionalProperties": false
+  },
+  "pf": {
+   "title": "2.7 Phase Field (PF) Metadata",
+   "type": "object",
+   "properties": {
+    "settings": {
+     "type": "array",
+     "items": {
+      "description": "Settings shared by the computations named in it.",
+      "type": "object",
+      "properties": {
+       "computation-label": {
+        "type": "array",
+        "items": {
+         "description": "The label of a computation these settings apply to.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "physical-phenomenon": {
+        "type": "array",
+        "items": {
+         "description": "Material process being modeled; description of the overarching processes and mechanisms being modeled/simulated.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "problem-specification": {
+        "description": "The fundamental mathematical and physical framework governing the phase field simulation, including the governing equations and thermodynamic free energy models.",
+        "type": "object",
+        "properties": {
+         "governing-equation": {
+          "type": "array",
+          "items": {
+           "description": "The specific phase field equation used to evolve a field variable.",
+           "type": "object",
+           "properties": {
+            "type": {
+             "type": "array",
+             "items": {
+              "description": "The mathematical classification of the phase field equation.",
+              "type": "string"
+             },
+             "minItems": 1
+            },
+            "evolved-variable": {
+             "description": "The name of the field-variable being evolved by this equation.",
+             "type": "string"
+            },
+            "free-energy-density-term": {
+             "type": "array",
+             "items": {
+              "description": "A term of the free energy density that drives this equation.",
+              "type": "string"
+             },
+             "minItems": 1
+            }
+           },
+           "required": [
+            "type",
+            "evolved-variable"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "free-energy-density": {
+          "type": "array",
+          "items": {
+           "description": "A term of the thermodynamic free energy density used in the simulation.",
+           "type": "object",
+           "properties": {
+            "name": {
+             "description": "The identifier or symbol used for this specific energy functional.",
+             "type": "string"
+            },
+            "contribution": {
+             "type": "array",
+             "items": {
+              "description": "The physical contribution to the free energy that this term represents.",
+              "type": "string"
+             },
+             "minItems": 1
+            },
+            "description": {
+             "description": "The type/derivation of the thermodynamic bulk free energy function.",
+             "type": "string"
+            },
+            "expression": {
+             "description": "The mathematical expression of the free energy density.",
+             "type": "string"
+            },
+            "unit": {
+             "description": "The physical unit of the free energy density.",
+             "anyOf": [
+              {
+               "enum": [
+                "1/angstrom",
+                "1/angstrom^3",
+                "1/bohr",
+                "1/m",
+                "1/m^3",
+                "1/nm",
+                "1/ps",
+                "1/s",
+                "C",
+                "GPa",
+                "J",
+                "J/T",
+                "J/mol",
+                "K",
+                "K/angstrom",
+                "K/m",
+                "N",
+                "Pa",
+                "Ry",
+                "T",
+                "V",
+                "V/angstrom",
+                "V/m",
+                "W/m^2",
+                "amu",
+                "angstrom",
+                "angstrom^3",
+                "bar",
+                "bohr",
+                "bohr^3",
+                "degree",
+                "dimensionless",
+                "e",
+                "eV",
+                "eV/angstrom",
+                "eV/angstrom^3",
+                "fs",
+                "g/cm^3",
+                "hartree",
+                "hartree/bohr",
+                "kJ/mol",
+                "kbar",
+                "kcal/mol",
+                "kg",
+                "kg/m^3",
+                "m",
+                "m/s^2",
+                "m^3",
+                "meV",
+                "mol",
+                "mu_B",
+                "nm",
+                "nm^3",
+                "ns",
+                "ps",
+                "rad",
+                "s",
+                "um"
+               ]
+              },
+              {
+               "type": "string",
+               "pattern": "^x-gnu:"
+              }
+             ]
+            }
+           },
+           "required": [
+            "name",
+            "description"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         }
+        },
+        "required": [
+         "governing-equation",
+         "free-energy-density"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "domain": {
+        "description": "The spatial configuration of the computational region and its boundaries.",
+        "type": "object",
+        "properties": {
+         "dimensionality": {
+          "description": "The spatial dimensions of the computational domain.",
+          "type": "string"
+         },
+         "coordinate-system": {
+          "description": "The structured framework used to uniquely determine and standardize the position of the points in space and the symmetry assumed.",
+          "type": "string"
+         },
+         "domain-size": {
+          "description": "Specification of the computational region extents.",
+          "type": "object",
+          "properties": {
+           "value": {
+            "description": "The value of the property, in the unit given by `unit`.",
+            "type": "array",
+            "items": {
+             "type": "number",
+             "minimum": 0
+            }
+           },
+           "unit": {
+            "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+            "enum": [
+             "angstrom",
+             "bohr",
+             "m",
+             "nm",
+             "um",
+             "dimensionless"
+            ]
+           }
+          },
+          "required": [
+           "value",
+           "unit"
+          ],
+          "patternProperties": {
+           "^x-": {}
+          },
+          "additionalProperties": false
+         },
+         "boundary-condition": {
+          "type": "array",
+          "items": {
+           "description": "A constraint applied on a boundary of the computational domain.",
+           "type": "object",
+           "properties": {
+            "type": {
+             "description": "The kind of boundary condition.",
+             "type": "string"
+            },
+            "boundary": {
+             "description": "The boundary on which the condition applies.",
+             "type": "string"
+            },
+            "field-variable": {
+             "description": "The field variable that the condition constrains.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "type"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         },
+         "initial-condition": {
+          "type": "array",
+          "items": {
+           "description": "The spatial distribution of the field variables at the start of the simulation.",
+           "type": "string"
+          },
+          "minItems": 1
+         }
+        },
+        "required": [
+         "dimensionality"
+        ],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       },
+       "numerical-method": {
+        "type": "array",
+        "items": {
+         "description": "A description of the computational framework used to solve the phase field equations.",
+         "type": "object",
+         "properties": {
+          "evolved-variable": {
+           "type": "array",
+           "items": {
+            "description": "The field variable evolved by an equation that this entry solves.",
+            "type": "string"
+           },
+           "minItems": 1
+          },
+          "spatial-discretization": {
+           "description": "The numerical approach used to convert continuous governing equations into a system of algebraic equations defined over a discrete mesh or set of points within the computational domain.",
+           "type": "string"
+          },
+          "spatial-discretization-parameter": {
+           "type": "array",
+           "items": {
+            "description": "A parameter of the spatial discretization.",
+            "type": "object",
+            "properties": {
+             "name": {
+              "description": "The designation of the spatial discretization parameter.",
+              "type": "string"
+             },
+             "value": {
+              "description": "The data associated with the spatial discretization parameter.",
+              "not": {
+               "type": [
+                "object",
+                "null"
+               ]
+              }
+             },
+             "unit": {
+              "description": "The unit in which the associated value is expressed.",
+              "anyOf": [
+               {
+                "enum": [
+                 "1/angstrom",
+                 "1/angstrom^3",
+                 "1/bohr",
+                 "1/m",
+                 "1/m^3",
+                 "1/nm",
+                 "1/ps",
+                 "1/s",
+                 "C",
+                 "GPa",
+                 "J",
+                 "J/T",
+                 "J/mol",
+                 "K",
+                 "K/angstrom",
+                 "K/m",
+                 "N",
+                 "Pa",
+                 "Ry",
+                 "T",
+                 "V",
+                 "V/angstrom",
+                 "V/m",
+                 "W/m^2",
+                 "amu",
+                 "angstrom",
+                 "angstrom^3",
+                 "bar",
+                 "bohr",
+                 "bohr^3",
+                 "degree",
+                 "dimensionless",
+                 "e",
+                 "eV",
+                 "eV/angstrom",
+                 "eV/angstrom^3",
+                 "fs",
+                 "g/cm^3",
+                 "hartree",
+                 "hartree/bohr",
+                 "kJ/mol",
+                 "kbar",
+                 "kcal/mol",
+                 "kg",
+                 "kg/m^3",
+                 "m",
+                 "m/s^2",
+                 "m^3",
+                 "meV",
+                 "mol",
+                 "mu_B",
+                 "nm",
+                 "nm^3",
+                 "ns",
+                 "ps",
+                 "rad",
+                 "s",
+                 "um"
+                ]
+               },
+               {
+                "type": "string",
+                "pattern": "^x-gnu:"
+               }
+              ]
+             },
+             "description": {
+              "description": "An explanation of the meaning, source, or purpose of the spatial discretization parameter.",
+              "type": "string"
+             },
+             "type": {
+              "enum": [
+               "string",
+               "float",
+               "int",
+               "bool"
+              ]
+             }
+            },
+            "required": [
+             "name",
+             "value",
+             "type"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false,
+            "allOf": [
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "string"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-string"
+                }
+               },
+               "not": {
+                "required": [
+                 "unit"
+                ]
+               }
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "float"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-float"
+                }
+               },
+               "required": [
+                "unit"
+               ]
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "int"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-int"
+                }
+               },
+               "required": [
+                "unit"
+               ]
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "bool"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-bool"
+                }
+               },
+               "not": {
+                "required": [
+                 "unit"
+                ]
+               }
+              }
+             }
+            ]
+           },
+           "minItems": 1
+          },
+          "spatial-accuracy-order": {
+           "description": "The exponent of the grid spacing parameter (Δx) determining the rate at which the discretization error approaches zero as the mesh is refined.",
+           "type": "integer",
+           "minimum": 1
+          },
+          "mesh-type": {
+           "description": "The topology or distribution of the discrete grid points.",
+           "type": "string"
+          },
+          "mesh-file": {
+           "type": "array",
+           "items": {
+            "description": "A file holding the mesh or part of it, such as its structure or the boundaries on which the boundary conditions apply.",
+            "type": "object",
+            "properties": {
+             "name": {
+              "description": "The file name.",
+              "type": "string"
+             },
+             "description": {
+              "description": "A brief description of the file and its contents.",
+              "type": "string"
+             },
+             "contents": {
+              "description": "The contents of the file: its text, or its bytes encoded as given in encoding. Not required in case a link to the file is provided instead.",
+              "type": "string"
+             },
+             "encoding": {
+              "description": "How contents is encoded.",
+              "type": "string"
+             },
+             "link": {
+              "description": "A URI pointing to a permanent location of the file online.",
+              "type": "string",
+              "format": "uri"
+             },
+             "checksum": {
+              "type": "array",
+              "items": {
+               "description": "A digital fingerprint of the file, computed by a named algorithm.",
+               "type": "object",
+               "properties": {
+                "algorithm": {
+                 "description": "The algorithm that computed the checksum.",
+                 "type": "string"
+                },
+                "value": {
+                 "description": "The checksum of the file, in lowercase hexadecimal digits.",
+                 "type": "string",
+                 "pattern": "[0-9a-f]+"
+                }
+               },
+               "required": [
+                "algorithm",
+                "value"
+               ],
+               "patternProperties": {
+                "^x-": {}
+               },
+               "additionalProperties": false
+              },
+              "minItems": 1
+             }
+            },
+            "required": [
+             "name",
+             "description",
+             "checksum"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          },
+          "temporal-discretization": {
+           "description": "The algorithm, step-size approach, and integration order used to advance a simulation, governing equation in time.",
+           "type": "string"
+          },
+          "temporal-accuracy-order": {
+           "description": "The exponent of the time step parameter (Δt) determining the rate at which the discretization error approaches zero as the time step tends to zero.",
+           "type": "integer",
+           "minimum": 1
+          },
+          "grid-spacing": {
+           "type": "array",
+           "items": {
+            "description": "Defines the distance between adjacent discretization points in a numerical domain.",
+            "type": "object",
+            "properties": {
+             "name": {
+              "description": "The designation of the grid spacing parameter.",
+              "type": "string"
+             },
+             "value": {
+              "description": "The value of the property, in the unit given by `unit`.",
+              "type": "number",
+              "minimum": 0
+             },
+             "unit": {
+              "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+              "enum": [
+               "angstrom",
+               "bohr",
+               "m",
+               "nm",
+               "um",
+               "dimensionless"
+              ]
+             },
+             "description": {
+              "description": "An explanation providing further clarification on the grid spacing parameter.",
+              "type": "string"
+             }
+            },
+            "required": [
+             "name",
+             "value",
+             "unit"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          },
+          "time-step-size": {
+           "type": "array",
+           "items": {
+            "description": "The discrete duration of progression between consecutive stages of a simulation, determining the interval for numerical integration, resolution of transient phenomena, and stability of the governing equations.",
+            "type": "object",
+            "properties": {
+             "name": {
+              "description": "The designation of the time step size parameter.",
+              "type": "string"
+             },
+             "value": {
+              "description": "The value of the property, in the unit given by `unit`.",
+              "type": "number",
+              "minimum": 0
+             },
+             "unit": {
+              "description": "The unit of the value, an Annex U symbol whose Kind is the Kind of `value`.",
+              "enum": [
+               "fs",
+               "ns",
+               "ps",
+               "s",
+               "dimensionless"
+              ]
+             },
+             "description": {
+              "description": "An explanation providing further clarification on the time step size parameter.",
+              "type": "string"
+             }
+            },
+            "required": [
+             "name",
+             "value",
+             "unit"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false
+           },
+           "minItems": 1
+          },
+          "solver": {
+           "type": "array",
+           "items": {
+            "description": "A numerical algorithm used to solve the discretized equations.",
+            "type": "string"
+           },
+           "minItems": 1
+          }
+         },
+         "required": [
+          "spatial-discretization"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       },
+       "variables": {
+        "description": "Explicit data structure capturing changing and unchanging elements of the physics model.",
+        "type": "object",
+        "properties": {
+         "model-parameter": {
+          "type": "array",
+          "items": {
+           "description": "A specific, adjustable, or calibrated numeric value that controls certain aspects of the simulation.",
+           "type": "object",
+           "properties": {
+            "name": {
+             "description": "The designation of the model parameter.",
+             "type": "string"
+            },
+            "value": {
+             "description": "The data associated with the model parameter.",
+             "not": {
+              "type": [
+               "object",
+               "null"
+              ]
+             }
+            },
+            "unit": {
+             "description": "The unit in which the associated value is expressed.",
+             "anyOf": [
+              {
+               "enum": [
+                "1/angstrom",
+                "1/angstrom^3",
+                "1/bohr",
+                "1/m",
+                "1/m^3",
+                "1/nm",
+                "1/ps",
+                "1/s",
+                "C",
+                "GPa",
+                "J",
+                "J/T",
+                "J/mol",
+                "K",
+                "K/angstrom",
+                "K/m",
+                "N",
+                "Pa",
+                "Ry",
+                "T",
+                "V",
+                "V/angstrom",
+                "V/m",
+                "W/m^2",
+                "amu",
+                "angstrom",
+                "angstrom^3",
+                "bar",
+                "bohr",
+                "bohr^3",
+                "degree",
+                "dimensionless",
+                "e",
+                "eV",
+                "eV/angstrom",
+                "eV/angstrom^3",
+                "fs",
+                "g/cm^3",
+                "hartree",
+                "hartree/bohr",
+                "kJ/mol",
+                "kbar",
+                "kcal/mol",
+                "kg",
+                "kg/m^3",
+                "m",
+                "m/s^2",
+                "m^3",
+                "meV",
+                "mol",
+                "mu_B",
+                "nm",
+                "nm^3",
+                "ns",
+                "ps",
+                "rad",
+                "s",
+                "um"
+               ]
+              },
+              {
+               "type": "string",
+               "pattern": "^x-gnu:"
+              }
+             ]
+            },
+            "description": {
+             "description": "An explanation providing further clarification on the model parameter.",
+             "type": "string"
+            },
+            "type": {
+             "enum": [
+              "string",
+              "float",
+              "int",
+              "bool"
+             ]
+            }
+           },
+           "required": [
+            "name",
+            "value",
+            "type"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false,
+           "allOf": [
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "string"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-string"
+               }
+              },
+              "not": {
+               "required": [
+                "unit"
+               ]
+              }
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "float"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-float"
+               }
+              },
+              "required": [
+               "unit"
+              ]
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "int"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-int"
+               }
+              },
+              "required": [
+               "unit"
+              ]
+             }
+            },
+            {
+             "if": {
+              "properties": {
+               "type": {
+                "const": "bool"
+               }
+              }
+             },
+             "then": {
+              "properties": {
+               "value": {
+                "$ref": "#/$defs/any-depth-bool"
+               }
+              },
+              "not": {
+               "required": [
+                "unit"
+               ]
+              }
+             }
+            }
+           ]
+          },
+          "minItems": 1
+         },
+         "field-variable": {
+          "type": "array",
+          "items": {
+           "description": "A physical quantity that can evolve during the simulation.",
+           "type": "object",
+           "properties": {
+            "name": {
+             "description": "The designation of the field variable.",
+             "type": "string"
+            },
+            "type": {
+             "description": "The kind of data associated with the field variable.",
+             "type": "string"
+            },
+            "unit": {
+             "description": "The unit in which the field variable is expressed.",
+             "anyOf": [
+              {
+               "enum": [
+                "1/angstrom",
+                "1/angstrom^3",
+                "1/bohr",
+                "1/m",
+                "1/m^3",
+                "1/nm",
+                "1/ps",
+                "1/s",
+                "C",
+                "GPa",
+                "J",
+                "J/T",
+                "J/mol",
+                "K",
+                "K/angstrom",
+                "K/m",
+                "N",
+                "Pa",
+                "Ry",
+                "T",
+                "V",
+                "V/angstrom",
+                "V/m",
+                "W/m^2",
+                "amu",
+                "angstrom",
+                "angstrom^3",
+                "bar",
+                "bohr",
+                "bohr^3",
+                "degree",
+                "dimensionless",
+                "e",
+                "eV",
+                "eV/angstrom",
+                "eV/angstrom^3",
+                "fs",
+                "g/cm^3",
+                "hartree",
+                "hartree/bohr",
+                "kJ/mol",
+                "kbar",
+                "kcal/mol",
+                "kg",
+                "kg/m^3",
+                "m",
+                "m/s^2",
+                "m^3",
+                "meV",
+                "mol",
+                "mu_B",
+                "nm",
+                "nm^3",
+                "ns",
+                "ps",
+                "rad",
+                "s",
+                "um"
+               ]
+              },
+              {
+               "type": "string",
+               "pattern": "^x-gnu:"
+              }
+             ]
+            },
+            "description": {
+             "description": "An explanation providing further clarification on the field variable.",
+             "type": "string"
+            }
+           },
+           "required": [
+            "name",
+            "type",
+            "unit"
+           ],
+           "patternProperties": {
+            "^x-": {}
+           },
+           "additionalProperties": false
+          },
+          "minItems": 1
+         }
+        },
+        "required": [],
+        "patternProperties": {
+         "^x-": {}
+        },
+        "additionalProperties": false
+       }
+      },
+      "required": [
+       "computation-label",
+       "physical-phenomenon",
+       "problem-specification",
+       "numerical-method"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    }
+   },
+   "required": [
+    "settings"
+   ],
+   "patternProperties": {
+    "^x-": {}
+   },
+   "additionalProperties": false
+  },
+  "derived": {
+   "title": "2.8 Derived Property (DP) Metadata",
+   "type": "object",
+   "properties": {
+    "settings": {
+     "type": "array",
+     "items": {
+      "description": "Settings shared by the computations named in it.",
+      "type": "object",
+      "properties": {
+       "computation-label": {
+        "type": "array",
+        "items": {
+         "description": "The label of a computation these settings apply to.",
+         "type": "string"
+        },
+        "minItems": 1
+       },
+       "derived-property": {
+        "type": "array",
+        "items": {
+         "description": "Details of a quantity related to material behavior computed based on a computational materials science (CMS) calculation covered by the MatCore standard.",
+         "type": "object",
+         "properties": {
+          "type": {
+           "description": "The kind of property computed.",
+           "type": "string"
+          },
+          "name": {
+           "description": "The specific property computed.",
+           "type": "string"
+          },
+          "description": {
+           "description": "Explanation of the derived property.",
+           "type": "string"
+          },
+          "procedure": {
+           "description": "How the property was obtained from the results of the computations named in minimal `computation › input`.",
+           "type": "string"
+          },
+          "calculation-parameter": {
+           "type": "array",
+           "items": {
+            "description": "A parameter of the procedure that obtained the derived property.",
+            "type": "object",
+            "properties": {
+             "name": {
+              "description": "The designation of the calculation parameter.",
+              "type": "string"
+             },
+             "value": {
+              "description": "The data associated with the calculation parameter.",
+              "not": {
+               "type": [
+                "object",
+                "null"
+               ]
+              }
+             },
+             "unit": {
+              "description": "The unit in which the associated value is expressed.",
+              "anyOf": [
+               {
+                "enum": [
+                 "1/angstrom",
+                 "1/angstrom^3",
+                 "1/bohr",
+                 "1/m",
+                 "1/m^3",
+                 "1/nm",
+                 "1/ps",
+                 "1/s",
+                 "C",
+                 "GPa",
+                 "J",
+                 "J/T",
+                 "J/mol",
+                 "K",
+                 "K/angstrom",
+                 "K/m",
+                 "N",
+                 "Pa",
+                 "Ry",
+                 "T",
+                 "V",
+                 "V/angstrom",
+                 "V/m",
+                 "W/m^2",
+                 "amu",
+                 "angstrom",
+                 "angstrom^3",
+                 "bar",
+                 "bohr",
+                 "bohr^3",
+                 "degree",
+                 "dimensionless",
+                 "e",
+                 "eV",
+                 "eV/angstrom",
+                 "eV/angstrom^3",
+                 "fs",
+                 "g/cm^3",
+                 "hartree",
+                 "hartree/bohr",
+                 "kJ/mol",
+                 "kbar",
+                 "kcal/mol",
+                 "kg",
+                 "kg/m^3",
+                 "m",
+                 "m/s^2",
+                 "m^3",
+                 "meV",
+                 "mol",
+                 "mu_B",
+                 "nm",
+                 "nm^3",
+                 "ns",
+                 "ps",
+                 "rad",
+                 "s",
+                 "um"
+                ]
+               },
+               {
+                "type": "string",
+                "pattern": "^x-gnu:"
+               }
+              ]
+             },
+             "description": {
+              "description": "An explanation of the meaning, source, or purpose of the calculation parameter.",
+              "type": "string"
+             },
+             "type": {
+              "enum": [
+               "string",
+               "float",
+               "int",
+               "bool"
+              ]
+             }
+            },
+            "required": [
+             "name",
+             "value",
+             "type"
+            ],
+            "patternProperties": {
+             "^x-": {}
+            },
+            "additionalProperties": false,
+            "allOf": [
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "string"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-string"
+                }
+               },
+               "not": {
+                "required": [
+                 "unit"
+                ]
+               }
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "float"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-float"
+                }
+               },
+               "required": [
+                "unit"
+               ]
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "int"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-int"
+                }
+               },
+               "required": [
+                "unit"
+               ]
+              }
+             },
+             {
+              "if": {
+               "properties": {
+                "type": {
+                 "const": "bool"
+                }
+               }
+              },
+              "then": {
+               "properties": {
+                "value": {
+                 "$ref": "#/$defs/any-depth-bool"
+                }
+               },
+               "not": {
+                "required": [
+                 "unit"
+                ]
+               }
+              }
+             }
+            ]
+           },
+           "minItems": 1
+          }
+         },
+         "required": [
+          "type",
+          "name",
+          "description",
+          "procedure"
+         ],
+         "patternProperties": {
+          "^x-": {}
+         },
+         "additionalProperties": false
+        },
+        "minItems": 1
+       }
+      },
+      "required": [
+       "computation-label",
+       "derived-property"
+      ],
+      "patternProperties": {
+       "^x-": {}
+      },
+      "additionalProperties": false
+     },
+     "minItems": 1
+    }
+   },
+   "required": [
+    "settings"
+   ],
+   "patternProperties": {
+    "^x-": {}
+   },
+   "additionalProperties": false
+  },
+  "any-depth-string": {
+   "anyOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/any-depth-string"
+     }
+    }
+   ]
+  },
+  "any-depth-float": {
+   "anyOf": [
+    {
+     "type": "number"
+    },
+    {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/any-depth-float"
+     }
+    }
+   ]
+  },
+  "any-depth-int": {
+   "anyOf": [
+    {
+     "type": "integer"
+    },
+    {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/any-depth-int"
+     }
+    }
+   ]
+  },
+  "any-depth-bool": {
+   "anyOf": [
+    {
+     "type": "boolean"
+    },
+    {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/any-depth-bool"
+     }
+    }
+   ]
+  }
+ }
+}
