@@ -295,10 +295,12 @@ record or marked PROPOSED, NOT DECIDED.
      pull-request run, cancel-in-progress false, queue max (a waiting run is kept, not replaced; GitHub's
      control-workflow-concurrency how-to, read 2026-11-23); tests/test_ci.py (new). The deploy path is verified only
      at the next push to main.
-   - 0.8.1 prepared 2026-11-27, a patch (0010 item 1): website only, no change to the standard (the collapsible
+   - 0.8.1 released 2026-11-27 (tag v0.8.1 on f616603; the site's `latest` is 0.8.1, checked in gh-pages
+     versions.json), a patch (0010 item 1): website only, no change to the standard (the collapsible
      Revision History rows and the smaller menu logo, PR #148; the supporters in the bottom bar, PR #149; CI deploys
-     serialized, PR #147, not listed in the entry); release commit on main, awaiting the human's push and the tag
-     v0.8.1.
+     serialized, PR #147, not listed in the entry). Main and the tag were pushed together: the tag's deploy job was
+     queued at 15:35:37 and started at 15:35:56, after main's finished at 15:35:54, so the concurrency group of PR #147
+     works; both succeeded.
    - Changes to the standard since 0.8.1, for the next release's entry in releases.yaml: none yet.
    - Changes to the standard from 0.7.0 to 0.8.0 (released in 0.8.0, its entry in releases.yaml summarizing them): a JSON Schema generated from
      the standard is published with each version and linked from §1.4; it checks the examples (0078); a new §1.4
