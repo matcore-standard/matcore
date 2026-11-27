@@ -547,6 +547,8 @@
       
         
       
+        
+      
     
     
     
@@ -848,6 +850,33 @@
     
   
     2.8 Derived Property (DP) Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.9 Geometric Construction (GC) Metadata
   
 
     
@@ -3113,8 +3142,8 @@
 <p>Depends on <code>method-class</code>.</p>
 <ul>
 <li>For <code>Electronic</code>: Recommended: <code>CC</code>, <code>QMC</code>, <code>DFT</code>, <code>MBPT</code>, <code>TB</code>. Other values are allowed.</li>
-<li>For <code>Atomistic</code>: Recommended: <code>PIM</code>, <code>PS</code>. Other values are allowed.</li>
-<li>For <code>Mesoscopic</code>: Recommended: <code>DDD</code>, <code>KMC</code>, <code>PIM</code>, <code>PS</code>. Other values are allowed.</li>
+<li>For <code>Atomistic</code>: Recommended: <code>PIM</code>, <code>PS</code>, <code>GC</code>. Other values are allowed.</li>
+<li>For <code>Mesoscopic</code>: Recommended: <code>DDD</code>, <code>KMC</code>, <code>PIM</code>, <code>PS</code>, <code>GC</code>. Other values are allowed.</li>
 <li>For <code>Continuum</code>: Recommended: <code>PF</code>. Other values are allowed.</li>
 <li>For <code>Data-driven</code>: Recommended: <code>ML</code>. Other values are allowed.</li>
 <li>For <code>Post-processing</code>: Recommended: <code>DP</code>. Other values are allowed.</li>
@@ -3128,6 +3157,7 @@
 <li>"TB" – Tight Binding: electronic structure in a basis of localized orbitals with parameterized matrix elements</li>
 <li>"PIM" – Particle Interaction Model: energies, forces and other per-configuration responses (e.g. charges, dipoles, polarizabilities) given as an explicit function of the particles' coordinates, without solving for a wavefunction or an electron density</li>
 <li>"PS" – Particle Simulation: particles moved or sampled using the energies and forces of another computation</li>
+<li>"GC" – Geometric Construction: structures built by rules the author specifies (geometric, combinatorial or random), without evaluating energies or forces and without a model learned from data</li>
 <li>"DDD" – Discrete Dislocation Dynamics: plastic deformation from the motion and interaction of dislocation lines</li>
 <li>"KMC" – Kinetic Monte Carlo: evolution of a system as a sequence of thermally activated events chosen by their rates</li>
 <li>"PF" – Phase Field: microstructure evolution described by continuous fields with diffuse interfaces</li>
