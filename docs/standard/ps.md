@@ -1,6 +1,6 @@
 # 2.4 Particle Simulation (PS) Metadata
 
-<p class="mc-version" data-version="0.8.1">Version 0.8.1</p>
+<p class="mc-version" data-version="0.8.0">Version 0.8.0</p>
 
 The metadata for particle simulations (MatCore-PS) is tabulated below. A particle simulation moves or samples a system of particles using the energies and forces supplied by an interaction model, a particle interaction model or, as in ab initio molecular dynamics, an electronic structure computation. This category includes molecular dynamics (MD), molecular statics (MS), Monte Carlo (MC) and their coarse-grained forms: energy and free energy minimization, equilibrium and nonequilibrium MD, accelerated dynamics, enhanced sampling, saddle-point searches and related approaches. The properties are given in settings blocks, each naming the PS computations it describes. (Note: This standard inherits the metadata in the minimal MatCore standard, adding the properties below.)
 

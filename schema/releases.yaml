@@ -3,16 +3,6 @@
 # page from this file. A release adds an entry here in one commit on main, then tags that commit vX.Y.Z.
 # description: one item per line of the history table's cell.
 releases:
-  - version: 0.8.1
-    date: 2026-11-27
-    change_type: Patch
-    sections: Website
-    description:
-      - "- Revision History: each release is a row that opens to its full list of changes"
-      - "- The bottom bar names MatCore's supporters, NSF, OpenKIM and Matterstack, with their logos"
-      - "- The logo in the left menu is sized to the MatCore title beside it"
-      - "- No change to the standard"
-    approved_by: E. B. Tadmor
   - version: 0.8.0
     date: 2026-11-23
     change_type: Minor (Breaking)
