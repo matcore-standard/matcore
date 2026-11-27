@@ -2048,7 +2048,7 @@
 </table>
 </details>
 <details class="note mc-property" id="minimal.structure.material-component">
-<summary><span class="mc-name">material-component<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<summary><span class="mc-name">material-component</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
 <p>One part of the structure, made of a single material, with its composition, form, role and phase.</p>
 <table>
 <thead>
@@ -2059,11 +2059,12 @@
 </thead>
 <tbody>
 <tr>
-<td>yes</td>
+<td>no</td>
 <td>yes</td>
 </tr>
 </tbody>
 </table>
+<p>Note: Give one entry for each material of a structure whose composition is known. For many structures of different compositions described together, give <code>population</code> instead; a structure gives one or the other.</p>
 <details class="note mc-property" id="minimal.structure.material-component.formula">
 <summary><span class="mc-name">formula<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The chemical formula of the material component.</p>
@@ -2378,12 +2379,13 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>Adsorbate</code>, <code>Core</code>, <code>Film</code>, <code>Inclusion</code>, <code>Layer</code>, <code>Matrix</code>, <code>Shell</code>, <code>Solute</code>, <code>Solvent</code>, <code>Substrate</code>. Other values are allowed.</p>
+<p>Recommended: <code>Adsorbate</code>, <code>Core</code>, <code>Film</code>, <code>Grain</code>, <code>Inclusion</code>, <code>Layer</code>, <code>Matrix</code>, <code>Shell</code>, <code>Solute</code>, <code>Solvent</code>, <code>Substrate</code>. Other values are allowed.</p>
 <p><strong>Clarifications:</strong></p>
 <ul>
 <li>"Adsorbate" – A molecule, cluster or particle on the surface of a substrate</li>
 <li>"Core" – The inner part of a particle, enclosed by a shell</li>
 <li>"Film" – A layer of finite thickness on a substrate</li>
+<li>"Grain" – One of the grains of a polycrystal or a bicrystal, e.g. one side of a grain boundary</li>
 <li>"Inclusion" – A material enclosed in a matrix, e.g. a precipitate or an embedded nanotube</li>
 <li>"Layer" – One of the layers of a layered structure, e.g. a heterostructure, a superlattice or a stack of 2D materials</li>
 <li>"Matrix" – A material that encloses one or more inclusions</li>
@@ -2567,7 +2569,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Clarifications:</strong> e.g. a surface facet such as Pt(111), an orientation relationship such as (111)Pt ∥ (001)CeO₂, or the chirality of a nanotube.</p>
+<p><strong>Clarifications:</strong> e.g. the chirality of a nanotube. A surface facet or the crystallography of an interface is given in <code>orientation</code>.</p>
 </details>
 <details class="note mc-property" id="minimal.structure.material-component.microstructure">
 <summary><span class="mc-name">microstructure</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -2595,6 +2597,390 @@
 </tbody>
 </table>
 </details>
+<details class="note mc-property" id="minimal.structure.material-component.orientation">
+<summary><span class="mc-name">orientation</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The crystallographic orientation of the component at a surface or an interface, in its conventional cell.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Give it for each component that meets a surface or an interface, e.g. both sides of a grain boundary or of a heterointerface. The registry of the two sides and the positions of the atoms are data, not metadata.</p>
+<details class="note mc-property" id="minimal.structure.material-component.orientation.plane">
+<summary><span class="mc-name">plane<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The Miller indices (hkl) of the plane of the component at the surface or interface.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>int</td>
+<td>[3]</td>
+<td>dimensionless</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: <code>[1, 1, 1]</code>.</p>
+</details>
+<details class="note mc-property" id="minimal.structure.material-component.orientation.direction">
+<summary><span class="mc-name">direction</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The indices [uvw] of a direction of the component in the plane of the interface, parallel to the direction given for the other side.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>int</td>
+<td>[3]</td>
+<td>dimensionless</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: <code>[1, -1, 0]</code>.</p>
+</details>
+<details class="note mc-property" id="minimal.structure.material-component.orientation.termination">
+<summary><span class="mc-name">termination</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>The atomic layer of the component at the surface or interface, named by its composition.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: <code>TiO2</code>, <code>SrO</code>.</p>
+<p>Note: Give one entry for each termination present in the dataset.</p>
+</details>
+</details>
+</details>
+<details class="note mc-property" id="minimal.structure.population">
+<summary><span class="mc-name">population</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>Many structures of different compositions described together, when listing a formula for each is impractical, e.g. a generated or screened set.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Give it instead of <code>material-component</code> when one structure entry stands for many structures of different compositions; a structure gives one or the other, not both.</p>
+<details class="note mc-property" id="minimal.structure.population.count">
+<summary><span class="mc-name">count<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The number of structures in the population.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>int</td>
+<td>[]</td>
+<td>dimensionless</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum: 1.</p>
+<p>Note: The number in the version of the dataset this record describes.</p>
+</details>
+<details class="note mc-property" id="minimal.structure.population.element">
+<summary><span class="mc-name">element</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>A chemical element present in at least one structure of the population.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: <code>Cu</code>, <code>Nb</code>.</p>
+<p>Note: One entry for each element, by its symbol in the IUPAC Periodic Table. Omit it when the population is not restricted in chemistry, and say so in the structure's description.</p>
+</details>
+<details class="note mc-property" id="minimal.structure.population.number-of-elements">
+<summary><span class="mc-name">number-of-elements</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>The number of distinct elements in a structure of the population.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Give the range as two entries, with the qualifiers Minimum and Maximum.</p>
+<details class="note mc-property" id="minimal.structure.population.number-of-elements.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The value of the property.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>int</td>
+<td>[]</td>
+<td>dimensionless</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum: 1.</p>
+</details>
+<details class="note mc-property" id="minimal.structure.population.number-of-elements.qualifier">
+<summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>What the value represents.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Average</code>, <code>Final</code>, <code>Initial</code>, <code>Maximum</code>, <code>Minimum</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.</p>
+</details>
+</details>
+<details class="note mc-property" id="minimal.structure.population.number-of-sites">
+<summary><span class="mc-name">number-of-sites</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>The number of atoms in the unit cell of a structure of the population.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Give the range as two entries, with the qualifiers Minimum and Maximum.</p>
+<details class="note mc-property" id="minimal.structure.population.number-of-sites.value">
+<summary><span class="mc-name">value<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The value of the property.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>int</td>
+<td>[]</td>
+<td>dimensionless</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Minimum: 1.</p>
+</details>
+<details class="note mc-property" id="minimal.structure.population.number-of-sites.qualifier">
+<summary><span class="mc-name">qualifier</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>What the value represents.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Average</code>, <code>Final</code>, <code>Initial</code>, <code>Maximum</code>, <code>Minimum</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> Without a qualifier, the value holds throughout the simulation and across the system, and the entry is the only one for the condition. Otherwise give one entry for each qualifier that applies, e.g. Initial and Final for a ramp, Minimum and Maximum for a range. For a vector or tensor, Minimum and Maximum are taken component by component.</p>
+</details>
+</details>
+<details class="note mc-property" id="minimal.structure.population.form">
+<summary><span class="mc-name">form</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The geometric form shared by the structures of the population.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>2D material</code>, <code>Bulk</code>, <code>Chain</code>, <code>Cluster</code>, <code>Molecule</code>, <code>Monolayer</code>, <code>Nanoparticle</code>, <code>Nanoribbon</code>, <code>Nanotube</code>, <code>Nanowire</code>, <code>Slab</code>, <code>Thin film</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong> Terms as defined for <code>material-component › form</code>.</p>
+</details>
+</details>
+<details class="note mc-property" id="minimal.structure.orientation-relationship">
+<summary><span class="mc-name">orientation-relationship</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The named orientation relationship between the components that meet at an interface.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Kurdjumov-Sachs</code>, <code>Nishiyama-Wassermann</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong></p>
+<ul>
+<li>"Kurdjumov-Sachs" – {111}fcc ∥ {110}bcc with &lt;110&gt;fcc ∥ &lt;111&gt;bcc</li>
+<li>"Nishiyama-Wassermann" – {111}fcc ∥ {110}bcc with &lt;112&gt;fcc ∥ &lt;110&gt;bcc</li>
+</ul>
 </details>
 </details>
 <details class="note mc-property" id="minimal.computation">
@@ -2820,7 +3206,7 @@
 </details>
 <details class="note mc-property" id="minimal.computation.input">
 <summary><span class="mc-name">input</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
-<p>Another computation in the record whose results this computation uses.</p>
+<p>Another computation, in the record or in another dataset, whose results this computation uses.</p>
 <table>
 <thead>
 <tr>
@@ -2837,7 +3223,7 @@
 </table>
 <p>Note: Give an input only where the data of this computation cannot be understood without it. A record describes the dataset; it does not record the order of the calculations or how to repeat them.</p>
 <details class="note mc-property" id="minimal.computation.input.computation-label">
-<summary><span class="mc-name">computation-label<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<summary><span class="mc-name">computation-label</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
 <p>The label of that computation.</p>
 <table>
 <thead>
@@ -2852,7 +3238,7 @@
 </thead>
 <tbody>
 <tr>
-<td>yes</td>
+<td>no</td>
 <td>no</td>
 <td>string</td>
 <td>[]</td>
@@ -2861,6 +3247,35 @@
 </tr>
 </tbody>
 </table>
+<p>Note: A computation in this record; with <code>dataset</code>, a computation in that dataset's MatCore record, if it has one.</p>
+</details>
+<details class="note mc-property" id="minimal.computation.input.dataset">
+<summary><span class="mc-name">dataset</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>A URI of the dataset the input comes from, e.g. its DOI or the address of its MatCore record.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Format: <code>uri</code> (JSON Schema 2020-12).</p>
+<p>Note: Give it for an input from another dataset, instead of a computation in this record. Give either a computation-label of this record or a dataset.</p>
 </details>
 <details class="note mc-property" id="minimal.computation.input.role">
 <summary><span class="mc-name">role<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
@@ -2887,15 +3302,16 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>Interaction model</code>, <code>Initial configuration</code>, <code>Starting point</code>, <code>Training data</code>, <code>Parameters</code>, <code>Source data</code>. Other values are allowed.</p>
+<p>Recommended: <code>Interaction model</code>, <code>Initial configuration</code>, <code>Starting point</code>, <code>Training data</code>, <code>Parameters</code>, <code>Source data</code>, <code>Guidance</code>. Other values are allowed.</p>
 <p><strong>Clarifications:</strong></p>
 <ul>
 <li>"Interaction model" – The energies and forces of the configurations this computation evaluates</li>
-<li>"Initial configuration" – The configurations this computation starts from, with the state carried over from that computation, e.g. velocities</li>
+<li>"Initial configuration" – The configurations this computation starts from or evaluates, with any state carried over, e.g. velocities</li>
 <li>"Starting point" – An electronic ground state, density or wavefunction this computation starts from, e.g. the DFT ground state of a GW calculation</li>
 <li>"Training data" – Data a model is fitted to</li>
 <li>"Parameters" – Values used as parameters of this computation's model, e.g. a free energy or elastic constants in a phase field model</li>
 <li>"Source data" – Results from which this computation obtains a property</li>
+<li>"Guidance" – A model whose outputs steer this computation's sampling or generation, e.g. classifier guidance or an active-learning acquisition function</li>
 </ul>
 </details>
 </details>
@@ -4920,13 +5336,14 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>Calculation method</code>, <code>Interaction model</code>, <code>Script</code>, <code>Simulation code</code>, <code>Workflow framework</code>. Other values are allowed.</p>
+<p>Recommended: <code>Calculation method</code>, <code>Interaction model</code>, <code>Script</code>, <code>Simulation code</code>, <code>Trained model</code>, <code>Workflow framework</code>. Other values are allowed.</p>
 <p><strong>Clarifications:</strong></p>
 <ul>
 <li>"Calculation method" – A packaged procedure that computes a defined property, e.g. an OpenKIM test or an iprPy calculation</li>
 <li>"Interaction model" – The implementation of a particle interaction model, e.g. a KIM model or a potential file; give its identifier and link</li>
 <li>"Script" – Custom code written for the calculations, e.g. a Python script using ASE</li>
 <li>"Simulation code" – A program that performs the simulation or calculation itself, e.g. LAMMPS or VASP</li>
+<li>"Trained model" – The parameters of a machine learning model trained elsewhere, e.g. a checkpoint of a generative model; give its identifier, link and file with checksum. A trained interatomic potential is an Interaction model</li>
 <li>"Workflow framework" – A system that sets up, runs and manages calculations with other software, e.g. pyiron, AiiDA or MedeA</li>
 </ul>
 </details>
@@ -5205,10 +5622,11 @@
 </tr>
 </tbody>
 </table>
-<p>Recommended: <code>Compiler</code>, <code>FFT library</code>, <code>Interpreter</code>, <code>Library</code>, <code>Linear algebra library</code>, <code>MPI library</code>. Other values are allowed.</p>
+<p>Recommended: <code>Compiler</code>, <code>Container image</code>, <code>FFT library</code>, <code>Interpreter</code>, <code>Library</code>, <code>Linear algebra library</code>, <code>MPI library</code>. Other values are allowed.</p>
 <p><strong>Clarifications:</strong></p>
 <ul>
 <li>"Compiler" – Translates source code into an executable, e.g. GCC or the Intel oneAPI compilers</li>
+<li>"Container image" – The image the software ran in, e.g. a Docker or Apptainer image; give its digest (sha256:…) as its version, not a tag such as latest</li>
 <li>"FFT library" – Computes fast Fourier transforms, e.g. FFTW</li>
 <li>"Interpreter" – Runs a script, e.g. Python</li>
 <li>"Library" – Any other library the software calls, e.g. LibXC or ASE</li>
@@ -5467,6 +5885,280 @@
 </details>
 </details>
 </details>
+</details>
+<details class="note mc-property" id="minimal.computation.quantity">
+<summary><span class="mc-name">quantity</span><span class="mc-icon mc-i-rep" title="repeatable: may appear more than once" aria-label="repeatable: may appear more than once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12a6 6 0 0 1 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.8.7 2.8a6 6 0 0 1-6 6v-3l-4 4 4 4v-3a8 8 0 0 0 8-8c0-1.57-.46-3.03-1.24-4.26"/></svg></span></summary>
+<p>A quantity the dataset holds from this computation.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Give one entry for each quantity stored, e.g. each column of a table. It describes the quantity; its values are in the dataset (§1.2).</p>
+<details class="note mc-property" id="minimal.computation.quantity.name">
+<summary><span class="mc-name">name<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The name of the quantity as stored in the dataset.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: <code>polarization</code>, <code>gap_fundamental_ev</code>.</p>
+</details>
+<details class="note mc-property" id="minimal.computation.quantity.description">
+<summary><span class="mc-name">description</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>What the quantity is.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note mc-property" id="minimal.computation.quantity.unit">
+<summary><span class="mc-name">unit</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The unit in which the quantity is stored.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Clarifications:</strong> A symbol from the MatCore Unit Table (Annex U), or the reserved symbol <code>dimensionless</code>.</p>
+<p>Note: Give it for a numerical quantity; omit it for a string or boolean one.</p>
+</details>
+<details class="note mc-property" id="minimal.computation.quantity.extent">
+<summary><span class="mc-name">extent</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The shape of one value, in the notation of §1.3.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: <code>[3]</code>, <code>[3,3]</code>.</p>
+</details>
+<details class="note mc-property" id="minimal.computation.quantity.type">
+<summary><span class="mc-name">type</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The data type of the stored values.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Float</code>, <code>Integer</code>, <code>Complex</code>, <code>String</code>, <code>Boolean</code>. Other values are allowed.</p>
+</details>
+<details class="note mc-property" id="minimal.computation.quantity.per">
+<summary><span class="mc-name">per</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>What each value belongs to.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Atom</code>, <code>Configuration</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong></p>
+<ul>
+<li>"Atom" – One value for each atom of a configuration, e.g. forces</li>
+<li>"Configuration" – One value for each configuration, e.g. a total energy or a stress</li>
+</ul>
+</details>
+<details class="note mc-property" id="minimal.computation.quantity.normalized-by">
+<summary><span class="mc-name">normalized-by</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>What each value is divided by.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended: <code>Atom</code>, <code>Formula unit</code>, <code>Cell volume</code>. Other values are allowed.</p>
+<p><strong>Clarifications:</strong></p>
+<ul>
+<li>"Atom" – Divided by the number of atoms in the configuration</li>
+<li>"Formula unit" – Divided by the number of formula units in the configuration</li>
+<li>"Cell volume" – Divided by the volume of the cell</li>
+</ul>
+<p>Note: Omit it for a value not divided by anything. The unit is that of the undivided quantity, e.g. eV for a total energy divided by the number of atoms.</p>
+</details>
+<details class="note mc-property" id="minimal.computation.quantity.convention">
+<summary><span class="mc-name">convention</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>Conventions the values follow, e.g. their sign, ordering or normalization.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Examples: <code>Voigt order xx, yy, zz, yz, xz, xy</code>.</p>
+</details>
+</details>
+<details class="note mc-property" id="minimal.computation.selection">
+<summary><span class="mc-name">selection</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>How the results kept in the dataset were chosen from those the computation produced.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Give the criterion, how many results were kept out of how many, and whether the rejected or failed ones are also in the dataset. Omit it when every result is kept. A generative model's checks on its outputs are given in ml <code>inference › filtering</code>.</p>
 </details>
 </details>
 <details class="note mc-property" id="minimal.publication">
@@ -6507,6 +7199,87 @@
 </tr>
 </tbody>
 </table>
+</details>
+</details>
+<details class="note mc-property" id="minimal.access">
+<summary><span class="mc-name">access</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>Whether and how the data of the dataset can be obtained.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Note: The license says what may be done with the data; access says whether they can be obtained. A dataset may have a license and still be closed.</p>
+<details class="note mc-property" id="minimal.access.right">
+<summary><span class="mc-name">right<span class="mc-star" title="required" aria-label="required">*</span></span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The access right to the data, a term of the COAR Access Rights vocabulary, version 1.1.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yes</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>One of <code>open access</code>, <code>embargoed access</code>, <code>restricted access</code>, <code>metadata only access</code>.</p>
+<p><strong>Clarifications:</strong></p>
+<ul>
+<li>"open access" – Available to anyone, free and permanently (http://purl.org/coar/access_right/c_abf2)</li>
+<li>"embargoed access" – Metadata only until a set date, then open access (http://purl.org/coar/access_right/c_f1cf)</li>
+<li>"restricted access" – Available with a restriction, e.g. a login, a request to the authors, or membership of a community (http://purl.org/coar/access_right/c_16ec)</li>
+<li>"metadata only access" – Only the metadata are available; the data are not (http://purl.org/coar/access_right/c_14cb)</li>
+</ul>
+</details>
+<details class="note mc-property" id="minimal.access.embargo-date">
+<summary><span class="mc-name">embargo-date</span><span class="mc-icon mc-i-once" title="appears at most once" aria-label="appears at most once"><svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 12c0-1-.26-1.96-.7-2.8l1.46-1.46A7.93 7.93 0 0 1 20 12c0 1.39-.36 2.68-1 3.82l-1.5-1.5c.32-.72.5-1.49.5-2.32M2.39 1.73 1.11 3 5.5 7.37C4.55 8.68 4 10.27 4 12c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-1.17.34-2.26.92-3.19l8.27 8.27c-.93.58-2.02.92-3.19.92v-3l-4 4 4 4v-3c1.73 0 3.32-.55 4.63-1.5l4.21 4.23 1.27-1.27zM12 6v2.8l.1.1L16 5l-4-4v3c-1.38 0-2.68.36-3.82 1l1.5 1.5c.72-.32 1.5-.5 2.32-.5"/></svg></span></summary>
+<p>The date on which embargoed data become open access.</p>
+<table>
+<thead>
+<tr>
+<th>Required</th>
+<th>Repeatable</th>
+<th>Type</th>
+<th>Extent</th>
+<th>Kind</th>
+<th>Rec. unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>no</td>
+<td>no</td>
+<td>string</td>
+<td>[]</td>
+<td>inapplicable</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Format: <code>date</code> (JSON Schema 2020-12).</p>
+<p>Note: Give it for embargoed access.</p>
 </details>
 </details>
 <h2 id="example-minimal-matcore-metadata">Example: Minimal MatCore Metadata</h2>
